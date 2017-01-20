@@ -1,5 +1,6 @@
 package com.wolf.shoot.udp.server;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
@@ -21,6 +22,12 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
         ByteBuffer buf =  ByteBuffer.wrap(datagramPacket.getData());
         ByteBuffer readBuffer = buf.asReadOnlyBuffer();
         String body = new String(readBuffer.array(), CharsetUtil.UTF_8);
+        utilLogger.debug("收到客户端数据" + body);
 
+        //回复客户端
+        String response = "Hello, 服务器事件为" + System.currentTimeMillis();
+        byte[] bytes = response.getBytes(CharsetUtil.UTF_8);
+        DatagramPacket responsePacket = new DatagramPacket(bytes, bytes.length);
+        channelHandlerContext.writeAndFlush(response).sync();
     }
 }
