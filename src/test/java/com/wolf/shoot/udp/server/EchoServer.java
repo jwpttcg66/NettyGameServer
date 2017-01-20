@@ -14,7 +14,7 @@ public class EchoServer {
     public static void main(String[] args)  throws Exception{
         Bootstrap serverBootStrap = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
-        serverBootStrap.group(group).channel(NioDatagramChannel.class).handler(null);
+        serverBootStrap.group(group).channel(NioDatagramChannel.class).handler(new EchoServerHandler());
         //绑定端口
         int port = 9090;
         serverBootStrap.bind().sync().channel().closeFuture().await();
