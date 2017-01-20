@@ -5,6 +5,6 @@ package com.wolf.shoot.udp.client;
  */
 public class EchoClient {
     public static void main(String[] args) throws Exception{
-        
+        LocalUDPSocketProvider.getInstance().initConnect();
     }
 }
