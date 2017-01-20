@@ -1,7 +1,11 @@
 package com.wolf.shoot.udp.client;
 
+import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 /**
  * Created by jwp on 2017/1/20.
@@ -39,6 +43,19 @@ public class LocalUDPDataReciever {
     }
 
     private void upListeningImpl() throws Exception{
+        while (true) {
+            byte[] data = new byte[1024];
+            //接收数据报的包
+            DatagramPacket packet = new DatagramPacket(data, data.length);
+            DatagramSocket localUDPSocket = LocalUDPSocketProvider.getInstance().getLocalUDPSocket();
+            if (localUDPSocket == null || (localUDPSocket.isClosed())) {
+                continue;
+            }
 
+            localUDPSocket.receive(packet);
+            //解析发来的数据
+            String response = new String(packet.getData(), 0, packet.getLength(), CharsetUtil.UTF_8);
+            utilLogger.debug(LocalUDPDataReciever.TAG, "收到服务器信息" + response);
+        }
     }
 }
