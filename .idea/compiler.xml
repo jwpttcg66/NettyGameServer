@@ -29,13 +29,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="wolfshoot" />
         <module name="wolfshot" />
+      </profile>
+      <profile default="false" name="Annotation profile for wolfshoot" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="wolfshoot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="game-excutor" target="1.7" />
-      <module name="wolfshoot" target="1.5" />
+      <module name="wolfshoot" target="1.7" />
       <module name="wolfshot" target="1.5" />
     </bytecodeTargetLevel>
   </component>
