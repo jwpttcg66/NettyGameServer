@@ -10,6 +10,8 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+//        PooledUnsafeDirectByteBuf byteBuffer = (PooledUnsafeDirectByteBuf) msg;
+//        CharBuffer msgString = byteBuffer.asCharBuffer();
         System.out.println(msg);
         ctx.write(msg);
     }
