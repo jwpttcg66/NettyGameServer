@@ -31,6 +31,7 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
         String response = "Hello, 服务器事件为" + System.currentTimeMillis();
         byte[] bytes = response.getBytes(CharsetUtil.UTF_8);
         DatagramPacket responsePacket = new DatagramPacket(Unpooled.copiedBuffer(bytes), datagramPacket.sender());
-        channelHandlerContext.writeAndFlush(responsePacket).sync();
+//        channelHandlerContext.writeAndFlush(responsePacket).sync();
+        channelHandlerContext.channel().writeAndFlush(responsePacket).sync();
     }
 }
