@@ -3,7 +3,6 @@ package com.wolf.shoot.udp.client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
@@ -28,7 +27,7 @@ public class LocalUDPSocketProvider {
     public void initConnect(){
         try{
             int port = 9090;
-            this.datagramSocket = new DatagramSocket(port);
+            this.datagramSocket = new DatagramSocket();
             this.datagramSocket.connect(InetAddress.getByName("127.0.0.1"), port);
             this.datagramSocket.setReuseAddress(true);
             utilLogger.debug(Tag, "new DatagramSocket() 创建成功");
