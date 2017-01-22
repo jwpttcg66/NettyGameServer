@@ -29,7 +29,7 @@ public class EchoClient {
 //            boolean ok = UDPUtils.send(soServerBytes, soServerBytes.length);
             DatagramPacket send_packet = new DatagramPacket(toServerBytes, toServerBytes.length);
             LocalUDPSocketProvider.getInstance().getLocalUDPSocket().send(send_packet);
-            utilLogger.debug("EchoClient", "发往服务端的信息没有成功发出！！！");
+            utilLogger.debug("EchoClient", "发往服务端的信息已经发出！！！");
 
             // 3000秒后进入下一次循环
             Thread.sleep(3000);

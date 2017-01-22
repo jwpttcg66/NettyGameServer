@@ -26,7 +26,7 @@ public class LocalUDPSocketProvider {
 
     public void initConnect(){
         try{
-            int port = 9090;
+            int port = 9999;
             this.datagramSocket = new DatagramSocket();
             this.datagramSocket.connect(InetAddress.getByName("127.0.0.1"), port);
             this.datagramSocket.setReuseAddress(true);

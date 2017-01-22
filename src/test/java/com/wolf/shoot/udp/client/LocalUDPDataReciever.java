@@ -29,7 +29,7 @@ public class LocalUDPDataReciever {
             @Override
             public void run() {
                 try {
-                    int port = 9090;
+                    int port = 9999;
                     utilLogger.debug(LocalUDPDataReciever.TAG, "本地udp端口侦听， 端口=" + port);
                     //开始侦听
                     LocalUDPDataReciever.getInstance().upListeningImpl();
