@@ -34,12 +34,15 @@ public class EchoNettyUdpClient {
             @Override
             protected void initChannel(NioDatagramChannel ch) throws Exception {
                 ChannelPipeline cp = ch.pipeline();
-                cp.addLast("framer", new MessageToMessageDecoder<DatagramPacket>() {
-                    @Override
-                    protected void decode(ChannelHandlerContext ctx, DatagramPacket msg, List<Object> out) throws Exception {
-                        out.add(msg.content().toString(Charset.forName("UTF-8")));
-                    }
-                }).addLast("handler", new UdpHandler());
+//                cp.addLast("framer", new MessageToMessageDecoder<DatagramPacket>() {
+//                    @Override
+//                    protected void decode(ChannelHandlerContext ctx, DatagramPacket msg, List<Object> out) throws Exception {
+////                        out.add(msg.content().toString(Charset.forName("UTF-8")));
+//                        out.add(msg);
+//                    }
+//                }).addLast("handler", new UdpHandler());
+
+                cp.addLast("handler", new UdpHandler());
             }
         });
         // 监听端口
@@ -56,5 +59,9 @@ public class EchoNettyUdpClient {
                 nioEventLoopGroup.shutdownGracefully();
             }
         }));
+
+        while (true){
+            Thread.currentThread().sleep(100l);
+        }
     }
 }
