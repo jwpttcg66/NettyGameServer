@@ -48,7 +48,7 @@ public class EchoNettyUdpClient {
         Channel udpChannel = sync.channel();
 
         String data = "我是大好人啊";
-        udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(data.getBytes(Charset.forName("UTF-8"))), new InetSocketAddress("127.0.0.1", port)));
+        udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(data.getBytes(Charset.forName("UTF-8"))), new InetSocketAddress("127.0.0.1", port))).sync();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
