@@ -4,6 +4,7 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -24,10 +25,10 @@ public class EchoServer {
             serverBootstrap.channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<NioServerSocketChannel>() {
+                    .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
-                        protected void initChannel(NioServerSocketChannel nioServerSocketChannel) throws Exception {
-                            ChannelPipeline channelPipLine = nioServerSocketChannel.pipeline();
+                        protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
+                            ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
                             channelPipLine.addLast(new EchoServerHandler());
                         }
                     });
