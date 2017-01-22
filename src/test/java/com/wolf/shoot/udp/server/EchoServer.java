@@ -16,7 +16,7 @@ public class EchoServer {
         serverBootStrap.group(group).channel(NioDatagramChannel.class).handler(new EchoServerHandler());
         //绑定端口
         int port = 9999;
-        serverBootStrap.bind(port).sync().channel().closeFuture().await();
+        serverBootStrap.bind("127.0.0.1", port).sync().channel().closeFuture().await();
 
     }
 }
