@@ -5,11 +5,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.Delimiters;
-import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -35,10 +30,10 @@ public class EchoServer {
                         @Override
                         protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                             ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
-                            channelPipLine.addLast(new LineBasedFrameDecoder(1024));
-                            channelPipLine.addLast(new StringDecoder());
+//                            channelPipLine.addLast(new LineBasedFrameDecoder(1024));
+//                            channelPipLine.addLast(new StringDecoder());
 //                            channelPipLine.addLast(new StringEncoder());
-                            channelPipLine.addLast(new EchoServerHandler());
+                            channelPipLine.addLast(new EchoSocketServerHandler());
                         }
                     });
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();

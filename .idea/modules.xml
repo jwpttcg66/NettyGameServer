@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/game-excutor.iml" filepath="$PROJECT_DIR$/game-excutor.iml" />
       <module fileurl="file://$PROJECT_DIR$/wolfshoot.iml" filepath="$PROJECT_DIR$/wolfshoot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wolfshot.iml" filepath="$PROJECT_DIR$/wolfshot.iml" />
     </modules>
   </component>
 </project>
