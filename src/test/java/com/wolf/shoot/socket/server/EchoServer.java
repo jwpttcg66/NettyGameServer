@@ -26,16 +26,7 @@ public class EchoServer {
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ChannelInitializer<NioSocketChannel>() {
-                        @Override
-                        protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
-                            ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
-//                            channelPipLine.addLast(new LineBasedFrameDecoder(1024));
-//                            channelPipLine.addLast(new StringDecoder());
-//                            channelPipLine.addLast(new StringEncoder());
-                            channelPipLine.addLast(new EchoSocketServerHandler());
-                        }
-                    });
+                    .childHandler(new ServerChannelInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();
 
             serverChannelFuture.channel().closeFuture().sync();
