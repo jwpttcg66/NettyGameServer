@@ -26,7 +26,8 @@ public class EchoServer {
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ServerChannelInitializer());
+//                    .childHandler(new ServerChannelInitializer());
+                    .childHandler(new StringServerChannelInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();
 
             serverChannelFuture.channel().closeFuture().sync();

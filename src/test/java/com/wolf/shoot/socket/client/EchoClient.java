@@ -30,15 +30,8 @@ public class EchoClient {
             b.group(group).channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .handler(new ChannelInitializer<SocketChannel>() {
-                        public void initChannel(SocketChannel ch) throws Exception {
-//                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
-//                            ch.pipeline().addLast(new StringDecoder());
-//                            ch.pipeline().addLast(new StringEncoder());
-                            ch.pipeline().addLast(new EchoClientHandler());
-//                            ch.pipeline().addLast(new EchoClientHandler2());
-                        }
-                    });
+//                    .handler(new ClientChannleInitializer());
+                    .handler(new StringClientChannelInitializer());
             ChannelFuture f = b.connect(addr, port).sync();
             System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());
             f.channel().closeFuture().sync();//等待客户端关闭连接

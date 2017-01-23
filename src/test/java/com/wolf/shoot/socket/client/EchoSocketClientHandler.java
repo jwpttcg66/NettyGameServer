@@ -12,23 +12,18 @@ import java.nio.charset.Charset;
 /**
  * Created by jwp on 2017/1/23.
  */
-public class EchoClientHandler2 extends SimpleChannelInboundHandler<String> {
+public class EchoSocketClientHandler extends SimpleChannelInboundHandler<String> {
 
     public static final Logger utilLogger = LoggerFactory.getLogger("util");
-    byte[] req;
+    String req;
 
-    public EchoClientHandler2() {
-        req=("我是请求数据哦2"+System.getProperty("line.separator")).getBytes();
+    public EchoSocketClientHandler() {
+        req="请求";
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ByteBuf message=null;
-        for(int i=0;i<1;i++){
-            message= Unpooled.buffer(req.length);
-            message.writeBytes(req);
-            ctx.writeAndFlush(message);
-        }
+        ctx.writeAndFlush(req);
 
     }
 
