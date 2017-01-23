@@ -22,6 +22,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         String res="来自与服务端的回应,时间:"+ time;
         ByteBuf resp= Unpooled.copiedBuffer(res.getBytes());
         ctx.writeAndFlush(resp);
+//        ctx.writeAndFlush(res);
         counter++;
     }
 

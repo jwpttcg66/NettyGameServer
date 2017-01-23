@@ -37,7 +37,7 @@ public class EchoServer {
                             ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
                             channelPipLine.addLast(new LineBasedFrameDecoder(1024));
                             channelPipLine.addLast(new StringDecoder());
-                            channelPipLine.addLast(new StringEncoder());
+//                            channelPipLine.addLast(new StringEncoder());
                             channelPipLine.addLast(new EchoServerHandler());
                         }
                     });
