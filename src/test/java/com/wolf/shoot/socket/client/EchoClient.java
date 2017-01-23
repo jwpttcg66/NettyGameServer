@@ -26,7 +26,7 @@ public class EchoClient {
     }
 
     public void connect(String addr, int port) throws Exception {
-        EventLoopGroup group = new NioEventLoopGroup();
+        final EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
@@ -41,18 +41,27 @@ public class EchoClient {
                     });
             ChannelFuture f = b.connect(addr, port).sync();
             System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());
-//            f.channel().closeFuture().sync();//等待客户端关闭连接
-            while(true)
-            {
-                // 3000秒后进入下一次循环
-                Thread.sleep(3000);
-            }
+            f.channel().closeFuture().sync();//等待客户端关闭连接
+//            f.channel().writeAndFlush("d").sync();
+            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    group.shutdownGracefully();
+                }
+            }));
+
+
+//            while(true)
+//            {
+//                // 3000秒后进入下一次循环
+//                Thread.sleep(3000);
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
 
-            group.shutdownGracefully();
+//            group.shutdownGracefully();
         }
     }
 }
