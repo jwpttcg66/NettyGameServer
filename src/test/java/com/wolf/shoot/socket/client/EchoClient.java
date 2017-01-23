@@ -36,8 +36,8 @@ public class EchoClient {
                             ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
                             ch.pipeline().addLast(new StringDecoder());
 //                            ch.pipeline().addLast(new StringEncoder());
-//                            ch.pipeline().addLast(new EchoClientHandler());
-                            ch.pipeline().addLast(new EchoClientHandler2());
+                            ch.pipeline().addLast(new EchoClientHandler());
+//                            ch.pipeline().addLast(new EchoClientHandler2());
                         }
                     });
             ChannelFuture f = b.connect(addr, port).sync();
