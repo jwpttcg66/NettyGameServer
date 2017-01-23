@@ -1,47 +1,58 @@
 package com.wolf.shoot.socket.client;
 
+import com.wolf.shoot.socket.client.EchoClientHandler;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.Delimiters;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
 /**
- * Created by jiangwenping on 17/1/22.
+ * netty 客户端模拟
+ *
+ * @author mingge
  */
 public class EchoClient {
-    public static  final int Port = 9999;
-    static final String HOST = System.getProperty("host", "127.0.0.1");
-    static final int SIZE = Integer.parseInt(System.getProperty("size", "256"));
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws Exception {
+        new EchoClient().connect("127.0.0.1", 9999);
+    }
+
+    public void connect(String addr, int port) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
-        try{
-            Bootstrap bootstrap = new Bootstrap();
-            bootstrap = bootstrap.group(group);
-            bootstrap.channel(NioSocketChannel.class)
+        try {
+            Bootstrap b = new Bootstrap();
+            b.group(group).channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new ChannelInitializer<NioSocketChannel>() {
-                        @Override
-                        protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
-                            ChannelPipeline channelPipeline = nioSocketChannel.pipeline();
-                            channelPipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
-                            channelPipeline.addLast(new StringDecoder());
-                            channelPipeline.addLast(new StringEncoder());
-                            channelPipeline.addLast(new EchoClientHandler());
+                    .handler(new ChannelInitializer<SocketChannel>() {
+                        public void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+                            ch.pipeline().addLast(new StringEncoder());
+                            ch.pipeline().addLast(new StringDecoder());
+                            ch.pipeline().addLast(new EchoClientHandler());
                         }
                     });
-            ChannelFuture channelFuture = bootstrap.connect(HOST, Port).sync();
+            ChannelFuture f = b.connect(addr, port).sync();
+            System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());
+//            f.channel().closeFuture().sync();//等待客户端关闭连接
+            while(true)
+            {
+                // 3000秒后进入下一次循环
+                Thread.sleep(3000);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
 
-            channelFuture.channel().writeAndFlush("hello world" + "\r\n").sync();
-            channelFuture.channel().closeFuture().sync();
-        }catch (Exception e){
             group.shutdownGracefully();
         }
-
     }
 }

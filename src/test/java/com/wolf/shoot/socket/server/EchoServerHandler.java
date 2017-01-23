@@ -9,12 +9,12 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-//        PooledUnsafeDirectByteBuf byteBuffer = (PooledUnsafeDirectByteBuf) msg;
-//        CharBuffer msgString = byteBuffer.asCharBuffer();
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println(msg);
-        ctx.write(msg);
+//        ctx.write(msg);
+        ctx.writeAndFlush(msg).sync();
     }
+
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
