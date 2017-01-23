@@ -25,8 +25,9 @@ public class EchoSocketServerHandler extends ChannelInboundHandlerAdapter {
 //        String body=new String(req, CharsetUtil.UTF_8);
 //        System.out.println("body:" + body + ",响应次数:" + (++counter));
 //        ctx.writeAndFlush(buf);
-        ctx.write(msg);
-        System.out.println(msg);
+        Thread.sleep(1000L);
+        ctx.writeAndFlush(msg);
+        System.out.println("服务端收到："+msg);
     }
 
 
