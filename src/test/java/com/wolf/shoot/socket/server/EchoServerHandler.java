@@ -12,7 +12,8 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println(msg);
 //        ctx.write(msg);
-        ctx.writeAndFlush(msg).sync();
+        ctx.channel().writeAndFlush(msg).sync();
+
     }
 
 

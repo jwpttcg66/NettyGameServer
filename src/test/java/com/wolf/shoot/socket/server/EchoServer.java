@@ -29,6 +29,7 @@ public class EchoServer {
             serverBootstrap = serverBootstrap.group(bossGroup, bossGroup);
             serverBootstrap.channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
+                    .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
