@@ -31,6 +31,10 @@ public class NetMessageHead {
     private int serial;
 
 
+    public NetMessageHead(){
+        this.head = MESSAGE_HEADER_FLAG;
+    }
+
     public short getHead() {
         return head;
     }

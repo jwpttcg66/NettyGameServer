@@ -1,6 +1,8 @@
 package com.wolf.shoot.net.message.decoder;
 
 import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.NetMessageBody;
+import com.wolf.shoot.net.message.NetMessageHead;
 import io.netty.buffer.ByteBuf;
 
 import java.nio.ByteBuffer;
@@ -12,7 +14,16 @@ public class NetMessageDecoderFactory {
 
     public static NetMessage praseMessage(ByteBuf byteBuf){
         NetMessage netMessage = new NetMessage();
-
+        //读取head
+        NetMessageHead netMessageHead = new NetMessageHead();
+        netMessageHead.setLength(byteBuf.readInt());
+        netMessageHead.setVersion(byteBuf.readByte());
+        netMessageHead.setCmd(byteBuf.readShort());
+        netMessageHead.setSerial(byteBuf.readInt());
+        //读取body
+        NetMessageBody netMessageBody = new NetMessageBody();
+        netMessage.setNetMessageHead(netMessageHead);
+        netMessage.setNetMessageBody(netMessageBody);
         return netMessage;
     }
 }
