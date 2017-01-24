@@ -29,8 +29,8 @@ public class EchoClient {
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
 //                    .handler(new ClientChannleInitializer());
-                    .handler(new StringClientChannelInitializer());
-//                    .handler(new ProtoClientChannleInitializer());
+//                    .handler(new StringClientChannelInitializer());
+                    .handler(new ProtoClientChannleInitializer());
             ChannelFuture f = b.connect(addr, port).sync();
             System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());
             f.channel().closeFuture().sync();//等待客户端关闭连接
