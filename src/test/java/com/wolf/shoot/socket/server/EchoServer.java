@@ -1,10 +1,11 @@
 package com.wolf.shoot.socket.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -27,7 +28,8 @@ public class EchoServer {
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
 //                    .childHandler(new ServerChannelInitializer());
-                    .childHandler(new StringServerChannelInitializer());
+//                    .childHandler(new StringServerChannelInitializer());
+                    .childHandler(new ProtoServerChannelInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();
 
             serverChannelFuture.channel().closeFuture().sync();
