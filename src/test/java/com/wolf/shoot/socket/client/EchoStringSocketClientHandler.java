@@ -24,7 +24,7 @@ public class EchoStringSocketClientHandler extends SimpleChannelInboundHandler<S
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         count++;
-        ctx.writeAndFlush(req + count);
+        ctx.writeAndFlush(req + count+"\n");
 
     }
 
