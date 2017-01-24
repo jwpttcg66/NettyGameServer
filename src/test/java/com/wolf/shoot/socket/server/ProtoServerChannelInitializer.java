@@ -4,6 +4,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 /**
  * Created by jiangwenping on 17/1/24.
@@ -14,6 +15,7 @@ public class ProtoServerChannelInitializer extends ChannelInitializer<NioSocketC
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         short maxLength = Short.MAX_VALUE;
         nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4));
+        nioSocketChannel.pipeline().addLast(new StringDecoder());
 //        channelPipLine.addLast(new LineBasedFrameDecoder(1024));
 //        channelPipLine.addLast(new StringDecoder());
 //        channelPipLine.addLast(new StringEncoder());

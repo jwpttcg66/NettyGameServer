@@ -1,6 +1,5 @@
 package com.wolf.shoot.socket.server;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -12,10 +11,10 @@ public class ProtoSocketServerHandler  extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Thread.sleep(1000L);
-        ByteBuf byteBuffer = (ByteBuf) msg;
+//        ByteBuf byteBuffer = (ByteBuf) msg;
 
 //        System.out.println("服务端收到："+byteBuffer.array());
-        ctx.writeAndFlush(((ByteBuf) msg).array());
+        ctx.writeAndFlush(msg);
 
     }
 

@@ -13,9 +13,10 @@ public class ProtoClientHandler  extends ChannelInboundHandlerAdapter {
 
     public ProtoClientHandler() {
         firstMessage = Unpooled.buffer(1024);
-        firstMessage.writeInt(8);
-        firstMessage.writeInt(4);
-        firstMessage.writeInt(234);
+        byte[] sendString = "hello world".getBytes();
+        firstMessage.writeInt(sendString.length);
+        firstMessage.writeBytes(sendString);
+//        firstMessage.writeInt(234);
     }
 
 
