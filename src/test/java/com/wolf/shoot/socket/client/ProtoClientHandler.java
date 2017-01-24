@@ -12,12 +12,10 @@ public class ProtoClientHandler  extends ChannelInboundHandlerAdapter {
     private final ByteBuf firstMessage;
 
     public ProtoClientHandler() {
-        firstMessage = Unpooled.buffer(8);
-//        for (int i = 0; i < firstMessage.capacity(); i ++) {
-//            firstMessage.writeByte((byte) i);
-//        }
+        firstMessage = Unpooled.buffer(1024);
+        firstMessage.writeInt(8);
         firstMessage.writeInt(4);
-        firstMessage.writeInt(4);
+        firstMessage.writeInt(234);
     }
 
 
