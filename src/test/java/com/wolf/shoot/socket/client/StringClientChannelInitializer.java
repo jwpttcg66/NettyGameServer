@@ -2,6 +2,7 @@ package com.wolf.shoot.socket.client;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
@@ -11,7 +12,7 @@ import io.netty.handler.codec.string.StringEncoder;
 public class StringClientChannelInitializer extends ChannelInitializer<NioSocketChannel>{
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
-//        nioSocketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
+        nioSocketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
         nioSocketChannel.pipeline().addLast(new StringDecoder());
         nioSocketChannel.pipeline().addLast(new StringEncoder());
         nioSocketChannel.pipeline().addLast(new EchoStringSocketClientHandler());

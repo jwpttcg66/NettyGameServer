@@ -14,7 +14,7 @@ public class StringServerChannelInitializer extends ChannelInitializer<NioSocket
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
-//        channelPipLine.addLast(new LineBasedFrameDecoder(1024));
+        channelPipLine.addLast(new LineBasedFrameDecoder(1024));
         channelPipLine.addLast(new StringDecoder());
         channelPipLine.addLast(new StringEncoder());
         channelPipLine.addLast(new EchoSocketServerHandler());
