@@ -6,15 +6,10 @@ import io.netty.util.ByteProcessor;
  * Created by jwp on 2017/1/24.
  *  网络基本消息
  */
-public abstract  class NetMessage {
+public class NetMessage {
 
     private NetMessageHead netMessageHead;
     private NetMessageBody netMessageBody;
-
-    public NetMessage(NetMessageHead netMessageHead, NetMessageBody netMessageBody) {
-        this.netMessageHead = netMessageHead;
-        this.netMessageBody = netMessageBody;
-    }
 
     public NetMessageHead getNetMessageHead() {
         return netMessageHead;
@@ -22,5 +17,13 @@ public abstract  class NetMessage {
 
     public void setNetMessageHead(NetMessageHead netMessageHead) {
         this.netMessageHead = netMessageHead;
+    }
+
+    public NetMessageBody getNetMessageBody() {
+        return netMessageBody;
+    }
+
+    public void setNetMessageBody(NetMessageBody netMessageBody) {
+        this.netMessageBody = netMessageBody;
     }
 }
