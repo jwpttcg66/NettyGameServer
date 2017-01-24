@@ -2,6 +2,7 @@ package com.wolf.shoot.socket.client;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 /**
  * Created by jiangwenping on 17/1/24.
@@ -9,7 +10,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class ProtoClientChannleInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
-//        nioSocketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
+        short maxLength = Short.MAX_VALUE;
+        nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4));
 //        nioSocketChannel.pipeline().addLast(new StringDecoder());
 //        nioSocketChannel.pipeline().addLast(new StringEncoder());
         nioSocketChannel.pipeline().addLast(new ProtoClientHandler());
