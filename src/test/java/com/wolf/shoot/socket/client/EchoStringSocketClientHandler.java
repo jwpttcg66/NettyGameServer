@@ -25,13 +25,12 @@ public class EchoStringSocketClientHandler extends SimpleChannelInboundHandler<S
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         count++;
         ctx.writeAndFlush(req + count+"\n");
-
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
         utilLogger.debug("客户端收到服务器数据： " + s);
         count++;
-        channelHandlerContext.writeAndFlush(req + count);
+        channelHandlerContext.writeAndFlush(req + count+"\n");
     }
 }
