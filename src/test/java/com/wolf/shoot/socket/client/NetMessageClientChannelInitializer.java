@@ -14,9 +14,12 @@ public class NetMessageClientChannelInitializer extends ChannelInitializer<NioSo
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         int maxLength = Integer.MAX_VALUE;
-        nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4));
+//        nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
+        int lengthAdjustment = 1+2+4;
+
+        nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, lengthAdjustment, 0));
         nioSocketChannel.pipeline().addLast(new NetMessageEncoder());
         nioSocketChannel.pipeline().addLast(new NetMessageDecoder());
-        nioSocketChannel.pipeline().addLast(new ProtoClientHandler());
+        nioSocketChannel.pipeline().addLast(new NetMessageClientHandler());
     }
 }
