@@ -8,6 +8,7 @@ import io.netty.buffer.Unpooled;
 
 /**
  * Created by jwp on 2017/1/24.
+ * 网络消息编码
  */
 public class NetMessageEncoderFactory {
 
