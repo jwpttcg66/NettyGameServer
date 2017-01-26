@@ -1,0 +1,2 @@
+sudo protoc -I=/Users/jiangwenping/data/git-clover-workspace/Server-Code/game_server/proto/ --java_out=/Users/jiangwenping/data/git-clover-workspace/Server-Code/game_server/src /Users/jiangwenping/data/git-clover-workspace/Server-Code/game_server/proto/room_log.proto
+sudo protoc -I=/Users/jwp/data/git-clover-workspace/Server-Code/game_server/proto/ --java_out=/Users/jwp/data/git-clover-workspace/Server-Code/game_server/src /Users/jwp/data/git-clover-workspace/Server-Code/game_server/proto/room_log.proto

@@ -1,0 +1,30 @@
+option java_package = "com.game.wolf.gameserver.msg.auto.common";
+option java_outer_classname = "CommonMessageProBuf";
+
+message TestProBuf
+{
+    required int32 id = 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
