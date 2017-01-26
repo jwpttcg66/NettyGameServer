@@ -4,6 +4,7 @@ import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 
 import java.nio.ByteBuffer;
 
@@ -24,6 +25,12 @@ public class NetMessageDecoderFactory {
         netMessageHead.setSerial(byteBuf.readInt());
         //读取body
         NetMessageBody netMessageBody = new NetMessageBody();
+        int byteLength = byteBuf.readableBytes();
+        ByteBuf bodyByteBuffer = Unpooled.buffer(256);
+        byte[] bytes = new byte[byteLength];
+        bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
+        netMessageBody.setBytes(bytes);
+
         netMessage.setNetMessageHead(netMessageHead);
         netMessage.setNetMessageBody(netMessageBody);
         return netMessage;

@@ -26,7 +26,6 @@ public class NetMessageEncoderFactory {
         byteBuf.writeBytes(netMessageBody.getBytes());
 
         //重新设置长度
-        byteBuf.slice();
 //        int skip = (2+4);
         int skip = 6;
         int length = byteBuf.readableBytes() - skip;
