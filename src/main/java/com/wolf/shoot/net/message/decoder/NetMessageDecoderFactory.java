@@ -16,6 +16,8 @@ public class NetMessageDecoderFactory {
         NetMessage netMessage = new NetMessage();
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();
+        //head为两个字节，跳过
+        byteBuf.skipBytes(2);
         netMessageHead.setLength(byteBuf.readInt());
         netMessageHead.setVersion(byteBuf.readByte());
         netMessageHead.setCmd(byteBuf.readShort());
