@@ -31,7 +31,9 @@ public class NetMessageEncoder extends MessageToMessageEncoder<ByteBuf> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        //TODO
+        NetMessage netMessage = (NetMessage) out.get(0);
+        ByteBuf netMessageBuf = NetMessageEncoderFactory.createByteBuf(netMessage);
+        msg.writeBytes(netMessageBuf.array());
     }
 
 }
