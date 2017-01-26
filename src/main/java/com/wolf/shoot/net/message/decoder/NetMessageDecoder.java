@@ -12,8 +12,22 @@ import java.util.List;
  */
 public class NetMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
 
+    private INetMessageDecoderFactory iNetMessageDecoderFactory;
+
+    public NetMessageDecoder(INetMessageDecoderFactory iNetMessageDecoderFactory) {
+        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
+    }
+
+    public INetMessageDecoderFactory getiNetMessageDecoderFactory() {
+        return iNetMessageDecoderFactory;
+    }
+
+    public void setiNetMessageDecoderFactory(INetMessageDecoderFactory iNetMessageDecoderFactory) {
+        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
+    }
+
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        out.add(NetMessageDecoderFactory.praseMessage(msg));
+        out.add(iNetMessageDecoderFactory.praseMessage(msg));
     }
 }

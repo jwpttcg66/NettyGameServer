@@ -10,9 +10,9 @@ import io.netty.buffer.Unpooled;
  * Created by jwp on 2017/1/24.
  * 网络消息编码
  */
-public class NetMessageEncoderFactory {
+public class NetMessageEncoderFactory implements  INetMessageEncoderFactory{
 
-    public static ByteBuf createByteBuf(NetMessage netMessage){
+    public ByteBuf createByteBuf(NetMessage netMessage){
         ByteBuf byteBuf = Unpooled.buffer(256);
         //编写head
         NetMessageHead netMessageHead = netMessage.getNetMessageHead();

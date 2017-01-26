@@ -6,6 +6,6 @@ import io.netty.buffer.ByteBuf;
 /**
  * Created by jwp on 2017/1/26.
  */
-public interface INetMessageEncoderFactory {
+public interface INetMessageDecoderFactory {
     public NetMessage praseMessage(ByteBuf byteBuf);
 }

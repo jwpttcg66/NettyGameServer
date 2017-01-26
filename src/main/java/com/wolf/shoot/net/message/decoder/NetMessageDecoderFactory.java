@@ -3,6 +3,7 @@ package com.wolf.shoot.net.message.decoder;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
+import com.wolf.shoot.net.message.encoder.INetMessageEncoderFactory;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -11,9 +12,9 @@ import java.nio.ByteBuffer;
 /**
  * Created by jwp on 2017/1/24.
  */
-public class NetMessageDecoderFactory {
+public class NetMessageDecoderFactory implements INetMessageDecoderFactory{
 
-    public static NetMessage praseMessage(ByteBuf byteBuf){
+    public NetMessage praseMessage(ByteBuf byteBuf){
         NetMessage netMessage = new NetMessage();
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();

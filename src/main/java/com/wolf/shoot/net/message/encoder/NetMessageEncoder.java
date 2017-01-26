@@ -17,8 +17,11 @@ public class NetMessageEncoder extends MessageToMessageEncoder<NetMessage> {
 
     private final Charset charset;
 
-    public NetMessageEncoder() {
+    private INetMessageEncoderFactory iNetMessageEncoderFactory;
+
+    public NetMessageEncoder(INetMessageEncoderFactory iNetMessageEncoderFactory) {
         this(CharsetUtil.UTF_8);
+        this.iNetMessageEncoderFactory = iNetMessageEncoderFactory;
     }
 
     public NetMessageEncoder(Charset charset) {
@@ -29,9 +32,17 @@ public class NetMessageEncoder extends MessageToMessageEncoder<NetMessage> {
         }
     }
 
+    public INetMessageEncoderFactory getiNetMessageEncoderFactory() {
+        return iNetMessageEncoderFactory;
+    }
+
+    public void setiNetMessageEncoderFactory(INetMessageEncoderFactory iNetMessageEncoderFactory) {
+        this.iNetMessageEncoderFactory = iNetMessageEncoderFactory;
+    }
+
     @Override
     protected void encode(ChannelHandlerContext ctx, NetMessage msg, List<Object> out) throws Exception {
-        ByteBuf netMessageBuf = NetMessageEncoderFactory.createByteBuf(msg);
+        ByteBuf netMessageBuf = iNetMessageEncoderFactory.createByteBuf(msg);
         out.add(netMessageBuf);
     }
 }

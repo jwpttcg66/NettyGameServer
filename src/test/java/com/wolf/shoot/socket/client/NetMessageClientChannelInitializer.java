@@ -1,7 +1,9 @@
 package com.wolf.shoot.socket.client;
 
 import com.wolf.shoot.net.message.decoder.NetMessageDecoder;
+import com.wolf.shoot.net.message.decoder.NetMessageDecoderFactory;
 import com.wolf.shoot.net.message.encoder.NetMessageEncoder;
+import com.wolf.shoot.net.message.encoder.NetMessageEncoderFactory;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
@@ -18,8 +20,8 @@ public class NetMessageClientChannelInitializer extends ChannelInitializer<NioSo
         int lengthAdjustment = 1+2+4;
 
         nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        nioSocketChannel.pipeline().addLast(new NetMessageEncoder());
-        nioSocketChannel.pipeline().addLast(new NetMessageDecoder());
+        nioSocketChannel.pipeline().addLast(new NetMessageEncoder(new NetMessageEncoderFactory()));
+        nioSocketChannel.pipeline().addLast(new NetMessageDecoder(new NetMessageDecoderFactory()));
         nioSocketChannel.pipeline().addLast(new NetMessageClientHandler());
     }
 }

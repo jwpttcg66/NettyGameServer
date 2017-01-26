@@ -30,11 +30,11 @@ public class NetMessageEncodeTest {
         netMessage.setNetMessageBody(netMessageBody);
         netMessage.setNetMessageHead(netMessageHead);
 
-        ByteBuf byteBuf = NetMessageEncoderFactory.createByteBuf(netMessage);
+        ByteBuf byteBuf = new NetMessageEncoderFactory().createByteBuf(netMessage);
         System.out.println(byteBuf.array());
 
         //解析编码
-        NetMessage decoderMesage = NetMessageDecoderFactory.praseMessage(byteBuf);
+        NetMessage decoderMesage = new NetMessageDecoderFactory().praseMessage(byteBuf);
         netMessageHead = decoderMesage.getNetMessageHead();
         netMessageBody = decoderMesage.getNetMessageBody();
         System.out.println(netMessageHead.getSerial());
