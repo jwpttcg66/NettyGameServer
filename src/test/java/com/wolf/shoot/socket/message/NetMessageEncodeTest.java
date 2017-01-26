@@ -26,6 +26,7 @@ public class NetMessageEncodeTest {
         byte[] bytes = "hello world".getBytes(CharsetUtil.UTF_8);
         netMessageBody.setBytes(bytes);
 
+        netMessageHead.setLength(1+2+4+ bytes.length);
         netMessage.setNetMessageBody(netMessageBody);
         netMessage.setNetMessageHead(netMessageHead);
 

@@ -40,7 +40,9 @@ public class NetMessageClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ctx.write(msg);
-        System.out.println(msg);
+        NetMessage netMessage = (NetMessage) msg;
+        String response = new String(netMessage.getNetMessageBody().getBytes(), CharsetUtil.UTF_8);
+        System.out.println("客户端收到：" + response);
     }
 
     @Override
