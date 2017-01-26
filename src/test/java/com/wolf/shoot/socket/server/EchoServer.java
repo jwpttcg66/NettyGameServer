@@ -29,7 +29,8 @@ public class EchoServer {
                     .handler(new LoggingHandler(LogLevel.INFO))
 //                    .childHandler(new ServerChannelInitializer());
 //                    .childHandler(new StringServerChannelInitializer());
-                    .childHandler(new ProtoServerChannelInitializer());
+//                    .childHandler(new ProtoServerChannelInitializer());
+                    .childHandler(new NetMessageServerChannleInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();
 
             serverChannelFuture.channel().closeFuture().sync();

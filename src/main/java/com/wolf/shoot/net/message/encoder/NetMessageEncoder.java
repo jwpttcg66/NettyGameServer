@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by jwp on 2017/1/24.
  */
-public class NetMessageEncoder extends MessageToMessageEncoder<ByteBuf> {
+public class NetMessageEncoder extends MessageToMessageEncoder<NetMessage> {
 
     private final Charset charset;
 
@@ -30,10 +30,8 @@ public class NetMessageEncoder extends MessageToMessageEncoder<ByteBuf> {
     }
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        NetMessage netMessage = (NetMessage) out.get(0);
-        ByteBuf netMessageBuf = NetMessageEncoderFactory.createByteBuf(netMessage);
-        msg.writeBytes(netMessageBuf.array());
+    protected void encode(ChannelHandlerContext ctx, NetMessage msg, List<Object> out) throws Exception {
+        ByteBuf netMessageBuf = NetMessageEncoderFactory.createByteBuf(msg);
+        out.add(netMessageBuf);
     }
-
 }
