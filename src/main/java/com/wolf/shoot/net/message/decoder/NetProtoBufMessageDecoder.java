@@ -10,11 +10,11 @@ import java.util.List;
  * Created by jiangwenping on 17/2/3.
  */
 
-public class NetProtoBufDecoder extends MessageToMessageDecoder<ByteBuf> {
+public class NetProtoBufMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     private INetMessageDecoderFactory iNetMessageDecoderFactory;
 
-    public NetProtoBufDecoder(INetMessageDecoderFactory iNetMessageDecoderFactory) {
+    public NetProtoBufMessageDecoder(INetMessageDecoderFactory iNetMessageDecoderFactory) {
         this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
     }
 
