@@ -1,4 +1,4 @@
-option java_package = "com.game.wolf.gameserver.msg.auto.common";
+option java_package = "com.wolf.shoot.net.message.auto";
 option java_outer_classname = "CommonMessageProBuf";
 
 message TestProBuf
