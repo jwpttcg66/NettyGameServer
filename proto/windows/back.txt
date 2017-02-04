@@ -1,12 +1,4 @@
 
-C:\Users\B053-mac\Desktop\windws�����\server\proto\windows>protoc.exe -I C:\Users\B053-mac\Desktop\windws�����\server\proto --java_out=C:\Users\B053-mac\Desktop\windws�����\server\src C:\Users\B053-mac\Desktop\windws�����\server\proto\map.proto
-
-
-sudo protoc -I=/Users/b053-mac/data/clove_160-workaspace/game_server/proto/ --java_out=/Users/b053-mac/data/clove_160-workaspace/game_server/src /Users/b053-mac/data/clove_160-workaspace/game_server/proto/room.proto 
-
-
-sudo protoc -I=/Users/b053-mac/data/clover_200_workspace/game_server/proto/ --java_out=/Users/b053-mac/data/clover_200_workspace/game_server/src /Users/b053-mac/data/clover_200_workspace/game_server/proto/online.proto
-sudo protoc -I=/Users/b053-mac/data/clover_200_workspace/game_server/proto/ --java_out=/Users/b053-mac/data/clover_200_workspace/game_server/src /Users/b053-mac/data/clover_200_workspace/game_server/proto/online_server.proto
-
+C:\Users\B053-mac\Desktop\windws\server\proto\windows>protoc.exe -I C:\Users\B053-mac\Desktop\windws\server\proto --java_out=C:\Users\B053-mac\Desktop\windws\server\src C:\Users\B053-mac\Desktop\windws�����\server\proto\map.proto
 
 sudo protoc -I=/Users/b053-mac/data/IDEA-clover-200-workspace/game_server/proto/ --java_out=/Users/b053-mac/data/IDEA-clover-200-workspace/game_server/src /Users/b053-mac/data/IDEA-clover-200-workspace/game_server/proto/room.proto
