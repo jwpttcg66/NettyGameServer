@@ -14,16 +14,8 @@ public class NetMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     private INetMessageDecoderFactory iNetMessageDecoderFactory;
 
-    public NetMessageDecoder(INetMessageDecoderFactory iNetMessageDecoderFactory) {
-        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
-    }
-
-    public INetMessageDecoderFactory getiNetMessageDecoderFactory() {
-        return iNetMessageDecoderFactory;
-    }
-
-    public void setiNetMessageDecoderFactory(INetMessageDecoderFactory iNetMessageDecoderFactory) {
-        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
+    public NetMessageDecoder() {
+        this.iNetMessageDecoderFactory = new NetMessageDecoderFactory();
     }
 
     @Override

@@ -19,9 +19,9 @@ public class NetMessageEncoder extends MessageToMessageEncoder<NetMessage> {
 
     private INetMessageEncoderFactory iNetMessageEncoderFactory;
 
-    public NetMessageEncoder(INetMessageEncoderFactory iNetMessageEncoderFactory) {
+    public NetMessageEncoder() {
         this(CharsetUtil.UTF_8);
-        this.iNetMessageEncoderFactory = iNetMessageEncoderFactory;
+        this.iNetMessageEncoderFactory = new NetMessageEncoderFactory();
     }
 
     public NetMessageEncoder(Charset charset) {
@@ -30,14 +30,6 @@ public class NetMessageEncoder extends MessageToMessageEncoder<NetMessage> {
         } else {
             this.charset = charset;
         }
-    }
-
-    public INetMessageEncoderFactory getiNetMessageEncoderFactory() {
-        return iNetMessageEncoderFactory;
-    }
-
-    public void setiNetMessageEncoderFactory(INetMessageEncoderFactory iNetMessageEncoderFactory) {
-        this.iNetMessageEncoderFactory = iNetMessageEncoderFactory;
     }
 
     @Override

@@ -30,8 +30,8 @@ public class NetMessageServerChannleInitializer  extends ChannelInitializer<NioS
         int lengthAdjustment = 1+2+4;
 
         nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        nioSocketChannel.pipeline().addLast(new NetMessageEncoder(new NetMessageEncoderFactory()));
-        nioSocketChannel.pipeline().addLast(new NetMessageDecoder(new NetMessageDecoderFactory()));
+        nioSocketChannel.pipeline().addLast(new NetMessageEncoder());
+        nioSocketChannel.pipeline().addLast(new NetMessageDecoder());
         channelPipLine.addLast(new NetMessageSocketServerHandler());
     }
 }
