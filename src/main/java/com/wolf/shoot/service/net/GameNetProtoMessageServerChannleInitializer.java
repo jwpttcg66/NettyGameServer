@@ -28,11 +28,9 @@ public class GameNetProtoMessageServerChannleInitializer extends ChannelInitiali
 
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-//        int lengthAdjustment = 1+2+4;
-
         nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
         nioSocketChannel.pipeline().addLast(new NetMessageEncoder());
         nioSocketChannel.pipeline().addLast(new NetMessageDecoder());
-//        channelPipLine.addLast(new NetMessageSocketServerHandler());
+        channelPipLine.addLast(new GameNetMessageSocketServerHandler());
     }
 }
