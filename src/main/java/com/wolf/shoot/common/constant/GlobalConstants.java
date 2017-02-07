@@ -119,13 +119,12 @@ public class GlobalConstants {
 
         /** 心跳间隔*/
         public static final int HEART_BASE_SIZE= 1;
-        /** 心跳超时*/
-        public static final int SESSION_HEART_TIMEOUT= HEART_BASE_SIZE;
-
-        /** 心跳保持协议检查 */
-        public static final String SESSION_KEEEP_ALIVE_KEY = "heart";
-        /** 心跳保持协议检查 */
-        public static final int SESSION_KEEEP_ALIVE_TIME = HEART_BASE_SIZE * 1000;
+        /** 心跳写时间超时*/
+        public static final int SESSION_HEART_WRITE_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
+        /** 心跳写时间超时*/
+        public static final int SESSION_HEART_READ_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
+        /** 心跳读写时间超时*/
+        public static final int SESSION_HEART_ALL_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
     }
 
 }

@@ -4,12 +4,14 @@ package com.wolf.shoot.service.net;
  * Created by jiangwenping on 17/2/7.
  */
 
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.net.message.decoder.NetMessageDecoder;
 import com.wolf.shoot.net.message.encoder.NetMessageEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.timeout.IdleStateHandler;
 
 /**
  * Created by jwp on 2017/1/26.
@@ -28,9 +30,13 @@ public class GameNetProtoMessageServerChannleInitializer extends ChannelInitiali
 
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        nioSocketChannel.pipeline().addLast(new NetMessageEncoder());
-        nioSocketChannel.pipeline().addLast(new NetMessageDecoder());
-        channelPipLine.addLast(new GameNetMessageSocketServerHandler());
+        nioSocketChannel.pipeline().addLast("frame",new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
+        nioSocketChannel.pipeline().addLast("encoder", new NetMessageEncoder());
+        nioSocketChannel.pipeline().addLast("decoder", new NetMessageDecoder());
+        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
+        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
+        int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
+        nioSocketChannel.pipeline().addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds,allIdleTimeSeconds));
+        channelPipLine.addLast("handler", new GameNetMessageSocketServerHandler());
     }
 }
