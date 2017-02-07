@@ -11,6 +11,8 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 
 /**
@@ -30,13 +32,14 @@ public class GameNetProtoMessageServerChannleInitializer extends ChannelInitiali
 
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        nioSocketChannel.pipeline().addLast("frame",new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        nioSocketChannel.pipeline().addLast("encoder", new NetMessageEncoder());
-        nioSocketChannel.pipeline().addLast("decoder", new NetMessageDecoder());
+        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
+        channelPipLine.addLast("encoder", new NetMessageEncoder());
+        channelPipLine.addLast("decoder", new NetMessageDecoder());
         int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
         int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
-        nioSocketChannel.pipeline().addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds,allIdleTimeSeconds));
+        channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
+        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
         channelPipLine.addLast("handler", new GameNetMessageSocketServerHandler());
     }
 }

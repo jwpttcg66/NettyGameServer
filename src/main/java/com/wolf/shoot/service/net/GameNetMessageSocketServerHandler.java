@@ -3,6 +3,7 @@ package com.wolf.shoot.service.net;
 import com.wolf.shoot.net.message.NetMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 
 /**
@@ -36,10 +37,13 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
         ctx.close();
     }
 
-//    @Override
-//    public void userEventTriggered(ChannelHandlerContext var1, Object var2) throws Exception{
-//        super.userEventTriggered(var1, var2);
-//    }
-
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object var) throws Exception{
+        super.userEventTriggered(ctx, var);
+        if(var instanceof IdleStateEvent){
+            //说明是空闲事件
+            ctx.close();
+        }
+    }
 
 }
