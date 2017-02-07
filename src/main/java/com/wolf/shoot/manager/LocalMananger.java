@@ -4,8 +4,8 @@ package com.wolf.shoot.manager;
  * Created by jwp on 2017/2/4.
  */
 
-import com.wolf.shoot.config.GameServerConfigService;
-import com.wolf.shoot.constant.Loggers;
+import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.IService;
 import org.slf4j.Logger;
 

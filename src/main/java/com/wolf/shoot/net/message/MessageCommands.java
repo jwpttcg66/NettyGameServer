@@ -1,6 +1,6 @@
 package com.wolf.shoot.net.message;
 
-import com.wolf.shoot.constant.BOConst;
+import com.wolf.shoot.common.constant.BOConst;
 
 /**
  * Created by jwp on 2017/2/4.

@@ -11,13 +11,10 @@ public abstract class AbstractTcpServerService extends  AbstractServerService{
     protected int serverPort;
     protected InetSocketAddress serverAddress;
 
-    public AbstractTcpServerService(String serviceId) {
-        super(serviceId);
-    }
 
-    public AbstractTcpServerService(String serviceId, int serverPort, InetSocketAddress serverAddress) {
+    public AbstractTcpServerService(String serviceId, int serverPort) {
         super(serviceId);
         this.serverPort = serverPort;
-        this.serverAddress = serverAddress;
+        this.serverAddress = new InetSocketAddress(serverPort);
     }
 }

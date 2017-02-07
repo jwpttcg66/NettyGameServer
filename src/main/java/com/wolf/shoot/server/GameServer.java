@@ -1,10 +1,11 @@
 package com.wolf.shoot.server;
 
-import com.wolf.shoot.constant.GlobalConstants;
-import com.wolf.shoot.constant.Loggers;
-import com.wolf.shoot.service.net.AbstractServerService;
+import com.wolf.shoot.common.constant.GlobalConstants;
+import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.common.util.MemUtils;
+import com.wolf.shoot.manager.Globals;
 import com.wolf.shoot.service.ServerServiceManager;
-import com.wolf.shoot.util.MemUtils;
+import com.wolf.shoot.service.net.AbstractServerService;
 import org.slf4j.Logger;
 
 /**
@@ -62,7 +63,7 @@ public class GameServer extends AbstractServerService{
      */
     public void init(String configFile) throws Exception {
         logger.info("Begin to initialize Globals");
-//        Globals.init(configFile);
+        Globals.init(configFile);
 //        ServerServiceManager.getInstance().onReady();
 //        CommunicationServerService.getInstance().onReady();
         logger.info("Globals initialized");

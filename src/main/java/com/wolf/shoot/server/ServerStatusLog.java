@@ -1,6 +1,6 @@
 package com.wolf.shoot.server;
 
-import com.wolf.shoot.util.ServerVersion;
+import com.wolf.shoot.common.util.ServerVersion;
 
 import java.io.File;
 import java.io.FileOutputStream;

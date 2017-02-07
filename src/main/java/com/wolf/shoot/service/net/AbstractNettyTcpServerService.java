@@ -9,8 +9,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import java.net.InetSocketAddress;
-
 /**
  * Created by jiangwenping on 17/2/7.
  */
@@ -20,10 +18,8 @@ public abstract class AbstractNettyTcpServerService extends AbstractTcpServerSer
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    public AbstractNettyTcpServerService(String serviceId, int serverPort, InetSocketAddress serverAddress) {
-        super(serviceId);
-        this.serverPort = serverPort;
-        this.serverAddress = serverAddress;
+    public AbstractNettyTcpServerService(String serviceId, int serverPort) {
+        super(serviceId, serverPort);
     }
 
     @Override
