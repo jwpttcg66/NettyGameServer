@@ -33,7 +33,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractTcpServerSer
         workerGroup = new NioEventLoopGroup(0, workerThreadNameFactory);
         try{
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap = serverBootstrap.group(bossGroup, bossGroup);
+            serverBootstrap = serverBootstrap.group(bossGroup, workerGroup);
             serverBootstrap.channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
