@@ -35,8 +35,10 @@ public class GameNetProtoMessageServerChannleInitializer extends ChannelInitiali
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
         channelPipLine.addLast("encoder", new NetMessageEncoder());
         channelPipLine.addLast("decoder", new NetMessageDecoder());
-        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
-        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
+//        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
+//        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
+        int readerIdleTimeSeconds = 0;
+        int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
