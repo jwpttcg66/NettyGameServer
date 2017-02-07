@@ -16,7 +16,7 @@ public class Globals {
     /**
      * tcp服务器
      */
-    private static GameNettyTcpServerService gameNettyTcpServerService;
+    public static GameNettyTcpServerService gameNettyTcpServerService;
 
     /**
      * 服务器启动时调用，初始化所有管理器实例
@@ -34,5 +34,13 @@ public class Globals {
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
 
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort());
+    }
+
+    public static void start() throws Exception{
+
+    }
+
+    public static void stop() throws Exception{
+
     }
 }
