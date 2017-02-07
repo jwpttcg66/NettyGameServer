@@ -1,22 +1,20 @@
 package com.wolf.shoot.service;
 
-import com.wolf.shoot.exception.IServerServiceException;
-
 /**
  * Created by jwp on 2017/2/4.
  * 服务器启动服务
  */
 public interface IServerService {
 
-    String getServiceId();
+    public String getServiceId();
 
-    boolean initialize();
+    public boolean initialize();
 
-    boolean startService();
-    boolean stopService();
+    public boolean startService();
+    public boolean stopService();
 
-    void release();
+    public void release();
 
-    byte getState();
-    boolean isRunning();
+    public byte getState();
+    public boolean isRunning();
 }

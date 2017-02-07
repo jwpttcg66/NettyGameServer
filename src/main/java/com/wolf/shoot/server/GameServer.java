@@ -2,7 +2,7 @@ package com.wolf.shoot.server;
 
 import com.wolf.shoot.constant.GlobalConstants;
 import com.wolf.shoot.constant.Loggers;
-import com.wolf.shoot.service.AbstractServerService;
+import com.wolf.shoot.service.net.AbstractServerService;
 import com.wolf.shoot.service.ServerServiceManager;
 import com.wolf.shoot.util.MemUtils;
 import org.slf4j.Logger;

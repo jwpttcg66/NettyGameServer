@@ -1,11 +1,11 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.service.net;
 
 import java.net.InetSocketAddress;
 
 /**
  * Created by jwp on 2017/2/4.
  */
-public class AbstractUdpServerService extends  AbstractServerService{
+public abstract class AbstractUdpServerService extends  AbstractServerService{
     protected int serverPort;
     protected InetSocketAddress serverAddress;
 

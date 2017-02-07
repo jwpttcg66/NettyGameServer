@@ -1,4 +1,7 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.service.net;
+
+import com.wolf.shoot.service.IServerService;
+import com.wolf.shoot.service.ServerServiceManager;
 
 /**
  * 抽象服务基类

@@ -1,4 +1,4 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.service.net;
 
 import java.net.InetSocketAddress;
 
@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
  * Created by jwp on 2017/2/4.
  * 抽象的tcp服务
  */
-public class AbstractTcpServerService extends  AbstractServerService{
+public abstract class AbstractTcpServerService extends  AbstractServerService{
 
     protected int serverPort;
     protected InetSocketAddress serverAddress;
