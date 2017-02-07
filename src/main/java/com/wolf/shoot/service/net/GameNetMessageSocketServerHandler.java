@@ -35,4 +35,11 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
         cause.printStackTrace();
         ctx.close();
     }
+
+//    @Override
+//    public void userEventTriggered(ChannelHandlerContext var1, Object var2) throws Exception{
+//        super.userEventTriggered(var1, var2);
+//    }
+
+
 }

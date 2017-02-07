@@ -7,7 +7,7 @@ package com.wolf.shoot.service.net;
  */
 public class GameNettyTcpServerService extends AbstractNettyTcpServerService {
 
-    public GameNettyTcpServerService(String serviceId, int serverPort) {
-        super(serviceId, serverPort);
+    public GameNettyTcpServerService(String serviceId, int serverPort, String bossThreadName, String workThreadName) {
+        super(serviceId, serverPort, bossThreadName, workThreadName);
     }
 }

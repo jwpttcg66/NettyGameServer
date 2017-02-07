@@ -90,26 +90,8 @@ public class GlobalConstants {
      * Thread的名字前缀
      */
     public static class Thread{
-        public static final String GAME_DB_EXCUTE="game_db";
-        public static final String GAME_DB_SYN_EXCUTE="game_db_syn";
-        public static final String GAME_DB_SYN_UNCHAR_EXCUTE="game_db_syn_unchar_excute";
-        public static final String GAME_MESSAGE_QUEUE_EXCUTE="game_message_queue";
-        public static final String GAME_ASYNC="game_async";
-        public static final String UPDATE="update";
-        public static final String HEART_BEAT="heart_beat";
-        public static final String WRITE_ONLINE_ROOM_SESSION="write_online_room_session";
-        public static final String READ_ONLINE_MESSAGE_QUEUE="read_online_message_queue";
-        public static final String CLEAR_PRE_ROOM="clear_pre_room";
-        public static final String ROOM_UPDATE="room_date";
-        public static final String CLIENT_SESSION_UPDATE_PRODUCE="client_session_update_produce";
-        public static final String CLIENT_SESSION_UPDATE_CONSUME="client_session_update_consume";
-        public static final String ROOM_UPDATE_PRODUCE="room_update_produce";
-        public static final String ROOM_UPDATE_CONSUME="room_update_consume";
-        public static final String GLOBAL_UPDATE_PRODUCE="global_update_produce";
-        public static final String GLOBAL_UPDATE_CONSUME="global_update_consume";
-        public static final String READ_A5_CHAT_MESSAGE_QUEUE="read_a5_chat_message_queue";
-        public static final String PVP_PLAYER_MATCH="pvp_player_match";
-        public static final String PVP_TEAM_MATCH="pvp_team_match";
+        public static final String NET_BOSS="net_boss";
+        public static final String NET_WORKER="net_worker";
     }
 
     /**
@@ -119,12 +101,12 @@ public class GlobalConstants {
 
         /** 心跳间隔*/
         public static final int HEART_BASE_SIZE= 1;
-        /** 心跳写时间超时*/
-        public static final int SESSION_HEART_WRITE_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
-        /** 心跳写时间超时*/
-        public static final int SESSION_HEART_READ_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
-        /** 心跳读写时间超时*/
-        public static final int SESSION_HEART_ALL_TIMEOUT= HEART_BASE_SIZE * 60 * 1000;
+        /** 心跳写时间超时(单位秒)*/
+        public static final int SESSION_HEART_WRITE_TIMEOUT= HEART_BASE_SIZE * 60;
+        /** 心跳写时间超时(单位秒)*/
+        public static final int SESSION_HEART_READ_TIMEOUT= HEART_BASE_SIZE * 60;
+        /** 心跳读写时间超时(单位秒)*/
+        public static final int SESSION_HEART_ALL_TIMEOUT= HEART_BASE_SIZE * 60;
     }
 
 }

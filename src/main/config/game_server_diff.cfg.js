@@ -45,14 +45,4 @@ config.globalUpdateAllUseSleepTime=1;
 config.prePutWorldMatchFlag=false;
 config.communicationTcpHeartKeepAliveTime=60*60*24;
 
-config.playerMatchThreadSize=10;
-config.teamMatchThreadSize=10;
-config.team_pk_match_open=false;
-config.happy_pk_open=true;
-
-config.happyMatchThreadSize=10;
-
-//config.playerMatchThreadSize=1;
-//config.teamMatchThreadSize=1;
-
 

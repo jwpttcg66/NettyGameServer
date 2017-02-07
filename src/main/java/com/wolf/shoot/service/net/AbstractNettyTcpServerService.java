@@ -14,19 +14,23 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public abstract class AbstractNettyTcpServerService extends AbstractTcpServerService {
 
-    private ServerBootstrap serverBootstrap;
+//    private ServerBootstrap serverBootstrap;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    public AbstractNettyTcpServerService(String serviceId, int serverPort) {
+    private ThreadNameFactory bossThreadNameFactory;
+    private ThreadNameFactory workerThreadNameFactory;
+    public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName) {
         super(serviceId, serverPort);
+        this.bossThreadNameFactory = new ThreadNameFactory(bossTreadName);
+        this.workerThreadNameFactory = new ThreadNameFactory(workThreadName);
     }
 
     @Override
     public boolean startService() {
         boolean serviceFlag  = super.startService();
-        bossGroup = new NioEventLoopGroup(1);
-        workerGroup = new NioEventLoopGroup();
+        bossGroup = new NioEventLoopGroup(1, bossThreadNameFactory);
+        workerGroup = new NioEventLoopGroup(0, workerThreadNameFactory);
         try{
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap = serverBootstrap.group(bossGroup, bossGroup);

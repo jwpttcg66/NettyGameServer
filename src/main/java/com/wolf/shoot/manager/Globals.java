@@ -3,6 +3,7 @@ package com.wolf.shoot.manager;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.service.net.GameNettyTcpServerService;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
@@ -33,7 +34,8 @@ public class Globals {
         //时间服务
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
 
-        gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort());
+        gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
+                , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
     }
 
     public static void start() throws Exception{

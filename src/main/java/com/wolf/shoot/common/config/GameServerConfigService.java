@@ -1,5 +1,6 @@
 package com.wolf.shoot.common.config;
 
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
