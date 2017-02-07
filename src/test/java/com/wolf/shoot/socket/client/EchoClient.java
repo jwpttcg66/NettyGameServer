@@ -18,8 +18,8 @@ public class EchoClient {
 
 
     public static void main(String[] args) throws Exception {
-//        new EchoClient().connect("127.0.0.1", 9999);
-        new EchoClient().connect("127.0.0.1", 7090);
+        new EchoClient().connect("127.0.0.1", 9999);
+//        new EchoClient().connect("127.0.0.1", 7090);
     }
 
     public void connect(String addr, int port) throws Exception {
