@@ -109,4 +109,14 @@ public class GlobalConstants {
         public static final int SESSION_HEART_ALL_TIMEOUT= HEART_BASE_SIZE * 60;
     }
 
+
+    /**
+     *上传协议
+     */
+    public static class MessageCommandConstants{
+        public static final String MsgNameSpace = "com.wolf.shoot.net.message.logic";
+        public static final String HandlerNameSpace = "com.wolf.shoot.net.message.handler.impl";
+        public static final String Ext = ".class";
+    };
+
 }

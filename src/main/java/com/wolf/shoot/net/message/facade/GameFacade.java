@@ -1,7 +1,9 @@
 package com.wolf.shoot.net.message.facade;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.exception.GameHandlerException;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.loader.DynamicGameClassLoader;
@@ -11,6 +13,8 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.handler.AbstractMessageHandler;
 import com.wolf.shoot.net.message.handler.IMessageHandler;
+import com.wolf.shoot.service.IService;
+import com.wolf.shoot.service.Reloadable;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -23,7 +27,7 @@ import java.util.jar.JarFile;
 /**
  * Created by jiangwenping on 17/2/8.
  */
-public class  GameFacade implements IFacade {
+public class  GameFacade implements IFacade ,Reloadable, IService{
 
     /**
      * Logger for this class
@@ -134,5 +138,27 @@ public class  GameFacade implements IFacade {
                     + ". ", e);
         }
         return null;
+    }
+
+    @Override
+    public void reload() throws Exception {
+        try {
+            loadPackage(GlobalConstants.MessageCommandConstants.HandlerNameSpace, GlobalConstants.MessageCommandConstants.Ext);
+        } catch (Exception e) {
+            logger.error(e.toString(), e);
+        }
+    }
+    @Override
+    public String getId() {
+        return ServiceName.GameFacade;
+    }
+    @Override
+    public void startup() throws Exception {
+        reload();
+
+    }
+    @Override
+    public void shutdown() throws Exception {
+
     }
 }

@@ -4,6 +4,10 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
+import com.wolf.shoot.common.loader.DefaultClassLoader;
+import com.wolf.shoot.net.message.facade.GameFacade;
+import com.wolf.shoot.net.message.facade.IFacade;
+import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.GameNettyTcpServerService;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
@@ -33,6 +37,15 @@ public class Globals {
 
         //时间服务
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
+
+        //注册classloader
+        LocalMananger.getInstance().create(DefaultClassLoader.class, DefaultClassLoader.class);
+
+        //消息注册
+        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+
+        //注册协议处理
+        LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
 
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
