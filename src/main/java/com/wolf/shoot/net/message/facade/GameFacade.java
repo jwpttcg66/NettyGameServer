@@ -74,45 +74,48 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
         DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().get(DefaultClassLoader.class);
         defaultClassLoader.resetDynamicGameClassLoader();
         DynamicGameClassLoader dynamicGameClassLoader = defaultClassLoader.getDynamicGameClassLoader();
-        for (String fileName : fileNames) {
-            String realClass = namespace
-                    + "."
-                    + fileName.subSequence(0, fileName.length()
-                    - (ext.length()));
-            Class<?> messageClass = null;
-            FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
-            if(!defaultClassLoader.isJarLoad()){
-                defaultClassLoader.initClassLoaderPath(realClass, ext);
-                byte[] bytes = fileClassLoader.getClassData(realClass);
-                messageClass =  dynamicGameClassLoader.findClass(realClass, bytes);
-            }else{
-                //读取 game_server_handler.jar包所在位置
-                URL url = ClassLoader.getSystemClassLoader().getResource("./");
-                File file =new File(url.getPath());
-                File parentFile =new File(file.getParent());
-                String jarPath = parentFile.getPath() + File.separator + "lib/game_server_handler.jar";
-                logger.info("message load jar path:" + jarPath);
-                JarFile jarFile= new JarFile(new File(jarPath));
-                fileClassLoader.initJarPath(jarFile);
-                byte[] bytes = fileClassLoader.getClassData(realClass);
-                messageClass =  dynamicGameClassLoader.findClass(realClass, bytes);
-            }
-            logger.info("handler load: " + messageClass);
 
-            IMessageHandler iMessageHandler = getMessageHandler(messageClass);
-            AbstractMessageHandler handler = (AbstractMessageHandler) iMessageHandler;
-            handler.init();
-            Method[] methods = messageClass.getMethods();
-            for (Method method : methods) {
-                if (method.isAnnotationPresent(MessageCommandAnnotation.class)) {
-                    MessageCommandAnnotation messageCommandAnnotation = (MessageCommandAnnotation) method
-                            .getAnnotation(MessageCommandAnnotation.class);
-                    if (messageCommandAnnotation != null && messageCommandAnnotation.command() != null) {
-                        addHandler(messageCommandAnnotation.command().command_id,iMessageHandler);
+        if(fileNames != null) {
+            for (String fileName : fileNames) {
+                String realClass = namespace
+                        + "."
+                        + fileName.subSequence(0, fileName.length()
+                        - (ext.length()));
+                Class<?> messageClass = null;
+                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
+                if (!defaultClassLoader.isJarLoad()) {
+                    defaultClassLoader.initClassLoaderPath(realClass, ext);
+                    byte[] bytes = fileClassLoader.getClassData(realClass);
+                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+                } else {
+                    //读取 game_server_handler.jar包所在位置
+                    URL url = ClassLoader.getSystemClassLoader().getResource("./");
+                    File file = new File(url.getPath());
+                    File parentFile = new File(file.getParent());
+                    String jarPath = parentFile.getPath() + File.separator + "lib/game_server_handler.jar";
+                    logger.info("message load jar path:" + jarPath);
+                    JarFile jarFile = new JarFile(new File(jarPath));
+                    fileClassLoader.initJarPath(jarFile);
+                    byte[] bytes = fileClassLoader.getClassData(realClass);
+                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+                }
+                logger.info("handler load: " + messageClass);
+
+                IMessageHandler iMessageHandler = getMessageHandler(messageClass);
+                AbstractMessageHandler handler = (AbstractMessageHandler) iMessageHandler;
+                handler.init();
+                Method[] methods = messageClass.getMethods();
+                for (Method method : methods) {
+                    if (method.isAnnotationPresent(MessageCommandAnnotation.class)) {
+                        MessageCommandAnnotation messageCommandAnnotation = (MessageCommandAnnotation) method
+                                .getAnnotation(MessageCommandAnnotation.class);
+                        if (messageCommandAnnotation != null && messageCommandAnnotation.command() != null) {
+                            addHandler(messageCommandAnnotation.command().command_id, iMessageHandler);
+                        }
                     }
                 }
-            }
 
+            }
         }
     }
 

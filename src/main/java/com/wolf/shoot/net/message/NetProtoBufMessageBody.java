@@ -18,4 +18,5 @@ public class NetProtoBufMessageBody extends NetMessageBody {
     public void setAbstractMessage(AbstractMessage abstractMessage) {
         this.abstractMessage = abstractMessage;
     }
+
 }

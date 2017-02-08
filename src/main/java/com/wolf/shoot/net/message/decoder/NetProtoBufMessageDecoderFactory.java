@@ -1,8 +1,11 @@
 package com.wolf.shoot.net.message.decoder;
 
-import com.wolf.shoot.net.message.NetMessageBody;
+import com.wolf.shoot.common.exception.CodecException;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessageHead;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.NetProtoBufMessageBody;
+import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -12,29 +15,35 @@ import io.netty.buffer.Unpooled;
 
 public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDecoderFactory{
 
-    public NetProtoBufMessage praseMessage(ByteBuf byteBuf){
-        NetProtoBufMessage netMessage = new NetProtoBufMessage();
+    public NetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();
         //head为两个字节，跳过
         byteBuf.skipBytes(2);
         netMessageHead.setLength(byteBuf.readInt());
         netMessageHead.setVersion(byteBuf.readByte());
-        netMessageHead.setCmd(byteBuf.readShort());
+        short cmd = byteBuf.readShort();
+        netMessageHead.setCmd(cmd);
         netMessageHead.setSerial(byteBuf.readInt());
 
+        MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
+        NetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
         //读取body
-        NetMessageBody netMessageBody = new NetMessageBody();
+        NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();
         ByteBuf bodyByteBuffer = Unpooled.buffer(256);
         byte[] bytes = new byte[byteLength];
         bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
-//        netMessageBody.setBytes(bytes);
-
-
-        //TODO 获取proto注册工程，解析proto
+        netMessageBody.setBytes(bytes);
         netMessage.setNetMessageHead(netMessageHead);
-//        netMessage.setNetMessageHead(netMessageBody);
+        netMessage.setNetMessageBody(netMessageBody);
+        try {
+            netMessage.decoderNetProtoBufMessageBody();
+        }catch (Exception e){
+            throw new CodecException("message cmd " + cmd + "decoder error", e);
+        }
+       
+
         return netMessage;
     }
 }

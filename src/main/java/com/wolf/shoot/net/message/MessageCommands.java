@@ -7,7 +7,7 @@ import com.wolf.shoot.common.constant.BOConst;
  */
 public enum MessageCommands
 {
-    TEST_MESSAGE(1, BOConst.BO_GAME,false, false),
+    ONLINE_HEART_MESSAGE(1, BOConst.BO_WORLD,false, false),
 
     ;
     /**
@@ -38,7 +38,7 @@ public enum MessageCommands
     }
 
     public static String getMessageCommandName(int commandId) {
-        MessageCommands commands = MessageCommands.TEST_MESSAGE;
+        MessageCommands commands = MessageCommands.ONLINE_HEART_MESSAGE;
         MessageCommands[] set = commands.values();
         for (int i = 0; i < set.length; i++) {
             MessageCommands tempCommand = set[i];
@@ -52,7 +52,7 @@ public enum MessageCommands
     }
 
     public static MessageCommands getMessageCommand(int commandId) {
-        MessageCommands commands = MessageCommands.TEST_MESSAGE;
+        MessageCommands commands = MessageCommands.ONLINE_HEART_MESSAGE;
         MessageCommands[] set = commands.values();
         for (int i = 0; i < set.length; i++) {
             MessageCommands tempCommand = set[i];
@@ -66,7 +66,7 @@ public enum MessageCommands
     }
 
     public static int getBoIdByCommandId(int commandId) {
-        MessageCommands commands = MessageCommands.TEST_MESSAGE;
+        MessageCommands commands = MessageCommands.ONLINE_HEART_MESSAGE;
         MessageCommands[] set = commands.values();
         for (int i = 0; i < set.length; i++) {
             MessageCommands tempCommand = set[i];
