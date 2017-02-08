@@ -1,4 +1,4 @@
-package com.wolf.shoot.socket.client;
+package com.wolf.shoot.game.socket.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -10,15 +10,13 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
- * netty 客户端模拟
- *
+ * Created by jiangwenping on 17/2/8.
  */
-public class EchoClient {
 
+public class GameClient {
 
     public static void main(String[] args) throws Exception {
-        new EchoClient().connect("127.0.0.1", 9999);
-//        new EchoClient().connect("127.0.0.1", 7090);
+        new GameClient().connect("127.0.0.1", 7090);
     }
 
     public void connect(String addr, int port) throws Exception {
@@ -27,20 +25,11 @@ public class EchoClient {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-//                    .handler(new ClientChannleInitializer());
-//                    .handler(new StringClientChannelInitializer());
-//                    .handler(new ProtoClientChannleInitializer());
-                    .handler(new NetMessageClientChannelInitializer());
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
+                    .handler(new GameClientChannleInitializer());
             ChannelFuture f = b.connect(addr, port).sync();
             System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());
             f.channel().closeFuture().sync();//等待客户端关闭连接
-//            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    group.shutdownGracefully();
-//                }
-//            }));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,3 +39,4 @@ public class EchoClient {
         }
     }
 }
+

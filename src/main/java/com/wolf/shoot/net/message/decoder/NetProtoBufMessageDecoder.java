@@ -3,7 +3,9 @@ package com.wolf.shoot.net.message.decoder;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
+import io.netty.util.CharsetUtil;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -12,19 +14,24 @@ import java.util.List;
 
 public class NetProtoBufMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
 
-    private INetMessageDecoderFactory iNetMessageDecoderFactory;
+    private final Charset charset;
 
-    public NetProtoBufMessageDecoder(INetMessageDecoderFactory iNetMessageDecoderFactory) {
-        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
+    private INetProtoBufMessageDecoderFactory iNetMessageDecoderFactory;
+
+    public NetProtoBufMessageDecoder() {
+        this(CharsetUtil.UTF_8);
+        this.iNetMessageDecoderFactory = new NetProtoBufMessageDecoderFactory();
     }
 
-    public INetMessageDecoderFactory getiNetMessageDecoderFactory() {
-        return iNetMessageDecoderFactory;
+    public NetProtoBufMessageDecoder(Charset charset) {
+        if(charset == null) {
+            throw new NullPointerException("charset");
+        } else {
+            this.charset = charset;
+        }
     }
 
-    public void setiNetMessageDecoderFactory(INetMessageDecoderFactory iNetMessageDecoderFactory) {
-        this.iNetMessageDecoderFactory = iNetMessageDecoderFactory;
-    }
+
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
