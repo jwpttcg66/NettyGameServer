@@ -11,6 +11,10 @@ public abstract  class NetProtoBufMessage {
     private NetMessageHead netMessageHead;
     private NetProtoBufMessageBody netMessageBody;
 
+    public NetProtoBufMessage(){
+        this.netMessageHead = new NetMessageHead();
+        this.netMessageBody = new NetProtoBufMessageBody();
+    }
     public NetMessageHead getNetMessageHead() {
         return netMessageHead;
     }
@@ -33,4 +37,8 @@ public abstract  class NetProtoBufMessage {
     public abstract void release() throws CodecException;
 
     public abstract  void encodeNetProtoBufMessageBody() throws CodecException, Exception;
+
+    public void setCmd(short cmd){
+        getNetMessageHead().setCmd(cmd);
+    }
 }
