@@ -38,7 +38,7 @@ public abstract  class NetProtoBufMessage {
 
     public abstract  void encodeNetProtoBufMessageBody() throws CodecException, Exception;
 
-    public void setCmd(short cmd){
-        getNetMessageHead().setCmd(cmd);
+    public void setCmd(int cmd){
+        getNetMessageHead().setCmd((short)cmd);
     }
 }

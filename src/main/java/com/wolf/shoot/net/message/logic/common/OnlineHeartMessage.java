@@ -2,7 +2,6 @@ package com.wolf.shoot.net.message.logic.common;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.NetMessageHead;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
 
@@ -13,7 +12,7 @@ import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
 public class OnlineHeartMessage extends NetProtoBufMessage {
 
     public  OnlineHeartMessage(){
-        setCmd(NetMessageHead.MESSAGE_HEADER_FLAG);
+        setCmd(MessageCommands.ONLINE_HEART_MESSAGE.command_id);
     }
 
     @Override
