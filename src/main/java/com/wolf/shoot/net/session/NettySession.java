@@ -9,7 +9,7 @@ import io.netty.channel.Channel;
  * Created by jwp on 2017/2/9.
  * netty会话
  */
-public class NettySession implements ISession  {
+public abstract class NettySession implements ISession  {
 
     protected volatile Channel channel;
 
