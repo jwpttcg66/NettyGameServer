@@ -1,6 +1,8 @@
 package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.logic.common.OnlineHeartMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -13,14 +15,17 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        Thread.sleep(1000L);
+//        Thread.sleep(1000L);
 //        ByteBuf byteBuffer = (ByteBuf) msg;
 
 //        System.out.println("服务端收到："+byteBuffer.array());
 //        ctx.writeAndFlush(msg);
-        NetMessage netMessage = (NetMessage) msg;
-        String requst = new String(netMessage.getNetMessageBody().getBytes(), CharsetUtil.UTF_8);
-        System.out.println("服务端收到：" + requst);
+        NetProtoBufMessage netMessage = (NetProtoBufMessage) msg;
+        if(netMessage instanceof OnlineHeartMessage){
+            OnlineHeartMessage onlineHeartMessage = (OnlineHeartMessage) netMessage;
+            System.out.println("服务端收到 OnlineHeartMessage id：" + onlineHeartMessage.getId());
+        }
+
 
     }
 

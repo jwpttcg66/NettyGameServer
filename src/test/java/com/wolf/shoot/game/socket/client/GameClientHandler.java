@@ -23,6 +23,7 @@ public class GameClientHandler  extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         OnlineHeartMessage onlineHeartMessage = new OnlineHeartMessage();
+        onlineHeartMessage.setId(Integer.MAX_VALUE);
         ctx.writeAndFlush(onlineHeartMessage);
     }
 

@@ -11,6 +11,8 @@ import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
 @MessageCommandAnnotation(command = MessageCommands.ONLINE_HEART_MESSAGE)
 public class OnlineHeartMessage extends NetProtoBufMessage {
 
+    private int id;
+
     public  OnlineHeartMessage(){
         setCmd(MessageCommands.ONLINE_HEART_MESSAGE.command_id);
     }
@@ -19,7 +21,8 @@ public class OnlineHeartMessage extends NetProtoBufMessage {
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
         CommonMessageProBuf.OnlineHeartProBuf req = CommonMessageProBuf.OnlineHeartProBuf.parseFrom(bytes);
-        System.out.println(req.getId());
+        setId(req.getId());
+        System.out.println(getId());
     }
 
     @Override
@@ -30,9 +33,16 @@ public class OnlineHeartMessage extends NetProtoBufMessage {
     @Override
     public void encodeNetProtoBufMessageBody() throws Exception {
         CommonMessageProBuf.OnlineHeartProBuf.Builder builder = CommonMessageProBuf.OnlineHeartProBuf.newBuilder();
-        builder.setId(2);
+        builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
