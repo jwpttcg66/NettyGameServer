@@ -5,6 +5,7 @@ import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
+import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.net.message.facade.GameFacade;
 import com.wolf.shoot.net.message.facade.IFacade;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
@@ -35,6 +36,9 @@ public class Globals {
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
 
+        //初始化uuid
+        initIdGenerator();
+
         //时间服务
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
 
@@ -49,6 +53,10 @@ public class Globals {
 
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
+    }
+
+    public static void initIdGenerator()throws Exception{
+        LocalMananger.getInstance().create(ClientSessionIdGenerator.class, ClientSessionIdGenerator.class);
     }
 
     public static void start() throws Exception{
