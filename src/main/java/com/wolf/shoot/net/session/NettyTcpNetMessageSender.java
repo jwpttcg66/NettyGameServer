@@ -1,5 +1,6 @@
 package com.wolf.shoot.net.session;
 
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.net.message.NetMessage;
 import io.netty.channel.Channel;
@@ -16,25 +17,28 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
 
     @Override
     public boolean sendMessage(NetMessage message) throws NetMessageException {
-        channel.write(message);
+        channel.writeAndFlush(message);
         return true;
     }
 
     @Override
     public void close() throws NetMessageException{
 
-//        LOG.debug("Going to close tcp connection in class: {}", this
-//                .getClass().getName());
+        Loggers.sessionLogger.debug("Going to close tcp connection in class: {}", this
+                .getClass().getName());
 //        Event event = Events.event(null, Events.DISCONNECT);
         if (channel.isActive())
         {
+            channel.close();
 //            channel.write(event).addListener(ChannelFutureListener.CLOSE);
         }
         else
         {
             channel.close();
-//            LOG.trace("Unable to write the Event {} with type {} to socket",
+//            Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket",
 //                    event, event.getType());
+
+            Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket");
         }
     }
 }
