@@ -6,29 +6,21 @@ import com.wolf.shoot.common.exception.CodecException;
  * Created by jiangwenping on 17/2/3.
  * 需要重新读取body
  */
-public abstract  class NetProtoBufMessage {
+public abstract  class NetProtoBufMessage extends  NetMessage{
 
-    private NetMessageHead netMessageHead;
-    private NetProtoBufMessageBody netMessageBody;
+    private NetProtoBufMessageBody netProtoBufMessageBody;
 
     public NetProtoBufMessage(){
-        this.netMessageHead = new NetMessageHead();
-        this.netMessageBody = new NetProtoBufMessageBody();
-    }
-    public NetMessageHead getNetMessageHead() {
-        return netMessageHead;
+        setNetMessageHead(new NetMessageHead());
+        this.netProtoBufMessageBody = new NetProtoBufMessageBody();
     }
 
-    public void setNetMessageHead(NetMessageHead netMessageHead) {
-        this.netMessageHead = netMessageHead;
+    public NetProtoBufMessageBody getNetProtoBufMessageBody() {
+        return netProtoBufMessageBody;
     }
 
-    public NetProtoBufMessageBody getNetMessageBody() {
-        return netMessageBody;
-    }
-
-    public void setNetMessageBody(NetProtoBufMessageBody netMessageBody) {
-        this.netMessageBody = netMessageBody;
+    public void setNetProtoBufMessageBody(NetProtoBufMessageBody netProtoBufMessageBody) {
+        this.netProtoBufMessageBody = netProtoBufMessageBody;
     }
 
     //此方法需要
@@ -40,5 +32,8 @@ public abstract  class NetProtoBufMessage {
 
     public void setCmd(int cmd){
         getNetMessageHead().setCmd((short)cmd);
+    }
+    public void setSerial(int serial){
+        getNetMessageHead().setSerial(serial);
     }
 }

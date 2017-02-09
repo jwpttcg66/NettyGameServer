@@ -26,7 +26,7 @@ public class NetProtoBufMessageEncoderFactory implements INetProtoBufMessageEnco
         //编写body
 
         netMessage.encodeNetProtoBufMessageBody();
-        NetMessageBody netMessageBody = netMessage.getNetMessageBody();
+        NetMessageBody netMessageBody = netMessage.getNetProtoBufMessageBody();
         byteBuf.writeBytes(netMessageBody.getBytes());
 
 
