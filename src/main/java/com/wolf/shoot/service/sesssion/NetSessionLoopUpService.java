@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jwp on 2017/2/10.
  * session提供服务
  */
-public class NetSerssionLoopUpService implements ILookUpService<NettySession> {
+public class NetSessionLoopUpService implements ILookUpService<NettySession> {
 
     protected static final Logger log = Loggers.serverStatusStatistics;
 
