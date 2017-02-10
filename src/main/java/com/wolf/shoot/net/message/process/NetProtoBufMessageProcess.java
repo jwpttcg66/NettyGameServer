@@ -8,6 +8,7 @@ import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.facade.GameFacade;
+import com.wolf.shoot.net.session.NettySession;
 import org.slf4j.Logger;
 
 import java.util.Queue;
@@ -29,9 +30,10 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
      * 网络消息处理队列
      */
     private Queue<NetProtoBufMessage> netMessagesQueue;
-
-    public NetProtoBufMessageProcess() {
+    private NettySession nettySession;
+    public NetProtoBufMessageProcess(NettySession nettySession) {
         this.netMessagesQueue = new ConcurrentLinkedDeque<NetProtoBufMessage>();
+        this.nettySession = nettySession;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
                 respone = (NetProtoBufMessage) gameFacade.dispach(message);
                 if(respone != null) {
                     respone.setSerial(message.getNetMessageHead().getSerial());
-//                    write(respone);
+                    nettySession.write(respone);
 //                }
                 }
             } catch (Exception e) {

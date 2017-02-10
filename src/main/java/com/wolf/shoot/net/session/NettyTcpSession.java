@@ -1,5 +1,6 @@
 package com.wolf.shoot.net.session;
 
+import com.wolf.shoot.net.message.process.NetProtoBufMessageProcess;
 import io.netty.channel.Channel;
 
 /**
@@ -8,10 +9,21 @@ import io.netty.channel.Channel;
  */
 public class NettyTcpSession extends NettySession{
 
+    /**
+     * 消息发送
+     */
     private NettyTcpNetMessageSender nettyTcpNetMessageSender;
+
+    /**
+     * 消息处理器
+     */
+    private NetProtoBufMessageProcess netProtoBufMessageProcess;
 
     public NettyTcpSession(Channel channel) {
         super(channel);
-        nettyTcpNetMessageSender = new NettyTcpNetMessageSender(channel);
+        nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);
+        netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);
     }
+
+
 }

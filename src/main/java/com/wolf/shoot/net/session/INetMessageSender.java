@@ -2,7 +2,6 @@ package com.wolf.shoot.net.session;
 
 import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
 
 /**
  * Created by jwp on 2017/2/9.
@@ -14,7 +13,7 @@ public interface INetMessageSender {
      * @param message
      * @return
      */
-    public boolean sendMessage(NetMessage message) throws NetMessageException;
+    public boolean sendMessage(NetMessage netMessage) throws NetMessageException;
 
     /**
      * 关闭
