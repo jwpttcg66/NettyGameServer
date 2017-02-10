@@ -23,7 +23,6 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelRegistered();
-        System.out.println("channle Id " + ctx.channel().id().asLongText());
         NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().get(NettyTcpSessionBuilder.class);
         NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
