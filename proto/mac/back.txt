@@ -1,1 +1,2 @@
 sudo protoc -I=/Users/jiangwenping/data/wolf-shoot-server-workspace/Server-Code/proto/ --java_out=/Users/jiangwenping/data/wolf-shoot-server-workspace/Server-Code/src/main/java /Users/jiangwenping/data/wolf-shoot-server-workspace/Server-Code/proto/common.proto
+sudo protoc -I=/Users/jwp/data/github-workspace/NettyGameServer/proto/ --java_out=/Users/jwp/data/github-workspace/NettyGameServer/src/main/java /Users/jwp/data/github-workspace/NettyGameServer/proto/common.proto

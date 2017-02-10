@@ -22,7 +22,6 @@ public class OnlineHeartMessage extends NetProtoBufMessage {
         byte[] bytes = getNetMessageBody().getBytes();
         CommonMessageProBuf.OnlineHeartProBuf req = CommonMessageProBuf.OnlineHeartProBuf.parseFrom(bytes);
         setId(req.getId());
-        System.out.println(getId());
     }
 
     @Override

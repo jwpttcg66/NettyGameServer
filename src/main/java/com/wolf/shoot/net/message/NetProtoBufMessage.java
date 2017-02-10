@@ -1,6 +1,8 @@
 package com.wolf.shoot.net.message;
 
 import com.wolf.shoot.common.exception.CodecException;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * Created by jiangwenping on 17/2/3.
@@ -35,5 +37,15 @@ public abstract  class NetProtoBufMessage extends  NetMessage{
     }
     public void setSerial(int serial){
         getNetMessageHead().setSerial(serial);
+    }
+
+    @Override
+    public String toString()
+    {
+        return getClass().getSimpleName() + ": commandId=" + getNetMessageHead().getCmd();
+    }
+
+    public String toAllInfoString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).replaceAll("\n", "");
     }
 }

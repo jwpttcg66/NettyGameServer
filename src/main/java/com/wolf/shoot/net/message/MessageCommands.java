@@ -8,6 +8,7 @@ import com.wolf.shoot.common.constant.BOConst;
 public enum MessageCommands
 {
     ONLINE_HEART_MESSAGE(1, BOConst.BO_WORLD,false, false),
+    COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE(2, BOConst.BO_WORLD, false, true);
 
     ;
     /**

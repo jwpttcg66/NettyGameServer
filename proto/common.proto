@@ -6,6 +6,13 @@ message OnlineHeartProBuf
     required int32 id = 1;
 }
 
+message CommonServerErrorResponseWithCmdProBuf
+{
+	 required int32 cmd = 1;
+	 required int32 code = 2;
+	 optional string arg = 3; //错误参数，格式：xx,xxx,xxxx
+}
+
 
 
 
