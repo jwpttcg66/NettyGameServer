@@ -1,5 +1,6 @@
 package com.wolf.shoot.net.message.decoder;
 
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.CodecException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessageHead;
@@ -8,6 +9,9 @@ import com.wolf.shoot.net.message.NetProtoBufMessageBody;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import sun.rmi.runtime.Log;
+
+import java.util.logging.Logger;
 
 /**
  * Created by jiangwenping on 17/2/3.
@@ -42,7 +46,11 @@ public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDeco
         }catch (Exception e){
             throw new CodecException("message cmd " + cmd + "decoder error", e);
         }
-       
+
+        //增加协议解析打印
+        if(Loggers.sessionLogger.isDebugEnabled()){
+            Loggers.sessionLogger.debug("revice net message" + netMessage.toAllInfoString());
+        }
 
         return netMessage;
     }
