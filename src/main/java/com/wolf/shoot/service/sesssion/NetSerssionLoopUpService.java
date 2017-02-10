@@ -17,8 +17,8 @@ public class NetSerssionLoopUpService implements ILookUpService<NettySession> {
 
     protected ConcurrentHashMap<Long, NettySession> sessions = new ConcurrentHashMap<Long, NettySession>();
     @Override
-    public NettySession lookup(long Id) {
-        return null;
+    public NettySession lookup(long id) {
+        return sessions.get(id);
     }
 
     @Override

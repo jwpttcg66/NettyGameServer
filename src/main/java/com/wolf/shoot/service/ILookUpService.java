@@ -11,7 +11,7 @@ public interface ILookUpService<T> {
      * @param Id
      * @return
      */
-    public T lookup(long Id);
+    public T lookup(long id);
 
     /**
      * 增加
