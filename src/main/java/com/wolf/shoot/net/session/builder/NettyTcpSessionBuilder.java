@@ -10,6 +10,7 @@ import io.netty.channel.Channel;
  * 创造tcpsession
  */
 public class NettyTcpSessionBuilder implements ISessionBuilder{
+
     @Override
     public ISession buildSession(Channel channel) {
         return new NettyTcpSession(channel) ;

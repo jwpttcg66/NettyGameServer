@@ -11,7 +11,10 @@ import com.wolf.shoot.net.message.facade.IFacade;
 import com.wolf.shoot.net.message.factory.IMessageFactory;
 import com.wolf.shoot.net.message.factory.MessageFactory;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
+import com.wolf.shoot.net.session.NettyTcpSession;
+import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.GameNettyTcpServerService;
+import com.wolf.shoot.service.sesssion.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
 
@@ -38,10 +41,14 @@ public class Globals {
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
 
+        //初始化构造器
+        initBuilder();
         //初始化工厂
         initFactory();
         //初始化uuid
         initIdGenerator();
+        //初始化lookupservice
+        initLookUpService();
 
         //时间服务
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
@@ -61,6 +68,16 @@ public class Globals {
 
     public static void initIdGenerator() throws Exception{
         LocalMananger.getInstance().create(ClientSessionIdGenerator.class, ClientSessionIdGenerator.class);
+    }
+
+    public static void initBuilder() throws Exception {
+        //注册tcp session的构造器
+        LocalMananger.getInstance().create(NettyTcpSessionBuilder.class, NettyTcpSessionBuilder.class);
+    }
+
+    public static void initLookUpService() throws Exception{
+        //注册session查找
+        LocalMananger.getInstance().create(NetTcpSessionLoopUpService.class, NetTcpSessionLoopUpService.class);
     }
 
     public static void initFactory() throws Exception {
