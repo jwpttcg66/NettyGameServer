@@ -2,7 +2,9 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="protobuf" name="Protobuf Facet">
-      <configuration />
+      <configuration>
+        <option name="COMPILE_PROTO" value="false" />
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">

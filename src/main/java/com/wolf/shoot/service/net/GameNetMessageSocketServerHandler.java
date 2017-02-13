@@ -22,7 +22,7 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
         NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().get(NettyTcpSessionBuilder.class);
         NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-        netTcpSessionLoopUpService.addT(nettyTcpSession);
+        netTcpSessionLoopUpService.addNettySession(nettyTcpSession);
     }
 
 

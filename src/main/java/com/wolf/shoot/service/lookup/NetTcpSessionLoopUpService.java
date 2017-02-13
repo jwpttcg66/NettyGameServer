@@ -34,6 +34,6 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService {
         if(log.isDebugEnabled()){
             log.debug("remove nettySesioin " + nettySession.getChannel().id().asLongText());
         }
-        sessions.put(nettySession.getChannel().id().asLongText(), nettySession);
+        return sessions.remove(nettySession.getChannel().id().asLongText()) != null;
     }
 }
