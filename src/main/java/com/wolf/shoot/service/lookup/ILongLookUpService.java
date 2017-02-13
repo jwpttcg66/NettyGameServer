@@ -1,10 +1,10 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.service.lookup;
 
 /**
  * Created by jwp on 2017/2/10.
  * 提供查询服务
  */
-public interface ILookUpService<T> {
+public interface ILongLookUpService<T> {
 
     /**
      * 查找

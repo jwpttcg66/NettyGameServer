@@ -80,4 +80,12 @@ public abstract class NettySession implements ISession  {
             channel.writeAndFlush(msg);
         }
     }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
 }
