@@ -25,5 +25,19 @@ public class NettyTcpSession extends NettySession{
         netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);
     }
 
+    public NettyTcpNetMessageSender getNettyTcpNetMessageSender() {
+        return nettyTcpNetMessageSender;
+    }
 
+    public void setNettyTcpNetMessageSender(NettyTcpNetMessageSender nettyTcpNetMessageSender) {
+        this.nettyTcpNetMessageSender = nettyTcpNetMessageSender;
+    }
+
+    public NetProtoBufMessageProcess getNetProtoBufMessageProcess() {
+        return netProtoBufMessageProcess;
+    }
+
+    public void setNetProtoBufMessageProcess(NetProtoBufMessageProcess netProtoBufMessageProcess) {
+        this.netProtoBufMessageProcess = netProtoBufMessageProcess;
+    }
 }

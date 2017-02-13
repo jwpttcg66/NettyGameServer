@@ -92,6 +92,7 @@ public class GlobalConstants {
     public static class Thread{
         public static final String NET_BOSS="net_boss";
         public static final String NET_WORKER="net_worker";
+        public static final String GAME_MESSAGE_QUEUE_EXCUTE="game_message_queue";
     }
 
     /**

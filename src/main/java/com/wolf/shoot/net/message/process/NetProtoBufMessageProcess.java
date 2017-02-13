@@ -89,6 +89,11 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     }
 
     @Override
+    public void addNetMessage(NetMessage netMessage) {
+        this.netMessagesQueue.add((NetProtoBufMessage) netMessage);
+    }
+
+    @Override
     public boolean update() {
         try {
             processNetMessage();
