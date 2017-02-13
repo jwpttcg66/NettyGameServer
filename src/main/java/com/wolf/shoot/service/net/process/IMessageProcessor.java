@@ -24,6 +24,13 @@ public interface IMessageProcessor {
     public void put(NetMessage msg);
 
     /**
+     * 向消息队列投递消息
+     *
+     * @param msg
+     */
+    public void directPut(NetMessage msg);
+
+    /**
      * 判断队列是否已经达到上限了
      * @return
      */

@@ -74,6 +74,21 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         }
     }
 
+    @Override
+    public void directPut(NetMessage msg) {
+        try {
+            GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
+
+//            RoomLogic roomLogic = (RoomLogic) LocalMananger.getInstance().getAbstractRoomLogic();
+//            roomLogic.dispatchMessage(msg, this);
+
+        } catch (Exception e) {
+            if (logger.isErrorEnabled()) {
+                logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);
+            }
+        }
+    }
+
     /**
      * 处理具体的消息，每个消息有自己的参数和来源,如果在处理消息的过程中发生异常,则马上将此消息的发送者断掉
      *
