@@ -1,4 +1,4 @@
-package com.wolf.shoot.service.net.impl;
+package com.wolf.shoot.service.net.pipeline;
 
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.constant.Loggers;
@@ -9,7 +9,6 @@ import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettySession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
-import com.wolf.shoot.service.net.IServerPipeLine;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
