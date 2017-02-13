@@ -12,6 +12,8 @@ public abstract  class NetProtoBufMessage extends  NetMessage{
 
     private NetProtoBufMessageBody netProtoBufMessageBody;
 
+    private long sessionId;
+
     public NetProtoBufMessage(){
         setNetMessageHead(new NetMessageHead());
         this.netProtoBufMessageBody = new NetProtoBufMessageBody();
@@ -47,5 +49,13 @@ public abstract  class NetProtoBufMessage extends  NetMessage{
 
     public String toAllInfoString(){
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).replaceAll("\n", "");
+    }
+
+    public long getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(long sessionId) {
+        this.sessionId = sessionId;
     }
 }
