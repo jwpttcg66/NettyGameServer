@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.net;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -37,6 +38,10 @@ public abstract class AbstractNettyTcpServerService extends AbstractTcpServerSer
             serverBootstrap.channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_REUSEADDR, true) //重用地址
+                    .childOption(ChannelOption.SO_RCVBUF, 1048576)
+                    .childOption(ChannelOption.SO_SNDBUF, 1048576)
+                    .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new GameNetProtoMessageServerChannleInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
