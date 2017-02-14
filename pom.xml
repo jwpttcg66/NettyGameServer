@@ -8,6 +8,13 @@
     <artifactId>wolfshoot</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
@@ -81,6 +88,13 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.1</version>
+        </dependency>
+
+        <!-- game-excutor -->
+        <dependency>
+            <groupId>com.github.jwpttcg66</groupId>
+            <artifactId>game-excutor</artifactId>
+            <version>1.6</version>
         </dependency>
 
     </dependencies>
