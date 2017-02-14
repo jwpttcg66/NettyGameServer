@@ -52,7 +52,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
             try {
                 GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(GameFacade.class);
                 NetProtoBufMessage respone = null;
-                respone = (NetProtoBufMessage) gameFacade.dispach(message);
+                respone = (NetProtoBufMessage) gameFacade.dispatch(message);
                 if(respone != null) {
                     respone.setSerial(message.getNetMessageHead().getSerial());
                     nettySession.write(respone);

@@ -7,5 +7,5 @@ import com.wolf.shoot.net.message.NetMessage;
  * Created by jiangwenping on 17/2/8.
  */
 public interface IFacade {
-    public NetMessage dispach(NetMessage message)  throws GameHandlerException;
+    public NetMessage dispatch(NetMessage message)  throws GameHandlerException;
 }

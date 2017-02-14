@@ -45,24 +45,23 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     }
 
     @Override
-    public NetMessage dispach(NetMessage message)
+    public NetMessage dispatch(NetMessage message)
             throws GameHandlerException {
-//        try {
-//            IMessageHandler handler = handlers.get((int) message.getCommandId());
-//            int op = message.getCommandId();
-//            Method method = handler.getMessageHandler(op);
-//            method.setAccessible(true);
-//            Object object =  method.invoke(handler,
-//                    message);
-//            AbstractGameMessage result = null;
-//            if(object != null){
-//                result = (AbstractGameMessage) object;
-//            }
-//            return result;
-//        } catch (Exception e) {
-//            throw new GameHandlerException(e, message.getSerial());
-//        }
-        return null;
+        try {
+            int cmd = message.getCmd();
+            IMessageHandler handler = handlers.get(cmd);
+            Method method = handler.getMessageHandler(cmd);
+            method.setAccessible(true);
+            Object object =  method.invoke(handler,
+                    message);
+            NetMessage result = null;
+            if(object != null){
+                result = (NetMessage) object;
+            }
+            return result;
+        } catch (Exception e) {
+            throw new GameHandlerException(e, message.getSerial());
+        }
     }
 
     public void loadPackage(String namespace, String ext)

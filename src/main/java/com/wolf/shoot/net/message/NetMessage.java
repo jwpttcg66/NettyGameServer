@@ -53,4 +53,7 @@ public class NetMessage {
     public void removeAttribute(Object key){
         this.attributes.remove(key);
     }
+    public int getCmd(){
+        return getNetMessageHead().getCmd();
+    }
 }

@@ -1,5 +1,9 @@
 package com.wolf.shoot.service.net;
 
+import com.snowcattle.game.excutor.event.CycleEvent;
+import com.snowcattle.game.excutor.event.EventParam;
+import com.snowcattle.game.excutor.service.UpdateService;
+import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
@@ -7,6 +11,7 @@ import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.ITcpServerPipeLine;
+import com.wolf.shoot.service.update.NettyTcpSerssionUpdate;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -23,6 +28,14 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
         NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         netTcpSessionLoopUpService.addNettySession(nettyTcpSession);
+
+        //加入到updateservice
+        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+        NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);;
+        EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
+        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getId(), param);
+        updateService.addReadyCreateEvent(cycleEvent);
+
     }
 
 

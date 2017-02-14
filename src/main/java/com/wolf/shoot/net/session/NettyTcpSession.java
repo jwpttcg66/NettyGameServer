@@ -1,5 +1,6 @@
 package com.wolf.shoot.net.session;
 
+import com.wolf.shoot.common.IUpdatable;
 import com.wolf.shoot.net.message.process.NetProtoBufMessageProcess;
 import io.netty.channel.Channel;
 
@@ -7,7 +8,7 @@ import io.netty.channel.Channel;
  * Created by jwp on 2017/2/9.
  * netty tcp的session
  */
-public class NettyTcpSession extends NettySession{
+public class NettyTcpSession extends NettySession implements IUpdatable {
 
     /**
      * 消息发送
@@ -39,5 +40,11 @@ public class NettyTcpSession extends NettySession{
 
     public void setNetProtoBufMessageProcess(NetProtoBufMessageProcess netProtoBufMessageProcess) {
         this.netProtoBufMessageProcess = netProtoBufMessageProcess;
+    }
+
+    @Override
+    public boolean update() {
+        netProtoBufMessageProcess.update();
+        return false;
     }
 }
