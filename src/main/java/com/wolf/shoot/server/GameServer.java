@@ -1,9 +1,12 @@
 package com.wolf.shoot.server;
 
+import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.constant.BOConst;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.MemUtils;
 import com.wolf.shoot.manager.Globals;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.ServerServiceManager;
 import com.wolf.shoot.service.net.AbstractServerService;
 import com.wolf.shoot.service.net.GameNettyTcpServerService;
@@ -136,56 +139,31 @@ public class GameServer extends AbstractServerService{
         logger.info("Starting Game Server");
         logger.info(MemUtils.memoryInfo());
         String configFile = GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
-        String admCmd = "";
-        String[] admArgs = null;
+        try {
+            /**
+             * 程序初始化程序缓存模块
+             */
 
-        if(args != null && args.length == 1){
-            configFile = args[0];
+            ServerStatusLog.getDefaultLog().logStarting();
+            GameServer server = new GameServer();
+
+            server.init(configFile);
+            server.start();
+            ServerStatusLog.getDefaultLog().logRunning();
+        } catch (Exception e) {
+            logger.error("Failed to start server", e);
+            System.err.println(e);
+            ServerStatusLog.getDefaultLog().logStartFail();
+            System.exit(1);
+            return;
         }
+        logger.info(MemUtils.memoryInfo());
 
-        if (args != null && args.length >= 2){
-            admCmd = args[1];
-            if (args.length >= 3) {
-                admArgs = new String[args.length - 2];
-                for (int i=0; i<admArgs.length; ++i) {
-                    admArgs[i] = args[i + 2];
-                }
-            }
-        }
-
-        if (admCmd.isEmpty()) {
-            try {
-                /**
-                 * 程序初始化程序缓存模块
-                 */
-
-                ServerStatusLog.getDefaultLog().logStarting();
-//                IoBuffer.setUseDirectBuffer(false);
-//                IoBuffer.setAllocator(new SimpleBufferAllocator());
-                GameServer server = new GameServer();
-
-                server.init(configFile);
-                server.start();
-                ServerStatusLog.getDefaultLog().logRunning();
-            } catch (Exception e) {
-                logger.error("Failed to start server", e);
-                System.err.println(e);
-                ServerStatusLog.getDefaultLog().logStartFail();
-                System.exit(1);
-                return;
-            }
-            logger.info(MemUtils.memoryInfo());
-
-//            GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
-//            if(gameServerConfigService.getGameServerConfig().getServerType() == BOConst.BO_WORLD){
-//                logger.info("World Server started");
-//            }else {
-//                logger.info("Game Server started");
-//            }
-        } else {
-//            // Xiong 管理功能
-//            Admin adm = Admin.make(configFile, admCmd);
-//            adm.run(admArgs);
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        if(gameServerConfigService.getGameServerConfig().getServerType() == BOConst.BO_WORLD){
+            logger.info("World Server started");
+        }else {
+            logger.info("Game Server started");
         }
     }
 }
