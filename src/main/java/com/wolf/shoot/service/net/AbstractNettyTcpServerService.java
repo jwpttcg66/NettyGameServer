@@ -46,7 +46,8 @@ public abstract class AbstractNettyTcpServerService extends AbstractTcpServerSer
                     .childHandler(new GameNetProtoMessageServerChannleInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
-            serverChannelFuture.channel().closeFuture().sync();
+            //TODO这里会阻塞main线程，暂时先注释掉
+//            serverChannelFuture.channel().closeFuture().sync();
         }catch (Exception e) {
             serviceFlag = false;
 
