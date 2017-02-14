@@ -1,5 +1,11 @@
 package com.wolf.shoot.manager;
 
+import com.snowcattle.game.excutor.event.EventBus;
+import com.snowcattle.game.excutor.event.impl.*;
+import com.snowcattle.game.excutor.pool.UpdateExecutorService;
+import com.snowcattle.game.excutor.service.UpdateService;
+import com.snowcattle.game.excutor.thread.LockSupportDisptachThread;
+import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
@@ -22,6 +28,8 @@ import com.wolf.shoot.service.net.process.IMessageProcessor;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jiangwenping on 17/2/7.
@@ -52,10 +60,11 @@ public class Globals {
         initFactory();
         //初始化uuid
         initIdGenerator();
-        //初始化lookupservice
-        initLookUpService();
+        //初始化本地服务
+        initLocalService();
 
-        initProcessor();
+        //初始化消息处理器
+        initNetMessageProcessor();
         //时间服务
         LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
 
@@ -73,7 +82,37 @@ public class Globals {
                 , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
     }
 
-    public static void initProcessor() throws  Exception{
+    public static void initLocalService() throws  Exception{
+        //初始化lookupservice
+        initLookUpService();
+
+        //初始化game-excutor更新服务
+        initUpdateService();
+    }
+
+    public static void initUpdateService() throws  Exception{
+        EventBus eventBus = new EventBus();
+        EventBus updateEventBus = new EventBus();
+        int corePoolSize = 100;
+        long keepAliveTime = 60;
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, keepAliveTime, timeUnit);
+        int cycleTime = 1000 / Constants.cycle.cycleSize;
+        long minCycleTime = 1000 * cycleTime;
+        LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(eventBus, updateEventBus, updateExecutorService
+                , cycleTime, minCycleTime);
+        UpdateService updateService = new UpdateService(dispatchThread, updateEventBus, updateExecutorService);
+        eventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
+        eventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
+        eventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+
+        updateEventBus.addEventListener(new ReadyCreateEventListener());
+        updateEventBus.addEventListener(new ReadyFinishEventListener());
+
+        LocalMananger.getInstance().add(updateService, UpdateService.class);
+    }
+
+    public static void initNetMessageProcessor() throws  Exception{
         int size = 0;
         QueueMessageExecutorProcessor queueMessageExecutorProcessor  = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, size);
         GameMessageProcessor gameMessageProcessor = new GameMessageProcessor(queueMessageExecutorProcessor);
