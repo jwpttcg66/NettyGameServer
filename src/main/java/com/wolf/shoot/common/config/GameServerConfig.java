@@ -41,8 +41,6 @@ public class GameServerConfig extends ServerConfig {
     /** 是否以异或方式加载模版资源 */
     private boolean templateXorLoad = true;
 
-    private String appleStoreType = "buy";// sandbox
-
     /**
      * 开启存储策略
      */
@@ -56,28 +54,13 @@ public class GameServerConfig extends ServerConfig {
      */
     private boolean accountActivityOpen = false;
 
-    /**
-     * 是否Debug血量
-     */
-    private boolean battleDebug = false;
-
     /** session过期失效 ，单位为秒 */
     private int sessionExpireTime = 30 * 60 * 1000;
 
     /** 检查非法session的时间 单位：秒 */
     private int checkSessionExpireTime = 60;
-
-    /** 异步到最小线程数量*/
-    private int asyncMinThreads=0;
-    /**异步到最大线程数量*/
-    private int asyncMaxThreads=1;
-
-    /**最大房间数量*/
-    private int max_room_num;
     /**开发模式*/
     private int developModel;
-    /**压测模式*/
-    private int stressTest = 0;
 
     /**
      * 通讯端口
@@ -232,14 +215,6 @@ public class GameServerConfig extends ServerConfig {
         this.templateXorLoad = value;
     }
 
-    public String getAppleStoreType() {
-        return appleStoreType;
-    }
-
-    public void setAppleStoreType(String appleStoreType) {
-        this.appleStoreType = appleStoreType;
-    }
-
     public boolean isUpgradeDbStrategy() {
         return upgradeDbStrategy;
     }
@@ -264,14 +239,6 @@ public class GameServerConfig extends ServerConfig {
         this.accountActivityOpen = accountActivityOpen;
     }
 
-    public boolean isBattleDebug() {
-        return battleDebug;
-    }
-
-    public void setBattleDebug(boolean battleDebug) {
-        this.battleDebug = battleDebug;
-    }
-
     public int getSessionExpireTime() {
         return sessionExpireTime;
     }
@@ -288,30 +255,6 @@ public class GameServerConfig extends ServerConfig {
         this.checkSessionExpireTime = checkSessionExpireTime;
     }
 
-    public int getAsyncMinThreads() {
-        return asyncMinThreads;
-    }
-
-    public void setAsyncMinThreads(int asyncMinThreads) {
-        this.asyncMinThreads = asyncMinThreads;
-    }
-
-    public int getAsyncMaxThreads() {
-        return asyncMaxThreads;
-    }
-
-    public void setAsyncMaxThreads(int asyncMaxThreads) {
-        this.asyncMaxThreads = asyncMaxThreads;
-    }
-
-    public int getMax_room_num() {
-        return max_room_num;
-    }
-
-    public void setMax_room_num(int max_room_num) {
-        this.max_room_num = max_room_num;
-    }
-
     public int getDevelopModel() {
         return developModel;
     }
@@ -326,21 +269,6 @@ public class GameServerConfig extends ServerConfig {
      */
     public boolean isDevelopModel() {
         return this.developModel == 1;
-    }
-
-    public int getStressTest() {
-        return stressTest;
-    }
-
-    public void setStressTest(int stressTest) {
-        this.stressTest = stressTest;
-    }
-    /**
-     * 是否是压测模式
-     * @return
-     */
-    public boolean isStressTest() {
-        return this.stressTest != 0;
     }
 
     public int getServerIdInt(){

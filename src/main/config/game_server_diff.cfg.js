@@ -3,8 +3,6 @@
 config.roomPlayerDisconnectTime=60000;
 //房间生命周期(s)
 config.roomLifcCycleTime=60 * 60 * 2;
-//压力测试标志
-config.txStressTest=0;
 //每秒钟处理消息数量
 config.session_prcoss_message_max_size=10;
 config.globalUpdateFlag=true;
@@ -12,5 +10,4 @@ config.globalUpdateProduceThreadsSize=1;
 config.globalUpdateConsumeThreadsSize=10;
 config.globalUpdateAllUseTimeMinSize=600;
 config.globalUpdateAllUseSleepTime=1;
-config.prePutWorldMatchFlag=false;
 config.communicationTcpHeartKeepAliveTime=60*60*24;

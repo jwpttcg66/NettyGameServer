@@ -10,6 +10,8 @@ import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettySession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
+import com.wolf.shoot.service.net.process.GameMessageProcessor;
+import com.wolf.shoot.service.net.process.IMessageProcessor;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 
@@ -17,7 +19,7 @@ import org.slf4j.Logger;
  * Created by jiangwenping on 17/2/13.
  * 处理管道
  */
-public class DefaultTcpServerPipeLine implements IServerPipeLine{
+public class DefaultTcpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override
@@ -25,14 +27,14 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine{
         short commandId = netMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
         MessageCommands messageCommands = messageRegistry.getMessageCommand(commandId);
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("RECV_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
         NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) netMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettySession nettySession = netTcpSessionLoopUpService.lookup(channel.id().asLongText());
-        if(nettySession == null){
+        if (nettySession == null) {
             logger.error("netsession null channelId is:" + channel.id().asLongText());
         }
 
@@ -42,21 +44,21 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine{
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-        if(gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()){
-            if(nettySession.getPlayerId() != 0){
-                logger.debug("discard message  sessionId:" + nettySession.getSessionId() + " messageId is "+ commandId);
-            }else{
-                logger.debug("discard message  playerId:" + nettySession.getPlayerId() + " messageId is "+ commandId);
+        if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
+            if (nettySession.getPlayerId() != 0) {
+                logger.debug("discard message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
+            } else {
+                logger.debug("discard message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
             }
 
             return;
         }
 
-        if(gameServerConfig.isDevelopModel() && logger.isDebugEnabled()){
+        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
             logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + netProtoBufMessage.toAllInfoString());
         }
 
-        if(messageCommands.isIs_need_filter()){
+        if (messageCommands.isIs_need_filter()) {
             int serial = netMessage.getSerial();
             long playerId = nettySession.getPlayerId();
 //            PlatformType platformType = nettySession.getPlatformType();
@@ -88,8 +90,8 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine{
         }
 
 //        //放入处理队列
-          netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
-//        GameMessageProcessor gameMessageProcessor =  (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
+        netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
+        GameMessageProcessor gameMessageProcessor = (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
 //        gameMessageProcessor.put(message);
     }
 }

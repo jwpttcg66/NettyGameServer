@@ -3,22 +3,18 @@ package com.wolf.shoot.common.config;
 
 public class GameServerDiffConfig implements Config {
 
-    protected String version;
-
     /**
      * 系统配置的数据库版本号
      */
+    protected String version;
+
+
     private int heartCyleTime;
 
     /**
      * 房间等待掉线时间(ms)
      */
     private int roomPlayerDisconnectTime;
-
-    /**
-     * 是否腾讯压测
-     */
-    private int txStressTest = 0;
 
     /**
      * 房间生命周期(s)
@@ -34,7 +30,6 @@ public class GameServerDiffConfig implements Config {
      * 游戏每次处理的消息协议大小
      */
     private int session_prcoss_message_max_size;
-
 
 
     /**
@@ -57,15 +52,6 @@ public class GameServerDiffConfig implements Config {
      * 全局更新调度过快睡眠时间
      */
     private int globalUpdateAllUseSleepTime = 1;
-    /**
-     * 提前放入世界标志
-     */
-    private boolean prePutWorldMatchFlag = true;
-
-    /**
-     * 加入世界匹配查询大小
-     */
-    private int joinWorldMatchCycleQuerySize = 1;
 
     /**
      * 异步通讯链接保持活跃时间(秒)
@@ -109,23 +95,6 @@ public class GameServerDiffConfig implements Config {
         this.roomLifcCycleTime = roomLifcCycleTime;
     }
 
-
-    public int getTxStressTest() {
-        return txStressTest;
-    }
-
-    public void setTxStressTest(int txStressTest) {
-        this.txStressTest = txStressTest;
-    }
-
-    /**
-     * 是否是压测模式
-     *
-     * @return
-     */
-    public boolean isTxStressTest() {
-        return this.txStressTest != 0;
-    }
 
     public int getSession_prcoss_message_max_size() {
         return session_prcoss_message_max_size;
@@ -192,22 +161,6 @@ public class GameServerDiffConfig implements Config {
 
     public void setGlobalUpdateAllUseSleepTime(int globalUpdateAllUseSleepTime) {
         this.globalUpdateAllUseSleepTime = globalUpdateAllUseSleepTime;
-    }
-
-    public boolean isPrePutWorldMatchFlag() {
-        return prePutWorldMatchFlag;
-    }
-
-    public void setPrePutWorldMatchFlag(boolean prePutWorldMatchFlag) {
-        this.prePutWorldMatchFlag = prePutWorldMatchFlag;
-    }
-
-    public int getJoinWorldMatchCycleQuerySize() {
-        return joinWorldMatchCycleQuerySize;
-    }
-
-    public void setJoinWorldMatchCycleQuerySize(int joinWorldMatchCycleQuerySize) {
-        this.joinWorldMatchCycleQuerySize = joinWorldMatchCycleQuerySize;
     }
 
     public int getCommunicationTcpHeartKeepAliveTime() {
