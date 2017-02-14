@@ -91,14 +91,15 @@ public class Globals {
     }
 
     public static void initUpdateService() throws  Exception{
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
         EventBus eventBus = new EventBus();
         EventBus updateEventBus = new EventBus();
-        int corePoolSize = 100;
-        long keepAliveTime = 60;
+        int corePoolSize = gameServerConfigService.getGameServerConfig().getGameExcutorCorePoolSize();
+        long keepAliveTime = gameServerConfigService.getGameServerConfig().getGameExcutorKeepAliveTime();
         TimeUnit timeUnit = TimeUnit.SECONDS;
         UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, keepAliveTime, timeUnit);
-        int cycleTime = 1000 / Constants.cycle.cycleSize;
-        long minCycleTime = 1000 * cycleTime;
+        int cycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorCycleTime() / Constants.cycle.cycleSize;
+        long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleTime;
         LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(eventBus, updateEventBus, updateExecutorService
                 , cycleTime, minCycleTime);
         UpdateService updateService = new UpdateService(dispatchThread, updateEventBus, updateExecutorService);

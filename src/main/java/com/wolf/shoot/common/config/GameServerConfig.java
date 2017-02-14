@@ -9,9 +9,6 @@ package com.wolf.shoot.common.config;
  */
 public class GameServerConfig extends ServerConfig {
 
-    /** 系统配置的数据库版本号 */
-    private String dbVersion;
-
     /** 最大允许在线人数 */
     private int maxOnlineUsers;
 
@@ -28,16 +25,6 @@ public class GameServerConfig extends ServerConfig {
 
     /** 登陆墙是否打开，默认关闭 */
     private volatile boolean loginWallEnabled = false;
-
-    /** 反沉迷累计时长同步间隔 5分钟 :5 * 60,单位：秒 */
-    private long wallowPeriod = 5 * 60;
-    /** 防沉迷配置 */
-    private boolean wallowControlled = false;
-    /** 开启新手引导 */
-    private int openNewerGuide = 1;
-
-    /** 最大玩家等级 */
-    private int maxHumanLevel = 120;
     /** 是否以异或方式加载模版资源 */
     private boolean templateXorLoad = true;
 
@@ -83,8 +70,24 @@ public class GameServerConfig extends ServerConfig {
      */
     private int communicationMaxWriteIntervalTime;
 
-    public GameServerConfig() {
+    /**
+     * gameExcutor中UpdateExecutorService线程池心线程大小
+     */
+    private int gameExcutorCorePoolSize;
+    /**
+     * gameExcutor中UpdateExecutorService线程池keepalivetime;
+     */
+    private int gameExcutorKeepAliveTime;
+    /**
+     * gameExcutor中LockSupportDisptachThread中循环时间 单位毫秒
+     */
+    private int gameExcutorCycleTime;
+    /**
+     * gameExcutor中LockSupportDisptachThread中最小循环时间 单位纳秒，计算需要出去gameExcutorCycleTime
+     */
+    private int gameExcutorMinCycleTime;
 
+    public GameServerConfig() {
     }
 
     @Override
@@ -156,47 +159,6 @@ public class GameServerConfig extends ServerConfig {
     public void setTelnetPort(String telnetPort) {
         this.telnetPort = telnetPort;
     }
-
-    public long getWallowPeriod() {
-        return wallowPeriod;
-    }
-
-    public void setWallowPeriod(long wallowPeriod) {
-        this.wallowPeriod = wallowPeriod;
-    }
-
-    public boolean isWallowControlled() {
-        return wallowControlled;
-    }
-
-    public void setWallowControlled(boolean wallowControlled) {
-        this.wallowControlled = wallowControlled;
-    }
-
-    public void setDbVersion(String dbVersion) {
-        this.dbVersion = dbVersion;
-    }
-
-    public String getDbVersion() {
-        return dbVersion;
-    }
-
-    public int getOpenNewerGuide() {
-        return this.openNewerGuide;
-    }
-
-    public void setOpenNewerGuide(int value) {
-        this.openNewerGuide = value;
-    }
-
-    public int getMaxHumanLevel() {
-        return this.maxHumanLevel;
-    }
-
-    public void setMaxHumanLevel(int value) {
-        this.maxHumanLevel = value;
-    }
-
 
     /**
      * 使用异或方式加载模版资源 ?
@@ -314,5 +276,37 @@ public class GameServerConfig extends ServerConfig {
 
     public void setMessageQueueDirectDispatch(boolean messageQueueDirectDispatch) {
         this.messageQueueDirectDispatch = messageQueueDirectDispatch;
+    }
+
+    public int getGameExcutorCorePoolSize() {
+        return gameExcutorCorePoolSize;
+    }
+
+    public void setGameExcutorCorePoolSize(int gameExcutorCorePoolSize) {
+        this.gameExcutorCorePoolSize = gameExcutorCorePoolSize;
+    }
+
+    public int getGameExcutorKeepAliveTime() {
+        return gameExcutorKeepAliveTime;
+    }
+
+    public void setGameExcutorKeepAliveTime(int gameExcutorKeepAliveTime) {
+        this.gameExcutorKeepAliveTime = gameExcutorKeepAliveTime;
+    }
+
+    public int getGameExcutorCycleTime() {
+        return gameExcutorCycleTime;
+    }
+
+    public void setGameExcutorCycleTime(int gameExcutorCycleTime) {
+        this.gameExcutorCycleTime = gameExcutorCycleTime;
+    }
+
+    public int getGameExcutorMinCycleTime() {
+        return gameExcutorMinCycleTime;
+    }
+
+    public void setGameExcutorMinCycleTime(int gameExcutorMinCycleTime) {
+        this.gameExcutorMinCycleTime = gameExcutorMinCycleTime;
     }
 }

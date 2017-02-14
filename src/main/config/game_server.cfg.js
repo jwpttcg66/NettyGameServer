@@ -2,11 +2,8 @@
  * Server基本信息
  */
 config.serverType=2
-config.debug=1;
 config.charset="UTF-8";
 config.version="0.2.0.1";
-config.resourceVersion="0.2.0.1";
-config.dbVersion="0.2.0.1";
 config.regionId="1";
 config.serverGroupId="1";
 config.serverIndex=1;
@@ -26,4 +23,10 @@ config.communicationMaxThreadPoolSize=140;
 config.communicationHandlerMaxThreadPoolSize=280;
 config.communicationMaxWriteIntervalTime=60*60*1000;
 config.messageQueueDirectDispatch=true;
+/**gameexcutor配置***/
+config.gameExcutorCorePoolSize=60;
+config.gameExcutorKeepAliveTime=60;
+config.gameExcutorCycleTime=1000;
+config.gameExcutorMinCycleTime=1000;
+
 
