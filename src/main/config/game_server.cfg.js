@@ -21,8 +21,9 @@ config.i18nDir="i18n";
 config.gameId="shoot";
 config.developModel= 1;
 /**异步通讯接口***/
-config.communicationPort=10000
-config.communicationMaxThreadPoolSize=140
-config.communicationHandlerMaxThreadPoolSize=280
-config.communicationMaxWriteIntervalTime=60*60*1000
+config.communicationPort=10000;
+config.communicationMaxThreadPoolSize=140;
+config.communicationHandlerMaxThreadPoolSize=280;
+config.communicationMaxWriteIntervalTime=60*60*1000;
+config.messageQueueDirectDispatch=true;
 

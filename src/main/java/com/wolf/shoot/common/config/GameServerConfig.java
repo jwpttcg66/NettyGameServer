@@ -54,6 +54,7 @@ public class GameServerConfig extends ServerConfig {
      */
     private boolean accountActivityOpen = false;
 
+    private boolean messageQueueDirectDispatch=true;
     /** session过期失效 ，单位为秒 */
     private int sessionExpireTime = 30 * 60 * 1000;
 
@@ -307,4 +308,11 @@ public class GameServerConfig extends ServerConfig {
         this.communicationMaxWriteIntervalTime = communicationMaxWriteIntervalTime;
     }
 
+    public boolean isMessageQueueDirectDispatch() {
+        return messageQueueDirectDispatch;
+    }
+
+    public void setMessageQueueDirectDispatch(boolean messageQueueDirectDispatch) {
+        this.messageQueueDirectDispatch = messageQueueDirectDispatch;
+    }
 }

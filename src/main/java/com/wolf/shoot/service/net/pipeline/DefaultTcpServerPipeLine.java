@@ -19,7 +19,7 @@ import org.slf4j.Logger;
  * Created by jiangwenping on 17/2/13.
  * 处理管道
  */
-public class DefaultTcpServerPipeLine implements IServerPipeLine {
+public class DefaultTcpServerPipeLine implements ITcpServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override
@@ -92,6 +92,10 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
 //        //放入处理队列
         netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
         GameMessageProcessor gameMessageProcessor = (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
-//        gameMessageProcessor.put(message);
+        if(gameServerConfig.isMessageQueueDirectDispatch()){
+            gameMessageProcessor.directPut(netMessage);
+        }else{
+           gameMessageProcessor.put(netProtoBufMessage);
+        }
     }
 }

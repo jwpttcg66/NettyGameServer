@@ -2,10 +2,11 @@ package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
-import com.wolf.shoot.net.message.logic.common.OnlineHeartMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
+import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
+import com.wolf.shoot.service.net.pipeline.ITcpServerPipeLine;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -14,7 +15,6 @@ import io.netty.handler.timeout.IdleStateEvent;
  * Created by jiangwenping on 17/2/7.
  */
 public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdapter {
-
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
@@ -28,17 +28,14 @@ public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdap
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        Thread.sleep(1000L);
-//        ByteBuf byteBuffer = (ByteBuf) msg;
-
-//        System.out.println("服务端收到："+byteBuffer.array());
-//        ctx.writeAndFlush(msg);
         NetProtoBufMessage netMessage = (NetProtoBufMessage) msg;
-        if(netMessage instanceof OnlineHeartMessage){
-            OnlineHeartMessage onlineHeartMessage = (OnlineHeartMessage) netMessage;
-            System.out.println("服务端收到 OnlineHeartMessage id：" + onlineHeartMessage.getId());
-        }
-
+//        if(netMessage instanceof OnlineHeartMessage){
+//            OnlineHeartMessage onlineHeartMessage = (OnlineHeartMessage) netMessage;
+//            System.out.println("服务端收到 OnlineHeartMessage id：" + onlineHeartMessage.getId());
+//        }
+        //获取管道
+        ITcpServerPipeLine iTcpServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeLine.class);
+        iTcpServerPipeLine.dispatchAction(ctx.channel(), netMessage);
 
     }
 
