@@ -19,7 +19,6 @@ import com.wolf.shoot.net.message.factory.MessageFactory;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
-import com.wolf.shoot.service.net.GameNettyTcpServerService;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.ITcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
@@ -36,11 +35,6 @@ import java.util.concurrent.TimeUnit;
  * 各种全局的业务管理器、公共服务实例的持有者，负责各种管理器的初始化和实例的获取
  */
 public class Globals {
-
-    /**
-     * tcp服务器
-     */
-    public static GameNettyTcpServerService gameNettyTcpServerService;
 
     /**
      * 服务器启动时调用，初始化所有管理器实例
@@ -77,9 +71,6 @@ public class Globals {
         //注册协议处理
         LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
 
-
-        gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
-                , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
     }
 
     public static void initLocalService() throws  Exception{

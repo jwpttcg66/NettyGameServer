@@ -10,6 +10,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.ServerServiceManager;
 import com.wolf.shoot.service.net.AbstractServerService;
 import com.wolf.shoot.service.net.GameNettyTcpServerService;
+import com.wolf.shoot.service.net.LocalNetService;
 import org.slf4j.Logger;
 
 /**
@@ -89,10 +90,7 @@ public class GameServer extends AbstractServerService{
         logger.info("Globals started");
 
         logger.info("TCP Server started");
-        GameNettyTcpServerService gameNettyTcpServerService = Globals.gameNettyTcpServerService;
-        if(gameNettyTcpServerService != null){
-            gameNettyTcpServerService.startService();
-        }
+        LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
 
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
         Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -104,19 +102,9 @@ public class GameServer extends AbstractServerService{
                 ServerStatusLog.getDefaultLog().logRunning();
                 // 关闭游戏连接服务
                 try {
-                    GameNettyTcpServerService gameNettyTcpServerService = Globals.gameNettyTcpServerService;
-                    if(gameNettyTcpServerService != null){
-                        gameNettyTcpServerService.stopService();
-                    }
+                    LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
+                    localNetService.shutdown();
                     logger.info("tcp server shutdown:ok");
-//
-//                    GameServerConfigServiceEx gameServerConfigService = (GameServerConfigServiceEx)LocalMananger.getInstance().getGameServerConfigService();
-//                    GameServerConfig cfg = gameServerConfigService.getGameServerConfig();
-//                    if(gameServerConfigService.getA5GameDynamicPropertiesConfig().getProperty(DynamicPropertiesEnum.COMMUNICATION_START_UP_OPEN.toString().toLowerCase(), true)) {
-//                        CommunicationServerService.getInstance().onDown();
-//                    }
-//                    logger.info("CommunicationServerService.shutdown:ok");
-//
                     Globals.stop();
                     logger.info("Globals.shutdown:ok");
                 } catch (Exception e) {
@@ -146,7 +134,6 @@ public class GameServer extends AbstractServerService{
 
             ServerStatusLog.getDefaultLog().logStarting();
             GameServer server = new GameServer();
-
             server.init(configFile);
             server.start();
             ServerStatusLog.getDefaultLog().logRunning();
