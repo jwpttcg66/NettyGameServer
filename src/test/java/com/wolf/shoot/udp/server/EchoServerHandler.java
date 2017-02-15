@@ -37,4 +37,9 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelInactive();
+    }
 }

@@ -34,4 +34,9 @@ public class NetMessageSocketServerHandler  extends ChannelInboundHandlerAdapter
         cause.printStackTrace();
         ctx.close();
     }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelInactive();
+    }
 }
