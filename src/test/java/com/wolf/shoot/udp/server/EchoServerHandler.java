@@ -8,8 +8,6 @@ import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**
@@ -33,5 +31,10 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
         DatagramPacket responsePacket = new DatagramPacket(Unpooled.copiedBuffer(bytes), datagramPacket.sender());
 //        channelHandlerContext.writeAndFlush(responsePacket).sync();
         channelHandlerContext.channel().writeAndFlush(responsePacket).sync();
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) {
+        ctx.flush();
     }
 }
