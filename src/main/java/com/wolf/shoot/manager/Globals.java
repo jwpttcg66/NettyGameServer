@@ -138,10 +138,12 @@ public class Globals {
     }
 
     public static void start() throws Exception{
-
+        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+        updateService.start();
     }
 
     public static void stop() throws Exception{
-
+        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+        updateService.shutDown();
     }
 }
