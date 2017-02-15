@@ -12,6 +12,7 @@ import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
+import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.net.message.facade.GameFacade;
 import com.wolf.shoot.net.message.facade.IFacade;
 import com.wolf.shoot.net.message.factory.IMessageFactory;
@@ -71,7 +72,14 @@ public class Globals {
         //注册协议处理
         LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
 
+        initLogic();
+
     }
+
+    public static  void initLogic() throws Exception{
+        LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
+    }
+
 
     public static void initLocalService() throws  Exception{
         //初始化lookupservice

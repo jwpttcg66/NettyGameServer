@@ -6,6 +6,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.common.util.ExecutorUtil;
+import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
@@ -77,11 +78,8 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
     @Override
     public void directPut(NetMessage msg) {
         try {
-            GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
-
-//            RoomLogic roomLogic = (RoomLogic) LocalMananger.getInstance().getAbstractRoomLogic();
-//            roomLogic.dispatchMessage(msg, this);
-
+            NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().get(NetMessageDispatchLogic.class);
+            netMessageDispatchLogic.dispatchMessage(msg, this);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);

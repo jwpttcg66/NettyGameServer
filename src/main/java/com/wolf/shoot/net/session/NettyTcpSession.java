@@ -1,6 +1,7 @@
 package com.wolf.shoot.net.session;
 
 import com.wolf.shoot.common.IUpdatable;
+import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.process.NetProtoBufMessageProcess;
 import io.netty.channel.Channel;
 
@@ -46,5 +47,9 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
     public boolean update() {
         netProtoBufMessageProcess.update();
         return false;
+    }
+
+    public void addNetMessage(NetMessage netMessage){
+        this.netProtoBufMessageProcess.addNetMessage(netMessage);
     }
 }
