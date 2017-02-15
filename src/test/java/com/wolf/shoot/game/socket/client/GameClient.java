@@ -1,5 +1,7 @@
 package com.wolf.shoot.game.socket.client;
 
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -16,6 +18,7 @@ import io.netty.handler.logging.LoggingHandler;
 public class GameClient {
 
     public static void main(String[] args) throws Exception {
+        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         new GameClient().connect("127.0.0.1", 7090);
     }
 
