@@ -38,8 +38,30 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
         ctx.flush();
     }
 
+    /**
+     * Gets called if an user event was triggered.
+     */
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception{
+        System.out.println("d");
+    }
+
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelInactive();
+    }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelUnregistered();
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelRegistered();
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelActive();
     }
 }
