@@ -20,8 +20,8 @@ public class GameClientChannleInitializer extends ChannelInitializer<NioSocketCh
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("decoder", new NetProtoBufMessageDecoder());
         channelPipLine.addLast("encoder", new NetProtoBufMessageEncoder());
+        channelPipLine.addLast("decoder", new NetProtoBufMessageDecoder());
 //        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
 //        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
         int readerIdleTimeSeconds = 0;
