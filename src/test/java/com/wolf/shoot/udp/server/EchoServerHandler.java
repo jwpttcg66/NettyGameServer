@@ -8,6 +8,7 @@ import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.SocketAddress;
 import java.nio.charset.Charset;
 
 /**
@@ -24,7 +25,8 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
 //        String body = new String(readBuffer.array(), CharsetUtil.UTF_8);
         String string = datagramPacket.content().toString(Charset.forName("UTF-8"));
         utilLogger.debug("收到客户端数据" + string);
-
+        SocketAddress socketAddress = channelHandlerContext.channel().remoteAddress();
+        System.out.println(socketAddress);
         //回复客户端
         String response = "Hello, 服务器事件为" + System.currentTimeMillis();
         byte[] bytes = response.getBytes(CharsetUtil.UTF_8);

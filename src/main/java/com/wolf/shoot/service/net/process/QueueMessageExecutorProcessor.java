@@ -108,7 +108,6 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         this.statisticsMessageCount++;
         try {
             NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) msg;
-            long sessionId = netProtoBufMessage.getSessionId();
             NettyTcpSession clientSesion = (NettyTcpSession) netProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
