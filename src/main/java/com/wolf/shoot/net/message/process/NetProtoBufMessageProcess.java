@@ -9,6 +9,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.facade.GameFacade;
+import com.wolf.shoot.net.message.facade.IFacade;
 import com.wolf.shoot.net.message.factory.IMessageFactory;
 import com.wolf.shoot.net.session.NettySession;
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
             }
             statisticsMessageCount++;
             try {
-                GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(GameFacade.class);
+                GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(IFacade.class);
                 NetProtoBufMessage respone = null;
                 respone = (NetProtoBufMessage) gameFacade.dispatch(message);
                 if(respone != null) {
