@@ -1,0 +1,8 @@
+option java_package = "com.wolf.shoot.net.message.auto.tcp.online";
+option java_outer_classname = "OnlineTCPProBuf";
+
+message OnlineHeartTCPProBuf
+{
+    required int32 id = 1;
+}
+

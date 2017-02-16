@@ -4,7 +4,7 @@ import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.handler.AbstractMessageHandler;
-import com.wolf.shoot.net.message.logic.common.OnlineHeartMessage;
+import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
 
 /**
  * Created by jiangwenping on 17/2/15.

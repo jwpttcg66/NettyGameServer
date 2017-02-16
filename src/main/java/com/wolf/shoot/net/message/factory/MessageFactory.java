@@ -1,7 +1,7 @@
 package com.wolf.shoot.net.message.factory;
 
 import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.logic.common.CommonServerErrorResponseMessage;
+import com.wolf.shoot.net.message.logic.tcp.common.CommonServerErrorResponseMessage;
 
 /**
  * Created by jwp on 2017/2/10.

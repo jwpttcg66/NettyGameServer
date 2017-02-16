@@ -2,8 +2,8 @@ package com.wolf.shoot.net.message.handler.impl;
 
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.handler.auto.common.CommonHandler;
-import com.wolf.shoot.net.message.logic.common.CommonServerErrorResponseMessage;
-import com.wolf.shoot.net.message.logic.common.OnlineHeartMessage;
+import com.wolf.shoot.net.message.logic.tcp.common.CommonServerErrorResponseMessage;
+import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
 
 /**
  * Created by jiangwenping on 17/2/15.

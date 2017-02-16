@@ -4,6 +4,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
+import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
 import com.wolf.shoot.net.message.encoder.NetMessageEncoderFactory;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
@@ -63,20 +64,7 @@ public class EchoNettyUdpClient {
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         int port = 9999;
-        NetMessage netMessage = new NetMessage();
-        NetMessageHead netMessageHead = new NetMessageHead();
-        netMessageHead.setSerial(5);
-        netMessageHead.setCmd((short) 2);
-        netMessageHead.setVersion((byte) 3);
-
-        NetMessageBody netMessageBody = new NetMessageBody();
-        byte[] bytes = "hello world".getBytes(CharsetUtil.UTF_8);
-        netMessageBody.setBytes(bytes);
-
-        netMessage.setNetMessageBody(netMessageBody);
-        netMessage.setNetMessageHead(netMessageHead);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
 //        udpChannel.writeAndFlush(netMessage).sync();
-        ByteBuf byteBuf = new NetMessageEncoderFactory().createByteBuf(netMessage);
-        udpChannel.writeAndFlush(new DatagramPacket(byteBuf, new InetSocketAddress("127.0.0.1", port))).sync();
     }
 }

@@ -1,4 +1,4 @@
-package com.wolf.shoot.net.message.logic.common;
+package com.wolf.shoot.net.message.logic.tcp.common;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.common.exception.CodecException;

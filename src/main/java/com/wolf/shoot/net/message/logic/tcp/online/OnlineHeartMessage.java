@@ -1,9 +1,10 @@
-package com.wolf.shoot.net.message.logic.common;
+package com.wolf.shoot.net.message.logic.tcp.online;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
+import com.wolf.shoot.net.message.auto.tcp.online.OnlineTCPProBuf;
 
 /**
  * Created by jiangwenping on 17/2/8.
@@ -20,7 +21,7 @@ public class OnlineHeartMessage extends NetProtoBufMessage {
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
-        CommonMessageProBuf.OnlineHeartProBuf req = CommonMessageProBuf.OnlineHeartProBuf.parseFrom(bytes);
+        OnlineTCPProBuf.OnlineHeartTCPProBuf req = OnlineTCPProBuf.OnlineHeartTCPProBuf.parseFrom(bytes);
         setId(req.getId());
     }
 
@@ -31,7 +32,7 @@ public class OnlineHeartMessage extends NetProtoBufMessage {
 
     @Override
     public void encodeNetProtoBufMessageBody() throws Exception {
-        CommonMessageProBuf.OnlineHeartProBuf.Builder builder = CommonMessageProBuf.OnlineHeartProBuf.newBuilder();
+        OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder builder = OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder();
         builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
         getNetProtoBufMessageBody().setBytes(bytes);

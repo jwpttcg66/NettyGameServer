@@ -1,11 +1,6 @@
 option java_package = "com.wolf.shoot.net.message.auto.common";
 option java_outer_classname = "CommonMessageProBuf";
 
-message OnlineHeartProBuf
-{
-    required int32 id = 1;
-}
-
 message CommonServerErrorResponseWithCmdProBuf
 {
 	 required int32 cmd = 1;
