@@ -1,6 +1,7 @@
 package com.wolf.shoot.udp.server;
 
 import com.wolf.shoot.net.message.decoder.NetMessageTCPDecoder;
+import com.wolf.shoot.net.message.decoder.NetProtoBufMessageUDPDecoder;
 import com.wolf.shoot.net.message.encoder.NetMessageTcpEncoder;
 import com.wolf.shoot.net.message.encoder.NetProtoBufMessageUDPEncoder;
 import com.wolf.shoot.socket.server.NetMessageSocketServerHandler;
@@ -22,7 +23,7 @@ public class UdpProtoBufServerChannelInitializer extends ChannelInitializer<NioD
 
         ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
         ch.pipeline().addLast(new NetProtoBufMessageUDPEncoder());
-        ch.pipeline().addLast(new NetMessageTCPDecoder());
-        channelPipLine.addLast(new NetMessageSocketServerHandler());
+        ch.pipeline().addLast(new NetProtoBufMessageUDPDecoder());
+        channelPipLine.addLast(new EchoServerHandler());
     }
 }

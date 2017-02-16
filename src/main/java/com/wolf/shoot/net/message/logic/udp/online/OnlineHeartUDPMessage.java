@@ -5,6 +5,7 @@ import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
 import com.wolf.shoot.net.message.auto.tcp.online.OnlineTCPProBuf;
+import com.wolf.shoot.net.message.auto.udp.online.OnlineUDPProBuf;
 
 /**
  * Created by jwp on 2017/2/16.
@@ -21,7 +22,7 @@ public class OnlineHeartUDPMessage extends NetProtoBufUDPMessage {
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
-        OnlineTCPProBuf.OnlineHeartTCPProBuf req = OnlineTCPProBuf.OnlineHeartTCPProBuf.parseFrom(bytes);
+        OnlineUDPProBuf.OnlineHeartUDPProBuf req = OnlineUDPProBuf.OnlineHeartUDPProBuf.parseFrom(bytes);
         setId(req.getId());
     }
 
@@ -32,7 +33,7 @@ public class OnlineHeartUDPMessage extends NetProtoBufUDPMessage {
 
     @Override
     public void encodeNetProtoBufMessageBody() throws Exception {
-        OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder builder = OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder();
+        OnlineUDPProBuf.OnlineHeartUDPProBuf.Builder builder = OnlineUDPProBuf.OnlineHeartUDPProBuf.newBuilder();
         builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
         getNetProtoBufMessageBody().setBytes(bytes);

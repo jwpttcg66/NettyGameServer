@@ -66,6 +66,7 @@ public class EchoNettyUdpClient {
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         int port = 9999;
         OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();
+        onlineHeartUDPMessage.setId(Short.MAX_VALUE);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
         onlineHeartUDPMessage.setReceive(inetSocketAddress);
         udpChannel.writeAndFlush(onlineHeartUDPMessage).sync();
