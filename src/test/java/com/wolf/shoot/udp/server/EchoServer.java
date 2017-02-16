@@ -30,8 +30,8 @@ public class EchoServer {
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                 .handler(new LoggingHandler(LogLevel.DEBUG))
-                .handler(new UdpChannelInitializer());
-//                .handler(new UdpProtoBufServerChannelInitializer());
+//                .handler(new UdpChannelInitializer());
+                .handler(new UdpProtoBufServerChannelInitializer());
 
         // 服务端监听在9999端口
         b.bind(9999).sync().channel().closeFuture().await();
