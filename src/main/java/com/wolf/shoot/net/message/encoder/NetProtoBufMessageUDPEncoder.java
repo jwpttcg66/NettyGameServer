@@ -37,6 +37,6 @@ public class NetProtoBufMessageUDPEncoder extends MessageToMessageEncoder<NetPro
     @Override
     protected void encode(ChannelHandlerContext ctx, NetProtoBufUDPMessage msg, List<Object> out) throws Exception {
         ByteBuf netMessageBuf = iNetMessageEncoderFactory.createByteBuf(msg);
-        new DatagramPacket(netMessageBuf, msg.getReceive());
+        out.add(new DatagramPacket(netMessageBuf, msg.getReceive()));
     }
 }

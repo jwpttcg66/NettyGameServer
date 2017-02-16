@@ -6,6 +6,7 @@ import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
 import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
 import com.wolf.shoot.net.message.encoder.NetMessageEncoderFactory;
+import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -35,8 +36,8 @@ public class EchoNettyUdpClient {
         bootstrap.channel(NioDatagramChannel.class);
         bootstrap.group(nioEventLoopGroup);
         bootstrap.handler(new LoggingHandler(LogLevel.INFO));
-        bootstrap.handler(new UdpClientChannelInitializer());
-//        bootstrap.handler(new UdpProtoBufClientChannelInitializer());
+//        bootstrap.handler(new UdpClientChannelInitializer());
+        bootstrap.handler(new UdpProtoBufClientChannelInitializer());
         // 监听端口
         int port = 9999;
         ChannelFuture sync = bootstrap.bind(0).sync();
@@ -64,7 +65,9 @@ public class EchoNettyUdpClient {
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         int port = 9999;
+        OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
-//        udpChannel.writeAndFlush(netMessage).sync();
+        onlineHeartUDPMessage.setReceive(inetSocketAddress);
+        udpChannel.writeAndFlush(onlineHeartUDPMessage).sync();
     }
 }
