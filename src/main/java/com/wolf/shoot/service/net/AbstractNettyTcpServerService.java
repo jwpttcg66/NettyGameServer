@@ -13,7 +13,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Created by jiangwenping on 17/2/7.
  */
-public abstract class AbstractNettyTcpServerService extends AbstractTcpServerService {
+public abstract class AbstractNettyTcpServerService extends AbstractNettyServerService {
 
 //    private ServerBootstrap serverBootstrap;
     private EventLoopGroup bossGroup;
