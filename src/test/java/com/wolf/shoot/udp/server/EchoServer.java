@@ -1,6 +1,8 @@
 package com.wolf.shoot.udp.server;
 
 
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelOption;
@@ -15,6 +17,7 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public class EchoServer {
     public static void main(String[] args) throws Exception {
+        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         Bootstrap b = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
         b.group(group)
@@ -24,6 +27,7 @@ public class EchoServer {
                 .option(ChannelOption.SO_REUSEADDR, true) //重用地址
                 .option(ChannelOption.SO_RCVBUF, 65536)
                 .option(ChannelOption.SO_SNDBUF, 65536)
+                .handler(new LoggingHandler(LogLevel.INFO))
                 .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                 .handler(new LoggingHandler(LogLevel.DEBUG))
                 .handler(new UdpChannelInitializer());

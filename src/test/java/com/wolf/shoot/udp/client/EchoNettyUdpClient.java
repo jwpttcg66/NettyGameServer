@@ -1,5 +1,10 @@
 package com.wolf.shoot.udp.client;
 
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.NetMessageBody;
+import com.wolf.shoot.net.message.NetMessageHead;
+import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -7,6 +12,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -16,21 +24,23 @@ import java.nio.charset.Charset;
  */
 public class EchoNettyUdpClient {
 
-    public static void main(String[] args) throws InterruptedException {
-
+    public static void main(String[] args) throws Exception {
+        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         final NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup();
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.channel(NioDatagramChannel.class);
         bootstrap.group(nioEventLoopGroup);
-        bootstrap.handler(new UdpClientChannelInitializer());
-//        bootstrap.handler(new UdpProtoBufClientChannelInitializer());
+        bootstrap.handler(new LoggingHandler(LogLevel.INFO));
+//        bootstrap.handler(new UdpClientChannelInitializer());
+        bootstrap.handler(new UdpProtoBufClientChannelInitializer());
         // 监听端口
         int port = 9999;
         ChannelFuture sync = bootstrap.bind(0).sync();
         Channel udpChannel = sync.channel();
 
         sendStringMessage(udpChannel);
+//        sendMessage(udpChannel);
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
@@ -50,6 +60,18 @@ public class EchoNettyUdpClient {
     }
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
+        NetMessage netMessage = new NetMessage();
+        NetMessageHead netMessageHead = new NetMessageHead();
+        netMessageHead.setSerial(5);
+        netMessageHead.setCmd((short) 2);
+        netMessageHead.setVersion((byte) 3);
 
+        NetMessageBody netMessageBody = new NetMessageBody();
+        byte[] bytes = "hello world".getBytes(CharsetUtil.UTF_8);
+        netMessageBody.setBytes(bytes);
+
+        netMessage.setNetMessageBody(netMessageBody);
+        netMessage.setNetMessageHead(netMessageHead);
+        udpChannel.writeAndFlush(netMessage);
     }
 }
