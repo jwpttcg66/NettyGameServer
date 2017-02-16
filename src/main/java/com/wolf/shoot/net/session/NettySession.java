@@ -33,7 +33,7 @@ public abstract class NettySession implements ISession  {
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void write(NetMessage msg) {
+    public void write(NetMessage msg) throws Exception {
         if (msg != null) {
             channel.writeAndFlush(msg);
 //			if(msg instanceof ISliceMessage){

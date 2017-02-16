@@ -18,7 +18,12 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
 
     @Override
     public boolean sendMessage(NetMessage message) throws NetMessageException {
-        nettySession.write(message);
+        try {
+            nettySession.write(message);
+        }catch (Exception e){
+            throw new NetMessageException("write tcp netmessage exception", e);
+        }
+
         return true;
     }
 

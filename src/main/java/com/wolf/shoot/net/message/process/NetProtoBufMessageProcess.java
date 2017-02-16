@@ -4,6 +4,7 @@ import com.wolf.shoot.common.IUpdatable;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.GameHandlerException;
+import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
@@ -69,7 +70,13 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
                     GameHandlerException gameHandlerException = (GameHandlerException) e;
                     IMessageFactory iMessageFactory = LocalMananger.getInstance().get(IMessageFactory.class);
                     NetMessage errorMessage = iMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), message.getNetMessageHead().getCmd(), gameHandlerException.COMMON_ERROR_STATE);
-                    nettySession.write(errorMessage);
+                    try {
+                        nettySession.write(errorMessage);
+                    }catch (Exception writeException){
+                        Loggers.errorLogger.error(ErrorsUtil.error("Error",
+                                "#.QueueMessageExecutorProcessor.writeErrorMessage", "param"), e);
+                    }
+
                 }
 
             } finally {

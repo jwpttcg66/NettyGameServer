@@ -18,7 +18,7 @@ public interface ISession {
     /**
      * @param msg
      */
-    public void write(NetMessage msg);
+    public void write(NetMessage msg) throws Exception;
 
     /**
      *
