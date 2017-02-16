@@ -12,18 +12,18 @@ import java.util.List;
 /**
  * Created by jiangwenping on 17/2/8.
  */
-public class NetProtoBufMessageEncoder extends MessageToMessageEncoder<NetProtoBufMessage> {
+public class NetProtoBufMessageTCPEncoder extends MessageToMessageEncoder<NetProtoBufMessage> {
 
     private final Charset charset;
 
     private INetProtoBufMessageEncoderFactory iNetMessageEncoderFactory;
 
-    public NetProtoBufMessageEncoder() {
+    public NetProtoBufMessageTCPEncoder() {
         this(CharsetUtil.UTF_8);
         this.iNetMessageEncoderFactory = new NetProtoBufMessageEncoderFactory();
     }
 
-    public NetProtoBufMessageEncoder(Charset charset) {
+    public NetProtoBufMessageTCPEncoder(Charset charset) {
         if(charset == null) {
             throw new NullPointerException("charset");
         } else {

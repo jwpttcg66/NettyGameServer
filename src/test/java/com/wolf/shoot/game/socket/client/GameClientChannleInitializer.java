@@ -1,8 +1,8 @@
 package com.wolf.shoot.game.socket.client;
 
 import com.wolf.shoot.common.constant.GlobalConstants;
-import com.wolf.shoot.net.message.decoder.NetProtoBufMessageDecoder;
-import com.wolf.shoot.net.message.encoder.NetProtoBufMessageEncoder;
+import com.wolf.shoot.net.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.wolf.shoot.net.message.encoder.NetProtoBufMessageTCPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -20,8 +20,8 @@ public class GameClientChannleInitializer extends ChannelInitializer<NioSocketCh
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-        channelPipLine.addLast("encoder", new NetProtoBufMessageEncoder());
-        channelPipLine.addLast("decoder", new NetProtoBufMessageDecoder());
+        channelPipLine.addLast("encoder", new NetProtoBufMessageTCPEncoder());
+        channelPipLine.addLast("decoder", new NetProtoBufMessageTCPDecoder());
 //        int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_READ_TIMEOUT;
 //        int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_WRITE_TIMEOUT;
         int readerIdleTimeSeconds = 0;

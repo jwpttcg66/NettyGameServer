@@ -10,11 +10,11 @@ import java.util.List;
  * Created by jwp on 2017/1/24.
  * 网络消息解码
  */
-public class NetMessageDecoder extends MessageToMessageDecoder<ByteBuf> {
+public class NetMessageTCPDecoder extends MessageToMessageDecoder<ByteBuf> {
 
     private INetMessageDecoderFactory iNetMessageDecoderFactory;
 
-    public NetMessageDecoder() {
+    public NetMessageTCPDecoder() {
         this.iNetMessageDecoderFactory = new NetMessageDecoderFactory();
     }
 
