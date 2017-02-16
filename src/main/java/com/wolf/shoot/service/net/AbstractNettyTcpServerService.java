@@ -39,8 +39,8 @@ public abstract class AbstractNettyTcpServerService extends AbstractTcpServerSer
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.SO_REUSEADDR, true) //重用地址
-                    .childOption(ChannelOption.SO_RCVBUF, 1048576)
-                    .childOption(ChannelOption.SO_SNDBUF, 1048576)
+                    .childOption(ChannelOption.SO_RCVBUF, 65536)
+                    .childOption(ChannelOption.SO_SNDBUF, 65536)
                     .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new GameNetProtoMessageServerChannleInitializer());
