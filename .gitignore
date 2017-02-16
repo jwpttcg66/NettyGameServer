@@ -1,3 +1,4 @@
 target
 *.tar.gz
 logs/
+workspace.xml
