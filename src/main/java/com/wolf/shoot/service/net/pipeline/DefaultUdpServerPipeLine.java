@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 /**
  * Created by jwp on 2017/2/17.
  */
-public class DefaultUdpServerPipeLine implements IServerPipeLine {
+public class DefaultUdpServerPipeline implements IServerPipeline {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override

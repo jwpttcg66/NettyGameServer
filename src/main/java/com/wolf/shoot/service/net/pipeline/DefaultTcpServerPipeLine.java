@@ -19,7 +19,7 @@ import org.slf4j.Logger;
  * Created by jiangwenping on 17/2/13.
  * 处理管道
  */
-public class DefaultTcpServerPipeLine implements IServerPipeLine {
+public class DefaultTcpServerPipeline implements IServerPipeline {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override

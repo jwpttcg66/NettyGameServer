@@ -21,8 +21,8 @@ import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.net.session.builder.NettyUdpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
-import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
-import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
+import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeline;
+import com.wolf.shoot.service.net.pipeline.IServerPipeline;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
 import com.wolf.shoot.service.net.process.GameMessageProcessor;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
@@ -142,8 +142,8 @@ public class Globals {
         //注册管道工厂
         LocalMananger.getInstance().create(DefaultTcpServerPipelineFactory.class, DefaultTcpServerPipelineFactory.class);
         DefaultTcpServerPipelineFactory defaultTcpServerPipelineFactory = LocalMananger.getInstance().get(DefaultTcpServerPipelineFactory.class);
-        IServerPipeLine defaultTcpServerPipeline = defaultTcpServerPipelineFactory.createServerPipeLine();
-        LocalMananger.getInstance().add(defaultTcpServerPipeline, DefaultTcpServerPipeLine.class);
+        IServerPipeline defaultTcpServerPipeline = defaultTcpServerPipelineFactory.createServerPipeLine();
+        LocalMananger.getInstance().add(defaultTcpServerPipeline, DefaultTcpServerPipeline.class);
 
         //注册协议工厂
         LocalMananger.getInstance().create(MessageFactory.class, IMessageFactory.class);
