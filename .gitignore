@@ -2,3 +2,4 @@ target
 *.tar.gz
 logs/
 workspace.xml
+.DS_Store
