@@ -7,7 +7,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.ClassScanner;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class MessageRegistry implements Reloadable, IService{
 
     private ConcurrentHashMap<Short, MessageCommands> messageCommandMap = new ConcurrentHashMap<Short, MessageCommands>();
 
-    private Map<Integer, Class<? extends NetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends NetProtoBufMessage>>();
+    private Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
 
     public void putMessageCommands(int key, Class putClass) {
         messages.put(key, putClass);
@@ -40,16 +40,16 @@ public class MessageRegistry implements Reloadable, IService{
      * @return
      * @throws Exception
      */
-    public final NetProtoBufMessage getMessage(int commandId) {
+    public final AbstractNetProtoBufMessage getMessage(int commandId) {
         if (commandId < 0)
             return null;
 
         try {
-            Class<? extends NetProtoBufMessage> cls = messages.get(commandId);
+            Class<? extends AbstractNetProtoBufMessage> cls = messages.get(commandId);
             if (cls == null) {
                 return null;
             }
-            NetProtoBufMessage message = cls.newInstance();
+            AbstractNetProtoBufMessage message = cls.newInstance();
             return message;
         } catch (Exception e) {
             logger.error("getMessage(int) - commandId=" + commandId + ". ", e);

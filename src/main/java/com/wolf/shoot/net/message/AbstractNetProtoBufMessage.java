@@ -8,13 +8,13 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * Created by jiangwenping on 17/2/3.
  * 需要重新读取body
  */
-public abstract  class NetProtoBufMessage extends  NetMessage{
+public abstract  class AbstractNetProtoBufMessage extends  NetMessage{
 
     private NetProtoBufMessageBody netProtoBufMessageBody;
 
-    private long sessionId;
+//    private long sessionId;
 
-    public NetProtoBufMessage(){
+    public AbstractNetProtoBufMessage(){
         setNetMessageHead(new NetMessageHead());
         this.netProtoBufMessageBody = new NetProtoBufMessageBody();
     }
@@ -51,11 +51,11 @@ public abstract  class NetProtoBufMessage extends  NetMessage{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).replaceAll("\n", "");
     }
 
-    public long getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(long sessionId) {
-        this.sessionId = sessionId;
-    }
+//    public long getSessionId() {
+//        return sessionId;
+//    }
+//
+//    public void setSessionId(long sessionId) {
+//        this.sessionId = sessionId;
+//    }
 }

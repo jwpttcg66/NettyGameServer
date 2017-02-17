@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.net;
 
-import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -8,11 +8,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 /**
  * Created by jwp on 2017/2/17.
  */
-public class GameNetMessageUdpServerHandler extends SimpleChannelInboundHandler<NetProtoBufMessage> {
+public class GameNetMessageUdpServerHandler extends SimpleChannelInboundHandler<AbstractNetProtoBufMessage> {
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, NetProtoBufMessage netMessage) throws Exception {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractNetProtoBufMessage netMessage) throws Exception {
         System.out.println(netMessage);
         if(netMessage instanceof OnlineHeartUDPMessage){
             OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();

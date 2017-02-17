@@ -1,6 +1,5 @@
 package com.wolf.shoot.net.message.encoder;
 
-import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,7 +7,6 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.util.CharsetUtil;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.util.List;
 

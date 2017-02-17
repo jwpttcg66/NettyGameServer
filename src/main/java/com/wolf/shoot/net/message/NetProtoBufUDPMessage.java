@@ -1,14 +1,12 @@
 package com.wolf.shoot.net.message;
 
-import com.wolf.shoot.common.exception.CodecException;
-
 import java.net.InetSocketAddress;
 
 /**
  * Created by jwp on 2017/2/16.
  * 抽象的udp消息
  */
-public abstract class NetProtoBufUDPMessage extends NetProtoBufMessage{
+public abstract class NetProtoBufUDPMessage extends AbstractNetProtoBufMessage {
     /**
      * 发送方
      */

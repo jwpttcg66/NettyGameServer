@@ -9,7 +9,7 @@ import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
@@ -107,11 +107,11 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         }
         this.statisticsMessageCount++;
         try {
-            NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) msg;
-            NettyTcpSession clientSesion = (NettyTcpSession) netProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+            AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
+            NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
-                clientSesion.getNetProtoBufMessageProcess().addNetMessage(netProtoBufMessage);
+                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
             }else{
 
 //                NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);

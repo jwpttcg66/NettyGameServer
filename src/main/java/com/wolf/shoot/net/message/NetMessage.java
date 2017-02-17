@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jwp on 2017/1/24.
  *  网络基本消息
  */
-public class NetMessage {
+public class NetMessage implements INetMessage{
 
     private NetMessageHead netMessageHead;
     private NetMessageBody netMessageBody;

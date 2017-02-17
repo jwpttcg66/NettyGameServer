@@ -2,15 +2,14 @@ package com.wolf.shoot.net.message.logic.tcp.online;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
-import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.auto.tcp.online.OnlineTCPProBuf;
 
 /**
  * Created by jiangwenping on 17/2/8.
  */
 @MessageCommandAnnotation(command = MessageCommands.ONLINE_HEART_MESSAGE)
-public class OnlineHeartMessage extends NetProtoBufMessage {
+public class OnlineHeartMessage extends AbstractNetProtoBufMessage {
 
     private int id;
 

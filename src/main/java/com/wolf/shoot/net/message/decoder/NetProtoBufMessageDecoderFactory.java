@@ -4,14 +4,11 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.CodecException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessageHead;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessageBody;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import sun.rmi.runtime.Log;
-
-import java.util.logging.Logger;
 
 /**
  * Created by jiangwenping on 17/2/3.
@@ -19,7 +16,7 @@ import java.util.logging.Logger;
 
 public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDecoderFactory{
 
-    public NetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
+    public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();
         //head为两个字节，跳过
@@ -31,7 +28,7 @@ public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDeco
         netMessageHead.setSerial(byteBuf.readInt());
 
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
-        NetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
+        AbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();
