@@ -1,7 +1,7 @@
 package com.wolf.shoot.net.message.factory;
 
-import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.logic.tcp.common.CommonServerErrorResponseMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.net.message.logic.tcp.common.CommonServerErrorResponseMessageAbstract;
 
 /**
  * Created by jwp on 2017/2/10.
@@ -9,8 +9,8 @@ import com.wolf.shoot.net.message.logic.tcp.common.CommonServerErrorResponseMess
 public class MessageFactory implements IMessageFactory {
 
     @Override
-    public NetMessage createCommonErrorResponseMessage(int serial, int cmd, int state) {
-        CommonServerErrorResponseMessage commonServerErrorResponseMessage  = new CommonServerErrorResponseMessage();
+    public AbstractNetMessage createCommonErrorResponseMessage(int serial, int cmd, int state) {
+        CommonServerErrorResponseMessageAbstract commonServerErrorResponseMessage  = new CommonServerErrorResponseMessageAbstract();
         commonServerErrorResponseMessage.setSerial(serial);
         commonServerErrorResponseMessage.setCmd(cmd);
         commonServerErrorResponseMessage.setState(state);

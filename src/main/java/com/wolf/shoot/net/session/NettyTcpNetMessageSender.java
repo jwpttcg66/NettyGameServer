@@ -1,9 +1,8 @@
 package com.wolf.shoot.net.session;
 
-import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.NetMessageException;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 
 /**
@@ -17,7 +16,7 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
     }
 
     @Override
-    public boolean sendMessage(NetMessage message) throws NetMessageException {
+    public boolean sendMessage(AbstractNetMessage message) throws NetMessageException {
         try {
             nettySession.write(message);
         }catch (Exception e){

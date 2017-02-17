@@ -1,15 +1,9 @@
 package com.wolf.shoot.udp.client;
 
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.NetMessageBody;
-import com.wolf.shoot.net.message.NetMessageHead;
-import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
-import com.wolf.shoot.net.message.encoder.NetMessageEncoderFactory;
-import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessage;
+import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessageAbstract;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -18,7 +12,6 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
@@ -65,7 +58,7 @@ public class EchoNettyUdpClient {
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         int port = 9999;
-        OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();
+        OnlineHeartUDPMessageAbstract onlineHeartUDPMessage = new OnlineHeartUDPMessageAbstract();
         onlineHeartUDPMessage.setId(Short.MAX_VALUE);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
         onlineHeartUDPMessage.setReceive(inetSocketAddress);

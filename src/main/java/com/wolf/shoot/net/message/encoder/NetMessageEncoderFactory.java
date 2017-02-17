@@ -1,6 +1,6 @@
 package com.wolf.shoot.net.message.encoder;
 
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
 import io.netty.buffer.ByteBuf;
@@ -12,10 +12,10 @@ import io.netty.buffer.Unpooled;
  */
 public class NetMessageEncoderFactory implements  INetMessageEncoderFactory{
 
-    public ByteBuf createByteBuf(NetMessage netMessage){
+    public ByteBuf createByteBuf(AbstractNetMessage abstractNetMessage){
         ByteBuf byteBuf = Unpooled.buffer(256);
         //编写head
-        NetMessageHead netMessageHead = netMessage.getNetMessageHead();
+        NetMessageHead netMessageHead = abstractNetMessage.getNetMessageHead();
         byteBuf.writeShort(netMessageHead.getHead());
         //长度
         byteBuf.writeInt(0);
@@ -23,7 +23,7 @@ public class NetMessageEncoderFactory implements  INetMessageEncoderFactory{
         byteBuf.writeShort(netMessageHead.getCmd());
         byteBuf.writeInt(netMessageHead.getSerial());
         //编写body
-        NetMessageBody netMessageBody = netMessage.getNetMessageBody();
+        NetMessageBody netMessageBody = abstractNetMessage.getNetMessageBody();
         byteBuf.writeBytes(netMessageBody.getBytes());
 
         //重新设置长度

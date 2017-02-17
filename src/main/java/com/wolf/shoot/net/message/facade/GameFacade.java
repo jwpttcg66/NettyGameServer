@@ -10,7 +10,7 @@ import com.wolf.shoot.common.loader.DynamicGameClassLoader;
 import com.wolf.shoot.common.loader.FileClassLoader;
 import com.wolf.shoot.common.util.ClassScanner;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.message.handler.AbstractMessageHandler;
 import com.wolf.shoot.net.message.handler.IMessageHandler;
 import com.wolf.shoot.service.IService;
@@ -45,7 +45,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     }
 
     @Override
-    public NetMessage dispatch(NetMessage message)
+    public AbstractNetMessage dispatch(AbstractNetMessage message)
             throws GameHandlerException {
         try {
             int cmd = message.getCmd();
@@ -54,9 +54,9 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
             method.setAccessible(true);
             Object object =  method.invoke(handler,
                     message);
-            NetMessage result = null;
+            AbstractNetMessage result = null;
             if(object != null){
-                result = (NetMessage) object;
+                result = (AbstractNetMessage) object;
             }
             return result;
         } catch (Exception e) {

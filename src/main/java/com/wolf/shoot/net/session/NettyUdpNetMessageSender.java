@@ -1,7 +1,7 @@
 package com.wolf.shoot.net.session;
 
 import com.wolf.shoot.common.exception.NetMessageException;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 
 /**
  * Created by jiangwenping on 17/2/15.
@@ -15,7 +15,7 @@ public class NettyUdpNetMessageSender implements INetMessageSender{
     }
 
     @Override
-    public boolean sendMessage(NetMessage message) throws NetMessageException {
+    public boolean sendMessage(AbstractNetMessage message) throws NetMessageException {
         try {
             nettySession.write(message);
         }catch (Exception e){

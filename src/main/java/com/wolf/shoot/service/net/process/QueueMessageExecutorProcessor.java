@@ -8,8 +8,8 @@ import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
@@ -25,10 +25,10 @@ import java.util.concurrent.*;
 public class QueueMessageExecutorProcessor implements IMessageProcessor {
     public static final Logger logger = Loggers.serverStatusStatistics;
     /** 消息队列 * */
-    protected final BlockingQueue<NetMessage> queue;
+    protected final BlockingQueue<AbstractNetMessage> queue;
 
     /** 消息处理线程停止时剩余的还未处理的消息 **/
-    private volatile List<NetMessage> leftQueue;
+    private volatile List<AbstractNetMessage> leftQueue;
 
     /** 消息处理线程池 */
     private volatile ExecutorService executorService;
@@ -51,7 +51,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
 
     @SuppressWarnings("unchecked")
     public QueueMessageExecutorProcessor(boolean processLeft, int executorCoreSize) {
-        queue = new LinkedBlockingQueue<NetMessage>();
+        queue = new LinkedBlockingQueue<AbstractNetMessage>();
         this.processLeft = processLeft;
         this.excecutorCoreSize = executorCoreSize;
     }
@@ -62,7 +62,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
      * @see com.mop.lzr.core.server.IMessageProcessor#put(com.mop.lzr.core.msg.
      * IMessage)
      */
-    public void put(NetMessage msg) {
+    public void put(AbstractNetMessage msg) {
         try {
             queue.put(msg);
             if (logger.isDebugEnabled()) {
@@ -76,7 +76,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
     }
 
     @Override
-    public void directPutTcpMessage(NetMessage msg) {
+    public void directPutTcpMessage(AbstractNetMessage msg) {
         try {
             NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().get(NetMessageDispatchLogic.class);
             netMessageDispatchLogic.dispatchTcpMessage(msg, this);
@@ -93,7 +93,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
      * @param msg
      */
     @SuppressWarnings("unchecked")
-    public void process(NetMessage msg) {
+    public void process(AbstractNetMessage msg) {
         if (msg == null) {
             if (logger.isWarnEnabled()) {
                 logger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
@@ -107,7 +107,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         }
         this.statisticsMessageCount++;
         try {
-            AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
+            AbstractAbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractAbstractNetProtoBufMessage) msg;
             NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
@@ -183,9 +183,9 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         logger.info("Message processor executor " + this + " stopped");
         if (this.processLeft) {
             // 将未处理的消息放入到leftQueue中,以备后续处理
-            this.leftQueue = new LinkedList<NetMessage>();
+            this.leftQueue = new LinkedList<AbstractNetMessage>();
             while (true) {
-                NetMessage _msg = this.queue.poll();
+                AbstractNetMessage _msg = this.queue.poll();
                 if (_msg != null) {
                     this.leftQueue.add(_msg);
                 } else {
@@ -208,7 +208,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
      *
      * @return the leftQueue
      */
-    public List<NetMessage> getLeftQueue() {
+    public List<AbstractNetMessage> getLeftQueue() {
         return leftQueue;
     }
 

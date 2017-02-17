@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.net.process;
 
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.server.GameServerRuntime;
 import org.slf4j.Logger;
 
@@ -31,7 +31,7 @@ public class GameMessageProcessor implements IMessageProcessor {
      * </pre>
      */
     @Override
-    public void put(NetMessage msg) {
+    public void put(AbstractNetMessage msg) {
         if (!GameServerRuntime.isOpen()) {
             log.info("【Receive but will not process because server not open】"	+ msg);
             return;
@@ -42,7 +42,7 @@ public class GameMessageProcessor implements IMessageProcessor {
     }
 
     @Override
-    public void directPutTcpMessage(NetMessage msg) {
+    public void directPutTcpMessage(AbstractNetMessage msg) {
         if (!GameServerRuntime.isOpen()) {
             log.info("【Direct put Receive but will not process because server not open】"	+ msg);
             return;

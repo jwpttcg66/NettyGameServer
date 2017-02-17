@@ -4,7 +4,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.CodecException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessageHead;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessageBody;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
@@ -16,7 +16,7 @@ import io.netty.buffer.Unpooled;
 
 public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDecoderFactory{
 
-    public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
+    public AbstractAbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {
         //读取head
         NetMessageHead netMessageHead = new NetMessageHead();
         //head为两个字节，跳过
@@ -28,7 +28,7 @@ public class NetProtoBufMessageDecoderFactory implements INetProtoBufMessageDeco
         netMessageHead.setSerial(byteBuf.readInt());
 
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
-        AbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
+        AbstractAbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();

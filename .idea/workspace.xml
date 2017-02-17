@@ -2,18 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94d466b2-8c33-4464-ac9c-77954058b6dd" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractNetProtoBufMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractAbstractNetProtoBufMessage.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/NetMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractNetMessage.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/NetProtoBufUDPMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractNetProtoBufUDPMessage.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/tcp/common/CommonServerErrorResponseMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/tcp/common/CommonServerErrorResponseMessageAbstract.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/tcp/online/OnlineHeartMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/tcp/online/OnlineHeartMessageAbstract.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/udp/online/OnlineHeartUDPMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/logic/udp/online/OnlineHeartUDPMessageAbstract.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/DefaultTcpServerPipeLine.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/DefaultTcpServerPipeline.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/DefaultUdpServerPipeLine.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/DefaultUdpServerPipeline.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/IServerPipeLine.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/pipeline/IServerPipeline.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/handler/impl/CommonHandleImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/handler/impl/CommonHandleImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/handler/auto/common/CommonHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/handler/auto/common/CommonHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/client/EchoNettyUdpClient.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/client/EchoNettyUdpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/server/EchoServerHandler.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/server/EchoServerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/game/socket/client/GameClientHandler.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/game/socket/client/GameClientHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/facade/GameFacade.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/facade/GameFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/GameMessageProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/GameMessageProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/GameNetMessageTcpServerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/GameNetMessageTcpServerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/GameNetMessageUdpServerHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/GameNetMessageUdpServerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/game/udp/client/GameNettyUdpClient.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/game/udp/client/GameNettyUdpClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/facade/IFacade.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/facade/IFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/factory/IMessageFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/factory/IMessageFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/IMessageProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/IMessageProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/INetMessageDecoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/INetMessageDecoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/INetMessageEncoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/INetMessageEncoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/INetMessageProcess.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/INetMessageProcess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/INetMessageSender.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/INetMessageSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/INetProtoBufMessageDecoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/INetProtoBufMessageDecoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/INetProtoBufMessageEncoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/INetProtoBufMessageEncoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/INetProtoBufMessageProcess.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/INetProtoBufMessageProcess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/ISession.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/ISession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/factory/MessageFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/factory/MessageFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/registry/MessageRegistry.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/registry/MessageRegistry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/client/NetMessageClientHandler.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/client/NetMessageClientHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetMessageDecoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetMessageDecoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/logic/net/NetMessageDispatchLogic.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/logic/net/NetMessageDispatchLogic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/message/NetMessageEncodeTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/message/NetMessageEncodeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetMessageEncoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetMessageEncoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/server/NetMessageSocketServerHandler.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/socket/server/NetMessageSocketServerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetMessageTcpEncoder.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetMessageTcpEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetProtoBufMessageDecoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetProtoBufMessageDecoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageEncoderFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageEncoderFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/NetProtoBufMessageProcess.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/process/NetProtoBufMessageProcess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageTCPEncoder.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageTCPEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetProtoBufMessageUDPDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/decoder/NetProtoBufMessageUDPDecoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageUDPEncoder.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/encoder/NetProtoBufMessageUDPEncoder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettySession.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettySession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyTcpNetMessageSender.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyTcpNetMessageSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyTcpSession.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyTcpSession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyUdpNetMessageSender.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyUdpNetMessageSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyUdpSession.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/session/NettyUdpSession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/QueueMessageExecutorProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/process/QueueMessageExecutorProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/client/UdpProtoBufHandler.java" afterPath="$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/client/UdpProtoBufHandler.java" />
     </list>
-    <list id="5be67792-ba5a-49a2-a68e-840bf0fd8e43" name="config" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list id="5be67792-ba5a-49a2-a68e-840bf0fd8e43" name="config" comment="" />
     <ignored path="Server-Code.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,16 +77,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NetMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/NetMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NetMessageHead.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/NetMessageHead.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,16 +92,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractNetProtoBufMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractNetProtoBufMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -499,71 +526,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server-Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NettyGameServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="message" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server-Code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NettyGameServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server-Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NettyGameServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1016,6 +1009,7 @@
       <workItem from="1487225033187" duration="984000" />
       <workItem from="1487319226686" duration="1719000" />
       <workItem from="1487324031574" duration="2035000" />
+      <workItem from="1487326420334" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="修改nettysession查找服务">
       <created>1486970477394</created>
@@ -1123,7 +1117,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21331000" />
+    <option name="totallyTimeSpent" value="21333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1145,21 +1139,21 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39805827" sideWeight="0.5522479" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.55164033" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3257821" sideWeight="0.4963548" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.44835967" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3257821" sideWeight="0.4963548" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952926" sideWeight="0.49713877" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3438639" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.45708156" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3438639" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952926" sideWeight="0.49713877" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39805827" sideWeight="0.5522479" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.44835967" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.45708156" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12446352" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952926" sideWeight="0.49713877" order="8" side_tool="false" content_ui="tabs" />
@@ -1223,6 +1217,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/INetMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/service/net/AbstractNettyUdpServerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/wolf/shoot/udp/client/UdpProtoBufHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1270,9 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
-          <folding>
-            <element signature="e#9345#9346#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1345,7 +1352,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="95" column="49" selection-start-line="95" selection-start-column="35" selection-end-line="95" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1409,9 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1419,7 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="185" column="17" selection-start-line="185" selection-start-column="4" selection-end-line="185" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1435,7 +1437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1443,7 +1444,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="138" column="23" selection-start-line="138" selection-start-column="23" selection-end-line="138" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1451,7 +1451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1467,7 +1466,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,7 +1473,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="77" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1483,7 +1480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1529,7 +1525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10526316">
           <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1561,7 +1556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40201005">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1627,22 +1621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/NetMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wolf/shoot/net/message/AbstractNetProtoBufMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
           <folding />
         </state>
       </provider>

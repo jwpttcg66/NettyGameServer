@@ -1,6 +1,6 @@
 package com.wolf.shoot.net.message.encoder;
 
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by jwp on 2017/1/24.
  */
-public class NetMessageTcpEncoder extends MessageToMessageEncoder<NetMessage> {
+public class NetMessageTcpEncoder extends MessageToMessageEncoder<AbstractNetMessage> {
 
     private final Charset charset;
 
@@ -32,7 +32,7 @@ public class NetMessageTcpEncoder extends MessageToMessageEncoder<NetMessage> {
     }
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, NetMessage msg, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, AbstractNetMessage msg, List<Object> out) throws Exception {
         ByteBuf netMessageBuf = iNetMessageEncoderFactory.createByteBuf(msg);
         out.add(netMessageBuf);
     }

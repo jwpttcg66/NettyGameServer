@@ -2,18 +2,18 @@ package com.wolf.shoot.net.message.logic.udp.online;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufUDPMessage;
 import com.wolf.shoot.net.message.auto.udp.online.OnlineUDPProBuf;
 
 /**
  * Created by jwp on 2017/2/16.
  */
 @MessageCommandAnnotation(command = MessageCommands.ONLINE_HEART_UDP_MESSAGE)
-public class OnlineHeartUDPMessage extends NetProtoBufUDPMessage {
+public class OnlineHeartUDPMessageAbstract extends AbstractNetProtoBufUDPMessage {
 
     private int id;
 
-    public  OnlineHeartUDPMessage(){
+    public OnlineHeartUDPMessageAbstract(){
         setCmd(MessageCommands.ONLINE_HEART_UDP_MESSAGE.command_id);
     }
 

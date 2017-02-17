@@ -1,7 +1,6 @@
 package com.wolf.shoot.net.message.decoder;
 
-import com.wolf.shoot.net.message.NetProtoBufUDPMessage;
-import io.netty.buffer.ByteBuf;
+import com.wolf.shoot.net.message.AbstractNetProtoBufUDPMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -26,7 +25,7 @@ public class NetProtoBufMessageUDPDecoder extends MessageToMessageDecoder<Datagr
 
     @Override
     protected void decode(ChannelHandlerContext ctx, DatagramPacket msg, List<Object> out) throws Exception {
-        NetProtoBufUDPMessage netProtoBufUDPMessage = (NetProtoBufUDPMessage) iNetMessageDecoderFactory.praseMessage(msg.content());
+        AbstractNetProtoBufUDPMessage netProtoBufUDPMessage = (AbstractNetProtoBufUDPMessage) iNetMessageDecoderFactory.praseMessage(msg.content());
         netProtoBufUDPMessage.setSend(msg.sender());
         out.add(netProtoBufUDPMessage);
     }

@@ -6,7 +6,7 @@ import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
@@ -16,7 +16,7 @@ import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
  */
 public class NetMessageDispatchLogic {
 
-    public void dispatchTcpMessage(NetMessage msg, QueueMessageExecutorProcessor queueMessageExecutorProcessor){
+    public void dispatchTcpMessage(AbstractNetMessage msg, QueueMessageExecutorProcessor queueMessageExecutorProcessor){
         if (msg == null) {
             if (Loggers.serverStatusStatistics.isWarnEnabled()) {
                 Loggers.serverStatusStatistics.warn("[#CORE.QueueMessageExecutorProcessor.process] ["

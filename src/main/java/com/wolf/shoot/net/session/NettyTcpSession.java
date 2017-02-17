@@ -3,7 +3,7 @@ package com.wolf.shoot.net.session;
 import com.wolf.shoot.common.IUpdatable;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.message.process.NetProtoBufMessageProcess;
 import io.netty.channel.Channel;
 
@@ -55,8 +55,8 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
         return false;
     }
 
-    public void addNetMessage(NetMessage netMessage){
-        this.netProtoBufMessageProcess.addNetMessage(netMessage);
+    public void addNetMessage(AbstractNetMessage abstractNetMessage){
+        this.netProtoBufMessageProcess.addNetMessage(abstractNetMessage);
     }
 
     public long getSessionId() {

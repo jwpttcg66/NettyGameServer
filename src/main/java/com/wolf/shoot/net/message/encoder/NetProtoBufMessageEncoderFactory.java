@@ -2,7 +2,7 @@ package com.wolf.shoot.net.message.encoder;
 
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -13,7 +13,7 @@ public class NetProtoBufMessageEncoderFactory implements INetProtoBufMessageEnco
 
 
     @Override
-    public ByteBuf createByteBuf(AbstractNetProtoBufMessage netMessage) throws Exception {
+    public ByteBuf createByteBuf(AbstractAbstractNetProtoBufMessage netMessage) throws Exception {
         ByteBuf byteBuf = Unpooled.buffer(256);
         //编写head
         NetMessageHead netMessageHead = netMessage.getNetMessageHead();

@@ -5,7 +5,7 @@ import com.snowcattle.game.excutor.event.EventParam;
 import com.snowcattle.game.excutor.service.UpdateService;
 import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -41,7 +41,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        AbstractNetProtoBufMessage netMessage = (AbstractNetProtoBufMessage) msg;
+        AbstractAbstractNetProtoBufMessage netMessage = (AbstractAbstractNetProtoBufMessage) msg;
         //获取管道
         IServerPipeline iServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeline.class);
         iServerPipeLine.dispatchAction(ctx.channel(), netMessage);

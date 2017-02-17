@@ -1,6 +1,6 @@
 package com.wolf.shoot.net.session;
 
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 
 /**
  * Created by jwp on 2017/2/9.
@@ -18,7 +18,7 @@ public interface ISession {
     /**
      * @param msg
      */
-    public void write(NetMessage msg) throws Exception;
+    public void write(AbstractNetMessage msg) throws Exception;
 
     /**
      *

@@ -1,8 +1,6 @@
 package com.wolf.shoot.net.session;
 
-import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
-import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 
 /**
@@ -30,7 +28,7 @@ public abstract class NettySession implements ISession  {
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void write(NetMessage msg) throws Exception {
+    public void write(AbstractNetMessage msg) throws Exception {
         if (msg != null) {
             channel.writeAndFlush(msg);
 //			if(msg instanceof ISliceMessage){

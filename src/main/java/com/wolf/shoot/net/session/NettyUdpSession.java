@@ -1,9 +1,7 @@
 package com.wolf.shoot.net.session;
 
-import com.wolf.shoot.net.message.NetMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
 import io.netty.channel.Channel;
-
-import java.net.InetSocketAddress;
 
 /**
  * Created by jwp on 2017/2/16.
@@ -17,7 +15,7 @@ public class NettyUdpSession  extends NettySession{
         this.nettyUdpNetMessageSender = new NettyUdpNetMessageSender(this);
     }
 
-    public void write(NetMessage msg) throws Exception {
+    public void write(AbstractNetMessage msg) throws Exception {
         if (msg != null) {
             channel.writeAndFlush(msg).sync();
         }

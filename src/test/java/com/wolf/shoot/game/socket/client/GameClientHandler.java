@@ -1,6 +1,6 @@
 package com.wolf.shoot.game.socket.client;
 
-import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
+import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessageAbstract;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -22,7 +22,7 @@ public class GameClientHandler  extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        OnlineHeartMessage onlineHeartMessage = new OnlineHeartMessage();
+        OnlineHeartMessageAbstract onlineHeartMessage = new OnlineHeartMessageAbstract();
         onlineHeartMessage.setId(Integer.MAX_VALUE);
         ctx.writeAndFlush(onlineHeartMessage);
     }

@@ -4,8 +4,8 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -23,15 +23,15 @@ public class DefaultTcpServerPipeline implements IServerPipeline {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override
-    public void dispatchAction(Channel channel, NetMessage netMessage) {
-        short commandId = netMessage.getNetMessageHead().getCmd();
+    public void dispatchAction(Channel channel, AbstractNetMessage abstractNetMessage) {
+        short commandId = abstractNetMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
         MessageCommands messageCommands = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
             logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
-        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) netMessage;
+        AbstractAbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractAbstractNetProtoBufMessage) abstractNetMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {
@@ -59,7 +59,7 @@ public class DefaultTcpServerPipeline implements IServerPipeline {
         }
 
         if (messageCommands.isIs_need_filter()) {
-            int serial = netMessage.getSerial();
+            int serial = abstractNetMessage.getSerial();
             long playerId = nettySession.getPlayerId();
 //            PlatformType platformType = nettySession.getPlatformType();
 //            if(platformType == null){
@@ -90,10 +90,10 @@ public class DefaultTcpServerPipeline implements IServerPipeline {
         }
 
 //        //放入处理队列
-        netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
+        abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
         GameMessageProcessor gameMessageProcessor = (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
         if(gameServerConfig.isMessageQueueDirectDispatch()){
-            gameMessageProcessor.directPutTcpMessage(netMessage);
+            gameMessageProcessor.directPutTcpMessage(abstractNetMessage);
         }else{
            gameMessageProcessor.put(abstractNetProtoBufMessage);
         }

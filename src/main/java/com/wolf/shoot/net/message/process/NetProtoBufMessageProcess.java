@@ -6,8 +6,8 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.GameHandlerException;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.facade.GameFacade;
 import com.wolf.shoot.net.message.facade.IFacade;
 import com.wolf.shoot.net.message.factory.IMessageFactory;
@@ -32,17 +32,17 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     /**
      * 网络消息处理队列
      */
-    private Queue<AbstractNetProtoBufMessage> netMessagesQueue;
+    private Queue<AbstractAbstractNetProtoBufMessage> netMessagesQueue;
     private NettySession nettySession;
     public NetProtoBufMessageProcess(NettySession nettySession) {
-        this.netMessagesQueue = new ConcurrentLinkedDeque<AbstractNetProtoBufMessage>();
+        this.netMessagesQueue = new ConcurrentLinkedDeque<AbstractAbstractNetProtoBufMessage>();
         this.nettySession = nettySession;
     }
 
     @Override
     public void processNetMessage() {
         int i = 0;
-        AbstractNetProtoBufMessage message = null;
+        AbstractAbstractNetProtoBufMessage message = null;
         while ((message = netMessagesQueue.poll())!= null && i < GlobalConstants.Constants.session_prcoss_message_max_size) {
             i++;
             long begin = 0;
@@ -52,8 +52,8 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
             statisticsMessageCount++;
             try {
                 GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(IFacade.class);
-                AbstractNetProtoBufMessage respone = null;
-                respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
+                AbstractAbstractNetProtoBufMessage respone = null;
+                respone = (AbstractAbstractNetProtoBufMessage) gameFacade.dispatch(message);
                 if(respone != null) {
                     respone.setSerial(message.getNetMessageHead().getSerial());
                     nettySession.write(respone);
@@ -68,7 +68,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
                 if(e instanceof GameHandlerException){
                     GameHandlerException gameHandlerException = (GameHandlerException) e;
                     IMessageFactory iMessageFactory = LocalMananger.getInstance().get(IMessageFactory.class);
-                    NetMessage errorMessage = iMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), message.getNetMessageHead().getCmd(), gameHandlerException.COMMON_ERROR_STATE);
+                    AbstractNetMessage errorMessage = iMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), message.getNetMessageHead().getCmd(), gameHandlerException.COMMON_ERROR_STATE);
                     try {
                         nettySession.write(errorMessage);
                     }catch (Exception writeException){
@@ -96,8 +96,8 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     }
 
     @Override
-    public void addNetMessage(NetMessage netMessage) {
-        this.netMessagesQueue.add((AbstractNetProtoBufMessage) netMessage);
+    public void addNetMessage(AbstractNetMessage abstractNetMessage) {
+        this.netMessagesQueue.add((AbstractAbstractNetProtoBufMessage) abstractNetMessage);
     }
 
     @Override

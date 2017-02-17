@@ -3,14 +3,14 @@ package com.wolf.shoot.net.message.logic.tcp.common;
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.common.exception.CodecException;
 import com.wolf.shoot.net.message.MessageCommands;
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.auto.common.CommonMessageProBuf;
 
 /**
  * Created by jwp on 2017/2/10.
  */
 @MessageCommandAnnotation(command = MessageCommands.COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE)
-public class CommonServerErrorResponseMessage  extends AbstractNetProtoBufMessage {
+public class CommonServerErrorResponseMessageAbstract extends AbstractAbstractNetProtoBufMessage {
 
     /**
      * 状态码
