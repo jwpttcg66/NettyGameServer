@@ -60,12 +60,9 @@ public abstract class ServerConfig implements Config {
 	/** 脚本的头文件 */
 	protected String scriptHeaderName;
 
-
 	/** 物品编辑器自动生成的配置目录 */
 	protected String exportDataDir;
-	
-	/** Local的URL地址 */
-	protected String localDomain;
+
 	/** 是否定时检查玩家的连接 */
 	protected boolean checkPing;
 	/** 如果checkPing为true,表示ping的周期,单位秒 */
@@ -76,51 +73,14 @@ public abstract class ServerConfig implements Config {
 	protected int dbInitType = 0;
 	/** 数据库配置文件路径 */
 	protected String dbConfigName;
-
-	/** GameServer个数 */
-	protected int gameServerCount;
-
-	/** 是否使用H2Cache */
-	protected boolean turnOnH2Cache = false;
-
-	/** 是否在启动时加载所有角色 */
-	protected boolean loadAllHumansToCache = true;
-
-	/** 是否开启local接口 */
-	protected boolean turnOnLocalInterface = true;
-	/** 请求接口所在域名 */
-	protected String requestDomain;
-	/** 汇报接口所在域名 */
-	protected String reportDomain;
-
-	/** Log Server配置 */
-	protected LogConfig logConfig = new LogConfig();
-
 	/** 写死的，没在配置里 */
-	protected String gameId = "zlj";
+	protected String gameId = "shoot";
 
-	/** MIS (后台)系统 IP 地址 */
-	protected String misIps = null;
 
-	/**充值 人人豆兑换元宝的比率是1：10 ***/
-	protected int chargeMM2DiamondRate =10;
-
-	protected String platformName="renren.com";
-	
-	/** dirtyWorlds简版地址 */
-	protected String dirtyWordsPartUrl = "http://down.51rs.cn/games-common/dirtywords/part.csv";
-	/** dirtyWorlds完全版地址 */
-	protected String dirtyWordsFullUrl = "http://down.51rs.cn/games-common/dirtywords/full.csv";
-	
-	
-
-	public int getChargeMM2DiamondRate() {
-		return chargeMM2DiamondRate;
-	}
-
-	public void setChargeMM2DiamondRate(int chargeMM2DiamondRate) {
-		this.chargeMM2DiamondRate = chargeMM2DiamondRate;
-	}
+//	/** dirtyWorlds简版地址 */
+//	protected String dirtyWordsPartUrl = "http://down.51rs.cn/games-common/dirtywords/part.csv";
+//	/** dirtyWorlds完全版地址 */
+//	protected String dirtyWordsFullUrl = "http://down.51rs.cn/games-common/dirtywords/full.csv";
 
 	@Override
 	public boolean getIsDebug() {
@@ -296,23 +256,6 @@ public abstract class ServerConfig implements Config {
 		this.ioProcessor = ioProcessor;
 	}
 
-
-	public boolean isTurnOnH2Cache() {
-		return turnOnH2Cache;
-	}
-
-	public boolean isLoadAllHumansToCache() {
-		return loadAllHumansToCache;
-	}
-
-	public void setTurnOnH2Cache(boolean turnOnH2Cache) {
-		this.turnOnH2Cache = turnOnH2Cache;
-	}
-
-	public LogConfig getLogConfig() {
-		return logConfig;
-	}
-
 	public void setDebug(int debug) {
 		this.debug = debug;
 	}
@@ -375,21 +318,6 @@ public abstract class ServerConfig implements Config {
 
 	public String getScriptHeaderName() {
 		return scriptHeaderName;
-	}
-
-	/**
-	 * @return the localDomain
-	 */
-	public String getLocalDomain() {
-		return localDomain;
-	}
-
-	/**
-	 * @param localDomain
-	 *            the localDomain to set
-	 */
-	public void setLocalDomain(String localDomain) {
-		this.localDomain = localDomain;
 	}
 
 	public int getPingTimeOut() {
@@ -498,56 +426,12 @@ public abstract class ServerConfig implements Config {
 		return resourceVersion;
 	}
 
-	public void setGameServerCount(int gameServerCount) {
-		this.gameServerCount = gameServerCount;
+	public boolean isEncryptResource() {
+		return encryptResource;
 	}
 
-	public int getGameServerCount() {
-		return gameServerCount;
-	}
-
-	public boolean isTurnOnLocalInterface() {
-		return turnOnLocalInterface;
-	}
-
-	public void setTurnOnLocalInterface(boolean turnOnLocalInterface) {
-		this.turnOnLocalInterface = turnOnLocalInterface;
-	}
-
-	public String getRequestDomain() {
-		return requestDomain;
-	}
-
-	public void setRequestDomain(String requestDomain) {
-		this.requestDomain = requestDomain;
-	}
-
-	public String getReportDomain() {
-		return reportDomain;
-	}
-
-	public void setReportDomain(String reportDomain) {
-		this.reportDomain = reportDomain;
-	}
-
-
-
-	/**
-	 * 获取 MIS (后台)系统 IP 地址
-	 *
-	 * @return
-	 */
-	public String getMisIps() {
-		return this.misIps;
-	}
-
-	/**
-	 * 设置 MIS (后台)系统 IP 地址
-	 *
-	 * @param allowedIps
-	 */
-	public void setMisIps(String allowedIps) {
-		this.misIps = allowedIps;
+	public void setEncryptResource(boolean encryptResource) {
+		this.encryptResource = encryptResource;
 	}
 
 	public String getGameId() {
@@ -556,37 +440,5 @@ public abstract class ServerConfig implements Config {
 
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
-	}
-
-	public String getPlatformName() {
-		return platformName;
-	}
-
-	public void setPlatformName(String platformName) {
-		this.platformName = platformName;
-	}
-
-	public String getDirtyWordsPartUrl() {
-		return dirtyWordsPartUrl;
-	}
-
-	public void setDirtyWordsPartUrl(String dirtyWordsPartUrl) {
-		this.dirtyWordsPartUrl = dirtyWordsPartUrl;
-	}
-
-	public String getDirtyWordsFullUrl() {
-		return dirtyWordsFullUrl;
-	}
-
-	public void setDirtyWordsFullUrl(String dirtyWordsFullUrl) {
-		this.dirtyWordsFullUrl = dirtyWordsFullUrl;
-	}
-
-	public boolean isEncryptResource() {
-		return encryptResource;
-	}
-
-	public void setEncryptResource(boolean encryptResource) {
-		this.encryptResource = encryptResource;
 	}
 }

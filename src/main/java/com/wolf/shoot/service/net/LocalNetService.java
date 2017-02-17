@@ -13,6 +13,7 @@ import com.wolf.shoot.service.IService;
 public class LocalNetService implements IService{
 
     private GameNettyTcpServerService gameNettyTcpServerService;
+    private GameNettyUdpServerService gameNettyUdpServerService;
 
     @Override
     public String getId() {
@@ -26,12 +27,19 @@ public class LocalNetService implements IService{
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
         gameNettyTcpServerService.startService();
+
+//        gameNettyTcpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),);
+
     }
 
     @Override
     public void shutdown() throws Exception {
         if(gameNettyTcpServerService != null){
             gameNettyTcpServerService.stopService();
+        }
+
+        if(gameNettyUdpServerService != null){
+            gameNettyUdpServerService.stopService();
         }
     }
 }
