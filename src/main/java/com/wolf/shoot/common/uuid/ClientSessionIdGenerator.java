@@ -10,7 +10,7 @@ public class ClientSessionIdGenerator {
 
     protected AtomicLong id_gen = new AtomicLong(0);
 
-    public long getSessionId(){
+    public long generateSessionId(){
         return id_gen.incrementAndGet();
     }
 }

@@ -8,6 +8,7 @@ import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettySession;
+import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.process.GameMessageProcessor;
@@ -33,7 +34,7 @@ public class DefaultTcpServerPipeLine implements ITcpServerPipeLine {
 
         NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) netMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-        NettySession nettySession = netTcpSessionLoopUpService.lookup(channel.id().asLongText());
+        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {
             logger.error("netsession null channelId is:" + channel.id().asLongText());
         }

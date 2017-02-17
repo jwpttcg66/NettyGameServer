@@ -13,13 +13,10 @@ public abstract class NettySession implements ISession  {
 
     protected volatile Channel channel;
 
-    private long sessionId;
 
     private long playerId;
 
     public NettySession(Channel s) {
-        ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().get(ClientSessionIdGenerator.class);
-        this.sessionId = clientSessionIdGenerator.getSessionId();
         channel = s;
     }
 
@@ -60,10 +57,6 @@ public abstract class NettySession implements ISession  {
 
     public boolean closeOnException() {
         return true;
-    }
-
-    public long getSessionId() {
-        return sessionId;
     }
 
     public long getPlayerId() {

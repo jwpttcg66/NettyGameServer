@@ -1,6 +1,8 @@
 package com.wolf.shoot.net.session;
 
 import com.wolf.shoot.common.IUpdatable;
+import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.process.NetProtoBufMessageProcess;
 import io.netty.channel.Channel;
@@ -10,6 +12,8 @@ import io.netty.channel.Channel;
  * netty tcp的session
  */
 public class NettyTcpSession extends NettySession implements IUpdatable {
+
+    private long sessionId;
 
     /**
      * 消息发送
@@ -23,6 +27,8 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     public NettyTcpSession(Channel channel) {
         super(channel);
+        ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().get(ClientSessionIdGenerator.class);
+        sessionId = clientSessionIdGenerator.generateSessionId();
         nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);
         netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);
     }
@@ -51,5 +57,9 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     public void addNetMessage(NetMessage netMessage){
         this.netProtoBufMessageProcess.addNetMessage(netMessage);
+    }
+
+    public long getSessionId() {
+        return sessionId;
     }
 }

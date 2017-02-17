@@ -19,6 +19,7 @@ import com.wolf.shoot.net.message.factory.IMessageFactory;
 import com.wolf.shoot.net.message.factory.MessageFactory;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
+import com.wolf.shoot.net.session.builder.NettyUdpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.ITcpServerPipeLine;
@@ -28,6 +29,7 @@ import com.wolf.shoot.service.net.process.IMessageProcessor;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
+import org.omg.PortableInterceptor.LOCATION_FORWARD;
 
 import java.util.concurrent.TimeUnit;
 
@@ -126,6 +128,9 @@ public class Globals {
     public static void initBuilder() throws Exception {
         //注册tcp session的构造器
         LocalMananger.getInstance().create(NettyTcpSessionBuilder.class, NettyTcpSessionBuilder.class);
+
+        //注册udp session的构造器
+        LocalMananger.getInstance().create(NettyUdpSessionBuilder.class, NettyUdpSessionBuilder.class);
     }
 
     public static void initLookUpService() throws Exception{

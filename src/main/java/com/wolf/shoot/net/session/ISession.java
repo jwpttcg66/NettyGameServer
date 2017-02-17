@@ -32,12 +32,6 @@ public interface ISession {
      */
     public boolean closeOnException();
 
-    /**
-     * 获取sessionId
-     * @return
-     */
-    public long getSessionId();
-
     public void write(byte[] msg);
 
 }
