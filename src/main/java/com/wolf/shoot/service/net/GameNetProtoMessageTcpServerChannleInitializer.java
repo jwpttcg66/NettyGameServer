@@ -26,7 +26,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  *  参数lengthAdjustment表示还需要拓展长度，具体表示为serial的长度
  *  参数initialBytesToStrip表示 传递给下个coder的时候跳过多少字节 如果从0开始为 head+messagelength+serial+body全部给下个coder
  */
-public class GameNetProtoMessageServerChannleInitializer extends ChannelInitializer<NioSocketChannel> {
+public class GameNetProtoMessageTcpServerChannleInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
 
@@ -42,6 +42,6 @@ public class GameNetProtoMessageServerChannleInitializer extends ChannelInitiali
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-        channelPipLine.addLast("handler", new GameNetMessageSocketServerHandler());
+        channelPipLine.addLast("handler", new GameNetMessageTcpServerHandler());
     }
 }

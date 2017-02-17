@@ -19,7 +19,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 /**
  * Created by jiangwenping on 17/2/7.
  */
-public class GameNetMessageSocketServerHandler extends ChannelInboundHandlerAdapter {
+public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {

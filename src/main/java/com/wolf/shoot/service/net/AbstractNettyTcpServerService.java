@@ -28,7 +28,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
     }
 
     @Override
-    public boolean startService() {
+    public boolean startService() throws Exception{
         boolean serviceFlag  = super.startService();
         bossGroup = new NioEventLoopGroup(1, bossThreadNameFactory);
         workerGroup = new NioEventLoopGroup(0, workerThreadNameFactory);
@@ -43,7 +43,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
                     .childOption(ChannelOption.SO_SNDBUF, 65536)
                     .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new GameNetProtoMessageServerChannleInitializer());
+                    .childHandler(new GameNetProtoMessageTcpServerChannleInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
             //TODO这里会阻塞main线程，暂时先注释掉
@@ -56,7 +56,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
     }
 
     @Override
-    public boolean stopService(){
+    public boolean stopService() throws Exception{
         boolean flag = super.stopService();
         if(bossGroup != null){
             bossGroup.shutdownGracefully();

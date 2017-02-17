@@ -10,8 +10,8 @@ public interface IServerService {
 
     public boolean initialize();
 
-    public boolean startService();
-    public boolean stopService();
+    public boolean startService() throws Exception;
+    public boolean stopService() throws Exception;
 
     public void release();
 

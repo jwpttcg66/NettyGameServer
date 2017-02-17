@@ -36,12 +36,12 @@ public abstract class AbstractServerService implements IServerService {
     }
 
     @Override
-    public boolean startService() {
+    public boolean startService() throws Exception{
         return true;
     }
 
     @Override
-    public boolean stopService() {
+    public boolean stopService() throws Exception{
         return true;
     }
 
