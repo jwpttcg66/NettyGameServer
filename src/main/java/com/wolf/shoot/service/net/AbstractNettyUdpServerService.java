@@ -23,9 +23,9 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
 
     private ThreadNameFactory eventThreadNameFactory;
 
-    public AbstractNettyUdpServerService(String serviceId, int serverPort, InetSocketAddress serverAddress, ThreadNameFactory threadNameFactory) {
+    public AbstractNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName) {
         super(serviceId, serverPort);
-        this.eventThreadNameFactory = eventThreadNameFactory;
+        this.eventThreadNameFactory = new ThreadNameFactory(threadNameFactoryName);
     }
 
     @Override
@@ -40,13 +40,14 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
                 .option(ChannelOption.SO_REUSEADDR, true) //重用地址
                 .option(ChannelOption.SO_RCVBUF, 65536)
                 .option(ChannelOption.SO_SNDBUF, 65536)
-                .handler(new LoggingHandler(LogLevel.INFO))
                 .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                 .handler(new LoggingHandler(LogLevel.DEBUG))
                 .handler(new GameNetProtoMessageUdpServerChannleInitializer());
 
         // 服务端监听在9999端口
-        b.bind(serverPort).sync().channel().closeFuture().await();
+        ChannelFuture channelFuture = b.bind(serverPort).sync();
+
+//        channelFuture.channel().closeFuture().await();
         return serviceFlag;
     }
 

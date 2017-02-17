@@ -25,11 +25,12 @@ public class LocalNetService implements IService{
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
-                , GlobalConstants.Thread.NET_BOSS, GlobalConstants.Thread.NET_WORKER);
+                , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER);
         gameNettyTcpServerService.startService();
 
-//        gameNettyTcpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),);
-
+        gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),gameServerConfig.getUdpPort()
+                , GlobalConstants.Thread.NET_UDP_WORKER);
+        gameNettyUdpServerService.startService();
     }
 
     @Override

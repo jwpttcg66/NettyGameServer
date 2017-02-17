@@ -90,9 +90,10 @@ public class GlobalConstants {
      * Thread的名字前缀
      */
     public static class Thread{
-        public static final String NET_BOSS="net_boss";
-        public static final String NET_WORKER="net_worker";
+        public static final String NET_TCP_BOSS ="net_tcp_boss";
+        public static final String NET_TCP_WORKER ="net_tcp_worker";
         public static final String GAME_MESSAGE_QUEUE_EXCUTE="game_message_queue";
+        public static final String NET_UDP_WORKER ="net_udp_worker";
     }
 
     /**

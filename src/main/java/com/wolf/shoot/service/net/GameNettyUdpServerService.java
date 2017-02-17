@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
  * udp启动服务
  */
 public class GameNettyUdpServerService extends AbstractNettyUdpServerService{
-    public GameNettyUdpServerService(String serviceId, int serverPort, InetSocketAddress serverAddress, ThreadNameFactory threadNameFactory) {
-        super(serviceId, serverPort, serverAddress, threadNameFactory);
+    public GameNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName) {
+        super(serviceId, serverPort, threadNameFactoryName);
     }
 }
