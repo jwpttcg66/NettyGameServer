@@ -23,23 +23,13 @@ public class GameServerConfig extends ServerConfig {
     /** Telnet绑定的端口 */
     private String telnetPort;
 
-    /** 登陆墙是否打开，默认关闭 */
-    private volatile boolean loginWallEnabled = false;
-    /** 是否以异或方式加载模版资源 */
-    private boolean templateXorLoad = true;
-
     /**
      * 开启存储策略
-     */
+    */
     private boolean upgradeDbStrategy = true;
 
     /** 存储时间间隔,单位为毫秒 */
     private int dbUpdateInterval = 200 * 1000;
-
-    /**
-     * 帐号激活是否开启
-     */
-    private boolean accountActivityOpen = false;
 
     private boolean messageQueueDirectDispatch=true;
     /** session过期失效 ，单位为秒 */
@@ -96,24 +86,6 @@ public class GameServerConfig extends ServerConfig {
     }
 
     /**
-     * 登陆墙是否打开
-     *
-     * @return
-     */
-    public boolean isLoginWallEnabled() {
-        return loginWallEnabled;
-    }
-
-    /**
-     * 设置登陆墙是否打开
-     *
-     * @param loginWallEnabled
-     */
-    public void setLoginWallEnabled(boolean loginWallEnabled) {
-        this.loginWallEnabled = loginWallEnabled;
-    }
-
-    /**
      * @return the maxOnlineUsers
      */
     public int getMaxOnlineUsers() {
@@ -160,24 +132,6 @@ public class GameServerConfig extends ServerConfig {
         this.telnetPort = telnetPort;
     }
 
-    /**
-     * 使用异或方式加载模版资源 ?
-     *
-     * @return
-     */
-    public boolean isTemplateXorLoad() {
-        return this.templateXorLoad;
-    }
-
-    /**
-     * 使用异或方式加载模版资源 ?
-     *
-     * @param value
-     */
-    public void setTemplateXorLoad(boolean value) {
-        this.templateXorLoad = value;
-    }
-
     public boolean isUpgradeDbStrategy() {
         return upgradeDbStrategy;
     }
@@ -192,14 +146,6 @@ public class GameServerConfig extends ServerConfig {
 
     public void setDbUpdateInterval(int dbUpdateInterval) {
         this.dbUpdateInterval = dbUpdateInterval;
-    }
-
-    public boolean isAccountActivityOpen() {
-        return accountActivityOpen;
-    }
-
-    public void setAccountActivityOpen(boolean accountActivityOpen) {
-        this.accountActivityOpen = accountActivityOpen;
     }
 
     public int getSessionExpireTime() {
