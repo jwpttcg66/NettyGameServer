@@ -7,7 +7,6 @@ import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.NetMessage;
 import com.wolf.shoot.net.message.NetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
-import com.wolf.shoot.net.session.NettySession;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
@@ -94,7 +93,7 @@ public class DefaultTcpServerPipeLine implements ITcpServerPipeLine {
         netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
         GameMessageProcessor gameMessageProcessor = (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
         if(gameServerConfig.isMessageQueueDirectDispatch()){
-            gameMessageProcessor.directPut(netMessage);
+            gameMessageProcessor.directPutTcpMessage(netMessage);
         }else{
            gameMessageProcessor.put(netProtoBufMessage);
         }

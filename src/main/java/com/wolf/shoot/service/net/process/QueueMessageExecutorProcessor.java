@@ -76,10 +76,10 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
     }
 
     @Override
-    public void directPut(NetMessage msg) {
+    public void directPutTcpMessage(NetMessage msg) {
         try {
             NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().get(NetMessageDispatchLogic.class);
-            netMessageDispatchLogic.dispatchMessage(msg, this);
+            netMessageDispatchLogic.dispatchTcpMessage(msg, this);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);

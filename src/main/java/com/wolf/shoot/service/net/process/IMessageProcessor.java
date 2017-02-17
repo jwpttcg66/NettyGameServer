@@ -28,7 +28,7 @@ public interface IMessageProcessor {
      * 直接投递到对象processor上面
      * @param msg
      */
-    public void directPut(NetMessage msg);
+    public void directPutTcpMessage(NetMessage msg);
 
     /**
      * 判断队列是否已经达到上限了

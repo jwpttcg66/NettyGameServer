@@ -42,13 +42,13 @@ public class GameMessageProcessor implements IMessageProcessor {
     }
 
     @Override
-    public void directPut(NetMessage msg) {
+    public void directPutTcpMessage(NetMessage msg) {
         if (!GameServerRuntime.isOpen()) {
             log.info("【Direct put Receive but will not process because server not open】"	+ msg);
             return;
         }
 
-        mainMessageProcessor.directPut(msg);
+        mainMessageProcessor.directPutTcpMessage(msg);
     }
 
     @Override

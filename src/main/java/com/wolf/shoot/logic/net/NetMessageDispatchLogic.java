@@ -16,7 +16,7 @@ import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
  */
 public class NetMessageDispatchLogic {
 
-    public void dispatchMessage(NetMessage msg, QueueMessageExecutorProcessor queueMessageExecutorProcessor){
+    public void dispatchTcpMessage(NetMessage msg, QueueMessageExecutorProcessor queueMessageExecutorProcessor){
         if (msg == null) {
             if (Loggers.serverStatusStatistics.isWarnEnabled()) {
                 Loggers.serverStatusStatistics.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
