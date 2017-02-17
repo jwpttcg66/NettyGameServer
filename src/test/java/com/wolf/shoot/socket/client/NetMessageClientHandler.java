@@ -3,6 +3,7 @@ package com.wolf.shoot.socket.client;
 import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
+import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
@@ -14,7 +15,7 @@ public class NetMessageClientHandler extends ChannelInboundHandlerAdapter {
     private final AbstractNetMessage abstractNetMessage;
 
     public NetMessageClientHandler() {
-        abstractNetMessage = new AbstractNetMessage();
+        abstractNetMessage = new OnlineHeartMessage();
         NetMessageHead netMessageHead = new NetMessageHead();
         netMessageHead.setSerial(5);
         netMessageHead.setCmd((short) 2);

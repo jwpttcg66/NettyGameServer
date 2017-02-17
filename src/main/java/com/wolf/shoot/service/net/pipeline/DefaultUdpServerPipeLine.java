@@ -5,7 +5,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.AbstractNetMessage;
-import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -30,7 +30,7 @@ public class DefaultUdpServerPipeline implements IServerPipeline {
             logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
-        AbstractAbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractAbstractNetProtoBufMessage) abstractNetMessage;
+        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {

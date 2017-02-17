@@ -3,8 +3,9 @@ package com.wolf.shoot.socket.message;
 import com.wolf.shoot.net.message.AbstractNetMessage;
 import com.wolf.shoot.net.message.NetMessageBody;
 import com.wolf.shoot.net.message.NetMessageHead;
-import com.wolf.shoot.net.message.decoder.NetMessageDecoderFactory;
+import com.wolf.shoot.net.message.decoder.NetTcpMessageDecoderFactory;
 import com.wolf.shoot.net.message.encoder.NetMessageEncoderFactory;
+import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
 
@@ -14,7 +15,7 @@ import io.netty.util.CharsetUtil;
 public class NetMessageEncodeTest {
 
     public static void main(String[] args) throws Exception{
-        AbstractNetMessage abstractNetMessage = new AbstractNetMessage();
+        AbstractNetMessage abstractNetMessage = new OnlineHeartMessage();
         NetMessageHead netMessageHead = new NetMessageHead();
         netMessageHead.setSerial(5);
         netMessageHead.setCmd((short) 2);
@@ -32,7 +33,7 @@ public class NetMessageEncodeTest {
         System.out.println(byteBuf.array());
 
         //解析编码
-        AbstractNetMessage decoderMesage = new NetMessageDecoderFactory().praseMessage(byteBuf);
+        AbstractNetMessage decoderMesage = new NetTcpMessageDecoderFactory().praseMessage(byteBuf);
         netMessageHead = decoderMesage.getNetMessageHead();
         netMessageBody = decoderMesage.getNetMessageBody();
         System.out.println(netMessageHead.getSerial());

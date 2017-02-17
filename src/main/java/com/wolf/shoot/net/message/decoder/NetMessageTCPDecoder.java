@@ -15,7 +15,7 @@ public class NetMessageTCPDecoder extends MessageToMessageDecoder<ByteBuf> {
     private INetMessageDecoderFactory iNetMessageDecoderFactory;
 
     public NetMessageTCPDecoder() {
-        this.iNetMessageDecoderFactory = new NetMessageDecoderFactory();
+        this.iNetMessageDecoderFactory = new NetTcpMessageDecoderFactory();
     }
 
     @Override
