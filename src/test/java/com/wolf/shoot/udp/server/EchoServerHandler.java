@@ -1,6 +1,6 @@
 package com.wolf.shoot.udp.server;
 
-import com.wolf.shoot.net.message.AbstractAbstractNetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessageAbstract;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by jwp on 2017/1/20.
  */
-public class EchoServerHandler extends SimpleChannelInboundHandler<AbstractAbstractNetProtoBufMessage> {
+public class EchoServerHandler extends SimpleChannelInboundHandler<AbstractNetProtoBufMessage> {
     public static final Logger utilLogger = LoggerFactory.getLogger("util");
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractAbstractNetProtoBufMessage netMessage) throws Exception {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractNetProtoBufMessage netMessage) throws Exception {
         System.out.println(netMessage);
         if(netMessage instanceof OnlineHeartUDPMessageAbstract){
             OnlineHeartUDPMessageAbstract onlineHeartUDPMessage = new OnlineHeartUDPMessageAbstract();
