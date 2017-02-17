@@ -5,7 +5,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.net.message.MessageCommands;
 import com.wolf.shoot.net.message.NetMessage;
-import com.wolf.shoot.net.message.NetProtoBufMessage;
+import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.net.message.registry.MessageRegistry;
 import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -30,13 +30,13 @@ public class DefaultUdpServerPipeline implements IServerPipeline {
             logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
-        NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) netMessage;
+        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) netMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {
             logger.error("netsession null channelId is:" + channel.id().asLongText());
         }
-        netProtoBufMessage.setSessionId(nettySession.getSessionId());
+//        abstractNetProtoBufMessage.setSessionId(nettySession.getSessionId());
 
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
@@ -53,7 +53,7 @@ public class DefaultUdpServerPipeline implements IServerPipeline {
         }
 
         if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
-            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + netProtoBufMessage.toAllInfoString());
+            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
         }
 
         if (messageCommands.isIs_need_filter()) {
@@ -93,7 +93,7 @@ public class DefaultUdpServerPipeline implements IServerPipeline {
         if(gameServerConfig.isMessageQueueDirectDispatch()){
             gameMessageProcessor.directPutTcpMessage(netMessage);
         }else{
-            gameMessageProcessor.put(netProtoBufMessage);
+            gameMessageProcessor.put(abstractNetProtoBufMessage);
         }
     }
 }
