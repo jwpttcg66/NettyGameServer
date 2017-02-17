@@ -16,10 +16,9 @@ import io.netty.channel.Channel;
 import org.slf4j.Logger;
 
 /**
- * Created by jiangwenping on 17/2/13.
- * 处理管道
+ * Created by jwp on 2017/2/17.
  */
-public class DefaultTcpServerPipeLine implements IServerPipeLine {
+public class DefaultUdpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
 
     @Override
@@ -28,16 +27,15 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
         MessageCommands messageCommands = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommands.toString());
+            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
         NetProtoBufMessage netProtoBufMessage = (NetProtoBufMessage) netMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {
-            logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+            logger.error("netsession null channelId is:" + channel.id().asLongText());
         }
-
         netProtoBufMessage.setSessionId(nettySession.getSessionId());
 
         //检查是否可以处理该消息
@@ -46,16 +44,16 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         //如果是通用消息，不进行服务器检测
         if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
             if (nettySession.getPlayerId() != 0) {
-                logger.debug("discard tcp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
+                logger.debug("discard udp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
             } else {
-                logger.debug("discard tcp message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
+                logger.debug("discard udp message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
             }
 
             return;
         }
 
         if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
-            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read tcp message" + commandId + "info" + netProtoBufMessage.toAllInfoString());
+            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + netProtoBufMessage.toAllInfoString());
         }
 
         if (messageCommands.isIs_need_filter()) {
@@ -95,7 +93,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         if(gameServerConfig.isMessageQueueDirectDispatch()){
             gameMessageProcessor.directPutTcpMessage(netMessage);
         }else{
-           gameMessageProcessor.put(netProtoBufMessage);
+            gameMessageProcessor.put(netProtoBufMessage);
         }
     }
 }

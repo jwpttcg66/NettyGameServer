@@ -10,7 +10,7 @@ import com.wolf.shoot.net.session.NettyTcpSession;
 import com.wolf.shoot.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
-import com.wolf.shoot.service.net.pipeline.ITcpServerPipeLine;
+import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
 import com.wolf.shoot.service.update.NettyTcpSerssionUpdate;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -42,13 +42,9 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         NetProtoBufMessage netMessage = (NetProtoBufMessage) msg;
-//        if(netMessage instanceof OnlineHeartMessage){
-//            OnlineHeartMessage onlineHeartMessage = (OnlineHeartMessage) netMessage;
-//            System.out.println("服务端收到 OnlineHeartMessage id：" + onlineHeartMessage.getId());
-//        }
         //获取管道
-        ITcpServerPipeLine iTcpServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeLine.class);
-        iTcpServerPipeLine.dispatchAction(ctx.channel(), netMessage);
+        IServerPipeLine iServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeLine.class);
+        iServerPipeLine.dispatchAction(ctx.channel(), netMessage);
 
     }
 
@@ -76,6 +72,12 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+        NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(ctx.channel().id().asLongText());
+        netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
+
+        //终止update
+
         ctx.fireChannelUnregistered();
     }
 

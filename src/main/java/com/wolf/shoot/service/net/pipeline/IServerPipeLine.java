@@ -6,6 +6,6 @@ import io.netty.channel.Channel;
 /**
  * Created by jiangwenping on 17/2/13.
  */
-public interface ITcpServerPipeLine {
+public interface IServerPipeLine {
     public void dispatchAction(Channel channel, NetMessage netMessage);
 }
