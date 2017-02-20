@@ -1,7 +1,7 @@
 package com.wolf.shoot.udp.server;
 
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartUDP2Message;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.message.logic.udp.online.OnlineHeartUDPMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
@@ -16,11 +16,11 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<AbstractNetPr
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractNetProtoBufMessage netMessage) throws Exception {
         System.out.println(netMessage);
-        if(netMessage instanceof OnlineHeartUDPMessage){
-            OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();
+        if(netMessage instanceof OnlineHeartUDP2Message){
+            OnlineHeartUDP2Message onlineHeartUDPMessage = new OnlineHeartUDP2Message();
             onlineHeartUDPMessage.setId(Short.MAX_VALUE);
 //            InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
-            onlineHeartUDPMessage.setReceive(((OnlineHeartUDPMessage) netMessage).getSend());
+            onlineHeartUDPMessage.setReceive(((OnlineHeartUDP2Message) netMessage).getSend());
             channelHandlerContext.writeAndFlush(onlineHeartUDPMessage).sync();
         }
 //        //读取数据

@@ -4,7 +4,7 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdp2Message;
 import com.wolf.shoot.service.net.message.MessageCommands;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import io.netty.channel.Channel;
@@ -50,7 +50,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
 //            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
 //        }
-        AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
+        AbstractNetProtoBufUdp2Message message = (AbstractNetProtoBufUdp2Message) abstractNetMessage;
         int serial = abstractNetMessage.getSerial();
         long playerId = message.getPlayerId();
         int tocken = message.getTocken();

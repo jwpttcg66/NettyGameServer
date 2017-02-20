@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.net.message.encoder;
 
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdp2Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.DatagramPacket;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by jwp on 2017/2/16.
  */
-public class NetProtoBufMessageUDPEncoder extends MessageToMessageEncoder<AbstractNetProtoBufUdpMessage> {
+public class NetProtoBufMessageUDPEncoder extends MessageToMessageEncoder<AbstractNetProtoBufUdp2Message> {
 
     private final Charset charset;
 
@@ -33,7 +33,7 @@ public class NetProtoBufMessageUDPEncoder extends MessageToMessageEncoder<Abstra
     }
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, AbstractNetProtoBufUdpMessage msg, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, AbstractNetProtoBufUdp2Message msg, List<Object> out) throws Exception {
         ByteBuf netMessageBuf = iNetMessageEncoderFactory.createByteBuf(msg);
         out.add(new DatagramPacket(netMessageBuf, msg.getReceive()));
     }
