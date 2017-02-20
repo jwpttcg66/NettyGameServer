@@ -15,8 +15,8 @@ public class CommonResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
     public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
-//        byte[] bytes = getNetMessageBody().getBytes();
-//        CommonMessageProBuf.CommonErrorResponseServerProBuf req = CommonMessageProBuf.CommonErrorResponseServerProBuf.parseFrom(bytes);
+        byte[] bytes = getNetMessageBody().getBytes();
+        CommonMessageProBuf.CommonResponseServerProBuf req = CommonMessageProBuf.CommonResponseServerProBuf.parseFrom(bytes);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CommonResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
     public void encodeNetProtoBufMessageBody() throws CodecException, Exception {
-        CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder();
+        CommonMessageProBuf.CommonResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonResponseServerProBuf.newBuilder();
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);
     }
