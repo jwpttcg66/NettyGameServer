@@ -3,15 +3,10 @@ package com.wolf.shoot.service.net.pipeline;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.net.message.MessageCommands;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
+import com.wolf.shoot.service.net.message.MessageCommands;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
-import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
-import com.wolf.shoot.service.net.MessageAttributeEnum;
-import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
-import com.wolf.shoot.service.net.process.IMessageProcessor;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 
@@ -30,35 +25,36 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
             logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommands.toString());
         }
 
-        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
-        if (nettySession == null) {
-            logger.error("netsession null channelId is:" + channel.id().asLongText());
-        }
+//        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
+//        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+//        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
+//        if (nettySession == null) {
+//            logger.error("netsession null channelId is:" + channel.id().asLongText());
+//        }
 //        abstractNetProtoBufMessage.setSessionId(nettySession.getSessionId());
 
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-        if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
-            if (nettySession.getPlayerId() != 0) {
-                logger.debug("discard udp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
-            } else {
-                logger.debug("discard udp message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
-            }
+//        if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
+//            if (nettySession.getPlayerId() != 0) {
+//                logger.debug("discard udp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
+//            } else {
+//                logger.debug("discard udp message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
+//            }
+//
+//            return;
+//        }
 
-            return;
-        }
-
-        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
-            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
-        }
-
+//        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
+//            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
+//        }
+        AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
+        int serial = abstractNetMessage.getSerial();
+        long playerId = message.getPlayerId();
+        int tocken = message.getTocken();
         if (messageCommands.isIs_need_filter()) {
-            int serial = abstractNetMessage.getSerial();
-            long playerId = nettySession.getPlayerId();
 //            PlatformType platformType = nettySession.getPlatformType();
 //            if(platformType == null){
 //                AbstractGameMessage response = GameUtils.errorCallMessage(message.getCommandId(), serial, MessageErrorEnum.COMMON_MESSAGE_PLATFROM_NO_EXIST);
@@ -88,12 +84,12 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         }
 
 //        //放入处理队列
-        abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
-        GameTcpMessageProcessor gameTcpMessageProcessor = (GameTcpMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
-        if(gameServerConfig.isMessageQueueDirectDispatch()){
-            gameTcpMessageProcessor.directPutTcpMessage(abstractNetMessage);
-        }else{
-            gameTcpMessageProcessor.put(abstractNetProtoBufMessage);
-        }
+//        abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
+//        GameTcpMessageProcessor gameTcpMessageProcessor = (GameTcpMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
+//        if(gameServerConfig.isMessageQueueDirectDispatch()){
+//            gameTcpMessageProcessor.directPutTcpMessage(abstractNetMessage);
+//        }else{
+//            gameTcpMessageProcessor.put(abstractNetProtoBufMessage);
+//        }
     }
 }

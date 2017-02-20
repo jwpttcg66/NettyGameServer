@@ -22,7 +22,7 @@ config.communicationPort=10000;
 config.communicationMaxThreadPoolSize=140;
 config.communicationHandlerMaxThreadPoolSize=280;
 config.communicationMaxWriteIntervalTime=60*60*1000;
-config.messageQueueDirectDispatch=true;
+config.tcpMessageQueueDirectDispatch=true;
 /**gameexcutor配置***/
 config.gameExcutorCorePoolSize=60;
 config.gameExcutorKeepAliveTime=60;

@@ -20,8 +20,10 @@ import com.wolf.shoot.service.net.message.factory.IMessageFactory;
 import com.wolf.shoot.service.net.message.factory.MessageFactory;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
+import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
+import com.wolf.shoot.service.net.pipeline.factory.DefaultUdpServerPipelineFactory;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
 import com.wolf.shoot.service.net.process.QueueTcpMessageExecutorProcessor;
@@ -140,10 +142,18 @@ public class Globals {
     public static void initFactory() throws Exception {
 
         //注册管道工厂
+
+        //注册tcp管道
         LocalMananger.getInstance().create(DefaultTcpServerPipelineFactory.class, DefaultTcpServerPipelineFactory.class);
         DefaultTcpServerPipelineFactory defaultTcpServerPipelineFactory = LocalMananger.getInstance().get(DefaultTcpServerPipelineFactory.class);
         IServerPipeLine defaultTcpServerPipeline = defaultTcpServerPipelineFactory.createServerPipeLine();
         LocalMananger.getInstance().add(defaultTcpServerPipeline, DefaultTcpServerPipeLine.class);
+
+        //注册udp协议管道
+        LocalMananger.getInstance().create(DefaultUdpServerPipelineFactory.class, DefaultUdpServerPipelineFactory.class);
+        DefaultUdpServerPipelineFactory defaultUdpServerPipelineFactory = LocalMananger.getInstance().get(DefaultUdpServerPipelineFactory.class);
+        IServerPipeLine defaultUdpServerPipline = defaultUdpServerPipelineFactory.createServerPipeLine();
+        LocalMananger.getInstance().add(defaultUdpServerPipline, DefaultUdpServerPipeLine.class);
 
         //注册协议工厂
         LocalMananger.getInstance().create(MessageFactory.class, IMessageFactory.class);

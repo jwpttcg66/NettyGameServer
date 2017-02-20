@@ -31,7 +31,7 @@ public class GameServerConfig extends ServerConfig {
     /** 存储时间间隔,单位为毫秒 */
     private int dbUpdateInterval = 200 * 1000;
 
-    private boolean messageQueueDirectDispatch=true;
+    private boolean tcpMessageQueueDirectDispatch=true;
     /** session过期失效 ，单位为秒 */
     private int sessionExpireTime = 30 * 60 * 1000;
 
@@ -218,12 +218,12 @@ public class GameServerConfig extends ServerConfig {
         this.communicationMaxWriteIntervalTime = communicationMaxWriteIntervalTime;
     }
 
-    public boolean isMessageQueueDirectDispatch() {
-        return messageQueueDirectDispatch;
+    public boolean isTcpMessageQueueDirectDispatch() {
+        return tcpMessageQueueDirectDispatch;
     }
 
-    public void setMessageQueueDirectDispatch(boolean messageQueueDirectDispatch) {
-        this.messageQueueDirectDispatch = messageQueueDirectDispatch;
+    public void setTcpMessageQueueDirectDispatch(boolean tcpMessageQueueDirectDispatch) {
+        this.tcpMessageQueueDirectDispatch = tcpMessageQueueDirectDispatch;
     }
 
     public int getGameExcutorCorePoolSize() {

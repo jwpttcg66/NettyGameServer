@@ -48,4 +48,14 @@ public abstract class AbstractNetProtoBufUdpMessage extends AbstractNetProtoBufM
         NetUdpMessageHead netUdpMessageHead = (NetUdpMessageHead) getNetMessageHead();
         netUdpMessageHead.setTocken(tocken);
     }
+
+    public long getPlayerId(){
+        NetUdpMessageHead netUdpMessageHead = (NetUdpMessageHead) getNetMessageHead();
+        return netUdpMessageHead.getPlayerId();
+    }
+
+    public int getTocken(){
+        NetUdpMessageHead netUdpMessageHead = (NetUdpMessageHead) getNetMessageHead();
+        return netUdpMessageHead.getTocken();
+    }
 }
