@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.lookup;
 
-import com.wolf.shoot.net.session.NettySession;
+import com.wolf.shoot.service.net.session.NettySession;
 
 /**
  * Created by jiangwenping on 17/2/13.

@@ -1,7 +1,7 @@
 package com.wolf.shoot.socket.client;
 
-import com.wolf.shoot.net.message.decoder.NetMessageTCPDecoder;
-import com.wolf.shoot.net.message.encoder.NetMessageTcpEncoder;
+import com.wolf.shoot.service.net.message.decoder.NetMessageTCPDecoder;
+import com.wolf.shoot.service.net.message.encoder.NetMessageTcpEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;

@@ -1,6 +1,6 @@
 package com.wolf.shoot.game.socket.client;
 
-import com.wolf.shoot.net.message.logic.tcp.online.OnlineHeartMessage;
+import com.wolf.shoot.message.logic.tcp.online.OnlineHeartMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

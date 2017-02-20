@@ -1,6 +1,6 @@
 package com.wolf.shoot.common.annotation;
 
-import com.wolf.shoot.net.message.MessageCommands;
+import com.wolf.shoot.service.net.message.MessageCommands;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

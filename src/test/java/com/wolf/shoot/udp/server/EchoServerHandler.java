@@ -1,7 +1,7 @@
 package com.wolf.shoot.udp.server;
 
-import com.wolf.shoot.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.net.message.logic.udp.online.OnlineHeartUDPMessageAbstract;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartUDPMessageAbstract;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;

@@ -6,8 +6,8 @@ import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.AbstractNetMessage;
-import com.wolf.shoot.net.session.NettyTcpSession;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 

@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.net;
 
-import com.wolf.shoot.net.message.decoder.NetProtoBufMessageUDPDecoder;
-import com.wolf.shoot.net.message.encoder.NetProtoBufMessageUDPEncoder;
+import com.wolf.shoot.service.net.message.decoder.NetProtoBufMessageUDPDecoder;
+import com.wolf.shoot.service.net.message.encoder.NetProtoBufMessageUDPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioDatagramChannel;

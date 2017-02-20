@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.net.process;
 
-import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
 
 /**
  * Created by jiangwenping on 17/2/13.

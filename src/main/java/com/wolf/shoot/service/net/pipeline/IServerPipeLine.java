@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.net.pipeline;
 
-import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import io.netty.channel.Channel;
 
 /**

@@ -2,7 +2,7 @@ package com.wolf.shoot.udp.server;
 
 
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelOption;
