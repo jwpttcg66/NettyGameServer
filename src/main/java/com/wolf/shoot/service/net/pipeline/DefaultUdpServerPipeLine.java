@@ -10,7 +10,7 @@ import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
-import com.wolf.shoot.service.net.process.GameMessageProcessor;
+import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -89,11 +89,11 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 
 //        //放入处理队列
         abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
-        GameMessageProcessor gameMessageProcessor = (GameMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
+        GameTcpMessageProcessor gameTcpMessageProcessor = (GameTcpMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
         if(gameServerConfig.isMessageQueueDirectDispatch()){
-            gameMessageProcessor.directPutTcpMessage(abstractNetMessage);
+            gameTcpMessageProcessor.directPutTcpMessage(abstractNetMessage);
         }else{
-            gameMessageProcessor.put(abstractNetProtoBufMessage);
+            gameTcpMessageProcessor.put(abstractNetProtoBufMessage);
         }
     }
 }

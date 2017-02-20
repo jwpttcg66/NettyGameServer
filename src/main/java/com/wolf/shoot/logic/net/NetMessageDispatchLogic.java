@@ -6,17 +6,17 @@ import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
-import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.process.IMessageProcessor;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 17/2/15.
  */
 public class NetMessageDispatchLogic {
 
-    public void dispatchTcpMessage(AbstractNetMessage msg, QueueMessageExecutorProcessor queueMessageExecutorProcessor){
+    public void dispatchTcpMessage(AbstractNetMessage msg, IMessageProcessor iMessageProcessor){
         if (msg == null) {
             if (Loggers.serverStatusStatistics.isWarnEnabled()) {
                 Loggers.serverStatusStatistics.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
@@ -28,7 +28,7 @@ public class NetMessageDispatchLogic {
         if (Loggers.serverStatusStatistics.isInfoEnabled()) {
             begin = System.nanoTime();
         }
-        queueMessageExecutorProcessor.statisticsMessageCount++;
+//        queueMessageExecutorProcessor.statisticsMessageCount++;
         try {
             NettyTcpSession clientSesion = (NettyTcpSession) msg.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
@@ -83,10 +83,10 @@ public class NetMessageDispatchLogic {
                 // 特例，统计时间跨度
                 long time = (System.nanoTime() - begin) / (1000 * 1000);
                 if (time > 1) {
-                    Loggers.serverStatusStatistics.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
-                            + msg.getCmd() + " Time:"
-                            + time + "ms" + " Total:"
-                            + queueMessageExecutorProcessor.statisticsMessageCount);
+//                    Loggers.serverStatusStatistics.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
+//                            + msg.getCmd() + " Time:"
+//                            + time + "ms" + " Total:"
+//                            + queueMessageExecutorProcessor.statisticsMessageCount);
                 }
             }
         }

@@ -24,13 +24,6 @@ public interface IMessageProcessor {
     public void put(AbstractNetMessage msg);
 
     /**
-     * 向消息队列投递消息
-     * 直接投递到对象processor上面
-     * @param msg
-     */
-    public void directPutTcpMessage(AbstractNetMessage msg);
-
-    /**
      * 判断队列是否已经达到上限了
      * @return
      */

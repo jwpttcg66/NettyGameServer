@@ -6,6 +6,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.common.util.ExecutorUtil;
+import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
@@ -19,9 +20,9 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * Created by jiangwenping on 17/2/13.
+ * Created by jiangwenping on 17/2/20.
  */
-public class QueueMessageExecutorProcessor implements IMessageProcessor {
+public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     public static final Logger logger = Loggers.serverStatusStatistics;
     /** 消息队列 * */
     protected final BlockingQueue<AbstractNetMessage> queue;
@@ -44,12 +45,12 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
     private final boolean processLeft;
 
     @SuppressWarnings("unchecked")
-    public QueueMessageExecutorProcessor() {
+    public QueueTcpMessageExecutorProcessor() {
         this(false, 1);
     }
 
     @SuppressWarnings("unchecked")
-    public QueueMessageExecutorProcessor(boolean processLeft, int executorCoreSize) {
+    public QueueTcpMessageExecutorProcessor(boolean processLeft, int executorCoreSize) {
         queue = new LinkedBlockingQueue<AbstractNetMessage>();
         this.processLeft = processLeft;
         this.excecutorCoreSize = executorCoreSize;
@@ -68,6 +69,18 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
                 logger.debug("put queue size:" + queue.size());
             }
         } catch (InterruptedException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);
+            }
+        }
+    }
+
+    @Override
+    public void directPutTcpMessage(AbstractNetMessage msg) {
+        try {
+            NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().get(NetMessageDispatchLogic.class);
+            netMessageDispatchLogic.dispatchTcpMessage(msg, this);
+        } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);
             }
@@ -229,6 +242,4 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
             }
         }
     }
-
 }
-

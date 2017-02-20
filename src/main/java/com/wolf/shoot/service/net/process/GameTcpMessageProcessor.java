@@ -9,13 +9,13 @@ import org.slf4j.Logger;
 /**
  * Created by jiangwenping on 17/2/13.
  */
-public class GameMessageProcessor implements IMessageProcessor {
+public class GameTcpMessageProcessor implements ITcpMessageProcessor {
     protected static final Logger log = Loggers.msgLogger;
 
     /** 主消息处理器，处理服务器内部消息、玩家不属于任何场景时发送的消息 */
-    private IMessageProcessor mainMessageProcessor;
+    private ITcpMessageProcessor mainMessageProcessor;
 
-    public GameMessageProcessor(IMessageProcessor messageProcessor) {
+    public GameTcpMessageProcessor(ITcpMessageProcessor messageProcessor) {
         mainMessageProcessor = messageProcessor;
     }
 

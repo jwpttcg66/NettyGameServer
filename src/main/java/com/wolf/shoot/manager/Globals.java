@@ -13,20 +13,20 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
+import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.facade.IFacade;
 import com.wolf.shoot.service.net.message.factory.IMessageFactory;
 import com.wolf.shoot.service.net.message.factory.MessageFactory;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
-import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
-import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
-import com.wolf.shoot.service.net.process.GameMessageProcessor;
+import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
-import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
+import com.wolf.shoot.service.net.process.QueueTcpMessageExecutorProcessor;
+import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
+import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
 import com.wolf.shoot.service.time.SystemTimeService;
 import com.wolf.shoot.service.time.TimeService;
 
@@ -115,9 +115,9 @@ public class Globals {
 
     public static void initNetMessageProcessor() throws  Exception{
         int size = 0;
-        QueueMessageExecutorProcessor queueMessageExecutorProcessor  = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, size);
-        GameMessageProcessor gameMessageProcessor = new GameMessageProcessor(queueMessageExecutorProcessor);
-        LocalMananger.getInstance().add(gameMessageProcessor, IMessageProcessor.class);
+        QueueTcpMessageExecutorProcessor queueMessageExecutorProcessor  = new QueueTcpMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, size);
+        GameTcpMessageProcessor gameTcpMessageProcessor = new GameTcpMessageProcessor(queueMessageExecutorProcessor);
+        LocalMananger.getInstance().add(gameTcpMessageProcessor, IMessageProcessor.class);
     }
 
     public static void initIdGenerator() throws Exception{
