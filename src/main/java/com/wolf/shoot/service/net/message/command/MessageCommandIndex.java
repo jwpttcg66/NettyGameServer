@@ -6,10 +6,8 @@ package com.wolf.shoot.service.net.message.command;
 public class MessageCommandIndex {
     public static final int ONLINE_HEART_MESSAGE = 1;
     public static final int COMMON_RESPONSE_MESSAGE = 2;
-    public static final int COMMON_ERROP_RESPONSE_MESSAGE = 3;
-    public static final int COMMON_RESPONSE_WITH_COMMAND_MESSAGE = 4;
-    public static final int COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE = 5;
-    public static final int ONLINE_HEART_UDP_MESSAGE = 6;
+    public static final int COMMON_ERROR_RESPONSE_MESSAGE = 3;
+    public static final int ONLINE_HEART_UDP_MESSAGE = 4;
 
 
 }

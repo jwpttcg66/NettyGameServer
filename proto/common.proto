@@ -1,11 +1,16 @@
-option java_package = "com.wolf.shoot.net.message.auto.common";
+option java_package = "com.wolf.shoot.message.auto.common";
 option java_outer_classname = "CommonMessageProBuf";
 
-message CommonServerErrorResponseWithCmdProBuf
+message CommonResponseServerProBuf
 {
-	 required int32 cmd = 1;
-	 required int32 code = 2;
-	 optional string arg = 3; //错误参数，格式：xx,xxx,xxxx
+
+}
+
+
+message CommonErrorResponseServerProBuf
+{
+	 required int32 state = 1;
+	 optional string arg = 2; //错误参数，格式：xx,xxx,xxxx
 }
 
 

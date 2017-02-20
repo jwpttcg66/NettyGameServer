@@ -8,4 +8,5 @@ import com.wolf.shoot.service.net.message.AbstractNetMessage;
  */
 public interface IMessageFactory {
     public AbstractNetMessage createCommonErrorResponseMessage(int serial, int cmd, int state);
+    public AbstractNetMessage createCommonResponseMessage(int serial);
 }

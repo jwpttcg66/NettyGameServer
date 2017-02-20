@@ -3,8 +3,6 @@
 
 package com.wolf.shoot.message.auto.common;
 
-import com.google.protobuf.AbstractMessage;
-
 public final class CommonMessageProBuf {
   private CommonMessageProBuf() {}
   public static void registerAllExtensions(
@@ -16,34 +14,398 @@ public final class CommonMessageProBuf {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface CommonServerErrorResponseWithCmdProBufOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:CommonServerErrorResponseWithCmdProBuf)
+  public interface CommonResponseServerProBufOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CommonResponseServerProBuf)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code CommonResponseServerProBuf}
+   */
+  public  static final class CommonResponseServerProBuf extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:CommonResponseServerProBuf)
+      CommonResponseServerProBufOrBuilder {
+    // Use CommonResponseServerProBuf.newBuilder() to construct.
+    private CommonResponseServerProBuf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CommonResponseServerProBuf() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CommonResponseServerProBuf(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.class, com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf)) {
+        return super.equals(obj);
+      }
+      com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf other = (com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CommonResponseServerProBuf}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:CommonResponseServerProBuf)
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBufOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.class, com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.Builder.class);
+      }
+
+      // Construct using com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+      }
+
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstanceForType() {
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.getDefaultInstance();
+      }
+
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf build() {
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf buildPartial() {
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf result = new com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) {
+          return mergeFrom((com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf other) {
+        if (other == com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:CommonResponseServerProBuf)
+    }
+
+    // @@protoc_insertion_point(class_scope:CommonResponseServerProBuf)
+    private static final com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf();
+    }
+
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<CommonResponseServerProBuf>
+        PARSER = new com.google.protobuf.AbstractParser<CommonResponseServerProBuf>() {
+      public CommonResponseServerProBuf parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new CommonResponseServerProBuf(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CommonResponseServerProBuf> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CommonResponseServerProBuf> getParserForType() {
+      return PARSER;
+    }
+
+    public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CommonErrorResponseServerProBufOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CommonErrorResponseServerProBuf)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 cmd = 1;</code>
+     * <code>required int32 state = 1;</code>
      */
-    boolean hasCmd();
+    boolean hasState();
     /**
-     * <code>required int32 cmd = 1;</code>
+     * <code>required int32 state = 1;</code>
      */
-    int getCmd();
-
-    /**
-     * <code>required int32 code = 2;</code>
-     */
-    boolean hasCode();
-    /**
-     * <code>required int32 code = 2;</code>
-     */
-    int getCode();
+    int getState();
 
     /**
      * <pre>
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     boolean hasArg();
     /**
@@ -51,7 +413,7 @@ public final class CommonMessageProBuf {
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     java.lang.String getArg();
     /**
@@ -59,25 +421,24 @@ public final class CommonMessageProBuf {
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     com.google.protobuf.ByteString
         getArgBytes();
   }
   /**
-   * Protobuf type {@code CommonServerErrorResponseWithCmdProBuf}
+   * Protobuf type {@code CommonErrorResponseServerProBuf}
    */
-  public  static final class CommonServerErrorResponseWithCmdProBuf extends
+  public  static final class CommonErrorResponseServerProBuf extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:CommonServerErrorResponseWithCmdProBuf)
-      CommonServerErrorResponseWithCmdProBufOrBuilder {
-    // Use CommonServerErrorResponseWithCmdProBuf.newBuilder() to construct.
-    private CommonServerErrorResponseWithCmdProBuf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:CommonErrorResponseServerProBuf)
+      CommonErrorResponseServerProBufOrBuilder {
+    // Use CommonErrorResponseServerProBuf.newBuilder() to construct.
+    private CommonErrorResponseServerProBuf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private CommonServerErrorResponseWithCmdProBuf() {
-      cmd_ = 0;
-      code_ = 0;
+    private CommonErrorResponseServerProBuf() {
+      state_ = 0;
       arg_ = "";
     }
 
@@ -86,7 +447,7 @@ public final class CommonMessageProBuf {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private CommonServerErrorResponseWithCmdProBuf(
+    private CommonErrorResponseServerProBuf(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -111,17 +472,12 @@ public final class CommonMessageProBuf {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              cmd_ = input.readInt32();
+              state_ = input.readInt32();
               break;
             }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              code_ = input.readInt32();
-              break;
-            }
-            case 26: {
+            case 18: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000002;
               arg_ = bs;
               break;
             }
@@ -139,65 +495,50 @@ public final class CommonMessageProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonMessageProBuf.internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor;
+      return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonMessageProBuf.internal_static_CommonServerErrorResponseWithCmdProBuf_fieldAccessorTable
+      return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.class, CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.Builder.class);
+              com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.class, com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder.class);
     }
 
     private int bitField0_;
-    public static final int CMD_FIELD_NUMBER = 1;
-    private int cmd_;
+    public static final int STATE_FIELD_NUMBER = 1;
+    private int state_;
     /**
-     * <code>required int32 cmd = 1;</code>
+     * <code>required int32 state = 1;</code>
      */
-    public boolean hasCmd() {
+    public boolean hasState() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 cmd = 1;</code>
+     * <code>required int32 state = 1;</code>
      */
-    public int getCmd() {
-      return cmd_;
+    public int getState() {
+      return state_;
     }
 
-    public static final int CODE_FIELD_NUMBER = 2;
-    private int code_;
-    /**
-     * <code>required int32 code = 2;</code>
-     */
-    public boolean hasCode() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required int32 code = 2;</code>
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    public static final int ARG_FIELD_NUMBER = 3;
+    public static final int ARG_FIELD_NUMBER = 2;
     private volatile java.lang.Object arg_;
     /**
      * <pre>
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     public boolean hasArg() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
      * <pre>
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     public java.lang.String getArg() {
       java.lang.Object ref = arg_;
@@ -218,7 +559,7 @@ public final class CommonMessageProBuf {
      *错误参数，格式：xx,xxx,xxxx
      * </pre>
      *
-     * <code>optional string arg = 3;</code>
+     * <code>optional string arg = 2;</code>
      */
     public com.google.protobuf.ByteString
         getArgBytes() {
@@ -240,11 +581,7 @@ public final class CommonMessageProBuf {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasCmd()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCode()) {
+      if (!hasState()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -255,13 +592,10 @@ public final class CommonMessageProBuf {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, cmd_);
+        output.writeInt32(1, state_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, code_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, arg_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, arg_);
       }
       unknownFields.writeTo(output);
     }
@@ -273,14 +607,10 @@ public final class CommonMessageProBuf {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, cmd_);
+          .computeInt32Size(1, state_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, code_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, arg_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, arg_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -293,21 +623,16 @@ public final class CommonMessageProBuf {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf)) {
+      if (!(obj instanceof com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf)) {
         return super.equals(obj);
       }
-      CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf other = (CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf) obj;
+      com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf other = (com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) obj;
 
       boolean result = true;
-      result = result && (hasCmd() == other.hasCmd());
-      if (hasCmd()) {
-        result = result && (getCmd()
-            == other.getCmd());
-      }
-      result = result && (hasCode() == other.hasCode());
-      if (hasCode()) {
-        result = result && (getCode()
-            == other.getCode());
+      result = result && (hasState() == other.hasState());
+      if (hasState()) {
+        result = result && (getState()
+            == other.getState());
       }
       result = result && (hasArg() == other.hasArg());
       if (hasArg()) {
@@ -324,14 +649,10 @@ public final class CommonMessageProBuf {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasCmd()) {
-        hash = (37 * hash) + CMD_FIELD_NUMBER;
-        hash = (53 * hash) + getCmd();
-      }
-      if (hasCode()) {
-        hash = (37 * hash) + CODE_FIELD_NUMBER;
-        hash = (53 * hash) + getCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasState()) {
+        hash = (37 * hash) + STATE_FIELD_NUMBER;
+        hash = (53 * hash) + getState();
       }
       if (hasArg()) {
         hash = (37 * hash) + ARG_FIELD_NUMBER;
@@ -342,58 +663,58 @@ public final class CommonMessageProBuf {
       return hash;
     }
 
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(byte[] data)
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(java.io.InputStream input)
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseDelimitedFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -405,7 +726,7 @@ public final class CommonMessageProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf prototype) {
+    public static Builder newBuilder(com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -420,25 +741,25 @@ public final class CommonMessageProBuf {
       return builder;
     }
     /**
-     * Protobuf type {@code CommonServerErrorResponseWithCmdProBuf}
+     * Protobuf type {@code CommonErrorResponseServerProBuf}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:CommonServerErrorResponseWithCmdProBuf)
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBufOrBuilder {
+        // @@protoc_insertion_point(builder_implements:CommonErrorResponseServerProBuf)
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonMessageProBuf.internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor;
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonMessageProBuf.internal_static_CommonServerErrorResponseWithCmdProBuf_fieldAccessorTable
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.class, CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.Builder.class);
+                com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.class, com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder.class);
       }
 
-      // Construct using CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.newBuilder()
+      // Construct using com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -455,46 +776,40 @@ public final class CommonMessageProBuf {
       }
       public Builder clear() {
         super.clear();
-        cmd_ = 0;
+        state_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        code_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         arg_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonMessageProBuf.internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor;
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
       }
 
-      public CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf getDefaultInstanceForType() {
-        return CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.getDefaultInstance();
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstanceForType() {
+        return com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.getDefaultInstance();
       }
 
-      public CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf build() {
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf result = buildPartial();
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf build() {
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf buildPartial() {
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf result = new CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf(this);
+      public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf buildPartial() {
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf result = new com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.cmd_ = cmd_;
+        result.state_ = state_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
-        }
-        result.code_ = code_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
         }
         result.arg_ = arg_;
         result.bitField0_ = to_bitField0_;
@@ -529,24 +844,21 @@ public final class CommonMessageProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf) {
-          return mergeFrom((CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf)other);
+        if (other instanceof com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) {
+          return mergeFrom((com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf other) {
-        if (other == CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.getDefaultInstance()) return this;
-        if (other.hasCmd()) {
-          setCmd(other.getCmd());
-        }
-        if (other.hasCode()) {
-          setCode(other.getCode());
+      public Builder mergeFrom(com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf other) {
+        if (other == com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.getDefaultInstance()) return this;
+        if (other.hasState()) {
+          setState(other.getState());
         }
         if (other.hasArg()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000002;
           arg_ = other.arg_;
           onChanged();
         }
@@ -556,10 +868,7 @@ public final class CommonMessageProBuf {
       }
 
       public final boolean isInitialized() {
-        if (!hasCmd()) {
-          return false;
-        }
-        if (!hasCode()) {
+        if (!hasState()) {
           return false;
         }
         return true;
@@ -569,11 +878,11 @@ public final class CommonMessageProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf parsedMessage = null;
+        com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -584,66 +893,34 @@ public final class CommonMessageProBuf {
       }
       private int bitField0_;
 
-      private int cmd_ ;
+      private int state_ ;
       /**
-       * <code>required int32 cmd = 1;</code>
+       * <code>required int32 state = 1;</code>
        */
-      public boolean hasCmd() {
+      public boolean hasState() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 cmd = 1;</code>
+       * <code>required int32 state = 1;</code>
        */
-      public int getCmd() {
-        return cmd_;
+      public int getState() {
+        return state_;
       }
       /**
-       * <code>required int32 cmd = 1;</code>
+       * <code>required int32 state = 1;</code>
        */
-      public Builder setCmd(int value) {
+      public Builder setState(int value) {
         bitField0_ |= 0x00000001;
-        cmd_ = value;
+        state_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 cmd = 1;</code>
+       * <code>required int32 state = 1;</code>
        */
-      public Builder clearCmd() {
+      public Builder clearState() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        cmd_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <code>required int32 code = 2;</code>
-       */
-      public boolean hasCode() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required int32 code = 2;</code>
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <code>required int32 code = 2;</code>
-       */
-      public Builder setCode(int value) {
-        bitField0_ |= 0x00000002;
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required int32 code = 2;</code>
-       */
-      public Builder clearCode() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        code_ = 0;
+        state_ = 0;
         onChanged();
         return this;
       }
@@ -654,17 +931,17 @@ public final class CommonMessageProBuf {
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public boolean hasArg() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
        * <pre>
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public java.lang.String getArg() {
         java.lang.Object ref = arg_;
@@ -685,7 +962,7 @@ public final class CommonMessageProBuf {
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public com.google.protobuf.ByteString
           getArgBytes() {
@@ -705,14 +982,14 @@ public final class CommonMessageProBuf {
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public Builder setArg(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         arg_ = value;
         onChanged();
         return this;
@@ -722,10 +999,10 @@ public final class CommonMessageProBuf {
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public Builder clearArg() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         arg_ = getDefaultInstance().getArg();
         onChanged();
         return this;
@@ -735,14 +1012,14 @@ public final class CommonMessageProBuf {
        *错误参数，格式：xx,xxx,xxxx
        * </pre>
        *
-       * <code>optional string arg = 3;</code>
+       * <code>optional string arg = 2;</code>
        */
       public Builder setArgBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         arg_ = value;
         onChanged();
         return this;
@@ -758,49 +1035,54 @@ public final class CommonMessageProBuf {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:CommonServerErrorResponseWithCmdProBuf)
+      // @@protoc_insertion_point(builder_scope:CommonErrorResponseServerProBuf)
     }
 
-    // @@protoc_insertion_point(class_scope:CommonServerErrorResponseWithCmdProBuf)
-    private static final CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:CommonErrorResponseServerProBuf)
+    private static final com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf();
+      DEFAULT_INSTANCE = new com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf();
     }
 
-    public static CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf getDefaultInstance() {
+    public static com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<CommonServerErrorResponseWithCmdProBuf>
-        PARSER = new com.google.protobuf.AbstractParser<CommonServerErrorResponseWithCmdProBuf>() {
-      public CommonServerErrorResponseWithCmdProBuf parsePartialFrom(
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<CommonErrorResponseServerProBuf>
+        PARSER = new com.google.protobuf.AbstractParser<CommonErrorResponseServerProBuf>() {
+      public CommonErrorResponseServerProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new CommonServerErrorResponseWithCmdProBuf(input, extensionRegistry);
+          return new CommonErrorResponseServerProBuf(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<CommonServerErrorResponseWithCmdProBuf> parser() {
+    public static com.google.protobuf.Parser<CommonErrorResponseServerProBuf> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<CommonServerErrorResponseWithCmdProBuf> getParserForType() {
+    public com.google.protobuf.Parser<CommonErrorResponseServerProBuf> getParserForType() {
       return PARSER;
     }
 
-    public CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf getDefaultInstanceForType() {
+    public com.wolf.shoot.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor;
+    internal_static_CommonResponseServerProBuf_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CommonServerErrorResponseWithCmdProBuf_fieldAccessorTable;
+      internal_static_CommonResponseServerProBuf_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CommonErrorResponseServerProBuf_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -810,10 +1092,11 @@ public final class CommonMessageProBuf {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014common.proto\"P\n&CommonServerErrorRespo" +
-      "nseWithCmdProBuf\022\013\n\003cmd\030\001 \002(\005\022\014\n\004code\030\002 " +
-      "\002(\005\022\013\n\003arg\030\003 \001(\tB=\n&com.wolf.shoot.net.m" +
-      "essage.auto.commonB\023CommonMessageProBuf"
+      "\n\014common.proto\"\034\n\032CommonResponseServerPr" +
+      "oBuf\"=\n\037CommonErrorResponseServerProBuf\022" +
+      "\r\n\005state\030\001 \002(\005\022\013\n\003arg\030\002 \001(\tB9\n\"com.wolf." +
+      "shoot.message.auto.commonB\023CommonMessage" +
+      "ProBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -827,12 +1110,18 @@ public final class CommonMessageProBuf {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor =
+    internal_static_CommonResponseServerProBuf_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_CommonServerErrorResponseWithCmdProBuf_fieldAccessorTable = new
+    internal_static_CommonResponseServerProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CommonServerErrorResponseWithCmdProBuf_descriptor,
-        new java.lang.String[] { "Cmd", "Code", "Arg", });
+        internal_static_CommonResponseServerProBuf_descriptor,
+        new java.lang.String[] { });
+    internal_static_CommonErrorResponseServerProBuf_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CommonErrorResponseServerProBuf_descriptor,
+        new java.lang.String[] { "State", "Arg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

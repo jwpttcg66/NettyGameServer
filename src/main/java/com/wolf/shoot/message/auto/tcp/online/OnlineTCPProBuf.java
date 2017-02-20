@@ -3,8 +3,6 @@
 
 package com.wolf.shoot.message.auto.tcp.online;
 
-import com.google.protobuf.AbstractMessage;
-
 public final class OnlineTCPProBuf {
   private OnlineTCPProBuf() {}
   public static void registerAllExtensions(
@@ -91,14 +89,14 @@ public final class OnlineTCPProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
+      return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_fieldAccessorTable
+      return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              OnlineTCPProBuf.OnlineHeartTCPProBuf.class, OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder.class);
+              com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.class, com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder.class);
     }
 
     private int bitField0_;
@@ -159,10 +157,10 @@ public final class OnlineTCPProBuf {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof OnlineTCPProBuf.OnlineHeartTCPProBuf)) {
+      if (!(obj instanceof com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf)) {
         return super.equals(obj);
       }
-      OnlineTCPProBuf.OnlineHeartTCPProBuf other = (OnlineTCPProBuf.OnlineHeartTCPProBuf) obj;
+      com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf other = (com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf) obj;
 
       boolean result = true;
       result = result && (hasId() == other.hasId());
@@ -180,7 +178,7 @@ public final class OnlineTCPProBuf {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (hasId()) {
         hash = (37 * hash) + ID_FIELD_NUMBER;
         hash = (53 * hash) + getId();
@@ -190,58 +188,58 @@ public final class OnlineTCPProBuf {
       return hash;
     }
 
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(byte[] data)
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(java.io.InputStream input)
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseDelimitedFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -253,7 +251,7 @@ public final class OnlineTCPProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(OnlineTCPProBuf.OnlineHeartTCPProBuf prototype) {
+    public static Builder newBuilder(com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -273,20 +271,20 @@ public final class OnlineTCPProBuf {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:OnlineHeartTCPProBuf)
-        OnlineTCPProBuf.OnlineHeartTCPProBufOrBuilder {
+        com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
+        return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_fieldAccessorTable
+        return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                OnlineTCPProBuf.OnlineHeartTCPProBuf.class, OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder.class);
+                com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.class, com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder.class);
       }
 
-      // Construct using OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder()
+      // Construct using com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -310,23 +308,23 @@ public final class OnlineTCPProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
+        return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.internal_static_OnlineHeartTCPProBuf_descriptor;
       }
 
-      public OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstanceForType() {
-        return OnlineTCPProBuf.OnlineHeartTCPProBuf.getDefaultInstance();
+      public com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstanceForType() {
+        return com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.getDefaultInstance();
       }
 
-      public OnlineTCPProBuf.OnlineHeartTCPProBuf build() {
-        OnlineTCPProBuf.OnlineHeartTCPProBuf result = buildPartial();
+      public com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf build() {
+        com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf result = buildPartial();
         if (!result.isInitialized()) {
-          throw AbstractMessage.Builder.newUninitializedMessageException(result);
+          throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public OnlineTCPProBuf.OnlineHeartTCPProBuf buildPartial() {
-        OnlineTCPProBuf.OnlineHeartTCPProBuf result = new OnlineTCPProBuf.OnlineHeartTCPProBuf(this);
+      public com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf buildPartial() {
+        com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf result = new com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -365,16 +363,16 @@ public final class OnlineTCPProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof OnlineTCPProBuf.OnlineHeartTCPProBuf) {
-          return mergeFrom((OnlineTCPProBuf.OnlineHeartTCPProBuf)other);
+        if (other instanceof com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf) {
+          return mergeFrom((com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(OnlineTCPProBuf.OnlineHeartTCPProBuf other) {
-        if (other == OnlineTCPProBuf.OnlineHeartTCPProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf other) {
+        if (other == com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -394,11 +392,11 @@ public final class OnlineTCPProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        OnlineTCPProBuf.OnlineHeartTCPProBuf parsedMessage = null;
+        com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (OnlineTCPProBuf.OnlineHeartTCPProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -455,12 +453,12 @@ public final class OnlineTCPProBuf {
     }
 
     // @@protoc_insertion_point(class_scope:OnlineHeartTCPProBuf)
-    private static final OnlineTCPProBuf.OnlineHeartTCPProBuf DEFAULT_INSTANCE;
+    private static final com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new OnlineTCPProBuf.OnlineHeartTCPProBuf();
+      DEFAULT_INSTANCE = new com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf();
     }
 
-    public static OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstance() {
+    public static com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -483,7 +481,7 @@ public final class OnlineTCPProBuf {
       return PARSER;
     }
 
-    public OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstanceForType() {
+    public com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf.OnlineHeartTCPProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -504,8 +502,8 @@ public final class OnlineTCPProBuf {
   static {
     java.lang.String[] descriptorData = {
       "\n\017tcponline.proto\"\"\n\024OnlineHeartTCPProBu" +
-      "f\022\n\n\002id\030\001 \002(\005B=\n*com.wolf.shoot.net.mess" +
-      "age.auto.tcp.onlineB\017OnlineTCPProBuf"
+      "f\022\n\n\002id\030\001 \002(\005B9\n&com.wolf.shoot.message." +
+      "auto.tcp.onlineB\017OnlineTCPProBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -9,8 +9,8 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
 /**
  * Created by jwp on 2017/2/10.
  */
-@MessageCommandAnnotation(command = MessageCommandIndex.COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE)
-public class CommonErrorResponseWhieCmdServerMessage extends AbstractNetProtoBufTcpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE)
+public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
     /**
      * 状态码
@@ -20,17 +20,12 @@ public class CommonErrorResponseWhieCmdServerMessage extends AbstractNetProtoBuf
      * 特殊提示
      */
     private String arg;
-    /**
-     * 协议号
-     */
-    private int cmd;
 
     @Override
     public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
         byte[] bytes = getNetMessageBody().getBytes();
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf req = CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.parseFrom(bytes);
-        this.cmd = req.getCmd();
-        this.state = req.getCode();
+        CommonMessageProBuf.CommonErrorResponseServerProBuf req = CommonMessageProBuf.CommonErrorResponseServerProBuf.parseFrom(bytes);
+        this.state = req.getState();
         this.arg = req.getArg();
     }
 
@@ -41,10 +36,9 @@ public class CommonErrorResponseWhieCmdServerMessage extends AbstractNetProtoBuf
 
     @Override
     public void encodeNetProtoBufMessageBody() throws CodecException, Exception {
-        CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.Builder builder = CommonMessageProBuf.CommonServerErrorResponseWithCmdProBuf.newBuilder();
+        CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder();
         builder.setArg(arg);
-        builder.setCmd(cmd);
-        builder.setCode(state);
+        builder.setState(state);
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);
     }
@@ -65,12 +59,4 @@ public class CommonErrorResponseWhieCmdServerMessage extends AbstractNetProtoBuf
         this.arg = arg;
     }
 
-    public int getCmd() {
-        return cmd;
-    }
-
-    @Override
-    public void setCmd(int cmd) {
-        this.cmd = cmd;
-    }
 }

@@ -1,9 +1,11 @@
 package com.wolf.shoot.message.handler.impl;
 
-import com.wolf.shoot.message.logic.tcp.common.CommonErrorResponseWhieCmdServerMessage;
-import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.message.handler.auto.common.CommonHandler;
 import com.wolf.shoot.message.logic.tcp.online.OnlineHeartMessage;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.factory.IMessageFactory;
+import com.wolf.shoot.service.net.message.factory.MessageFactory;
 
 /**
  * Created by jiangwenping on 17/2/15.
@@ -11,8 +13,7 @@ import com.wolf.shoot.message.logic.tcp.online.OnlineHeartMessage;
 public class CommonHandleImpl extends CommonHandler{
     @Override
     public AbstractNetMessage handleOnlineHeartMessageImpl(OnlineHeartMessage message) throws Exception {
-        CommonErrorResponseWhieCmdServerMessage response = new CommonErrorResponseWhieCmdServerMessage();
-        response.setCmd(message.getCmd());
-        return response;
+        MessageFactory messageFactory = (MessageFactory) LocalMananger.getInstance().get(IMessageFactory.class);
+        return messageFactory.createCommonResponseMessage(message.getSerial());
     }
 }
