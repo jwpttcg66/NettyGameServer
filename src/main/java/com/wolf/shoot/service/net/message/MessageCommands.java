@@ -9,7 +9,10 @@ public enum MessageCommands
 {
     ONLINE_HEART_MESSAGE(1, BOConst.BO_WORLD,false, false),
     COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE(2, BOConst.BO_WORLD, false, true),
-    ONLINE_HEART_UDP_MESSAGE(3, BOConst.BO_WORLD,false, false),
+    COMMON_RESPONSE_WITH_COMMAND_MESSAGE(3, BOConst.BO_WORLD, false, true),
+    ONLINE_LOGIN_MESSAGE(4, BOConst.BO_WORLD, false, false),
+
+    ONLINE_HEART_UDP_MESSAGE(20003, BOConst.BO_WORLD,false, false),
     ;
     /**
      * 协议号
