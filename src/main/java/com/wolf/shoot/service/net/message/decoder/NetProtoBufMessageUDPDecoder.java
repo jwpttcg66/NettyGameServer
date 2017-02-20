@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.net.message.decoder;
 
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufUDPMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -16,16 +16,16 @@ public class NetProtoBufMessageUDPDecoder extends MessageToMessageDecoder<Datagr
 
     private final Charset charset;
 
-    private INetProtoBufMessageDecoderFactory iNetMessageDecoderFactory;
+    private INetProtoBufTcpMessageDecoderFactory iNetMessageDecoderFactory;
 
     public NetProtoBufMessageUDPDecoder() {
         this(CharsetUtil.UTF_8);
-        this.iNetMessageDecoderFactory = new NetProtoBufMessageDecoderFactory();
+        this.iNetMessageDecoderFactory = new NetProtoBufTcpMessageDecoderFactory();
     }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, DatagramPacket msg, List<Object> out) throws Exception {
-        AbstractNetProtoBufUDPMessage netProtoBufUDPMessage = (AbstractNetProtoBufUDPMessage) iNetMessageDecoderFactory.praseMessage(msg.content());
+        AbstractNetProtoBufUdpMessage netProtoBufUDPMessage = (AbstractNetProtoBufUdpMessage) iNetMessageDecoderFactory.praseMessage(msg.content());
         netProtoBufUDPMessage.setSend(msg.sender());
         out.add(netProtoBufUDPMessage);
     }

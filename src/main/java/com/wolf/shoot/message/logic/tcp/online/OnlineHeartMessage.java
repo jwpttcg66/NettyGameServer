@@ -34,7 +34,7 @@ public class OnlineHeartMessage extends AbstractNetProtoBufTcpMessage {
         OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder builder = OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder();
         builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
-        getNetProtoBufMessageBody().setBytes(bytes);
+        getNetMessageBody().setBytes(bytes);
     }
 
     public int getId() {

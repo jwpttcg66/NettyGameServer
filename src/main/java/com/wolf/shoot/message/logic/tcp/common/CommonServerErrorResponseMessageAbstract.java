@@ -46,7 +46,7 @@ public class CommonServerErrorResponseMessageAbstract extends AbstractNetProtoBu
         builder.setCmd(cmd);
         builder.setCode(state);
         byte[] bytes = builder.build().toByteArray();
-        getNetProtoBufMessageBody().setBytes(bytes);
+        getNetMessageBody().setBytes(bytes);
     }
 
     public int getState() {

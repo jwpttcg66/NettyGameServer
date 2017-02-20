@@ -10,22 +10,22 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
 
-    private NetProtoBufMessageBody netProtoBufMessageBody;
+//    private NetProtoBufMessageBody netProtoBufMessageBody;
 
 //    private long sessionId;
 
     public AbstractNetProtoBufMessage(){
         setNetMessageHead(new NetMessageHead());
-        this.netProtoBufMessageBody = new NetProtoBufMessageBody();
+        setNetMessageBody(new NetMessageBody());
     }
 
-    public NetProtoBufMessageBody getNetProtoBufMessageBody() {
-        return netProtoBufMessageBody;
-    }
-
-    public void setNetProtoBufMessageBody(NetProtoBufMessageBody netProtoBufMessageBody) {
-        this.netProtoBufMessageBody = netProtoBufMessageBody;
-    }
+//    public NetProtoBufMessageBody getNetProtoBufMessageBody() {
+//        return netProtoBufMessageBody;
+//    }
+//
+//    public void setNetProtoBufMessageBody(NetProtoBufMessageBody netProtoBufMessageBody) {
+//        this.netProtoBufMessageBody = netProtoBufMessageBody;
+//    }
 
     //此方法需要
     public abstract void decoderNetProtoBufMessageBody() throws CodecException, Exception;
@@ -51,11 +51,4 @@ public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).replaceAll("\n", "");
     }
 
-//    public long getSessionId() {
-//        return sessionId;
-//    }
-//
-//    public void setSessionId(long sessionId) {
-//        this.sessionId = sessionId;
-//    }
 }

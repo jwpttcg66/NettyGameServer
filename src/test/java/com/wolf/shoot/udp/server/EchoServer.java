@@ -23,7 +23,7 @@ public class EchoServer {
         b.group(group)
                 .channel(NioDatagramChannel.class)
                 .option(ChannelOption.SO_BROADCAST, false)
-                .option(ChannelOption.DATAGRAM_CHANNEL_ACTIVE_ON_REGISTRATION,true)
+//                .option(ChannelOption.DATAGRAM_CHANNEL_ACTIVE_ON_REGISTRATION,true)
                 .option(ChannelOption.SO_REUSEADDR, true) //重用地址
                 .option(ChannelOption.SO_RCVBUF, 65536)
                 .option(ChannelOption.SO_SNDBUF, 65536)

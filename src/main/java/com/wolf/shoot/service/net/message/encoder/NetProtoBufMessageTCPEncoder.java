@@ -16,11 +16,11 @@ public class NetProtoBufMessageTCPEncoder extends MessageToMessageEncoder<Abstra
 
     private final Charset charset;
 
-    private INetProtoBufMessageEncoderFactory iNetMessageEncoderFactory;
+    private INetProtoBufTcpMessageEncoderFactory iNetMessageEncoderFactory;
 
     public NetProtoBufMessageTCPEncoder() {
         this(CharsetUtil.UTF_8);
-        this.iNetMessageEncoderFactory = new NetProtoBufMessageEncoderFactory();
+        this.iNetMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();
     }
 
     public NetProtoBufMessageTCPEncoder(Charset charset) {

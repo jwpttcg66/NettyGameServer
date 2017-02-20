@@ -14,4 +14,10 @@ public abstract class AbstractNetProtoBufTcpMessage extends AbstractNetProtoBufM
     public void setSessionId(long sessionId) {
         this.sessionId = sessionId;
     }
+
+    public AbstractNetProtoBufTcpMessage(){
+        super();
+        setNetMessageBody(new NetProtoBufMessageBody());
+    }
+
 }

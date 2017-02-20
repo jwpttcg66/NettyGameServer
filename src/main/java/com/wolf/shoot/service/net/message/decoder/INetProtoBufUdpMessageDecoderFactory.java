@@ -5,8 +5,8 @@ import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import io.netty.buffer.ByteBuf;
 
 /**
- * Created by jiangwenping on 17/2/3.
+ * Created by jiangwenping on 17/2/20.
  */
-public interface INetProtoBufMessageDecoderFactory {
-    public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException;
+public interface INetProtoBufUdpMessageDecoderFactory {
+    public  AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException;
 }
