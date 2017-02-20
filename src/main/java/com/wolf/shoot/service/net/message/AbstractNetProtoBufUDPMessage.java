@@ -16,10 +16,6 @@ public abstract class AbstractNetProtoBufUdpMessage extends AbstractNetProtoBufM
      */
     private InetSocketAddress receive;
 
-//    /**
-//     * 协议头
-//     */
-//    private NetUdpMessageHead netUdpMessageHead;
 
     public InetSocketAddress getSend() {
         return send;
@@ -43,11 +39,13 @@ public abstract class AbstractNetProtoBufUdpMessage extends AbstractNetProtoBufM
         setNetMessageBody(new NetProtoBufMessageBody());
     }
 
-//    public NetUdpMessageHead getNetUdpMessageHead() {
-//        return netUdpMessageHead;
-//    }
-//
-//    public void setNetUdpMessageHead(NetUdpMessageHead netUdpMessageHead) {
-//        this.netUdpMessageHead = netUdpMessageHead;
-//    }
+    public void setPlayerId(long playerId) {
+        NetUdpMessageHead netUdpMessageHead = (NetUdpMessageHead) getNetMessageHead();
+        netUdpMessageHead.setPlayerId(playerId);
+    }
+
+    public void setTocken(int tocken){
+        NetUdpMessageHead netUdpMessageHead = (NetUdpMessageHead) getNetMessageHead();
+        netUdpMessageHead.setTocken(tocken);
+    }
 }
