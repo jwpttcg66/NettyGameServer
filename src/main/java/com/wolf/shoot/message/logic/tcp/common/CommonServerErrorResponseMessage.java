@@ -10,7 +10,7 @@ import com.wolf.shoot.message.auto.common.CommonMessageProBuf;
  * Created by jwp on 2017/2/10.
  */
 @MessageCommandAnnotation(command = MessageCommands.COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE)
-public class CommonServerErrorResponseMessageAbstract extends AbstractNetProtoBufTcpMessage {
+public class CommonServerErrorResponseMessage extends AbstractNetProtoBufTcpMessage {
 
     /**
      * 状态码
