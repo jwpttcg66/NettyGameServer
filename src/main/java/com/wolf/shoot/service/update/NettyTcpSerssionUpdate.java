@@ -2,7 +2,7 @@ package com.wolf.shoot.service.update;
 
 import com.snowcattle.game.excutor.update.AbstractUpdate;
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.net.session.NettyTcpSession;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 17/2/14.

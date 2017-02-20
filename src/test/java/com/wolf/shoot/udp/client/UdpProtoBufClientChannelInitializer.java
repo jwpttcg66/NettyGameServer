@@ -4,10 +4,8 @@ package com.wolf.shoot.udp.client;
  * Created by jiangwenping on 17/2/16.
  */
 
-import com.wolf.shoot.net.message.decoder.NetMessageTCPDecoder;
-import com.wolf.shoot.net.message.decoder.NetProtoBufMessageUDPDecoder;
-import com.wolf.shoot.net.message.encoder.NetMessageTcpEncoder;
-import com.wolf.shoot.net.message.encoder.NetProtoBufMessageUDPEncoder;
+import com.wolf.shoot.service.net.message.decoder.NetProtoBufMessageUDPDecoder;
+import com.wolf.shoot.service.net.message.encoder.NetProtoBufMessageUDPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioDatagramChannel;

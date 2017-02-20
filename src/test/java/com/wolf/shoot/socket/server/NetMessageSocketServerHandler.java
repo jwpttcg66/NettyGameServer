@@ -1,6 +1,6 @@
 package com.wolf.shoot.socket.server;
 
-import com.wolf.shoot.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;

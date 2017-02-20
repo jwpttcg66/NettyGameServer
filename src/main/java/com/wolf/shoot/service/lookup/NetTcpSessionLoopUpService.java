@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.lookup;
 
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.net.session.NettySession;
+import com.wolf.shoot.service.net.session.NettySession;
 import org.slf4j.Logger;
 
 import java.util.concurrent.ConcurrentHashMap;
