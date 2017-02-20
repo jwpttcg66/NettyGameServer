@@ -10,22 +10,10 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
 
-//    private NetProtoBufMessageBody netProtoBufMessageBody;
-
-//    private long sessionId;
-
     public AbstractNetProtoBufMessage(){
         setNetMessageHead(new NetMessageHead());
         setNetMessageBody(new NetMessageBody());
     }
-
-//    public NetProtoBufMessageBody getNetProtoBufMessageBody() {
-//        return netProtoBufMessageBody;
-//    }
-//
-//    public void setNetProtoBufMessageBody(NetProtoBufMessageBody netProtoBufMessageBody) {
-//        this.netProtoBufMessageBody = netProtoBufMessageBody;
-//    }
 
     //此方法需要
     public abstract void decoderNetProtoBufMessageBody() throws CodecException, Exception;

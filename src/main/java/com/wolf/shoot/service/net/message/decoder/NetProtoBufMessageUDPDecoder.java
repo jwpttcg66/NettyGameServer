@@ -16,11 +16,11 @@ public class NetProtoBufMessageUDPDecoder extends MessageToMessageDecoder<Datagr
 
     private final Charset charset;
 
-    private INetProtoBufTcpMessageDecoderFactory iNetMessageDecoderFactory;
+    private INetProtoBufUdpMessageDecoderFactory iNetMessageDecoderFactory;
 
     public NetProtoBufMessageUDPDecoder() {
         this(CharsetUtil.UTF_8);
-        this.iNetMessageDecoderFactory = new NetProtoBufTcpMessageDecoderFactory();
+        this.iNetMessageDecoderFactory = new NetProtoBufUdpMessageDecoderFactory();
     }
 
     @Override

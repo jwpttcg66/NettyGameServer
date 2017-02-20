@@ -58,6 +58,10 @@ public class GameNettyUdpClient {
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         OnlineHeartUDPMessage onlineHeartUDPMessage = new OnlineHeartUDPMessage();
         onlineHeartUDPMessage.setId(Short.MAX_VALUE);
+        long playerId = 2222L;
+        int tocken = 333;
+        onlineHeartUDPMessage.setPlayerId(1);
+        onlineHeartUDPMessage.setTocken(tocken);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
         onlineHeartUDPMessage.setReceive(inetSocketAddress);
         udpChannel.writeAndFlush(onlineHeartUDPMessage).sync();
