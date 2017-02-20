@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
  * Created by jwp on 2017/2/16.
  * 抽象的udp消息
  */
-public abstract class AbstractNetProtoBufUdp2Message extends AbstractNetProtoBufMessage {
+public abstract class AbstractNetProtoBufUdpMessage extends AbstractNetProtoBufMessage {
     /**
      * 发送方
      */
@@ -33,7 +33,7 @@ public abstract class AbstractNetProtoBufUdp2Message extends AbstractNetProtoBuf
         this.receive = receive;
     }
 
-    public AbstractNetProtoBufUdp2Message(){
+    public AbstractNetProtoBufUdpMessage(){
         super();
         setNetMessageHead(new NetUdpMessageHead());
         setNetMessageBody(new NetProtoBufMessageBody());
