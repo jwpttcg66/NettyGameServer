@@ -25,7 +25,7 @@ public class MessageCommand
      */
     private final boolean is_common;
 
-    MessageCommand(int commandId, int boId, boolean is_need_filter, boolean is_common) {
+    public MessageCommand(int commandId, int boId, boolean is_need_filter, boolean is_common) {
         this.command_id = commandId;
         this.bo_id = boId;
         this.is_need_filter = is_need_filter;

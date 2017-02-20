@@ -5,7 +5,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
-import com.wolf.shoot.service.net.message.MessageCommands;
+import com.wolf.shoot.service.net.message.command.MessageCommand;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -20,9 +20,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
     public void dispatchAction(Channel channel, AbstractNetMessage abstractNetMessage) {
         short commandId = abstractNetMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
-        MessageCommands messageCommands = messageRegistry.getMessageCommand(commandId);
+        MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommands.toString());
+            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommand.toString());
         }
 
 //        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
@@ -54,7 +54,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         int serial = abstractNetMessage.getSerial();
         long playerId = message.getPlayerId();
         int tocken = message.getTocken();
-        if (messageCommands.isIs_need_filter()) {
+        if (messageCommand.is_need_filter()) {
 //            PlatformType platformType = nettySession.getPlatformType();
 //            if(platformType == null){
 //                AbstractGameMessage response = GameUtils.errorCallMessage(message.getCommandId(), serial, MessageErrorEnum.COMMON_MESSAGE_PLATFROM_NO_EXIST);

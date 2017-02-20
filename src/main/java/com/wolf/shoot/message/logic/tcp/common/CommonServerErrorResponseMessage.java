@@ -2,14 +2,14 @@ package com.wolf.shoot.message.logic.tcp.common;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.common.exception.CodecException;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufTcpMessage;
-import com.wolf.shoot.service.net.message.MessageCommands;
 import com.wolf.shoot.message.auto.common.CommonMessageProBuf;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufTcpMessage;
+import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
 
 /**
  * Created by jwp on 2017/2/10.
  */
-@MessageCommandAnnotation(command = MessageCommands.COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE)
+@MessageCommandAnnotation(command = MessageCommandIndex.COMMON_ERROP_RESPONSE_WITH_COMMAND_MESSAGE)
 public class CommonServerErrorResponseMessage extends AbstractNetProtoBufTcpMessage {
 
     /**

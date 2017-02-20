@@ -6,10 +6,11 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.ClassScanner;
-import com.wolf.shoot.service.net.message.MessageCommands;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.service.net.message.command.MessageCommand;
+import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class MessageRegistry implements Reloadable, IService{
 
     public ClassScanner messageScanner = new ClassScanner();
 
-    private ConcurrentHashMap<Short, MessageCommands> messageCommandMap = new ConcurrentHashMap<Short, MessageCommands>();
+    private ConcurrentHashMap<Short, MessageCommand> messageCommandMap = new ConcurrentHashMap<Short, MessageCommand>();
 
     private Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
 
@@ -72,23 +73,24 @@ public class MessageRegistry implements Reloadable, IService{
 
                 MessageCommandAnnotation annotation = (MessageCommandAnnotation) messageClass
                         .getAnnotation(MessageCommandAnnotation.class);
-                if (annotation != null && annotation.command() != null) {
-                    putMessageCommands(annotation.command().command_id, messageClass);
+                if (annotation != null) {
+                    putMessageCommands(annotation.command(), messageClass);
                 }
             }
         }
     }
 
     public final void loadMessageCommand(){
-        MessageCommands[] set = MessageCommands.values();
+        MessageCommandEnum[] set = MessageCommandEnum.values();
         for(int i = 0; i< set.length; i++){
-            MessageCommands messageCommands = set[i];
-            messageCommandMap.put((short) messageCommands.command_id, messageCommands);
-            logger.info("messageCommands load:" + messageCommands);
+            MessageCommandEnum messageCommandEnum = set[i];
+            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_common, messageCommandEnum.is_need_filter);
+            messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
+            logger.info("messageCommands load:" + messageCommandEnum);
         }
     }
 
-    public MessageCommands getMessageCommand(short commandId){
+    public MessageCommand getMessageCommand(short commandId){
         return messageCommandMap.get(commandId);
     }
 

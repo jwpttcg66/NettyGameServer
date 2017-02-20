@@ -3,15 +3,15 @@ package com.wolf.shoot.service.net.pipeline;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.net.message.MessageCommands;
-import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
+import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.service.net.message.command.MessageCommand;
+import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 
@@ -26,9 +26,9 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
     public void dispatchAction(Channel channel, AbstractNetMessage abstractNetMessage) {
         short commandId = abstractNetMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
-        MessageCommands messageCommands = messageRegistry.getMessageCommand(commandId);
+        MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommands.toString());
+            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommand.toString());
         }
 
         AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
@@ -44,7 +44,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-        if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
+        if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
             if (nettySession.getPlayerId() != 0) {
                 logger.debug("discard tcp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
             } else {
@@ -58,7 +58,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
             logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read tcp message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
         }
 
-        if (messageCommands.isIs_need_filter()) {
+        if (messageCommand.is_need_filter()) {
             int serial = abstractNetMessage.getSerial();
             long playerId = nettySession.getPlayerId();
 //            PlatformType platformType = nettySession.getPlatformType();

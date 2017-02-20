@@ -108,8 +108,8 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
                     if (method.isAnnotationPresent(MessageCommandAnnotation.class)) {
                         MessageCommandAnnotation messageCommandAnnotation = (MessageCommandAnnotation) method
                                 .getAnnotation(MessageCommandAnnotation.class);
-                        if (messageCommandAnnotation != null && messageCommandAnnotation.command() != null) {
-                            addHandler(messageCommandAnnotation.command().command_id, iMessageHandler);
+                        if (messageCommandAnnotation != null) {
+                            addHandler(messageCommandAnnotation.command(), iMessageHandler);
                         }
                     }
                 }

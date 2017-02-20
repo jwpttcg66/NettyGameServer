@@ -42,7 +42,7 @@ public abstract class AbstractMessageHandler implements IMessageHandler {
             if (method.isAnnotationPresent(MessageCommandAnnotation.class)) {
                 MessageCommandAnnotation messageCommandAnnotation = method.getAnnotation(MessageCommandAnnotation.class);
                 if (messageCommandAnnotation != null) {
-                    handlerMethods.put(messageCommandAnnotation.command().command_id, method);
+                    handlerMethods.put(messageCommandAnnotation.command(), method);
                 }
             }
         }
