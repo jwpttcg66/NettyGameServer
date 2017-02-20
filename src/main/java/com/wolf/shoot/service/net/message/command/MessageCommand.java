@@ -3,7 +3,7 @@ package com.wolf.shoot.service.net.message.command;
 /**
  * Created by jwp on 2017/2/4.
  */
-public class MessageCommands
+public class MessageCommand
 {
     /**
      * 协议号
@@ -25,7 +25,7 @@ public class MessageCommands
      */
     private final boolean is_common;
 
-    MessageCommands(int commandId, int boId, boolean is_need_filter, boolean is_common) {
+    MessageCommand(int commandId, int boId, boolean is_need_filter, boolean is_common) {
         this.command_id = commandId;
         this.bo_id = boId;
         this.is_need_filter = is_need_filter;
