@@ -15,8 +15,13 @@ public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
         setNetMessageBody(new NetMessageBody());
     }
 
-    //此方法需要
+    /*解析protobuf协议*/
     public abstract void decoderNetProtoBufMessageBody() throws CodecException, Exception;
+
+    /*释放message的body*/
+    public  void releaseMessageBody() throws CodecException, Exception{
+        getNetMessageBody().setBytes(null);
+    }
 
     public abstract void release() throws CodecException;
 

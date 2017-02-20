@@ -42,6 +42,7 @@ public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessa
         netMessage.setNetMessageBody(netMessageBody);
         try {
             netMessage.decoderNetProtoBufMessageBody();
+            netMessage.releaseMessageBody();
         }catch (Exception e){
             throw new CodecException("message cmd " + cmd + "decoder error", e);
         }
