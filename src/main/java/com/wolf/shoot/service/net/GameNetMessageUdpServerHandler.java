@@ -16,10 +16,10 @@ public class GameNetMessageUdpServerHandler extends SimpleChannelInboundHandler<
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractNetProtoBufUdpMessage netMessage) throws Exception {
 //        System.out.println(netMessage);
-//        if(netMessage instanceof OnlineHeartClientUDPMessage){
-//            OnlineHeartClientUDPMessage onlineHeartUDPMessage = new OnlineHeartClientUDPMessage();
+//        if(netMessage instanceof OnlineHeartClientUdpMessage){
+//            OnlineHeartClientUdpMessage onlineHeartUDPMessage = new OnlineHeartClientUdpMessage();
 //            onlineHeartUDPMessage.setId(Short.MAX_VALUE);
-//            onlineHeartUDPMessage.setReceive(((OnlineHeartClientUDPMessage) netMessage).getSend());
+//            onlineHeartUDPMessage.setReceive(((OnlineHeartClientUdpMessage) netMessage).getSend());
 //            channelHandlerContext.writeAndFlush(onlineHeartUDPMessage).sync();
 //        }
         //获取管道

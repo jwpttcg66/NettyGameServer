@@ -19,13 +19,22 @@ public final class OnlineTCPServerProBuf {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>required int64 playerId = 1;</code>
      */
-    boolean hasId();
+    boolean hasPlayerId();
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>required int64 playerId = 1;</code>
      */
-    int getId();
+    long getPlayerId();
+
+    /**
+     * <code>required int32 tocken = 2;</code>
+     */
+    boolean hasTocken();
+    /**
+     * <code>required int32 tocken = 2;</code>
+     */
+    int getTocken();
   }
   /**
    * Protobuf type {@code OnlineHeartTCPServerProBuf}
@@ -39,7 +48,8 @@ public final class OnlineTCPServerProBuf {
       super(builder);
     }
     private OnlineHeartTCPServerProBuf() {
-      id_ = 0;
+      playerId_ = 0L;
+      tocken_ = 0;
     }
 
     @java.lang.Override
@@ -72,7 +82,12 @@ public final class OnlineTCPServerProBuf {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              id_ = input.readInt32();
+              playerId_ = input.readInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              tocken_ = input.readInt32();
               break;
             }
           }
@@ -100,19 +115,34 @@ public final class OnlineTCPServerProBuf {
     }
 
     private int bitField0_;
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
+    public static final int PLAYERID_FIELD_NUMBER = 1;
+    private long playerId_;
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>required int64 playerId = 1;</code>
      */
-    public boolean hasId() {
+    public boolean hasPlayerId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 id = 1;</code>
+     * <code>required int64 playerId = 1;</code>
      */
-    public int getId() {
-      return id_;
+    public long getPlayerId() {
+      return playerId_;
+    }
+
+    public static final int TOCKEN_FIELD_NUMBER = 2;
+    private int tocken_;
+    /**
+     * <code>required int32 tocken = 2;</code>
+     */
+    public boolean hasTocken() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required int32 tocken = 2;</code>
+     */
+    public int getTocken() {
+      return tocken_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -121,7 +151,11 @@ public final class OnlineTCPServerProBuf {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasId()) {
+      if (!hasPlayerId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasTocken()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -132,7 +166,10 @@ public final class OnlineTCPServerProBuf {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, id_);
+        output.writeInt64(1, playerId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, tocken_);
       }
       unknownFields.writeTo(output);
     }
@@ -144,7 +181,11 @@ public final class OnlineTCPServerProBuf {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeInt64Size(1, playerId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, tocken_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -163,10 +204,15 @@ public final class OnlineTCPServerProBuf {
       com.wolf.shoot.message.auto.tcp.online.server.OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf other = (com.wolf.shoot.message.auto.tcp.online.server.OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf) obj;
 
       boolean result = true;
-      result = result && (hasId() == other.hasId());
-      if (hasId()) {
-        result = result && (getId()
-            == other.getId());
+      result = result && (hasPlayerId() == other.hasPlayerId());
+      if (hasPlayerId()) {
+        result = result && (getPlayerId()
+            == other.getPlayerId());
+      }
+      result = result && (hasTocken() == other.hasTocken());
+      if (hasTocken()) {
+        result = result && (getTocken()
+            == other.getTocken());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -179,9 +225,14 @@ public final class OnlineTCPServerProBuf {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasId()) {
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + getId();
+      if (hasPlayerId()) {
+        hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getPlayerId());
+      }
+      if (hasTocken()) {
+        hash = (37 * hash) + TOCKEN_FIELD_NUMBER;
+        hash = (53 * hash) + getTocken();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -301,8 +352,10 @@ public final class OnlineTCPServerProBuf {
       }
       public Builder clear() {
         super.clear();
-        id_ = 0;
+        playerId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
+        tocken_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -330,7 +383,11 @@ public final class OnlineTCPServerProBuf {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.playerId_ = playerId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.tocken_ = tocken_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -373,8 +430,11 @@ public final class OnlineTCPServerProBuf {
 
       public Builder mergeFrom(com.wolf.shoot.message.auto.tcp.online.server.OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf other) {
         if (other == com.wolf.shoot.message.auto.tcp.online.server.OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+        if (other.hasPlayerId()) {
+          setPlayerId(other.getPlayerId());
+        }
+        if (other.hasTocken()) {
+          setTocken(other.getTocken());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -382,7 +442,10 @@ public final class OnlineTCPServerProBuf {
       }
 
       public final boolean isInitialized() {
-        if (!hasId()) {
+        if (!hasPlayerId()) {
+          return false;
+        }
+        if (!hasTocken()) {
           return false;
         }
         return true;
@@ -407,34 +470,66 @@ public final class OnlineTCPServerProBuf {
       }
       private int bitField0_;
 
-      private int id_ ;
+      private long playerId_ ;
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>required int64 playerId = 1;</code>
        */
-      public boolean hasId() {
+      public boolean hasPlayerId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>required int64 playerId = 1;</code>
        */
-      public int getId() {
-        return id_;
+      public long getPlayerId() {
+        return playerId_;
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>required int64 playerId = 1;</code>
        */
-      public Builder setId(int value) {
+      public Builder setPlayerId(long value) {
         bitField0_ |= 0x00000001;
-        id_ = value;
+        playerId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>required int64 playerId = 1;</code>
        */
-      public Builder clearId() {
+      public Builder clearPlayerId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = 0;
+        playerId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int tocken_ ;
+      /**
+       * <code>required int32 tocken = 2;</code>
+       */
+      public boolean hasTocken() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required int32 tocken = 2;</code>
+       */
+      public int getTocken() {
+        return tocken_;
+      }
+      /**
+       * <code>required int32 tocken = 2;</code>
+       */
+      public Builder setTocken(int value) {
+        bitField0_ |= 0x00000002;
+        tocken_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 tocken = 2;</code>
+       */
+      public Builder clearTocken() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        tocken_ = 0;
         onChanged();
         return this;
       }
@@ -501,10 +596,10 @@ public final class OnlineTCPServerProBuf {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026tcponline-server.proto\"(\n\032OnlineHeartT" +
-      "CPServerProBuf\022\n\n\002id\030\001 \002(\005BF\n-com.wolf.s" +
-      "hoot.message.auto.tcp.online.serverB\025Onl" +
-      "ineTCPServerProBuf"
+      "\n\026tcponline-server.proto\">\n\032OnlineHeartT" +
+      "CPServerProBuf\022\020\n\010playerId\030\001 \002(\003\022\016\n\006tock" +
+      "en\030\002 \002(\005BF\n-com.wolf.shoot.message.auto." +
+      "tcp.online.serverB\025OnlineTCPServerProBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -523,7 +618,7 @@ public final class OnlineTCPServerProBuf {
     internal_static_OnlineHeartTCPServerProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OnlineHeartTCPServerProBuf_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "PlayerId", "Tocken", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

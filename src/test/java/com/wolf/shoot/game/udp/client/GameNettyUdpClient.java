@@ -1,7 +1,7 @@
 package com.wolf.shoot.game.udp.client;
 
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUdpMessage;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.udp.client.UdpProtoBufClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
@@ -56,15 +56,15 @@ public class GameNettyUdpClient {
     }
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
-        OnlineHeartClientUDPMessage onlineHeartClientUDPMessage = new OnlineHeartClientUDPMessage();
-        onlineHeartClientUDPMessage.setId(Short.MAX_VALUE);
+        OnlineHeartClientUdpMessage onlineHeartClientUdpMessage = new OnlineHeartClientUdpMessage();
+        onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
         long playerId = 2222L;
         int tocken = 333;
-        onlineHeartClientUDPMessage.setPlayerId(1);
-        onlineHeartClientUDPMessage.setTocken(tocken);
+        onlineHeartClientUdpMessage.setPlayerId(1);
+        onlineHeartClientUdpMessage.setTocken(tocken);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
-        onlineHeartClientUDPMessage.setReceive(inetSocketAddress);
-        udpChannel.writeAndFlush(onlineHeartClientUDPMessage).sync();
+        onlineHeartClientUdpMessage.setReceive(inetSocketAddress);
+        udpChannel.writeAndFlush(onlineHeartClientUdpMessage).sync();
     }
 }
 

@@ -3,7 +3,8 @@ option java_outer_classname = "OnlineTCPServerProBuf";
 
 message OnlineHeartTCPServerProBuf
 {
-    required int32 id = 1;
+    required int64 playerId = 1;
+    required int32 tocken = 2;
 }
 
 
