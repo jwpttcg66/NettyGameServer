@@ -1,7 +1,7 @@
-package com.wolf.shoot.message.logic.tcp.online;
+package com.wolf.shoot.message.logic.tcp.online.client;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
-import com.wolf.shoot.message.auto.tcp.online.OnlineTCPProBuf;
+import com.wolf.shoot.message.auto.tcp.online.client.OnlineTCPClientProBuf;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufTcpMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
 
@@ -9,18 +9,18 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
  * Created by jiangwenping on 17/2/8.
  */
 @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_MESSAGE)
-public class OnlineHeartMessage extends AbstractNetProtoBufTcpMessage {
+public class OnlineHeartClientMessage extends AbstractNetProtoBufTcpMessage {
 
     private int id;
 
-    public OnlineHeartMessage(){
+    public OnlineHeartClientMessage(){
         setCmd(MessageCommandIndex.ONLINE_HEART_MESSAGE);
     }
 
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
-        OnlineTCPProBuf.OnlineHeartTCPProBuf req = OnlineTCPProBuf.OnlineHeartTCPProBuf.parseFrom(bytes);
+        OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf req = OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.parseFrom(bytes);
         setId(req.getId());
     }
 
@@ -31,7 +31,7 @@ public class OnlineHeartMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
     public void encodeNetProtoBufMessageBody() throws Exception {
-        OnlineTCPProBuf.OnlineHeartTCPProBuf.Builder builder = OnlineTCPProBuf.OnlineHeartTCPProBuf.newBuilder();
+        OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.Builder builder = OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.newBuilder();
         builder.setId(getId());
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);

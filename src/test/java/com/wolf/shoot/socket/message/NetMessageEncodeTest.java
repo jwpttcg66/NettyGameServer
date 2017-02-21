@@ -5,7 +5,7 @@ import com.wolf.shoot.service.net.message.NetMessageBody;
 import com.wolf.shoot.service.net.message.NetMessageHead;
 import com.wolf.shoot.service.net.message.decoder.NetTcpMessageDecoderFactory;
 import com.wolf.shoot.service.net.message.encoder.NetMessageEncoderFactory;
-import com.wolf.shoot.message.logic.tcp.online.OnlineHeartMessage;
+import com.wolf.shoot.message.logic.tcp.online.client.OnlineHeartClientMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
 
@@ -15,7 +15,7 @@ import io.netty.util.CharsetUtil;
 public class NetMessageEncodeTest {
 
     public static void main(String[] args) throws Exception{
-        AbstractNetMessage abstractNetMessage = new OnlineHeartMessage();
+        AbstractNetMessage abstractNetMessage = new OnlineHeartClientMessage();
         NetMessageHead netMessageHead = new NetMessageHead();
         netMessageHead.setSerial(5);
         netMessageHead.setCmd((short) 2);
