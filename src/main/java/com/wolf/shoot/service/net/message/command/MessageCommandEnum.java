@@ -11,6 +11,8 @@ public enum MessageCommandEnum {
     COMMON_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOConst.BO_WORLD, false, true),
     COMMON_ERROR_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOConst.BO_WORLD, false, true),
     ONLINE_HEART_UDP_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE, BOConst.BO_WORLD,false, false),
+    ONLINE_LOGIN_TCP_CLIENT_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE, BOConst.BO_WORLD,false, false),
+    ONLINE_LOGIN_TCP_SERVER_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE, BOConst.BO_WORLD,false, false),
     ;
     /**
      * 协议号

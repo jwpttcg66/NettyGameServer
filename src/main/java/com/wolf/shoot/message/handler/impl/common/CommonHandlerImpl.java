@@ -1,4 +1,4 @@
-package com.wolf.shoot.message.handler.impl;
+package com.wolf.shoot.message.handler.impl.common;
 
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.message.handler.auto.common.CommonHandler;
@@ -10,7 +10,7 @@ import com.wolf.shoot.service.net.message.factory.MessageFactory;
 /**
  * Created by jiangwenping on 17/2/15.
  */
-public class CommonHandleImpl extends CommonHandler{
+public class CommonHandlerImpl extends CommonHandler{
     @Override
     public AbstractNetMessage handleOnlineHeartMessageImpl(OnlineHeartClientTcpMessage message) throws Exception {
         MessageFactory messageFactory = (MessageFactory) LocalMananger.getInstance().get(IMessageFactory.class);
