@@ -4,22 +4,27 @@ import com.snowcattle.game.excutor.event.CycleEvent;
 import com.snowcattle.game.excutor.event.EventParam;
 import com.snowcattle.game.excutor.service.UpdateService;
 import com.snowcattle.game.excutor.utils.Constants;
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
-import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
+import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.update.NettyTcpSerssionUpdate;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
+import org.slf4j.Logger;
 
 /**
  * Created by jiangwenping on 17/2/7.
  */
 public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
+
+    public static Logger logger = Loggers.sessionLogger;
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
@@ -45,7 +50,6 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         //获取管道
         IServerPipeLine iServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeLine.class);
         iServerPipeLine.dispatchAction(ctx.channel(), netMessage);
-
     }
 
 
@@ -57,7 +61,11 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         // Close the connection when an exception is raised.
-        cause.printStackTrace();
+        if (cause instanceof java.io.IOException)
+            return;
+        if(logger.isDebugEnabled()) {
+            logger.debug("channel exceptionCaught", cause);
+        }
         ctx.close();
     }
 
@@ -66,7 +74,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         super.userEventTriggered(ctx, var);
         if(var instanceof IdleStateEvent){
             //说明是空闲事件
-            ctx.close();
+            disconnect(ctx.channel());
         }
     }
 
@@ -76,9 +84,24 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(ctx.channel().id().asLongText());
         netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
 
-        //终止update
+        //加入到updateservice 终止线程循环
+        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+        NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);;
+        EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
+        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyFinishEventType, nettyTcpSerssionUpdate.getId(), param);
+        updateService.addReadyCreateEvent(cycleEvent);
 
         ctx.fireChannelUnregistered();
+    }
+
+    private void disconnect(Channel channel){
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
+        if (nettySession == null) {
+            logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+        }
+
+        nettySession.close();
     }
 
 }

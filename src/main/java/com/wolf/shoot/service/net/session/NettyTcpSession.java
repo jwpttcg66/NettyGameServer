@@ -70,4 +70,19 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
     public long getSessionId() {
         return sessionId;
     }
+
+    public TcpNetStateUpdate getTcpNetStateUpdate() {
+        return tcpNetStateUpdate;
+    }
+
+    public void setTcpNetStateUpdate(TcpNetStateUpdate tcpNetStateUpdate) {
+        this.tcpNetStateUpdate = tcpNetStateUpdate;
+    }
+
+    public void close(){
+        //设置网络状态
+        this.tcpNetStateUpdate.setDisconnecting();
+        //关闭通道
+        channel.close();
+    }
 }
