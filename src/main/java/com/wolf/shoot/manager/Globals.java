@@ -108,10 +108,6 @@ public class Globals {
         eventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
         eventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
         eventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
-
-        updateEventBus.addEventListener(new ReadyCreateEventListener());
-        updateEventBus.addEventListener(new ReadyFinishEventListener());
-
         LocalMananger.getInstance().add(updateService, UpdateService.class);
     }
 
