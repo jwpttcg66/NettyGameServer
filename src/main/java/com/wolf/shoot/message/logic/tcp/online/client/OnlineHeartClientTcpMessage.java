@@ -8,13 +8,13 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
 /**
  * Created by jiangwenping on 17/2/8.
  */
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_MESSAGE)
-public class OnlineHeartClientMessage extends AbstractNetProtoBufTcpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE)
+public class OnlineHeartClientTcpMessage extends AbstractNetProtoBufTcpMessage {
 
     private int id;
 
-    public OnlineHeartClientMessage(){
-        setCmd(MessageCommandIndex.ONLINE_HEART_MESSAGE);
+    public OnlineHeartClientTcpMessage(){
+        setCmd(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE);
     }
 
     @Override

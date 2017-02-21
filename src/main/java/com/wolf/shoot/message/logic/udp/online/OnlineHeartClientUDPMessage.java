@@ -8,13 +8,13 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
 /**
  * Created by jwp on 2017/2/16.
  */
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_UDP_MESSAGE)
-public class OnlineHeartUDPMessage extends AbstractNetProtoBufUdpMessage {
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE)
+public class OnlineHeartClientUDPMessage extends AbstractNetProtoBufUdpMessage {
 
     private int id;
 
-    public OnlineHeartUDPMessage(){
-        setCmd(MessageCommandIndex.ONLINE_HEART_UDP_MESSAGE);
+    public OnlineHeartClientUDPMessage(){
+        setCmd(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE);
     }
 
     @Override
