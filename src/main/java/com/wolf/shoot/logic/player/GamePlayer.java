@@ -1,19 +1,25 @@
 package com.wolf.shoot.logic.player;
 
+import com.wolf.shoot.service.lookup.ILongId;
 import com.wolf.shoot.service.net.session.NettySession;
 
 /**
  * Created by jiangwenping on 17/2/20.
  *
  */
-public class GameShootPlayer implements   IShootPlayer{
+public class GamePlayer implements  IPlayer, ILongId{
 
     private NettySession nettyTcpSession;
-    private NettySession nettyUdpSession;
     //玩家id
     private long playerId;
     //玩家的udptocken
     private int udpTocken;
+
+    public GamePlayer(NettySession nettyTcpSession, long playerId, int udpTocken) {
+        this.nettyTcpSession = nettyTcpSession;
+        this.playerId = playerId;
+        this.udpTocken = udpTocken;
+    }
 
     @Override
     public long getPlayerId() {
@@ -28,11 +34,6 @@ public class GameShootPlayer implements   IShootPlayer{
     @Override
     public NettySession getNettyTcpSession() {
         return nettyTcpSession;
-    }
-
-    @Override
-    public NettySession getNettyUdpSesssion() {
-        return nettyUdpSession;
     }
 
     public void setPlayerId(long playerId) {
@@ -51,11 +52,8 @@ public class GameShootPlayer implements   IShootPlayer{
         this.nettyTcpSession = nettyTcpSession;
     }
 
-    public NettySession getNettyUdpSession() {
-        return nettyUdpSession;
-    }
-
-    public void setNettyUdpSession(NettySession nettyUdpSession) {
-        this.nettyUdpSession = nettyUdpSession;
+    @Override
+    public long id() {
+        return playerId;
     }
 }

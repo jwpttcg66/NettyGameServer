@@ -13,6 +13,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
+import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.facade.IFacade;
@@ -131,8 +132,10 @@ public class Globals {
     }
 
     public static void initLookUpService() throws Exception{
+
         //注册session查找
         LocalMananger.getInstance().create(NetTcpSessionLoopUpService.class, NetTcpSessionLoopUpService.class);
+        LocalMananger.getInstance().create(GamePlayerLoopUpService.class, GamePlayerLoopUpService.class);
     }
 
     public static void initFactory() throws Exception {
