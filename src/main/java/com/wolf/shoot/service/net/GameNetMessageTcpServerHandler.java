@@ -5,6 +5,7 @@ import com.snowcattle.game.excutor.event.EventParam;
 import com.snowcattle.game.excutor.service.UpdateService;
 import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
@@ -82,19 +83,20 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(ctx.channel().id().asLongText());
-        netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
-
-        //加入到updateservice 终止线程循环
-        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
-        NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);;
-        EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
-        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyFinishEventType, nettyTcpSerssionUpdate.getId(), param);
-        updateService.addReadyCreateEvent(cycleEvent);
-
+        if(nettyTcpSession != null) {
+            netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
+            //因为updateService会自己删除，这里不需要逻辑
+//            //加入到updateservice 终止线程循环
+//            UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+//            NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);
+//            EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
+//            CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyFinishEventType, nettyTcpSerssionUpdate.getId(), param);
+//            updateService.addReadyFinishEvent(cycleEvent);
+        }
         ctx.fireChannelUnregistered();
     }
 
-    private void disconnect(Channel channel){
+    private void disconnect(Channel channel) throws NetMessageException {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {

@@ -34,6 +34,10 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
      */
     private Queue<AbstractNetProtoBufMessage> netMessagesQueue;
     private NettySession nettySession;
+
+    /** 中断消息处理 */
+    protected boolean suspendedProcess;
+
     public NetProtoBufMessageProcess(NettySession nettySession) {
         this.netMessagesQueue = new ConcurrentLinkedDeque<AbstractNetProtoBufMessage>();
         this.nettySession = nettySession;
@@ -43,7 +47,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     public void processNetMessage() {
         int i = 0;
         AbstractNetProtoBufMessage message = null;
-        while ((message = netMessagesQueue.poll())!= null && i < GlobalConstants.Constants.session_prcoss_message_max_size) {
+        while (!isSuspendedProcess() && (message = netMessagesQueue.poll())!= null && i < GlobalConstants.Constants.session_prcoss_message_max_size) {
             i++;
             long begin = 0;
             if (logger.isInfoEnabled()) {
@@ -101,13 +105,28 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     }
 
     @Override
+    public void close() {
+        this.netMessagesQueue.clear();
+        setSuspendedProcess(true);
+    }
+
+    @Override
     public boolean update() {
         try {
+
             processNetMessage();
         } catch (Exception e) {
             Loggers.errorLogger.error(e.toString(), e);
         }
 
         return false;
+    }
+
+    public boolean isSuspendedProcess() {
+        return suspendedProcess;
+    }
+
+    public void setSuspendedProcess(boolean suspendedProcess) {
+        this.suspendedProcess = suspendedProcess;
     }
 }

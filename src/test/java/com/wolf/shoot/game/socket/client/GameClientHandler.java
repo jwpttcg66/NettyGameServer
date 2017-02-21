@@ -29,7 +29,7 @@ public class GameClientHandler  extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ctx.write(msg);
+//        ctx.write(msg);
         System.out.println(msg);
     }
 

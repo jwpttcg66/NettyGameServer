@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.net.session;
 
 import com.wolf.shoot.common.IUpdatable;
+import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
@@ -57,7 +58,6 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     @Override
     public boolean update() {
-
         netProtoBufMessageProcess.update();
         tcpNetStateUpdate.update();
         return false;
@@ -79,10 +79,10 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
         this.tcpNetStateUpdate = tcpNetStateUpdate;
     }
 
-    public void close(){
+    public void close() throws NetMessageException {
         //设置网络状态
         this.tcpNetStateUpdate.setDisconnecting();
-        //关闭通道
-        channel.close();
+        this.netProtoBufMessageProcess.close();
+        this.nettyTcpNetMessageSender.close();
     }
 }

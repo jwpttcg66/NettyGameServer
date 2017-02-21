@@ -8,4 +8,5 @@ import com.wolf.shoot.service.net.message.AbstractNetMessage;
 public interface INetProtoBufMessageProcess {
     public void processNetMessage();
     public void addNetMessage(AbstractNetMessage abstractNetMessage);
+    public void close();
 }
