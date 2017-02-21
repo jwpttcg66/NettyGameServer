@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>game-excutor</artifactId>
-            <version>1.6.1</version>
+            <version>1.6.2</version>
         </dependency>
 
     </dependencies>
