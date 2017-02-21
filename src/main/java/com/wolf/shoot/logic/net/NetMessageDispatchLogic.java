@@ -16,6 +16,9 @@ import com.wolf.shoot.service.net.session.NettyTcpSession;
  */
 public class NetMessageDispatchLogic {
 
+    /** 处理的消息总数 */
+    public long statisticsMessageCount = 0;
+
     public void dispatchTcpMessage(AbstractNetMessage msg, IMessageProcessor iMessageProcessor){
         if (msg == null) {
             if (Loggers.serverStatusStatistics.isWarnEnabled()) {
@@ -28,7 +31,7 @@ public class NetMessageDispatchLogic {
         if (Loggers.serverStatusStatistics.isInfoEnabled()) {
             begin = System.nanoTime();
         }
-//        queueMessageExecutorProcessor.statisticsMessageCount++;
+        statisticsMessageCount++;
         try {
             NettyTcpSession clientSesion = (NettyTcpSession) msg.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
@@ -83,10 +86,10 @@ public class NetMessageDispatchLogic {
                 // 特例，统计时间跨度
                 long time = (System.nanoTime() - begin) / (1000 * 1000);
                 if (time > 1) {
-//                    Loggers.serverStatusStatistics.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
-//                            + msg.getCmd() + " Time:"
-//                            + time + "ms" + " Total:"
-//                            + queueMessageExecutorProcessor.statisticsMessageCount);
+                    Loggers.serverStatusStatistics.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
+                            + msg.getCmd() + " Time:"
+                            + time + "ms" + " Total:"
+                            + statisticsMessageCount);
                 }
             }
         }

@@ -4,15 +4,11 @@ import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
 import org.slf4j.Logger;
 
 import java.util.LinkedList;
@@ -21,6 +17,7 @@ import java.util.concurrent.*;
 
 /**
  * Created by jiangwenping on 17/2/20.
+ * 默认不开启worker线程
  */
 public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     public static final Logger logger = Loggers.serverStatusStatistics;
@@ -39,14 +36,14 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     /** 是否停止 */
     private volatile boolean stop = false;
 
-    /** 处理的消息总数 */
-    public long statisticsMessageCount = 0;
+//    /** 处理的消息总数 */
+//    public long statisticsMessageCount = 0;
 
     private final boolean processLeft;
 
     @SuppressWarnings("unchecked")
     public QueueTcpMessageExecutorProcessor() {
-        this(false, 1);
+        this(false, 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -94,55 +91,55 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
      */
     @SuppressWarnings("unchecked")
     public void process(AbstractNetMessage msg) {
-        if (msg == null) {
-            if (logger.isWarnEnabled()) {
-                logger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
-                        + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + "]");
-            }
-            return;
-        }
-        long begin = 0;
-        if (logger.isInfoEnabled()) {
-            begin = System.nanoTime();
-        }
-        this.statisticsMessageCount++;
-        try {
-            AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
-            NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
-            if(clientSesion != null){
-                logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
-                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
-            }else{
-
-//                NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-//                NettySession clientSesion = netTcpSessionLoopUpService.lookup(sessionId);
-//                if(clientSesion != null){
-//                    logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getCommandId());
-//                    clientSesion.addGameMessage(msg);
+//        if (msg == null) {
+//            if (logger.isWarnEnabled()) {
+//                logger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
+//                        + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + "]");
+//            }
+//            return;
+//        }
+//        long begin = 0;
+//        if (logger.isInfoEnabled()) {
+//            begin = System.nanoTime();
+//        }
+//        this.statisticsMessageCount++;
+//        try {
+//            AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
+//            NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+//            if(clientSesion != null){
+//                logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
+//                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
+//            }else{
 //
-//                }else{
-//                    logger.debug("session is closed, the message is unDispatch");
+////                NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+////                NettySession clientSesion = netTcpSessionLoopUpService.lookup(sessionId);
+////                if(clientSesion != null){
+////                    logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getCommandId());
+////                    clientSesion.addGameMessage(msg);
+////
+////                }else{
+////                    logger.debug("session is closed, the message is unDispatch");
+////                }
+//            }
+//
+//        } catch (Exception e) {
+//            if (logger.isErrorEnabled()) {
+//                logger.error(ErrorsUtil.error("Error",
+//                        "#.QueueMessageExecutorProcessor.process", "param"), e);
+//            }
+//
+//        } finally {
+//            if (logger.isInfoEnabled()) {
+//                // 特例，统计时间跨度
+//                long time = (System.nanoTime() - begin) / (1000 * 1000);
+//                if (time > 1) {
+//                    logger.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
+//                            + msg.getNetMessageHead().getCmd() + " Time:"
+//                            + time + "ms" + " Total:"
+//                            + this.statisticsMessageCount);
 //                }
-            }
-
-        } catch (Exception e) {
-            if (logger.isErrorEnabled()) {
-                logger.error(ErrorsUtil.error("Error",
-                        "#.QueueMessageExecutorProcessor.process", "param"), e);
-            }
-
-        } finally {
-            if (logger.isInfoEnabled()) {
-                // 特例，统计时间跨度
-                long time = (System.nanoTime() - begin) / (1000 * 1000);
-                if (time > 1) {
-                    logger.info("#CORE.MSG.PROCESS.DISPATCH_STATICS disptach Message id:"
-                            + msg.getNetMessageHead().getCmd() + " Time:"
-                            + time + "ms" + " Total:"
-                            + this.statisticsMessageCount);
-                }
-            }
-        }
+//            }
+//        }
     }
 
     /**
@@ -159,11 +156,10 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
                 .newFixedThreadPool(this.excecutorCoreSize, factory);
 
         GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
-//        if(gameServerDiffConfig.isQueueDispatchFlag()){
-//            for (int i = 0; i < this.excecutorCoreSize; i++) {
-//                this.executorService.execute(new Worker());
-//            }
-//        }
+        for (int i = 0; i < this.excecutorCoreSize; i++) {
+            this.executorService.execute(new Worker());
+        }
+
         logger.info("Message processor executorService started ["
                 + this.executorService + " with " + this.excecutorCoreSize
                 + " threads ]");
