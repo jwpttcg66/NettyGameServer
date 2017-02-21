@@ -25,12 +25,18 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
      */
     private NetProtoBufMessageProcess netProtoBufMessageProcess;
 
+    /**
+     * 网络状态检查
+     */
+    private TcpNetStateUpdate tcpNetStateUpdate;
+
     public NettyTcpSession(Channel channel) {
         super(channel);
         ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().get(ClientSessionIdGenerator.class);
         sessionId = clientSessionIdGenerator.generateSessionId();
         nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);
         netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);
+        tcpNetStateUpdate = new TcpNetStateUpdate();
     }
 
     public NettyTcpNetMessageSender getNettyTcpNetMessageSender() {
@@ -51,7 +57,9 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     @Override
     public boolean update() {
+
         netProtoBufMessageProcess.update();
+        tcpNetStateUpdate.update();
         return false;
     }
 
