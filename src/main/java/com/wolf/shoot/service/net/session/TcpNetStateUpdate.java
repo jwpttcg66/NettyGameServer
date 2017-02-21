@@ -8,7 +8,7 @@ import com.snowcattle.game.excutor.update.AbstractUpdate;
  */
 public class TcpNetStateUpdate extends AbstractUpdate {
 
-    protected volatile TcpNetState state = TcpNetState.CONNECTED;
+    public volatile TcpNetState state = TcpNetState.CONNECTED;
 
     @Override
     public void update() {
