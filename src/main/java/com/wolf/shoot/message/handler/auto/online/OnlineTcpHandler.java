@@ -10,7 +10,7 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
  * Created by jiangwenping on 17/2/21.
  */
 
-public abstract class OnlineHandler extends AbstractMessageHandler {
+public abstract class OnlineTcpHandler extends AbstractMessageHandler {
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
     public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception{
         return handleOnlineLoginClientTcpMessageImpl(message);

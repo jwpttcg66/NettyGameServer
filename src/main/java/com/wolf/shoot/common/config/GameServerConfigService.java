@@ -4,16 +4,19 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
 
 import java.net.URL;
 
 
 public class GameServerConfigService implements IService {
 
+    private String dynamicProperties = "dynamic_config.properties";
 
     private GameServerDiffConfig gameServerDiffConfig;
     private GameServerConfig gameServerConfig;
-
+    private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
     @Override
     public String getId() {
         return ServiceName.GameServerConfigServiceString;
@@ -27,8 +30,17 @@ public class GameServerConfigService implements IService {
     public void init(){
         initConfig();
         initDiffConfig();
+        initDynamicConfig();
     }
 
+    public void initDynamicConfig(){
+        DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+        Resource resource = defaultResourceLoader.getResource(dynamicProperties);
+        GameDynamicPropertiesConfig tempA5GameDynamicPropertiesConfig = new GameDynamicPropertiesConfig();
+        tempA5GameDynamicPropertiesConfig.setResource(resource);
+        tempA5GameDynamicPropertiesConfig.init();
+        this.gameDynamicPropertiesConfig = tempA5GameDynamicPropertiesConfig;
+    }
     @Override
     public void shutdown() throws Exception {
 
