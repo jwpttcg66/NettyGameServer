@@ -76,8 +76,10 @@ public class GameServerConfig extends ServerConfig {
      * gameExcutor中LockSupportDisptachThread中最小循环时间 单位纳秒，计算需要出去gameExcutorCycleTime
      */
     private int gameExcutorMinCycleTime;
-    /** 服务器监听的端口,多个商品以逗号","分隔 */
+    /**服务器监听的端口,多个商品以逗号","分隔 */
     private String updPorts;
+    /*udp的queueMessageProcess默认的worker大小*/
+    private int updQueueMessageProcessWorkerSize;
 
     public GameServerConfig() {
     }
@@ -272,5 +274,11 @@ public class GameServerConfig extends ServerConfig {
         return Integer.parseInt(splitPorts[0]);
     }
 
+    public int getUpdQueueMessageProcessWorkerSize() {
+        return updQueueMessageProcessWorkerSize;
+    }
 
+    public void setUpdQueueMessageProcessWorkerSize(int updQueueMessageProcessWorkerSize) {
+        this.updQueueMessageProcessWorkerSize = updQueueMessageProcessWorkerSize;
+    }
 }

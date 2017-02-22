@@ -24,11 +24,12 @@ config.communicationHandlerMaxThreadPoolSize=280;
 config.communicationMaxWriteIntervalTime=60*60*1000;
 config.tcpMessageQueueDirectDispatch=true;
 /**gameexcutor配置***/
-config.gameExcutorCorePoolSize=60;
+config.gameExcutorCorePoolSize=2;
 config.gameExcutorKeepAliveTime=60;
 config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
 /**udp配置***/
 config.updPorts="10090";
+config.updQueueMessageProcessWorkerSize=1;
 
 

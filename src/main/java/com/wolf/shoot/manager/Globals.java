@@ -1,7 +1,9 @@
 package com.wolf.shoot.manager;
 
 import com.snowcattle.game.excutor.event.EventBus;
-import com.snowcattle.game.excutor.event.impl.*;
+import com.snowcattle.game.excutor.event.impl.DispatchCreateEventListener;
+import com.snowcattle.game.excutor.event.impl.DispatchFinishEventListener;
+import com.snowcattle.game.excutor.event.impl.DispatchUpdateEventListener;
 import com.snowcattle.game.excutor.pool.UpdateExecutorService;
 import com.snowcattle.game.excutor.service.UpdateService;
 import com.snowcattle.game.excutor.thread.LockSupportDisptachThread;
@@ -26,7 +28,8 @@ import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
 import com.wolf.shoot.service.net.pipeline.factory.DefaultUdpServerPipelineFactory;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
-import com.wolf.shoot.service.net.process.IMessageProcessor;
+import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
+import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 import com.wolf.shoot.service.net.process.QueueTcpMessageExecutorProcessor;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
@@ -113,10 +116,17 @@ public class Globals {
     }
 
     public static void initNetMessageProcessor() throws  Exception{
-        int size = 0;
-        QueueTcpMessageExecutorProcessor queueMessageExecutorProcessor  = new QueueTcpMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, size);
-        GameTcpMessageProcessor gameTcpMessageProcessor = new GameTcpMessageProcessor(queueMessageExecutorProcessor);
-        LocalMananger.getInstance().add(gameTcpMessageProcessor, IMessageProcessor.class);
+        int tcpWorkersize = 0;
+        QueueTcpMessageExecutorProcessor queueTcpMessageExecutorProcessor  = new QueueTcpMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, tcpWorkersize);
+        GameTcpMessageProcessor gameTcpMessageProcessor = new GameTcpMessageProcessor(queueTcpMessageExecutorProcessor);
+        LocalMananger.getInstance().add(gameTcpMessageProcessor, GameTcpMessageProcessor.class);
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        int udpWorkerSize = gameServerConfigService.getGameServerConfig().getUpdQueueMessageProcessWorkerSize();
+        QueueMessageExecutorProcessor queueMessageUdpExecutorProcessor = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, udpWorkerSize);
+        GameUdpMessageProcessor gameUdpMessageProcessor = new GameUdpMessageProcessor(queueMessageUdpExecutorProcessor);
+        LocalMananger.getInstance().add(gameUdpMessageProcessor, GameUdpMessageProcessor.class);
+
     }
 
     public static void initIdGenerator() throws Exception{
@@ -161,10 +171,16 @@ public class Globals {
     public static void start() throws Exception{
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         updateService.start();
+
+        GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+        gameUdpMessageProcessor.start();
     }
 
     public static void stop() throws Exception{
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         updateService.shutDown();
+
+        GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+        gameUdpMessageProcessor.stop();
     }
 }

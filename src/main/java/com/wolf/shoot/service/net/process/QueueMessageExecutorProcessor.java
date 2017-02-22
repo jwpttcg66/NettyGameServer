@@ -98,7 +98,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
             NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
-                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
+//                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
             }else{
 
 //                NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
@@ -146,11 +146,10 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
                 .newFixedThreadPool(this.excecutorCoreSize, factory);
 
         GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
-//        if(gameServerDiffConfig.isQueueDispatchFlag()){
-//            for (int i = 0; i < this.excecutorCoreSize; i++) {
-//                this.executorService.execute(new Worker());
-//            }
-//        }
+        for (int i = 0; i < this.excecutorCoreSize; i++) {
+            this.executorService.execute(new Worker());
+        }
+
         logger.info("Message processor executorService started ["
                 + this.executorService + " with " + this.excecutorCoreSize
                 + " threads ]");

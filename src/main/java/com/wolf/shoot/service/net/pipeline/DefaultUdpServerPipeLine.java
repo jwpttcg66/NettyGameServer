@@ -1,21 +1,23 @@
 package com.wolf.shoot.service.net.pipeline;
 
 import com.wolf.shoot.common.config.GameServerConfig;
-import com.wolf.shoot.common.constant.BOConst;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.logic.player.GamePlayer;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
+import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
+import com.wolf.shoot.service.net.session.NettyUdpSession;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 
 /**
  * Created by jwp on 2017/2/17.
- *  udp协议暂时假定不需要返回数据
+ * udp协议暂时假定不需要返回数据
  */
 public class DefaultUdpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
@@ -35,12 +37,16 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 
         //如果是通用消息，不进行服务器检测
         if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
-            logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
+            if (logger.isDebugEnabled()) {
+                logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
+            }
             return;
         }
 
-        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
-            logger.debug( " playerId" + message.getPlayerId() + " read message" + commandId + "info" + message.toAllInfoString());
+        if (gameServerConfig.isDevelopModel()){
+            if (logger.isDebugEnabled()) {
+                logger.debug(" playerId" + message.getPlayerId() + " read message" + commandId + "info" + message.toAllInfoString());
+            }
         }
 
         int serial = abstractNetMessage.getSerial();
@@ -59,9 +65,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //            }
             GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().get(GamePlayerLoopUpService.class);
             GamePlayer gamePlayer = gamePlayerLoopUpService.lookup(playerId);
-            if(gamePlayer == null){
-                if(gameServerConfig.getServerType() == BOConst.BO_WORLD){
-                    
+            if (gamePlayer == null) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("player not exsit discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
                 }
                 return;
             }
@@ -83,12 +89,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         }
 
 //        //放入处理队列
-//        abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
-//        GameTcpMessageProcessor gameTcpMessageProcessor = (GameTcpMessageProcessor) LocalMananger.getInstance().get(IMessageProcessor.class);
-//        if(gameServerConfig.isMessageQueueDirectDispatch()){
-//            gameTcpMessageProcessor.directPutTcpMessage(abstractNetMessage);
-//        }else{
-//            gameTcpMessageProcessor.put(abstractNetProtoBufMessage);
-//        }
+        //TODO 优化UDPsession
+        message.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, new NettyUdpSession(channel));
+        GameUdpMessageProcessor gameUdpMessageProcessor = (GameUdpMessageProcessor) LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+        gameUdpMessageProcessor.put(message);
     }
 }
