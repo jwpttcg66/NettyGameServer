@@ -60,7 +60,7 @@ public class GameNettyUdpClient {
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
         long playerId = 6666;
         int tocken = 333;
-        onlineHeartClientUdpMessage.setPlayerId(1);
+        onlineHeartClientUdpMessage.setPlayerId(playerId);
         onlineHeartClientUdpMessage.setTocken(tocken);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
         onlineHeartClientUdpMessage.setReceive(inetSocketAddress);
