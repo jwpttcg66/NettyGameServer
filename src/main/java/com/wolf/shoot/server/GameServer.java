@@ -11,6 +11,7 @@ import com.wolf.shoot.service.ServerServiceManager;
 import com.wolf.shoot.service.net.AbstractServerService;
 import com.wolf.shoot.service.net.LocalNetService;
 import org.slf4j.Logger;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by jiangwenping on 17/2/6.
@@ -66,12 +67,18 @@ public class GameServer extends AbstractServerService{
      * @throws Exception
      */
     public void init(String configFile) throws Exception {
+        logger.info("Begin to initialize spring");
+        initSpring();
         logger.info("Begin to initialize Globals");
         Globals.init(configFile);
         logger.info("Globals initialized");
         this.initServer();
     }
 
+    public void initSpring()throws Exception{
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
+        Runtime.getRuntime().addShutdownHook( new Thread(new ShutdownHook(classPathXmlApplicationContext)));
+    }
 
     private void initServer() {
 

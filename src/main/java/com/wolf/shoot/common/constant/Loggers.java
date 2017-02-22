@@ -40,7 +40,7 @@ public class Loggers {
     /** admin相关的日志 */
     public static final Logger adminLogger = LoggerFactory.getLogger("admin");
     /** cheat相关的日志 */
-    public static final Logger chearLogger = LoggerFactory.getLogger("cheat");
+    public static final Logger cheatLogger = LoggerFactory.getLogger("cheat");
     /** error相关的日志 */
     public static final Logger errorLogger = LoggerFactory.getLogger("error");
     /**event相关的日志 */
