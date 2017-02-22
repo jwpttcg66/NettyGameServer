@@ -72,4 +72,11 @@ public class GameServerConfigService implements IService {
         LocalMananger.getInstance().add(this.gameServerDiffConfig, GameServerDiffConfig.class);
     }
 
+    public GameDynamicPropertiesConfig getGameDynamicPropertiesConfig() {
+        return gameDynamicPropertiesConfig;
+    }
+
+    public void setGameDynamicPropertiesConfig(GameDynamicPropertiesConfig gameDynamicPropertiesConfig) {
+        this.gameDynamicPropertiesConfig = gameDynamicPropertiesConfig;
+    }
 }

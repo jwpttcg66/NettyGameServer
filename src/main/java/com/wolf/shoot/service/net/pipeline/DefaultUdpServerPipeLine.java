@@ -1,6 +1,8 @@
 package com.wolf.shoot.service.net.pipeline;
 
 import com.wolf.shoot.common.config.GameServerConfig;
+import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.constant.DynamicPropertiesEnum;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.logic.player.GamePlayer;
 import com.wolf.shoot.manager.LocalMananger;
@@ -33,8 +35,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         }
 
         AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
         //检查是否可以处理该消息
-        GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
         if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
@@ -53,7 +56,8 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         int serial = abstractNetMessage.getSerial();
         long playerId = message.getPlayerId();
         int tocken = message.getTocken();
-        if (messageCommand.is_need_filter()) {
+        boolean checkFlag = gameServerConfigService.getGameDynamicPropertiesConfig().getProperty(DynamicPropertiesEnum.udp_message_tocken_check_flag.toString(), false);
+        if (messageCommand.is_need_filter() && checkFlag) {
 //            PlatformType platformType = nettySession.getPlatformType();
 //            if(platformType == null){
 //                AbstractGameMessage response = GameUtils.errorCallMessage(message.getCommandId(), serial, MessageErrorEnum.COMMON_MESSAGE_PLATFROM_NO_EXIST);
