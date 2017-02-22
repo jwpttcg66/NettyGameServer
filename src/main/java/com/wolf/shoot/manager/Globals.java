@@ -17,8 +17,8 @@ import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.facade.IFacade;
-import com.wolf.shoot.service.net.message.factory.IMessageFactory;
-import com.wolf.shoot.service.net.message.factory.MessageFactory;
+import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
+import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
@@ -155,7 +155,7 @@ public class Globals {
         LocalMananger.getInstance().add(defaultUdpServerPipline, DefaultUdpServerPipeLine.class);
 
         //注册协议工厂
-        LocalMananger.getInstance().create(MessageFactory.class, IMessageFactory.class);
+        LocalMananger.getInstance().create(TcpMessageFactory.class, ITcpMessageFactory.class);
     }
 
     public static void start() throws Exception{

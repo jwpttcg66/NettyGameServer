@@ -1,8 +1,11 @@
 package com.wolf.shoot.service.net.pipeline;
 
 import com.wolf.shoot.common.config.GameServerConfig;
+import com.wolf.shoot.common.constant.BOConst;
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.logic.player.GamePlayer;
 import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
@@ -12,6 +15,7 @@ import org.slf4j.Logger;
 
 /**
  * Created by jwp on 2017/2/17.
+ *  udp协议暂时假定不需要返回数据
  */
 public class DefaultUdpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
@@ -25,32 +29,20 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
             logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommand.toString());
         }
 
-//        AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
-//        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-//        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
-//        if (nettySession == null) {
-//            logger.error("netsession null channelId is:" + channel.id().asLongText());
-//        }
-//        abstractNetProtoBufMessage.setSessionId(nettySession.getSessionId());
-
+        AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-//        if (gameServerConfig.getServerType() != messageCommands.bo_id && !messageCommands.isIs_common()) {
-//            if (nettySession.getPlayerId() != 0) {
-//                logger.debug("discard udp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
-//            } else {
-//                logger.debug("discard udp message  playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
-//            }
-//
-//            return;
-//        }
+        if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
+            logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
+            return;
+        }
 
-//        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
-//            logger.debug("sessionId" + nettySession.getSessionId() + " playerId" + nettySession.getPlayerId() + " read message" + commandId + "info" + abstractNetProtoBufMessage.toAllInfoString());
-//        }
-        AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
+        if (gameServerConfig.isDevelopModel() && logger.isDebugEnabled()) {
+            logger.debug( " playerId" + message.getPlayerId() + " read message" + commandId + "info" + message.toAllInfoString());
+        }
+
         int serial = abstractNetMessage.getSerial();
         long playerId = message.getPlayerId();
         int tocken = message.getTocken();
@@ -65,7 +57,14 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //                return;
 //
 //            }
-
+            GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().get(GamePlayerLoopUpService.class);
+            GamePlayer gamePlayer = gamePlayerLoopUpService.lookup(playerId);
+            if(gamePlayer == null){
+                if(gameServerConfig.getServerType() == BOConst.BO_WORLD){
+                    
+                }
+                return;
+            }
 //            A5Player a5Player = ObjectAccessorEx.getA5Player(playerId, platformType);
 //            if(a5Player == null){
 //                AbstractGameMessage response = GameUtils.errorCallMessage(message.getCommandId(), serial, MessageErrorEnum.COMMON_MESSAGE_PLAYER_NO_EXIST);

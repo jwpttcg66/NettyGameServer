@@ -7,13 +7,12 @@ import com.wolf.shoot.service.net.message.AbstractNetMessage;
 /**
  * Created by jwp on 2017/2/10.
  */
-public class MessageFactory implements IMessageFactory {
+public class TcpMessageFactory implements ITcpMessageFactory {
 
     @Override
-    public AbstractNetMessage createCommonErrorResponseMessage(int serial, int cmd, int state) {
+    public AbstractNetMessage createCommonErrorResponseMessage(int serial, int state) {
         CommonErrorResponseServerMessage commonErrorResponseServerMessage = new CommonErrorResponseServerMessage();
         commonErrorResponseServerMessage.setSerial(serial);
-        commonErrorResponseServerMessage.setCmd(cmd);
         commonErrorResponseServerMessage.setState(state);
         return commonErrorResponseServerMessage;
     }

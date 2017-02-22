@@ -10,7 +10,7 @@ import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.facade.IFacade;
-import com.wolf.shoot.service.net.message.factory.IMessageFactory;
+import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.session.NettySession;
 import org.slf4j.Logger;
 
@@ -71,8 +71,8 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
 
                 if(e instanceof GameHandlerException){
                     GameHandlerException gameHandlerException = (GameHandlerException) e;
-                    IMessageFactory iMessageFactory = LocalMananger.getInstance().get(IMessageFactory.class);
-                    AbstractNetMessage errorMessage = iMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), message.getNetMessageHead().getCmd(), gameHandlerException.COMMON_ERROR_STATE);
+                    ITcpMessageFactory iTcpMessageFactory = LocalMananger.getInstance().get(ITcpMessageFactory.class);
+                    AbstractNetMessage errorMessage = iTcpMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), gameHandlerException.COMMON_ERROR_STATE);
                     try {
                         nettySession.write(errorMessage);
                     }catch (Exception writeException){
