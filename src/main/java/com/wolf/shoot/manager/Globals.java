@@ -15,6 +15,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
+import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
@@ -85,6 +86,7 @@ public class Globals {
 
     public static  void initLogic() throws Exception{
         LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
+        LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
     }
 
 

@@ -5,11 +5,10 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.GameHandlerException;
 import com.wolf.shoot.common.util.ErrorsUtil;
+import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.message.facade.GameFacade;
-import com.wolf.shoot.service.net.message.facade.IFacade;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.session.NettySession;
 import org.slf4j.Logger;
@@ -55,14 +54,8 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
             }
             statisticsMessageCount++;
             try {
-                GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(IFacade.class);
-                AbstractNetProtoBufMessage respone = null;
-                respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
-                if(respone != null) {
-                    respone.setSerial(message.getNetMessageHead().getSerial());
-                    nettySession.write(respone);
-//                }
-                }
+                NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().get(NetMessageProcessLogic.class);
+                netMessageProcessLogic.processMessage(message, nettySession);
             } catch (Exception e) {
                 if (logger.isErrorEnabled()) {
                     Loggers.errorLogger.error(ErrorsUtil.error("Error",

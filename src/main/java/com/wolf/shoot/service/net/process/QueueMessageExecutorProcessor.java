@@ -6,6 +6,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import com.wolf.shoot.common.util.ExecutorUtil;
+import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
@@ -96,23 +97,13 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         try {
             AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
             NettyUdpSession clientSesion = (NettyUdpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
-            if(clientSesion != null){
-                if(logger.isDebugEnabled()) {
-                    logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + abstractNetProtoBufMessage.toAllInfoString());
-                }
-//                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
-            }else{
-
-//                NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
-//                NettySession clientSesion = netTcpSessionLoopUpService.lookup(sessionId);
-//                if(clientSesion != null){
-//                    logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getCommandId());
-//                    clientSesion.addGameMessage(msg);
-//
-//                }else{
-//                    logger.debug("session is closed, the message is unDispatch");
-//                }
+            //所有的session已经强制绑定了，这里不需要再判定空了
+            if(logger.isDebugEnabled()) {
+                logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + abstractNetProtoBufMessage.toAllInfoString());
             }
+
+            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().get(NetMessageProcessLogic.class);
+            netMessageProcessLogic.processMessage(msg, clientSesion);
 
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
