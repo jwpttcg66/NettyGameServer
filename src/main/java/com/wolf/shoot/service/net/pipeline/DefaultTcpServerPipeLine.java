@@ -8,6 +8,7 @@ import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
+import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
@@ -27,7 +28,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommand.toString());
+            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + MessageCommandEnum.values()[commandId]);
         }
 
         AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;

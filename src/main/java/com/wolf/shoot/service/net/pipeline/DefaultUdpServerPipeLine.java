@@ -9,6 +9,7 @@ import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
+import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyUdpSession;
@@ -28,7 +29,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommand.toString());
+            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + MessageCommandEnum.values()[commandId]);
         }
 
         AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;

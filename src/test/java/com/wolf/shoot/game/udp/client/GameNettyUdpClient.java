@@ -58,7 +58,7 @@ public class GameNettyUdpClient {
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
         OnlineHeartClientUdpMessage onlineHeartClientUdpMessage = new OnlineHeartClientUdpMessage();
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
-        long playerId = 2222L;
+        long playerId = 6666;
         int tocken = 333;
         onlineHeartClientUdpMessage.setPlayerId(1);
         onlineHeartClientUdpMessage.setTocken(tocken);

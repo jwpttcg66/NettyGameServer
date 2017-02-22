@@ -11,7 +11,7 @@ import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.ThreadNameFactory;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.session.NettyTcpSession;
+import com.wolf.shoot.service.net.session.NettyUdpSession;
 import org.slf4j.Logger;
 
 import java.util.LinkedList;
@@ -95,9 +95,11 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         this.statisticsMessageCount++;
         try {
             AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) msg;
-            NettyTcpSession clientSesion = (NettyTcpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+            NettyUdpSession clientSesion = (NettyUdpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
-                logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getNetMessageHead().getCmd());
+                if(logger.isDebugEnabled()) {
+                    logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + abstractNetProtoBufMessage.toAllInfoString());
+                }
 //                clientSesion.getNetProtoBufMessageProcess().addNetMessage(abstractNetProtoBufMessage);
             }else{
 
