@@ -1,7 +1,7 @@
 package com.wolf.shoot.game.udp.client;
 
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUdpMessage;
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.udp.client.UdpProtoBufClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
@@ -56,7 +56,7 @@ public class GameNettyUdpClient {
     }
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
-        OnlineHeartClientUdpMessage onlineHeartClientUdpMessage = new OnlineHeartClientUdpMessage();
+        OnlineHeartClientUDPMessage onlineHeartClientUdpMessage = new OnlineHeartClientUDPMessage();
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
         long playerId = 6666;
         int tocken = 333;

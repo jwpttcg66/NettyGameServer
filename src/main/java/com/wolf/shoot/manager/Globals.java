@@ -4,9 +4,11 @@ import com.snowcattle.game.excutor.event.EventBus;
 import com.snowcattle.game.excutor.event.impl.DispatchCreateEventListener;
 import com.snowcattle.game.excutor.event.impl.DispatchFinishEventListener;
 import com.snowcattle.game.excutor.event.impl.DispatchUpdateEventListener;
+import com.snowcattle.game.excutor.pool.UpdateEventExcutorService;
 import com.snowcattle.game.excutor.pool.UpdateExecutorService;
 import com.snowcattle.game.excutor.service.UpdateService;
 import com.snowcattle.game.excutor.thread.LockSupportDisptachThread;
+import com.snowcattle.game.excutor.thread.LockSupportEventDisptachThread;
 import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
@@ -105,15 +107,17 @@ public class Globals {
         int corePoolSize = gameServerConfigService.getGameServerConfig().getGameExcutorCorePoolSize();
         long keepAliveTime = gameServerConfigService.getGameServerConfig().getGameExcutorKeepAliveTime();
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, keepAliveTime, timeUnit);
-        int cycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorCycleTime() / Constants.cycle.cycleSize;
-        long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleTime;
-        LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(eventBus, updateEventBus, updateExecutorService
-                , cycleTime, minCycleTime);
-        UpdateService updateService = new UpdateService(dispatchThread, updateEventBus, updateExecutorService);
-        eventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
-        eventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
-        eventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+        UpdateEventExcutorService updateEventExcutorService = new UpdateEventExcutorService(corePoolSize);
+        int cycleSleepTime = gameServerConfigService.getGameServerConfig().getGameExcutorCycleTime() / Constants.cycle.cycleSize;
+        long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleSleepTime;
+
+        LockSupportEventDisptachThread dispatchThread = new LockSupportEventDisptachThread(updateEventBus, updateEventExcutorService
+                , cycleSleepTime, minCycleTime);
+        updateEventExcutorService.setDispatchThread(dispatchThread);
+        UpdateService updateService = new UpdateService(dispatchThread, updateEventExcutorService);
+        updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
+        updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
+        updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
         LocalMananger.getInstance().add(updateService, UpdateService.class);
     }
 
@@ -180,7 +184,7 @@ public class Globals {
 
     public static void stop() throws Exception{
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
-        updateService.shutDown();
+        updateService.stop();
 
         GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
         gameUdpMessageProcessor.stop();

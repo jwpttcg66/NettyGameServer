@@ -1,6 +1,6 @@
 package com.wolf.shoot.udp.client;
 
-import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUdpMessage;
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -16,11 +16,11 @@ public class UdpProtoBufHandler  extends SimpleChannelInboundHandler<AbstractNet
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractNetProtoBufMessage netMessage) throws Exception {
         System.out.println(netMessage);
-        if(netMessage instanceof OnlineHeartClientUdpMessage){
-            OnlineHeartClientUdpMessage onlineHeartClientUdpMessage = new OnlineHeartClientUdpMessage();
+        if(netMessage instanceof OnlineHeartClientUDPMessage){
+            OnlineHeartClientUDPMessage onlineHeartClientUdpMessage = new OnlineHeartClientUDPMessage();
             onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
 //            InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
-            onlineHeartClientUdpMessage.setReceive(((OnlineHeartClientUdpMessage) netMessage).getSend());
+            onlineHeartClientUdpMessage.setReceive(((OnlineHeartClientUDPMessage) netMessage).getSend());
             channelHandlerContext.writeAndFlush(onlineHeartClientUdpMessage).sync();
         }
 //        //读取数据

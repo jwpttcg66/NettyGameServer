@@ -9,11 +9,11 @@ import com.wolf.shoot.service.net.message.command.MessageCommandIndex;
  * Created by jwp on 2017/2/16.
  */
 @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE)
-public class OnlineHeartClientUdpMessage extends AbstractNetProtoBufUdpMessage {
+public class OnlineHeartClientUDPMessage extends AbstractNetProtoBufUdpMessage {
 
     private int id;
 
-    public OnlineHeartClientUdpMessage(){
+    public OnlineHeartClientUDPMessage(){
         setCmd(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE);
     }
 

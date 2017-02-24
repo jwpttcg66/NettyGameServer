@@ -1,7 +1,7 @@
 package com.wolf.shoot.message.handler.impl.online;
 
 import com.wolf.shoot.message.handler.auto.online.OnlineUdpHandler;
-import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUdpMessage;
+import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 
 /**
@@ -9,8 +9,8 @@ import com.wolf.shoot.service.net.message.AbstractNetMessage;
  */
 public class OnlineUdpHandleImpl extends OnlineUdpHandler{
     @Override
-    public AbstractNetMessage handleOnlineHeartClientUdpMessageImpl(OnlineHeartClientUdpMessage message) throws Exception {
-        OnlineHeartClientUdpMessage onlineHeartClientUdpMessage = new OnlineHeartClientUdpMessage();
+    public AbstractNetMessage handleOnlineHeartClientUdpMessageImpl(OnlineHeartClientUDPMessage message) throws Exception {
+        OnlineHeartClientUDPMessage onlineHeartClientUdpMessage = new OnlineHeartClientUDPMessage();
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
         long playerId = 6666;
         int tocken = 333;
