@@ -31,3 +31,4 @@ config.gameExcutorMinCycleTime=1000;
 /**udp配置***/
 config.updPorts="10090";
 config.updQueueMessageProcessWorkerSize=1;
+config.updateServiceExcutorFlag=true;

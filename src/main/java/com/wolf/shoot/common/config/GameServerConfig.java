@@ -80,7 +80,8 @@ public class GameServerConfig extends ServerConfig {
     private String updPorts;
     /*udp的queueMessageProcess默认的worker大小*/
     private int updQueueMessageProcessWorkerSize;
-
+    /*updateservice是否使用将多个update绑定在一个线程执行*/
+    private boolean updateServiceExcutorFlag = true;
     public GameServerConfig() {
     }
 
@@ -280,5 +281,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setUpdQueueMessageProcessWorkerSize(int updQueueMessageProcessWorkerSize) {
         this.updQueueMessageProcessWorkerSize = updQueueMessageProcessWorkerSize;
+    }
+
+    public boolean isUpdateServiceExcutorFlag() {
+        return updateServiceExcutorFlag;
+    }
+
+    public void setUpdateServiceExcutorFlag(boolean updateServiceExcutorFlag) {
+        this.updateServiceExcutorFlag = updateServiceExcutorFlag;
     }
 }

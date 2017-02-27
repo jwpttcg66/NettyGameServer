@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>game-excutor</artifactId>
-            <version>1.6.6</version>
+            <version>1.6.7</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
