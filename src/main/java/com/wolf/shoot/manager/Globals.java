@@ -15,9 +15,11 @@ import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
+import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
+import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
@@ -53,9 +55,9 @@ public class Globals {
      * @throws Exception
      */
     public static void init(String configFile) throws Exception {
-
+        initLocalManger();
         LocalMananger.getInstance().create(GameServerConfigService.class, GameServerConfigService.class);
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
 
@@ -86,6 +88,12 @@ public class Globals {
 
     }
 
+    public static void initLocalManger() throws Exception{
+        LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+        localSpringServiceManager.start();
+    }
+
     public static  void initLogic() throws Exception{
         LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
         LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
@@ -101,7 +109,7 @@ public class Globals {
     }
 
     public static void initUpdateService() throws  Exception{
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         EventBus eventBus = new EventBus();
         EventBus updateEventBus = new EventBus();
         int corePoolSize = gameServerConfigService.getGameServerConfig().getGameExcutorCorePoolSize();
@@ -139,7 +147,7 @@ public class Globals {
         GameTcpMessageProcessor gameTcpMessageProcessor = new GameTcpMessageProcessor(queueTcpMessageExecutorProcessor);
         LocalMananger.getInstance().add(gameTcpMessageProcessor, GameTcpMessageProcessor.class);
 
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int udpWorkerSize = gameServerConfigService.getGameServerConfig().getUpdQueueMessageProcessWorkerSize();
         QueueMessageExecutorProcessor queueMessageUdpExecutorProcessor = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, udpWorkerSize);
         GameUdpMessageProcessor gameUdpMessageProcessor = new GameUdpMessageProcessor(queueMessageUdpExecutorProcessor);

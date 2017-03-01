@@ -152,7 +152,7 @@ public class GameServer extends AbstractServerService{
         }
         logger.info(MemUtils.memoryInfo());
 
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         if(gameServerConfigService.getGameServerConfig().getServerType() == BOConst.BO_WORLD){
             logger.info("World Server started");
         }else {

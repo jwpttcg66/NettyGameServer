@@ -41,7 +41,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
 //        abstractNetProtoBufMessage.setSessionId(nettySession.getSessionId());
 
         //检查是否可以处理该消息
-        GameServerConfig gameServerConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerConfig();
+        GameServerConfig gameServerConfig = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
         if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {

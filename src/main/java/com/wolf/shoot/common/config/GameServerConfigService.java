@@ -6,10 +6,11 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 
 import java.net.URL;
 
-
+@Service
 public class GameServerConfigService implements IService {
 
     private String dynamicProperties = "dynamic_config.properties";
@@ -17,6 +18,7 @@ public class GameServerConfigService implements IService {
     private GameServerDiffConfig gameServerDiffConfig;
     private GameServerConfig gameServerConfig;
     private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
+
     @Override
     public String getId() {
         return ServiceName.GameServerConfigServiceString;

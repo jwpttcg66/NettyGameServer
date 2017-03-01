@@ -35,7 +35,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         }
 
         AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 

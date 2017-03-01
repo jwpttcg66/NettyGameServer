@@ -22,7 +22,7 @@ public class LocalNetService implements IService{
 
     @Override
     public void startup() throws Exception {
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getGameServerConfigService();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER);

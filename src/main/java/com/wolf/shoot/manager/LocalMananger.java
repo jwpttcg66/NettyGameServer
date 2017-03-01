@@ -4,8 +4,8 @@ package com.wolf.shoot.manager;
  * Created by jwp on 2017/2/4.
  */
 
-import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.IService;
 import org.slf4j.Logger;
 
@@ -20,9 +20,6 @@ public class LocalMananger implements ILocalManager{
 
     protected static final Logger log = Loggers.serverLogger;
 
-    //因为下面底层调用很频繁，所以这里缓存
-    protected GameServerConfigService gameServerConfigService;
-
     public static LocalMananger instance = new LocalMananger();
 
     protected static Map<Class,Object> services;
@@ -34,6 +31,17 @@ public class LocalMananger implements ILocalManager{
     public static LocalMananger getInstance(){
         return instance;
     }
+
+    public LocalSpringServiceManager getLocalSpringServiceManager() {
+        return localSpringServiceManager;
+    }
+
+    public void setLocalSpringServiceManager(LocalSpringServiceManager localSpringServiceManager) {
+        this.localSpringServiceManager = localSpringServiceManager;
+    }
+
+    private LocalSpringServiceManager localSpringServiceManager;
+
 
     @Override
     public <X,Y extends X> void create(Class<Y> clazz,Class<X> inter) throws Exception{
@@ -51,10 +59,6 @@ public class LocalMananger implements ILocalManager{
         if(service.getClass()!=inter&&!inter.isAssignableFrom(service.getClass())) //接口和实现类必须相等或者继承关系
             throw new IllegalArgumentException();
         services.put(inter, service);
-
-        if(service instanceof GameServerConfigService){
-            gameServerConfigService= (GameServerConfigService) service;
-        }
     }
 
 
@@ -78,8 +82,5 @@ public class LocalMananger implements ILocalManager{
         }
     }
 
-    public GameServerConfigService getGameServerConfigService() {
-        return gameServerConfigService;
-    }
 
 }

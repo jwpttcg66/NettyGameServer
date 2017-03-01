@@ -138,7 +138,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         this.executorService = Executors
                 .newFixedThreadPool(this.excecutorCoreSize, factory);
 
-        GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
+        GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService().getGameServerDiffConfig();
         for (int i = 0; i < this.excecutorCoreSize; i++) {
             this.executorService.execute(new Worker());
         }
