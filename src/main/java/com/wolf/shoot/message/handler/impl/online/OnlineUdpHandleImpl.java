@@ -14,6 +14,7 @@ public class OnlineUdpHandleImpl extends OnlineUdpHandler{
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
         long playerId = 6666;
         int tocken = 333;
+        onlineHeartClientUdpMessage.setId(message.getId());
         onlineHeartClientUdpMessage.setPlayerId(playerId);
         onlineHeartClientUdpMessage.setTocken(tocken);
         onlineHeartClientUdpMessage.setReceive(message.getSend());
