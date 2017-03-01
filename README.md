@@ -7,8 +7,8 @@ socket自定义协议栈
 消息结构为NetMessageHead,NetProtoBufMessageBody
 消息头NetMessageHead结构为
 魔法头 short head;
+长度 int length;
 版本号 byte version;
-长度 length;
 命令 short cmd;
 序列号 int serial;
 
