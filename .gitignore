@@ -3,4 +3,4 @@ target
 logs/
 .DS_Store
 .idea
-.iml
+*.iml
