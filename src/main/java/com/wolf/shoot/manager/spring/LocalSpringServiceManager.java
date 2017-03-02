@@ -3,7 +3,9 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
+import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.time.SystemTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +27,12 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private MessageRegistry messageRegistry;
+
+    @Autowired
+    private GameFacade gameFacade;
+
+    @Autowired
+    private SystemTimeService systemTimeService;
 
     public NetTcpSessionLoopUpService getNetTcpSessionLoopUpService() {
         return netTcpSessionLoopUpService;
@@ -58,13 +66,31 @@ public class LocalSpringServiceManager {
         this.messageRegistry = messageRegistry;
     }
 
+    public GameFacade getGameFacade() {
+        return gameFacade;
+    }
+
+    public void setGameFacade(GameFacade gameFacade) {
+        this.gameFacade = gameFacade;
+    }
+
+    public SystemTimeService getSystemTimeService() {
+        return systemTimeService;
+    }
+
+    public void setSystemTimeService(SystemTimeService systemTimeService) {
+        this.systemTimeService = systemTimeService;
+    }
+
     public  void start() throws Exception {
         this.gameServerConfigService.startup();
         this.messageRegistry.startup();
+        this.gameFacade.startup();
     }
 
     public void stop() throws Exception{
         this.getGameServerConfigService().shutdown();
         this.messageRegistry.shutdown();
+        this.gameFacade.shutdown();
     }
 }

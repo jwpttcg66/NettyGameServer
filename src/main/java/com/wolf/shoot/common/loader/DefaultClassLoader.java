@@ -7,6 +7,7 @@ package com.wolf.shoot.common.loader;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.IService;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.net.JarURLConnection;
@@ -18,6 +19,7 @@ import java.util.jar.JarFile;
  * @author jwp
  * 系统默认classloader
  */
+@Service
 public class DefaultClassLoader implements IService {
     public static final Logger logger = Loggers.serverLogger;
 

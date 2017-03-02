@@ -7,7 +7,6 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
-import com.wolf.shoot.service.net.message.facade.IFacade;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.session.NettySession;
 import org.slf4j.Logger;
@@ -24,7 +23,7 @@ public class NetMessageProcessLogic {
     public void processMessage(AbstractNetMessage message, NettySession nettySession){
         long begin = 0;
         try {
-            GameFacade gameFacade = (GameFacade) LocalMananger.getInstance().get(IFacade.class);
+            GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();
             AbstractNetProtoBufMessage respone = null;
             respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
             if(respone != null) {

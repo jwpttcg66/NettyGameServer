@@ -16,6 +16,7 @@ import com.wolf.shoot.message.handler.IMessageHandler;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -27,6 +28,7 @@ import java.util.jar.JarFile;
 /**
  * Created by jiangwenping on 17/2/8.
  */
+@Service
 public class  GameFacade implements IFacade ,Reloadable, IService{
 
     /**
@@ -70,7 +72,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
             fileNames = messageScanner.scannerPackage(namespace, ext);
         }
         // 加载class,获取协议命令
-        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().get(DefaultClassLoader.class);
+        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringBeanManager().getDefaultClassLoader();
         defaultClassLoader.resetDynamicGameClassLoader();
         DynamicGameClassLoader dynamicGameClassLoader = defaultClassLoader.getDynamicGameClassLoader();
 

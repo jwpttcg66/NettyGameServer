@@ -1,5 +1,7 @@
 package com.wolf.shoot.service.time;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * 一般来说,{@link System#currentTimeMillis()} 的调用代价较高,而多数情况下在某一时刻的缓冲时间是可以满足要求的.
@@ -8,6 +10,7 @@ package com.wolf.shoot.service.time;
  *
  *
  */
+@Service
 public class SystemTimeService implements TimeService {
 	/** 偏移量 */
 	private long offset = 0;

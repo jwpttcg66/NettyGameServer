@@ -14,14 +14,12 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
-import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
+import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.service.net.message.facade.GameFacade;
-import com.wolf.shoot.service.net.message.facade.IFacade;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
@@ -35,8 +33,6 @@ import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 import com.wolf.shoot.service.net.process.QueueTcpMessageExecutorProcessor;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
-import com.wolf.shoot.service.time.SystemTimeService;
-import com.wolf.shoot.service.time.TimeService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -69,26 +65,33 @@ public class Globals {
 
         //初始化消息处理器
         initNetMessageProcessor();
-        //时间服务
-        LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
 
-        //注册classloader
-        LocalMananger.getInstance().create(DefaultClassLoader.class, DefaultClassLoader.class);
+//        //时间服务
+//        LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
+
+//        //注册classloader
+//        LocalMananger.getInstance().create(DefaultClassLoader.class, DefaultClassLoader.class);
 
 //        //消息注册
 //        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
 
-        //注册协议处理
-        LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
+//        //注册协议处理
+//        LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
 
         initLogic();
 
     }
 
     public static void initLocalManger() throws Exception{
+
+        LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
+        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
+        localSpringBeanManager.start();
+
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
         LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         localSpringServiceManager.start();
+
     }
 
     public static  void initLogic() throws Exception{

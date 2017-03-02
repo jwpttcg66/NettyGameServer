@@ -5,6 +5,7 @@ package com.wolf.shoot.manager;
  */
 
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.IService;
 import org.slf4j.Logger;
@@ -32,6 +33,18 @@ public class LocalMananger implements ILocalManager{
         return instance;
     }
 
+    private LocalSpringServiceManager localSpringServiceManager;
+
+    private LocalSpringBeanManager localSpringBeanManager;
+
+    public LocalSpringBeanManager getLocalSpringBeanManager() {
+        return localSpringBeanManager;
+    }
+
+    public void setLocalSpringBeanManager(LocalSpringBeanManager localSpringBeanManager) {
+        this.localSpringBeanManager = localSpringBeanManager;
+    }
+
     public LocalSpringServiceManager getLocalSpringServiceManager() {
         return localSpringServiceManager;
     }
@@ -39,9 +52,6 @@ public class LocalMananger implements ILocalManager{
     public void setLocalSpringServiceManager(LocalSpringServiceManager localSpringServiceManager) {
         this.localSpringServiceManager = localSpringServiceManager;
     }
-
-    private LocalSpringServiceManager localSpringServiceManager;
-
 
     @Override
     public <X,Y extends X> void create(Class<Y> clazz,Class<X> inter) throws Exception{
