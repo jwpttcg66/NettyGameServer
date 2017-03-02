@@ -12,7 +12,6 @@ import com.snowcattle.game.excutor.thread.LockSupportEventDisptachThread;
 import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
-import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
@@ -31,8 +30,6 @@ import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
 import com.wolf.shoot.service.net.process.QueueTcpMessageExecutorProcessor;
-import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
-import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -49,10 +46,10 @@ public class Globals {
      */
     public static void init(String configFile) throws Exception {
         initLocalManger();
-        LocalMananger.getInstance().create(GameServerConfigService.class, GameServerConfigService.class);
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
+//        LocalMananger.getInstance().create(GameServerConfigService.class, GameServerConfigService.class);
+//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+//        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+//        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
 
         //初始化构造器
         initBuilder();
@@ -160,11 +157,11 @@ public class Globals {
     }
 
     public static void initBuilder() throws Exception {
-        //注册tcp session的构造器
-        LocalMananger.getInstance().create(NettyTcpSessionBuilder.class, NettyTcpSessionBuilder.class);
-
-        //注册udp session的构造器
-        LocalMananger.getInstance().create(NettyUdpSessionBuilder.class, NettyUdpSessionBuilder.class);
+//        //注册tcp session的构造器
+//        LocalMananger.getInstance().create(NettyTcpSessionBuilder.class, NettyTcpSessionBuilder.class);
+//
+//        //注册udp session的构造器
+//        LocalMananger.getInstance().create(NettyUdpSessionBuilder.class, NettyUdpSessionBuilder.class);
     }
 
     public static void initLookUpService() throws Exception{
