@@ -31,28 +31,6 @@ public class GameServerDiffConfig implements Config {
      */
     private int session_prcoss_message_max_size;
 
-
-    /**
-     * 全局更新标志
-     */
-    private boolean globalUpdateFlag = false;
-    /**
-     * 全局更新生产线程数量
-     */
-    private int globalUpdateProduceThreadsSize = 10;
-    /**
-     * 全局更新生产线程数量
-     */
-    private int globalUpdateConsumeThreadsSize = 50;
-    /**
-     * 全局更新最小占用时间
-     */
-    private int globalUpdateAllUseTimeMinSize = 600;
-    /**
-     * 全局更新调度过快睡眠时间
-     */
-    private int globalUpdateAllUseSleepTime = 1;
-
     /**
      * 异步通讯链接保持活跃时间(秒)
      */
@@ -120,47 +98,6 @@ public class GameServerDiffConfig implements Config {
 
     public void setHeartCyleTime(int heartCyleTime) {
         this.heartCyleTime = heartCyleTime;
-    }
-
-
-    public boolean isGlobalUpdateFlag() {
-        return globalUpdateFlag;
-    }
-
-    public void setGlobalUpdateFlag(boolean globalUpdateFlag) {
-        this.globalUpdateFlag = globalUpdateFlag;
-    }
-
-    public int getGlobalUpdateProduceThreadsSize() {
-        return globalUpdateProduceThreadsSize;
-    }
-
-    public void setGlobalUpdateProduceThreadsSize(int globalUpdateProduceThreadsSize) {
-        this.globalUpdateProduceThreadsSize = globalUpdateProduceThreadsSize;
-    }
-
-    public int getGlobalUpdateConsumeThreadsSize() {
-        return globalUpdateConsumeThreadsSize;
-    }
-
-    public void setGlobalUpdateConsumeThreadsSize(int globalUpdateConsumeThreadsSize) {
-        this.globalUpdateConsumeThreadsSize = globalUpdateConsumeThreadsSize;
-    }
-
-    public int getGlobalUpdateAllUseTimeMinSize() {
-        return globalUpdateAllUseTimeMinSize;
-    }
-
-    public void setGlobalUpdateAllUseTimeMinSize(int globalUpdateAllUseTimeMinSize) {
-        this.globalUpdateAllUseTimeMinSize = globalUpdateAllUseTimeMinSize;
-    }
-
-    public int getGlobalUpdateAllUseSleepTime() {
-        return globalUpdateAllUseSleepTime;
-    }
-
-    public void setGlobalUpdateAllUseSleepTime(int globalUpdateAllUseSleepTime) {
-        this.globalUpdateAllUseSleepTime = globalUpdateAllUseSleepTime;
     }
 
     public int getCommunicationTcpHeartKeepAliveTime() {
