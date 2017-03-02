@@ -10,11 +10,13 @@ import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.session.NettySession;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/22.
  * 消息的真正处理
  */
+@Service
 public class NetMessageProcessLogic {
 
     protected static final Logger logger = Loggers.sessionLogger;

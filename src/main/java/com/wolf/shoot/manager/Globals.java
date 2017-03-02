@@ -14,9 +14,6 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.util.BeanUtil;
-import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
-import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
-import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
@@ -51,12 +48,13 @@ public class Globals {
 //        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 //        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
 
-        //初始化构造器
-        initBuilder();
+//        //初始化构造器
+//        initBuilder();
         //初始化工厂
         initFactory();
-        //初始化uuid
-        initIdGenerator();
+
+//        //初始化uuid
+//        initIdGenerator();
         //初始化本地服务
         initLocalService();
 
@@ -92,14 +90,14 @@ public class Globals {
     }
 
     public static  void initLogic() throws Exception{
-        LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
-        LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
+//        LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
+//        LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
     }
 
 
     public static void initLocalService() throws  Exception{
-        //初始化lookupservice
-        initLookUpService();
+//        //初始化lookupservice
+//        initLookUpService();
 
         //初始化game-excutor更新服务
         initUpdateService();
@@ -153,7 +151,7 @@ public class Globals {
     }
 
     public static void initIdGenerator() throws Exception{
-        LocalMananger.getInstance().create(ClientSessionIdGenerator.class, ClientSessionIdGenerator.class);
+//        LocalMananger.getInstance().create(ClientSessionIdGenerator.class, ClientSessionIdGenerator.class);
     }
 
     public static void initBuilder() throws Exception {

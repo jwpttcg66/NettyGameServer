@@ -10,10 +10,12 @@ import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.process.IMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/15.
  */
+@Service
 public class NetMessageDispatchLogic {
 
     /** 处理的消息总数 */

@@ -33,7 +33,7 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     public NettyTcpSession(Channel channel) {
         super(channel);
-        ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().get(ClientSessionIdGenerator.class);
+        ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().getLocalSpringBeanManager().getClientSessionIdGenerator();
         sessionId = clientSessionIdGenerator.generateSessionId();
         nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);
         netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);

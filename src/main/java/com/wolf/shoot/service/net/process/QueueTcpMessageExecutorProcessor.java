@@ -75,7 +75,7 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     @Override
     public void directPutTcpMessage(AbstractNetMessage msg) {
         try {
-            NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().get(NetMessageDispatchLogic.class);
+            NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageDispatchLogic();
             netMessageDispatchLogic.dispatchTcpMessage(msg, this);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {

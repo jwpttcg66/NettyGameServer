@@ -102,7 +102,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
                 logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + abstractNetProtoBufMessage.toAllInfoString());
             }
 
-            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().get(NetMessageProcessLogic.class);
+            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
             netMessageProcessLogic.processMessage(msg, clientSesion);
 
         } catch (Exception e) {

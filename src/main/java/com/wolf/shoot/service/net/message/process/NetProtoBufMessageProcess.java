@@ -54,7 +54,7 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
             }
             statisticsMessageCount++;
             try {
-                NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().get(NetMessageProcessLogic.class);
+                NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
                 netMessageProcessLogic.processMessage(message, nettySession);
             } catch (Exception e) {
                 if (logger.isErrorEnabled()) {
