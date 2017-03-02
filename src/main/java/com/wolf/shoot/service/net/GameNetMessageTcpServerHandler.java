@@ -9,7 +9,6 @@ import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
@@ -49,7 +48,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         AbstractNetProtoBufMessage netMessage = (AbstractNetProtoBufMessage) msg;
         //获取管道
-        IServerPipeLine iServerPipeLine = LocalMananger.getInstance().get(DefaultTcpServerPipeLine.class);
+        IServerPipeLine iServerPipeLine = LocalMananger.getInstance().getLocalSpringBeanManager().getDefaultTcpServerPipeLine();
         iServerPipeLine.dispatchAction(ctx.channel(), netMessage);
     }
 

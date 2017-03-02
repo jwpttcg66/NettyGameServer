@@ -4,6 +4,9 @@ import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
+import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
+import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
+import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,15 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private NetMessageProcessLogic netMessageProcessLogic;
+
+    @Autowired
+    private DefaultTcpServerPipeLine defaultTcpServerPipeLine;
+
+    @Autowired
+    private DefaultUdpServerPipeLine defaultUdpServerPipeLine;
+
+    @Autowired
+    private TcpMessageFactory tcpMessageFactory;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -81,6 +93,30 @@ public class LocalSpringBeanManager {
 
     public void setNetMessageProcessLogic(NetMessageProcessLogic netMessageProcessLogic) {
         this.netMessageProcessLogic = netMessageProcessLogic;
+    }
+
+    public DefaultTcpServerPipeLine getDefaultTcpServerPipeLine() {
+        return defaultTcpServerPipeLine;
+    }
+
+    public void setDefaultTcpServerPipeLine(DefaultTcpServerPipeLine defaultTcpServerPipeLine) {
+        this.defaultTcpServerPipeLine = defaultTcpServerPipeLine;
+    }
+
+    public DefaultUdpServerPipeLine getDefaultUdpServerPipeLine() {
+        return defaultUdpServerPipeLine;
+    }
+
+    public void setDefaultUdpServerPipeLine(DefaultUdpServerPipeLine defaultUdpServerPipeLine) {
+        this.defaultUdpServerPipeLine = defaultUdpServerPipeLine;
+    }
+
+    public TcpMessageFactory getTcpMessageFactory() {
+        return tcpMessageFactory;
+    }
+
+    public void setTcpMessageFactory(TcpMessageFactory tcpMessageFactory) {
+        this.tcpMessageFactory = tcpMessageFactory;
     }
 
     public void start() throws  Exception{

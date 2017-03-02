@@ -17,11 +17,13 @@ import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyUdpSession;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jwp on 2017/2/17.
  * udp协议暂时假定不需要返回数据
  */
+@Service
 public class DefaultUdpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
 

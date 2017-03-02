@@ -14,11 +14,13 @@ import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/13.
  * 处理管道
  */
+@Service
 public class DefaultTcpServerPipeLine implements IServerPipeLine {
     public static Logger logger = Loggers.sessionLogger;
 

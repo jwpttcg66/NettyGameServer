@@ -3,10 +3,12 @@ package com.wolf.shoot.service.net.message.factory;
 import com.wolf.shoot.message.logic.tcp.common.CommonErrorResponseServerMessage;
 import com.wolf.shoot.message.logic.tcp.common.CommonResponseServerMessage;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jwp on 2017/2/10.
  */
+@Service
 public class TcpMessageFactory implements ITcpMessageFactory {
 
     @Override

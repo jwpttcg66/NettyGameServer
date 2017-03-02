@@ -16,13 +16,6 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
-import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
-import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
-import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
-import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
-import com.wolf.shoot.service.net.pipeline.factory.DefaultTcpServerPipelineFactory;
-import com.wolf.shoot.service.net.pipeline.factory.DefaultUdpServerPipelineFactory;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.process.QueueMessageExecutorProcessor;
@@ -50,8 +43,8 @@ public class Globals {
 
 //        //初始化构造器
 //        initBuilder();
-        //初始化工厂
-        initFactory();
+//        //初始化工厂
+//        initFactory();
 
 //        //初始化uuid
 //        initIdGenerator();
@@ -73,7 +66,7 @@ public class Globals {
 //        //注册协议处理
 //        LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
 
-        initLogic();
+//        initLogic();
 
     }
 
@@ -89,10 +82,10 @@ public class Globals {
 
     }
 
-    public static  void initLogic() throws Exception{
+//    public static  void initLogic() throws Exception{
 //        LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
 //        LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
-    }
+//    }
 
 
     public static void initLocalService() throws  Exception{
@@ -173,20 +166,20 @@ public class Globals {
 
         //注册管道工厂
 
-        //注册tcp管道
-        LocalMananger.getInstance().create(DefaultTcpServerPipelineFactory.class, DefaultTcpServerPipelineFactory.class);
-        DefaultTcpServerPipelineFactory defaultTcpServerPipelineFactory = LocalMananger.getInstance().get(DefaultTcpServerPipelineFactory.class);
-        IServerPipeLine defaultTcpServerPipeline = defaultTcpServerPipelineFactory.createServerPipeLine();
-        LocalMananger.getInstance().add(defaultTcpServerPipeline, DefaultTcpServerPipeLine.class);
+//        //注册tcp管道
+//        LocalMananger.getInstance().create(DefaultTcpServerPipelineFactory.class, DefaultTcpServerPipelineFactory.class);
+//        DefaultTcpServerPipelineFactory defaultTcpServerPipelineFactory = LocalMananger.getInstance().get(DefaultTcpServerPipelineFactory.class);
+//        IServerPipeLine defaultTcpServerPipeline = defaultTcpServerPipelineFactory.createServerPipeLine();
+//        LocalMananger.getInstance().add(defaultTcpServerPipeline, DefaultTcpServerPipeLine.class);
 
-        //注册udp协议管道
-        LocalMananger.getInstance().create(DefaultUdpServerPipelineFactory.class, DefaultUdpServerPipelineFactory.class);
-        DefaultUdpServerPipelineFactory defaultUdpServerPipelineFactory = LocalMananger.getInstance().get(DefaultUdpServerPipelineFactory.class);
-        IServerPipeLine defaultUdpServerPipline = defaultUdpServerPipelineFactory.createServerPipeLine();
-        LocalMananger.getInstance().add(defaultUdpServerPipline, DefaultUdpServerPipeLine.class);
+//        //注册udp协议管道
+//        LocalMananger.getInstance().create(DefaultUdpServerPipelineFactory.class, DefaultUdpServerPipelineFactory.class);
+//        DefaultUdpServerPipelineFactory defaultUdpServerPipelineFactory = LocalMananger.getInstance().get(DefaultUdpServerPipelineFactory.class);
+//        IServerPipeLine defaultUdpServerPipline = defaultUdpServerPipelineFactory.createServerPipeLine();
+//        LocalMananger.getInstance().add(defaultUdpServerPipline, DefaultUdpServerPipeLine.class);
 
-        //注册协议工厂
-        LocalMananger.getInstance().create(TcpMessageFactory.class, ITcpMessageFactory.class);
+//        //注册协议工厂
+//        LocalMananger.getInstance().create(TcpMessageFactory.class, ITcpMessageFactory.class);
     }
 
     public static void start() throws Exception{
