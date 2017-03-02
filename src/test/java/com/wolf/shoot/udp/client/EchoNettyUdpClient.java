@@ -1,6 +1,7 @@
 package com.wolf.shoot.udp.client;
 
 import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
@@ -22,7 +23,11 @@ import java.nio.charset.Charset;
 public class EchoNettyUdpClient {
 
     public static void main(String[] args) throws Exception {
+        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+
         final NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup();
 
         Bootstrap bootstrap = new Bootstrap();

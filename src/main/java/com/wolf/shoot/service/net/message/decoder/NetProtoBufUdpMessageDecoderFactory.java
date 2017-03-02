@@ -32,7 +32,7 @@ public class NetProtoBufUdpMessageDecoderFactory implements INetProtoBufUdpMessa
         netMessageHead.setPlayerId(byteBuf.readLong());
         netMessageHead.setTocken(byteBuf.readInt());
 
-        MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
+        MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         AbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();

@@ -12,6 +12,7 @@ import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
 import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by jiangwenping on 17/2/8.
  */
+@Service
 public class MessageRegistry implements Reloadable, IService{
 
     public static Logger logger = Loggers.serverLogger;

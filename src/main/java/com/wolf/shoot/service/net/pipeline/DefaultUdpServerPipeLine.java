@@ -28,7 +28,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
     @Override
     public void dispatchAction(Channel channel, AbstractNetMessage abstractNetMessage) {
         short commandId = abstractNetMessage.getNetMessageHead().getCmd();
-        MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
+        MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
             logger.debug("RECV_UDP_PROBUF_MESSAGE:" + MessageCommandEnum.values()[commandId]);

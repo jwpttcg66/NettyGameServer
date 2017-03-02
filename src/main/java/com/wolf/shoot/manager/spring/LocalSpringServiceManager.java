@@ -3,6 +3,7 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
+import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,9 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private GameServerConfigService gameServerConfigService;
+
+    @Autowired
+    private MessageRegistry messageRegistry;
 
     public NetTcpSessionLoopUpService getNetTcpSessionLoopUpService() {
         return netTcpSessionLoopUpService;
@@ -46,13 +50,21 @@ public class LocalSpringServiceManager {
         this.gamePlayerLoopUpService = gamePlayerLoopUpService;
     }
 
+    public MessageRegistry getMessageRegistry() {
+        return messageRegistry;
+    }
+
+    public void setMessageRegistry(MessageRegistry messageRegistry) {
+        this.messageRegistry = messageRegistry;
+    }
+
     public  void start() throws Exception {
         this.gameServerConfigService.startup();
+        this.messageRegistry.startup();
     }
 
     public void stop() throws Exception{
         this.getGameServerConfigService().shutdown();
-
-
+        this.messageRegistry.shutdown();
     }
 }

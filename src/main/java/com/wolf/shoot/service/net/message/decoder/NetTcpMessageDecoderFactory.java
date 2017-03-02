@@ -31,7 +31,7 @@ public class NetTcpMessageDecoderFactory implements INetMessageDecoderFactory{
         bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
         netMessageBody.setBytes(bytes);
 
-        MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
+        MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         AbstractNetMessage abstractNetMessage = messageRegistry.getMessage(cmd);
         abstractNetMessage.setNetMessageHead(netMessageHead);
         abstractNetMessage.setNetMessageBody(netMessageBody);

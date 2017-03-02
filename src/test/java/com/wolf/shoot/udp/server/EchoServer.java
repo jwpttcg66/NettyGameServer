@@ -2,6 +2,7 @@ package com.wolf.shoot.udp.server;
 
 
 import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -17,7 +18,11 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public class EchoServer {
     public static void main(String[] args) throws Exception {
+        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+
         Bootstrap b = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
         b.group(group)

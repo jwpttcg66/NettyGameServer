@@ -24,7 +24,6 @@ import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.facade.IFacade;
 import com.wolf.shoot.service.net.message.factory.ITcpMessageFactory;
 import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
-import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.IServerPipeLine;
@@ -76,8 +75,8 @@ public class Globals {
         //注册classloader
         LocalMananger.getInstance().create(DefaultClassLoader.class, DefaultClassLoader.class);
 
-        //消息注册
-        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+//        //消息注册
+//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
 
         //注册协议处理
         LocalMananger.getInstance().create(GameFacade.class, IFacade.class);

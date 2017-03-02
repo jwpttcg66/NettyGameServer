@@ -29,7 +29,7 @@ public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessa
         netMessageHead.setCmd(cmd);
         netMessageHead.setSerial(byteBuf.readInt());
 
-        MessageRegistry messageRegistry = LocalMananger.getInstance().get(MessageRegistry.class);
+        MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         AbstractNetProtoBufMessage netMessage = messageRegistry.getMessage(cmd);
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
