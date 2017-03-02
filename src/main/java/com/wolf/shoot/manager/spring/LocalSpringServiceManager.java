@@ -1,6 +1,7 @@
 package com.wolf.shoot.manager.spring;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,9 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private NetTcpSessionLoopUpService netTcpSessionLoopUpService;
+
+    @Autowired
+    private GamePlayerLoopUpService gamePlayerLoopUpService;
 
     @Autowired
     private GameServerConfigService gameServerConfigService;
@@ -34,11 +38,21 @@ public class LocalSpringServiceManager {
         this.gameServerConfigService = gameServerConfigService;
     }
 
+    public GamePlayerLoopUpService getGamePlayerLoopUpService() {
+        return gamePlayerLoopUpService;
+    }
+
+    public void setGamePlayerLoopUpService(GamePlayerLoopUpService gamePlayerLoopUpService) {
+        this.gamePlayerLoopUpService = gamePlayerLoopUpService;
+    }
+
     public  void start() throws Exception {
         this.gameServerConfigService.startup();
     }
 
     public void stop() throws Exception{
         this.getGameServerConfigService().shutdown();
+
+
     }
 }

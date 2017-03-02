@@ -32,7 +32,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         ctx.fireChannelRegistered();
         NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().get(NettyTcpSessionBuilder.class);
         NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         netTcpSessionLoopUpService.addNettySession(nettyTcpSession);
 
         //加入到updateservice
@@ -81,7 +81,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(ctx.channel().id().asLongText());
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
@@ -97,7 +97,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     }
 
     private void disconnect(Channel channel) throws NetMessageException {
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().get(NetTcpSessionLoopUpService.class);
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());

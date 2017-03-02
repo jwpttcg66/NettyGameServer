@@ -1,11 +1,13 @@
 package com.wolf.shoot.service.lookup;
 
 import com.wolf.shoot.logic.player.GamePlayer;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/21.
  * 玩家查找服务
  */
+@Service
 public class GamePlayerLoopUpService extends AbstractLongLookUpService<GamePlayer>{
 
 }

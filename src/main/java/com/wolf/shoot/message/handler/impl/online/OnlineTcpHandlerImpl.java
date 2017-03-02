@@ -28,7 +28,7 @@ public class OnlineTcpHandlerImpl extends OnlineTcpHandler {
         }
         NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
         GamePlayer gamePlayer = new GamePlayer(clientSesion, playerId, tocken);
-        GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().get(GamePlayerLoopUpService.class);
+        GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getGamePlayerLoopUpService();
         gamePlayerLoopUpService.addT(gamePlayer);
         return onlineLoginServerTcpMessage;
     }

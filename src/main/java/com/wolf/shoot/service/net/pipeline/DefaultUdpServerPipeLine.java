@@ -68,7 +68,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //                return;
 //
 //            }
-            GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().get(GamePlayerLoopUpService.class);
+            GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getGamePlayerLoopUpService();
             GamePlayer gamePlayer = gamePlayerLoopUpService.lookup(playerId);
             if (gamePlayer == null) {
                 if (logger.isDebugEnabled()) {
