@@ -9,7 +9,7 @@ import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
-import com.wolf.shoot.service.net.ThreadNameFactory;
+import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
 import com.wolf.shoot.service.net.session.NettyUdpSession;

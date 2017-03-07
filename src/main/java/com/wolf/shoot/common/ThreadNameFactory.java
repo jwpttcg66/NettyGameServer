@@ -1,4 +1,4 @@
-package com.wolf.shoot.service.net;
+package com.wolf.shoot.common;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
