@@ -13,10 +13,11 @@ import io.netty.handler.logging.LoggingHandler;
 
 /**
  * Created by jwp on 2017/3/7.
+ * 增加rpc服务
  */
-public class AbstractNettyRPCService extends AbstractNettyTcpServerService{
+public class GameNettyRPCService extends AbstractNettyTcpServerService{
 
-    public AbstractNettyRPCService(String serviceId, int serverPort, String bossTreadName, String workThreadName, ChannelInitializer channelInitializer) {
+    public GameNettyRPCService(String serviceId, int serverPort, String bossTreadName, String workThreadName, ChannelInitializer channelInitializer) {
         super(serviceId, serverPort, bossTreadName, workThreadName, channelInitializer);
     }
 }

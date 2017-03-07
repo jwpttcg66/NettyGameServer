@@ -121,6 +121,45 @@
             <version>4.3.2.RELEASE</version>
         </dependency>
 
+        <!-- Objenesis -->
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <!-- Protostuff -->
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+
+        <!-- CGLib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
