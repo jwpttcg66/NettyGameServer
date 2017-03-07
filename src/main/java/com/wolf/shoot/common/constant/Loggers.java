@@ -50,4 +50,7 @@ public class Loggers {
 
     /**communication相关的日志 */
     public static final Logger communicationLogger = LoggerFactory.getLogger("communication");
+
+    /**rpc相关的日志 */
+    public static final Logger rpcLogger = LoggerFactory.getLogger("rpc");
 }
