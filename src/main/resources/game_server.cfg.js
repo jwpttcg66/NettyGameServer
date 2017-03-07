@@ -32,5 +32,8 @@ config.gameExcutorMinCycleTime=1000;
 config.updPorts="10090";
 config.updQueueMessageProcessWorkerSize=1;
 config.updateServiceExcutorFlag=true;
-
-
+/**rpc配置*/
+config.rpcFlag=true;
+config.rpcPorts="8090";
+config.rpcThreadPoolSize=60;
+config.rpcThreadPoolQueueSize=65536;

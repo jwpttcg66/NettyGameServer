@@ -20,4 +20,16 @@ public class GameNettyRPCService extends AbstractNettyTcpServerService{
     public GameNettyRPCService(String serviceId, int serverPort, String bossTreadName, String workThreadName, ChannelInitializer channelInitializer) {
         super(serviceId, serverPort, bossTreadName, workThreadName, channelInitializer);
     }
+
+    @Override
+    public boolean startService() throws Exception{
+        boolean flag = super.startService();
+        return flag;
+    }
+
+    @Override
+    public boolean stopService() throws Exception{
+        boolean flag = super.startService();
+        return flag;
+    }
 }

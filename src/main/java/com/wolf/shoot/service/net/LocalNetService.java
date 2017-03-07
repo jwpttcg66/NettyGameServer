@@ -14,6 +14,7 @@ public class LocalNetService implements IService{
 
     private GameNettyTcpServerService gameNettyTcpServerService;
     private GameNettyUdpServerService gameNettyUdpServerService;
+    private GameNettyRPCService gameNettyRPCService;
 
     @Override
     public String getId() {
@@ -31,16 +32,32 @@ public class LocalNetService implements IService{
         gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),gameServerConfig.getUdpPort()
                 , GlobalConstants.Thread.NET_UDP_WORKER);
         gameNettyUdpServerService.startService();
+
+        if(gameServerConfig.isRpcFlag()) {
+            gameNettyRPCService = new GameNettyRPCService(gameServerConfig.getServerId(), gameServerConfig.getFirstRpcPort()
+                    , GlobalConstants.Thread.NET_RPC_BOSS, GlobalConstants.Thread.NET_RPC_WORKER, new GameNetRPCChannleInitializer());
+            gameNettyRPCService.startService();
+        }
+
     }
 
     @Override
     public void shutdown() throws Exception {
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+
         if(gameNettyTcpServerService != null){
             gameNettyTcpServerService.stopService();
         }
 
         if(gameNettyUdpServerService != null){
             gameNettyUdpServerService.stopService();
+        }
+
+        if(gameServerConfig.isRpcFlag()) {
+            if (gameNettyRPCService != null) {
+                gameNettyRPCService.stopService();
+            }
         }
     }
 }

@@ -82,6 +82,17 @@ public class GameServerConfig extends ServerConfig {
     private int updQueueMessageProcessWorkerSize;
     /*updateservice是否使用将多个update绑定在一个线程执行*/
     private boolean updateServiceExcutorFlag = true;
+
+    //开启rpc
+    private boolean rpcFlag = false;
+
+    /*rpc端口*/
+    private String rpcPorts;
+    /*rpc线程池*/
+    private int rpcThreadPoolSize;
+    /*rpc等待大小*/
+    private int rpcThreadPoolQueueSize;
+
     public GameServerConfig() {
     }
 
@@ -289,5 +300,43 @@ public class GameServerConfig extends ServerConfig {
 
     public void setUpdateServiceExcutorFlag(boolean updateServiceExcutorFlag) {
         this.updateServiceExcutorFlag = updateServiceExcutorFlag;
+    }
+
+    public boolean isRpcFlag() {
+        return rpcFlag;
+    }
+
+    public void setRpcFlag(boolean rpcFlag) {
+        this.rpcFlag = rpcFlag;
+    }
+
+    public String getRpcPorts() {
+        return rpcPorts;
+    }
+
+    public void setRpcPorts(String rpcPorts) {
+        this.rpcPorts = rpcPorts;
+    }
+
+    public int getRpcThreadPoolSize() {
+        return rpcThreadPoolSize;
+    }
+
+    public void setRpcThreadPoolSize(int rpcThreadPoolSize) {
+        this.rpcThreadPoolSize = rpcThreadPoolSize;
+    }
+
+    public int getRpcThreadPoolQueueSize() {
+        return rpcThreadPoolQueueSize;
+    }
+
+    public void setRpcThreadPoolQueueSize(int rpcThreadPoolQueueSize) {
+        this.rpcThreadPoolQueueSize = rpcThreadPoolQueueSize;
+    }
+
+    public int getFirstRpcPort(){
+        String ports = getRpcPorts();
+        String[] splitPorts = ports.split(",");
+        return Integer.parseInt(splitPorts[0]);
     }
 }
