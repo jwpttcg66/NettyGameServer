@@ -63,4 +63,17 @@ public class SerializationUtil {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }
+
+    /**
+     * 生成对象
+     */
+    public static <T> T newInstance(Class<T> cls) {
+        try {
+            T message = (T) objenesis.newInstance(cls);
+            return message;
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
+    }
+
 }

@@ -5,6 +5,7 @@ import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.rpc.RpcMethodRegistry;
 import com.wolf.shoot.service.time.SystemTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,17 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private SystemTimeService systemTimeService;
+
+    @Autowired
+    private RpcMethodRegistry rpcMethodRegistry;
+
+    public RpcMethodRegistry getRpcMethodRegistry() {
+        return rpcMethodRegistry;
+    }
+
+    public void setRpcMethodRegistry(RpcMethodRegistry rpcMethodRegistry) {
+        this.rpcMethodRegistry = rpcMethodRegistry;
+    }
 
     public NetTcpSessionLoopUpService getNetTcpSessionLoopUpService() {
         return netTcpSessionLoopUpService;
@@ -86,11 +98,13 @@ public class LocalSpringServiceManager {
         this.gameServerConfigService.startup();
         this.messageRegistry.startup();
         this.gameFacade.startup();
+        this.rpcMethodRegistry.startup();
     }
 
     public void stop() throws Exception{
         this.getGameServerConfigService().shutdown();
         this.messageRegistry.shutdown();
         this.gameFacade.shutdown();
+        this.rpcMethodRegistry.shutdown();
     }
 }

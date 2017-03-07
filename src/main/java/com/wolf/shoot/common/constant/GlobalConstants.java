@@ -118,6 +118,7 @@ public class GlobalConstants {
     public static class MessageCommandConstants{
         public static final String MsgNameSpace = "com.wolf.shoot.message.logic";
         public static final String HandlerNameSpace = "com.wolf.shoot.message.handler.impl";
+        public static final String RpcNameSpace = "com.wolf.shoot.service.rpc.server";
         public static final String Ext = ".class";
     };
 
