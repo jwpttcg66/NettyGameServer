@@ -1,6 +1,9 @@
 package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.service.rpc.IRPCService;
+import com.wolf.shoot.service.rpc.RpcMethodRegistry;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import net.sf.cglib.reflect.FastClass;
@@ -42,27 +45,27 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
     }
 
     private Object handle(RpcRequest request) throws Throwable {
-//        String className = request.getClassName();
-//        Object serviceBean = handlerMap.get(className);
-//
-//        Class<?> serviceClass = serviceBean.getClass();
-//        String methodName = request.getMethodName();
-//        Class<?>[] parameterTypes = request.getParameterTypes();
-//        Object[] parameters = request.getParameters();
-//
-//        logger.debug(serviceClass.getName());
-//        logger.debug(methodName);
-//        for (int i = 0; i < parameterTypes.length; ++i) {
-//            logger.debug(parameterTypes[i].getName());
-//        }
-//        for (int i = 0; i < parameters.length; ++i) {
-//            logger.debug(parameters[i].toString());
-//        }
-//        // Cglib reflect
-//        FastClass serviceFastClass = FastClass.create(serviceClass);
-//        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
-//        return serviceFastMethod.invoke(serviceBean, parameters);
-        return null;
+        String className = request.getClassName();
+        RpcMethodRegistry rpcMethodRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcMethodRegistry();
+        IRPCService serviceBean = rpcMethodRegistry.getServiceBean(className);
+        Class<?> serviceClass = serviceBean.getClass();
+        String methodName = request.getMethodName();
+        Class<?>[] parameterTypes = request.getParameterTypes();
+        Object[] parameters = request.getParameters();
+
+        logger.debug(serviceClass.getName());
+        logger.debug(methodName);
+        for (int i = 0; i < parameterTypes.length; ++i) {
+            logger.debug(parameterTypes[i].getName());
+        }
+        for (int i = 0; i < parameters.length; ++i) {
+            logger.debug(parameters[i].toString());
+        }
+
+        // Cglib reflect 反射
+        FastClass serviceFastClass = FastClass.create(serviceClass);
+        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
+        return serviceFastMethod.invoke(serviceBean, parameters);
     }
 
     @Override

@@ -72,4 +72,8 @@ public class RpcMethodRegistry implements Reloadable, IService {
         }
     }
 
+    public IRPCService getServiceBean(String className){
+        return registryMap.get(className);
+    }
+
 }
