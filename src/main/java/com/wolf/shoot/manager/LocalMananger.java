@@ -79,8 +79,9 @@ public class LocalMananger implements ILocalManager{
 
     @Override
     public void shutdown() {
-        Object[] ss = new Object[services.size()];
-        services.values().toArray(ss);
+//        Object[] ss = new Object[services.size()];
+//        services.values().toArray(ss);
+        Object[] ss = services.values().toArray(new Object[0]);
         for(int i=ss.length-1;i>0;i--){
             if(ss[i] instanceof IService) {
                 try {
