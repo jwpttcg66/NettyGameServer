@@ -11,18 +11,6 @@ public class GameServerConfig extends ServerConfig {
 
     /** 最大允许在线人数 */
     private int maxOnlineUsers;
-
-    /** 记录统计值开关 */
-    private boolean logStatistics = true;
-
-	/* Telnet服务参数定义 */
-    /** Telnet服务器名称 */
-    private String telnetServerName;
-    /** Telnet绑定的ip */
-    private String telnetBindIp;
-    /** Telnet绑定的端口 */
-    private String telnetPort;
-
     /**
      * 开启存储策略
     */
@@ -114,38 +102,6 @@ public class GameServerConfig extends ServerConfig {
      */
     public void setMaxOnlineUsers(int maxOnlineUsers) {
         this.maxOnlineUsers = maxOnlineUsers;
-    }
-
-    public boolean isLogStatistics() {
-        return logStatistics;
-    }
-
-    public void setLogStatistics(boolean logStatistics) {
-        this.logStatistics = logStatistics;
-    }
-
-    public String getTelnetServerName() {
-        return telnetServerName;
-    }
-
-    public void setTelnetServerName(String telnetServerName) {
-        this.telnetServerName = telnetServerName;
-    }
-
-    public String getTelnetBindIp() {
-        return telnetBindIp;
-    }
-
-    public void setTelnetBindIp(String telnetBindIp) {
-        this.telnetBindIp = telnetBindIp;
-    }
-
-    public String getTelnetPort() {
-        return telnetPort;
-    }
-
-    public void setTelnetPort(String telnetPort) {
-        this.telnetPort = telnetPort;
     }
 
     public boolean isUpgradeDbStrategy() {
