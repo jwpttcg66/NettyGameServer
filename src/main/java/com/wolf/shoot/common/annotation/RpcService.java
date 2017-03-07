@@ -10,8 +10,10 @@ import java.lang.annotation.Target;
 /**
  * Created by jwp on 2017/3/7.
  */
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Component
 public @interface RpcService {
+    Class<?> value();
 }
+
