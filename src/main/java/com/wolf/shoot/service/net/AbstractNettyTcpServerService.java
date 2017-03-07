@@ -3,6 +3,7 @@ package com.wolf.shoot.service.net;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -15,16 +16,17 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public abstract class AbstractNettyTcpServerService extends AbstractNettyServerService {
 
-//    private ServerBootstrap serverBootstrap;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
     private ThreadNameFactory bossThreadNameFactory;
     private ThreadNameFactory workerThreadNameFactory;
-    public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName) {
+    private ChannelInitializer channelInitializer;
+    public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName,ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);
         this.bossThreadNameFactory = new ThreadNameFactory(bossTreadName);
         this.workerThreadNameFactory = new ThreadNameFactory(workThreadName);
+        this.channelInitializer = channelInitializer;
     }
 
     @Override
@@ -43,7 +45,9 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
                     .childOption(ChannelOption.SO_SNDBUF, 65536)
                     .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new GameNetProtoMessageTcpServerChannleInitializer());
+//                    .childHandler(new GameNetProtoMessageTcpServerChannleInitializer());
+                    .childHandler(channelInitializer);
+
             ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
             //TODO这里会阻塞main线程，暂时先注释掉

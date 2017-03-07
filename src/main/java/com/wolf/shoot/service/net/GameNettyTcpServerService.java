@@ -1,5 +1,7 @@
 package com.wolf.shoot.service.net;
 
+import io.netty.channel.ChannelInitializer;
+
 /**
  * Created by jiangwenping on 17/2/7.
  * 游戏里的的tcp服务
@@ -7,7 +9,7 @@ package com.wolf.shoot.service.net;
  */
 public class GameNettyTcpServerService extends AbstractNettyTcpServerService {
 
-    public GameNettyTcpServerService(String serviceId, int serverPort, String bossThreadName, String workThreadName) {
-        super(serviceId, serverPort, bossThreadName, workThreadName);
+    public GameNettyTcpServerService(String serviceId, int serverPort, String bossThreadName, String workThreadName, ChannelInitializer channelInitializer) {
+        super(serviceId, serverPort, bossThreadName, workThreadName, channelInitializer);
     }
 }

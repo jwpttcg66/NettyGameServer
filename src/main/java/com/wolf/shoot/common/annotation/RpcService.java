@@ -1,17 +1,17 @@
 package com.wolf.shoot.common.annotation;
 
+import org.springframework.stereotype.Component;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *  标注一个类可以从一个Excel表格里加载
- *
- *
- *
+ * Created by jwp on 2017/3/7.
  */
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE,ElementType.FIELD})
-public @interface ExcelRowBinding {
+@Component
+public @interface RpcService {
 }
