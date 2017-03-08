@@ -53,6 +53,7 @@ public class HelloServiceTest {
     public void helloTest1() {
         HelloService helloService = rpcClient.create(HelloService.class);
         String result = helloService.hello("World");
+        System.out.println(result);
         Assert.assertEquals("Hello! World", result);
     }
 

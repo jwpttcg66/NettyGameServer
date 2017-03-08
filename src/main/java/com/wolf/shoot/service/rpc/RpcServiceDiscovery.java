@@ -29,7 +29,7 @@ public class RpcServiceDiscovery implements IService{
 //    }
 
     public void updateConnectedServer(){
-        String discovery="127.0.0.1:8090";
+        String discovery="127.0.0.1:10100";
         ConnectManage.getInstance().updateConnectedServer(Arrays.asList(discovery));
     }
 
