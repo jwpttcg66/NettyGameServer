@@ -5,8 +5,6 @@ import com.wolf.shoot.common.annotation.BlockingQueueType;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.thread.policy.*;
 import com.wolf.shoot.service.RpcSystemConfig;
-import com.wolf.shoot.service.jmx.ThreadPoolMonitorProvider;
-import com.wolf.shoot.service.jmx.ThreadPoolStatus;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +25,10 @@ public class RpcThreadPool {
 
     private final Logger logger = Loggers.threadLogger;
 
-    private final Timer timer = new Timer("ThreadPoolMonitor", true);
-    private long monitorDelay = 1000;
-    private long monitorPeriod = 3000;
+    private long monitorDelay = 100;
+    private long monitorPeriod = 300;
 
-    private Executor excutor;
+    private ExecutorService excutor;
 
     private RejectedExecutionHandler createPolicy() {
         RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "AbortPolicy"));
@@ -67,44 +64,21 @@ public class RpcThreadPool {
         return null;
     }
 
-    public Executor getExecutor(int threads, int queues) {
+    public Executor createExecutor(int threads, int queues) {
         String name = "RpcThreadPool";
         ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
                 createBlockingQueue(queues),
                 new ThreadNameFactory(name, false), createPolicy());
+        this.excutor = executor;
         return executor;
     }
 
-    public Executor getExecutorWithJmx(int threads, int queueSize) {
-        final ThreadPoolExecutor executor = (ThreadPoolExecutor) getExecutor(threads, queueSize);
-        timer.scheduleAtFixedRate(new TimerTask() {
+    public ExecutorService getExcutor() {
+        return excutor;
+    }
 
-            public void run() {
-                ThreadPoolStatus status = new ThreadPoolStatus();
-                status.setPoolSize(executor.getPoolSize());
-                status.setActiveCount(executor.getActiveCount());
-                status.setCorePoolSize(executor.getCorePoolSize());
-                status.setMaximumPoolSize(executor.getMaximumPoolSize());
-                status.setLargestPoolSize(executor.getLargestPoolSize());
-                status.setTaskCount(executor.getTaskCount());
-                status.setCompletedTaskCount(executor.getCompletedTaskCount());
-
-                try {
-                    ThreadPoolMonitorProvider.monitor(status);
-                } catch (IOException e) {
-                    logger.error(e.toString(), e);
-                } catch (MalformedObjectNameException e) {
-                    logger.error(e.toString(), e);
-                } catch (ReflectionException e) {
-                    logger.error(e.toString(), e);
-                } catch (MBeanException e) {
-                    logger.error(e.toString(), e);
-                } catch (InstanceNotFoundException e) {
-                    logger.error(e.toString(), e);
-                }
-            }
-        }, monitorDelay, monitorDelay);
-        return executor;
+    public void setExcutor(ExecutorService excutor) {
+        this.excutor = excutor;
     }
 }
 

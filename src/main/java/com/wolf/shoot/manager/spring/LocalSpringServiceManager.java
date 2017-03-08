@@ -1,10 +1,12 @@
 package com.wolf.shoot.manager.spring;
 
+import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.rpc.RemoteRpcService;
 import com.wolf.shoot.service.rpc.RpcMethodRegistry;
 import com.wolf.shoot.service.time.SystemTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,17 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private RpcMethodRegistry rpcMethodRegistry;
+
+    @Autowired
+    private RemoteRpcService remoteRpcService;
+
+    public RemoteRpcService getRemoteRpcService() {
+        return remoteRpcService;
+    }
+
+    public void setRemoteRpcService(RemoteRpcService remoteRpcService) {
+        this.remoteRpcService = remoteRpcService;
+    }
 
     public RpcMethodRegistry getRpcMethodRegistry() {
         return rpcMethodRegistry;
@@ -99,6 +112,7 @@ public class LocalSpringServiceManager {
         this.messageRegistry.startup();
         this.gameFacade.startup();
         this.rpcMethodRegistry.startup();
+        this.remoteRpcService.startup();
     }
 
     public void stop() throws Exception{
@@ -106,5 +120,6 @@ public class LocalSpringServiceManager {
         this.messageRegistry.shutdown();
         this.gameFacade.shutdown();
         this.rpcMethodRegistry.shutdown();
+        this.remoteRpcService.shutdown();
     }
 }

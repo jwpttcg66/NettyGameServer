@@ -3,6 +3,7 @@ package com.wolf.shoot.service.rpc;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.ServiceName;
+import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.server.GameServer;
 import com.wolf.shoot.service.IService;
@@ -31,12 +32,12 @@ public class RemoteRpcService implements IService{
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         if(gameServerConfig.isRpcFlag()){
             //开启服务
-
+            rpcThreadPool.createExecutor(gameServerConfig.getRpcThreadPoolSize(), gameServerConfig.getRpcThreadPoolQueueSize());
         }
     }
 
     @Override
     public void shutdown() throws Exception {
-
+        ExecutorUtil.shutdownAndAwaitTermination(rpcThreadPool.getExcutor());
     }
 }
