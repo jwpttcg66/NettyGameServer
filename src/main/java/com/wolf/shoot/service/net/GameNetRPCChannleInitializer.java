@@ -21,8 +21,8 @@ public class GameNetRPCChannleInitializer extends ChannelInitializer<NioSocketCh
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
         channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength,0,4,0,0));
-        channelPipLine.addLast("encoder", new RpcEncoder(RpcResponse.class));
         channelPipLine.addLast("decoder", new RpcDecoder(RpcRequest.class));
+        channelPipLine.addLast("encoder", new RpcEncoder(RpcResponse.class));
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
