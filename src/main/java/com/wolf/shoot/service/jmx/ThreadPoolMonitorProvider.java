@@ -13,9 +13,9 @@ import java.io.IOException;
 /**
  * Created by jwp on 2017/3/8.
  */
-@Configuration
-@EnableMBeanExport
-@ComponentScan("com.wolf.shoot.service.jmx")
+//@Configuration
+//@EnableMBeanExport
+//@ComponentScan("com.wolf.shoot.service.jmx")
 public class ThreadPoolMonitorProvider {
     public final static String DELIMITER = ":";
     public final static String jmxPoolSizeMethod = "setPoolSize";

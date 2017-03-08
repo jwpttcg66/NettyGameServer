@@ -8,6 +8,7 @@ import com.wolf.shoot.service.RpcSystemConfig;
 import com.wolf.shoot.service.jmx.ThreadPoolMonitorProvider;
 import com.wolf.shoot.service.jmx.ThreadPoolStatus;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanException;
@@ -21,15 +22,18 @@ import java.util.concurrent.*;
 /**
  * Created by jwp on 2017/3/8.
  */
+@Service
 public class RpcThreadPool {
 
-    private static final Logger logger = Loggers.threadLogger;
+    private final Logger logger = Loggers.threadLogger;
 
-    private static final Timer timer = new Timer("ThreadPoolMonitor", true);
-    private static long monitorDelay = 1000;
-    private static long monitorPeriod = 3000;
+    private final Timer timer = new Timer("ThreadPoolMonitor", true);
+    private long monitorDelay = 1000;
+    private long monitorPeriod = 3000;
 
-    private static RejectedExecutionHandler createPolicy() {
+    private Executor excutor;
+
+    private RejectedExecutionHandler createPolicy() {
         RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "AbortPolicy"));
 
         switch (rejectedPolicyType) {
@@ -48,7 +52,7 @@ public class RpcThreadPool {
         return null;
     }
 
-    private static BlockingQueue<Runnable> createBlockingQueue(int queues) {
+    private BlockingQueue<Runnable> createBlockingQueue(int queues) {
         BlockingQueueType queueType = BlockingQueueType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolQueueNameAttr, "LinkedBlockingQueue"));
 
         switch (queueType) {
@@ -63,7 +67,7 @@ public class RpcThreadPool {
         return null;
     }
 
-    public static Executor getExecutor(int threads, int queues) {
+    public Executor getExecutor(int threads, int queues) {
         String name = "RpcThreadPool";
         ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
                 createBlockingQueue(queues),
@@ -71,8 +75,8 @@ public class RpcThreadPool {
         return executor;
     }
 
-    public static Executor getExecutorWithJmx(int threads, int queues) {
-        final ThreadPoolExecutor executor = (ThreadPoolExecutor) getExecutor(threads, queues);
+    public Executor getExecutorWithJmx(int threads, int queueSize) {
+        final ThreadPoolExecutor executor = (ThreadPoolExecutor) getExecutor(threads, queueSize);
         timer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
