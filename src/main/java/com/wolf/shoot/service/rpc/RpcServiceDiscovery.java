@@ -28,7 +28,7 @@ public class RpcServiceDiscovery implements IService{
 //        this.registryAddress = registryAddress;
 //    }
 
-    private void updateConnectedServer(){
+    public void updateConnectedServer(){
         String discovery="127.0.0.1:8090";
         ConnectManage.getInstance().updateConnectedServer(Arrays.asList(discovery));
     }
@@ -40,7 +40,7 @@ public class RpcServiceDiscovery implements IService{
 
     @Override
     public void startup() throws Exception {
-        updateConnectedServer();
+//        updateConnectedServer();
     }
 
     @Override

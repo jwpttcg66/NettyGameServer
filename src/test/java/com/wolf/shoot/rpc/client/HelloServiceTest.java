@@ -6,6 +6,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcClient;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
@@ -37,11 +38,15 @@ public class HelloServiceTest {
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
         LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
         LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         try {
             localSpringServiceManager.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
+        rpcServiceDiscovery.updateConnectedServer();
     }
 
     @Test

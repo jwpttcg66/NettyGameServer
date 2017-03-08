@@ -24,6 +24,11 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
     private Logger logger = Loggers.rpcLogger;
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+    }
+
+    @Override
     public void channelRead0(final ChannelHandlerContext ctx,final RpcRequest request) throws Exception {
         RemoteRpcService remoteRpcService = LocalMananger.getInstance().getLocalSpringServiceManager().getRemoteRpcService();
         remoteRpcService.submit(new Runnable() {

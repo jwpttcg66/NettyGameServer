@@ -46,7 +46,6 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
                     .childOption(ChannelOption.SO_SNDBUF, 65536)
                     .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.INFO))
-//                    .childHandler(new GameNetProtoMessageTcpServerChannleInitializer());
                     .childHandler(channelInitializer);
 
             ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
