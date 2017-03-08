@@ -1,8 +1,8 @@
-package com.wolf.shoot.service.rpc.server;
+package com.wolf.shoot.service.rpc.service.server;
 
 import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.service.rpc.IRPCService;
-import com.wolf.shoot.service.rpc.client.HelloService;
+import com.wolf.shoot.service.rpc.service.client.HelloService;
 
 /**
  * Created by jwp on 2017/3/7.

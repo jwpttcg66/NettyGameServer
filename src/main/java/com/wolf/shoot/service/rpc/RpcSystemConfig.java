@@ -1,4 +1,4 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.service.rpc;
 
 /**
  * Created by jwp on 2017/3/8.

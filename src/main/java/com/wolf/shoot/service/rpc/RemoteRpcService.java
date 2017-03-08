@@ -40,4 +40,8 @@ public class RemoteRpcService implements IService{
     public void shutdown() throws Exception {
         ExecutorUtil.shutdownAndAwaitTermination(rpcThreadPool.getExcutor());
     }
+
+    public void submit(Runnable runnable){
+        rpcThreadPool.getExcutor().submit(runnable);
+    }
 }

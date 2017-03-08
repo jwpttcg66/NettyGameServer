@@ -1,9 +1,13 @@
 package com.wolf.shoot.service.net;
 
+import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.rpc.IRPCService;
+import com.wolf.shoot.service.rpc.RemoteRpcService;
 import com.wolf.shoot.service.rpc.RpcMethodRegistry;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import net.sf.cglib.reflect.FastClass;
@@ -17,31 +21,36 @@ import java.util.Map;
  */
 public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
-    private static final Logger logger = Loggers.rpcLogger;
+    private Logger logger = Loggers.rpcLogger;
 
     @Override
     public void channelRead0(final ChannelHandlerContext ctx,final RpcRequest request) throws Exception {
-//        RpcServer.submit(new Runnable() {
-//            @Override
-//            public void run() {
-//                LOGGER.debug("Receive request " + request.getRequestId());
-//                RpcResponse response = new RpcResponse();
-//                response.setRequestId(request.getRequestId());
-//                try {
-//                    Object result = handle(request);
-//                    response.setResult(result);
-//                } catch (Throwable t) {
-//                    response.setError(t.toString());
-//                    LOGGER.error("RPC Server handle request error",t);
-//                }
-//                ctx.writeAndFlush(response).addListener(new ChannelFutureListener() {
-//                    @Override
-//                    public void operationComplete(ChannelFuture channelFuture) throws Exception {
-//                        LOGGER.debug("Send response for request " + request.getRequestId());
-//                    }
-//                });
-//            }
-//        });
+        RemoteRpcService remoteRpcService = LocalMananger.getInstance().getLocalSpringServiceManager().getRemoteRpcService();
+        remoteRpcService.submit(new Runnable() {
+            @Override
+            public void run() {
+                if(logger.isDebugEnabled()) {
+                    logger.debug("Receive request " + request.getRequestId());
+                }
+                RpcResponse response = new RpcResponse();
+                response.setRequestId(request.getRequestId());
+                try {
+                    Object result = handle(request);
+                    response.setResult(result);
+                } catch (Throwable t) {
+                    response.setError(t.toString());
+                    logger.error("RPC Server handle request error",t);
+                }
+                ctx.writeAndFlush(response).addListener(new ChannelFutureListener() {
+                    @Override
+                    public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("Send response for request " + request.getRequestId());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     private Object handle(RpcRequest request) throws Throwable {
