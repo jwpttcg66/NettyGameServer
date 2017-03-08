@@ -23,7 +23,7 @@ public class RemoteRpcService implements IService{
 
     @Override
     public String getId() {
-        return ServiceName.LemoteRpcService;
+        return ServiceName.RemoteRpcService;
     }
 
     @Override

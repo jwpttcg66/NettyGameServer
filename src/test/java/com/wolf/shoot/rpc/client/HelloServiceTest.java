@@ -1,10 +1,16 @@
 package com.wolf.shoot.rpc.client;
 
 
+import com.wolf.shoot.common.util.BeanUtil;
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
+import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
+import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.client.RpcClient;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +31,18 @@ public class HelloServiceTest {
 
     @Autowired
     private RpcClient rpcClient;
+
+    @Before
+    public void init(){
+        LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
+        LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
+        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
+        try {
+            localSpringServiceManager.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void helloTest1() {

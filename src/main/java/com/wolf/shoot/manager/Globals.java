@@ -74,8 +74,6 @@ public class Globals {
 
         LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
         LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
-        localSpringBeanManager.start();
-
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
         LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         localSpringServiceManager.start();

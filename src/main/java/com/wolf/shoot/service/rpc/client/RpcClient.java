@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 
-import com.wolf.shoot.service.rpc.ServiceDiscovery;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.proxy.IAsyncObjectProxy;
 import com.wolf.shoot.service.rpc.client.proxy.ObjectProxy;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class RpcClient {
 
     private String serverAddress;
-    private ServiceDiscovery serviceDiscovery;
+    private RpcServiceDiscovery serviceDiscovery;
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
     public RpcClient(){
@@ -30,7 +30,7 @@ public class RpcClient {
         this.serverAddress = serverAddress;
     }
 
-    public RpcClient(ServiceDiscovery serviceDiscovery) {
+    public RpcClient(RpcServiceDiscovery serviceDiscovery) {
         this.serviceDiscovery = serviceDiscovery;
     }
 
@@ -57,7 +57,7 @@ public class RpcClient {
         ConnectManage.getInstance().stop();
     }
 
-    public ServiceDiscovery getServiceDiscovery() {
+    public RpcServiceDiscovery getServiceDiscovery() {
         return serviceDiscovery;
     }
 }

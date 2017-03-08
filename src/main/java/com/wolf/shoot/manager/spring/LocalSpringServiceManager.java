@@ -2,12 +2,14 @@ package com.wolf.shoot.manager.spring;
 
 import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.RemoteRpcService;
 import com.wolf.shoot.service.rpc.RpcMethodRegistry;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.time.SystemTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class LocalSpringServiceManager {
+
+    @Autowired
+    private DefaultClassLoader defaultClassLoader;
 
     @Autowired
     private NetTcpSessionLoopUpService netTcpSessionLoopUpService;
@@ -42,6 +47,17 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private RemoteRpcService remoteRpcService;
+
+    @Autowired
+    private RpcServiceDiscovery rpcServiceDiscovery;
+
+    public RpcServiceDiscovery getRpcServiceDiscovery() {
+        return rpcServiceDiscovery;
+    }
+
+    public void setRpcServiceDiscovery(RpcServiceDiscovery rpcServiceDiscovery) {
+        this.rpcServiceDiscovery = rpcServiceDiscovery;
+    }
 
     public RemoteRpcService getRemoteRpcService() {
         return remoteRpcService;
@@ -107,19 +123,31 @@ public class LocalSpringServiceManager {
         this.systemTimeService = systemTimeService;
     }
 
+    public DefaultClassLoader getDefaultClassLoader() {
+        return defaultClassLoader;
+    }
+
+    public void setDefaultClassLoader(DefaultClassLoader defaultClassLoader) {
+        this.defaultClassLoader = defaultClassLoader;
+    }
+
     public  void start() throws Exception {
+        this.defaultClassLoader.startup();
         this.gameServerConfigService.startup();
         this.messageRegistry.startup();
         this.gameFacade.startup();
         this.rpcMethodRegistry.startup();
         this.remoteRpcService.startup();
+        this.rpcServiceDiscovery.startup();
     }
 
     public void stop() throws Exception{
+        this.defaultClassLoader.shutdown();
         this.getGameServerConfigService().shutdown();
         this.messageRegistry.shutdown();
         this.gameFacade.shutdown();
         this.rpcMethodRegistry.shutdown();
         this.remoteRpcService.shutdown();
+        this.rpcServiceDiscovery.shutdown();
     }
 }

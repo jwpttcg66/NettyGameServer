@@ -9,5 +9,6 @@ public class ServiceName {
     public static final String GameFacade = "GameFacade";
     public static final String RpcMethodRegistry = "RpcMethodRegistry";
     public static final String LocalNetService = "LocalNetService";
-    public static final String LemoteRpcService = "LemoteRpcService";
+    public static final String RemoteRpcService = "RemoteRpcService";
+    public static final String RpcServiceDiscovery = "RpcServiceDiscovery";
 }

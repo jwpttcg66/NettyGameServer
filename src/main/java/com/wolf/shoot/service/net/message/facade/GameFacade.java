@@ -72,7 +72,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
             fileNames = messageScanner.scannerPackage(namespace, ext);
         }
         // 加载class,获取协议命令
-        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringBeanManager().getDefaultClassLoader();
+        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringServiceManager().getDefaultClassLoader();
         defaultClassLoader.resetDynamicGameClassLoader();
         DynamicGameClassLoader dynamicGameClassLoader = defaultClassLoader.getDynamicGameClassLoader();
 

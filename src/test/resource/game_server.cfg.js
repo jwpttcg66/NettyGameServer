@@ -37,4 +37,3 @@ config.rpcFlag=true;
 config.rpcPorts="8090";
 config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
-

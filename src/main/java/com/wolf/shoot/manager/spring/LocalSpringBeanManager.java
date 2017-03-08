@@ -22,9 +22,6 @@ import org.springframework.stereotype.Repository;
 public class LocalSpringBeanManager {
 
     @Autowired
-    private DefaultClassLoader defaultClassLoader;
-
-    @Autowired
     private NettyTcpSessionBuilder nettyTcpSessionBuilder;
 
     @Autowired
@@ -65,14 +62,6 @@ public class LocalSpringBeanManager {
 
     public void setNettyTcpSessionBuilder(NettyTcpSessionBuilder nettyTcpSessionBuilder) {
         this.nettyTcpSessionBuilder = nettyTcpSessionBuilder;
-    }
-
-    public DefaultClassLoader getDefaultClassLoader() {
-        return defaultClassLoader;
-    }
-
-    public void setDefaultClassLoader(DefaultClassLoader defaultClassLoader) {
-        this.defaultClassLoader = defaultClassLoader;
     }
 
     public ClientSessionIdGenerator getClientSessionIdGenerator() {
@@ -129,13 +118,5 @@ public class LocalSpringBeanManager {
 
     public void setProtostuffSerialize(ProtostuffSerialize protostuffSerialize) {
         this.protostuffSerialize = protostuffSerialize;
-    }
-
-    public void start() throws  Exception{
-        defaultClassLoader.startup();
-    }
-
-    public void stop() throws  Exception{
-
     }
 }
