@@ -1,16 +1,14 @@
 package com.wolf.shoot.service.rpc;
 
-import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
 import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.ClassScanner;
-import com.wolf.shoot.common.util.SerializationUtil;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
-import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
-import com.wolf.shoot.service.net.message.command.MessageCommand;
+import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerialize;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +64,8 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 logger.info("rpc load:" + messageClass);
                 String interfaceName = messageClass.getAnnotation(RpcService.class).value().getName();
 
-                IRPCService serviceBean = (IRPCService) SerializationUtil.newInstance(messageClass);
+                ProtostuffSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
+                IRPCService serviceBean = (IRPCService) rpcSerialize.newInstance(messageClass);
                 registryMap.put(interfaceName, serviceBean);
             }
         }

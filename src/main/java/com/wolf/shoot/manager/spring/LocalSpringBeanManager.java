@@ -9,6 +9,7 @@ import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
+import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,6 +47,9 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private TcpMessageFactory tcpMessageFactory;
+
+    @Autowired
+    private ProtostuffSerialize protostuffSerialize;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -117,6 +121,14 @@ public class LocalSpringBeanManager {
 
     public void setTcpMessageFactory(TcpMessageFactory tcpMessageFactory) {
         this.tcpMessageFactory = tcpMessageFactory;
+    }
+
+    public ProtostuffSerialize getProtostuffSerialize() {
+        return protostuffSerialize;
+    }
+
+    public void setProtostuffSerialize(ProtostuffSerialize protostuffSerialize) {
+        this.protostuffSerialize = protostuffSerialize;
     }
 
     public void start() throws  Exception{

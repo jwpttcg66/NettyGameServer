@@ -1,28 +1,37 @@
-package com.wolf.shoot.common.util;
+package com.wolf.shoot.service.rpc.serialize.protostuff;
+
+/**
+ * Created by jwp on 2017/3/8.
+ */
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
+import com.sun.tools.internal.xjc.SchemaCache;
+import com.wolf.shoot.service.rpc.serialize.RpcSerialize;
+import org.objenesis.Objenesis;
+import org.objenesis.ObjenesisStd;
+import org.springframework.stereotype.Service;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.objenesis.Objenesis;
-import org.objenesis.ObjenesisStd;;
 
 /**
- * Created by jwp on 2017/3/7.
+ * @author tangjie<https://github.com/tang-jie>
+ * @filename:ProtostuffSerialize.java
+ * @description:ProtostuffSerialize功能模块
+ * @blogs http://www.cnblogs.com/jietang/
+ * @since 2016/10/7
  */
-public class SerializationUtil {
+@Service
+public class ProtostuffSerialize implements RpcSerialize {
+    private Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
 
-    private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
-
-    private static Objenesis objenesis = new ObjenesisStd(true);
-
-    private SerializationUtil() {
-    }
+    private Objenesis objenesis = new ObjenesisStd(true);
 
     @SuppressWarnings("unchecked")
-    private static <T> Schema<T> getSchema(Class<T> cls) {
+    private <T> Schema<T> getSchema(Class<T> cls) {
         Schema<T> schema = (Schema<T>) cachedSchema.get(cls);
         if (schema == null) {
             schema = RuntimeSchema.createFrom(cls);
@@ -37,7 +46,7 @@ public class SerializationUtil {
      * 序列化（对象 -> 字节数组）
      */
     @SuppressWarnings("unchecked")
-    public static <T> byte[] serialize(T obj) {
+    public  <T> byte[] serialize(T obj) {
         Class<T> cls = (Class<T>) obj.getClass();
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
         try {
@@ -53,7 +62,7 @@ public class SerializationUtil {
     /**
      * 反序列化（字节数组 -> 对象）
      */
-    public static <T> T deserialize(byte[] data, Class<T> cls) {
+    public  <T> T deserialize(byte[] data, Class<T> cls) {
         try {
             T message = (T) objenesis.newInstance(cls);
             Schema<T> schema = getSchema(cls);
@@ -67,7 +76,7 @@ public class SerializationUtil {
     /**
      * 生成对象
      */
-    public static <T> T newInstance(Class<T> cls) {
+    public <T> T newInstance(Class<T> cls) {
         try {
             T message = (T) objenesis.newInstance(cls);
             return message;
