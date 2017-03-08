@@ -56,11 +56,14 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        LOGGER.error("client caught exception", cause);
+        LOGGER.error("rpc client caught exception", cause);
+        pendingRPC.clear();
         ctx.close();
     }
 
     public void close() {
+        LOGGER.error("rpc client close");
+        pendingRPC.clear();
         channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }
 
