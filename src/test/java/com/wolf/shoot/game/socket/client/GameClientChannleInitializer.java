@@ -23,12 +23,9 @@ public class GameClientChannleInitializer extends ChannelInitializer<NioSocketCh
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-//        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
-//        channelPipLine.addLast("encoder", new NetProtoBufMessageTCPEncoder());
-//        channelPipLine.addLast("decoder", new NetProtoBufMessageTCPDecoder());
-        channelPipLine.addLast(new RpcEncoder(RpcRequest.class));
-        channelPipLine.addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
-        channelPipLine.addLast(new RpcDecoder(RpcResponse.class));
+        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
+        channelPipLine.addLast("encoder", new NetProtoBufMessageTCPEncoder());
+        channelPipLine.addLast("decoder", new NetProtoBufMessageTCPDecoder());
 
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;

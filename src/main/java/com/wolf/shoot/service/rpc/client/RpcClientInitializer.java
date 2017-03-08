@@ -19,7 +19,7 @@ public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline channelPipeline = socketChannel.pipeline();
         int maxLength = Integer.MAX_VALUE;
-        channelPipeline.addLast(new LengthFieldBasedFrameDecoder(maxLength,0,4,0,0));
+        channelPipeline.addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
         channelPipeline.addLast(new RpcEncoder(RpcRequest.class));
         channelPipeline.addLast(new RpcDecoder(RpcResponse.class));
         channelPipeline.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
