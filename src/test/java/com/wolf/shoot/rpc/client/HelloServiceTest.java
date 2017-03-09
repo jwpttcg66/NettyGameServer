@@ -46,7 +46,7 @@ public class HelloServiceTest {
         }
 
         RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
-        rpcServiceDiscovery.updateConnectedServer();
+        rpcServiceDiscovery.updateOnlineConnectedServer();
     }
 
     @Test

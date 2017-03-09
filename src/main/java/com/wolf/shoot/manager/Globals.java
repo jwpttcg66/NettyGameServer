@@ -36,37 +36,11 @@ public class Globals {
      */
     public static void init(String configFile) throws Exception {
         initLocalManger();
-//        LocalMananger.getInstance().create(GameServerConfigService.class, GameServerConfigService.class);
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-//        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
-
-//        //初始化构造器
-//        initBuilder();
-//        //初始化工厂
-//        initFactory();
-
-//        //初始化uuid
-//        initIdGenerator();
         //初始化本地服务
         initLocalService();
 
         //初始化消息处理器
         initNetMessageProcessor();
-
-//        //时间服务
-//        LocalMananger.getInstance().create(SystemTimeService.class, TimeService.class);
-
-//        //注册classloader
-//        LocalMananger.getInstance().create(DefaultClassLoader.class, DefaultClassLoader.class);
-
-//        //消息注册
-//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
-
-//        //注册协议处理
-//        LocalMananger.getInstance().create(GameFacade.class, IFacade.class);
-
-//        initLogic();
 
     }
 
@@ -80,16 +54,8 @@ public class Globals {
 
     }
 
-//    public static  void initLogic() throws Exception{
-//        LocalMananger.getInstance().create(NetMessageDispatchLogic.class, NetMessageDispatchLogic.class);
-//        LocalMananger.getInstance().create(NetMessageProcessLogic.class, NetMessageProcessLogic.class);
-//    }
-
 
     public static void initLocalService() throws  Exception{
-//        //初始化lookupservice
-//        initLookUpService();
-
         //初始化game-excutor更新服务
         initUpdateService();
     }

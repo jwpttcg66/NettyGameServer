@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+
+    <online>
+        <server serverId="8001" domain="127.0.0.1" domainPort="7090" ip="127.0.0.1" port="8090" weight="100" maxNumber="1000" communicationPort="8090" communicationNumber="3"/>
+    </online>
+
+    <room>
+        <server serverId="9001" domain="127.0.0.1"  domainPort="7090" ip="127.0.0.1" port="8090" weight="100" maxNumber="1000" communicationPort="8090" communicationNumber="3"/>
+    </room>
+</servers>
