@@ -1,5 +1,6 @@
 package com.wolf.shoot.service.rpc.client.proxy;
 
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.client.ConnectManage;
@@ -13,11 +14,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
-/**
- * Created by luxiaoxun on 2016-03-16.
- */
 public class ObjectProxy<T> implements InvocationHandler{
-    private static final Logger LOGGER = LoggerFactory.getLogger(ObjectProxy.class);
+    private Logger logger = Loggers.rpcLogger;
     private Class<T> clazz;
 
     public ObjectProxy(Class<T> clazz) {
@@ -47,14 +45,16 @@ public class ObjectProxy<T> implements InvocationHandler{
         request.setMethodName(method.getName());
         request.setParameterTypes(method.getParameterTypes());
         request.setParameters(args);
-        // Debug
-        LOGGER.debug(method.getDeclaringClass().getName());
-        LOGGER.debug(method.getName());
-        for (int i = 0; i < method.getParameterTypes().length; ++i) {
-            LOGGER.debug(method.getParameterTypes()[i].getName());
-        }
-        for (int i = 0; i < args.length; ++i) {
-            LOGGER.debug(args[i].toString());
+        if(logger.isDebugEnabled()) {
+            // Debug
+            logger.debug(method.getDeclaringClass().getName());
+            logger.debug(method.getName());
+            for (int i = 0; i < method.getParameterTypes().length; ++i) {
+                logger.debug(method.getParameterTypes()[i].getName());
+            }
+            for (int i = 0; i < args.length; ++i) {
+                logger.debug(args[i].toString());
+            }
         }
 
         RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();

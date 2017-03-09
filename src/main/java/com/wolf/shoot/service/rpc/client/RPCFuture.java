@@ -1,5 +1,6 @@
 package com.wolf.shoot.service.rpc.client;
 
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import org.slf4j.Logger;
@@ -16,11 +17,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * RPCFuture for async RPC call
- * Created by luxiaoxun on 2016-03-15.
  */
 public class RPCFuture implements Future<Object> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RPCFuture.class);
-
+    private Logger logger = Loggers.rpcLogger;
     private Sync sync;
     private RpcRequest request;
     private RpcResponse response;
@@ -85,7 +84,7 @@ public class RPCFuture implements Future<Object> {
         // Threshold
         long responseTime = System.currentTimeMillis() - startTime;
         if (responseTime > this.responseTimeThreshold) {
-            LOGGER.warn("Service response time is too slow. Request id = " + reponse.getRequestId() + ". Response Time = " + responseTime + "ms");
+            logger.warn("Service response time is too slow. Request id = " + reponse.getRequestId() + ". Response Time = " + responseTime + "ms");
         }
     }
 

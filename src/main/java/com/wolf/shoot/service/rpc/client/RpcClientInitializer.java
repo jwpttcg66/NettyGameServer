@@ -12,7 +12,6 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
- * Created by luxiaoxun on 2016-03-16.
  */
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override

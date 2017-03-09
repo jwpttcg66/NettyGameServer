@@ -24,8 +24,6 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * RPC Connect Manage of ZooKeeper
- * Created by luxiaoxun on 2016-03-16.
  */
 public class ConnectManage {
 
