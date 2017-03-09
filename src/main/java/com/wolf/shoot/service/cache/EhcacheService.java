@@ -73,12 +73,12 @@ import static org.slf4j.LoggerFactory.getLogger;
 
  */
 @Service
-public class EhcaheService implements IService {
+public class EhcacheService implements IService {
 
     private Logger logger = Loggers.serverLogger;
     @Override
     public String getId() {
-        return ServiceName.EhcaheService;
+        return ServiceName.EhcacheService;
     }
 
     @Override

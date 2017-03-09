@@ -11,6 +11,6 @@ public class ServiceName {
     public static final String LocalNetService = "LocalNetService";
     public static final String RemoteRpcService = "RemoteRpcService";
     public static final String RpcServiceDiscovery = "RpcServiceDiscovery";
-    public static final String EhcaheService = "EhcaheService";
+    public static final String EhcacheService = "EhcacheService";
 
 }
