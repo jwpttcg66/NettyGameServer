@@ -74,4 +74,10 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
         return rpcFuture;
     }
+
+    public RPCFuture writeRequest(RPCFuture rpcFuture, RpcRequest request) {
+        pendingRPC.put(request.getRequestId(), rpcFuture);
+        channel.writeAndFlush(request);
+        return rpcFuture;
+    }
 }

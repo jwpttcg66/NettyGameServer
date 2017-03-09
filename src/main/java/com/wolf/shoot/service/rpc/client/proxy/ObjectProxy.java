@@ -1,9 +1,11 @@
 package com.wolf.shoot.service.rpc.client.proxy;
 
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.client.ConnectManage;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcClientHandler;
+import com.wolf.shoot.service.rpc.client.RpcRequestFactroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,72 +62,23 @@ public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
         return rpcFuture.get();
     }
 
+//    @Override
+//    public RPCFuture call(String funcName, Object... args) {
+//        RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
+//        RpcRequestFactroy rpcRequestFactroy = new RpcRequestFactroy();
+//        RpcRequest request = rpcRequestFactroy.createRequest(this.clazz.getName(), funcName, args);
+//        RPCFuture rpcFuture = handler.sendRequest(request);
+//        return rpcFuture;
+//    }
+
     @Override
-    public RPCFuture call(String funcName, Object... args) {
+    public RPCFuture createRpcFuture(RpcRequest rpcRequest) {
+       return new RPCFuture(rpcRequest);
+    }
+
+    @Override
+    public void asynCall(RPCFuture rpcFuture, RpcRequest rpcRequest) {
         RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
-        RpcRequest request = createRequest(this.clazz.getName(), funcName, args);
-        RPCFuture rpcFuture = handler.sendRequest(request);
-        return rpcFuture;
+        handler.writeRequest(rpcFuture, rpcRequest);
     }
-
-    private RpcRequest createRequest(String className, String methodName, Object[] args) {
-        RpcRequest request = new RpcRequest();
-        request.setRequestId(UUID.randomUUID().toString());
-        request.setClassName(className);
-        request.setMethodName(methodName);
-        request.setParameters(args);
-
-        Class[] parameterTypes = new Class[args.length];
-        // Get the right class type
-        for (int i = 0; i < args.length; i++) {
-            parameterTypes[i] = getClassType(args[i]);
-        }
-        request.setParameterTypes(parameterTypes);
-//        Method[] methods = clazz.getDeclaredMethods();
-//        for (int i = 0; i < methods.length; ++i) {
-//            // Bug: if there are 2 methods have the same name
-//            if (methods[i].getName().equals(methodName)) {
-//                parameterTypes = methods[i].getParameterTypes();
-//                request.setParameterTypes(parameterTypes); // get parameter types
-//                break;
-//            }
-//        }
-
-        LOGGER.debug(className);
-        LOGGER.debug(methodName);
-        for (int i = 0; i < parameterTypes.length; ++i) {
-            LOGGER.debug(parameterTypes[i].getName());
-        }
-        for (int i = 0; i < args.length; ++i) {
-            LOGGER.debug(args[i].toString());
-        }
-
-        return request;
-    }
-
-    private Class<?> getClassType(Object obj){
-        Class<?> classType = obj.getClass();
-        String typeName = classType.getName();
-        switch (typeName){
-            case "java.lang.Integer":
-                return Integer.TYPE;
-            case "java.lang.Long":
-                return Long.TYPE;
-            case "java.lang.Float":
-                return Float.TYPE;
-            case "java.lang.Double":
-                return Double.TYPE;
-            case "java.lang.Character":
-                return Character.TYPE;
-            case "java.lang.Boolean":
-                return Boolean.TYPE;
-            case "java.lang.Short":
-                return Short.TYPE;
-            case "java.lang.Byte":
-                return Byte.TYPE;
-        }
-
-        return classType;
-    }
-
 }

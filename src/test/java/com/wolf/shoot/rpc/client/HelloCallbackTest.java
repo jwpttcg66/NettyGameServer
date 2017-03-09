@@ -4,6 +4,7 @@ import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
+import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
@@ -51,9 +52,10 @@ public class HelloCallbackTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         try {
-            IAsyncObjectProxy client = rpcClient.createAsync(HelloService.class);
-            RPCFuture helloPersonFuture = client.call("hello", "xiaoming");
-            helloPersonFuture.addCallback(new AsyncRPCCallback() {
+            IAsyncObjectProxy proxy = rpcClient.createAsync(HelloService.class);
+            RpcRequest rpcRequest = rpcClient.createRpcRequest(HelloService.class.getName(),"hello", "xiaoming");
+            RPCFuture rpcFuture = proxy.createRpcFuture(rpcRequest);
+            rpcFuture.addCallback(new AsyncRPCCallback() {
                 @Override
                 public void success(Object result) {
                     System.out.println(result);
@@ -66,7 +68,7 @@ public class HelloCallbackTest {
                     countDownLatch.countDown();
                 }
             });
-
+            proxy.asynCall(rpcFuture, rpcRequest);
         } catch (Exception e) {
             System.out.println(e);
         }

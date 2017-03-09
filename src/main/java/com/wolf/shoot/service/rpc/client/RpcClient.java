@@ -1,9 +1,11 @@
 package com.wolf.shoot.service.rpc.client;
 
 
+import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.proxy.IAsyncObjectProxy;
 import com.wolf.shoot.service.rpc.client.proxy.ObjectProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Proxy;
@@ -18,21 +20,10 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RpcClient {
 
-    private String serverAddress;
-    private RpcServiceDiscovery serviceDiscovery;
+    @Autowired
+    private RpcRequestFactroy rpcRequestFactroy;
+
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
-
-    public RpcClient(){
-
-    }
-
-    public RpcClient(String serverAddress) {
-        this.serverAddress = serverAddress;
-    }
-
-    public RpcClient(RpcServiceDiscovery serviceDiscovery) {
-        this.serviceDiscovery = serviceDiscovery;
-    }
 
     @SuppressWarnings("unchecked")
     public <T> T create(Class<T> interfaceClass) {
@@ -57,8 +48,8 @@ public class RpcClient {
         ConnectManage.getInstance().stop();
     }
 
-    public RpcServiceDiscovery getServiceDiscovery() {
-        return serviceDiscovery;
+    public RpcRequest createRpcRequest(String className, String funcName, Object... args) {
+        return rpcRequestFactroy.createRequest(className, funcName, args);
     }
 }
 
