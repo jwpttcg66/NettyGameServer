@@ -67,7 +67,7 @@ public class ConnectManage {
                 for (int i = 0; i < allServerAddress.size(); ++i) {
                     SdServer sdServer = allServerAddress.get(i);
                     String host = sdServer.getIp();
-                    int port = sdServer.getPort();
+                    int port = sdServer.getCommunicationPort();
                     final InetSocketAddress remotePeer = new InetSocketAddress(host, port);
                     newAllServerNodeSet.add(remotePeer);
                 }
