@@ -3,7 +3,8 @@ package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
-import com.wolf.shoot.service.rpc.client.proxy.IAsyncObjectProxy;
+import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
+import com.wolf.shoot.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.ObjectProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RpcClient {
 
-    @Autowired
-    private RpcRequestFactroy rpcRequestFactroy;
-
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
     @SuppressWarnings("unchecked")
@@ -34,8 +32,8 @@ public class RpcClient {
         );
     }
 
-    public <T> IAsyncObjectProxy createAsync(Class<T> interfaceClass) {
-        return new ObjectProxy<T>(interfaceClass);
+    public <T> IAsyncRpcProxy createAsync(Class<T> interfaceClass) {
+        return new AsyncRpcProxy<T>(interfaceClass);
     }
 
     public static void submit(Runnable task){
@@ -46,10 +44,6 @@ public class RpcClient {
         threadPoolExecutor.shutdown();
 //        serviceDiscovery.stop();
         ConnectManage.getInstance().stop();
-    }
-
-    public RpcRequest createRpcRequest(String className, String funcName, Object... args) {
-        return rpcRequestFactroy.createRequest(className, funcName, args);
     }
 }
 

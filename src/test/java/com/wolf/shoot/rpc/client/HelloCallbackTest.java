@@ -9,7 +9,7 @@ import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcClient;
-import com.wolf.shoot.service.rpc.client.proxy.IAsyncObjectProxy;
+import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
 import org.junit.Before;
@@ -52,9 +52,8 @@ public class HelloCallbackTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         try {
-            IAsyncObjectProxy proxy = rpcClient.createAsync(HelloService.class);
-            RpcRequest rpcRequest = rpcClient.createRpcRequest(HelloService.class.getName(),"hello", "xiaoming");
-            RPCFuture rpcFuture = proxy.createRpcFuture(rpcRequest);
+            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcClient.createAsync(HelloService.class);
+            RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
             rpcFuture.addCallback(new AsyncRPCCallback() {
                 @Override
                 public void success(Object result) {
@@ -68,7 +67,6 @@ public class HelloCallbackTest {
                     countDownLatch.countDown();
                 }
             });
-            proxy.asynCall(rpcFuture, rpcRequest);
         } catch (Exception e) {
             System.out.println(e);
         }

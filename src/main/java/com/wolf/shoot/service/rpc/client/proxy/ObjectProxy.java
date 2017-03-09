@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * Created by luxiaoxun on 2016-03-16.
  */
-public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
+public class ObjectProxy<T> implements InvocationHandler{
     private static final Logger LOGGER = LoggerFactory.getLogger(ObjectProxy.class);
     private Class<T> clazz;
 
@@ -60,25 +60,5 @@ public class ObjectProxy<T> implements InvocationHandler, IAsyncObjectProxy {
         RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
         RPCFuture rpcFuture = handler.sendRequest(request);
         return rpcFuture.get();
-    }
-
-//    @Override
-//    public RPCFuture call(String funcName, Object... args) {
-//        RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
-//        RpcRequestFactroy rpcRequestFactroy = new RpcRequestFactroy();
-//        RpcRequest request = rpcRequestFactroy.createRequest(this.clazz.getName(), funcName, args);
-//        RPCFuture rpcFuture = handler.sendRequest(request);
-//        return rpcFuture;
-//    }
-
-    @Override
-    public RPCFuture createRpcFuture(RpcRequest rpcRequest) {
-       return new RPCFuture(rpcRequest);
-    }
-
-    @Override
-    public void asynCall(RPCFuture rpcFuture, RpcRequest rpcRequest) {
-        RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
-        handler.writeRequest(rpcFuture, rpcRequest);
     }
 }
