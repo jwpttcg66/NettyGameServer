@@ -9,11 +9,10 @@ import com.wolf.shoot.common.util.JdomUtils;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.ConnectManage;
-import org.jdom.DataConversionException;
+import org.jdom2.DataConversionException;
+import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
-import org.jdom.DataConversionException;
-import org.jdom.Element;
 
 import java.util.ArrayList;
 import java.util.Arrays;

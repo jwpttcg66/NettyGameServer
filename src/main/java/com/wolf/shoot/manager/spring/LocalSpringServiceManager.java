@@ -3,6 +3,7 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
+import com.wolf.shoot.service.cache.EhcaheService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
@@ -50,6 +51,9 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private RpcServiceDiscovery rpcServiceDiscovery;
+
+    @Autowired
+    private EhcaheService ehcaheService;
 
     public RpcServiceDiscovery getRpcServiceDiscovery() {
         return rpcServiceDiscovery;
@@ -131,6 +135,14 @@ public class LocalSpringServiceManager {
         this.defaultClassLoader = defaultClassLoader;
     }
 
+    public EhcaheService getEhcaheService() {
+        return ehcaheService;
+    }
+
+    public void setEhcaheService(EhcaheService ehcaheService) {
+        this.ehcaheService = ehcaheService;
+    }
+
     public  void start() throws Exception {
         this.defaultClassLoader.startup();
         this.gameServerConfigService.startup();
@@ -139,6 +151,7 @@ public class LocalSpringServiceManager {
         this.rpcMethodRegistry.startup();
         this.remoteRpcService.startup();
         this.rpcServiceDiscovery.startup();
+        this.ehcaheService.startup();
     }
 
     public void stop() throws Exception{
@@ -149,5 +162,6 @@ public class LocalSpringServiceManager {
         this.rpcMethodRegistry.shutdown();
         this.remoteRpcService.shutdown();
         this.rpcServiceDiscovery.shutdown();
+        this.ehcaheService.shutdown();
     }
 }
