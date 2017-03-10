@@ -18,11 +18,11 @@ import java.util.concurrent.TimeUnit;
 public class NonOrderedQueuePoolExecutor extends ThreadPoolExecutor {
 
     public NonOrderedQueuePoolExecutor(int corePoolSize) {
-        super(corePoolSize, corePoolSize, 30, TimeUnit.SECONDS,
+        super(corePoolSize, corePoolSize*2, 30, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>());
     }
 
-    public void execute(AbstractWork work) {
+    public void executeWork(AbstractWork work) {
         execute(work);
     }
 
