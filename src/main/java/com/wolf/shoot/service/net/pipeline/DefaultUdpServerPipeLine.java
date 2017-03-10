@@ -13,6 +13,7 @@ import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.wolf.shoot.service.net.message.command.MessageCommand;
 import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
+import com.wolf.shoot.service.net.process.GameUdpMessageOrderProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyUdpSession;
 import io.netty.channel.Channel;
@@ -98,7 +99,12 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //        //放入处理队列
         //TODO 优化UDPsession
         message.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, new NettyUdpSession(channel));
-        GameUdpMessageProcessor gameUdpMessageProcessor = (GameUdpMessageProcessor) LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
-        gameUdpMessageProcessor.put(message);
+        if(gameServerConfig.isUdpMessageOrderQueueFlag()) {
+            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = (GameUdpMessageOrderProcessor)LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
+            gameUdpMessageOrderProcessor.put(message);
+        }else{
+            GameUdpMessageProcessor gameUdpMessageProcessor = (GameUdpMessageProcessor) LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+            gameUdpMessageProcessor.put(message);
+        }
     }
 }
