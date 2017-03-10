@@ -1,5 +1,6 @@
 package com.wolf.shoot.common.thread.executor;
 
+import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.thread.worker.AbstractWork;
 import com.wolf.shoot.common.thread.worker.OrderedQueuePool;
@@ -17,21 +18,17 @@ public class OrderedQueuePoolExecutor extends ThreadPoolExecutor {
 
     protected Logger logger = Loggers.threadLogger;
 
-    private OrderedQueuePool<String, AbstractWork> pool = new OrderedQueuePool<String, AbstractWork>();
+    private OrderedQueuePool<Long, AbstractWork> pool = new OrderedQueuePool<Long, AbstractWork>();
 
-    private String name;
     private int maxQueueSize;
+    private ThreadNameFactory threadNameFactory;
 
     public OrderedQueuePoolExecutor(String name, int corePoolSize,
                                     int maxQueueSize) {
         super(corePoolSize, 2 * corePoolSize, 30, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>());
-        this.name = name;
+                new LinkedBlockingQueue<Runnable>(), new ThreadNameFactory(name));
         this.maxQueueSize = maxQueueSize;
-    }
-
-    public OrderedQueuePoolExecutor(int corePoolSize) {
-        this("queue-pool", corePoolSize, 10000);
+        this.threadNameFactory = (ThreadNameFactory) getThreadFactory();
     }
 
     /**
@@ -40,14 +37,14 @@ public class OrderedQueuePoolExecutor extends ThreadPoolExecutor {
      * @param value
      * @return
      */
-    public boolean addTask(String key, AbstractWork task) {
+    public boolean addTask(long key, AbstractWork task) {
         TasksQueue<AbstractWork> queue = pool.getTasksQueue(key);
         boolean run = false;
         boolean result = false;
         synchronized (queue) {
             if (maxQueueSize > 0) {
                 if (queue.size() > maxQueueSize) {
-                    logger.error("队列" + name + "(" + key + ")" + "抛弃指令!");
+                    logger.error("队列" + threadNameFactory.getNamePrefix() + "(" + key + ")" + "抛弃指令!");
                     queue.clear();
                 }
             }

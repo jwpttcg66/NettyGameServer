@@ -42,4 +42,8 @@ public class ThreadNameFactory implements ThreadFactory{
         }
         return t;
     }
+
+    public String getNamePrefix() {
+        return namePrefix;
+    }
 }

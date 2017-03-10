@@ -17,7 +17,7 @@ public class QueuePoolExecutorTest {
         OrderedQueuePoolExecutor orderedQueuePoolExecutor = new OrderedQueuePoolExecutor("orderpool", 5, Integer.MAX_VALUE);
         int maxSize = 50;
         for(int i = 0 ; i < maxSize; i++) {
-            orderedQueuePoolExecutor.addTask("1", new TestWorker(i));
+            orderedQueuePoolExecutor.addTask(1, new TestWorker(i));
         }
     }
 
