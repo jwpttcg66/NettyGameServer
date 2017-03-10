@@ -1,8 +1,7 @@
 package com.wolf.shoot.manager.spring;
 
-import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
-import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
+import com.wolf.shoot.logic.net.NetMessageTcpDispatchLogic;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;
 import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
@@ -31,7 +30,7 @@ public class LocalSpringBeanManager {
     private ClientSessionIdGenerator clientSessionIdGenerator;
 
     @Autowired
-    private NetMessageDispatchLogic netMessageDispatchLogic;
+    private NetMessageTcpDispatchLogic netMessageTcpDispatchLogic;
 
     @Autowired
     private NetMessageProcessLogic netMessageProcessLogic;
@@ -72,12 +71,12 @@ public class LocalSpringBeanManager {
         this.clientSessionIdGenerator = clientSessionIdGenerator;
     }
 
-    public NetMessageDispatchLogic getNetMessageDispatchLogic() {
-        return netMessageDispatchLogic;
+    public NetMessageTcpDispatchLogic getNetMessageTcpDispatchLogic() {
+        return netMessageTcpDispatchLogic;
     }
 
-    public void setNetMessageDispatchLogic(NetMessageDispatchLogic netMessageDispatchLogic) {
-        this.netMessageDispatchLogic = netMessageDispatchLogic;
+    public void setNetMessageTcpDispatchLogic(NetMessageTcpDispatchLogic netMessageTcpDispatchLogic) {
+        this.netMessageTcpDispatchLogic = netMessageTcpDispatchLogic;
     }
 
     public NetMessageProcessLogic getNetMessageProcessLogic() {

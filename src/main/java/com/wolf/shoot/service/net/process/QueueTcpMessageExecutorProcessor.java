@@ -5,7 +5,7 @@ import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ExecutorUtil;
-import com.wolf.shoot.logic.net.NetMessageDispatchLogic;
+import com.wolf.shoot.logic.net.NetMessageTcpDispatchLogic;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
@@ -75,8 +75,8 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     @Override
     public void directPutTcpMessage(AbstractNetMessage msg) {
         try {
-            NetMessageDispatchLogic netMessageDispatchLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageDispatchLogic();
-            netMessageDispatchLogic.dispatchTcpMessage(msg, this);
+            NetMessageTcpDispatchLogic netMessageTcpDispatchLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageTcpDispatchLogic();
+            netMessageTcpDispatchLogic.dispatchTcpMessage(msg, this);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error(CommonErrorLogInfo.THRAD_ERR_INTERRUPTED, e);

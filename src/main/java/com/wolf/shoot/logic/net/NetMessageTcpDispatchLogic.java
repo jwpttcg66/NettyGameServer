@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * Created by jiangwenping on 17/2/15.
  */
 @Service
-public class NetMessageDispatchLogic {
+public class NetMessageTcpDispatchLogic {
 
     /** 处理的消息总数 */
     public long statisticsMessageCount = 0;
