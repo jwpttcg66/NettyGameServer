@@ -4,9 +4,14 @@ import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.thread.executor.OrderedQueuePoolExecutor;
+import com.wolf.shoot.common.thread.worker.AbstractWork;
 import com.wolf.shoot.common.util.ExecutorUtil;
+import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.service.net.session.NettyUdpSession;
 import org.slf4j.Logger;
 
 import java.util.concurrent.TimeUnit;
@@ -41,11 +46,35 @@ public class GameUdpMessageOrderProcessor implements  IMessageProcessor{
     @Override
     public void put(AbstractNetMessage msg) {
         //直接执行
-
+        orderedQueuePoolExecutor.addTask(1, new UdpWorker(msg));
     }
 
     @Override
     public boolean isFull() {
         return false;
+    }
+
+
+    private final class UdpWorker extends AbstractWork {
+
+        private AbstractNetMessage netMessage;
+
+        public UdpWorker(AbstractNetMessage netMessage) {
+            this.netMessage = netMessage;
+        }
+
+        @Override
+        public void run() {
+            AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) netMessage;
+            NettyUdpSession clientSesion = (NettyUdpSession) abstractNetProtoBufMessage.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+            //所有的session已经强制绑定了，这里不需要再判定空了
+            if (logger.isDebugEnabled()) {
+                logger.debug("processor session" + clientSesion.getPlayerId() + " process message" + abstractNetProtoBufMessage.toAllInfoString());
+            }
+
+            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+            netMessageProcessLogic.processMessage(netMessage, clientSesion);
+
+        }
     }
 }
