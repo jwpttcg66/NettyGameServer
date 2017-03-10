@@ -68,6 +68,9 @@ public class GameServerConfig extends ServerConfig {
     private String updPorts;
     /*udp的queueMessageProcess默认的worker大小*/
     private int updQueueMessageProcessWorkerSize;
+    /*udp是否采用GameUdpMessageOrderProcessor*/
+    private boolean udpMessageOrderQueueFlag = true;
+
     /*updateservice是否使用将多个update绑定在一个线程执行*/
     private boolean updateServiceExcutorFlag = true;
 
@@ -294,5 +297,13 @@ public class GameServerConfig extends ServerConfig {
         String ports = getRpcPorts();
         String[] splitPorts = ports.split(",");
         return Integer.parseInt(splitPorts[0]);
+    }
+
+    public boolean isUdpMessageOrderQueueFlag() {
+        return udpMessageOrderQueueFlag;
+    }
+
+    public void setUdpMessageOrderQueueFlag(boolean udpMessageOrderQueueFlag) {
+        this.udpMessageOrderQueueFlag = udpMessageOrderQueueFlag;
     }
 }
