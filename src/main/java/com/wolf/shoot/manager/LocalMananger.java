@@ -8,6 +8,9 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.IService;
+import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
+import com.wolf.shoot.service.net.process.GameUdpMessageOrderProcessor;
+import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import org.slf4j.Logger;
 
 import java.util.LinkedHashMap;
@@ -36,6 +39,11 @@ public class LocalMananger implements ILocalManager{
     private LocalSpringServiceManager localSpringServiceManager;
 
     private LocalSpringBeanManager localSpringBeanManager;
+
+    //因为这里比较常用，单独提取出来
+    private GameTcpMessageProcessor gameTcpMessageProcessor;
+    private GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor;
+    private GameUdpMessageProcessor gameUdpMessageProcessor;
 
     public LocalSpringBeanManager getLocalSpringBeanManager() {
         return localSpringBeanManager;
@@ -68,7 +76,16 @@ public class LocalMananger implements ILocalManager{
         log.info(service.getClass().getSimpleName() + " is add");
         if(service.getClass()!=inter&&!inter.isAssignableFrom(service.getClass())) //接口和实现类必须相等或者继承关系
             throw new IllegalArgumentException();
+        if(service instanceof  GameTcpMessageProcessor){
+            this.gameTcpMessageProcessor = (GameTcpMessageProcessor) service;
+        }else if(service instanceof GameUdpMessageOrderProcessor){
+            this.gameUdpMessageOrderProcessor = (GameUdpMessageOrderProcessor) service;
+        }else if(service instanceof  GameUdpMessageProcessor){
+            this.gameUdpMessageProcessor = (GameUdpMessageProcessor) service;
+        }
+
         services.put(inter, service);
+
     }
 
 
@@ -93,5 +110,27 @@ public class LocalMananger implements ILocalManager{
         }
     }
 
+    public GameTcpMessageProcessor getGameTcpMessageProcessor() {
+        return gameTcpMessageProcessor;
+    }
 
+    public void setGameTcpMessageProcessor(GameTcpMessageProcessor gameTcpMessageProcessor) {
+        this.gameTcpMessageProcessor = gameTcpMessageProcessor;
+    }
+
+    public GameUdpMessageOrderProcessor getGameUdpMessageOrderProcessor() {
+        return gameUdpMessageOrderProcessor;
+    }
+
+    public void setGameUdpMessageOrderProcessor(GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor) {
+        this.gameUdpMessageOrderProcessor = gameUdpMessageOrderProcessor;
+    }
+
+    public GameUdpMessageProcessor getGameUdpMessageProcessor() {
+        return gameUdpMessageProcessor;
+    }
+
+    public void setGameUdpMessageProcessor(GameUdpMessageProcessor gameUdpMessageProcessor) {
+        this.gameUdpMessageProcessor = gameUdpMessageProcessor;
+    }
 }

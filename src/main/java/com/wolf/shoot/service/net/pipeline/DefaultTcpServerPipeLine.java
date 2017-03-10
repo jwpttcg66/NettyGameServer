@@ -93,7 +93,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
 
 //        //放入处理队列
         abstractNetMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
-        GameTcpMessageProcessor gameTcpMessageProcessor = (GameTcpMessageProcessor) LocalMananger.getInstance().get(GameTcpMessageProcessor.class);
+        GameTcpMessageProcessor gameTcpMessageProcessor = LocalMananger.getInstance().getGameTcpMessageProcessor();
 //        if(gameServerConfig.isTcpMessageQueueDirectDispatch()){
 //            gameTcpMessageProcessor.directPutTcpMessage(abstractNetMessage);
 //        }else{

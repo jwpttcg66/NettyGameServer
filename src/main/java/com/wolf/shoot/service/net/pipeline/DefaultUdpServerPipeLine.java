@@ -100,10 +100,10 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         //TODO 优化UDPsession
         message.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, new NettyUdpSession(channel));
         if(gameServerConfig.isUdpMessageOrderQueueFlag()) {
-            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = (GameUdpMessageOrderProcessor)LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
+            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().getGameUdpMessageOrderProcessor();
             gameUdpMessageOrderProcessor.put(message);
         }else{
-            GameUdpMessageProcessor gameUdpMessageProcessor = (GameUdpMessageProcessor) LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+            GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().getGameUdpMessageProcessor();
             gameUdpMessageProcessor.put(message);
         }
     }
