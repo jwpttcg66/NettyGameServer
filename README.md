@@ -45,6 +45,7 @@ cd bin
 ```
 
 ## 部署&启动
+- script_path:bin/dist.sh
 ```
 mkdir dist
 tar -zxvf netty_game_server_v1.0_20170313_1210.tar.gz -C dist
