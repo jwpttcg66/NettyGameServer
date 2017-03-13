@@ -1,9 +1,6 @@
 package com.wolf.shoot.common.util;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +26,8 @@ public class ThreadPool {
 	private RejectedExecutionHandler handler;
 	/** 线程池 */
 	private ThreadPoolExecutor threadPool;
-
+	/*线程工厂*/
+	private ThreadFactory threadFactory;
 	/**
 	 * 初始化
 	 *
@@ -40,8 +38,8 @@ public class ThreadPool {
 	 * @param workQueueCapacity
 	 * @param handler
 	 */
-	public ThreadPool(int coreSize, int maxSize, int keepAliveTime, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler) {
-		if (coreSize < 0 || keepAliveTime < 0 || coreSize > maxSize || maxSize <= 0 || workQueue == null || handler == null) {
+	public ThreadPool(int coreSize, int maxSize, int keepAliveTime, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
+		if (coreSize < 0 || keepAliveTime < 0 || coreSize > maxSize || maxSize <= 0 || workQueue == null || threadFactory == null || handler == null) {
 			throw new IllegalArgumentException("All parameters must accurate.");
 		}
 		this.coreSize = coreSize;
@@ -62,7 +60,7 @@ public class ThreadPool {
 			if (logger.isInfoEnabled()) {
 				logger.info("Start create a threedPool with parameters like [ coreSize : " + this.coreSize + " maxSize : " + this.maxSize + " keepAliveTime : " + this.keepAliveTime);
 			}
-			threadPool = new ThreadPoolExecutor(coreSize, maxSize, keepAliveTime, TimeUnit.SECONDS, workQueue, handler);
+			threadPool = new ThreadPoolExecutor(coreSize, maxSize, keepAliveTime, TimeUnit.SECONDS, workQueue,threadFactory,  handler);
 			if (logger.isInfoEnabled()) {
 				logger.info("Create success.");
 			}

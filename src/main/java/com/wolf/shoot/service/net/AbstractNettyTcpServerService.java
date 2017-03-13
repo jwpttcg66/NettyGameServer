@@ -23,6 +23,8 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
     private ThreadNameFactory bossThreadNameFactory;
     private ThreadNameFactory workerThreadNameFactory;
     private ChannelInitializer channelInitializer;
+
+    private ChannelFuture serverChannelFuture;
     public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName,ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);
         this.bossThreadNameFactory = new ThreadNameFactory(bossTreadName);
@@ -48,13 +50,12 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(channelInitializer);
 
-            ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
+            serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
             //TODO这里会阻塞main线程，暂时先注释掉
 //            serverChannelFuture.channel().closeFuture().sync();
         }catch (Exception e) {
             serviceFlag = false;
-
         }
         return serviceFlag;
     }
@@ -69,5 +70,9 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
             workerGroup.shutdownGracefully();
         }
         return flag;
+    }
+
+    public void finish() throws InterruptedException {
+        serverChannelFuture.channel().closeFuture().sync();
     }
 }

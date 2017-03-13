@@ -60,4 +60,28 @@ public class LocalNetService implements IService{
             }
         }
     }
+
+    public GameNettyTcpServerService getGameNettyTcpServerService() {
+        return gameNettyTcpServerService;
+    }
+
+    public void setGameNettyTcpServerService(GameNettyTcpServerService gameNettyTcpServerService) {
+        this.gameNettyTcpServerService = gameNettyTcpServerService;
+    }
+
+    public GameNettyUdpServerService getGameNettyUdpServerService() {
+        return gameNettyUdpServerService;
+    }
+
+    public void setGameNettyUdpServerService(GameNettyUdpServerService gameNettyUdpServerService) {
+        this.gameNettyUdpServerService = gameNettyUdpServerService;
+    }
+
+    public GameNettyRPCService getGameNettyRPCService() {
+        return gameNettyRPCService;
+    }
+
+    public void setGameNettyRPCService(GameNettyRPCService gameNettyRPCService) {
+        this.gameNettyRPCService = gameNettyRPCService;
+    }
 }

@@ -97,6 +97,7 @@ public class GlobalConstants {
         public static final String NET_UDP_MESSAGE_PROCESS ="NET_UDP_MESSAGE_PROCESS";
         public static final String NET_RPC_BOSS ="net_rpc_boss";
         public static final String NET_RPC_WORKER ="net_rpc_worker";
+        public static final String START_FINISHED ="start_finished";
     }
 
     /**
