@@ -174,15 +174,15 @@
 
         <directory>${project.build.directory}</directory>
         <!-- 过滤配置文件 -->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>**/*</exclude>
-                </excludes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<excludes>-->
+                    <!--<exclude>**/*</exclude>-->
+                <!--</excludes>-->
+                <!--<filtering>true</filtering>-->
+            <!--</resource>-->
+        <!--</resources>-->
 
         <plugins>
             <plugin>
