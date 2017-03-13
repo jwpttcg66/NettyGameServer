@@ -20,6 +20,8 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
 
     private ThreadNameFactory eventThreadNameFactory;
 
+    private ChannelFuture serverChannelFuture;
+
     public AbstractNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName) {
         super(serviceId, serverPort);
         this.eventThreadNameFactory = new ThreadNameFactory(threadNameFactoryName);
@@ -42,7 +44,7 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
                 .handler(new GameNetProtoMessageUdpServerChannleInitializer());
 
         // 服务端监听在9999端口
-        ChannelFuture channelFuture = b.bind(serverPort).sync();
+        serverChannelFuture = b.bind(serverPort).sync();
 
 //        channelFuture.channel().closeFuture().await();
         return serviceFlag;
@@ -55,6 +57,10 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
             eventLoopGroup.shutdownGracefully();
         }
         return flag;
+    }
+
+    public void finish() throws  Exception{
+        serverChannelFuture.channel().closeFuture().await();
     }
 
 }

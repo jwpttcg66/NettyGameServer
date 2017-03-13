@@ -46,6 +46,7 @@ public class ThreadPool {
 		this.maxSize = maxSize;
 		this.keepAliveTime = keepAliveTime;
 		this.workQueue = workQueue;
+		this.threadFactory = threadFactory;
 		this.handler = handler;
 	}
 

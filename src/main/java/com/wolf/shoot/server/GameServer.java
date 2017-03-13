@@ -97,7 +97,7 @@ public class GameServer extends AbstractServerService{
 
         logger.info("TCP Server started");
         LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
-
+        LocalMananger.getInstance().create(GamerServerStartFinishedService.class, GamerServerStartFinishedService.class);
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -113,11 +113,13 @@ public class GameServer extends AbstractServerService{
                     logger.info("tcp server shutdown:ok");
                     Globals.stop();
                     logger.info("Globals.shutdown:ok");
+                    GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
+                    gamerServerStartFinishedService.shutdown();
                 } catch (Exception e) {
                     logger.error("close connector service exception:", e);
                 } catch (Error e) {
                     logger.error("close connector service error:", e);
-                }catch (Throwable  e) {
+                } catch (Throwable e) {
                     logger.error("close connector service throwable:", e);
                 }
 
