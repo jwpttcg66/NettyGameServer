@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.common.ThreadNameFactory;
+import com.wolf.shoot.common.constant.Loggers;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -11,12 +12,14 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.slf4j.Logger;
 
 /**
  * Created by jiangwenping on 17/2/7.
  */
 public abstract class AbstractNettyTcpServerService extends AbstractNettyServerService {
 
+    private Logger logger = Loggers.serverLogger;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
@@ -55,6 +58,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
             //TODO这里会阻塞main线程，暂时先注释掉
 //            serverChannelFuture.channel().closeFuture().sync();
         }catch (Exception e) {
+            logger.error(e.toString(), e);
             serviceFlag = false;
         }
         return serviceFlag;
