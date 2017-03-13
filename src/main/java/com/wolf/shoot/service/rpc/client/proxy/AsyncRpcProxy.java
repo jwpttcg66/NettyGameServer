@@ -1,8 +1,11 @@
 package com.wolf.shoot.service.rpc.client.proxy;
 
-import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
-import com.wolf.shoot.service.rpc.client.*;
+import com.wolf.shoot.service.rpc.RpcContextHolder;
+import com.wolf.shoot.service.rpc.client.ConnectManage;
+import com.wolf.shoot.service.rpc.client.RPCFuture;
+import com.wolf.shoot.service.rpc.client.RpcClientHandler;
+import com.wolf.shoot.service.rpc.client.RpcRequestFactroy;
 
 /**
  * Created by jwp on 2017/3/9.
@@ -19,7 +22,8 @@ public class AsyncRpcProxy<T> implements IAsyncRpcProxy{
 
     @Override
     public RPCFuture call(String funcName, Object... args) {
-        RpcClientHandler handler = ConnectManage.getInstance().chooseHandler();
+        String serverId = RpcContextHolder.getServer();
+        RpcClientHandler handler = ConnectManage.getInstance().chooseHandler(serverId);
         RpcRequestFactroy rpcRequestFactroy = new RpcRequestFactroy();
         RpcRequest request = rpcRequestFactroy.createRequest(this.clazz.getName(), funcName, args);
         RPCFuture rpcFuture = handler.sendRequest(request);

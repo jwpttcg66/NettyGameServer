@@ -5,7 +5,6 @@ import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcClient;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
@@ -17,10 +16,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -52,6 +47,8 @@ public class HelloServiceTest {
     @Test
     public void helloTest1() {
         HelloService helloService = rpcClient.create(HelloService.class);
+//        String serverId = "8001";
+//        RpcContextHolder.setServer(serverId);
         String result = helloService.hello("World");
         System.out.println(result);
         Assert.assertEquals("Hello! World", result);

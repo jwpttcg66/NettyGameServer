@@ -1,5 +1,6 @@
 package com.wolf.shoot.service.rpc.client;
 
+import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import io.netty.buffer.Unpooled;
@@ -8,7 +9,6 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.SocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,8 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RpcClientHandler.class);
-
+    private Logger logger = Loggers.rpcLogger;
     private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
 
     private volatile Channel channel;
@@ -55,13 +54,13 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        LOGGER.error("rpc client caught exception", cause);
+        logger.error("rpc client caught exception", cause);
         pendingRPC.clear();
         ctx.close();
     }
 
     public void close() {
-        LOGGER.error("rpc client close");
+        logger.error("rpc client close");
         pendingRPC.clear();
         channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     }

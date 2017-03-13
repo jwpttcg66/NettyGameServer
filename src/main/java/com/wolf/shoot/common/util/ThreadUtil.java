@@ -99,13 +99,13 @@ public class ThreadUtil {
 	}
 
 
-	public static void main(String[] args){
-		System.out.println(ThreadUtil.getThreadTree());
-
-		Thread t = ThreadUtil.findThread("main");
-
-		System.out.println(getThreadStack(t));
-
-		System.out.println(getThreadsCount());
-	}
+//	public static void main(String[] args){
+//		System.out.println(ThreadUtil.getThreadTree());
+//
+//		Thread t = ThreadUtil.findThread("main");
+//
+//		System.out.println(getThreadStack(t));
+//
+//		System.out.println(getThreadsCount());
+//	}
 }
