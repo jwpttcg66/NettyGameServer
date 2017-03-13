@@ -15,7 +15,9 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jwp on 2017/3/8.
@@ -33,6 +35,8 @@ public class RpcServiceDiscovery implements IService{
 
     protected List<SdServer> sdWorldServers;
     protected List<SdServer> sdGameServers;
+
+    protected Map<Integer, SdServer> serverMap;
 
     public void updateConnectedServer(List<SdServer> sdServers){
         ConnectManage.getInstance().updateConnectedServer(sdServers);
@@ -63,6 +67,9 @@ public class RpcServiceDiscovery implements IService{
 
         GameServerConfigService gameServerConfigServiceEx = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_CONFIG).getFile());
+
+        Map<Integer, SdServer> serverMap = new HashMap<>();
+
         List<SdServer> sdWorldServers = new ArrayList<SdServer>();
         Element element = rootElement.getChild("online");
         List<Element> childrenElements = element.getChildren("server");
@@ -78,7 +85,7 @@ public class RpcServiceDiscovery implements IService{
             int communicationNumber = childElement.getAttribute("communicationNumber").getIntValue();
             SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort,communicationNumber);
             sdWorldServers.add(sdServer);
-
+            serverMap.put(serverId, sdServer);
         }
 
         List<SdServer> sdGameServers = new ArrayList<SdServer>();
@@ -97,12 +104,19 @@ public class RpcServiceDiscovery implements IService{
 
             SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort, communicationNumber);
             sdGameServers.add(sdServer);
+            serverMap.put(serverId, sdServer);
         }
 
         synchronized (this.lock) {
             this.sdWorldServers = sdWorldServers;
             this.sdGameServers = sdGameServers;
+            this.serverMap = serverMap;
         }
     }
+
+    public SdServer getSdServer(String serverId){
+        return serverMap.get(Integer.parseInt(serverId));
+    }
+
 }
 

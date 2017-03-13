@@ -1,6 +1,8 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.util.StringUtils;
+import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.SdServer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -20,7 +22,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -185,7 +190,22 @@ public class ConnectManage {
             int index = (roundRobin.getAndAdd(1) + size) % size;
             return handlers.get(index);
         }else{
-            return null;
+            try {
+                boolean available = waitingForHandler();
+                if (available) {
+                    RpcServiceDiscovery rpcService = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcServiceDiscovery();
+                    SdServer sdServer = rpcService.getSdServer(serverId);
+                    InetSocketAddress inetSocketAddress  = new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
+                    RpcClientHandler rpcClientHandler = this.connectedHandlers.get(inetSocketAddress);
+                    return rpcClientHandler;
+                }
+
+            }catch (Exception e){
+                LOGGER.error("Waiting for available node is interrupted! ", e);
+                throw new RuntimeException("Can't connect any servers!", e);
+            }
+
+            return  null;
         }
     }
 
