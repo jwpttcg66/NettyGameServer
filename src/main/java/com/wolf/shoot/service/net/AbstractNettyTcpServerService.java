@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.common.ThreadNameFactory;
+import com.wolf.shoot.common.constant.Loggers;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -11,18 +12,22 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.slf4j.Logger;
 
 /**
  * Created by jiangwenping on 17/2/7.
  */
 public abstract class AbstractNettyTcpServerService extends AbstractNettyServerService {
 
+    private Logger logger = Loggers.serverLogger;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
     private ThreadNameFactory bossThreadNameFactory;
     private ThreadNameFactory workerThreadNameFactory;
     private ChannelInitializer channelInitializer;
+
+    private ChannelFuture serverChannelFuture;
     public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName,ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);
         this.bossThreadNameFactory = new ThreadNameFactory(bossTreadName);
@@ -48,13 +53,13 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(channelInitializer);
 
-            ChannelFuture serverChannelFuture = serverBootstrap.bind(serverPort).sync();
+            serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
             //TODO这里会阻塞main线程，暂时先注释掉
 //            serverChannelFuture.channel().closeFuture().sync();
         }catch (Exception e) {
+            logger.error(e.toString(), e);
             serviceFlag = false;
-
         }
         return serviceFlag;
     }
@@ -69,5 +74,9 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
             workerGroup.shutdownGracefully();
         }
         return flag;
+    }
+
+    public void finish() throws InterruptedException {
+        serverChannelFuture.channel().closeFuture().sync();
     }
 }

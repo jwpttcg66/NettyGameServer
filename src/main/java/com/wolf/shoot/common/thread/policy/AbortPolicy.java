@@ -31,7 +31,6 @@ public class AbortPolicy extends ThreadPoolExecutor.AbortPolicy {
                         + " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s)]",
                 threadName, executor.getPoolSize(), executor.getActiveCount(), executor.getCorePoolSize(), executor.getMaximumPoolSize(), executor.getLargestPoolSize(),
                 executor.getTaskCount(), executor.getCompletedTaskCount(), executor.isShutdown(), executor.isTerminated(), executor.isTerminating());
-        System.out.println(msg);
         super.rejectedExecution(runnable, executor);
     }
 }

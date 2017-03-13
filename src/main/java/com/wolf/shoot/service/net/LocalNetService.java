@@ -4,6 +4,7 @@ import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
+import com.wolf.shoot.common.exception.StartUpException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 
@@ -27,16 +28,26 @@ public class LocalNetService implements IService{
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, new GameNetProtoMessageTcpServerChannleInitializer());
-        gameNettyTcpServerService.startService();
+        boolean startUpFlag = gameNettyTcpServerService.startService();
+        if(!startUpFlag){
+            throw  new StartUpException("tcp server startup error");
+        }
 
         gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),gameServerConfig.getUdpPort()
                 , GlobalConstants.Thread.NET_UDP_WORKER);
-        gameNettyUdpServerService.startService();
+        startUpFlag = gameNettyUdpServerService.startService();
+        if(!startUpFlag){
+            throw  new StartUpException("udp server startup error");
+        }
 
         if(gameServerConfig.isRpcFlag()) {
             gameNettyRPCService = new GameNettyRPCService(gameServerConfig.getServerId(), gameServerConfig.getFirstRpcPort()
                     , GlobalConstants.Thread.NET_RPC_BOSS, GlobalConstants.Thread.NET_RPC_WORKER, new GameNetRPCChannleInitializer());
-            gameNettyRPCService.startService();
+            startUpFlag = gameNettyRPCService.startService();
+            if(!startUpFlag){
+                throw  new StartUpException("rpc server startup error");
+            }
+
         }
 
     }
@@ -59,5 +70,29 @@ public class LocalNetService implements IService{
                 gameNettyRPCService.stopService();
             }
         }
+    }
+
+    public GameNettyTcpServerService getGameNettyTcpServerService() {
+        return gameNettyTcpServerService;
+    }
+
+    public void setGameNettyTcpServerService(GameNettyTcpServerService gameNettyTcpServerService) {
+        this.gameNettyTcpServerService = gameNettyTcpServerService;
+    }
+
+    public GameNettyUdpServerService getGameNettyUdpServerService() {
+        return gameNettyUdpServerService;
+    }
+
+    public void setGameNettyUdpServerService(GameNettyUdpServerService gameNettyUdpServerService) {
+        this.gameNettyUdpServerService = gameNettyUdpServerService;
+    }
+
+    public GameNettyRPCService getGameNettyRPCService() {
+        return gameNettyRPCService;
+    }
+
+    public void setGameNettyRPCService(GameNettyRPCService gameNettyRPCService) {
+        this.gameNettyRPCService = gameNettyRPCService;
     }
 }
