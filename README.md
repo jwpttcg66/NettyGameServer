@@ -35,3 +35,19 @@ test下game包，rpc包 启动对应客户端
 代码最后通过maven部署
 - 作者qq 330258845
 - QQ群310158485
+
+
+## maven - 打包部署
+- script_path:bin/build.sh
+```
+cd bin
+./build.sh
+```
+
+## 部署&启动
+```
+mkdir dist
+tar -zxvf netty_game_server_v1.0_20170313_1210.tar.gz -C dist
+cd dist
+sh launch.sh  start
+```

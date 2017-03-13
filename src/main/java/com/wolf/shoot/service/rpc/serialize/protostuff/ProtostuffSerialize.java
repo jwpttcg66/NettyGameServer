@@ -8,7 +8,6 @@ import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
-import com.sun.tools.internal.xjc.SchemaCache;
 import com.wolf.shoot.service.rpc.serialize.RpcSerialize;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;

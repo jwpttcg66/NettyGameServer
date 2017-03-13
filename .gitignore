@@ -4,3 +4,4 @@ logs/
 .DS_Store
 .idea
 *.iml
+dist
