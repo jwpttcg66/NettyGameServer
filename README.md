@@ -29,6 +29,9 @@ udp自定义协议栈为
 内容 bytes body;
 
 
+测试用例
+启动gameserver类，启动服务器
+test下game包，rpc包 启动对应客户端
 代码最后通过maven部署
 - 作者qq 330258845
 - QQ群310158485
