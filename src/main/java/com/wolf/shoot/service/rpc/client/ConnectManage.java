@@ -125,7 +125,7 @@ public class ConnectManage {
 
     }
 
-    private void connectServerNode(final InetSocketAddress remotePeer, CountDownLatch downLatch) {
+    private void connectServerNode(final InetSocketAddress remotePeer,final CountDownLatch downLatch) {
         threadPoolExecutor.submit(new Runnable() {
             @Override
             public void run() {
