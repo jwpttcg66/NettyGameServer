@@ -211,9 +211,8 @@ public class ConnectManage {
 
     public void stop(){
         isRuning = false;
-        for (int i = 0; i < connectedHandlers.size(); ++i) {
-            RpcClientHandler connectedServerHandler = connectedHandlers.get(i);
-            connectedServerHandler.close();
+        for (RpcClientHandler rpcClientHandler: connectedHandlers.values()) {
+            rpcClientHandler.close();
         }
         signalAvailableHandler();
         threadPoolExecutor.shutdown();
