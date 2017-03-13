@@ -24,7 +24,7 @@ import java.util.Map;
  * rpc的服务发现
  */
 @Service
-public class RpcServiceDiscovery implements IService{
+public class RpcServiceDiscovery implements IService {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
@@ -38,12 +38,12 @@ public class RpcServiceDiscovery implements IService{
 
     protected Map<Integer, SdServer> serverMap;
 
-    public void updateConnectedServer(List<SdServer> sdServers){
-        ConnectManage.getInstance().updateConnectedServer(sdServers);
+    public void updateConnectedServer(List<SdServer> sdServers) throws InterruptedException {
+        ConnectManage.getInstance().initServers(sdServers);
     }
 
-    public void updateOnlineConnectedServer(){
-        ConnectManage.getInstance().updateConnectedServer(sdWorldServers);
+    public void updateOnlineConnectedServer() throws InterruptedException {
+        this.updateConnectedServer(sdWorldServers);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class RpcServiceDiscovery implements IService{
         List<SdServer> sdWorldServers = new ArrayList<SdServer>();
         Element element = rootElement.getChild("online");
         List<Element> childrenElements = element.getChildren("server");
-        for(Element childElement: childrenElements){
+        for (Element childElement : childrenElements) {
             int serverId = childElement.getAttribute("serverId").getIntValue();
             String domain = childElement.getAttributeValue("domain");
             int domainPort = childElement.getAttribute("domainPort").getIntValue();
@@ -83,7 +83,7 @@ public class RpcServiceDiscovery implements IService{
             int maxNumber = childElement.getAttribute("maxNumber").getIntValue();
             int communicationPort = childElement.getAttribute("communicationPort").getIntValue();
             int communicationNumber = childElement.getAttribute("communicationNumber").getIntValue();
-            SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort,communicationNumber);
+            SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort, communicationNumber);
             sdWorldServers.add(sdServer);
             serverMap.put(serverId, sdServer);
         }
@@ -91,7 +91,7 @@ public class RpcServiceDiscovery implements IService{
         List<SdServer> sdGameServers = new ArrayList<SdServer>();
         element = rootElement.getChild("room");
         childrenElements = element.getChildren("server");
-        for(Element childElement: childrenElements){
+        for (Element childElement : childrenElements) {
             int serverId = childElement.getAttribute("serverId").getIntValue();
             String domain = childElement.getAttributeValue("domain");
             int domainPort = childElement.getAttribute("domainPort").getIntValue();
@@ -114,7 +114,7 @@ public class RpcServiceDiscovery implements IService{
         }
     }
 
-    public SdServer getSdServer(String serverId){
+    public SdServer getSdServer(String serverId) {
         return serverMap.get(Integer.parseInt(serverId));
     }
 

@@ -58,9 +58,7 @@ public class RpcThreadPool {
 
     public Executor createExecutor(int threads, int queues) {
         String name = "RpcThreadPool";
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
-                createBlockingQueue(queues),
-                new ThreadNameFactory(name, false), createPolicy());
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS, createBlockingQueue(queues), new ThreadNameFactory(name, false), createPolicy());
         this.excutor = executor;
         return executor;
     }
