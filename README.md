@@ -37,7 +37,7 @@ test下game包，rpc包 启动对应客户端
 - QQ群310158485
 
 
-## maven - 打包部署
+## maven - 打包
 - script_path:bin/build.sh
 ```
 cd bin
