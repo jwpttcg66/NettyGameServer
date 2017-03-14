@@ -25,7 +25,7 @@ public class ConnectManager {
 
     private Map<Integer, RpcClient> serverNodes = new HashMap<>();
 
-    private AtomicInteger roundRobin;
+    private AtomicInteger roundRobin = new AtomicInteger();
 
     private ConnectManager() {
     }

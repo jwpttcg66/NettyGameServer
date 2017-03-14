@@ -61,6 +61,8 @@ public class RpcClient
         return rpcClientConnection.isConnected();
     }
 
-
+    public RpcClientConnection getRpcClientConnection() {
+        return rpcClientConnection;
+    }
 
 }
