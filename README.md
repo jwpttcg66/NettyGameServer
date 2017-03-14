@@ -1,54 +1,10 @@
 NettyGameServer
 
-使用netty4.X实现的手机游戏服务器，支持tcp，udp链接，采用protobuf自定义协议栈进行网络通信,支持rpc远程调用,使用protostuff进行rpc协议序列化
+- 使用netty4.X实现的手机游戏服务器，支持tcp，udp链接，采用protobuf自定义协议栈进行网络通信,支持rpc远程调用,使用protostuff进行rpc协议序列化
 
-tcp自定义协议栈
-消息结构为NetMessageHead,NetProtoBufMessageBody
-消息头NetMessageHead结构为
-魔法头 short head;
-长度 int length;
-版本号 byte version;
-命令 short cmd;
-序列号 int serial;
+## [Wiki/文档](https://github.com/jwpttcg66/NettyGameServer/wiki)
 
-消息体NetProtoBufMessageBody结构为
-内容 bytes body;
+#### 贡献源码&合作&交流
 
-udp自定义协议栈为
-消息结构为NetUdpMessageHead,NetProtoBufMessageBody
-消息头NetUdpMessageHead结构为
-魔法头 short head;
-长度 int length;
-版本号 byte version;
-命令 short cmd;
-序列号 int serial;
-玩家id long playerId;
-玩家会话凭据 int tocken;
-
-消息体NetProtoBufMessageBody结构为
-内容 bytes body;
-
-
-测试用例
-启动gameserver类，启动服务器
-test下game包，rpc包 启动对应客户端
-代码最后通过maven部署
 - 作者qq 330258845
-- QQ群310158485
-
-
-## maven - 打包
-- script_path:bin/build.sh
-```
-cd bin
-./build.sh
-```
-
-## 部署&启动
-- script_path:bin/dist.sh
-```
-mkdir dist
-tar -zxvf netty_game_server_v1.0_20170313_1210.tar.gz -C dist
-cd dist
-sh launch.sh  start
-```
+- QQ群:310158485
