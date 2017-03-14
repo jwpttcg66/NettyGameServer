@@ -12,7 +12,7 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     private Logger logger = Loggers.rpcLogger;
 
     //那个服务器
-    private RpcConnectClient rpcConnectClient;
+    private RpcClient rpcClient;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -26,20 +26,20 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, RpcResponse response) throws Exception {
-        rpcConnectClient.handleRpcResponser(response);
+        rpcClient.handleRpcResponser(response);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         logger.error("rpc client caught exception", cause);
-        rpcConnectClient.close();
+        rpcClient.close();
     }
 
-    public RpcConnectClient getRpcConnectClient() {
-        return rpcConnectClient;
+    public RpcClient getRpcClient() {
+        return rpcClient;
     }
 
-    public void setRpcConnectClient(RpcConnectClient rpcConnectClient) {
-        this.rpcConnectClient = rpcConnectClient;
+    public void setRpcClient(RpcClient rpcClient) {
+        this.rpcClient = rpcClient;
     }
 }

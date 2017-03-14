@@ -12,13 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jiangwenping on 17/3/14.
  * 检查客户端连接
  */
-public class RpcConnectClient
+public class RpcClient
 {
     private Logger logger = Loggers.rpcLogger;
     private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
     private NioSocketChannel channel;
 
-    public RpcConnectClient(NioSocketChannel channel) {
+    public RpcClient(NioSocketChannel channel) {
         this.channel = channel;
     }
 

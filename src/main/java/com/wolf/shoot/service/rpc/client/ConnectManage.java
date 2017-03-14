@@ -20,7 +20,7 @@ public class ConnectManage {
 
     private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
-    private ConcurrentHashMap<Long, RpcConnectClient> connectedClients = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Long, RpcClient> connectedClients = new ConcurrentHashMap<>();
     private List<SdServer> serverNodes = new ArrayList<>();
 
     private AtomicInteger roundRobin;
@@ -53,16 +53,16 @@ public class ConnectManage {
         threadPoolExecutor.submit(new RpcServerConnectTask(sdServer, downLatch));
     }
 
-    public void addClient(long sdServerId, RpcConnectClient connectClient) {
+    public void addClient(long sdServerId, RpcClient connectClient) {
         InetSocketAddress remoteAddress = (InetSocketAddress) connectClient.getChannel().remoteAddress();
         connectedClients.put(sdServerId, connectClient);
     }
 
 
-    public RpcConnectClient chooseClient(String serverId) {
+    public RpcClient chooseClient(String serverId) {
 
         if (StringUtils.isEmpty(serverId)) {
-            List<RpcConnectClient> handlers = new ArrayList(this.connectedClients.values());
+            List<RpcClient> handlers = new ArrayList(this.connectedClients.values());
             int size = handlers.size();
             if(!checkConnnectFlag(handlers)) {
                 try {
@@ -77,7 +77,7 @@ public class ConnectManage {
             return handlers.get(index);
         } else {
             try {
-                RpcConnectClient rpcClientHandler = this.connectedClients.get(Long.parseLong(serverId));
+                RpcClient rpcClientHandler = this.connectedClients.get(Long.parseLong(serverId));
                 return rpcClientHandler;
             } catch (Exception e) {
                 LOGGER.error("Waiting for available node is interrupted! ", e);
@@ -86,29 +86,29 @@ public class ConnectManage {
         }
     }
 
-    public boolean checkConnnectFlag(List<RpcConnectClient> clients ){
+    public boolean checkConnnectFlag(List<RpcClient> clients ){
         boolean flag = true;
-        for(RpcConnectClient rpcConnectClient: clients){
-            if(!rpcConnectClient.getChannel().isActive()){
+        for(RpcClient rpcClient : clients){
+            if(!rpcClient.getChannel().isActive()){
                 flag = false;
             }
         }
         return flag;
     }
 
-    public List<RpcConnectClient> getConnectedServer(List<RpcConnectClient> clients ){
-        List<RpcConnectClient> rpcClientHandlers = new ArrayList<>();
-        for(RpcConnectClient rpcConnectClient: clients){
-            if(!rpcConnectClient.getChannel().isActive()){
-                rpcClientHandlers.add(rpcConnectClient);
+    public List<RpcClient> getConnectedServer(List<RpcClient> clients ){
+        List<RpcClient> rpcClientHandlers = new ArrayList<>();
+        for(RpcClient rpcClient : clients){
+            if(!rpcClient.getChannel().isActive()){
+                rpcClientHandlers.add(rpcClient);
             }
         }
         return rpcClientHandlers;
     }
 
     public void stop() {
-        for (RpcConnectClient rpcConnectClient : connectedClients.values()) {
-            rpcConnectClient.close();
+        for (RpcClient rpcClient : connectedClients.values()) {
+            rpcClient.close();
         }
         threadPoolExecutor.shutdown();
     }
