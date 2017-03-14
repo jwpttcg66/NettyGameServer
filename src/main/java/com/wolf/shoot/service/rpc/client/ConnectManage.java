@@ -60,16 +60,19 @@ public class ConnectManage {
 
 
     public RpcClientHandler chooseHandler(String serverId) {
-        List<RpcClientHandler> handlers = new ArrayList(this.connectedHandlers.values());
+
         if (StringUtils.isEmpty(serverId)) {
+            List<RpcClientHandler> handlers = new ArrayList(this.connectedHandlers.values());
             int size = handlers.size();
+            if(!checkConnnectFlag(handlers)) {
                 try {
-                    handlers = new ArrayList(this.connectedHandlers.values());
+                    handlers = getConnectedServer(handlers);
                     size = handlers.size();
                 } catch (Exception e) {
                     LOGGER.error("Waiting for available node is interrupted! ", e);
                     throw new RuntimeException("Can't connect any servers!", e);
                 }
+            }
             int index = (roundRobin.getAndAdd(1) + size) % size;
             return handlers.get(index);
         } else {
@@ -81,6 +84,26 @@ public class ConnectManage {
                 throw new RuntimeException("Can't connect any servers!", e);
             }
         }
+    }
+
+    public boolean checkConnnectFlag(List<RpcClientHandler> handlers ){
+        boolean flag = true;
+        for(RpcClientHandler rpcClientHandler: handlers){
+            if(!rpcClientHandler.getChannel().isActive()){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    public List<RpcClientHandler> getConnectedServer(List<RpcClientHandler> handlers ){
+        List<RpcClientHandler> rpcClientHandlers = new ArrayList<>();
+        for(RpcClientHandler rpcClientHandler: handlers){
+            if(!rpcClientHandler.getChannel().isActive()){
+                rpcClientHandlers.add(rpcClientHandler);
+            }
+        }
+        return rpcClientHandlers;
     }
 
     public void stop() {
