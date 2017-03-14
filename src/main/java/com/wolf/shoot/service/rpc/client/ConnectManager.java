@@ -53,7 +53,7 @@ public class ConnectManager {
             return handlers.get(index);
         } else {
             try {
-                RpcClient rpcClient = this.serverNodes.get(Long.parseLong(serverId));
+                RpcClient rpcClient = this.serverNodes.get(Integer.parseInt(serverId));
                 return rpcClient;
             } catch (Exception e) {
                 LOGGER.error("Waiting for available node is interrupted! ", e);
