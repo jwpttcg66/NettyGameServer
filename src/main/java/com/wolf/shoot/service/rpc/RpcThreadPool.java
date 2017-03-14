@@ -16,14 +16,10 @@ import java.util.concurrent.*;
 public class RpcThreadPool {
 
     private final Logger logger = Loggers.threadLogger;
-
-    private long monitorDelay = 100;
-    private long monitorPeriod = 300;
-
     private ExecutorService excutor;
 
     private RejectedExecutionHandler createPolicy() {
-        RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "AbortPolicy"));
+        RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "CallerRunsPolicy"));
 
         switch (rejectedPolicyType) {
             case BLOCKING_POLICY:
