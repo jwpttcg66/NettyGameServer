@@ -2,6 +2,7 @@ package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.util.StringUtils;
 import com.wolf.shoot.service.rpc.SdServer;
+import io.netty.channel.nio.NioEventLoopGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,15 +43,15 @@ public class ConnectManager {
             for(SdServer sdServer:  serverNodes) {
                 long serverId = sdServer.getServerId();
                 if (!connectedClients.keySet().contains(serverId)) {
-                    connectServerNode(sdServer, downLatch);
+                    connectServerNode(sdServer);
                 }
         }
             downLatch.await();
         }
     }
 
-    private void connectServerNode(final SdServer sdServer,final CountDownLatch downLatch) {
-        threadPoolExecutor.submit(new RpcServerConnectTask(sdServer, downLatch));
+    private void connectServerNode(final SdServer sdServer) {
+        threadPoolExecutor.submit(new RpcServerConnectTask(sdServer, new NioEventLoopGroup(1)));
     }
 
     public void addClient(long sdServerId, RpcClient connectClient) {

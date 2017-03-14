@@ -7,14 +7,12 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 
 import java.net.InetSocketAddress;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by jiangwenping on 17/3/14.
@@ -26,16 +24,14 @@ public class RpcServerConnectTask implements Runnable{
 
     private InetSocketAddress remotePeer;
 
-    private CountDownLatch countDownLatch;
-
-    EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
+    private EventLoopGroup eventLoopGroup;
 
     private int serverId;
 
-    public RpcServerConnectTask(SdServer sdServer, CountDownLatch countDownLatch) {
+    public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup) {
         this.serverId = sdServer.getServerId();
         this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
-        this.countDownLatch = countDownLatch;
+        this.eventLoopGroup = eventLoopGroup;
     }
 
     @Override
@@ -59,7 +55,6 @@ public class RpcServerConnectTask implements Runnable{
                 }else{
                     logger.debug("connect to remote server. remote peer = " + remotePeer + "fail");
                 }
-                countDownLatch.countDown();
             }
 
         });
