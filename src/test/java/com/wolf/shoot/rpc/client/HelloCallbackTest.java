@@ -4,11 +4,10 @@ import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
-import com.wolf.shoot.service.rpc.client.RpcClient;
+import com.wolf.shoot.service.rpc.client.RpcSender;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
@@ -29,7 +28,7 @@ import java.util.concurrent.CountDownLatch;
 public class HelloCallbackTest {
 
     @Autowired
-    private RpcClient rpcClient;
+    private RpcSender rpcSender;
 
     @Before
     public void init() {
@@ -56,7 +55,7 @@ public class HelloCallbackTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         try {
-            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcClient.createAsync(HelloService.class);
+            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSender.createAsync(HelloService.class);
             RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
             rpcFuture.addCallback(new AsyncRPCCallback() {
                 @Override
@@ -85,8 +84,8 @@ public class HelloCallbackTest {
 
     @After
     public void setTear() {
-        if (rpcClient != null) {
-            rpcClient.stop();
+        if (rpcSender != null) {
+            rpcSender.stop();
         }
     }
 }

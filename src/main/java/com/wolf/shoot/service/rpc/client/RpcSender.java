@@ -1,12 +1,9 @@
 package com.wolf.shoot.service.rpc.client;
 
 
-import com.wolf.shoot.service.net.RpcRequest;
-import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.ObjectProxy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Proxy;
@@ -18,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * RPC Client（Create RPC proxy）
  */
 @Service
-public class RpcClient {
+public class RpcSender {
 
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 

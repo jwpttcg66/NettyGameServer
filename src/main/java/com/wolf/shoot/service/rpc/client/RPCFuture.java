@@ -4,7 +4,6 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +114,7 @@ public class RPCFuture implements Future<Object> {
 
     private void runCallback(final AsyncRPCCallback callback) {
         final RpcResponse res = this.response;
-        RpcClient.submit(new Runnable() {
+        RpcSender.submit(new Runnable() {
             @Override
             public void run() {
                 if (!res.isError()) {
