@@ -168,6 +168,12 @@
             <version>${ehcache.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.jwpttcg66</groupId>
+            <artifactId>game-expression</artifactId>
+            <version>1.1</version>
+        </dependency>
+
     </dependencies>
     <!--                       build-package                               -->
     <build>
