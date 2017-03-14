@@ -51,13 +51,13 @@ public class RpcServerConnectTask implements Runnable{
             @Override
             public void operationComplete(final ChannelFuture channelFuture) throws Exception {
                 if (channelFuture.isSuccess()) {
-                    logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + " success");
+                    logger.debug("connect to remote server. remote peer = " + remotePeer + " success");
                     RpcClient rpcClient = new RpcClient((NioSocketChannel) channelFuture.channel());
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
                     handler.setRpcClient(rpcClient);
                     ConnectManage.getInstance().addClient(serverId, rpcClient);
                 }else{
-                    logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + "fail");
+                    logger.debug("connect to remote server. remote peer = " + remotePeer + "fail");
                 }
                 countDownLatch.countDown();
             }
