@@ -3,9 +3,7 @@ package com.wolf.shoot.service.rpc.client;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
@@ -62,7 +60,7 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     public void close() {
         logger.error("rpc client close");
         pendingRPC.clear();
-        channel.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        channel.close();
     }
 
     public RPCFuture sendRequest(RpcRequest request) {
@@ -70,12 +68,6 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
         pendingRPC.put(request.getRequestId(), rpcFuture);
         channel.writeAndFlush(request);
 
-        return rpcFuture;
-    }
-
-    public RPCFuture writeRequest(RPCFuture rpcFuture, RpcRequest request) {
-        pendingRPC.put(request.getRequestId(), rpcFuture);
-        channel.writeAndFlush(request);
         return rpcFuture;
     }
 }
