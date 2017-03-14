@@ -63,6 +63,13 @@ public class RpcServerConnectTask implements Runnable{
             }
 
         });
+        try {
+            channelFuture.await();
+        } catch (InterruptedException e) {
+            logger.error(e.toString(), e);
+        }
 
+        //连接结束
+        logger.debug("connect to remote server. remote peer = " + remotePeer);
     }
 }
