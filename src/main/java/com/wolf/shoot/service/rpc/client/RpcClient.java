@@ -40,10 +40,7 @@ public class RpcClient
         logger.error("rpc client close");
         pendingRPC.clear();
         if(rpcClientConnection != null) {
-            if(rpcClientConnection.getChannel() != null) {
-                rpcClientConnection.getChannel().close();
-
-            }
+            rpcClientConnection.close();
         }
     }
 

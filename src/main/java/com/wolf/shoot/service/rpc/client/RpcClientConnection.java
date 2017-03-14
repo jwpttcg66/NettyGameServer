@@ -191,4 +191,11 @@ public class RpcClientConnection {
     public void setChannel(NioSocketChannel channel) {
         this.channel = channel;
     }
+
+    public void close(){
+        if(channel != null) {
+            channel.close();
+        }
+        eventLoopGroup.shutdownGracefully();
+    }
 }
