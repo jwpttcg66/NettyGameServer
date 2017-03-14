@@ -2,6 +2,7 @@ package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
+import com.wolf.shoot.service.rpc.SdServer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -34,11 +35,6 @@ public class RpcClientConnection {
      */
     private ExecutorService threadPool;
     EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
-    /*
-     * 连接目标服务器IP地址
-     */
-    private final String host;
-    private final int port;
 
     /**
      * 重连标识
@@ -50,12 +46,14 @@ public class RpcClientConnection {
      */
     private volatile boolean reConnectOn = true;
 
-    public RpcClientConnection(String host, int port, ExecutorService threadPool) {
-        if (host == null || port <= 0 || threadPool == null) {
+    private RpcClient rpcClient;
+    private SdServer sdServer;
+    public RpcClientConnection(RpcClient rpcClient, SdServer sdServer, ExecutorService threadPool) {
+        if (threadPool == null) {
             throw new IllegalArgumentException("All parameters must accurate.");
         }
-        this.port = port;
-        this.host = host;
+        this.rpcClient = rpcClient;
+        this.sdServer = sdServer;
         this.threadPool = threadPool;
         this.statusLock = new ReentrantLock();
     }
@@ -72,41 +70,15 @@ public class RpcClientConnection {
         }
         // 创建Socket连接
         try {
-            if (logger.isInfoEnabled()) {
-                logger.info("Start connect to host: " + this.host + " port: " + this.port);
-            }
-            Bootstrap b = new Bootstrap();
-            b.group(eventLoopGroup)
-                    .channel(NioSocketChannel.class)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new LoggingHandler(LogLevel.DEBUG))
-                    .handler(new RpcClientInitializer());
-            InetSocketAddress remotePeer = new InetSocketAddress(host, port);
-            ChannelFuture channelFuture = b.connect(remotePeer);
-            channelFuture.addListener(new ChannelFutureListener() {
-                @Override
-                public void operationComplete(final ChannelFuture channelFuture) throws Exception {
-                    if (channelFuture.isSuccess()) {
-                        logger.debug("connect to remote server. remote peer = " + channelFuture.channel().remoteAddress() + " success");
-                        RpcClient rpcClient = new RpcClient((NioSocketChannel) channelFuture.channel());
-                        RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
-                        handler.setRpcClient(rpcClient);
-//                        ConnectManager.getInstance().addClient(serverId, rpcClient);
-                    }else{
-                        logger.debug("connect to remote server. remote peer = " + channelFuture.channel().remoteAddress() + "fail");
-                    }
-                }
 
-            });
-            try {
-                channelFuture.await();
-            } catch (InterruptedException e) {
-                logger.error(e.toString(), e);
-                return false;
-            }
-
+            InetSocketAddress remotePeer = new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
             //连接结束
             logger.debug("connect to remote server. remote peer = " + remotePeer);
+            Future future = threadPool.submit(new RpcServerConnectTask(sdServer, eventLoopGroup, rpcClient));
+            future.get();
+            if(isConnected()){
+                return false;
+            }
             if (logger.isInfoEnabled()) {
                 logger.info("Connect success.");
             }
@@ -133,7 +105,7 @@ public class RpcClientConnection {
      * @param message
      * @return
      */
-    public boolean sendMessage(RpcRequest rpcRequest) {
+    public boolean writeRequest(RpcRequest rpcRequest) {
         if (!isConnected() && reConnectOn) {
             // 是否正在重连中
             if (!reConnect) {
@@ -210,5 +182,13 @@ public class RpcClientConnection {
      */
     public void setReconnectOff() {
         this.reConnectOn = false;
+    }
+
+    public NioSocketChannel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(NioSocketChannel channel) {
+        this.channel = channel;
     }
 }

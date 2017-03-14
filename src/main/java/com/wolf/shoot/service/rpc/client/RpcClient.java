@@ -3,10 +3,12 @@ package com.wolf.shoot.service.rpc.client;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
+import com.wolf.shoot.service.rpc.SdServer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Created by jiangwenping on 17/3/14.
@@ -16,27 +18,30 @@ public class RpcClient
 {
     private Logger logger = Loggers.rpcLogger;
     private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
-    private NioSocketChannel channel;
 
-    public RpcClient(NioSocketChannel channel) {
-        this.channel = channel;
+    private RpcClientConnection rpcClientConnection;
+
+
+    public RpcClient(SdServer sdServer, ExecutorService threadPool){
+        rpcClientConnection = new RpcClientConnection(this, sdServer, threadPool);
     }
-
     public RPCFuture sendRequest(RpcRequest request) {
         RPCFuture rpcFuture = new RPCFuture(request);
         pendingRPC.put(request.getRequestId(), rpcFuture);
-        channel.writeAndFlush(request);
+        rpcClientConnection.writeRequest(request);
         return rpcFuture;
     }
 
     public NioSocketChannel getChannel() {
-        return channel;
+        return rpcClientConnection.getChannel();
     }
 
     public void close(){
         logger.error("rpc client close");
         pendingRPC.clear();
-        channel.close();
+        if(rpcClientConnection != null) {
+            rpcClientConnection.getChannel().close();
+        }
     }
 
     public void handleRpcResponser(RpcResponse rpcResponse){
@@ -50,13 +55,9 @@ public class RpcClient
 
     //是否连接
     public boolean isConnected(){
-        if(channel == null){
-            return false;
-        }
-        return channel.isActive();
+        return rpcClientConnection.isConnected();
     }
 
-    public void connect(){
 
-    }
+
 }

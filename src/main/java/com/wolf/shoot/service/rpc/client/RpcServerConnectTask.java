@@ -28,10 +28,12 @@ public class RpcServerConnectTask implements Runnable{
 
     private int serverId;
 
-    public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup) {
+    private RpcClient rpcClient;
+    public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
         this.serverId = sdServer.getServerId();
         this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
         this.eventLoopGroup = eventLoopGroup;
+        this.rpcClient = rpcClient;
     }
 
     @Override
@@ -48,10 +50,8 @@ public class RpcServerConnectTask implements Runnable{
             public void operationComplete(final ChannelFuture channelFuture) throws Exception {
                 if (channelFuture.isSuccess()) {
                     logger.debug("connect to remote server. remote peer = " + remotePeer + " success");
-                    RpcClient rpcClient = new RpcClient((NioSocketChannel) channelFuture.channel());
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
                     handler.setRpcClient(rpcClient);
-                    ConnectManager.getInstance().addClient(serverId, rpcClient);
                 }else{
                     logger.debug("connect to remote server. remote peer = " + remotePeer + "fail");
                 }
