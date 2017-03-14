@@ -55,7 +55,7 @@ public class RpcServerConnectTask implements Runnable{
                     RpcClient rpcClient = new RpcClient((NioSocketChannel) channelFuture.channel());
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
                     handler.setRpcClient(rpcClient);
-                    ConnectManage.getInstance().addClient(serverId, rpcClient);
+                    ConnectManager.getInstance().addClient(serverId, rpcClient);
                 }else{
                     logger.debug("connect to remote server. remote peer = " + remotePeer + "fail");
                 }

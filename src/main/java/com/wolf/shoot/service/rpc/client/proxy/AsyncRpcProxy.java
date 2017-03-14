@@ -20,7 +20,7 @@ public class AsyncRpcProxy<T> implements IAsyncRpcProxy{
     @Override
     public RPCFuture call(String funcName, Object... args) {
         String serverId = RpcContextHolder.getServer();
-        RpcClient handler = ConnectManage.getInstance().chooseClient(serverId);
+        RpcClient handler = ConnectManager.getInstance().chooseClient(serverId);
         RpcRequestFactroy rpcRequestFactroy = new RpcRequestFactroy();
         RpcRequest request = rpcRequestFactroy.createRequest(this.clazz.getName(), funcName, args);
         RPCFuture rpcFuture = handler.sendRequest(request);

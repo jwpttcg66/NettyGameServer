@@ -13,10 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  */
-public class ConnectManage {
+public class ConnectManager {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(ConnectManage.class);
-    private static final ConnectManage connectManage = new ConnectManage();
+    private final Logger LOGGER = LoggerFactory.getLogger(ConnectManager.class);
+    private static final ConnectManager CONNECT_MANAGER = new ConnectManager();
 
     private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
@@ -25,11 +25,11 @@ public class ConnectManage {
 
     private AtomicInteger roundRobin;
 
-    private ConnectManage() {
+    private ConnectManager() {
     }
 
-    public static ConnectManage getInstance() {
-        return connectManage;
+    public static ConnectManager getInstance() {
+        return CONNECT_MANAGER;
     }
 
     public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
@@ -77,8 +77,12 @@ public class ConnectManage {
             return handlers.get(index);
         } else {
             try {
-                RpcClient rpcClientHandler = this.connectedClients.get(Long.parseLong(serverId));
-                return rpcClientHandler;
+                RpcClient rpcClient = this.connectedClients.get(Long.parseLong(serverId));
+                if(rpcClient == null){
+                    //检查配置表
+
+                }
+                return rpcClient;
             } catch (Exception e) {
                 LOGGER.error("Waiting for available node is interrupted! ", e);
                 throw new RuntimeException("Can't connect any servers!", e);
@@ -86,10 +90,15 @@ public class ConnectManage {
         }
     }
 
+    public SdServer getRegistedSdServer(int serverId){
+        SdServer sdServer = null;
+
+        return sdServer;
+    }
     public boolean checkConnnectFlag(List<RpcClient> clients ){
         boolean flag = true;
         for(RpcClient rpcClient : clients){
-            if(!rpcClient.getChannel().isActive()){
+            if(!rpcClient.isConnected()){
                 flag = false;
             }
         }
@@ -99,7 +108,7 @@ public class ConnectManage {
     public List<RpcClient> getConnectedServer(List<RpcClient> clients ){
         List<RpcClient> rpcClientHandlers = new ArrayList<>();
         for(RpcClient rpcClient : clients){
-            if(!rpcClient.getChannel().isActive()){
+            if(!rpcClient.isConnected()){
                 rpcClientHandlers.add(rpcClient);
             }
         }

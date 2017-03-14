@@ -47,4 +47,16 @@ public class RpcClient
             rpcFuture.done(rpcResponse);
         }
     }
+
+    //是否连接
+    public boolean isConnected(){
+        if(channel == null){
+            return false;
+        }
+        return channel.isActive();
+    }
+
+    public void connect(){
+
+    }
 }

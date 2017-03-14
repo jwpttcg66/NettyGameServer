@@ -39,7 +39,7 @@ public class RpcSenderProxy {
     public void stop() {
         threadPoolExecutor.shutdown();
 //        serviceDiscovery.stop();
-        ConnectManage.getInstance().stop();
+        ConnectManager.getInstance().stop();
     }
 }
 
