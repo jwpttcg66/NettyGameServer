@@ -20,7 +20,7 @@ public class ConnectManage {
 
     private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
-    private ConcurrentHashMap<Long, RpcClientHandler> connectedHandlers = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Long, RpcConnectClient> connectedClients = new ConcurrentHashMap<>();
     private List<SdServer> serverNodes = new ArrayList<>();
 
     private AtomicInteger roundRobin;
@@ -41,7 +41,7 @@ public class ConnectManage {
             // Add new server node
             for(SdServer sdServer:  serverNodes) {
                 long serverId = sdServer.getServerId();
-                if (!connectedHandlers.keySet().contains(serverId)) {
+                if (!connectedClients.keySet().contains(serverId)) {
                     connectServerNode(sdServer, downLatch);
                 }
         }
@@ -53,16 +53,16 @@ public class ConnectManage {
         threadPoolExecutor.submit(new RpcServerConnectTask(sdServer, downLatch));
     }
 
-    public void addHandler(long sdServerId, RpcClientHandler handler) {
-        InetSocketAddress remoteAddress = (InetSocketAddress) handler.getChannel().remoteAddress();
-        connectedHandlers.put(sdServerId, handler);
+    public void addClient(long sdServerId, RpcConnectClient connectClient) {
+        InetSocketAddress remoteAddress = (InetSocketAddress) connectClient.getChannel().remoteAddress();
+        connectedClients.put(sdServerId, connectClient);
     }
 
 
-    public RpcClientHandler chooseHandler(String serverId) {
+    public RpcConnectClient chooseClient(String serverId) {
 
         if (StringUtils.isEmpty(serverId)) {
-            List<RpcClientHandler> handlers = new ArrayList(this.connectedHandlers.values());
+            List<RpcConnectClient> handlers = new ArrayList(this.connectedClients.values());
             int size = handlers.size();
             if(!checkConnnectFlag(handlers)) {
                 try {
@@ -77,7 +77,7 @@ public class ConnectManage {
             return handlers.get(index);
         } else {
             try {
-                RpcClientHandler rpcClientHandler = this.connectedHandlers.get(Long.parseLong(serverId));
+                RpcConnectClient rpcClientHandler = this.connectedClients.get(Long.parseLong(serverId));
                 return rpcClientHandler;
             } catch (Exception e) {
                 LOGGER.error("Waiting for available node is interrupted! ", e);
@@ -86,29 +86,29 @@ public class ConnectManage {
         }
     }
 
-    public boolean checkConnnectFlag(List<RpcClientHandler> handlers ){
+    public boolean checkConnnectFlag(List<RpcConnectClient> clients ){
         boolean flag = true;
-        for(RpcClientHandler rpcClientHandler: handlers){
-            if(!rpcClientHandler.getChannel().isActive()){
+        for(RpcConnectClient rpcConnectClient: clients){
+            if(!rpcConnectClient.getChannel().isActive()){
                 flag = false;
             }
         }
         return flag;
     }
 
-    public List<RpcClientHandler> getConnectedServer(List<RpcClientHandler> handlers ){
-        List<RpcClientHandler> rpcClientHandlers = new ArrayList<>();
-        for(RpcClientHandler rpcClientHandler: handlers){
-            if(!rpcClientHandler.getChannel().isActive()){
-                rpcClientHandlers.add(rpcClientHandler);
+    public List<RpcConnectClient> getConnectedServer(List<RpcConnectClient> clients ){
+        List<RpcConnectClient> rpcClientHandlers = new ArrayList<>();
+        for(RpcConnectClient rpcConnectClient: clients){
+            if(!rpcConnectClient.getChannel().isActive()){
+                rpcClientHandlers.add(rpcConnectClient);
             }
         }
         return rpcClientHandlers;
     }
 
     public void stop() {
-        for (RpcClientHandler rpcClientHandler : connectedHandlers.values()) {
-            rpcClientHandler.close();
+        for (RpcConnectClient rpcConnectClient : connectedClients.values()) {
+            rpcConnectClient.close();
         }
         threadPoolExecutor.shutdown();
     }

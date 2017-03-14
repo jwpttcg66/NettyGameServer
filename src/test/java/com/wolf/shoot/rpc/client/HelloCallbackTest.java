@@ -7,7 +7,7 @@ import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
-import com.wolf.shoot.service.rpc.client.RpcSender;
+import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
@@ -28,7 +28,7 @@ import java.util.concurrent.CountDownLatch;
 public class HelloCallbackTest {
 
     @Autowired
-    private RpcSender rpcSender;
+    private RpcSenderProxy rpcSenderProxy;
 
     @Before
     public void init() {
@@ -55,7 +55,7 @@ public class HelloCallbackTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         try {
-            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSender.createAsync(HelloService.class);
+            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSenderProxy.createAsync(HelloService.class);
             RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
             rpcFuture.addCallback(new AsyncRPCCallback() {
                 @Override
@@ -84,8 +84,8 @@ public class HelloCallbackTest {
 
     @After
     public void setTear() {
-        if (rpcSender != null) {
-            rpcSender.stop();
+        if (rpcSenderProxy != null) {
+            rpcSenderProxy.stop();
         }
     }
 }

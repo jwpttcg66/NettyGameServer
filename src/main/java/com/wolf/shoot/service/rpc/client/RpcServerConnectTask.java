@@ -30,7 +30,7 @@ public class RpcServerConnectTask implements Runnable{
 
     EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
 
-    private long serverId;
+    private int serverId;
 
     public RpcServerConnectTask(SdServer sdServer, CountDownLatch countDownLatch) {
         this.serverId = sdServer.getServerId();
@@ -52,9 +52,10 @@ public class RpcServerConnectTask implements Runnable{
             public void operationComplete(final ChannelFuture channelFuture) throws Exception {
                 if (channelFuture.isSuccess()) {
                     logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + " success");
+                    RpcConnectClient rpcConnectClient = new RpcConnectClient((NioSocketChannel) channelFuture.channel());
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
-                    ConnectManage.getInstance().addHandler(serverId, handler);
-
+                    handler.setRpcConnectClient(rpcConnectClient);
+                    ConnectManage.getInstance().addClient(serverId, rpcConnectClient);
                 }else{
                     logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + "fail");
                 }

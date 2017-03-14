@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * RPC Client（Create RPC proxy）
  */
 @Service
-public class RpcSender {
+public class RpcSenderProxy {
 
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
 
