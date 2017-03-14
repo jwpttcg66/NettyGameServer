@@ -11,6 +11,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.MessageAttributeEnum;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
+import com.wolf.shoot.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.wolf.shoot.service.net.session.NettyUdpSession;
 import org.slf4j.Logger;
 
@@ -23,12 +24,13 @@ import java.util.concurrent.TimeUnit;
 public class GameUdpMessageOrderProcessor implements  IMessageProcessor{
     protected static final Logger logger = Loggers.msgLogger;
     private OrderedQueuePoolExecutor orderedQueuePoolExecutor;
-
+    private int workSize;
     @Override
     public void start() {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int udpWorkerSize = gameServerConfigService.getGameServerConfig().getUpdQueueMessageProcessWorkerSize();
         orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(GlobalConstants.Thread.NET_UDP_MESSAGE_PROCESS, udpWorkerSize, Integer.MAX_VALUE);
+        this.workSize = udpWorkerSize;
         logger.info("GameUdpMessageOrderProcessor executor " + this + " started");
     }
 
@@ -45,8 +47,11 @@ public class GameUdpMessageOrderProcessor implements  IMessageProcessor{
 
     @Override
     public void put(AbstractNetMessage msg) {
+        AbstractNetProtoBufUdpMessage abstractNetProtoBufUdpMessage = (AbstractNetProtoBufUdpMessage) msg;
         //直接执行
-        orderedQueuePoolExecutor.addTask(1, new UdpWorker(msg));
+        long playerId = abstractNetProtoBufUdpMessage.getPlayerId();
+        long index = playerId % workSize;
+        orderedQueuePoolExecutor.addTask(index, new UdpWorker(msg));
     }
 
     @Override
