@@ -8,7 +8,7 @@ import com.wolf.shoot.common.util.FileUtil;
 import com.wolf.shoot.common.util.JdomUtils;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
-import com.wolf.shoot.service.rpc.client.ConnectManage;
+import com.wolf.shoot.service.rpc.client.ConnectManager;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 import org.slf4j.Logger;
@@ -39,7 +39,7 @@ public class RpcServiceDiscovery implements IService {
     protected Map<Integer, SdServer> serverMap;
 
     public void updateConnectedServer(List<SdServer> sdServers) throws InterruptedException {
-        ConnectManage.getInstance().initServers(sdServers);
+        ConnectManager.getInstance().initServers(sdServers);
     }
 
     public void updateOnlineConnectedServer() throws InterruptedException {
@@ -59,7 +59,7 @@ public class RpcServiceDiscovery implements IService {
 
     @Override
     public void shutdown() throws Exception {
-        ConnectManage.getInstance().stop();
+        ConnectManager.getInstance().stop();
     }
 
     @SuppressWarnings("unchecked")

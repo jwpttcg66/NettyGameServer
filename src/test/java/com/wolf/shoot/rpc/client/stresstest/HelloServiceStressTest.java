@@ -7,7 +7,7 @@ import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
-import com.wolf.shoot.service.rpc.client.RpcSender;
+import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class HelloServiceStressTest {
 
     @Autowired
-    private RpcSender rpcSender;
+    private RpcSenderProxy rpcSenderProxy;
 
 
     @Before
@@ -54,7 +54,7 @@ public class HelloServiceStressTest {
     @Test
     public void helloTest1() {
         String serverId = "8001";
-        HelloService helloService = rpcSender.create(HelloService.class);
+        HelloService helloService = rpcSenderProxy.create(HelloService.class);
         final String result = "Hello! World";
         final int test_size = 1_0000;
         int wrong_size = 0;
@@ -86,8 +86,8 @@ public class HelloServiceStressTest {
 
     @After
     public void setTear() {
-        if (rpcSender != null) {
-            rpcSender.stop();
+        if (rpcSenderProxy != null) {
+            rpcSenderProxy.stop();
         }
     }
 

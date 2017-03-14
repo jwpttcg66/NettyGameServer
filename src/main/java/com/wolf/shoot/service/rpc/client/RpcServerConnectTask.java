@@ -7,14 +7,12 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 
 import java.net.InetSocketAddress;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by jiangwenping on 17/3/14.
@@ -26,16 +24,16 @@ public class RpcServerConnectTask implements Runnable{
 
     private InetSocketAddress remotePeer;
 
-    private CountDownLatch countDownLatch;
+    private EventLoopGroup eventLoopGroup;
 
-    EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
+    private int serverId;
 
-    private long serverId;
-
-    public RpcServerConnectTask(SdServer sdServer, CountDownLatch countDownLatch) {
+    private RpcClient rpcClient;
+    public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
         this.serverId = sdServer.getServerId();
         this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
-        this.countDownLatch = countDownLatch;
+        this.eventLoopGroup = eventLoopGroup;
+        this.rpcClient = rpcClient;
     }
 
     @Override
@@ -51,17 +49,23 @@ public class RpcServerConnectTask implements Runnable{
             @Override
             public void operationComplete(final ChannelFuture channelFuture) throws Exception {
                 if (channelFuture.isSuccess()) {
-                    logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + " success");
+                    logger.debug("connect to remote server. remote peer = " + remotePeer + " success");
                     RpcClientHandler handler = channelFuture.channel().pipeline().get(RpcClientHandler.class);
-                    ConnectManage.getInstance().addHandler(serverId, handler);
-
+                    handler.setRpcClient(rpcClient);
+                    rpcClient.getRpcClientConnection().setChannel((NioSocketChannel) channelFuture.channel());
                 }else{
-                    logger.debug("Successfully connect to remote server. remote peer = " + remotePeer + "fail");
+                    logger.debug("connect to remote server. remote peer = " + remotePeer + "fail");
                 }
-                countDownLatch.countDown();
             }
 
         });
+        try {
+            channelFuture.await();
+        } catch (InterruptedException e) {
+            logger.error(e.toString(), e);
+        }
 
+        //连接结束
+        logger.debug("connect to remote server. remote peer = " + remotePeer);
     }
 }
