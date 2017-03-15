@@ -38,3 +38,5 @@ config.rpcFlag=true;
 config.rpcPorts="10100";
 config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
+config.rpcConnectThreadSize=16;
+config.rpcSendProxyThreadSize=16;

@@ -1,5 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
+import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.rpc.SdServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +21,16 @@ public abstract class RpcConnectManager {
 
     private final Logger LOGGER = LoggerFactory.getLogger(RpcConnectManager.class);
 
-    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
+    private ThreadPoolExecutor threadPoolExecutor;
 
     private Map<Integer, RpcClient> serverNodes = new HashMap<>();
 
     private AtomicInteger roundRobin = new AtomicInteger();
 
     public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        int threadSize = gameServerConfigService.getGameServerConfig().getRpcConnectThreadSize();
+        threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
         if (allServerAddress != null) {
             serverNodes.clear();
             for(SdServer sdServer: allServerAddress){

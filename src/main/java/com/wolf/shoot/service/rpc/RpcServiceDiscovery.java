@@ -13,7 +13,6 @@ import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
 import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
-import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,15 +48,15 @@ public class RpcServiceDiscovery implements IService {
     private DbRpcConnnectManngeer dbRpcConnnectManngeer;
 
 
-    public void initWorldConnectedServer() throws InterruptedException {
+    public void initWorldConnectedServer() throws Exception {
         worldRpcConnectManager.initServers(sdWorldServers);
     }
 
-    public void initGameConnectedServer() throws InterruptedException {
+    public void initGameConnectedServer() throws Exception {
         gameRpcConnecetMananger.initServers(sdGameServers);
     }
 
-    public void initDbConnectServer() throws InterruptedException{
+    public void initDbConnectServer() throws Exception{
         dbRpcConnnectManngeer.initServers(sdDbServers);
     }
 
@@ -79,7 +78,7 @@ public class RpcServiceDiscovery implements IService {
     }
 
     @SuppressWarnings("unchecked")
-    public void init() throws DataConversionException {
+    public void init() throws Exception {
 
         GameServerConfigService gameServerConfigServiceEx = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_CONFIG).getFile());
@@ -118,6 +117,10 @@ public class RpcServiceDiscovery implements IService {
             this.sdGameServers = sdGameServers;
             this.sdDbServers = sdDbServers;
         }
+
+        initWorldConnectedServer();
+        initGameConnectedServer();
+        initDbConnectServer();;
     }
 
 

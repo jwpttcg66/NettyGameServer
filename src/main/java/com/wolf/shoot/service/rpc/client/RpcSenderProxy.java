@@ -1,7 +1,9 @@
 package com.wolf.shoot.service.rpc.client;
 
 
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.ServiceName;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.IAsyncRpcProxy;
@@ -45,7 +47,9 @@ public class RpcSenderProxy implements IService{
 
     @Override
     public void startup() throws Exception {
-        threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        int threadSize = gameServerConfigService.getGameServerConfig().getRpcSendProxyThreadSize();
+        threadPoolExecutor = new ThreadPoolExecutor(threadSize, threadSize, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
     }
 
     @Override

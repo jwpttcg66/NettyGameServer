@@ -7,7 +7,6 @@ import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
 import com.wolf.shoot.service.rpc.RpcContextHolderObject;
-import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
@@ -42,13 +41,6 @@ public class HelloCallbackTest {
         try {
             localSpringServiceManager.start();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
-        try {
-            rpcServiceDiscovery.initWorldConnectedServer();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

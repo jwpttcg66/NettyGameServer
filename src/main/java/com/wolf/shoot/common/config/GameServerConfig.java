@@ -83,6 +83,10 @@ public class GameServerConfig extends ServerConfig {
     private int rpcThreadPoolSize;
     /*rpc等待大小*/
     private int rpcThreadPoolQueueSize;
+    /*rpc连接线程池大小*/
+    private int rpcConnectThreadSize;
+    /*rpc连接线程池大小*/
+    private int rpcSendProxyThreadSize;
 
     public GameServerConfig() {
     }
@@ -305,5 +309,21 @@ public class GameServerConfig extends ServerConfig {
 
     public void setUdpMessageOrderQueueFlag(boolean udpMessageOrderQueueFlag) {
         this.udpMessageOrderQueueFlag = udpMessageOrderQueueFlag;
+    }
+
+    public int getRpcConnectThreadSize() {
+        return rpcConnectThreadSize;
+    }
+
+    public void setRpcConnectThreadSize(int rpcConnectThreadSize) {
+        this.rpcConnectThreadSize = rpcConnectThreadSize;
+    }
+
+    public int getRpcSendProxyThreadSize() {
+        return rpcSendProxyThreadSize;
+    }
+
+    public void setRpcSendProxyThreadSize(int rpcSendProxyThreadSize) {
+        this.rpcSendProxyThreadSize = rpcSendProxyThreadSize;
     }
 }
