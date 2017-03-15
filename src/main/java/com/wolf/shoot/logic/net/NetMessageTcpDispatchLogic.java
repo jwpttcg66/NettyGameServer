@@ -1,7 +1,7 @@
 package com.wolf.shoot.logic.net;
 
 import com.wolf.shoot.common.config.GameServerConfig;
-import com.wolf.shoot.common.constant.BOConst;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.ErrorsUtil;
@@ -38,7 +38,7 @@ public class NetMessageTcpDispatchLogic {
             NettyTcpSession clientSesion = (NettyTcpSession) msg.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 GameServerConfig gameServerConfig = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService().getGameServerConfig();
-                if(gameServerConfig.getServerType() == BOConst.BO_GAME){
+                if(gameServerConfig.getServerType() == BOEnum.GAME.getBoId()){
 //					//todo--------tps测试
 //					GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
 //					if(gameServerDiffConfig.isTxStressTest()){

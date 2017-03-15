@@ -1,7 +1,7 @@
 package com.wolf.shoot.server;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
-import com.wolf.shoot.common.constant.BOConst;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.MemUtils;
@@ -155,7 +155,7 @@ public class GameServer extends AbstractServerService{
         logger.info(MemUtils.memoryInfo());
 
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        if(gameServerConfigService.getGameServerConfig().getServerType() == BOConst.BO_WORLD){
+        if(gameServerConfigService.getGameServerConfig().getServerType() == BOEnum.WORLD.getBoId()){
             logger.info("World Server started");
         }else {
             logger.info("Game Server started");

@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.rpc;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
@@ -28,15 +29,11 @@ public class RpcServiceDiscovery implements IService {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    private String registryAddress;
-
-
     protected Object lock = new Object();
 
     protected List<SdServer> sdWorldServers;
     protected List<SdServer> sdGameServers;
-
-    protected Map<Integer, SdServer> serverMap;
+    protected List<SdServer> sdDbServers;
 
     public void updateConnectedServer(List<SdServer> sdServers) throws InterruptedException {
         ConnectManager.getInstance().initServers(sdServers);
@@ -71,52 +68,39 @@ public class RpcServiceDiscovery implements IService {
         Map<Integer, SdServer> serverMap = new HashMap<>();
 
         List<SdServer> sdWorldServers = new ArrayList<SdServer>();
-        Element element = rootElement.getChild("online");
+        Element element = rootElement.getChild(BOEnum.WORLD.toString().toLowerCase());
         List<Element> childrenElements = element.getChildren("server");
         for (Element childElement : childrenElements) {
-            int serverId = childElement.getAttribute("serverId").getIntValue();
-            String domain = childElement.getAttributeValue("domain");
-            int domainPort = childElement.getAttribute("domainPort").getIntValue();
-            String ip = childElement.getAttributeValue("ip");
-            int port = childElement.getAttribute("port").getIntValue();
-            int weight = childElement.getAttribute("weight").getIntValue();
-            int maxNumber = childElement.getAttribute("maxNumber").getIntValue();
-            int communicationPort = childElement.getAttribute("communicationPort").getIntValue();
-            int communicationNumber = childElement.getAttribute("communicationNumber").getIntValue();
-            SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort, communicationNumber);
+            SdServer sdServer = new SdServer();
+            sdServer.load(childElement);
             sdWorldServers.add(sdServer);
-            serverMap.put(serverId, sdServer);
         }
 
         List<SdServer> sdGameServers = new ArrayList<SdServer>();
-        element = rootElement.getChild("room");
+        element = rootElement.getChild(BOEnum.GAME.toString().toLowerCase());
         childrenElements = element.getChildren("server");
         for (Element childElement : childrenElements) {
-            int serverId = childElement.getAttribute("serverId").getIntValue();
-            String domain = childElement.getAttributeValue("domain");
-            int domainPort = childElement.getAttribute("domainPort").getIntValue();
-            String ip = childElement.getAttributeValue("ip");
-            int port = childElement.getAttribute("port").getIntValue();
-            int weight = childElement.getAttribute("weight").getIntValue();
-            int maxNumber = childElement.getAttribute("maxNumber").getIntValue();
-            int communicationPort = childElement.getAttribute("communicationPort").getIntValue();
-            int communicationNumber = childElement.getAttribute("communicationNumber").getIntValue();
-
-            SdServer sdServer = new SdServer(serverId, domain, domainPort, ip, port, weight, maxNumber, communicationPort, communicationNumber);
+            SdServer sdServer = new SdServer();
+            sdServer.load(childElement);
             sdGameServers.add(sdServer);
-            serverMap.put(serverId, sdServer);
+        }
+
+        List<SdServer> sdDbServers = new ArrayList<SdServer>();
+        element = rootElement.getChild(BOEnum.DB.toString().toLowerCase());
+        childrenElements = element.getChildren("server");
+        for (Element childElement : childrenElements) {
+            SdServer sdServer = new SdServer();
+            sdServer.load(childElement);
+            sdDbServers.add(sdServer);
         }
 
         synchronized (this.lock) {
             this.sdWorldServers = sdWorldServers;
             this.sdGameServers = sdGameServers;
-            this.serverMap = serverMap;
+            this.sdDbServers = sdDbServers;
         }
     }
 
-    public SdServer getSdServer(String serverId) {
-        return serverMap.get(Integer.parseInt(serverId));
-    }
 
 }
 

@@ -3,6 +3,10 @@ package com.wolf.shoot.service.rpc;
 /**
  * Created by jwp on 2017/3/9.
  */
+
+import org.jdom2.DataConversionException;
+import org.jdom2.Element;
+
 /**
  * @author jwp
  *	服务器
@@ -45,19 +49,19 @@ public class SdServer {
      */
     private int communicationNumber;
 
-    public SdServer(int serverId, String domain, int domainPort, String ip, int port, int weight, int maxNumber, int communicationPort
-            , int communicationNumber) {
-        super();
-        this.serverId = serverId;
-        this.domain = domain;
-        this.domainPort = domainPort;
-        this.ip = ip;
-        this.port = port;
-        this.weight = weight;
-        this.maxNumber = maxNumber;
-        this.communicationPort = communicationPort;
-        this.communicationNumber = communicationNumber;
-    }
+//    public SdServer(int serverId, String domain, int domainPort, String ip, int port, int weight, int maxNumber, int communicationPort
+//            , int communicationNumber) {
+//        super();
+//        this.serverId = serverId;
+//        this.domain = domain;
+//        this.domainPort = domainPort;
+//        this.ip = ip;
+//        this.port = port;
+//        this.weight = weight;
+//        this.maxNumber = maxNumber;
+//        this.communicationPort = communicationPort;
+//        this.communicationNumber = communicationNumber;
+//    }
 
     public int getServerId() {
         return serverId;
@@ -126,5 +130,17 @@ public class SdServer {
 
     public void setCommunicationNumber(int communicationNumber) {
         this.communicationNumber = communicationNumber;
+    }
+
+    public void load(Element element) throws DataConversionException {
+        serverId = element.getAttribute("serverId").getIntValue();
+        domain = element.getAttributeValue("domain");
+        domainPort = element.getAttribute("domainPort").getIntValue();
+        ip = element.getAttributeValue("ip");
+        port = element.getAttribute("port").getIntValue();
+        weight = element.getAttribute("weight").getIntValue();
+        maxNumber = element.getAttribute("maxNumber").getIntValue();
+        communicationPort = element.getAttribute("communicationPort").getIntValue();
+        communicationNumber = element.getAttribute("communicationNumber").getIntValue();
     }
 }
