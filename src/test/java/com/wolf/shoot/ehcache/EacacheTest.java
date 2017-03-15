@@ -2,10 +2,13 @@ package com.wolf.shoot.ehcache;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Iterator;
 
 import org.ehcache.Cache;
+import org.ehcache.Cache.Entry;
 import org.ehcache.CacheManager;
 import org.ehcache.config.Configuration;
+import org.ehcache.config.ResourceType;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.xml.XmlConfiguration;
 import org.junit.Before;
@@ -27,9 +30,16 @@ public class EacacheTest {
 	@org.junit.Test
 	public void testSeriazable(){
 		Cache<String,Serializable> cache = manager.getCache("serializerTest", String.class,Serializable.class);
-		Data data = new Data();
-		cache.put("hello", data);
-		cache.put("hello2", data);
+		for (int i = 0; i < 300; i++) {
+			Data data = new Data();
+			cache.put(""+i, data);
+		}
+		Iterator<Entry<String, Serializable>> iterator = cache.iterator();
+		while (iterator.hasNext()) {
+			Entry<String, Serializable> next = iterator.next();
+			System.err.println(next.getKey()+"-"+next.getValue());
+		}
+		cache.put("hello", new Data());
 		System.err.println(cache.get("hello"));
 		check(cache, "hello");
 	}
@@ -42,7 +52,6 @@ public class EacacheTest {
 		cache.put("1", 100);
 		System.err.println(cache.get("1"));
 		check(cache, "1");
-		
 	}
 	public void check(Cache cache,String key){
 		boolean flag = true;
