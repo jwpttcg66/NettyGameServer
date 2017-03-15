@@ -16,7 +16,7 @@
         	<ttl unit="minutes">1</ttl>
         </expiry>
         <resources>
-        	<heap unit="entries">2000</heap>
+        	<heap unit="entries">20</heap>
         </resources>
     </cache>
     <cache alias="serializerTest">
@@ -26,7 +26,7 @@
         	<class>com.wolf.shoot.ehcache.Data</class>
     	</expiry>
     	<resources>
-        	<heap unit="entries">2000</heap>
+        	<heap unit="entries">100</heap>
         </resources>
     </cache>
     
