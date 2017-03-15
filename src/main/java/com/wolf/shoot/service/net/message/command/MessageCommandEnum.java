@@ -1,18 +1,18 @@
 package com.wolf.shoot.service.net.message.command;
 
-import com.wolf.shoot.common.constant.BOConst;
+import com.wolf.shoot.common.constant.BOEnum;
 
 /**
  * Created by jiangwenping on 17/2/20.
  */
 public enum MessageCommandEnum {
 
-    ONLINE_HEART_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE, BOConst.BO_WORLD,false, false),
-    COMMON_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOConst.BO_WORLD, false, true),
-    COMMON_ERROR_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOConst.BO_WORLD, false, true),
-    ONLINE_HEART_UDP_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE, BOConst.BO_WORLD, true, false),
-    ONLINE_LOGIN_TCP_CLIENT_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE, BOConst.BO_WORLD,false, false),
-    ONLINE_LOGIN_TCP_SERVER_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE, BOConst.BO_WORLD,false, false),
+    ONLINE_HEART_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE, BOEnum.WORLD,false, false),
+    COMMON_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOEnum.WORLD, false, true),
+    COMMON_ERROR_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOEnum.WORLD, false, true),
+    ONLINE_HEART_UDP_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE, BOEnum.WORLD, true, false),
+    ONLINE_LOGIN_TCP_CLIENT_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE, BOEnum.WORLD,false, false),
+    ONLINE_LOGIN_TCP_SERVER_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE, BOEnum.WORLD,false, false),
     ;
     /**
      * 协议号
@@ -34,9 +34,9 @@ public enum MessageCommandEnum {
      */
     public final boolean is_common;
 
-    MessageCommandEnum(int commandId, int boId, boolean is_need_filter, boolean is_common) {
+    MessageCommandEnum(int commandId, BOEnum boEnum, boolean is_need_filter, boolean is_common) {
         this.command_id = commandId;
-        this.bo_id = boId;
+        this.bo_id = boEnum.getBoId();
         this.is_need_filter = is_need_filter;
         this.is_common = is_common;
     }

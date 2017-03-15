@@ -8,6 +8,7 @@ import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
+import com.wolf.shoot.service.rpc.client.RpcRequestFactroy;
 import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,9 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private ProtostuffSerialize protostuffSerialize;
+
+    @Autowired
+    private RpcRequestFactroy requestFactroy;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -117,5 +121,13 @@ public class LocalSpringBeanManager {
 
     public void setProtostuffSerialize(ProtostuffSerialize protostuffSerialize) {
         this.protostuffSerialize = protostuffSerialize;
+    }
+
+    public RpcRequestFactroy getRequestFactroy() {
+        return requestFactroy;
+    }
+
+    public void setRequestFactroy(RpcRequestFactroy requestFactroy) {
+        this.requestFactroy = requestFactroy;
     }
 }
