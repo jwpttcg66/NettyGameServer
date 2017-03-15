@@ -1,11 +1,13 @@
 package com.wolf.shoot.rpc.client.stresstest;
 
 
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
+import com.wolf.shoot.service.rpc.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
@@ -44,7 +46,7 @@ public class HelloServiceStressTest {
         }
         RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
         try {
-            rpcServiceDiscovery.updateOnlineConnectedServer();
+            rpcServiceDiscovery.initWorldConnectedServer();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -53,16 +55,17 @@ public class HelloServiceStressTest {
 
     @Test
     public void helloTest1() {
-        String serverId = "8001";
+        int serverId = 8001;
         HelloService helloService = rpcSenderProxy.create(HelloService.class);
         final String result = "Hello! World";
-        final int test_size = 1_0000;
+        final int test_size = 1_00;
         int wrong_size = 0;
         int right_size = 0;
         long current_time = System.currentTimeMillis();
 
+        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
+        RpcContextHolder.setContextHolder(rpcContextHolderObject);
         for (int i = 0; i < test_size; i++) {
-            RpcContextHolder.setServer(serverId);
             if(helloService!=null){
                 String test = helloService.hello("World");
                 if (test != null && result.equals(test))
@@ -87,7 +90,11 @@ public class HelloServiceStressTest {
     @After
     public void setTear() {
         if (rpcSenderProxy != null) {
-            rpcSenderProxy.stop();
+            try {
+                rpcSenderProxy.shutdown();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

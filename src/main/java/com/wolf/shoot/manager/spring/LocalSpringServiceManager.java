@@ -12,6 +12,7 @@ import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.RemoteRpcService;
 import com.wolf.shoot.service.rpc.RpcMethodRegistry;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
+import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.time.SystemTimeService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,9 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private EhcacheService ehcacheService;
+
+    @Autowired
+    private RpcSenderProxy rpcSenderProxy;
 
     public RpcServiceDiscovery getRpcServiceDiscovery() {
         return rpcServiceDiscovery;
@@ -146,6 +150,14 @@ public class LocalSpringServiceManager {
 
     public void setEhcacheService(EhcacheService ehcacheService) {
         this.ehcacheService = ehcacheService;
+    }
+
+    public RpcSenderProxy getRpcSenderProxy() {
+        return rpcSenderProxy;
+    }
+
+    public void setRpcSenderProxy(RpcSenderProxy rpcSenderProxy) {
+        this.rpcSenderProxy = rpcSenderProxy;
     }
 
     public  void start() throws Exception {

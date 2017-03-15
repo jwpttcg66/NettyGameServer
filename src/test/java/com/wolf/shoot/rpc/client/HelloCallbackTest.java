@@ -1,9 +1,12 @@
 package com.wolf.shoot.rpc.client;
 
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
+import com.wolf.shoot.service.rpc.RpcContextHolder;
+import com.wolf.shoot.service.rpc.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
@@ -44,7 +47,7 @@ public class HelloCallbackTest {
 
         RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
         try {
-            rpcServiceDiscovery.updateOnlineConnectedServer();
+            rpcServiceDiscovery.initWorldConnectedServer();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -56,6 +59,8 @@ public class HelloCallbackTest {
 
         try {
             AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSenderProxy.createAsync(HelloService.class);
+            RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, 8001);
+            RpcContextHolder.setContextHolder(rpcContextHolderObject);
             RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
             rpcFuture.addCallback(new AsyncRPCCallback() {
                 @Override
@@ -85,7 +90,11 @@ public class HelloCallbackTest {
     @After
     public void setTear() {
         if (rpcSenderProxy != null) {
-            rpcSenderProxy.stop();
+            try {
+                rpcSenderProxy.shutdown();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

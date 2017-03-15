@@ -1,9 +1,12 @@
 package com.wolf.shoot.service.rpc.client.proxy;
 
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
-import com.wolf.shoot.service.rpc.client.ConnectManager;
+import com.wolf.shoot.service.rpc.RpcContextHolderObject;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
+import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcClient;
 import org.slf4j.Logger;
@@ -55,8 +58,10 @@ public class ObjectProxy<T> implements InvocationHandler{
             }
         }
 
-        String serverId = RpcContextHolder.getServer();
-        RpcClient rpcClient = ConnectManager.getInstance().chooseClient(serverId);
+        RpcContextHolderObject rpcContextHolderObject = RpcContextHolder.getContext();
+        RpcServiceDiscovery rpcServiceDiscovery = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcServiceDiscovery();
+        RpcConnectManager rpcConnectManager = rpcServiceDiscovery.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
+        RpcClient rpcClient = rpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         rpcClient.sendRequest(request);
         RPCFuture rpcFuture = rpcClient.sendRequest(request);
         return rpcFuture.get();

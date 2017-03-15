@@ -9,10 +9,14 @@ import com.wolf.shoot.common.util.FileUtil;
 import com.wolf.shoot.common.util.JdomUtils;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
-import com.wolf.shoot.service.rpc.client.ConnectManager;
+import com.wolf.shoot.service.rpc.client.RpcConnectManager;
+import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
+import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
+import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,12 +39,26 @@ public class RpcServiceDiscovery implements IService {
     protected List<SdServer> sdGameServers;
     protected List<SdServer> sdDbServers;
 
-    public void updateConnectedServer(List<SdServer> sdServers) throws InterruptedException {
-        ConnectManager.getInstance().initServers(sdServers);
+    @Autowired
+    private WorldRpcConnectManager worldRpcConnectManager;
+
+    @Autowired
+    private GameRpcConnecetMananger gameRpcConnecetMananger;
+
+    @Autowired
+    private DbRpcConnnectManngeer dbRpcConnnectManngeer;
+
+
+    public void initWorldConnectedServer() throws InterruptedException {
+        worldRpcConnectManager.initServers(sdWorldServers);
     }
 
-    public void updateOnlineConnectedServer() throws InterruptedException {
-        this.updateConnectedServer(sdWorldServers);
+    public void initGameConnectedServer() throws InterruptedException {
+        gameRpcConnecetMananger.initServers(sdGameServers);
+    }
+
+    public void initDbConnectServer() throws InterruptedException{
+        dbRpcConnnectManngeer.initServers(sdDbServers);
     }
 
     @Override
@@ -51,12 +69,13 @@ public class RpcServiceDiscovery implements IService {
     @Override
     public void startup() throws Exception {
         init();
-//        updateConnectedServer();
     }
 
     @Override
     public void shutdown() throws Exception {
-        ConnectManager.getInstance().stop();
+        worldRpcConnectManager.stop();
+        gameRpcConnecetMananger.stop();
+        dbRpcConnnectManngeer.stop();
     }
 
     @SuppressWarnings("unchecked")
@@ -102,5 +121,14 @@ public class RpcServiceDiscovery implements IService {
     }
 
 
+    public RpcConnectManager getRpcConnectMannger(BOEnum boEnum){
+        RpcConnectManager rpcConnectManager = worldRpcConnectManager;
+        if(boEnum.equals(BOEnum.GAME)){
+            rpcConnectManager = gameRpcConnecetMananger;
+        }else if (boEnum.equals(BOEnum.DB)){
+            rpcConnectManager = dbRpcConnnectManngeer;
+        }
+        return worldRpcConnectManager;
+    }
 }
 

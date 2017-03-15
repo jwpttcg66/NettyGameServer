@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import org.slf4j.Logger;
@@ -114,7 +115,8 @@ public class RPCFuture implements Future<Object> {
 
     private void runCallback(final AsyncRPCCallback callback) {
         final RpcResponse res = this.response;
-        RpcSenderProxy.submit(new Runnable() {
+        RpcSenderProxy rpcSenderProxy = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcSenderProxy();
+        rpcSenderProxy.submit(new Runnable() {
             @Override
             public void run() {
                 if (!res.isError()) {

@@ -1,11 +1,13 @@
 package com.wolf.shoot.rpc.client;
 
 
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
+import com.wolf.shoot.service.rpc.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
@@ -43,7 +45,7 @@ public class HelloServiceTest {
 
         RpcServiceDiscovery rpcServiceDiscovery = localSpringServiceManager.getRpcServiceDiscovery();
         try {
-            rpcServiceDiscovery.updateOnlineConnectedServer();
+            rpcServiceDiscovery.initWorldConnectedServer();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -52,8 +54,9 @@ public class HelloServiceTest {
     @Test
     public void helloTest1() {
         HelloService helloService = rpcSenderProxy.create(HelloService.class);
-        String serverId = "8001";
-        RpcContextHolder.setServer(serverId);
+        int serverId = 8001;
+        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
+        RpcContextHolder.setContextHolder(rpcContextHolderObject);
         String result = helloService.hello("World");
         System.out.println(result);
         Assert.assertEquals("Hello! World", result);
@@ -61,8 +64,12 @@ public class HelloServiceTest {
 
     @After
     public void setTear(){
-        if(rpcSenderProxy != null) {
-            rpcSenderProxy.stop();
+        if (rpcSenderProxy != null) {
+            try {
+                rpcSenderProxy.shutdown();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -13,4 +13,5 @@ public class ServiceName {
     public static final String RpcServiceDiscovery = "RpcServiceDiscovery";
     public static final String EhcacheService = "EhcacheService";
     public static final String GamerServerStartFinishedService = "GamerServerStartFinishedService";
+    public static final String RpcSenderProxy = "RpcSenderProxy";
 }

@@ -3,6 +3,8 @@ package com.wolf.shoot.service.rpc.client.proxy;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.RpcContextHolder;
+import com.wolf.shoot.service.rpc.RpcContextHolderObject;
+import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.*;
 
 /**
@@ -20,11 +22,13 @@ public class AsyncRpcProxy<T> implements IAsyncRpcProxy{
 
     @Override
     public RPCFuture call(String funcName, Object... args) {
-        String serverId = RpcContextHolder.getServer();
-        RpcClient handler = ConnectManager.getInstance().chooseClient(serverId);
+        RpcContextHolderObject rpcContextHolderObject = RpcContextHolder.getContext();
+        RpcServiceDiscovery rpcServiceDiscovery = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcServiceDiscovery();
+        RpcConnectManager rpcConnectManager = rpcServiceDiscovery.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
+        RpcClient rpcClient = rpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         RpcRequestFactroy rpcRequestFactroy = LocalMananger.getInstance().getLocalSpringBeanManager().getRequestFactroy();
         RpcRequest request = rpcRequestFactroy.createRequest(this.clazz.getName(), funcName, args);
-        RPCFuture rpcFuture = handler.sendRequest(request);
+        RPCFuture rpcFuture = rpcClient.sendRequest(request);
         return rpcFuture;
     }
 
