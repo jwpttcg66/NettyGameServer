@@ -87,6 +87,14 @@ public class RPCFuture implements Future<Object> {
             logger.warn("Service response time is too slow. Request id = " + reponse.getRequestId() + ". Response Time = " + responseTime + "ms");
         }
     }
+    
+    public boolean isTimeout(){
+    	long responseTime = System.currentTimeMillis() - startTime;
+        if (responseTime > this.responseTimeThreshold) {
+            return true;
+        }
+        return false;
+    }
 
     private void invokeCallbacks() {
         lock.lock();

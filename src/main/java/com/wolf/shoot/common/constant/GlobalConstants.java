@@ -98,6 +98,7 @@ public class GlobalConstants {
         public static final String NET_RPC_BOSS ="net_rpc_boss";
         public static final String NET_RPC_WORKER ="net_rpc_worker";
         public static final String START_FINISHED ="start_finished";
+        public static final String DETECT_RPCPENDING ="detect_rpcpending";
     }
 
     /**
