@@ -1,18 +1,15 @@
 package com.wolf.shoot.service.rpc.client;
 
+import com.wolf.shoot.service.net.RpcRequest;
+import org.springframework.stereotype.Service;
+
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.wolf.shoot.service.net.RpcRequest;
-
+@Service
 public class PendingRPCManager {
 
-	
 	private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
-	
-	private static PendingRPCManager instance = new PendingRPCManager();
-	public static PendingRPCManager getInstance(){
-		return instance;
-	}
+
 	public RPCFuture getRPCFuture(String requestId){
 		if(pendingRPC.get(requestId)!=null){
 			return pendingRPC.get(requestId);
