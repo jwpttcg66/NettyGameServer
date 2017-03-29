@@ -1,13 +1,13 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import com.wolf.shoot.service.rpc.SdServer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -17,8 +17,6 @@ import java.util.concurrent.ExecutorService;
 public class RpcClient
 {
     private Logger logger = Loggers.rpcLogger;
-    private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
-
     private RpcClientConnection rpcClientConnection;
 
 
@@ -27,7 +25,8 @@ public class RpcClient
     }
     public RPCFuture sendRequest(RpcRequest request) {
         RPCFuture rpcFuture = new RPCFuture(request);
-        pendingRPC.put(request.getRequestId(), rpcFuture);
+        PendingRPCManager pendingRPCManager = LocalMananger.getInstance().getLocalSpringBeanManager().getPendingRPCManager();
+        pendingRPCManager.addRPCFuture(request.getRequestId(), rpcFuture);
         rpcClientConnection.writeRequest(request);
         return rpcFuture;
     }
@@ -38,7 +37,7 @@ public class RpcClient
 
     public void close(){
         logger.error("rpc client close");
-        pendingRPC.clear();
+//        pendingRPC.clear();
         if(rpcClientConnection != null) {
             rpcClientConnection.close();
         }
@@ -46,16 +45,12 @@ public class RpcClient
 
     public void handleRpcResponser(RpcResponse rpcResponse){
         String requestId = rpcResponse.getRequestId();
-        RPCFuture rpcFuture = pendingRPC.get(requestId);
+        PendingRPCManager pendingRPCManager = LocalMananger.getInstance().getLocalSpringBeanManager().getPendingRPCManager();
+        RPCFuture rpcFuture = pendingRPCManager.getRPCFuture(requestId);
         if (rpcFuture != null) {
-            pendingRPC.remove(requestId);
+            pendingRPCManager.removeRPCFuture(requestId);
             rpcFuture.done(rpcResponse);
         }
-    }
-
-    //是否连接
-    public boolean isConnected(){
-        return rpcClientConnection.isConnected();
     }
 
     public RpcClientConnection getRpcClientConnection() {

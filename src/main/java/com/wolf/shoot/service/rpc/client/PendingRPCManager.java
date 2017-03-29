@@ -1,6 +1,5 @@
 package com.wolf.shoot.service.rpc.client;
 
-import com.wolf.shoot.service.net.RpcRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,9 +15,8 @@ public class PendingRPCManager {
 		}
 		return null;
 	}
-	public void addRPCFuture(RpcRequest request){
-		RPCFuture rpcFuture = new RPCFuture(request);
-        pendingRPC.put(request.getRequestId(), rpcFuture);
+	public void addRPCFuture(String requestId, RPCFuture rpcFuture){
+        pendingRPC.put(requestId, rpcFuture);
 	}
 	public ConcurrentHashMap<String, RPCFuture> getPendingRPC(){
 		return pendingRPC;
