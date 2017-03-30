@@ -129,6 +129,12 @@ public class ZookeeperRpcServiceRegistry implements IService{
 
     @Override
     public void shutdown() throws Exception {
+        if(zk != null){
+            try {
+                zk.close();
+            }catch (Exception e){
 
+            }
+        }
     }
 }

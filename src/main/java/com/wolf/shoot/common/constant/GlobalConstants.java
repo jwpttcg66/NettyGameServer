@@ -133,7 +133,7 @@ public class GlobalConstants {
 
     public static class ZooKeeperConstants{
         public static final String registryAdress = "registry.address";
-        public static final String ZK_REGISTRY_PATH = "/rpc_registry2";
+        public static final String ZK_REGISTRY_PATH = "/rpc_registry";
         public static final String ZK_DATA_PATH = ZK_REGISTRY_PATH + "/data";
         public static final int ZK_SESSION_TIMEOUT = 5000;
     }
