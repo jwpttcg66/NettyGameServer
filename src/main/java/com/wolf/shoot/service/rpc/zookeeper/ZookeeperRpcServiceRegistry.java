@@ -62,11 +62,8 @@ public class ZookeeperRpcServiceRegistry implements IService{
         try{
             Stat s = zk.exists(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, false);
             if (s == null){
-                zk.create(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                create(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, new byte[0]);
             }
-
-//            List<String> children =  zk.getChildren(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, false);
-//            System.out.println(children);
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
@@ -76,15 +73,31 @@ public class ZookeeperRpcServiceRegistry implements IService{
         try {
             byte[] bytes = data.getBytes();
             String nodePath = GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH;
-            String path = zk.create(nodePath, bytes, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            String path = create(nodePath, bytes);
             logger.debug("create zookeeper node ({} => {})", path, data);
-
-//            List<String> children =  zk.getChildren(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, false);
-//            System.out.println(children);
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
     }
+
+    /**
+     *
+     *<b>function:</b>创建持久态的znode,比支持多层创建.比如在创建/parent/child的情况下,无/parent.无法通过
+     *@author cuiran
+     *@createDate 2013-01-16 15:08:38
+     *@param path
+     *@param data
+     *@throws KeeperException
+     *@throws InterruptedException
+     */
+    public String create(String path,byte[] data) throws  Exception{
+        /**
+         * 此处采用的是CreateMode是PERSISTENT  表示The znode will not be automatically deleted upon client's disconnect.
+         * EPHEMERAL 表示The znode will be deleted upon the client's disconnect.
+         */
+       return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+    }
+
 
     public void deleteNode(ZooKeeper zk, String data){
         try {
