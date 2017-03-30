@@ -1,6 +1,9 @@
 package com.wolf.shoot.common.config;
 
 
+/**
+ * 每个服务器独有的配置
+ */
 public class GameServerDiffConfig implements Config {
 
     /**

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.net.URL;
 
+
+/**
+ * 游戏配置服务
+ */
 @Service
 public class GameServerConfigService implements IService {
 
