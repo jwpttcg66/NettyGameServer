@@ -1,11 +1,9 @@
-package com.wolf.shoot.service.rpc;
+package com.wolf.shoot.service.rpc.client;
 
 import com.snowcattle.game.excutor.utils.ExecutorUtil;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
-import com.wolf.shoot.service.rpc.client.PendingRPCManager;
-import com.wolf.shoot.service.rpc.client.RPCFuture;
 import org.springframework.stereotype.Service;
 
 import java.util.Map.Entry;
@@ -15,6 +13,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * rpc客户端RPCFuture清理服务
+ */
 @Service
 public class DetectRPCPendingService implements IService {
 

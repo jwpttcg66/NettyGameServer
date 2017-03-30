@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * rpc客户端RPCFuture管理
+ */
 @Service
 public class PendingRPCManager {
 
