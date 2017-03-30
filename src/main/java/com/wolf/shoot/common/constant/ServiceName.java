@@ -15,4 +15,5 @@ public class ServiceName {
     public static final String GamerServerStartFinishedService = "GamerServerStartFinishedService";
     public static final String RpcSenderProxy = "RpcSenderProxy";
     public static final String DetectRPCPendingService = "DetectRPCPendingService";
+    public static final String ZookeeperRpcServiceRegistry = "ZookeeperRpcServiceRegistry";
 }

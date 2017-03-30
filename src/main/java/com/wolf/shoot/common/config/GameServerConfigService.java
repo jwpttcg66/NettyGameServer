@@ -93,4 +93,12 @@ public class GameServerConfigService implements IService {
     public void setGameDynamicPropertiesConfig(GameDynamicPropertiesConfig gameDynamicPropertiesConfig) {
         this.gameDynamicPropertiesConfig = gameDynamicPropertiesConfig;
     }
+
+    public ZooKeeperConfig getZooKeeperConfig() {
+        return zooKeeperConfig;
+    }
+
+    public void setZooKeeperConfig(ZooKeeperConfig zooKeeperConfig) {
+        this.zooKeeperConfig = zooKeeperConfig;
+    }
 }

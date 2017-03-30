@@ -67,7 +67,7 @@ public abstract class AbstractGameConfigure implements GameConfigurable{
         return i.intValue();
     }
 
-    private String getProperty(String key){
+    public String getProperty(String key){
         if(key==null){
             return null;
         }
