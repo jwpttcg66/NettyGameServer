@@ -13,11 +13,10 @@ import java.net.URL;
 @Service
 public class GameServerConfigService implements IService {
 
-    private String dynamicProperties = "dynamic_config.properties";
-
     private GameServerDiffConfig gameServerDiffConfig;
     private GameServerConfig gameServerConfig;
     private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
+    private ZooKeeperConfig zooKeeperConfig;
 
     @Override
     public String getId() {
@@ -33,11 +32,20 @@ public class GameServerConfigService implements IService {
         initConfig();
         initDiffConfig();
         initDynamicConfig();
+        initZooKeeperConfig();
     }
 
+    public void initZooKeeperConfig(){
+        DefaultResourceLoader defaultClassLoader = new DefaultResourceLoader();
+        Resource resource = defaultClassLoader.getResource(GlobalConstants.ConfigFile.ZOOKEEPER_PROPERTIES);
+        ZooKeeperConfig zooKeeperConfig = new ZooKeeperConfig();
+        zooKeeperConfig.setResource(resource);
+        zooKeeperConfig.init();
+        this.zooKeeperConfig = zooKeeperConfig;
+    }
     public void initDynamicConfig(){
         DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
-        Resource resource = defaultResourceLoader.getResource(dynamicProperties);
+        Resource resource = defaultResourceLoader.getResource(GlobalConstants.ConfigFile.DYNAMIC_PROPERTIES);
         GameDynamicPropertiesConfig tempA5GameDynamicPropertiesConfig = new GameDynamicPropertiesConfig();
         tempA5GameDynamicPropertiesConfig.setResource(resource);
         tempA5GameDynamicPropertiesConfig.init();

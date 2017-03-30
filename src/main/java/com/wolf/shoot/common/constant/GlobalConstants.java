@@ -84,6 +84,10 @@ public class GlobalConstants {
         public static final String GAMEMAP_CONFIG="gamemap-config.xml";
         /**rpc*/
         public static final String RPC_SERVER_CONFIG="rpc-server.xml";
+        /**dynmic*/
+        public static final String DYNAMIC_PROPERTIES = "dynamic_config.properties";
+        /**zookeeper*/
+        public static final String ZOOKEEPER_PROPERTIES = "zookeeper.properties";
     }
 
     /**
