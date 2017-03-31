@@ -65,7 +65,7 @@ public class RpcClientConnection {
         // 创建Socket连接
         try {
 
-            InetSocketAddress remotePeer = new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
+            InetSocketAddress remotePeer = new InetSocketAddress(sdServer.getIp(), sdServer.getRpcPort());
             //连接结束
             logger.debug("connect to remote server. remote peer = " + remotePeer);
             Future future = threadPool.submit(new RpcServerConnectTask(sdServer, eventLoopGroup, rpcClient));

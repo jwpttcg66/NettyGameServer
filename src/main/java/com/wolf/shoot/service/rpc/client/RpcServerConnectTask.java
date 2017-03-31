@@ -31,7 +31,7 @@ public class RpcServerConnectTask implements Runnable{
     private RpcClient rpcClient;
     public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
         this.serverId = sdServer.getServerId();
-        this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getCommunicationPort());
+        this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getRpcPort());
         this.eventLoopGroup = eventLoopGroup;
         this.rpcClient = rpcClient;
     }

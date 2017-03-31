@@ -43,25 +43,11 @@ public class SdServer {
     /**
      * 通讯短端口
      */
-    private int communicationPort;
+    private int rpcPort;
     /**
      * 通讯链接数量
      */
-    private int communicationNumber;
-
-//    public SdServer(int serverId, String domain, int domainPort, String ip, int port, int weight, int maxNumber, int communicationPort
-//            , int communicationNumber) {
-//        super();
-//        this.serverId = serverId;
-//        this.domain = domain;
-//        this.domainPort = domainPort;
-//        this.ip = ip;
-//        this.port = port;
-//        this.weight = weight;
-//        this.maxNumber = maxNumber;
-//        this.communicationPort = communicationPort;
-//        this.communicationNumber = communicationNumber;
-//    }
+    private int rpcClientNumber;
 
     public int getServerId() {
         return serverId;
@@ -116,20 +102,20 @@ public class SdServer {
         this.domainPort = domainPort;
     }
 
-    public int getCommunicationPort() {
-        return communicationPort;
+    public int getRpcPort() {
+        return rpcPort;
     }
 
-    public void setCommunicationPort(int communicationPort) {
-        this.communicationPort = communicationPort;
+    public void setRpcPort(int rpcPort) {
+        this.rpcPort = rpcPort;
     }
 
-    public int getCommunicationNumber() {
-        return communicationNumber;
+    public int getRpcClientNumber() {
+        return rpcClientNumber;
     }
 
-    public void setCommunicationNumber(int communicationNumber) {
-        this.communicationNumber = communicationNumber;
+    public void setRpcClientNumber(int rpcClientNumber) {
+        this.rpcClientNumber = rpcClientNumber;
     }
 
     public void load(Element element) throws DataConversionException {
@@ -140,7 +126,9 @@ public class SdServer {
         port = element.getAttribute("port").getIntValue();
         weight = element.getAttribute("weight").getIntValue();
         maxNumber = element.getAttribute("maxNumber").getIntValue();
-        communicationPort = element.getAttribute("communicationPort").getIntValue();
-        communicationNumber = element.getAttribute("communicationNumber").getIntValue();
+        rpcPort = element.getAttribute("rpcPort").getIntValue();
+        rpcClientNumber = element.getAttribute("rpcClientNumber").getIntValue();
     }
+
+
 }
