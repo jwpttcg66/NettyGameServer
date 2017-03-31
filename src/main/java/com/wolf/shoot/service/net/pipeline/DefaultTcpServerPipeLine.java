@@ -46,7 +46,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         GameServerConfig gameServerConfig = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService().getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-        if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
+        if (gameServerConfig.getServerType().getBoId()!= messageCommand.bo_id && !messageCommand.is_common()) {
             if (nettySession.getPlayerId() != 0) {
                 logger.debug("discard tcp message  sessionId:" + nettySession.getSessionId() + " messageId is " + commandId);
             } else {

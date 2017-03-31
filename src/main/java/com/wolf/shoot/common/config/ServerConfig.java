@@ -1,5 +1,6 @@
 package com.wolf.shoot.common.config;
 
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.util.ErrorsUtil;
 
@@ -14,7 +15,7 @@ public abstract class ServerConfig implements Config {
 	/**
 	 * 服务器类型：1-GameServer 2-WorldServer 3-LoginServer 4-DBSServer 5-AgentServer 6-LogServer
 	 */
-	protected int serverType;
+	protected BOEnum serverType;
 	/** 生产模式:0 调式模式:1 */
 	protected int debug = 0;
 	
@@ -215,15 +216,14 @@ public abstract class ServerConfig implements Config {
 		return scriptHeaderName;
 	}
 
-	public void setServerType(int serverType) {
-		this.serverType = serverType;
-	}
 
-	public int getServerType() {
+	public BOEnum getServerType() {
 		return serverType;
 	}
 
-
+	public void setServerType(BOEnum serverType) {
+		this.serverType = serverType;
+	}
 
 	/**
 	 * Log Server 配置
@@ -256,10 +256,10 @@ public abstract class ServerConfig implements Config {
 
 	@Override
 	public void validate() {
-		if (serverType < 1) {
-			throw new IllegalArgumentException(
-					"The serverType must not be empty");
-		}
+//		if (serverType < 1) {
+//			throw new IllegalArgumentException(
+//					"The serverType must not be empty");
+//		}
 
 		if (this.ports == null || (ports = ports.trim()).length() == 0) {
 			throw new IllegalArgumentException(ErrorsUtil.error(

@@ -38,7 +38,7 @@ public class NetMessageTcpDispatchLogic {
             NettyTcpSession clientSesion = (NettyTcpSession) msg.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
                 GameServerConfig gameServerConfig = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService().getGameServerConfig();
-                if(gameServerConfig.getServerType() == BOEnum.GAME.getBoId()){
+                if(gameServerConfig.getServerType().getBoId() == BOEnum.GAME.getBoId()){
 //					//todo--------tps测试
 //					GameServerDiffConfig gameServerDiffConfig = LocalMananger.getInstance().getGameServerConfigService().getGameServerDiffConfig();
 //					if(gameServerDiffConfig.isTxStressTest()){

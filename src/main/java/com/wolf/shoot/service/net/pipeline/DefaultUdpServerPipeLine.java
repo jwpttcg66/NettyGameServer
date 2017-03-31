@@ -43,7 +43,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 
         //如果是通用消息，不进行服务器检测
-        if (gameServerConfig.getServerType() != messageCommand.bo_id && !messageCommand.is_common()) {
+        if (gameServerConfig.getServerType().getBoId() != messageCommand.bo_id && !messageCommand.is_common()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
             }

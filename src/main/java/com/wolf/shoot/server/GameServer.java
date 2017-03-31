@@ -155,7 +155,7 @@ public class GameServer extends AbstractServerService{
         logger.info(MemUtils.memoryInfo());
 
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        if(gameServerConfigService.getGameServerConfig().getServerType() == BOEnum.WORLD.getBoId()){
+        if(gameServerConfigService.getGameServerConfig().getServerType().equals(BOEnum.WORLD)){
             logger.info("World Server started");
         }else {
             logger.info("Game Server started");

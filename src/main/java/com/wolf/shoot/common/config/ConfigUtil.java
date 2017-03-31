@@ -2,6 +2,7 @@ package com.wolf.shoot.common.config;
 
 import com.wolf.shoot.common.config.script.IScriptEngine;
 import com.wolf.shoot.common.config.script.JSScriptManagerImpl;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.util.ErrorsUtil;
 import org.apache.commons.io.IOUtils;
@@ -67,6 +68,9 @@ public class ConfigUtil {
 		IScriptEngine _jsEngine = new JSScriptManagerImpl("UTF-8");
 		Map<String, Object> _bindings = new HashMap<String, Object>();
 		_bindings.put("config", _config);
+		_bindings.put(BOEnum.WORLD.toString().toLowerCase(), BOEnum.WORLD);
+		_bindings.put(BOEnum.GAME.toString().toLowerCase(), BOEnum.GAME);
+		_bindings.put(BOEnum.DB.toString().toLowerCase(), BOEnum.DB);
 		Reader _r = null;
 		String _scriptContent = null;
 		try {
