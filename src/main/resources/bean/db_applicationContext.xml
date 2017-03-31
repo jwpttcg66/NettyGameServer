@@ -18,7 +18,7 @@
 
     <context:annotation-config />
 
-    <context:component-scan base-package="com.wolf.shoot.jdbc.mapper" />
+    <context:component-scan base-package="com.wolf.shoot" />
 
     <context:property-placeholder location="classpath:db_jdbc.properties" />
 
