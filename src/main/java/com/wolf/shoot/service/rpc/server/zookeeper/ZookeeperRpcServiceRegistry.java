@@ -26,12 +26,17 @@ public class ZookeeperRpcServiceRegistry implements IService{
     private CountDownLatch countDownLatch = new CountDownLatch(1);
 
     private ZooKeeper zk;
-    public void register(String data){
-        if(!StringUtils.isEmpty(data)){
+
+    public void registerZooKeeper(){
+        if(zk == null){
             zk = connectServer();
+        }
+    }
+    public void register(String registry_path, String nodePath, String nodeData){
+        if(!StringUtils.isEmpty(registry_path)){
             if (zk != null) {
-                addRootNode(zk);
-                createNode(zk, data);
+                addRootNode(zk, registry_path);
+                createNode(zk, nodePath, nodeData);
             }
         }
     }
@@ -58,23 +63,22 @@ public class ZookeeperRpcServiceRegistry implements IService{
         return zk;
     }
 
-    private void  addRootNode(ZooKeeper zk){
+    private void  addRootNode(ZooKeeper zk, String registry_path){
         try{
-            Stat s = zk.exists(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, false);
+            Stat s = zk.exists(registry_path, false);
             if (s == null){
-                create(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, new byte[0]);
+                create(registry_path, new byte[0]);
             }
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
 
     }
-    private void createNode(ZooKeeper zk ,String data){
+    private void createNode(ZooKeeper zk ,String nodePath, String nodeData){
         try {
-            byte[] bytes = data.getBytes();
-            String nodePath = GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH;
+            byte[] bytes = nodeData.getBytes();
             String path = create(nodePath, bytes);
-            logger.debug("create zookeeper node ({} => {})", path, data);
+            logger.debug("create zookeeper node ({} => {})", path, bytes);
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
@@ -133,7 +137,7 @@ public class ZookeeperRpcServiceRegistry implements IService{
             try {
                 zk.close();
             }catch (Exception e){
-
+                logger.error(e.toString(), e);
             }
         }
     }

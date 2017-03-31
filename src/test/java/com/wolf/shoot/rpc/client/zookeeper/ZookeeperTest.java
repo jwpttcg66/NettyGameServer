@@ -1,5 +1,6 @@
 package com.wolf.shoot.rpc.client.zookeeper;
 
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
@@ -44,7 +45,8 @@ public class ZookeeperTest {
 
     @Test
     public void test() {
-        zookeeperRpcServiceRegistry.register("dd");
+        zookeeperRpcServiceRegistry.registerZooKeeper();
+        zookeeperRpcServiceRegistry.register(GlobalConstants.ZooKeeperConstants.ZK_REGISTRY_PATH, GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH, "dd");
         zookeeperRpcServiceDiscovery.discovery();
         List<String> dataList = zookeeperRpcServiceDiscovery.getDataList();
         System.out.println(dataList);
