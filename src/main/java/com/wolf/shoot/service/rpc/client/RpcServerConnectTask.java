@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.service.rpc.SdServer;
+import com.wolf.shoot.service.rpc.server.SdServer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;

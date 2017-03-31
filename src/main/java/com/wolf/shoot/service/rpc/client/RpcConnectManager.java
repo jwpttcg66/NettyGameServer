@@ -2,7 +2,7 @@ package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.rpc.SdServer;
+import com.wolf.shoot.service.rpc.server.SdServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

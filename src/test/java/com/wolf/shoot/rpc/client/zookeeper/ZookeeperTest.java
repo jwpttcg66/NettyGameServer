@@ -5,7 +5,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.client.ZookeeperRpcServiceDiscovery;
-import com.wolf.shoot.service.rpc.zookeeper.ZookeeperRpcServiceRegistry;
+import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
