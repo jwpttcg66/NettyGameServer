@@ -4,7 +4,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
-import com.wolf.shoot.service.rpc.SdServer;
+import com.wolf.shoot.service.rpc.server.SdServer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 

@@ -10,9 +10,9 @@ import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
-import com.wolf.shoot.service.rpc.RemoteRpcService;
-import com.wolf.shoot.service.rpc.RpcMethodRegistry;
-import com.wolf.shoot.service.rpc.RpcServiceDiscovery;
+import com.wolf.shoot.service.rpc.server.RemoteRpcService;
+import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
+import com.wolf.shoot.service.rpc.server.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
 import com.wolf.shoot.service.time.SystemTimeService;
 

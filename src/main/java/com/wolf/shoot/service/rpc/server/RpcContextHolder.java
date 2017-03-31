@@ -1,6 +1,4 @@
-package com.wolf.shoot.service.rpc;
-
-import com.wolf.shoot.common.constant.BOEnum;
+package com.wolf.shoot.service.rpc.server;
 
 /**
  * Created by jiangwenping on 17/3/13.

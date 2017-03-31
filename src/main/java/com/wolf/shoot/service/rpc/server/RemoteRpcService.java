@@ -1,16 +1,13 @@
-package com.wolf.shoot.service.rpc;
+package com.wolf.shoot.service.rpc.server;
 
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.server.GameServer;
 import com.wolf.shoot.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by jwp on 2017/3/8.

@@ -1,11 +1,10 @@
 package com.wolf.shoot.service.net;
 
-import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.rpc.IRPCService;
-import com.wolf.shoot.service.rpc.RemoteRpcService;
-import com.wolf.shoot.service.rpc.RpcMethodRegistry;
+import com.wolf.shoot.service.rpc.server.IRPCService;
+import com.wolf.shoot.service.rpc.server.RemoteRpcService;
+import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -13,8 +12,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import net.sf.cglib.reflect.FastClass;
 import net.sf.cglib.reflect.FastMethod;
 import org.slf4j.Logger;
-
-import java.util.Map;
 
 /**
  * Created by jwp on 2017/3/7.
