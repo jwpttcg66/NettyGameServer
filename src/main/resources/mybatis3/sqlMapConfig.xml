@@ -18,12 +18,12 @@
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
     </settings>
 
-    <typeAliases>
-        <typeAlias alias="order" type="com.wolf.shoot.jdbc.entity.Order"/>
-    </typeAliases>
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="order" type="com.wolf.shoot.jdbc.entity.Order"/>-->
+    <!--</typeAliases>-->
 
-    <mappers>
-        <mapper resource="mybatis3/mappers/orderMapper.xml"/>
-    </mappers>
+    <!--<mappers>-->
+        <!--<mapper resource="mybatis3/mappers/orderMapper.xml"/>-->
+    <!--</mappers>-->
 
 </configuration>
