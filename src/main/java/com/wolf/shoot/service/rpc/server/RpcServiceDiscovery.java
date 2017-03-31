@@ -54,12 +54,12 @@ public class RpcServiceDiscovery implements IService {
     }
 
     public void initGameConnectedServer() throws Exception {
-        worldRpcConnectManager.initManager();
+        gameRpcConnecetMananger.initManager();
         gameRpcConnecetMananger.initServers(sdGameServers);
     }
 
     public void initDbConnectServer() throws Exception{
-        worldRpcConnectManager.initManager();
+        dbRpcConnnectManngeer.initManager();
         dbRpcConnnectManngeer.initServers(sdDbServers);
     }
 
