@@ -17,4 +17,9 @@
     <context:component-scan base-package="com.wolf.shoot" />
     <bean class="com.wolf.shoot.common.util.BeanUtil"/>
 
+    <context:property-placeholder location="classpath:db_jdbc.properties" />
+
+    <!-- 控制层配置 -->
+    <import resource="db_applicationContext_datasource.xml"/>
+    <import resource="db-applicationContext-redis.xml"/>
 </beans>
