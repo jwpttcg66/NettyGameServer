@@ -21,7 +21,7 @@ import java.util.List;
  * Created by jiangwenping on 17/3/30.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/applicationContext-manager.xml")
+@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class ZookeeperTest {
 
     @Autowired
@@ -57,5 +57,6 @@ public class ZookeeperTest {
 //        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH);
         zookeeperRpcServiceRegistry.shutdown();
         zookeeperRpcServiceDiscovery.stop();
+        LocalMananger.getInstance().getLocalSpringServiceManager().stop();
     }
 }
