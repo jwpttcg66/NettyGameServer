@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by jwp on 2017/3/8.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/applicationContext-manager.xml")
+@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class HelloServiceStressTest {
 
     @Autowired

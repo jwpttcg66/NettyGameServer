@@ -26,7 +26,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by jwp on 2017/3/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/applicationContext-manager.xml")
+@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class HelloCallbackTest {
 
     @Autowired

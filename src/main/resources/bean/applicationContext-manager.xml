@@ -19,7 +19,4 @@
 
     <context:property-placeholder location="classpath:db_jdbc.properties" />
 
-    <!-- 控制层配置 -->
-    <import resource="db_applicationContext_datasource.xml"/>
-    <import resource="db-applicationContext-redis.xml"/>
 </beans>
