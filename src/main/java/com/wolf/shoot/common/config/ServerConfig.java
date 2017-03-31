@@ -35,8 +35,6 @@ public abstract class ServerConfig implements Config {
 	protected String ports;
 	/** 服务器的名称 */
 	protected String serverName;
-	/** 每个端口IO处理的线程个数 */
-	protected int ioProcessor;
 	/** 系统所使用的语言 */
 	protected String language;
 	/** 多语言资源所在的目录 */
@@ -51,12 +49,6 @@ public abstract class ServerConfig implements Config {
 	/** 物品编辑器自动生成的配置目录 */
 	protected String exportDataDir;
 
-	/** 是否定时检查玩家的连接 */
-	protected boolean checkPing;
-	/** 如果checkPing为true,表示ping的周期,单位秒 */
-	protected int pingPeriod;
-	/** ping的超时时间，操作该时间未收到ping消息，则断开客户端连接 */
-	protected int pingTimeOut;
 	/** 数据库初始化类型： 0 Hibernate 1 Ibatis */
 	protected int dbInitType = 0;
 	/** 数据库配置文件路径 */
@@ -175,21 +167,6 @@ public abstract class ServerConfig implements Config {
 		return Integer.parseInt(splitPorts[0]);
 	}
 
-	/**
-	 * @return the ioProcessor
-	 */
-	public int getIoProcessor() {
-		return ioProcessor;
-	}
-
-	/**
-	 * @param ioProcessor
-	 *            the ioProcessor to set
-	 */
-	public void setIoProcessor(int ioProcessor) {
-		this.ioProcessor = ioProcessor;
-	}
-
 	public void setDebug(int debug) {
 		this.debug = debug;
 	}
@@ -204,22 +181,6 @@ public abstract class ServerConfig implements Config {
 
 	public void setScriptDir(String scriptDir) {
 		this.scriptDir = scriptDir;
-	}
-
-	public boolean isCheckPing() {
-		return checkPing;
-	}
-
-	public void setCheckPing(boolean checkPing) {
-		this.checkPing = checkPing;
-	}
-
-	public int getPingPeriod() {
-		return pingPeriod;
-	}
-
-	public void setPingPeriod(int pingPeriod) {
-		this.pingPeriod = pingPeriod;
 	}
 
 	public int getDbInitType() {
@@ -252,14 +213,6 @@ public abstract class ServerConfig implements Config {
 
 	public String getScriptHeaderName() {
 		return scriptHeaderName;
-	}
-
-	public int getPingTimeOut() {
-		return pingTimeOut;
-	}
-
-	public void setPingTimeOut(int pingTimeOut) {
-		this.pingTimeOut = pingTimeOut;
 	}
 
 	public void setServerType(int serverType) {
@@ -316,14 +269,6 @@ public abstract class ServerConfig implements Config {
 		// 版本号配置检查
 		if (this.getVersion() == null) {
 			throw new IllegalArgumentException("The version  must not be null");
-		}
-		if (checkPing) {
-			// 如果启用ping,那么ping的周期应该大于0
-			if (this.pingPeriod <= 0) {
-				throw new IllegalArgumentException(ErrorsUtil.error(
-						CommonErrorLogInfo.ARG_POSITIVE_NUMBER_EXCEPT, "",
-						"pingPeriod"));
-			}
 		}
 
 	}

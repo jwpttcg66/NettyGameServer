@@ -8,7 +8,6 @@ config.serverId="8001";
 config.bindIp="0.0.0.0";
 config.ports="7090";
 config.serverName="OnLine";
-config.ioProcessor=1;
 config.language="zh_CN";
 config.i18nDir="i18n";
 config.gameId="shoot";
