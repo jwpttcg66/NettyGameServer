@@ -27,15 +27,20 @@ public abstract class RpcConnectManager {
 
     private AtomicInteger roundRobin = new AtomicInteger();
 
-    public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
+    public void initManager(){
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int threadSize = gameServerConfigService.getGameServerConfig().getRpcConnectThreadSize();
         threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
-        if (allServerAddress != null) {
-            serverNodes.clear();
-            for(SdServer sdServer: allServerAddress){
-                RpcClient rpcClient = new RpcClient(sdServer, threadPoolExecutor);
-                serverNodes.put(sdServer.getServerId(), rpcClient);
+    }
+    public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
+        //增加同步，当前
+        synchronized (this) {
+            if (allServerAddress != null) {
+                serverNodes.clear();
+                for (SdServer sdServer : allServerAddress) {
+                    RpcClient rpcClient = new RpcClient(sdServer, threadPoolExecutor);
+                    serverNodes.put(sdServer.getServerId(), rpcClient);
+                }
             }
         }
     }
