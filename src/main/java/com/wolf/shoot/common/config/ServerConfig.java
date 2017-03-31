@@ -2,7 +2,6 @@ package com.wolf.shoot.common.config;
 
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.util.ErrorsUtil;
-import com.wolf.shoot.common.util.StringUtils;
 
 import java.io.File;
 
@@ -28,25 +27,14 @@ public abstract class ServerConfig implements Config {
 	protected String version;
 	/** 系统配置的资源版本号 */
 	protected String resourceVersion;
-	/** 大区的ID */
-	protected String regionId;
-	/** 服的ID */
-	protected String serverGroupId;
-	
 	/** 服务器ID 规则是:是 localHostId+serverIndexId,如1011,表示1区,1服的第一个服务器 */
 	protected String serverId;
 	/** 服务绑定的IP */
 	protected String bindIp;
-	/** 服务器在服务器组中的索引值 */
-	protected int serverIndex;
 	/** 服务器监听的端口,多个商品以逗号","分隔 */
 	protected String ports;
 	/** 服务器的名称 */
 	protected String serverName;
-	/** 服务器的主机ip */
-	protected String serverHost;
-	/** 服务器组的域名 s1.l.mop.com */
-	protected String serverDomain;
 	/** 每个端口IO处理的线程个数 */
 	protected int ioProcessor;
 	/** 系统所使用的语言 */
@@ -138,18 +126,6 @@ public abstract class ServerConfig implements Config {
 		this.charset = charset;
 	}
 
-	public void setRegionId(String regionId) {
-		this.regionId = regionId;
-	}
-
-	public String getRegionId() {
-		return regionId;
-	}
-	
-	public int getRegionIdInteger() {
-		return Integer.parseInt((regionId));
-	}
-
 	/**
 	 * @return the serverId
 	 */
@@ -167,40 +143,6 @@ public abstract class ServerConfig implements Config {
 	 */
 	public void setServerId(String serverId) {
 		this.serverId = serverId;
-	}
-
-	/**
-	 * @return the serverGroupId
-	 */
-	public String getServerGroupId() {
-		return serverGroupId;
-	}
-
-	/**
-	 * @param serverGroupId
-	 *            the serverGroupId to set
-	 */
-	public void setServerGroupId(String serverGroupId) {
-		this.serverGroupId = serverGroupId;
-	}
-	
-	public int getServerGroupIdInteger() {
-		return Integer.parseInt((serverGroupId));
-	}
-	
-	/**
-	 * @return the serverIndexId
-	 */
-	public int getServerIndex() {
-		return serverIndex;
-	}
-
-	/**
-	 * @param serverIndexId
-	 *            the serverIndexId to set
-	 */
-	public void setServerIndex(int serverIndex) {
-		this.serverIndex = serverIndex;
 	}
 
 	public String getBindIp() {
@@ -227,18 +169,10 @@ public abstract class ServerConfig implements Config {
 		this.serverName = serverName;
 	}
 
-	public String getServerHost() {
-		return serverHost;
-	}
-	
 	public int getPort(){
 		String ports = getPorts();
 		String[] splitPorts = ports.split(",");
 		return Integer.parseInt(splitPorts[0]);
-	}
-
-	public void setServerHost(String serverHost) {
-		this.serverHost = serverHost;
 	}
 
 	/**
@@ -374,12 +308,6 @@ public abstract class ServerConfig implements Config {
 					"The serverType must not be empty");
 		}
 
-		if (StringUtils.isEmpty(this.regionId)
-				|| StringUtils.isEmpty(this.serverGroupId)) {
-			throw new IllegalArgumentException(
-					"The regionId,serverGroupId and the serverIndexId must not be empty");
-		}
-		
 		if (this.ports == null || (ports = ports.trim()).length() == 0) {
 			throw new IllegalArgumentException(ErrorsUtil.error(
 					CommonErrorLogInfo.ARG_NOT_NULL_EXCEPT, "", "ports"));
@@ -398,15 +326,6 @@ public abstract class ServerConfig implements Config {
 			}
 		}
 
-	}
-
-
-	public void setServerDomain(String serverDomain) {
-		this.serverDomain = serverDomain;
-	}
-
-	public String getServerDomain() {
-		return serverDomain;
 	}
 
 	/**
