@@ -23,11 +23,11 @@
         <property name="dataSource" ref="dynamicDataSource" />
     </bean>
 
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
         <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
 
-    <bean id="sqlSessionBatchTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSessionBatchTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
         <constructor-arg index="0" ref="sqlSessionFactory" />
         <constructor-arg>
             <value type="org.apache.ibatis.session.ExecutorType">BATCH</value>
