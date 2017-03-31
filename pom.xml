@@ -180,7 +180,11 @@
             <artifactId>zookeeper</artifactId>
             <version>3.4.5</version>
         </dependency>
-
+		<dependency>
+		    <groupId>com.github.jwpttcg66</groupId>
+		    <artifactId>GameShardingDb</artifactId>
+		    <version>1.0</version>
+		</dependency>
 
     </dependencies>
     <!--                       build-package                               -->
