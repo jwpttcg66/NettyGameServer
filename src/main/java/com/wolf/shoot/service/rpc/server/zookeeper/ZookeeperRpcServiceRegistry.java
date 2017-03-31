@@ -103,11 +103,10 @@ public class ZookeeperRpcServiceRegistry implements IService{
     }
 
 
-    public void deleteNode(ZooKeeper zk, String data){
+    public void deleteNode(ZooKeeper zk, String nodePath){
         try {
-            byte[] bytes = data.getBytes();
-            zk.delete(GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH, -1);
-            logger.debug("delete zookeeper node ({} => {})", data);
+            zk.delete(nodePath, -1);
+            logger.debug("delete zookeeper node pathc ({} => {})", nodePath);
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
