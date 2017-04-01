@@ -65,7 +65,9 @@ public class RpcClientConnectService implements IService {
         if(!gameServerDiffConfig.isZookeeperFlag()) {
             init();
         }else{
-
+            worldRpcConnectManager.initManager();
+            gameRpcConnecetMananger.initManager();
+            dbRpcConnnectMananger.initManager();
         }
     }
 

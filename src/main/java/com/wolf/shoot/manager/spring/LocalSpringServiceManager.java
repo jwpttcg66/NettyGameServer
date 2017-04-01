@@ -11,6 +11,7 @@ import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
+import com.wolf.shoot.service.rpc.client.ZookeeperRpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
@@ -67,6 +68,9 @@ public class LocalSpringServiceManager {
 
     @Autowired
     private ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry;
+
+    @Autowired
+    private ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery;
 
     public DetectRPCPendingService getDetectRPCPendingService() {
 		return detectRPCPendingService;
@@ -220,5 +224,21 @@ public class LocalSpringServiceManager {
             }
 
         }
+    }
+
+    public ZookeeperRpcServiceRegistry getZookeeperRpcServiceRegistry() {
+        return zookeeperRpcServiceRegistry;
+    }
+
+    public void setZookeeperRpcServiceRegistry(ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry) {
+        this.zookeeperRpcServiceRegistry = zookeeperRpcServiceRegistry;
+    }
+
+    public ZookeeperRpcServiceDiscovery getZookeeperRpcServiceDiscovery() {
+        return zookeeperRpcServiceDiscovery;
+    }
+
+    public void setZookeeperRpcServiceDiscovery(ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery) {
+        this.zookeeperRpcServiceDiscovery = zookeeperRpcServiceDiscovery;
     }
 }
