@@ -124,8 +124,8 @@ public class RPCFuture implements Future<Object> {
 
     private void runCallback(final AsyncRPCCallback callback) {
         final RpcResponse res = this.response;
-        RpcSenderService rpcSenderService = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcSenderService();
-        rpcSenderService.submit(new Runnable() {
+        RpcProxyService rpcProxyService = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcProxyService();
+        rpcProxyService.submit(new Runnable() {
             @Override
             public void run() {
                 if (!res.isError()) {

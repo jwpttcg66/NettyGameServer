@@ -19,12 +19,12 @@ import java.util.concurrent.TimeUnit;
  * RPC Client（Create RPC proxy）
  */
 @Service
-public class RpcSenderService implements IService{
+public class RpcProxyService implements IService{
 
     private static ThreadPoolExecutor threadPoolExecutor;
 
     @SuppressWarnings("unchecked")
-    public <T> T create(Class<T> interfaceClass) {
+    public <T> T createProxy(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(
                 interfaceClass.getClassLoader(),
                 new Class<?>[]{interfaceClass},
