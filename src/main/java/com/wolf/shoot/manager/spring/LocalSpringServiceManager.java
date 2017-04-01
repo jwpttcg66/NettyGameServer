@@ -10,12 +10,12 @@ import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
+import com.wolf.shoot.service.rpc.client.RpcProxyService;
+import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
-import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
-import com.wolf.shoot.service.rpc.client.RpcProxyService;
+import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
 import com.wolf.shoot.service.time.SystemTimeService;
-
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,6 +68,9 @@ public class LocalSpringServiceManager {
     
     @Autowired
     private DetectRPCPendingService detectRPCPendingService;
+
+    @Autowired
+    private ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry;
 
     public DetectRPCPendingService getDetectRPCPendingService() {
 		return detectRPCPendingService;

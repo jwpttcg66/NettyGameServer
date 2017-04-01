@@ -6,7 +6,7 @@ package com.wolf.shoot.common.util;
  *
  * @param <T>
  */
-public interface JsonPackageSerializer{
+public interface JsonSerializer {
 
 	/**
 	 * 序列化

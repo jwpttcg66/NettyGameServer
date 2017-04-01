@@ -37,8 +37,12 @@ public class GameServerDiffConfig implements Config {
     /**
      * 异步通讯链接保持活跃时间(秒)
      */
-    private int communicationTcpHeartKeepAliveTime = 60;
+    private int rpcTcpHeartKeepAliveTime = 60;
 
+    /**
+     * 是否启动zookeeper
+     */
+    private boolean zookeeperFlag;
 
     @Override
     public String getVersion() {
@@ -103,12 +107,19 @@ public class GameServerDiffConfig implements Config {
         this.heartCyleTime = heartCyleTime;
     }
 
-    public int getCommunicationTcpHeartKeepAliveTime() {
-        return communicationTcpHeartKeepAliveTime;
+    public int getRpcTcpHeartKeepAliveTime() {
+        return rpcTcpHeartKeepAliveTime;
     }
 
-    public void setCommunicationTcpHeartKeepAliveTime(int communicationTcpHeartKeepAliveTime) {
-        this.communicationTcpHeartKeepAliveTime = communicationTcpHeartKeepAliveTime;
+    public void setRpcTcpHeartKeepAliveTime(int rpcTcpHeartKeepAliveTime) {
+        this.rpcTcpHeartKeepAliveTime = rpcTcpHeartKeepAliveTime;
     }
 
+    public boolean isZookeeperFlag() {
+        return zookeeperFlag;
+    }
+
+    public void setZookeeperFlag(boolean zookeeperFlag) {
+        this.zookeeperFlag = zookeeperFlag;
+    }
 }

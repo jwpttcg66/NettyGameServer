@@ -5,5 +5,7 @@ config.roomPlayerDisconnectTime=60000;
 config.roomLifcCycleTime=60 * 60 * 2;
 //每秒钟处理消息数量
 config.session_prcoss_message_max_size=10;
-
-config.communicationTcpHeartKeepAliveTime=60*60*24;
+//异步通讯链接保持活跃时间(秒)
+config.rpcTcpHeartKeepAliveTime=60*60*24;
+//是否启动zookeeper
+config.zookeeperFlag=false;

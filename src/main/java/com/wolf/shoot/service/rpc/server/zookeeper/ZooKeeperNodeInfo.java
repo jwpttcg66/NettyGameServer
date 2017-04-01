@@ -1,10 +1,14 @@
 package com.wolf.shoot.service.rpc.server.zookeeper;
 
+import com.alibaba.fastjson.JSON;
+import com.wolf.shoot.common.constant.GlobalConstants;
+import com.wolf.shoot.common.util.JsonSerializer;
+
 /**
  * Created by sunmosh on 2017/4/1.
  * zookeeper节点信息
  */
-public class ZooKeeperNodeInfo {
+public class ZooKeeperNodeInfo implements JsonSerializer {
     /**
      * 根节点信息
      */
@@ -53,5 +57,25 @@ public class ZooKeeperNodeInfo {
 
     public void setPort(String port) {
         this.port = port;
+    };
+
+    //获取节点数据
+    public String getNodePath(){
+        return zooKeeperNodeBoEnum.getRegistryAdress()  + GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH + serverId;
+    }
+
+    @Override
+    public String serialize() {
+        String coopreationMatchJsonString = JSON.toJSONString(this);
+        return coopreationMatchJsonString;
+    }
+
+    @Override
+    public void deserialize(String pack) {
+        ZooKeeperNodeInfo temp = JSON.parseObject(pack, this.getClass());
+        this.zooKeeperNodeBoEnum = temp.getZooKeeperNodeBoEnum();
+        this.serverId = temp.getServerId();
+        this.host = temp.getHost();
+        this.port = temp.getPort();
     }
 }
