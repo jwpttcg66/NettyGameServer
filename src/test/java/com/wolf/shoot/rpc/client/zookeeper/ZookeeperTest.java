@@ -59,6 +59,7 @@ public class ZookeeperTest {
         String host = gameServerConfig.getBindIp();
         String ports = gameServerConfig.getRpcPorts();
         ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.WORLD, serverId, host, ports);
+
         zookeeperRpcServiceRegistry.register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRootPath(),zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
         worldZookeeperRpcServiceDiscovery.discovery();
         List<ZooKeeperNodeInfo> dataList = worldZookeeperRpcServiceDiscovery.getNodeList();
@@ -67,9 +68,9 @@ public class ZookeeperTest {
 
     @After
     public void close() throws Exception {
-//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.WORLD.getRegistryAdress());
-//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.GAME.getRegistryAdress());
-//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.DB.getRegistryAdress());
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.WORLD.getRootPath());
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.GAME.getRootPath());
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.DB.getRootPath());
 
         zookeeperRpcServiceRegistry.shutdown();
         worldZookeeperRpcServiceDiscovery.stop();

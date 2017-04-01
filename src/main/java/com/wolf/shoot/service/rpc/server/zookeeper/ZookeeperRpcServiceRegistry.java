@@ -39,7 +39,15 @@ public class ZookeeperRpcServiceRegistry implements IService{
         if(!StringUtils.isEmpty(registry_path)){
             if (zk != null) {
                 addRootNode(zk, registry_path);
-                deleteNode(zk, nodePath);
+                try {
+                    if(zk.exists(nodePath, false) != null) {
+                        deleteNode(zk, nodePath);
+                    }
+                } catch (KeeperException e) {
+//                        e.printStackTrace();
+                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+                }
                 createNode(zk, nodePath, nodeData);
             }
         }

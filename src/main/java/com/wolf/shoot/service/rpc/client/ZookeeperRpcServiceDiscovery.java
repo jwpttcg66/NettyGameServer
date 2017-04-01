@@ -102,8 +102,11 @@ public abstract class ZookeeperRpcServiceDiscovery {
             List<ZooKeeperNodeInfo> tempNodeList = new ArrayList<>();
             for (String node: nodeList){
                 ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo();
-                zooKeeperNodeInfo.deserialize(node);
-                tempNodeList.add(zooKeeperNodeInfo);
+                byte[] bytes = zk.getData(zooKeeperNodeBoEnum.getRootPath() + "/" + node, false, null);
+                if(bytes != null) {
+                    zooKeeperNodeInfo.deserialize(new String(bytes));
+                    tempNodeList.add(zooKeeperNodeInfo);
+                }
             }
 
             logger.debug("node data: {}", tempNodeList);
