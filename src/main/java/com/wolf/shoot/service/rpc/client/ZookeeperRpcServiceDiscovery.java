@@ -4,6 +4,7 @@ import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.ZooKeeperConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
+import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;
@@ -137,7 +138,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     @Override
     public String getId() {
-        return null;
+        return ServiceName.ZookeeperRpcServiceDiscovery;
     }
 
     @Override
