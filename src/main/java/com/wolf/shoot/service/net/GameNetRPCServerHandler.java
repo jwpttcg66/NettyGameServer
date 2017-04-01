@@ -3,7 +3,7 @@ package com.wolf.shoot.service.net;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.rpc.server.IRPCService;
-import com.wolf.shoot.service.rpc.server.RemoteRpcService;
+import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -27,8 +27,8 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
 
     @Override
     public void channelRead0(final ChannelHandlerContext ctx,final RpcRequest request) throws Exception {
-        RemoteRpcService remoteRpcService = LocalMananger.getInstance().getLocalSpringServiceManager().getRemoteRpcService();
-        remoteRpcService.submit(new Runnable() {
+        RemoteRpcHandlerService remoteRpcHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getRemoteRpcHandlerService();
+        remoteRpcHandlerService.submit(new Runnable() {
             @Override
             public void run() {
                 if(logger.isDebugEnabled()) {

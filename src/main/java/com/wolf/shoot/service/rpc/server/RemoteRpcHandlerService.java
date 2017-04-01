@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Created by jwp on 2017/3/8.
  */
 @Service
-public class RemoteRpcService implements IService{
+public class RemoteRpcHandlerService implements IService{
 
     @Autowired
     private RpcThreadPool rpcThreadPool;
