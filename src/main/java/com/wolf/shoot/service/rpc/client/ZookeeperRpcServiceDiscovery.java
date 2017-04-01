@@ -145,7 +145,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
     public void startup() throws Exception {
         ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
         for(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum: zooKeeperNodeBoEnums){
-            watchNode(zooKeeperNodeBoEnum);
+            discovery(zooKeeperNodeBoEnum);
         }
     }
 
