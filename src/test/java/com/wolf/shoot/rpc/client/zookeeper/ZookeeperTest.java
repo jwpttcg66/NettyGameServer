@@ -56,13 +56,13 @@ public class ZookeeperTest {
         SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         String serverId = gameServerConfig.getServerId();
-        String host = gameServerConfig.getBindIp();
+        String host = gameServerConfig.getRpcBindIp();
         String ports = gameServerConfig.getRpcPorts();
         ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.WORLD, serverId, host, ports);
 
         zookeeperRpcServiceRegistry.register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRootPath(),zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
-        worldZookeeperRpcServiceDiscovery.discovery();
-        List<ZooKeeperNodeInfo> dataList = worldZookeeperRpcServiceDiscovery.getNodeList();
+        worldZookeeperRpcServiceDiscovery.discovery(ZooKeeperNodeBoEnum.WORLD);
+        List<ZooKeeperNodeInfo> dataList = worldZookeeperRpcServiceDiscovery.getNodeList(ZooKeeperNodeBoEnum.WORLD);
         System.out.println(dataList);
     }
 

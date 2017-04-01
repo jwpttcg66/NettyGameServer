@@ -173,7 +173,7 @@ public class ZookeeperRpcServiceRegistry implements IService{
         SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         String serverId = gameServerConfig.getServerId();
-        String host = gameServerConfig.getBindIp();
+        String host = gameServerConfig.getRpcBindIp();
         String ports = gameServerConfig.getRpcPorts();
         if(sdRpcServiceProvider.isWorldOpen()){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.WORLD, serverId, host, ports);

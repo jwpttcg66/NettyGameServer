@@ -5,6 +5,7 @@ import com.wolf.shoot.common.config.ZooKeeperConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
+import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeInfo;
 import org.apache.zookeeper.WatchedEvent;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -23,43 +26,40 @@ import java.util.concurrent.CountDownLatch;
  * zookeeper发现服务
  */
 @Service
-public abstract class ZookeeperRpcServiceDiscovery {
+public class ZookeeperRpcServiceDiscovery implements IService{
 
     private static final Logger logger = Loggers.rpcLogger;
 
     private CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    private volatile List<ZooKeeperNodeInfo> nodeList = new ArrayList<>();
+    private volatile Map<ZooKeeperNodeBoEnum, List<ZooKeeperNodeInfo>> nodeMap = new ConcurrentHashMap<>();
 
     private Random random = new Random();
 
     private ZooKeeper zk;
 
-    private ZooKeeperNodeBoEnum zooKeeperNodeBoEnum;
-
-    public ZookeeperRpcServiceDiscovery(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum) {
-        this.zooKeeperNodeBoEnum = zooKeeperNodeBoEnum;
-    }
-
-    public void discovery(){
+    public void discovery(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu){
         if(zk == null){
             zk = connectServer();
             if (zk != null) {
-                watchNode();
+                watchNode(zooKeeperNodeBoEnu);
             }
         }
     }
 
-    private ZooKeeperNodeInfo chooseService(){
+    private ZooKeeperNodeInfo chooseService(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
         ZooKeeperNodeInfo data = null;
-        int size = nodeList.size();
-        if(size > 0){
-            if(size == 1){
-                data = nodeList.get(0);
-                logger.debug("use only data: " , data);
-            }else{
-                data = nodeList.get(random.nextInt(size));
-                logger.debug("use random data:", data);
+        List<ZooKeeperNodeInfo> nodeList = nodeMap.get(zooKeeperNodeBoEnum);
+        if(nodeList != null) {
+            int size = nodeList.size();
+            if (size > 0) {
+                if (size == 1) {
+                    data = nodeList.get(0);
+                    logger.debug("use only data: ", data);
+                } else {
+                    data = nodeList.get(random.nextInt(size));
+                    logger.debug("use random data:", data);
+                }
             }
         }
 
@@ -88,14 +88,14 @@ public abstract class ZookeeperRpcServiceDiscovery {
         return zk;
     }
 
-    private void watchNode(){
+    private void watchNode(final ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
         try{
             GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
             String rootPath = zooKeeperNodeBoEnum.getRootPath();
             List<String> nodeList = zk.getChildren(rootPath, new Watcher() {
                 @Override
                 public void process(WatchedEvent event) {
-                    watchNode();
+                    watchNode(zooKeeperNodeBoEnum);
                 }
             });
 
@@ -110,8 +110,7 @@ public abstract class ZookeeperRpcServiceDiscovery {
             }
 
             logger.debug("node data: {}", tempNodeList);
-            this.nodeList = tempNodeList;
-
+            this.nodeMap.put(zooKeeperNodeBoEnum, tempNodeList);
             logger.debug("Service discovery triggered updating connected server node.");
 
         }catch (Exception e){
@@ -128,11 +127,29 @@ public abstract class ZookeeperRpcServiceDiscovery {
         }
     }
 
-    public List<ZooKeeperNodeInfo> getNodeList() {
-        return nodeList;
+    public List<ZooKeeperNodeInfo> getNodeList(final ZooKeeperNodeBoEnum zooKeeperNodeBoEnum) {
+        return nodeMap.get(zooKeeperNodeBoEnum);
     }
 
-    public void setNodeList(List<ZooKeeperNodeInfo> nodeList) {
-        this.nodeList = nodeList;
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void startup() throws Exception {
+
+    }
+
+    @Override
+    public void shutdown() throws Exception {
+        if(zk != null){
+            try {
+                zk.close();
+            }catch (Exception e){
+                logger.error(e.toString(), e);
+            }
+        }
     }
 }
