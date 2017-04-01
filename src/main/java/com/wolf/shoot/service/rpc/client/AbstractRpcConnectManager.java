@@ -68,6 +68,8 @@ public abstract class AbstractRpcConnectManager {
         for (RpcClient rpcClient : serverNodes.values()) {
             rpcClient.close();
         }
-        threadPoolExecutor.shutdown();
+        if(threadPoolExecutor != null) {
+            threadPoolExecutor.shutdown();
+        }
     }
 }

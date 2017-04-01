@@ -11,7 +11,6 @@ import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
-import com.wolf.shoot.service.rpc.client.RpcClientConnectService;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
@@ -58,9 +57,6 @@ public class LocalSpringServiceManager {
     private RemoteRpcHandlerService remoteRpcHandlerService;
 
     @Autowired
-    private RpcClientConnectService rpcClientConnectService;
-
-    @Autowired
     private EhcacheService ehcacheService;
 
     @Autowired
@@ -80,14 +76,6 @@ public class LocalSpringServiceManager {
 			DetectRPCPendingService detectRPCPendingService) {
 		this.detectRPCPendingService = detectRPCPendingService;
 	}
-
-	public RpcClientConnectService getRpcClientConnectService() {
-        return rpcClientConnectService;
-    }
-
-    public void setRpcClientConnectService(RpcClientConnectService rpcClientConnectService) {
-        this.rpcClientConnectService = rpcClientConnectService;
-    }
 
     public RemoteRpcHandlerService getRemoteRpcHandlerService() {
         return remoteRpcHandlerService;
@@ -178,15 +166,6 @@ public class LocalSpringServiceManager {
     }
 
     public  void start() throws Exception {
-
-//        this.defaultClassLoader.startup();
-//        this.gameServerConfigService.startup();
-//        this.messageRegistry.startup();
-//        this.gameFacade.startup();
-//        this.rpcMethodRegistry.startup();
-//        this.remoteRpcService.startup();
-//        this.rpcServiceDiscovery.startup();
-//        this.ehcacheService.startup();
         // 获取对象obj的所有属性域
         Field[] fields = this.getClass().getDeclaredFields();
 
@@ -215,14 +194,6 @@ public class LocalSpringServiceManager {
     }
 
     public void stop() throws Exception{
-//        this.defaultClassLoader.shutdown();
-//        this.getGameServerConfigService().shutdown();
-//        this.messageRegistry.shutdown();
-//        this.gameFacade.shutdown();
-//        this.rpcMethodRegistry.shutdown();
-//        this.remoteRpcService.shutdown();
-//        this.rpcServiceDiscovery.shutdown();
-//        this.ehcacheService.shutdown();
 
         // 获取对象obj的所有属性域
         Field[] fields = this.getClass().getDeclaredFields();

@@ -24,7 +24,7 @@ public class AsyncRpcProxy<T> implements IAsyncRpcProxy{
     @Override
     public RPCFuture call(String funcName, Object... args) {
         RpcContextHolderObject rpcContextHolderObject = RpcContextHolder.getContext();
-        RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcClientConnectService();
+        RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
         AbstractRpcConnectManager abstractRpcConnectManager = rpcClientConnectService.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
         RpcClient rpcClient = abstractRpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         RpcRequestFactroy rpcRequestFactroy = LocalMananger.getInstance().getLocalSpringBeanManager().getRequestFactroy();

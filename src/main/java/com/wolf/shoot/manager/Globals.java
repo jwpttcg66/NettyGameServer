@@ -16,6 +16,7 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
+import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.net.process.*;
 
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,9 @@ public class Globals {
         LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         localSpringServiceManager.start();
 
+        LocalSpringServicerAfterManager localSpringServicerAfterManager = (LocalSpringServicerAfterManager) BeanUtil.getBean("localSpringServicerAfterManager");
+        LocalMananger.getInstance().setLocalSpringServicerAfterManager(localSpringServicerAfterManager);
+        localSpringServicerAfterManager.start();
     }
 
 
@@ -140,5 +144,9 @@ public class Globals {
             GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
             gameUdpMessageProcessor.stop();
         }
+
+        LocalMananger.getInstance().getLocalSpringServiceManager().stop();
+        LocalMananger.getInstance().getLocalSpringServicerAfterManager().stop();
     }
+
 }

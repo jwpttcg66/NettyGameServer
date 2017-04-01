@@ -7,6 +7,7 @@ package com.wolf.shoot.manager;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
+import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageOrderProcessor;
@@ -39,6 +40,8 @@ public class LocalMananger implements ILocalManager{
     private LocalSpringServiceManager localSpringServiceManager;
 
     private LocalSpringBeanManager localSpringBeanManager;
+
+    private LocalSpringServicerAfterManager localSpringServicerAfterManager;
 
     //因为这里比较常用，单独提取出来
     private GameTcpMessageProcessor gameTcpMessageProcessor;
@@ -132,5 +135,13 @@ public class LocalMananger implements ILocalManager{
 
     public void setGameUdpMessageProcessor(GameUdpMessageProcessor gameUdpMessageProcessor) {
         this.gameUdpMessageProcessor = gameUdpMessageProcessor;
+    }
+
+    public LocalSpringServicerAfterManager getLocalSpringServicerAfterManager() {
+        return localSpringServicerAfterManager;
+    }
+
+    public void setLocalSpringServicerAfterManager(LocalSpringServicerAfterManager localSpringServicerAfterManager) {
+        this.localSpringServicerAfterManager = localSpringServicerAfterManager;
     }
 }

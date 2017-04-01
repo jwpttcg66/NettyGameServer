@@ -60,7 +60,7 @@ public class ObjectProxy<T> implements InvocationHandler{
         }
 
         RpcContextHolderObject rpcContextHolderObject = RpcContextHolder.getContext();
-        RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcClientConnectService();
+        RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
         AbstractRpcConnectManager abstractRpcConnectManager = rpcClientConnectService.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
         RpcClient rpcClient = abstractRpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         RPCFuture rpcFuture = rpcClient.sendRequest(request);

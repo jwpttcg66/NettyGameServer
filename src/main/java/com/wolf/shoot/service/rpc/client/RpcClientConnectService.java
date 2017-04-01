@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
@@ -59,7 +60,13 @@ public class RpcClientConnectService implements IService {
 
     @Override
     public void startup() throws Exception {
-        init();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
+        if(!gameServerDiffConfig.isZookeeperFlag()) {
+            init();
+        }else{
+
+        }
     }
 
     @Override
