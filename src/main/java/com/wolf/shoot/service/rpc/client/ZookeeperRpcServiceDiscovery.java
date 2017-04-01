@@ -38,11 +38,11 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     private ZooKeeper zk;
 
-    public void discovery(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu){
+    public void discovery(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
         if(zk == null){
             zk = connectServer();
             if (zk != null) {
-                watchNode(zooKeeperNodeBoEnu);
+                watchNode(zooKeeperNodeBoEnum);
             }
         }
     }
@@ -113,6 +113,9 @@ public class ZookeeperRpcServiceDiscovery implements IService{
             this.nodeMap.put(zooKeeperNodeBoEnum, tempNodeList);
             logger.debug("Service discovery triggered updating connected server node.");
 
+            //通知链接服务器进行链接
+            RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
+            rpcClientConnectService.notifyConnect(zooKeeperNodeBoEnum, nodeMap.get(zooKeeperNodeBoEnum));
         }catch (Exception e){
             logger.error(e.toString(), e);
         }
@@ -139,7 +142,10 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     @Override
     public void startup() throws Exception {
-
+        ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
+        for(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum: zooKeeperNodeBoEnums){
+            watchNode(zooKeeperNodeBoEnum);
+        }
     }
 
     @Override

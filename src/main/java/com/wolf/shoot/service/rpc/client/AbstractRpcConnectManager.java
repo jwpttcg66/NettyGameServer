@@ -3,7 +3,9 @@ package com.wolf.shoot.service.rpc.client;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.rpc.client.net.RpcClient;
+import com.wolf.shoot.service.rpc.server.RpcNodeInfo;
 import com.wolf.shoot.service.rpc.server.SdServer;
+import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,10 +39,37 @@ public abstract class AbstractRpcConnectManager {
         //增加同步，当前
         synchronized (this) {
             if (allServerAddress != null) {
-                serverNodes.clear();
+//                serverNodes.clear();
                 for (SdServer sdServer : allServerAddress) {
-                    RpcClient rpcClient = new RpcClient(sdServer, threadPoolExecutor);
+                    if(serverNodes.containsKey(sdServer.getServerId())){
+                        continue;
+                    }
+                    RpcNodeInfo rpcNodeInfo  = new RpcNodeInfo();
+                    rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
+                    rpcNodeInfo.setHost(sdServer.getIp());
+                    rpcNodeInfo.setPort(String.valueOf(sdServer.getPort()));
+                    RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
                     serverNodes.put(sdServer.getServerId(), rpcClient);
+                }
+            }
+        }
+    }
+
+    public void initZookeeperRpcServers(List<ZooKeeperNodeInfo> zooKeeperNodeInfoList) throws InterruptedException {
+        //增加同步，当前
+        synchronized (this) {
+            if (zooKeeperNodeInfoList != null) {
+//                serverNodes.clear();
+                for (ZooKeeperNodeInfo zooKeeperNodeInfo : zooKeeperNodeInfoList) {
+                    if(serverNodes.containsKey(zooKeeperNodeInfo.getServerId())){
+                        continue;
+                    }
+                    RpcNodeInfo rpcNodeInfo  = new RpcNodeInfo();
+                    rpcNodeInfo.setServerId(zooKeeperNodeInfo.getServerId());
+                    rpcNodeInfo.setHost(zooKeeperNodeInfo.getHost());
+                    rpcNodeInfo.setPort(zooKeeperNodeInfo.getPort());
+                    RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
+                    serverNodes.put(Integer.parseInt(zooKeeperNodeInfo.getServerId()), rpcClient);
                 }
             }
         }

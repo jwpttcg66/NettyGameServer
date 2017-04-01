@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.rpc.client.net;
 
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.service.rpc.server.SdServer;
+import com.wolf.shoot.service.rpc.server.RpcNodeInfo;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -26,12 +26,10 @@ public class RpcServerConnectTask implements Runnable{
 
     private EventLoopGroup eventLoopGroup;
 
-    private int serverId;
 
     private RpcClient rpcClient;
-    public RpcServerConnectTask(SdServer sdServer, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
-        this.serverId = sdServer.getServerId();
-        this.remotePeer =  new InetSocketAddress(sdServer.getIp(), sdServer.getRpcPort());
+    public RpcServerConnectTask(RpcNodeInfo rpcNodeInfo, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
+        this.remotePeer =  new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
         this.eventLoopGroup = eventLoopGroup;
         this.rpcClient = rpcClient;
     }

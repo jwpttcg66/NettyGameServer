@@ -6,7 +6,7 @@ import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
 import com.wolf.shoot.service.rpc.client.PendingRPCManager;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
-import com.wolf.shoot.service.rpc.server.SdServer;
+import com.wolf.shoot.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 
@@ -22,8 +22,8 @@ public class RpcClient
     private RpcClientConnection rpcClientConnection;
 
 
-    public RpcClient(SdServer sdServer, ExecutorService threadPool){
-        rpcClientConnection = new RpcClientConnection(this, sdServer, threadPool);
+    public RpcClient(RpcNodeInfo rpcNodeInfo, ExecutorService threadPool){
+        rpcClientConnection = new RpcClientConnection(this, rpcNodeInfo, threadPool);
     }
     public RPCFuture sendRequest(RpcRequest request) {
         RPCFuture rpcFuture = new RPCFuture(request);

@@ -2,6 +2,7 @@ package com.wolf.shoot.service.rpc.client.net;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcRequest;
+import com.wolf.shoot.service.rpc.server.RpcNodeInfo;
 import com.wolf.shoot.service.rpc.server.SdServer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -41,13 +42,14 @@ public class RpcClientConnection {
     private volatile boolean reConnectOn = true;
 
     private RpcClient rpcClient;
-    private SdServer sdServer;
-    public RpcClientConnection(RpcClient rpcClient, SdServer sdServer, ExecutorService threadPool) {
+    private RpcNodeInfo rpcNodeInfo;
+
+    public RpcClientConnection(RpcClient rpcClient, RpcNodeInfo rpcNodeInfo, ExecutorService threadPool) {
         if (threadPool == null) {
             throw new IllegalArgumentException("All parameters must accurate.");
         }
         this.rpcClient = rpcClient;
-        this.sdServer = sdServer;
+        this.rpcNodeInfo = rpcNodeInfo;
         this.threadPool = threadPool;
         this.statusLock = new ReentrantLock();
     }
@@ -64,11 +66,10 @@ public class RpcClientConnection {
         }
         // 创建Socket连接
         try {
-
-            InetSocketAddress remotePeer = new InetSocketAddress(sdServer.getIp(), sdServer.getRpcPort());
+            InetSocketAddress remotePeer = new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
             //连接结束
             logger.debug("connect to remote server. remote peer = " + remotePeer);
-            Future future = threadPool.submit(new RpcServerConnectTask(sdServer, eventLoopGroup, rpcClient));
+            Future future = threadPool.submit(new RpcServerConnectTask(rpcNodeInfo, eventLoopGroup, rpcClient));
             future.get();
             if(isConnected()){
                 return false;

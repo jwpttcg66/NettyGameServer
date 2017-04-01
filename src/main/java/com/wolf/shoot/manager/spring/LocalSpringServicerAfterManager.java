@@ -3,6 +3,7 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.RpcClientConnectService;
+import com.wolf.shoot.service.rpc.client.ZookeeperRpcServiceDiscovery;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class LocalSpringServicerAfterManager {
 
     @Autowired
     private RpcClientConnectService rpcClientConnectService;
+
+    @Autowired
+    private ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery;
 
     public RpcClientConnectService getRpcClientConnectService() {
         return rpcClientConnectService;
@@ -85,5 +89,13 @@ public class LocalSpringServicerAfterManager {
             }
 
         }
+    }
+
+    public ZookeeperRpcServiceDiscovery getZookeeperRpcServiceDiscovery() {
+        return zookeeperRpcServiceDiscovery;
+    }
+
+    public void setZookeeperRpcServiceDiscovery(ZookeeperRpcServiceDiscovery zookeeperRpcServiceDiscovery) {
+        this.zookeeperRpcServiceDiscovery = zookeeperRpcServiceDiscovery;
     }
 }
