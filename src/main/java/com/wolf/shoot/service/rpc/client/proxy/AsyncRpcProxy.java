@@ -2,10 +2,11 @@ package com.wolf.shoot.service.rpc.client.proxy;
 
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
-import com.wolf.shoot.service.rpc.server.RpcContextHolder;
-import com.wolf.shoot.service.rpc.server.RpcContextHolderObject;
+import com.wolf.shoot.service.rpc.client.RpcContextHolder;
+import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.*;
+import com.wolf.shoot.service.rpc.client.net.RpcClient;
 
 /**
  * Created by jwp on 2017/3/9.

@@ -1,4 +1,4 @@
-package com.wolf.shoot.service.rpc.client;
+package com.wolf.shoot.service.rpc.client.net;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.RpcResponse;

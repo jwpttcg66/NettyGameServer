@@ -3,12 +3,12 @@ package com.wolf.shoot.service.rpc.client.proxy;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
-import com.wolf.shoot.service.rpc.server.RpcContextHolder;
-import com.wolf.shoot.service.rpc.server.RpcContextHolderObject;
+import com.wolf.shoot.service.rpc.client.RpcContextHolder;
+import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
-import com.wolf.shoot.service.rpc.client.RpcClient;
+import com.wolf.shoot.service.rpc.client.net.RpcClient;
 import org.slf4j.Logger;
 
 import java.lang.reflect.InvocationHandler;
