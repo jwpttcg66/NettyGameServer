@@ -5,7 +5,7 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.rpc.server.RpcContextHolder;
 import com.wolf.shoot.service.rpc.server.RpcContextHolderObject;
-import com.wolf.shoot.service.rpc.server.RpcServiceDiscovery;
+import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
 import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcClient;

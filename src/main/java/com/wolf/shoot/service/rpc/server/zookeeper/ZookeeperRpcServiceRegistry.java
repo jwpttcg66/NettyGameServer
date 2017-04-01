@@ -127,7 +127,7 @@ public class ZookeeperRpcServiceRegistry implements IService{
 
     @Override
     public void startup() throws Exception {
-
+        registerZooKeeper();
     }
 
     @Override

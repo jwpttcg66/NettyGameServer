@@ -1,13 +1,13 @@
-package com.wolf.shoot.service.rpc.server;
+package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.service.IService;
-import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
 import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
