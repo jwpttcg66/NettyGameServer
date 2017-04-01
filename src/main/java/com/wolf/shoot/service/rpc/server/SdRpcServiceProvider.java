@@ -1,14 +1,38 @@
 package com.wolf.shoot.service.rpc.server;
 
+import com.wolf.shoot.common.constant.BOEnum;
+import org.jdom2.DataConversionException;
+import org.jdom2.Element;
+
+import java.util.BitSet;
+
 /**
  * Created by jiangwenping on 17/3/31.
- * 服务提供模块
+ * rpc服务提供模块
  */
 public class SdRpcServiceProvider {
 
-    private boolean worldFlag;
-    private boolean gameFlag;
-    private boolean dbFlag;
+    //开放功能模块
+    private BitSet bitSet = new BitSet();
+
+    public void load(Element element) throws DataConversionException {
+        String boenumString = element.getAttribute("boenum").getValue();
+        BOEnum boEnum = BOEnum.valueOf(boenumString.toUpperCase());
+        bitSet.set(boEnum.getBoId(), true);
+    }
+
+    //是否世界开放
+    public boolean isWorldOpen(){
+        return bitSet.get(BOEnum.WORLD.getBoId());
+    }
+
+    public boolean isGameOpen(){
+        return bitSet.get(BOEnum.GAME.getBoId());
+    }
+
+    public boolean isDbOpen(){
+        return bitSet.get(BOEnum.DB.getBoId());
+    }
 
 
 }

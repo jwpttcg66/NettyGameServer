@@ -1,13 +1,11 @@
 package com.wolf.shoot.service.rpc.server;
 
-import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.FileUtil;
 import com.wolf.shoot.common.util.JdomUtils;
-import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
@@ -47,6 +45,7 @@ public class RpcServiceDiscovery implements IService {
     @Autowired
     private DbRpcConnnectManngeer dbRpcConnnectManngeer;
 
+    private SdRpcServiceProvider sdRpcServiceProvider;
 
     public void initWorldConnectedServer() throws Exception {
         worldRpcConnectManager.initManager();
@@ -83,7 +82,6 @@ public class RpcServiceDiscovery implements IService {
     @SuppressWarnings("unchecked")
     public void init() throws Exception {
 
-        GameServerConfigService gameServerConfigServiceEx = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_CONFIG).getFile());
 
         Map<Integer, SdServer> serverMap = new HashMap<>();
@@ -123,7 +121,19 @@ public class RpcServiceDiscovery implements IService {
 
         initWorldConnectedServer();
         initGameConnectedServer();
-        initDbConnectServer();;
+        initDbConnectServer();
+
+
+        SdRpcServiceProvider sdRpcServiceProvider = new SdRpcServiceProvider();
+        rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVEICE_CONFIG).getFile());
+        childrenElements = rootElement.getChildren("service");
+        for (Element childElement : childrenElements) {
+            sdRpcServiceProvider.load(childElement);
+        }
+
+        synchronized (this.lock) {
+            this.sdRpcServiceProvider = sdRpcServiceProvider;
+        }
     }
 
 
@@ -135,6 +145,14 @@ public class RpcServiceDiscovery implements IService {
             rpcConnectManager = dbRpcConnnectManngeer;
         }
         return worldRpcConnectManager;
+    }
+
+    public SdRpcServiceProvider getSdRpcServiceProvider() {
+        return sdRpcServiceProvider;
+    }
+
+    public void setSdRpcServiceProvider(SdRpcServiceProvider sdRpcServiceProvider) {
+        this.sdRpcServiceProvider = sdRpcServiceProvider;
     }
 }
 

@@ -41,7 +41,7 @@ public class GameServerConfigService implements IService {
 
     public void initZooKeeperConfig(){
         DefaultResourceLoader defaultClassLoader = new DefaultResourceLoader();
-        Resource resource = defaultClassLoader.getResource(GlobalConstants.ConfigFile.ZOOKEEPER_PROPERTIES);
+        Resource resource = defaultClassLoader.getResource(GlobalConstants.ConfigFile.ZOOKEEPER_CONFIG);
         ZooKeeperConfig zooKeeperConfig = new ZooKeeperConfig();
         zooKeeperConfig.setResource(resource);
         zooKeeperConfig.init();
@@ -49,7 +49,7 @@ public class GameServerConfigService implements IService {
     }
     public void initDynamicConfig(){
         DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
-        Resource resource = defaultResourceLoader.getResource(GlobalConstants.ConfigFile.DYNAMIC_PROPERTIES);
+        Resource resource = defaultResourceLoader.getResource(GlobalConstants.ConfigFile.DYNAMIC_CONFIG);
         GameDynamicPropertiesConfig tempA5GameDynamicPropertiesConfig = new GameDynamicPropertiesConfig();
         tempA5GameDynamicPropertiesConfig.setResource(resource);
         tempA5GameDynamicPropertiesConfig.init();

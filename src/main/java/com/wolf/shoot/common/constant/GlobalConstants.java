@@ -74,20 +74,15 @@ public class GlobalConstants {
         public static final String GAME_SERVER_CONIFG="game_server.cfg.js";
         /**game server*/
         public static final String GAME_SERVER_DIFF_CONIFG="game_server_diff.cfg.js";
-        /**pool*/
-        public static final String REDIS_POOL_CONIFG="redis-pool-config.xml";
-        /**redis*/
-        public static final String REDIS="redis.xml";
-        /**db*/
-        public static final String DB_CONFIG="db.xml";
-        /**gamemap*/
-        public static final String GAMEMAP_CONFIG="gamemap-config.xml";
         /**rpc*/
         public static final String RPC_SERVER_CONFIG="rpc-server.xml";
         /**dynmic*/
-        public static final String DYNAMIC_PROPERTIES = "dynamic_config.properties";
+        public static final String DYNAMIC_CONFIG = "dynamic_config.properties";
         /**zookeeper*/
-        public static final String ZOOKEEPER_PROPERTIES = "zookeeper.properties";
+        public static final String ZOOKEEPER_CONFIG = "zookeeper.properties";
+
+        /**rpcservice*/
+        public static final String RPC_SERVEICE_CONFIG="rpc-service-register.xml";
     }
 
     /**

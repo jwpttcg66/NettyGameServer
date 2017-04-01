@@ -6,9 +6,9 @@ import com.wolf.shoot.common.constant.BOEnum;
  * Created by jiangwenping on 17/3/31.
  */
 public enum  ZooKeeperNodeInfo {
-    world(BOEnum.WORLD, "world_registryAdress"),
-    game(BOEnum.GAME, "game_registryAdress"),
-    db(BOEnum.DB, "db_registryAdress"),
+    world(BOEnum.WORLD, "world_registry_adress"),
+    game(BOEnum.GAME, "game_registry_adress"),
+    db(BOEnum.DB, "db_registry_adress"),
     ;
     private BOEnum boEnum;
     private String registryAdress;
