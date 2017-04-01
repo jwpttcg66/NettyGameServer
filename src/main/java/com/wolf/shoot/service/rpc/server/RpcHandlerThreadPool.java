@@ -13,7 +13,7 @@ import java.util.concurrent.*;
  * Created by jwp on 2017/3/8.
  */
 @Service
-public class RpcThreadPool {
+public class RpcHandlerThreadPool {
 
     private final Logger logger = Loggers.threadLogger;
     private ExecutorService excutor;
