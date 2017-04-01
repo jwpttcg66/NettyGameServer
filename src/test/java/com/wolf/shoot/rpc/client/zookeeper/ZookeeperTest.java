@@ -54,7 +54,10 @@ public class ZookeeperTest {
 
     @After
     public void close() throws Exception {
-//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH);
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.WORLD.getRegistryAdress());
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.GAME.getRegistryAdress());
+//        zookeeperRpcServiceRegistry.deleteNode(zookeeperRpcServiceRegistry.getZk(), ZooKeeperNodeBoEnum.DB.getRegistryAdress());
+
         zookeeperRpcServiceRegistry.shutdown();
         zookeeperRpcServiceDiscovery.stop();
         LocalMananger.getInstance().getLocalSpringServiceManager().stop();
