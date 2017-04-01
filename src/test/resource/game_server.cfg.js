@@ -30,6 +30,8 @@ config.updQueueMessageProcessWorkerSize=1;
 config.udpMessageOrderQueueFlag=true;
 /**rpc配置*/
 config.rpcFlag=true;
+//这个是提供外网使用的，请使用外网地址
+config.rpcBindIp="127.0.0.1";
 config.rpcPorts="10100";
 config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;

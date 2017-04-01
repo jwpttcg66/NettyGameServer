@@ -87,6 +87,8 @@ public class GameServerConfig extends ServerConfig {
     private int rpcConnectThreadSize;
     /*rpc连接线程池大小*/
     private int rpcSendProxyThreadSize;
+    //这个是提供外网使用的，请使用外网地址
+    private String rpcBindIp;
 
     public GameServerConfig() {
     }
@@ -325,5 +327,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setRpcSendProxyThreadSize(int rpcSendProxyThreadSize) {
         this.rpcSendProxyThreadSize = rpcSendProxyThreadSize;
+    }
+
+    public String getRpcBindIp() {
+        return rpcBindIp;
+    }
+
+    public void setRpcBindIp(String rpcBindIp) {
+        this.rpcBindIp = rpcBindIp;
     }
 }
