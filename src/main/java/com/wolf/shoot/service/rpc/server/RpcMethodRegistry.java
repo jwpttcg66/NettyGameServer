@@ -24,7 +24,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
 
     public ClassScanner messageScanner = new ClassScanner();
 
-    private ConcurrentHashMap<String, IRPCService> registryMap = new ConcurrentHashMap<String, IRPCService>();
+    private ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
 
     @Override
     public String getId() {
@@ -63,13 +63,13 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 String interfaceName = messageClass.getAnnotation(RpcService.class).value().getName();
 
                 ProtostuffSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-                IRPCService serviceBean = (IRPCService) rpcSerialize.newInstance(messageClass);
+                Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
                 registryMap.put(interfaceName, serviceBean);
             }
         }
     }
 
-    public IRPCService getServiceBean(String className){
+    public Object getServiceBean(String className){
         return registryMap.get(className);
     }
 

@@ -2,7 +2,6 @@ package com.wolf.shoot.service.net;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.rpc.server.IRPCService;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import io.netty.channel.ChannelFuture;
@@ -58,7 +57,7 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
     private Object handle(RpcRequest request) throws Throwable {
         String className = request.getClassName();
         RpcMethodRegistry rpcMethodRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcMethodRegistry();
-        IRPCService serviceBean = rpcMethodRegistry.getServiceBean(className);
+        Object serviceBean = rpcMethodRegistry.getServiceBean(className);
         Class<?> serviceClass = serviceBean.getClass();
         String methodName = request.getMethodName();
         Class<?>[] parameterTypes = request.getParameterTypes();
