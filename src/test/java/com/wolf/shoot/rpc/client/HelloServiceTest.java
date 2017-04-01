@@ -8,7 +8,7 @@ import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
-import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
+import com.wolf.shoot.service.rpc.client.RpcSenderService;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
 import org.junit.Assert;
@@ -28,7 +28,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class HelloServiceTest {
 
     @Autowired
-    private RpcSenderProxy rpcSenderProxy;
+    private RpcSenderService rpcSenderService;
 
     @Before
     public void init(){
@@ -45,7 +45,7 @@ public class HelloServiceTest {
 
     @Test
     public void helloTest1() {
-        HelloService helloService = rpcSenderProxy.create(HelloService.class);
+        HelloService helloService = rpcSenderService.create(HelloService.class);
         int serverId = 8001;
         RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
         RpcContextHolder.setContextHolder(rpcContextHolderObject);
@@ -56,9 +56,9 @@ public class HelloServiceTest {
 
     @After
     public void setTear(){
-        if (rpcSenderProxy != null) {
+        if (rpcSenderService != null) {
             try {
-                rpcSenderProxy.shutdown();
+                rpcSenderService.shutdown();
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -9,7 +9,7 @@ import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
-import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
+import com.wolf.shoot.service.rpc.client.RpcSenderService;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
@@ -30,7 +30,7 @@ import java.util.concurrent.CountDownLatch;
 public class HelloCallbackTest {
 
     @Autowired
-    private RpcSenderProxy rpcSenderProxy;
+    private RpcSenderService rpcSenderService;
 
     @Before
     public void init() {
@@ -50,7 +50,7 @@ public class HelloCallbackTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         try {
-            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSenderProxy.createAsync(HelloService.class);
+            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcSenderService.createAsync(HelloService.class);
             RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, 8001);
             RpcContextHolder.setContextHolder(rpcContextHolderObject);
             RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
@@ -81,9 +81,9 @@ public class HelloCallbackTest {
 
     @After
     public void setTear() {
-        if (rpcSenderProxy != null) {
+        if (rpcSenderService != null) {
             try {
-                rpcSenderProxy.shutdown();
+                rpcSenderService.shutdown();
             } catch (Exception e) {
                 e.printStackTrace();
             }

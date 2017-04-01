@@ -13,7 +13,7 @@ import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import com.wolf.shoot.service.rpc.client.RpcServiceDiscovery;
-import com.wolf.shoot.service.rpc.client.RpcSenderProxy;
+import com.wolf.shoot.service.rpc.client.RpcSenderService;
 import com.wolf.shoot.service.time.SystemTimeService;
 
 import org.slf4j.Logger;
@@ -64,7 +64,7 @@ public class LocalSpringServiceManager {
     private EhcacheService ehcacheService;
 
     @Autowired
-    private RpcSenderProxy rpcSenderProxy;
+    private RpcSenderService rpcSenderService;
     
     @Autowired
     private DetectRPCPendingService detectRPCPendingService;
@@ -166,12 +166,12 @@ public class LocalSpringServiceManager {
         this.ehcacheService = ehcacheService;
     }
 
-    public RpcSenderProxy getRpcSenderProxy() {
-        return rpcSenderProxy;
+    public RpcSenderService getRpcSenderService() {
+        return rpcSenderService;
     }
 
-    public void setRpcSenderProxy(RpcSenderProxy rpcSenderProxy) {
-        this.rpcSenderProxy = rpcSenderProxy;
+    public void setRpcSenderService(RpcSenderService rpcSenderService) {
+        this.rpcSenderService = rpcSenderService;
     }
 
     public  void start() throws Exception {
