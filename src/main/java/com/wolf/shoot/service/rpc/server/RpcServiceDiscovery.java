@@ -1,25 +1,16 @@
 package com.wolf.shoot.service.rpc.server;
 
 import com.wolf.shoot.common.constant.BOEnum;
-import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
-import com.wolf.shoot.common.util.FileUtil;
-import com.wolf.shoot.common.util.JdomUtils;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.RpcConnectManager;
 import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
 import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
-import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jwp on 2017/3/8.
@@ -32,9 +23,6 @@ public class RpcServiceDiscovery implements IService {
 
     protected Object lock = new Object();
 
-    protected List<SdServer> sdWorldServers;
-    protected List<SdServer> sdGameServers;
-    protected List<SdServer> sdDbServers;
 
     @Autowired
     private WorldRpcConnectManager worldRpcConnectManager;
@@ -45,21 +33,22 @@ public class RpcServiceDiscovery implements IService {
     @Autowired
     private DbRpcConnnectManngeer dbRpcConnnectManngeer;
 
-    private SdRpcServiceProvider sdRpcServiceProvider;
+    @Autowired
+    private RpcConfig rpcConfig;
 
     public void initWorldConnectedServer() throws Exception {
         worldRpcConnectManager.initManager();
-        worldRpcConnectManager.initServers(sdWorldServers);
+        worldRpcConnectManager.initServers(rpcConfig.getSdWorldServers());
     }
 
     public void initGameConnectedServer() throws Exception {
         gameRpcConnecetMananger.initManager();
-        gameRpcConnecetMananger.initServers(sdGameServers);
+        gameRpcConnecetMananger.initServers(rpcConfig.getSdGameServers());
     }
 
     public void initDbConnectServer() throws Exception{
         dbRpcConnnectManngeer.initManager();
-        dbRpcConnnectManngeer.initServers(sdDbServers);
+        dbRpcConnnectManngeer.initServers(rpcConfig.getSdDbServers());
     }
 
     @Override
@@ -81,59 +70,9 @@ public class RpcServiceDiscovery implements IService {
 
     @SuppressWarnings("unchecked")
     public void init() throws Exception {
-
-        Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_CONFIG).getFile());
-
-        Map<Integer, SdServer> serverMap = new HashMap<>();
-
-        List<SdServer> sdWorldServers = new ArrayList<SdServer>();
-        Element element = rootElement.getChild(BOEnum.WORLD.toString().toLowerCase());
-        List<Element> childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdWorldServers.add(sdServer);
-        }
-
-        List<SdServer> sdGameServers = new ArrayList<SdServer>();
-        element = rootElement.getChild(BOEnum.GAME.toString().toLowerCase());
-        childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdGameServers.add(sdServer);
-        }
-
-        List<SdServer> sdDbServers = new ArrayList<SdServer>();
-        element = rootElement.getChild(BOEnum.DB.toString().toLowerCase());
-        childrenElements = element.getChildren("server");
-        for (Element childElement : childrenElements) {
-            SdServer sdServer = new SdServer();
-            sdServer.load(childElement);
-            sdDbServers.add(sdServer);
-        }
-
-        synchronized (this.lock) {
-            this.sdWorldServers = sdWorldServers;
-            this.sdGameServers = sdGameServers;
-            this.sdDbServers = sdDbServers;
-        }
-
         initWorldConnectedServer();
         initGameConnectedServer();
         initDbConnectServer();
-
-
-        SdRpcServiceProvider sdRpcServiceProvider = new SdRpcServiceProvider();
-        rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVEICE_CONFIG).getFile());
-        childrenElements = rootElement.getChildren("service");
-        for (Element childElement : childrenElements) {
-            sdRpcServiceProvider.load(childElement);
-        }
-
-        synchronized (this.lock) {
-            this.sdRpcServiceProvider = sdRpcServiceProvider;
-        }
     }
 
 
@@ -147,12 +86,5 @@ public class RpcServiceDiscovery implements IService {
         return worldRpcConnectManager;
     }
 
-    public SdRpcServiceProvider getSdRpcServiceProvider() {
-        return sdRpcServiceProvider;
-    }
-
-    public void setSdRpcServiceProvider(SdRpcServiceProvider sdRpcServiceProvider) {
-        this.sdRpcServiceProvider = sdRpcServiceProvider;
-    }
 }
 

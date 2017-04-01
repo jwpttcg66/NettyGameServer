@@ -4,6 +4,8 @@ import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class GameServerConfigService implements IService {
     private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
     private ZooKeeperConfig zooKeeperConfig;
 
+    @Autowired
+    private RpcConfig rpcConfig;
+
     @Override
     public String getId() {
         return ServiceName.GameServerConfigServiceString;
@@ -32,11 +37,17 @@ public class GameServerConfigService implements IService {
         init();
     }
 
-    public void init(){
+    public void init() throws Exception {
         initConfig();
         initDiffConfig();
         initDynamicConfig();
+        initRpcConfig();
         initZooKeeperConfig();
+
+    }
+
+    public void initRpcConfig() throws Exception {
+        rpcConfig.init();
     }
 
     public void initZooKeeperConfig(){
@@ -100,5 +111,21 @@ public class GameServerConfigService implements IService {
 
     public void setZooKeeperConfig(ZooKeeperConfig zooKeeperConfig) {
         this.zooKeeperConfig = zooKeeperConfig;
+    }
+
+    public RpcConfig getRpcConfig() {
+        return rpcConfig;
+    }
+
+    public void setRpcConfig(RpcConfig rpcConfig) {
+        this.rpcConfig = rpcConfig;
+    }
+
+    public void setGameServerDiffConfig(GameServerDiffConfig gameServerDiffConfig) {
+        this.gameServerDiffConfig = gameServerDiffConfig;
+    }
+
+    public void setGameServerConfig(GameServerConfig gameServerConfig) {
+        this.gameServerConfig = gameServerConfig;
     }
 }
