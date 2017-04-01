@@ -1,13 +1,14 @@
 package com.wolf.shoot.service.rpc.client;
 
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectMananger;
 import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
-import com.wolf.shoot.service.rpc.server.RpcConfig;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
  * rpc的服务发现
  */
 @Service
-public class RpcServiceDiscovery implements IService {
+public class RpcClientConnectService implements IService {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
@@ -33,22 +34,22 @@ public class RpcServiceDiscovery implements IService {
     @Autowired
     private DbRpcConnnectMananger dbRpcConnnectMananger;
 
-    @Autowired
-    private RpcConfig rpcConfig;
-
     public void initWorldConnectedServer() throws Exception {
         worldRpcConnectManager.initManager();
-        worldRpcConnectManager.initServers(rpcConfig.getSdWorldServers());
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        worldRpcConnectManager.initServers(gameServerConfigService.getRpcConfig().getSdWorldServers());
     }
 
     public void initGameConnectedServer() throws Exception {
         gameRpcConnecetMananger.initManager();
-        gameRpcConnecetMananger.initServers(rpcConfig.getSdGameServers());
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        gameRpcConnecetMananger.initServers(gameServerConfigService.getRpcConfig().getSdGameServers());
     }
 
     public void initDbConnectServer() throws Exception{
         dbRpcConnnectMananger.initManager();
-        dbRpcConnnectMananger.initServers(rpcConfig.getSdDbServers());
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        dbRpcConnnectMananger.initServers(gameServerConfigService.getRpcConfig().getSdDbServers());
     }
 
     @Override
