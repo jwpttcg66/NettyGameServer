@@ -1,13 +1,17 @@
 package com.wolf.shoot.service.rpc.server.zookeeper;
 
+import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.config.ZooKeeperConfig;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.util.StringUtils;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
+import com.wolf.shoot.service.rpc.server.SdRpcServiceProvider;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
@@ -26,7 +30,6 @@ public class ZookeeperRpcServiceRegistry implements IService{
     private CountDownLatch countDownLatch = new CountDownLatch(1);
 
     private ZooKeeper zk;
-
     public void registerZooKeeper(){
         if(zk == null){
             zk = connectServer();
@@ -128,8 +131,27 @@ public class ZookeeperRpcServiceRegistry implements IService{
     @Override
     public void startup() throws Exception {
         registerZooKeeper();
+        registerNode();
     }
 
+    public void registerNode() throws Exception{
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        RpcConfig rpcConfig  = gameServerConfigService.getRpcConfig();
+        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        String serverId = gameServerConfig.getServerId();
+        String host = gameServerConfig.getBindIp();
+        String ports = gameServerConfig.getRpcPorts();
+
+        if(sdRpcServiceProvider.isWorldOpen()){
+            ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.WORLD, serverId, host, ports);
+        }else if(sdRpcServiceProvider.isGameOpen()){
+            ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.GAME, serverId, host, ports);
+        }else if(sdRpcServiceProvider.isDbOpen()){
+            ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.DB, serverId, host, ports);
+        }
+    }
     @Override
     public void shutdown() throws Exception {
         if(zk != null){
