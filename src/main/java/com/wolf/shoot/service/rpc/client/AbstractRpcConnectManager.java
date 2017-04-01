@@ -18,9 +18,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  */
-public abstract class RpcConnectManager {
+public abstract class AbstractRpcConnectManager {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(RpcConnectManager.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(AbstractRpcConnectManager.class);
 
     private ThreadPoolExecutor threadPoolExecutor;
 
@@ -31,7 +31,7 @@ public abstract class RpcConnectManager {
     public void initManager(){
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int threadSize = gameServerConfigService.getGameServerConfig().getRpcConnectThreadSize();
-        threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
+        threadPoolExecutor = new ThreadPoolExecutor(threadSize, threadSize, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
     }
     public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
         //增加同步，当前

@@ -4,7 +4,7 @@ import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.service.IService;
-import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectManngeer;
+import com.wolf.shoot.service.rpc.client.impl.DbRpcConnnectMananger;
 import com.wolf.shoot.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.wolf.shoot.service.rpc.client.impl.WorldRpcConnectManager;
 import com.wolf.shoot.service.rpc.server.RpcConfig;
@@ -31,7 +31,7 @@ public class RpcServiceDiscovery implements IService {
     private GameRpcConnecetMananger gameRpcConnecetMananger;
 
     @Autowired
-    private DbRpcConnnectManngeer dbRpcConnnectManngeer;
+    private DbRpcConnnectMananger dbRpcConnnectMananger;
 
     @Autowired
     private RpcConfig rpcConfig;
@@ -47,8 +47,8 @@ public class RpcServiceDiscovery implements IService {
     }
 
     public void initDbConnectServer() throws Exception{
-        dbRpcConnnectManngeer.initManager();
-        dbRpcConnnectManngeer.initServers(rpcConfig.getSdDbServers());
+        dbRpcConnnectMananger.initManager();
+        dbRpcConnnectMananger.initServers(rpcConfig.getSdDbServers());
     }
 
     @Override
@@ -65,7 +65,7 @@ public class RpcServiceDiscovery implements IService {
     public void shutdown() throws Exception {
         worldRpcConnectManager.stop();
         gameRpcConnecetMananger.stop();
-        dbRpcConnnectManngeer.stop();
+        dbRpcConnnectMananger.stop();
     }
 
     @SuppressWarnings("unchecked")
@@ -76,12 +76,12 @@ public class RpcServiceDiscovery implements IService {
     }
 
 
-    public RpcConnectManager getRpcConnectMannger(BOEnum boEnum){
-        RpcConnectManager rpcConnectManager = worldRpcConnectManager;
+    public AbstractRpcConnectManager getRpcConnectMannger(BOEnum boEnum){
+        AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
         if(boEnum.equals(BOEnum.GAME)){
-            rpcConnectManager = gameRpcConnecetMananger;
+            abstractRpcConnectManager = gameRpcConnecetMananger;
         }else if (boEnum.equals(BOEnum.DB)){
-            rpcConnectManager = dbRpcConnnectManngeer;
+            abstractRpcConnectManager = dbRpcConnnectMananger;
         }
         return worldRpcConnectManager;
     }

@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.rpc.client.impl;
 
-import com.wolf.shoot.service.rpc.client.RpcConnectManager;
+import com.wolf.shoot.service.rpc.client.AbstractRpcConnectManager;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
  * db rpc
  */
 @Service
-public class DbRpcConnnectManngeer extends RpcConnectManager{
+public class DbRpcConnnectMananger extends AbstractRpcConnectManager {
 }

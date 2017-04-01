@@ -169,16 +169,16 @@ public class ZookeeperRpcServiceRegistry implements IService{
         String ports = gameServerConfig.getRpcPorts();
         if(sdRpcServiceProvider.isWorldOpen()){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.WORLD, serverId, host, ports);
-            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRegistryAdress(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
+            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRootPath(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
         }
         if(sdRpcServiceProvider.isGameOpen()){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.GAME, serverId, host, ports);
-            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRegistryAdress(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
+            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRootPath(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
         }
 
         if(sdRpcServiceProvider.isDbOpen()){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo(ZooKeeperNodeBoEnum.DB, serverId, host, ports);
-            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRegistryAdress(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
+            register(zooKeeperNodeInfo.getZooKeeperNodeBoEnum().getRootPath(), zooKeeperNodeInfo.getNodePath(), zooKeeperNodeInfo.serialize());
         }
 
     }

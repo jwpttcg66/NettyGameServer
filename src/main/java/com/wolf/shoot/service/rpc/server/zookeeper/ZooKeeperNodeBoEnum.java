@@ -11,11 +11,11 @@ public enum ZooKeeperNodeBoEnum {
     DB(BOEnum.DB, "/db_registry_adress"),
     ;
     private BOEnum boEnum;
-    private String registryAdress;
+    private String rootPath;
 
-    ZooKeeperNodeBoEnum(BOEnum boEnum, String registryAdress) {
+    ZooKeeperNodeBoEnum(BOEnum boEnum, String rootPath) {
         this.boEnum = boEnum;
-        this.registryAdress = registryAdress;
+        this.rootPath = rootPath;
     }
 
     public BOEnum getBoEnum() {
@@ -26,11 +26,11 @@ public enum ZooKeeperNodeBoEnum {
         this.boEnum = boEnum;
     }
 
-    public String getRegistryAdress() {
-        return registryAdress;
+    public String getRootPath() {
+        return rootPath;
     }
 
-    public void setRegistryAdress(String registryAdress) {
-        this.registryAdress = registryAdress;
+    public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
     }
 }

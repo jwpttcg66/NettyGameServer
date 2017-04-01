@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.rpc.client.impl;
 
-import com.wolf.shoot.service.rpc.client.RpcConnectManager;
+import com.wolf.shoot.service.rpc.client.AbstractRpcConnectManager;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
  * 游戏rpc manger
  */
 @Service
-public class GameRpcConnecetMananger extends RpcConnectManager{
+public class GameRpcConnecetMananger extends AbstractRpcConnectManager {
 
 }

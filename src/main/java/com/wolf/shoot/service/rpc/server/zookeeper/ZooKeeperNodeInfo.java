@@ -20,6 +20,10 @@ public class ZooKeeperNodeInfo implements JsonSerializer {
     private String host;
     private String port;
 
+    public ZooKeeperNodeInfo(){
+
+    }
+
     public ZooKeeperNodeInfo(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum, String serverId, String host, String port) {
         this.zooKeeperNodeBoEnum = zooKeeperNodeBoEnum;
         this.serverId = serverId;
@@ -61,7 +65,7 @@ public class ZooKeeperNodeInfo implements JsonSerializer {
 
     //获取节点数据
     public String getNodePath(){
-        return zooKeeperNodeBoEnum.getRegistryAdress()  + GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH + serverId;
+        return zooKeeperNodeBoEnum.getRootPath()  + GlobalConstants.ZooKeeperConstants.ZK_DATA_PATH + serverId;
     }
 
     @Override
