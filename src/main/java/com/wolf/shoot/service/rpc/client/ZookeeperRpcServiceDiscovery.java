@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.config.GameServerDiffConfig;
 import com.wolf.shoot.common.config.ZooKeeperConfig;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
@@ -143,9 +144,13 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     @Override
     public void startup() throws Exception {
-        ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
-        for(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum: zooKeeperNodeBoEnums){
-            discovery(zooKeeperNodeBoEnum);
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
+        if(gameServerDiffConfig.isZookeeperFlag()) {
+            ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
+            for (ZooKeeperNodeBoEnum zooKeeperNodeBoEnum : zooKeeperNodeBoEnums) {
+                discovery(zooKeeperNodeBoEnum);
+            }
         }
     }
 
