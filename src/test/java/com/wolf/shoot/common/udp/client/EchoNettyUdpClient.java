@@ -1,10 +1,9 @@
-package com.wolf.shoot.game.udp.client;
+package com.wolf.shoot.common.udp.client;
 
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.common.udp.client.UdpProtoBufClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -19,13 +18,11 @@ import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 
 /**
- * Created by jwp on 2017/2/17.
+ * @author TinyZ on 2015/6/8.
  */
-public class GameNettyUdpClient {
-    public static int port = 10090;
-    public static void main(String[] args) throws Exception {
-//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+public class EchoNettyUdpClient {
 
+    public static void main(String[] args) throws Exception {
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
@@ -40,6 +37,7 @@ public class GameNettyUdpClient {
 //        bootstrap.handler(new UdpClientChannelInitializer());
         bootstrap.handler(new UdpProtoBufClientChannelInitializer());
         // 监听端口
+        int port = 9999;
         ChannelFuture sync = bootstrap.bind(0).sync();
         Channel udpChannel = sync.channel();
 
@@ -58,21 +56,17 @@ public class GameNettyUdpClient {
     }
 
     public static void sendStringMessage(Channel udpChannel) throws InterruptedException {
+        int port = 9999;
         String data = "我是大好人啊";
         udpChannel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(data.getBytes(Charset.forName("UTF-8"))), new InetSocketAddress("127.0.0.1", port))).sync();
     }
 
     public static void sendMessage(Channel udpChannel) throws InterruptedException {
+        int port = 9999;
         OnlineHeartClientUDPMessage onlineHeartClientUdpMessage = new OnlineHeartClientUDPMessage();
         onlineHeartClientUdpMessage.setId(Short.MAX_VALUE);
-        long playerId = 6666;
-        int tocken = 333;
-        onlineHeartClientUdpMessage.setPlayerId(playerId);
-        onlineHeartClientUdpMessage.setTocken(tocken);
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", port);
         onlineHeartClientUdpMessage.setReceive(inetSocketAddress);
         udpChannel.writeAndFlush(onlineHeartClientUdpMessage).sync();
     }
 }
-
-

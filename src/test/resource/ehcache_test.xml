@@ -23,7 +23,7 @@
     	<key-type>java.lang.String</key-type>
     	<value-type>java.io.Serializable</value-type>
     	<expiry>
-        	<class>com.wolf.shoot.ehcache.Data</class>
+        	<class>com.wolf.shoot.common.ehcache.Data</class>
     	</expiry>
     	<resources>
         	<heap unit="entries">100</heap>
