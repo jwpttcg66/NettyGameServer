@@ -47,7 +47,7 @@ public abstract class AbstractRpcConnectManager {
                     RpcNodeInfo rpcNodeInfo  = new RpcNodeInfo();
                     rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
                     rpcNodeInfo.setHost(sdServer.getIp());
-                    rpcNodeInfo.setPort(String.valueOf(sdServer.getPort()));
+                    rpcNodeInfo.setPort(String.valueOf(sdServer.getRpcPort()));
                     RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
                     serverNodes.put(sdServer.getServerId(), rpcClient);
                 }
