@@ -1,11 +1,12 @@
 package com.wolf.shoot.common.thread.pool;
 
-import com.wolf.shoot.common.thread.worker.AbstractWork;
+
+import com.snowcattle.game.thread.worker.AbstractWork;
 
 /**
  * Created by jiangwenping on 17/3/10.
  */
-public class TestWorker extends AbstractWork{
+public class TestWorker extends AbstractWork {
 
     private int i;
 

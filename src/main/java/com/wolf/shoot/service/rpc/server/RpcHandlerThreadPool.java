@@ -1,9 +1,9 @@
 package com.wolf.shoot.service.rpc.server;
 
+import com.snowcattle.game.thread.policy.*;
 import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.annotation.BlockingQueueType;
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.common.thread.policy.*;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 

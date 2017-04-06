@@ -1,7 +1,8 @@
 package com.wolf.shoot.common.thread.pool;
 
-import com.wolf.shoot.common.thread.executor.NonOrderedQueuePoolExecutor;
-import com.wolf.shoot.common.thread.executor.OrderedQueuePoolExecutor;
+
+import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
+import com.snowcattle.game.thread.executor.OrderedQueuePoolExecutor;
 
 /**
  * Created by jiangwenping on 17/3/10.
