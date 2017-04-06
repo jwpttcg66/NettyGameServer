@@ -2,8 +2,6 @@ package com.wolf.shoot.common.util;
 
 /**
  * 将对象中的数据转化成json格式字符串的转化器
- * @author yue.yan
- *
  * @param <T>
  */
 public interface JsonSerializer {
