@@ -9,5 +9,7 @@ public class Test {
 //        ChileTemplate<String> chileTemplate = new ChileTemplate<String>();
         ChileTemplate chileTemplate = new ChileTemplate();
         System.out.println(chileTemplate.getTClass(0));
+
+        UserDao dao = new UserDao();
     }
 }
