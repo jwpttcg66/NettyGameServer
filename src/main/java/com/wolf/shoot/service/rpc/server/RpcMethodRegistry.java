@@ -4,7 +4,7 @@ import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
-import com.wolf.shoot.common.util.ClassScanner;
+import com.wolf.shoot.common.loader.scanner.ClassScanner;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;

@@ -1,4 +1,4 @@
-package com.wolf.shoot.common.util;
+package com.wolf.shoot.common.loader.scanner;
 
 import com.wolf.shoot.common.constant.Loggers;
 import org.slf4j.Logger;

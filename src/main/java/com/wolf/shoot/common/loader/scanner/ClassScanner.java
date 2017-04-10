@@ -1,4 +1,4 @@
-package com.wolf.shoot.common.util;
+package com.wolf.shoot.common.loader.scanner;
 
 
 /**
