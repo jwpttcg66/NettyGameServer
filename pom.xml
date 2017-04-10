@@ -200,20 +200,21 @@
 
 
     </dependencies>
-
-    <plugins>
-        <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-        <source>1.7</source>
-        <target>1.7</target>
-        <encoding>${project.build.sourceEncoding}</encoding>
-        <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
-        </configuration>
-        </plugin>
-    </plugins>
+    <build>
+        <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
+            </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <!-- -->
     <!--&lt;!&ndash;                       build-package                               &ndash;&gt;-->
