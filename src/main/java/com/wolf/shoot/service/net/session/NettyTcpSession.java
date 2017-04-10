@@ -2,7 +2,7 @@ package com.wolf.shoot.service.net.session;
 
 import com.wolf.shoot.common.IUpdatable;
 import com.wolf.shoot.common.exception.NetMessageException;
-import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
+import com.wolf.shoot.service.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
 import com.wolf.shoot.service.net.message.process.NetProtoBufMessageProcess;

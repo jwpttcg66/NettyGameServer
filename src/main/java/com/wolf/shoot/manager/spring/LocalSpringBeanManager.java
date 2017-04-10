@@ -1,6 +1,6 @@
 package com.wolf.shoot.manager.spring;
 
-import com.wolf.shoot.common.uuid.ClientSessionIdGenerator;
+import com.wolf.shoot.service.uuid.ClientSessionIdGenerator;
 import com.wolf.shoot.logic.net.NetMessageTcpDispatchLogic;
 import com.wolf.shoot.logic.net.NetMessageProcessLogic;
 import com.wolf.shoot.service.net.message.factory.TcpMessageFactory;

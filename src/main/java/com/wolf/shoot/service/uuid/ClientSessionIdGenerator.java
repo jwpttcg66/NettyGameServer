@@ -1,4 +1,4 @@
-package com.wolf.shoot.common.uuid;
+package com.wolf.shoot.service.uuid;
 
 import org.springframework.stereotype.Service;
 
