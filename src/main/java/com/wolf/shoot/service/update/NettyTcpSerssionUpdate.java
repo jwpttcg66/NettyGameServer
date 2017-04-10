@@ -8,7 +8,7 @@ import com.wolf.shoot.service.net.session.TcpNetState;
 /**
  * Created by jiangwenping on 17/2/14.
  */
-public class NettyTcpSerssionUpdate extends AbstractUpdate{
+public class NettyTcpSerssionUpdate extends AbstractUpdate<Long> {
 
     private NettyTcpSession nettyTcpSession;
 
@@ -26,7 +26,7 @@ public class NettyTcpSerssionUpdate extends AbstractUpdate{
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return nettyTcpSession.getSessionId();
     }
 
