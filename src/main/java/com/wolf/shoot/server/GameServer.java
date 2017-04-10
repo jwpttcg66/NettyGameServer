@@ -7,7 +7,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.MemUtils;
 import com.wolf.shoot.manager.Globals;
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.ServerServiceManager;
+import com.wolf.shoot.manager.ServerServiceManager;
 import com.wolf.shoot.service.net.AbstractServerService;
 import com.wolf.shoot.service.net.LocalNetService;
 import org.slf4j.Logger;

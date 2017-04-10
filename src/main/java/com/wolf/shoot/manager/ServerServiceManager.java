@@ -1,4 +1,6 @@
-package com.wolf.shoot.service;
+package com.wolf.shoot.manager;
+
+import com.wolf.shoot.service.IServerService;
 
 import java.util.HashMap;
 import java.util.Map;

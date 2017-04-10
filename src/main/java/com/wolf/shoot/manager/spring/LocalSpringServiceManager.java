@@ -3,7 +3,7 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
-import com.wolf.shoot.service.cache.EhcacheService;
+import com.wolf.shoot.service.lookup.cache.EhcacheService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;

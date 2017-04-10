@@ -1,20 +1,17 @@
-package com.wolf.shoot.service.cache;
+package com.wolf.shoot.service.lookup.cache;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
-import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.config.Configuration;
 import org.ehcache.config.builders.CacheManagerBuilder;
-import org.ehcache.core.EhcacheManager;
 import org.ehcache.xml.XmlConfiguration;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
-import static org.ehcache.config.builders.CacheManagerBuilder.newCacheManager;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
