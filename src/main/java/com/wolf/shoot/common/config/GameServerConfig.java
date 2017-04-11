@@ -29,26 +29,6 @@ public class GameServerConfig extends ServerConfig {
     private int developModel;
 
     /**
-     * 通讯端口
-     */
-    private String communicationPort;
-
-    /**
-     * 通讯线程池维护链接最大执行数量
-     */
-    private int communicationMaxThreadPoolSize;
-
-    /**
-     * 通讯线程池处理链接最大执行数量
-     */
-    private int communicationHandlerMaxThreadPoolSize;
-
-    /**
-     * 通讯线程池处理 超过此时间写入回应
-     */
-    private int communicationMaxWriteIntervalTime;
-
-    /**
      * gameExcutor中UpdateExecutorService线程池心线程大小
      */
     private int gameExcutorCorePoolSize;
@@ -169,38 +149,6 @@ public class GameServerConfig extends ServerConfig {
 
     public int getServerIdInt(){
         return Integer.parseInt(this.serverId);
-    }
-    public String getCommunicationPort() {
-        return communicationPort;
-    }
-
-    public void setCommunicationPort(String communicationPort) {
-        this.communicationPort = communicationPort;
-    }
-
-
-    public int getCommunicationMaxThreadPoolSize() {
-        return communicationMaxThreadPoolSize;
-    }
-
-    public void setCommunicationMaxThreadPoolSize(int communicationMaxThreadPoolSize) {
-        this.communicationMaxThreadPoolSize = communicationMaxThreadPoolSize;
-    }
-
-    public int getCommunicationHandlerMaxThreadPoolSize() {
-        return communicationHandlerMaxThreadPoolSize;
-    }
-
-    public void setCommunicationHandlerMaxThreadPoolSize(int communicationHandlerMaxThreadPoolSize) {
-        this.communicationHandlerMaxThreadPoolSize = communicationHandlerMaxThreadPoolSize;
-    }
-
-    public int getCommunicationMaxWriteIntervalTime() {
-        return communicationMaxWriteIntervalTime;
-    }
-
-    public void setCommunicationMaxWriteIntervalTime(int communicationMaxWriteIntervalTime) {
-        this.communicationMaxWriteIntervalTime = communicationMaxWriteIntervalTime;
     }
 
     public boolean isTcpMessageQueueDirectDispatch() {
