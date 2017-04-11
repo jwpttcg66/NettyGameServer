@@ -2,10 +2,12 @@ package com.wolf.shoot.service.net.message.registry;
 
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.loader.scanner.ClassScanner;
+import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
 import com.wolf.shoot.service.net.message.AbstractNetProtoBufMessage;
@@ -98,7 +100,8 @@ public class MessageRegistry implements Reloadable, IService{
 
     public void reload() throws Exception {
         loadMessageCommand();
-        loadPackage(GlobalConstants.MessageCommandConstants.MsgNameSpace,
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        loadPackage(gameServerConfigService.getGameServerConfig().getNetMsgNameSpace(),
                 GlobalConstants.MessageCommandConstants.Ext);
     }
 

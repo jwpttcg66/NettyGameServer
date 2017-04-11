@@ -91,6 +91,10 @@ public class GameServerConfig extends ServerConfig {
     private String rpcBindIp;
     /*rpc服务的包名字*/
     private String rpcServicePackage;
+    /*rpc服务的包名字*/
+    private String netMessageHandlerNameSpace;
+    /*rpc服务的包名字*/
+    private String netMsgNameSpace;
 
     public GameServerConfig() {
     }
@@ -345,5 +349,21 @@ public class GameServerConfig extends ServerConfig {
 
     public void setRpcServicePackage(String rpcServicePackage) {
         this.rpcServicePackage = rpcServicePackage;
+    }
+
+    public String getNetMessageHandlerNameSpace() {
+        return netMessageHandlerNameSpace;
+    }
+
+    public void setNetMessageHandlerNameSpace(String netMessageHandlerNameSpace) {
+        this.netMessageHandlerNameSpace = netMessageHandlerNameSpace;
+    }
+
+    public String getNetMsgNameSpace() {
+        return netMsgNameSpace;
+    }
+
+    public void setNetMsgNameSpace(String netMsgNameSpace) {
+        this.netMsgNameSpace = netMsgNameSpace;
     }
 }

@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.net.message.facade;
 
 import com.wolf.shoot.common.annotation.MessageCommandAnnotation;
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.constant.ServiceName;
@@ -147,7 +148,8 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     @Override
     public void reload() throws Exception {
         try {
-            loadPackage(GlobalConstants.MessageCommandConstants.HandlerNameSpace, GlobalConstants.MessageCommandConstants.Ext);
+            GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+            loadPackage(gameServerConfigService.getGameServerConfig().getNetMessageHandlerNameSpace(), GlobalConstants.MessageCommandConstants.Ext);
         } catch (Exception e) {
             logger.error(e.toString(), e);
         }

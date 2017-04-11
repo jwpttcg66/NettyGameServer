@@ -5,7 +5,6 @@ import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.server.RpcConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,6 @@ public class GameServerConfigService implements IService {
     private GameServerConfig gameServerConfig;
     private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
     private ZooKeeperConfig zooKeeperConfig;
-
-    @Autowired
     private RpcConfig rpcConfig;
 
     @Override
@@ -47,7 +44,9 @@ public class GameServerConfigService implements IService {
     }
 
     public void initRpcConfig() throws Exception {
+        RpcConfig rpcConfig = new RpcConfig();
         rpcConfig.init();
+        this.rpcConfig = rpcConfig;
     }
 
     public void initZooKeeperConfig(){

@@ -1,5 +1,6 @@
 package com.wolf.shoot.game.socket.client;
 
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
@@ -19,11 +20,13 @@ import io.netty.handler.logging.LoggingHandler;
 public class GameClient {
 
     public static void main(String[] args) throws Exception {
-//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
+        GameServerConfigService gameServerConfigService = new GameServerConfigService();
+        gameServerConfigService.startup();;
+        localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
 
         new GameClient().connect("127.0.0.1", 7090);
     }

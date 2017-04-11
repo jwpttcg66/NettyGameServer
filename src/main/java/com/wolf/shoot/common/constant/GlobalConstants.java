@@ -120,9 +120,8 @@ public class GlobalConstants {
      *上传协议
      */
     public static class MessageCommandConstants{
-        public static final String MsgNameSpace = "com.wolf.shoot.message.logic";
-        public static final String HandlerNameSpace = "com.wolf.shoot.message.handler.impl";
-        public static final String RpcNameSpace = "com.wolf.shoot.service.rpc.service.server";
+//        public static final String MsgNameSpace = "com.wolf.shoot.message.logic";
+//        public static final String HandlerNameSpace = "com.wolf.shoot.message.handler.impl";
         public static final String Ext = ".class";
     };
 

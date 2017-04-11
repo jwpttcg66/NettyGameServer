@@ -1,5 +1,6 @@
 package com.wolf.shoot.game.udp.client;
 
+import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
@@ -24,12 +25,14 @@ import java.nio.charset.Charset;
 public class GameNettyUdpClient {
     public static int port = 10090;
     public static void main(String[] args) throws Exception {
-//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
-
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
+        GameServerConfigService gameServerConfigService = new GameServerConfigService();
+        gameServerConfigService.startup();;
+        localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
+        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+
 
         final NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup();
 
