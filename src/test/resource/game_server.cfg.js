@@ -37,3 +37,4 @@ config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
 config.rpcConnectThreadSize=16;
 config.rpcSendProxyThreadSize=16;
+config.rpcServicePackage="com.wolf.shoot.service.rpc.service.server";
