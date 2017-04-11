@@ -60,11 +60,14 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 Class<?> messageClass = Class.forName(realClass);
 
                 logger.info("rpc load:" + messageClass);
-                String interfaceName = messageClass.getAnnotation(RpcService.class).value().getName();
-
-                ProtostuffSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-                Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
-                registryMap.put(interfaceName, serviceBean);
+                RpcService rpcService = messageClass.getAnnotation(RpcService.class);
+                if(rpcService != null) {
+                    String interfaceName = messageClass.getAnnotation(RpcService.class).value().getName();
+                    ProtostuffSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
+                    Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
+                    registryMap.put(interfaceName, serviceBean);
+                    logger.info("rpc register:" + messageClass);
+                }
             }
         }
     }
