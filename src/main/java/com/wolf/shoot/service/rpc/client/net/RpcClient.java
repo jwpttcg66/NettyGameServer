@@ -4,8 +4,8 @@ import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.RpcRequest;
 import com.wolf.shoot.service.net.RpcResponse;
-import com.wolf.shoot.service.rpc.client.PendingRPCManager;
 import com.wolf.shoot.service.rpc.client.RPCFuture;
+import com.wolf.shoot.service.rpc.client.RPCFutureService;
 import com.wolf.shoot.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
@@ -27,8 +27,8 @@ public class RpcClient
     }
     public RPCFuture sendRequest(RpcRequest request) {
         RPCFuture rpcFuture = new RPCFuture(request);
-        PendingRPCManager pendingRPCManager = LocalMananger.getInstance().getLocalSpringBeanManager().getPendingRPCManager();
-        pendingRPCManager.addRPCFuture(request.getRequestId(), rpcFuture);
+        RPCFutureService rpcFutureService = LocalMananger.getInstance().getLocalSpringServiceManager().getRPCFutureService();
+        rpcFutureService.addRPCFuture(request.getRequestId(), rpcFuture);
         rpcClientConnection.writeRequest(request);
         return rpcFuture;
     }
@@ -47,10 +47,10 @@ public class RpcClient
 
     public void handleRpcResponser(RpcResponse rpcResponse){
         String requestId = rpcResponse.getRequestId();
-        PendingRPCManager pendingRPCManager = LocalMananger.getInstance().getLocalSpringBeanManager().getPendingRPCManager();
-        RPCFuture rpcFuture = pendingRPCManager.getRPCFuture(requestId);
+        RPCFutureService rpcFutureService = LocalMananger.getInstance().getLocalSpringServiceManager().getRPCFutureService();
+        RPCFuture rpcFuture = rpcFutureService.getRPCFuture(requestId);
         if (rpcFuture != null) {
-            pendingRPCManager.removeRPCFuture(requestId);
+            rpcFutureService.removeRPCFuture(requestId);
             rpcFuture.done(rpcResponse);
         }
     }

@@ -14,10 +14,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * rpc客户端RPCFuture清理服务
+ * rpc客户端RPCFuture管理服务
  */
 @Service
-public class DetectRPCPendingService implements IService {
+public class RPCFutureService implements IService {
 
 	@Override
 	public String getId() {
@@ -32,8 +32,7 @@ public class DetectRPCPendingService implements IService {
 		executorService.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
-				PendingRPCManager pendingRPCManager = LocalMananger.getInstance().getLocalSpringBeanManager().getPendingRPCManager();
-				ConcurrentHashMap<String, RPCFuture> pendingRPC = pendingRPCManager.getPendingRPC();
+				ConcurrentHashMap<String, RPCFuture> pendingRPC = getPendingRPC();
 				Set<Entry<String, RPCFuture>> entrySet = pendingRPC.entrySet();
 				for (Entry<String, RPCFuture> entry : entrySet) {
 					RPCFuture rpcFuture = entry.getValue();
@@ -48,6 +47,27 @@ public class DetectRPCPendingService implements IService {
 	@Override
 	public void shutdown() throws Exception {
 		ExecutorUtil.shutdownAndAwaitTermination(executorService, 60L, TimeUnit.MILLISECONDS);
+	}
+
+	private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
+
+	public RPCFuture getRPCFuture(String requestId){
+		if(pendingRPC.get(requestId)!=null){
+			return pendingRPC.get(requestId);
+		}
+		return null;
+	}
+	public void addRPCFuture(String requestId, RPCFuture rpcFuture){
+		pendingRPC.put(requestId, rpcFuture);
+	}
+	public ConcurrentHashMap<String, RPCFuture> getPendingRPC(){
+		return pendingRPC;
+	}
+	public void removeRPCFuture(String requestId){
+		pendingRPC.remove(requestId);
+	}
+	public void clearPendRPC(){
+		pendingRPC.clear();
 	}
 	
 }

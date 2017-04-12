@@ -8,7 +8,7 @@ import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
 import com.wolf.shoot.service.net.message.facade.GameFacade;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.service.rpc.client.DetectRPCPendingService;
+import com.wolf.shoot.service.rpc.client.RPCFutureService;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
@@ -60,18 +60,18 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     private RpcProxyService rpcProxyService;
     
     @Autowired
-    private DetectRPCPendingService detectRPCPendingService;
+    private RPCFutureService RPCFutureService;
 
     @Autowired
     private ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry;
 
-    public DetectRPCPendingService getDetectRPCPendingService() {
-		return detectRPCPendingService;
+    public RPCFutureService getRPCFutureService() {
+		return RPCFutureService;
 	}
 
-	public void setDetectRPCPendingService(
-			DetectRPCPendingService detectRPCPendingService) {
-		this.detectRPCPendingService = detectRPCPendingService;
+	public void setRPCFutureService(
+            RPCFutureService RPCFutureService) {
+		this.RPCFutureService = RPCFutureService;
 	}
 
     public RemoteRpcHandlerService getRemoteRpcHandlerService() {
