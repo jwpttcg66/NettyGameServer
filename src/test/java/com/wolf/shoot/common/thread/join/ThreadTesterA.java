@@ -9,9 +9,14 @@ class ThreadTesterA implements Runnable {
 
     @Override
     public void run() {
-        while (counter <= 10) {
-            System.out.print("Counter = " + counter + " ");
+        while (counter <= 1000) {
+            System.out.println("Counter = " + counter + " ");
             counter++;
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println();
     }
