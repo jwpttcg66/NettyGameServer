@@ -8,9 +8,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import net.sf.cglib.reflect.FastClass;
-import net.sf.cglib.reflect.FastMethod;
 import org.slf4j.Logger;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by jwp on 2017/3/7.
@@ -62,20 +62,23 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
         String methodName = request.getMethodName();
         Class<?>[] parameterTypes = request.getParameterTypes();
         Object[] parameters = request.getParameters();
-
-        logger.debug(serviceClass.getName());
-        logger.debug(methodName);
-        for (int i = 0; i < parameterTypes.length; ++i) {
-            logger.debug(parameterTypes[i].getName());
+        if(logger.isDebugEnabled()) {
+            logger.debug(serviceClass.getName());
+            logger.debug(methodName);
+            for (int i = 0; i < parameterTypes.length; ++i) {
+                logger.debug(parameterTypes[i].getName());
+            }
+            for (int i = 0; i < parameters.length; ++i) {
+                logger.debug(parameters[i].toString());
+            }
         }
-        for (int i = 0; i < parameters.length; ++i) {
-            logger.debug(parameters[i].toString());
-        }
 
-        // Cglib reflect 反射
-        FastClass serviceFastClass = FastClass.create(serviceClass);
-        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
-        return serviceFastMethod.invoke(serviceBean, parameters);
+//        // Cglib reflect 反射
+//        FastClass serviceFastClass = FastClass.create(serviceClass);
+//        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
+//        return serviceFastMethod.invoke(serviceBean, parameters);
+         Method method = serviceClass.getMethod(methodName, parameterTypes);
+         return method.invoke(serviceBean, parameters);
     }
 
     @Override
