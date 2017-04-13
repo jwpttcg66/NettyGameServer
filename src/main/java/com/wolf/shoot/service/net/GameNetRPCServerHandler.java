@@ -9,8 +9,8 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
-
-import java.lang.reflect.Method;
+import org.springframework.cglib.reflect.FastClass;
+import org.springframework.cglib.reflect.FastMethod;
 
 /**
  * Created by jwp on 2017/3/7.
@@ -74,11 +74,12 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
         }
 
 //        // Cglib reflect 反射
-//        FastClass serviceFastClass = FastClass.create(serviceClass);
-//        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
-//        return serviceFastMethod.invoke(serviceBean, parameters);
-         Method method = serviceClass.getMethod(methodName, parameterTypes);
-         return method.invoke(serviceBean, parameters);
+        FastClass serviceFastClass = FastClass.create(serviceClass);
+        FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
+        return serviceFastMethod.invoke(serviceBean, parameters);
+
+//         Method method = serviceClass.getMethod(methodName, parameterTypes);
+//         return method.invoke(serviceBean, parameters);
     }
 
     @Override
