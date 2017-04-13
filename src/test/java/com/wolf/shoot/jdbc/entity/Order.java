@@ -1,17 +1,17 @@
 package com.wolf.shoot.jdbc.entity;
 
-import com.snowcattle.game.db.cache.redis.RedisInterface;
 import com.snowcattle.game.db.common.annotation.DbMapper;
 import com.snowcattle.game.db.common.annotation.EntitySave;
 import com.snowcattle.game.db.common.annotation.FieldSave;
 import com.snowcattle.game.db.common.annotation.MethodSaveProxy;
-import com.snowcattle.game.db.entity.BaseEntity;
+import com.snowcattle.game.db.entity.BaseLongIDEntity;
+import com.snowcattle.game.db.service.redis.RedisInterface;
 import com.snowcattle.game.db.util.EntityUtils;
 import com.wolf.shoot.jdbc.mapper.OrderMapper;
 
 @EntitySave
 @DbMapper(mapper = OrderMapper.class)
-public class Order extends BaseEntity implements RedisInterface{
+public class Order extends BaseLongIDEntity implements RedisInterface {
 
     @FieldSave
     private String status;
@@ -41,7 +41,7 @@ public class Order extends BaseEntity implements RedisInterface{
     }
 
     @Override
-    public String getUniqueKey() {
+    public String getUnionKey() {
         return String.valueOf(getUserId()+ EntityUtils.ENTITY_SPLIT_STRING + getId());
     }
 

@@ -27,7 +27,7 @@
         <spring.version>4.3.2.RELEASE</spring.version>
         <ehcache.version>3.2.0</ehcache.version>
         <!--jwpttcg66 maven工程-->
-        <GameShardingDb.version>1.0</GameShardingDb.version>
+        <GameShardingDb.version>1.1</GameShardingDb.version>
         <GameThreadPool.version>1.0</GameThreadPool.version>
         <game-excutor.version>1.6.9</game-excutor.version>
         <game-expression.version>1.1</game-expression.version>
@@ -173,11 +173,12 @@
             <artifactId>zookeeper</artifactId>
             <version>3.4.5</version>
         </dependency>
-		<dependency>
-		    <groupId>com.github.jwpttcg66</groupId>
-		    <artifactId>GameShardingDb</artifactId>
-            <version>${GameShardingDb.version}</version>
-		</dependency>
+
+        <dependency>
+            <groupId>com.github.jwpttcg66</groupId>
+            <artifactId>GameShardingDb</artifactId>
+            <version>1.1.001</version>
+        </dependency>
 
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>

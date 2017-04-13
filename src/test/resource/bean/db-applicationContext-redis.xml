@@ -36,7 +36,10 @@
         <constructor-arg index="5" value="0" />
     </bean>
 
-    <bean id="redisService" class="com.snowcattle.game.db.cache.redis.RedisService">
+    <bean id="redisService" class="com.snowcattle.game.db.service.redis.RedisService">
+        <property name="jedisPool" ref="jedisPool" />
+    </bean>
+    <bean id="rgtRedisService" class="com.redis.transaction.service.RGTRedisService">
         <property name="jedisPool" ref="jedisPool" />
     </bean>
 </beans>

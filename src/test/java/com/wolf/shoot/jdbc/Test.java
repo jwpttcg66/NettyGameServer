@@ -1,42 +1,46 @@
 package com.wolf.shoot.jdbc;
 
+import com.snowcattle.game.db.service.proxy.EnityProxyFactory;
+import com.wolf.shoot.jdbc.entity.Order;
+import com.wolf.shoot.jdbc.service.impl.OrderService;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.snowcattle.game.db.service.proxy.EnityProxyService;
-import com.wolf.shoot.jdbc.entity.Order;
-import com.wolf.shoot.jdbc.service.impl.OrderService;
-
+/**
+ * Created by jiangwenping on 17/3/20.
+ */
 public class Test {
     public static long userId = 99999;
     public static long id = 3603;
+    public static int batchStart = 70000000;
     public static void main(String[] args) throws Exception {
-    	ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         OrderService orderService = getOrderService(classPathXmlApplicationContext);
-        insertTest(classPathXmlApplicationContext, orderService);
+//        insertTest(classPathXmlApplicationContext, orderService);
 //        insertBatchTest(classPathXmlApplicationContext, orderService);
 //        Order order = getTest(classPathXmlApplicationContext, orderService);
-//        List<Order> orderList = getOrderList(classPathXmlApplicationContext, orderService);
+        List<Order> orderList = getOrderList(classPathXmlApplicationContext, orderService);
 //        updateTest(classPathXmlApplicationContext, orderService, order);
 //        updateBatchTest(classPathXmlApplicationContext, orderService, orderList);
 //        deleteTest(classPathXmlApplicationContext, orderService, order);
 //        deleteBatchTest(classPathXmlApplicationContext, orderService, orderList);
-//        getListTest(classPathXmlApplicationContext, orderService);
+//        getOrderList(classPathXmlApplicationContext, orderService);
     }
 
 
+
     public static void deleteBatchTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService, List<Order> orderList) throws Exception {
-       //test2
+        //test2
         orderService.deleteEntityBatch(orderList);
     }
 
     public static void updateBatchTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService, List<Order> orderList) throws Exception {
-        EnityProxyService enityProxyService = (EnityProxyService) classPathXmlApplicationContext.getBean("enityProxyService");
+        EnityProxyFactory enityProxyFactory = (EnityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
         List<Order> updateList = new ArrayList<>();
         for (Order order : orderList) {
-            Order proxyOrder = enityProxyService.createProxyEntity(order);
+            Order proxyOrder = enityProxyFactory.createProxyEntity(order);
             proxyOrder.setStatus("dddd");
             proxyOrder.setUserId(userId);
             proxyOrder.setId(order.getId());
@@ -46,18 +50,18 @@ public class Test {
     }
 
     public static void insertBatchTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService) throws Exception {
-       /* int startSize = 300000;
+        int startSize = batchStart;
         int endSize = startSize + 10;
         List<Order> list = new ArrayList<>();
         for (int i = startSize; i < endSize; i++) {
-            MoreOrder order = new MoreOrder();
+            Order order = new Order();
             order.setUserId(userId);
-            order.setId(i);
+            order.setId((long)i);
             order.setStatus("测试列表插入" + i);
             list.add(order);
         }
 
-        orderService.insertOrderList(list);*/
+        orderService.insertOrderList(list);
     }
 
     public static List<Order> getOrderList(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService) throws Exception {
@@ -68,8 +72,9 @@ public class Test {
 
     public static void insertTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService) {
 
-        int startSize = 3600;
-        int endSize = 3605;
+        int startSize = batchStart;
+        int endSize = batchStart+10;
+
         for (int i = startSize; i < endSize; i++) {
             Order order = new Order();
             order.setUserId(userId);
@@ -85,15 +90,10 @@ public class Test {
         return order;
     }
 
-    public static void getListTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService) {
-        List<Order> orderList = orderService.getOrderList(userId);
-        System.out.println(orderList);
-    }
-
 
     public static void updateTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService, Order order) throws Exception {
-        EnityProxyService enityProxyService = (EnityProxyService) classPathXmlApplicationContext.getBean("enityProxyService");
-        Order proxyOrder = enityProxyService.createProxyEntity(order);
+        EnityProxyFactory enityProxyFactory = (EnityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
+        Order proxyOrder = enityProxyFactory.createProxyEntity(order);
         proxyOrder.setStatus("修改了3");
         orderService.updateOrder(proxyOrder);
 
