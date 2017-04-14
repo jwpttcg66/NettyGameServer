@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 
 /**
  * Created by jwp on 2017/3/7.
+ * rpc协议处理handler
  */
 public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
@@ -85,7 +86,9 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error("server caught exception", cause);
+        if(logger.isErrorEnabled()) {
+            logger.error("server caught exception", cause);
+        }
         ctx.close();
     }
 }
