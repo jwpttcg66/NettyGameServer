@@ -1,6 +1,6 @@
 package com.wolf.shoot.jdbc;
 
-import com.snowcattle.game.db.service.proxy.EnityProxyFactory;
+import com.snowcattle.game.db.service.proxy.EntityProxyFactory;
 import com.wolf.shoot.jdbc.entity.Order;
 import com.wolf.shoot.jdbc.service.impl.OrderService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -37,10 +37,10 @@ public class Test {
     }
 
     public static void updateBatchTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService, List<Order> orderList) throws Exception {
-        EnityProxyFactory enityProxyFactory = (EnityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
+        EntityProxyFactory entityProxyFactory = (EntityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
         List<Order> updateList = new ArrayList<>();
         for (Order order : orderList) {
-            Order proxyOrder = enityProxyFactory.createProxyEntity(order);
+            Order proxyOrder = entityProxyFactory.createProxyEntity(order);
             proxyOrder.setStatus("dddd");
             proxyOrder.setUserId(userId);
             proxyOrder.setId(order.getId());
@@ -92,8 +92,8 @@ public class Test {
 
 
     public static void updateTest(ClassPathXmlApplicationContext classPathXmlApplicationContext, OrderService orderService, Order order) throws Exception {
-        EnityProxyFactory enityProxyFactory = (EnityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
-        Order proxyOrder = enityProxyFactory.createProxyEntity(order);
+        EntityProxyFactory entityProxyFactory = (EntityProxyFactory) classPathXmlApplicationContext.getBean("enityProxyFactory");
+        Order proxyOrder = entityProxyFactory.createProxyEntity(order);
         proxyOrder.setStatus("修改了3");
         orderService.updateOrder(proxyOrder);
 
