@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 
 /**
  * Created by jiangwenping on 17/2/7.
+ * tcp协议处理handler
  */
 public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
 
@@ -85,12 +86,6 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
             //因为updateService会自己删除，这里不需要逻辑
-//            //加入到updateservice 终止线程循环
-//            UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
-//            NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);
-//            EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
-//            CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyFinishEventType, nettyTcpSerssionUpdate.getId(), param);
-//            updateService.addReadyFinishEvent(cycleEvent);
         }
         ctx.fireChannelUnregistered();
     }
