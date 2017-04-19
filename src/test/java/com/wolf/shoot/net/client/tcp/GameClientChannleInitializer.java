@@ -1,12 +1,8 @@
-package com.wolf.shoot.game.socket.client;
+package com.wolf.shoot.net.client.tcp;
 
 import com.wolf.shoot.common.constant.GlobalConstants;
-import com.wolf.shoot.service.net.RpcRequest;
-import com.wolf.shoot.service.net.RpcResponse;
 import com.wolf.shoot.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
-import com.wolf.shoot.service.net.message.decoder.RpcDecoder;
 import com.wolf.shoot.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
-import com.wolf.shoot.service.net.message.encoder.RpcEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;

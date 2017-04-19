@@ -1,4 +1,4 @@
-package com.wolf.shoot.game.udp.client;
+package com.wolf.shoot.net.client.udp;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;

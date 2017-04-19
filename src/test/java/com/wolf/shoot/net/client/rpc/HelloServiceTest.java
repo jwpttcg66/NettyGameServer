@@ -1,4 +1,4 @@
-package com.wolf.shoot.rpc.client;
+package com.wolf.shoot.net.client.rpc;
 
 
 import com.wolf.shoot.common.constant.BOEnum;

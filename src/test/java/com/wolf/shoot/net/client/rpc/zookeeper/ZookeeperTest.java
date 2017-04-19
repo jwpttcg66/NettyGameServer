@@ -1,4 +1,4 @@
-package com.wolf.shoot.rpc.client.zookeeper;
+package com.wolf.shoot.net.client.rpc.zookeeper;
 
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;

@@ -1,5 +1,4 @@
-package com.wolf.shoot.rpc.client.stresstest;
-
+package com.wolf.shoot.net.client.rpc;
 
 import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.util.BeanUtil;
@@ -9,10 +8,12 @@ import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
+import com.wolf.shoot.service.rpc.client.AsyncRPCCallback;
+import com.wolf.shoot.service.rpc.client.RPCFuture;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
+import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,21 +21,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by jwp on 2017/3/8.
+ * Created by jwp on 2017/3/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:bean/*.xml")
-public class HelloServiceStressTest {
+public class HelloCallbackTest {
 
     @Autowired
     private RpcProxyService rpcProxyService;
 
-
     @Before
     public void init() {
-        long current_time = System.currentTimeMillis();
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
         LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
         LocalSpringServicerAfterManager localSpringServicerAfterManager  = (LocalSpringServicerAfterManager) BeanUtil.getBean("localSpringServicerAfterManager");
@@ -50,37 +50,37 @@ public class HelloServiceStressTest {
     }
 
     @Test
-    public void helloTest1() {
-        int serverId = 8001;
-        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
-        final String result = "Hello! World";
-        final int test_size = 1_00;
-        int wrong_size = 0;
-        int right_size = 0;
-        long current_time = System.currentTimeMillis();
+    public void test() {
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
-        RpcContextHolder.setContextHolder(rpcContextHolderObject);
-        for (int i = 0; i < test_size; i++) {
-            if(helloService!=null){
-                String test = helloService.hello("World");
-                if (test != null && result.equals(test))
-                    right_size++;
-                else
-                    wrong_size++;
-            }
+        try {
+            AsyncRpcProxy proxy = (AsyncRpcProxy) rpcProxyService.createAsync(HelloService.class);
+            RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, 8001);
+            RpcContextHolder.setContextHolder(rpcContextHolderObject);
+            RPCFuture rpcFuture = proxy.call("hello", "xiaoming");
+            rpcFuture.addCallback(new AsyncRPCCallback() {
+                @Override
+                public void success(Object result) {
+                    System.out.println(result);
+                    countDownLatch.countDown();
+                }
+
+                @Override
+                public void fail(Exception e) {
+                    System.out.println(e);
+                    countDownLatch.countDown();
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
-        ;
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("------------------------- ------------------------- ");
-
-        System.out.println("right_size " + right_size);
-        System.out.println("wrong_size " + wrong_size);
-        System.out.println("cost time " + (System.currentTimeMillis() - current_time));
-        System.out.println("------------------------- ------------------------- ");
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        Assert.assertEquals("Hello! World", result);
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("End");
     }
 
     @After
@@ -93,5 +93,4 @@ public class HelloServiceStressTest {
             }
         }
     }
-
 }

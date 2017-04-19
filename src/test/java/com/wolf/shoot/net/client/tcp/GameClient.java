@@ -1,4 +1,4 @@
-package com.wolf.shoot.game.socket.client;
+package com.wolf.shoot.net.client.tcp;
 
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.manager.LocalMananger;
