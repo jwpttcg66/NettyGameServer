@@ -34,3 +34,6 @@ config.rpcServicePackage="com.wolf.shoot.service.rpc.service.server";
 /**message**/
 config.netMessageHandlerNameSpace="com.wolf.shoot.message.handler.impl";
 config.netMsgNameSpace="com.wolf.shoot.message.logic";
+/**异步线程池配置**/
+config.asyncThreadPoolCoreSize=1;
+config.asyncThreadPoolMaxSize=100;

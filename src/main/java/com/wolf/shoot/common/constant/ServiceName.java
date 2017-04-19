@@ -17,4 +17,5 @@ public class ServiceName {
     public static final String DetectRPCPendingService = "DetectRPCPendingService";
     public static final String ZookeeperRpcServiceRegistry = "ZookeeperRpcServiceRegistry";
     public static final String ZookeeperRpcServiceDiscovery = "ZookeeperRpcServiceDiscovery";
+    public static final String AsyncThreadService = "AsyncThreadService";
 }

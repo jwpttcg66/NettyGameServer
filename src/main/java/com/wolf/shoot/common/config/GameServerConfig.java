@@ -75,6 +75,10 @@ public class GameServerConfig extends ServerConfig {
     private String netMessageHandlerNameSpace;
     /*rpc服务的包名字*/
     private String netMsgNameSpace;
+    /*异步线程池最小核心线程池数量*/
+    private int asyncThreadPoolCoreSize;
+    /*异步线程池最大线程池数量*/
+    private int asyncThreadPoolMaxSize;
 
     public GameServerConfig() {
     }
@@ -313,5 +317,21 @@ public class GameServerConfig extends ServerConfig {
 
     public void setNetMsgNameSpace(String netMsgNameSpace) {
         this.netMsgNameSpace = netMsgNameSpace;
+    }
+
+    public int getAsyncThreadPoolCoreSize() {
+        return asyncThreadPoolCoreSize;
+    }
+
+    public void setAsyncThreadPoolCoreSize(int asyncThreadPoolCoreSize) {
+        this.asyncThreadPoolCoreSize = asyncThreadPoolCoreSize;
+    }
+
+    public int getAsyncThreadPoolMaxSize() {
+        return asyncThreadPoolMaxSize;
+    }
+
+    public void setAsyncThreadPoolMaxSize(int asyncThreadPoolMaxSize) {
+        this.asyncThreadPoolMaxSize = asyncThreadPoolMaxSize;
     }
 }

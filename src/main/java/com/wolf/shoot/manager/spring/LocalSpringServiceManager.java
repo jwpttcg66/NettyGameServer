@@ -3,6 +3,7 @@ package com.wolf.shoot.manager.spring;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
+import com.wolf.shoot.service.async.pool.AsyncThreadService;
 import com.wolf.shoot.service.lookup.cache.EhcacheService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -64,6 +65,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry;
+
+    @Autowired
+    private AsyncThreadService asyncThreadService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -171,4 +175,11 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
         this.zookeeperRpcServiceRegistry = zookeeperRpcServiceRegistry;
     }
 
+    public AsyncThreadService getAsyncThreadService() {
+        return asyncThreadService;
+    }
+
+    public void setAsyncThreadService(AsyncThreadService asyncThreadService) {
+        this.asyncThreadService = asyncThreadService;
+    }
 }
