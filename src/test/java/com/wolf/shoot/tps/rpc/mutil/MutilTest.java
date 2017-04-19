@@ -33,8 +33,8 @@ public class MutilTest {
     @Test
     public void tps() throws InterruptedException {
         AtomicLong atomicLong = new AtomicLong();
-        int size = 1;
-        int threadSize = 5;
+        int size = 1000;
+        int threadSize = 50;
         CountDownLatch countDownLatch = new CountDownLatch(threadSize);
         ThreadNameFactory threadNameFactory = new ThreadNameFactory("tps");
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(threadSize, threadSize, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536), threadNameFactory);

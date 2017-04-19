@@ -31,10 +31,10 @@ public class RpcClientConnection {
     private ExecutorService threadPool;
     EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
 
-    /**
-     * 重连标识
-     */
-    private volatile boolean reConnect = false;
+//    /**
+//     * 重连标识 因为重连的时候没有加锁，会导致检查链接失败，丢失包信息
+//     */
+//    private volatile boolean reConnect = false;
 
     /**
      * 是否启用重连
@@ -103,10 +103,10 @@ public class RpcClientConnection {
     public boolean writeRequest(RpcRequest rpcRequest) {
         if (!isConnected() && reConnectOn) {
             // 是否正在重连中
-            if (!reConnect) {
+//            if (!reConnect) {
                 // 重新连接
                 tryReConnect();
-            }
+//            }
             //依然链接不上,返回false
             if (!isConnected()) {
                 return false;
@@ -128,17 +128,17 @@ public class RpcClientConnection {
         statusLock.lock();  // block until condition holds
         try {
             if(!isConnected()) {
-                reConnect = true;
+//                reConnect = true;
                 try {
                     //强制链接,进行等待
                     Future<?> future = threadPool.submit(new ReConnect());
                     future.get();
                 } catch (Exception e) {
-                    reConnect = false;
+//                    reConnect = false;
                 }
             }
         } catch (Exception e) {
-            reConnect = false;
+//            reConnect = false;
         }finally {
             statusLock.unlock();
         }
@@ -160,7 +160,7 @@ public class RpcClientConnection {
                 }
             } finally {
                 // 设置为允许重连
-                reConnect = false;
+//                reConnect = false;
             }
         }
     }

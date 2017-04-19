@@ -36,24 +36,24 @@ public class RpcTpsRunable implements Runnable{
     public void run() {
 
         try {
-            System.out.println("tps thread start");
+//            System.out.println("tps thread start");
             HelloService helloService = rpcProxyService.createProxy(HelloService.class);
             int serverId = 9001;
             RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
             RpcContextHolder.setContextHolder(rpcContextHolderObject);
             long startTime = System.currentTimeMillis();
             for(int i = 0; i < maxSize; i++){
-                String result = helloService.hello("World");
-//            System.out.println(result);
-                Assert.assertEquals("Hello! World", result);
+
+                String result = helloService.hello(String.valueOf(i));
+                Assert.assertEquals("Hello! " + String.valueOf(i), result);
                 atomicLong.getAndIncrement();
                 privateAtomicLong.getAndIncrement();
-                System.out.println(atomicLong.get());
+//                System.out.println(atomicLong.get());
             }
             long endTime = System.currentTimeMillis();
             long useTime = endTime - startTime;
-            System.out.println("rpc 总数量" + atomicLong.get() + "时间" + useTime);
-            System.out.println("rpc 私有数量" + privateAtomicLong.get() + "时间" + useTime);
+//            System.out.println("rpc 总数量" + atomicLong.get() + "时间" + useTime);
+//            System.out.println("rpc 私有数量" + privateAtomicLong.get() + "时间" + useTime);
         }catch (Throwable e){
             e.printStackTrace();
         }
