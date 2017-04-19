@@ -31,21 +31,26 @@ public class RpcTpsRunable implements Runnable{
     @Override
     public void run() {
 
-        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
-        int serverId = 9001;
-        RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
-        RpcContextHolder.setContextHolder(rpcContextHolderObject);
-
-        long startTime = System.currentTimeMillis();
-        for(int i = 0; i < maxSize; i++){
-            String result = helloService.hello("World");
+        try {
+            HelloService helloService = rpcProxyService.createProxy(HelloService.class);
+            int serverId = 9001;
+            RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
+            RpcContextHolder.setContextHolder(rpcContextHolderObject);
+            long startTime = System.currentTimeMillis();
+            for(int i = 0; i < maxSize; i++){
+                String result = helloService.hello("World");
 //            System.out.println(result);
-            Assert.assertEquals("Hello! World", result);
-            atomicLong.getAndIncrement();
+                Assert.assertEquals("Hello! World", result);
+                atomicLong.getAndIncrement();
+                System.out.println(atomicLong.get());
+            }
+            long endTime = System.currentTimeMillis();
+            long useTime = endTime - startTime;
+            System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
+        }catch (Throwable e){
+            e.printStackTrace();
         }
-        long endTime = System.currentTimeMillis();
-        long useTime = endTime - startTime;
-        System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
+
         this.countDownLatch.countDown();
     }
 }
