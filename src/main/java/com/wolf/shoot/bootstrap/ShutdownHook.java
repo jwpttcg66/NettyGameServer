@@ -1,4 +1,4 @@
-package com.wolf.shoot.server;
+package com.wolf.shoot.bootstrap;
 
 import com.wolf.shoot.common.util.Assert;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

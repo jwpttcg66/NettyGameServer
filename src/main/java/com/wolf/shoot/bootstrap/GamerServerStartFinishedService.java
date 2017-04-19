@@ -1,4 +1,4 @@
-package com.wolf.shoot.server;
+package com.wolf.shoot.bootstrap;
 
 import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.constant.GlobalConstants;

@@ -1,4 +1,4 @@
-package com.wolf.shoot.server;
+package com.wolf.shoot.bootstrap;
 
 /**
  * 游戏服务器运行时数据

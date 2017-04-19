@@ -266,7 +266,7 @@
                         <!--<manifest>-->
                             <!--<addClasspath>true</addClasspath>-->
                             <!--<classpathPrefix>lib/</classpathPrefix>-->
-                            <!--<mainClass>com.wolf.shoot.server.GameServer</mainClass>-->
+                            <!--<mainClass>com.wolf.shoot.bootstrap.GameServer</mainClass>-->
                         <!--</manifest>-->
                     <!--</archive>-->
                 <!--</configuration>-->

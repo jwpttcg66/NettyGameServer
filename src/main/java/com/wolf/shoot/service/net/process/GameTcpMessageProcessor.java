@@ -2,7 +2,7 @@ package com.wolf.shoot.service.net.process;
 
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.message.AbstractNetMessage;
-import com.wolf.shoot.server.GameServerRuntime;
+import com.wolf.shoot.bootstrap.GameServerRuntime;
 import org.slf4j.Logger;
 
 
