@@ -1,8 +1,9 @@
 package com.wolf.shoot.service.rpc.client;
 
 import com.snowcattle.game.excutor.utils.ExecutorUtil;
+import com.wolf.shoot.common.ThreadNameFactory;
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
-import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,8 @@ public class RPCFutureService implements IService {
 
 	@Override
 	public void startup() throws Exception {
-		executorService = Executors.newScheduledThreadPool(1);
+		ThreadNameFactory threadNameFactory = new ThreadNameFactory(GlobalConstants.Thread.DETECT_RPCPENDING);
+		executorService = Executors.newScheduledThreadPool(1, threadNameFactory);
 		executorService.scheduleAtFixedRate(new Runnable() {
 			@Override
 			public void run() {
