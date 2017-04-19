@@ -3,6 +3,7 @@
 
     <world>
         <server serverId="8001" domain="127.0.0.1" domainPort="7090" ip="127.0.0.1" port="7090" weight="100" maxNumber="1000" rpcPort="10100" rpcClientNumber="3"/>
+        <server serverId="9001" domain="192.168.0.153" domainPort="7090" ip="192.168.0.153" port="7090" weight="100" maxNumber="1000" rpcPort="10100" rpcClientNumber="3"/>
     </world>
 
     <game>

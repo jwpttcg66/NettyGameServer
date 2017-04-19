@@ -48,12 +48,16 @@ public class SingleTest {
         AtomicLong atomicLong = new AtomicLong();
         int size = 1000;
         Thread thread = new Thread(new RpcTpsRunable(rpcProxyService, atomicLong, size));
+        long startTime = System.currentTimeMillis();
         try {
             thread.start();
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        long endTime = System.currentTimeMillis();
+        long useTime = endTime - startTime;
+        System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
     }
 
     @After

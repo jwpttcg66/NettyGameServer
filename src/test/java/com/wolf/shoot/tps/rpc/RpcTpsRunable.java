@@ -37,7 +37,7 @@ public class RpcTpsRunable implements Runnable{
         long startTime = System.currentTimeMillis();
         for(int i = 0; i < maxSize; i++){
             String result = helloService.hello("World");
-            System.out.println(result);
+//            System.out.println(result);
             Assert.assertEquals("Hello! World", result);
             atomicLong.getAndIncrement();
         }
