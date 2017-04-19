@@ -21,17 +21,22 @@ public class RpcTpsRunable implements Runnable{
     private int maxSize;
 
     private CountDownLatch countDownLatch;
+
+    private AtomicLong privateAtomicLong;
+
     public RpcTpsRunable(RpcProxyService rpcProxyService, AtomicLong atomicLong, int maxSize, CountDownLatch countDownLatch) {
         this.rpcProxyService = rpcProxyService;
         this.atomicLong = atomicLong;
         this.maxSize = maxSize;
         this.countDownLatch = countDownLatch;
+        privateAtomicLong = new AtomicLong();
     }
 
     @Override
     public void run() {
 
         try {
+            System.out.println("tps thread start");
             HelloService helloService = rpcProxyService.createProxy(HelloService.class);
             int serverId = 9001;
             RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
@@ -42,11 +47,13 @@ public class RpcTpsRunable implements Runnable{
 //            System.out.println(result);
                 Assert.assertEquals("Hello! World", result);
                 atomicLong.getAndIncrement();
+                privateAtomicLong.getAndIncrement();
                 System.out.println(atomicLong.get());
             }
             long endTime = System.currentTimeMillis();
             long useTime = endTime - startTime;
-            System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
+            System.out.println("rpc 总数量" + atomicLong.get() + "时间" + useTime);
+            System.out.println("rpc 私有数量" + privateAtomicLong.get() + "时间" + useTime);
         }catch (Throwable e){
             e.printStackTrace();
         }
