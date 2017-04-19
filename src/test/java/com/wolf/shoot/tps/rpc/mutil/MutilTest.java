@@ -1,4 +1,4 @@
-package com.wolf.shoot.tps.rpc.single;
+package com.wolf.shoot.tps.rpc.mutil;
 
 import com.wolf.shoot.TestStartUp;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:bean/*.xml")
-public class SingleTest {
+public class MutilTest {
 
     @Autowired
     private RpcProxyService rpcProxyService;
@@ -32,12 +32,15 @@ public class SingleTest {
     @Test
     public void tps() throws InterruptedException {
         AtomicLong atomicLong = new AtomicLong();
-        int size = 10000;
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-        Thread thread = new Thread(new RpcTpsRunable(rpcProxyService, atomicLong, size, countDownLatch));
+        int size = 1000;
+        int threadSize = 60;
+        CountDownLatch countDownLatch = new CountDownLatch(threadSize);
         long startTime = System.currentTimeMillis();
-        thread.start();
-        countDownLatch.await();
+        for(int i = 0; i < threadSize;i++) {
+            Thread thread = new Thread(new RpcTpsRunable(rpcProxyService, atomicLong, size,countDownLatch));
+            thread.start();
+        }
+        countDownLatch.await();;
         long endTime = System.currentTimeMillis();
         long useTime = endTime - startTime;
         System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
