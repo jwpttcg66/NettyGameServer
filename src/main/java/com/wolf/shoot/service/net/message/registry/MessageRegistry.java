@@ -88,7 +88,7 @@ public class MessageRegistry implements Reloadable, IService{
         MessageCommandEnum[] set = MessageCommandEnum.values();
         for(int i = 0; i< set.length; i++){
             MessageCommandEnum messageCommandEnum = set[i];
-            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter, messageCommandEnum.is_common);
+            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter);
             messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
             logger.info("messageCommands load:" + messageCommandEnum);
         }

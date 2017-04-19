@@ -16,6 +16,7 @@ import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.process.GameUdpMessageOrderProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyUdpSession;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 
+        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
         //如果是通用消息，不进行服务器检测
-        if (gameServerConfig.getServerType().getBoId() != messageCommand.bo_id && !messageCommand.is_common()) {
+        if (!rpcConfig.validServer(messageCommand.bo_id)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
             }

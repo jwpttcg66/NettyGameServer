@@ -7,12 +7,12 @@ import com.wolf.shoot.common.constant.BOEnum;
  */
 public enum MessageCommandEnum {
 
-    ONLINE_HEART_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE, BOEnum.WORLD,false, false),
-    COMMON_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOEnum.WORLD, false, true),
-    COMMON_ERROR_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOEnum.WORLD, false, true),
-    ONLINE_HEART_UDP_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE, BOEnum.WORLD, true, false),
-    ONLINE_LOGIN_TCP_CLIENT_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE, BOEnum.WORLD,false, false),
-    ONLINE_LOGIN_TCP_SERVER_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE, BOEnum.WORLD,false, false),
+    ONLINE_HEART_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE, BOEnum.WORLD,false),
+    COMMON_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOEnum.WORLD, false),
+    COMMON_ERROR_RESPONSE_MESSAGE(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOEnum.WORLD, false),
+    ONLINE_HEART_UDP_MESSAGE(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE, BOEnum.WORLD, true),
+    ONLINE_LOGIN_TCP_CLIENT_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE, BOEnum.WORLD,false),
+    ONLINE_LOGIN_TCP_SERVER_MESSAGE(MessageCommandIndex.ONLINE_LOGIN_TCP_SERVER_MESSAGE, BOEnum.WORLD,false),
     ;
     /**
      * 协议号
@@ -29,16 +29,10 @@ public enum MessageCommandEnum {
      */
     public final boolean is_need_filter;
 
-    /**
-     * 通用消息
-     */
-    public final boolean is_common;
-
-    MessageCommandEnum(int commandId, BOEnum boEnum, boolean is_need_filter, boolean is_common) {
+    MessageCommandEnum(int commandId, BOEnum boEnum, boolean is_need_filter) {
         this.command_id = commandId;
         this.bo_id = boEnum.getBoId();
         this.is_need_filter = is_need_filter;
-        this.is_common = is_common;
     }
 
     public static String getMessageCommandName(int commandId) {

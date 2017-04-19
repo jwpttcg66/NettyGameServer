@@ -1,7 +1,6 @@
 ﻿/*
  * Server基本信息
  */
-config.serverType=world;
 config.charset="UTF-8";
 config.version="0.2.0.1";
 config.serverId="8001";

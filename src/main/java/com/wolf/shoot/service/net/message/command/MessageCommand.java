@@ -20,16 +20,10 @@ public class MessageCommand
      */
     private final boolean is_need_filter;
 
-    /**
-     * 通用消息
-     */
-    private final boolean is_common;
-
-    public MessageCommand(int commandId, int boId, boolean is_need_filter, boolean is_common) {
+    public MessageCommand(int commandId, int boId, boolean is_need_filter) {
         this.command_id = commandId;
         this.bo_id = boId;
         this.is_need_filter = is_need_filter;
-        this.is_common = is_common;
     }
 
     public int getCommand_id() {
@@ -44,7 +38,4 @@ public class MessageCommand
         return is_need_filter;
     }
 
-    public boolean is_common() {
-        return is_common;
-    }
 }

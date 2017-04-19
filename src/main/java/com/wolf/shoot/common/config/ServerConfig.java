@@ -1,6 +1,5 @@
 package com.wolf.shoot.common.config;
 
-import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.CommonErrorLogInfo;
 import com.wolf.shoot.common.util.ErrorsUtil;
 
@@ -12,10 +11,7 @@ import java.io.File;
  *
  */
 public abstract class ServerConfig implements Config {
-	/**
-	 * 服务器类型：1-GameServer 2-WorldServer 3-LoginServer 4-DBSServer 5-AgentServer 6-LogServer
-	 */
-	protected BOEnum serverType;
+
 	/** 生产模式:0 调式模式:1 */
 	protected int debug = 0;
 	
@@ -214,15 +210,6 @@ public abstract class ServerConfig implements Config {
 
 	public String getScriptHeaderName() {
 		return scriptHeaderName;
-	}
-
-
-	public BOEnum getServerType() {
-		return serverType;
-	}
-
-	public void setServerType(BOEnum serverType) {
-		this.serverType = serverType;
 	}
 
 	/**

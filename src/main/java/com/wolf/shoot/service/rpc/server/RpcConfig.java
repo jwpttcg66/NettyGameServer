@@ -113,4 +113,8 @@ public class RpcConfig{
     public void setSdDbServers(List<SdServer> sdDbServers) {
         this.sdDbServers = sdDbServers;
     }
+
+    public boolean validServer(int boId){
+        return sdRpcServiceProvider.validServer(boId);
+    }
 }

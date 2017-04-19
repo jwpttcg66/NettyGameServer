@@ -34,5 +34,9 @@ public class SdRpcServiceProvider {
         return bitSet.get(BOEnum.DB.getBoId());
     }
 
+    public boolean validServer(int boId){
+        return bitSet.get(boId);
+    }
+
 
 }
