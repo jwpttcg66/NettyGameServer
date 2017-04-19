@@ -27,7 +27,7 @@ public class HelloCallbackTest {
 
     @Before
     public void init() {
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
     }
 
     @Test

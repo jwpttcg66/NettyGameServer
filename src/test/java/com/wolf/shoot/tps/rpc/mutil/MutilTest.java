@@ -27,7 +27,7 @@ public class MutilTest {
 
     @Before
     public void init(){
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
     }
 
     @Test

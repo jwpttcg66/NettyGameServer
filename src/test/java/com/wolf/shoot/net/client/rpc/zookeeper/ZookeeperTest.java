@@ -35,7 +35,7 @@ public class ZookeeperTest {
 
     @Before
     public void init() {
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
     }
 
     @Test
