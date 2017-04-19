@@ -30,7 +30,7 @@ config.rpcPorts="10100";
 config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
 config.rpcConnectThreadSize=16;
-config.rpcSendProxyThreadSize=16;
+config.rpcSendProxyThreadSize=60;
 config.rpcServicePackage="com.wolf.shoot.service.rpc.service.server";
 /**message**/
 config.netMessageHandlerNameSpace="com.wolf.shoot.message.handler.impl";
