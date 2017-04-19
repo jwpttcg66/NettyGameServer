@@ -1,12 +1,8 @@
 package com.wolf.shoot.net.client.rpc.stresstest;
 
 
+import com.wolf.shoot.TestStartUp;
 import com.wolf.shoot.common.constant.BOEnum;
-import com.wolf.shoot.common.util.BeanUtil;
-import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
-import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
@@ -34,27 +30,15 @@ public class HelloServiceStressTest {
 
     @Before
     public void init() {
-        long current_time = System.currentTimeMillis();
-        LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
-        LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
-        LocalSpringServicerAfterManager localSpringServicerAfterManager  = (LocalSpringServicerAfterManager) BeanUtil.getBean("localSpringServicerAfterManager");
-        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
-        LocalMananger.getInstance().setLocalSpringServicerAfterManager(localSpringServicerAfterManager);
-        try {
-            localSpringServiceManager.start();
-            localSpringServicerAfterManager.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        TestStartUp.startUp();
     }
 
     @Test
     public void helloTest1() {
-        int serverId = 8001;
+        int serverId = 9001;
         HelloService helloService = rpcProxyService.createProxy(HelloService.class);
         final String result = "Hello! World";
-        final int test_size = 1_00;
+        final int test_size = 1_000;
         int wrong_size = 0;
         int right_size = 0;
         long current_time = System.currentTimeMillis();

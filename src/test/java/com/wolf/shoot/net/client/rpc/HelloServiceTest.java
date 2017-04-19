@@ -1,12 +1,8 @@
 package com.wolf.shoot.net.client.rpc;
 
 
+import com.wolf.shoot.TestStartUp;
 import com.wolf.shoot.common.constant.BOEnum;
-import com.wolf.shoot.common.util.BeanUtil;
-import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
-import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
@@ -33,18 +29,7 @@ public class HelloServiceTest {
 
     @Before
     public void init(){
-        LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
-        LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
-        LocalSpringServicerAfterManager localSpringServicerAfterManager  = (LocalSpringServicerAfterManager) BeanUtil.getBean("localSpringServicerAfterManager");
-        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
-        LocalMananger.getInstance().setLocalSpringServicerAfterManager(localSpringServicerAfterManager);
-        try {
-            localSpringServiceManager.start();
-            localSpringServicerAfterManager.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        TestStartUp.startUp();
     }
 
     @Test

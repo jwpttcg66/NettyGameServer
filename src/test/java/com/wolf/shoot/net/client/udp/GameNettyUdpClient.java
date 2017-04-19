@@ -1,11 +1,11 @@
 package com.wolf.shoot.net.client.udp;
 
-import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.TestStartUp;
+import com.wolf.shoot.common.udp.client.UdpProtoBufClientChannelInitializer;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
-import com.wolf.shoot.common.udp.client.UdpProtoBufClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -25,14 +25,9 @@ import java.nio.charset.Charset;
 public class GameNettyUdpClient {
     public static int port = 10090;
     public static void main(String[] args) throws Exception {
-        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
-        GameServerConfigService gameServerConfigService = new GameServerConfigService();
-        gameServerConfigService.startup();;
-        localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
-        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+        TestStartUp.startUp();
+        LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
-
 
         final NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup();
 
