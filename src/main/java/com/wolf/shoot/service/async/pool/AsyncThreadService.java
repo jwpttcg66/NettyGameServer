@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.async.pool;
 
-import com.snowcattle.game.excutor.thread.ThreadNameFactory;
+import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;

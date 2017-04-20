@@ -1,14 +1,14 @@
 package com.wolf.shoot.manager;
 
 import com.snowcattle.game.excutor.event.EventBus;
-import com.snowcattle.game.excutor.event.impl.DispatchCreateEventListener;
-import com.snowcattle.game.excutor.event.impl.DispatchFinishEventListener;
-import com.snowcattle.game.excutor.event.impl.DispatchUpdateEventListener;
-import com.snowcattle.game.excutor.pool.UpdateEventExcutorService;
+import com.snowcattle.game.excutor.event.impl.listener.DispatchCreateEventListener;
+import com.snowcattle.game.excutor.event.impl.listener.DispatchFinishEventListener;
+import com.snowcattle.game.excutor.event.impl.listener.DispatchUpdateEventListener;
+import com.snowcattle.game.excutor.pool.UpdateBindExcutorService;
 import com.snowcattle.game.excutor.pool.UpdateExecutorService;
 import com.snowcattle.game.excutor.service.UpdateService;
-import com.snowcattle.game.excutor.thread.LockSupportDisptachThread;
-import com.snowcattle.game.excutor.thread.LockSupportEventDisptachThread;
+import com.snowcattle.game.excutor.thread.dispatch.BindLockSupportDisptachThread;
+import com.snowcattle.game.excutor.thread.dispatch.LockSupportDisptachThread;
 import com.snowcattle.game.excutor.utils.Constants;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
@@ -74,9 +74,9 @@ public class Globals {
         long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleSleepTime;
 
         if (gameServerConfig.isUpdateServiceExcutorFlag()) {
-            UpdateEventExcutorService updateEventExcutorService = new UpdateEventExcutorService(corePoolSize);
+            UpdateBindExcutorService updateEventExcutorService = new UpdateBindExcutorService(corePoolSize);
 
-            LockSupportEventDisptachThread dispatchThread = new LockSupportEventDisptachThread(updateEventBus, updateEventExcutorService
+            BindLockSupportDisptachThread dispatchThread = new BindLockSupportDisptachThread(updateEventBus, updateEventExcutorService
                     , cycleSleepTime, minCycleTime);
             updateEventExcutorService.setDispatchThread(dispatchThread);
             UpdateService updateService = new UpdateService(dispatchThread, updateEventExcutorService);
@@ -85,7 +85,7 @@ public class Globals {
             updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
             LocalMananger.getInstance().add(updateService, UpdateService.class);
         } else {
-            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, keepAliveTime, timeUnit);
+            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
             LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
                     , cycleSleepTime, minCycleTime);
             UpdateService updateService = new UpdateService(dispatchThread, updateExecutorService);
