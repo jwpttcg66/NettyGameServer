@@ -29,7 +29,7 @@
         <!--jwpttcg66 maven工程-->
         <GameShardingDb.version>1.2.001</GameShardingDb.version>
         <GameThreadPool.version>1.0</GameThreadPool.version>
-        <game-excutor.version>1.6.9</game-excutor.version>
+        <game-executor.version>1.6.9</game-executor.version>
         <game-expression.version>1.1</game-expression.version>
 
         <project.build.directory>target</project.build.directory>
@@ -189,8 +189,8 @@
         <!-- game-excutor -->
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>game-excutor</artifactId>
-            <version>${game-excutor.version}</version>
+            <artifactId>game-executor</artifactId>
+            <version>${game-executor.version}</version>
         </dependency>
 
         <dependency>
