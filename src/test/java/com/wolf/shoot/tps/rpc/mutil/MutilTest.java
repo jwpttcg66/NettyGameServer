@@ -1,7 +1,7 @@
 package com.wolf.shoot.tps.rpc.mutil;
 
-import com.snowcattle.game.excutor.thread.ThreadNameFactory;
 import com.wolf.shoot.TestStartUp;
+import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.tps.rpc.RpcTpsRunable;
 import org.junit.After;
@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**

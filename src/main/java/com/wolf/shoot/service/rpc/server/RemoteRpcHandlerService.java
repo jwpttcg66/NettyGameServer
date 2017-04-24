@@ -27,7 +27,7 @@ public class RemoteRpcHandlerService implements IService{
     public void startup() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        if(gameServerConfig.isRpcFlag()){
+        if(gameServerConfig.isRpcOpen()){
             //开启服务
             rpcHandlerThreadPool.createExecutor(gameServerConfig.getRpcThreadPoolSize(), gameServerConfig.getRpcThreadPoolQueueSize());
         }

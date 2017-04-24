@@ -7,6 +7,8 @@ import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.common.exception.StartUpException;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
+import com.wolf.shoot.service.rpc.server.SdRpcServiceProvider;
 
 /**
  * Created by jiangwenping on 17/2/15.
@@ -26,6 +28,10 @@ public class LocalNetService implements IService{
     public void startup() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        //根据rpc配置来决定启动服务器
+        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
+
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, new GameNetProtoMessageTcpServerChannleInitializer());
         boolean startUpFlag = gameNettyTcpServerService.startService();
@@ -33,14 +39,16 @@ public class LocalNetService implements IService{
             throw  new StartUpException("tcp server startup error");
         }
 
-        gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(),gameServerConfig.getUdpPort()
-                , GlobalConstants.Thread.NET_UDP_WORKER);
-        startUpFlag = gameNettyUdpServerService.startService();
-        if(!startUpFlag){
-            throw  new StartUpException("udp server startup error");
+        if(gameServerConfig.isUdpOpen()) {
+            gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(), gameServerConfig.getUdpPort()
+                    , GlobalConstants.Thread.NET_UDP_WORKER);
+            startUpFlag = gameNettyUdpServerService.startService();
+            if (!startUpFlag) {
+                throw new StartUpException("udp server startup error");
+            }
         }
 
-        if(gameServerConfig.isRpcFlag()) {
+        if(gameServerConfig.isRpcOpen()) {
             gameNettyRPCService = new GameNettyRPCService(gameServerConfig.getServerId(), gameServerConfig.getFirstRpcPort()
                     , GlobalConstants.Thread.NET_RPC_BOSS, GlobalConstants.Thread.NET_RPC_WORKER, new GameNetRPCChannleInitializer());
             startUpFlag = gameNettyRPCService.startService();
@@ -61,11 +69,13 @@ public class LocalNetService implements IService{
             gameNettyTcpServerService.stopService();
         }
 
-        if(gameNettyUdpServerService != null){
-            gameNettyUdpServerService.stopService();
+        if(gameServerConfig.isUdpOpen()) {
+            if (gameNettyUdpServerService != null) {
+                gameNettyUdpServerService.stopService();
+            }
         }
 
-        if(gameServerConfig.isRpcFlag()) {
+        if(gameServerConfig.isRpcOpen()) {
             if (gameNettyRPCService != null) {
                 gameNettyRPCService.stopService();
             }

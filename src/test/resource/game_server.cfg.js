@@ -1,7 +1,6 @@
 ﻿/*
  * Server基本信息
  */
-config.charset="UTF-8";
 config.version="0.2.0.1";
 config.serverId="8001";
 config.bindIp="0.0.0.0";
@@ -19,18 +18,19 @@ config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
 config.updateServiceExcutorFlag=true;
 /**udp配置***/
+config.udpOpen=true;
 config.updPorts="10090";
 config.updQueueMessageProcessWorkerSize=1;
 config.udpMessageOrderQueueFlag=true;
 /**rpc配置*/
-config.rpcFlag=true;
+config.rpcOpen=true;
 //这个是提供外网使用的，请使用外网地址
 config.rpcBindIp="127.0.0.1";
 config.rpcPorts="10100";
 config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
 config.rpcConnectThreadSize=16;
-config.rpcSendProxyThreadSize=60;
+config.rpcSendProxyThreadSize=16;
 config.rpcServicePackage="com.wolf.shoot.service.rpc.service.server";
 /**message**/
 config.netMessageHandlerNameSpace="com.wolf.shoot.message.handler.impl";

@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.update;
 
-import com.snowcattle.game.excutor.update.AbstractUpdate;
+import com.snowcattle.game.excutor.entity.AbstractUpdate;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
 import com.wolf.shoot.service.net.session.TcpNetState;
