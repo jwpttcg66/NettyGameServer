@@ -44,6 +44,8 @@ public class GameServerConfig extends ServerConfig {
      * gameExcutor中LockSupportDisptachThread中最小循环时间 单位纳秒，计算需要出去gameExcutorCycleTime
      */
     private int gameExcutorMinCycleTime;
+    /*udp开发标志*/
+    private boolean udpOpen;
     /**服务器监听的端口,多个商品以逗号","分隔 */
     private String updPorts;
     /*udp的queueMessageProcess默认的worker大小*/
@@ -55,7 +57,7 @@ public class GameServerConfig extends ServerConfig {
     private boolean updateServiceExcutorFlag = true;
 
     //开启rpc
-    private boolean rpcFlag = false;
+    private boolean rpcOpen = false;
 
     /*rpc端口*/
     private String rpcPorts;
@@ -225,12 +227,12 @@ public class GameServerConfig extends ServerConfig {
         this.updateServiceExcutorFlag = updateServiceExcutorFlag;
     }
 
-    public boolean isRpcFlag() {
-        return rpcFlag;
+    public boolean isRpcOpen() {
+        return rpcOpen;
     }
 
-    public void setRpcFlag(boolean rpcFlag) {
-        this.rpcFlag = rpcFlag;
+    public void setRpcOpen(boolean rpcOpen) {
+        this.rpcOpen = rpcOpen;
     }
 
     public String getRpcPorts() {
@@ -333,5 +335,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setAsyncThreadPoolMaxSize(int asyncThreadPoolMaxSize) {
         this.asyncThreadPoolMaxSize = asyncThreadPoolMaxSize;
+    }
+
+    public boolean isUdpOpen() {
+        return udpOpen;
+    }
+
+    public void setUdpOpen(boolean udpOpen) {
+        this.udpOpen = udpOpen;
     }
 }

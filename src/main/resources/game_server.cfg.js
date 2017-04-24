@@ -18,11 +18,12 @@ config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
 config.updateServiceExcutorFlag=true;
 /**udp配置***/
+config.udpOpen=true;
 config.updPorts="10090";
 config.updQueueMessageProcessWorkerSize=1;
 config.udpMessageOrderQueueFlag=true;
 /**rpc配置*/
-config.rpcFlag=true;
+config.rpcOpen=true;
 //这个是提供外网使用的，请使用外网地址
 config.rpcBindIp="127.0.0.1";
 config.rpcPorts="10100";
