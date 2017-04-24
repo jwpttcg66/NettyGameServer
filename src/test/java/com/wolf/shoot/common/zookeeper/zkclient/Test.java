@@ -1,4 +1,4 @@
-package com.wolf.shoot.common.zookeeper;
+package com.wolf.shoot.common.zookeeper.zkclient;
 
 import org.apache.zookeeper.*;
 
