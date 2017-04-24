@@ -38,8 +38,8 @@ public class Carutor2 {
 				return acl;
 			}
 		};
-		String scheme = "digest";
-		byte[] auth = "admin:admin".getBytes();
+		String scheme = "xxxxx";
+		byte[] auth = "xx:xx".getBytes();
 		int connectionTimeoutMs = 5000;
 		String connectString = "192.168.0.158:2181";
 		String namespace = "testnamespace";
