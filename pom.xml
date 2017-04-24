@@ -168,11 +168,12 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.5</version>
-        </dependency>
+		<dependency>
+		    <groupId>org.apache.zookeeper</groupId>
+		    <artifactId>zookeeper</artifactId>
+		    <version>3.5.2-alpha</version>
+		</dependency>
+
 
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
@@ -210,6 +211,22 @@
 		    <!--<artifactId>druid</artifactId>-->
 		    <!--<version>1.0.29</version>-->
 		<!--</dependency>-->
+		<!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+		<dependency>
+		    <groupId>com.101tec</groupId>
+		    <artifactId>zkclient</artifactId>
+		    <version>0.10</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+		<dependency>
+		    <groupId>org.apache.curator</groupId>
+		    <artifactId>curator-recipes</artifactId>
+		    <version>3.3.0</version>
+		</dependency>
+
+
+
+		
     </dependencies>
     <build>
         <plugins>
