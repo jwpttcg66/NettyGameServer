@@ -10,6 +10,8 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.ACLProvider;
 import org.apache.curator.framework.recipes.cache.ChildData;
+import org.apache.curator.framework.recipes.cache.PathChildrenCache;
+import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.framework.recipes.cache.TreeCache;
 import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
 import org.apache.curator.framework.recipes.cache.TreeCacheListener;
@@ -47,8 +49,8 @@ public class CuratorListenerUtils {
 				return acl;
 			}
 		};
-		String scheme = "xxxxx";
-		byte[] auth = "xx:xx".getBytes();
+		String scheme = "digest";
+		byte[] auth = "admin:admin".getBytes();
 		int connectionTimeoutMs = 5000;
 		String connectString = "192.168.0.158:2181";
 		String namespace = "";
@@ -95,7 +97,5 @@ public class CuratorListenerUtils {
 		});
 		// 开始监听
 		cache.start();
-
 	}
-
 }

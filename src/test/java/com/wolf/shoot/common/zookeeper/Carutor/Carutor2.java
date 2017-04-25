@@ -13,12 +13,13 @@ import org.apache.zookeeper.data.Id;
 public class Carutor2 {
 	public static void main(String[] args) throws Exception {
 		CuratorFramework client = clientTwo();
+		client.create().forPath("/test", "".getBytes());
 		client.setData().forPath("/test","test".getBytes());
 		client.setData().forPath("/test","test-update".getBytes());
+		client.delete().forPath("/test");
 	}
 	private static CuratorFramework clientTwo() {
 
-		// 默认创建的根节点是没有做权限控制的--需要自己手动加权限???----
 		ACLProvider aclProvider = new ACLProvider() {
 			private List<ACL> acl;
 
@@ -38,11 +39,11 @@ public class Carutor2 {
 				return acl;
 			}
 		};
-		String scheme = "xxxxx";
-		byte[] auth = "xx:xx".getBytes();
+		String scheme = "digest";
+		byte[] auth = "admin:admin".getBytes();
 		int connectionTimeoutMs = 5000;
 		String connectString = "192.168.0.158:2181";
-		String namespace = "testnamespace";
+		String namespace = "";
 		CuratorFramework client = CuratorFrameworkFactory.builder()
 				.aclProvider(aclProvider).authorization(scheme, auth)
 				.connectionTimeoutMs(connectionTimeoutMs)
