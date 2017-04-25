@@ -13,6 +13,7 @@ import com.wolf.shoot.service.net.message.command.MessageCommandEnum;
 import com.wolf.shoot.service.net.message.registry.MessageRegistry;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.session.NettyTcpSession;
+import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.rpc.server.RpcConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
@@ -37,7 +38,8 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
 
         AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(channel.id().asLongText());
+        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
         }

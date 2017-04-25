@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.lookup;
 
 import com.wolf.shoot.service.net.session.NettySession;
+import com.wolf.shoot.service.net.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 17/2/13.
@@ -9,21 +10,21 @@ public interface IChannleLookUpService {
 
     /**
      * 查找
-     * @param Id
+     * @param sessionId
      * @return
      */
-    public NettySession lookup(String channelId);
+    public NettySession lookup(long sessionId);
 
     /**
      * 增加
-     * @param NettySession
+     * @param nettyTcpSession
      */
-    public void addNettySession(NettySession nettySession);
+    public void addNettySession(NettyTcpSession nettyTcpSession);
 
     /**
      * 移除
-     * @param t
+     * @param nettyTcpSession
      * @return
      */
-    public boolean removeNettySession(NettySession nettySession);
+    public boolean removeNettySession(NettyTcpSession nettyTcpSession);
 }
