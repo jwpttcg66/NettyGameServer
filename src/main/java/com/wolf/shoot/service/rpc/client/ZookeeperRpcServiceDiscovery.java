@@ -68,7 +68,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
     		try {
 				setListenter(client,zooKeeperNodeBoEnum);
 			} catch (Exception e) {
-				logger.debug("Create CuratorFramework Exception:"+e.getMessage());
+				logger.debug("CuratorFramework Listenning Exception:"+e.getMessage());
 			}
     	}
     }
@@ -171,7 +171,11 @@ public class ZookeeperRpcServiceDiscovery implements IService{
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerDiffConfig gameServerDiffConfig = gameServerConfigService.getGameServerDiffConfig();
         if(gameServerDiffConfig.isZookeeperFlag()) {
-        	client = creatClient();
+        	try {
+        		client = creatClient();
+			} catch (Exception e) {
+				logger.debug("Create CuratorFramework Client Exception:"+e.getMessage());
+			}
             ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
             for (ZooKeeperNodeBoEnum zooKeeperNodeBoEnum : zooKeeperNodeBoEnums) {
                 discovery(zooKeeperNodeBoEnum);
