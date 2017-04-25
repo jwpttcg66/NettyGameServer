@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.ACLProvider;
 import org.apache.curator.framework.recipes.cache.ChildData;
+import org.apache.curator.framework.recipes.cache.NodeCache;
+import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.TreeCache;
 import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
 import org.apache.curator.framework.recipes.cache.TreeCacheListener;
@@ -24,6 +25,7 @@ public class CuratorListenerUtils {
 	public static void main(String[] args) throws Exception {
 		CuratorFramework client = creatClient();
 		setListenter(client);
+		setListenterThreeTwo(client);
 		Thread.sleep(99999999999l);
 	}
 	private static CuratorFramework creatClient() {
@@ -47,8 +49,8 @@ public class CuratorListenerUtils {
 				return acl;
 			}
 		};
-		String scheme = "xxxxx";
-		byte[] auth = "xx:xx".getBytes();
+		String scheme = "digest";
+		byte[] auth = "admin:admin".getBytes();
 		int connectionTimeoutMs = 5000;
 		String connectString = "192.168.0.158:2181";
 		String namespace = "";
@@ -89,13 +91,27 @@ public class CuratorListenerUtils {
 						break;
 					}
 				} else {
+					//CONNECTION_SUSPENDED CONNECTION_RECONNECTED CONNECTION_LOST
 					System.err.println("data is null : " + event.getType());
 				}
 			}
 		});
 		// 开始监听
 		cache.start();
-
 	}
-
+	private static void setListenterThreeTwo(CuratorFramework client)
+			throws Exception {
+		ExecutorService pool = Executors.newCachedThreadPool();
+		final NodeCache nodeCache = new NodeCache(client, "/test", false);
+		nodeCache.getListenable().addListener(new NodeCacheListener() {
+			@Override
+			public void nodeChanged() throws Exception {
+				System.err.println("the test node is change and result is :");
+				System.err.println("path : "+ nodeCache.getCurrentData().getPath());
+				System.err.println("data : "+ new String(nodeCache.getCurrentData().getData()));
+				System.err.println("stat : "+ nodeCache.getCurrentData().getStat());
+			}
+		});
+		nodeCache.start();
+	}
 }
