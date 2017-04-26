@@ -67,15 +67,10 @@ public class RpcProxyService implements IService{
         Class serviceClass = service.getClass();
         RpcService rpcService = (RpcService) serviceClass.getAnnotation(RpcService.class);
         if(rpcService != null){
-            service = createProxy(interfaceClass);
-            return (T) service;
+            return createProxy(interfaceClass);
         }
         return (T) service;
     }
 
-
-    public <T> IAsyncRpcProxy createRemoteAsync(Object service, Class<T> interfaceClass) {
-        return new AsyncRpcProxy<T>(interfaceClass);
-    }
 }
 
