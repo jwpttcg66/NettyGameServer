@@ -25,7 +25,7 @@ public class RpcProxyService implements IService{
     private static ThreadPoolExecutor threadPoolExecutor;
 
     @SuppressWarnings("unchecked")
-    private <T> T createProxy(Class<T> interfaceClass) {
+    public <T> T createProxy(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(
                 interfaceClass.getClassLoader(),
                 new Class<?>[]{interfaceClass},
