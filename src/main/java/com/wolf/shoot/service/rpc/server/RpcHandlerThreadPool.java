@@ -3,6 +3,7 @@ package com.wolf.shoot.service.rpc.server;
 import com.snowcattle.game.thread.policy.*;
 import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.annotation.BlockingQueueType;
+import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.concurrent.*;
 public class RpcHandlerThreadPool {
 
     private final Logger logger = Loggers.threadLogger;
-    private ExecutorService excutor;
+    private ExecutorService executor;
 
     private RejectedExecutionHandler createPolicy() {
         RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "CallerRunsPolicy"));
@@ -53,18 +54,18 @@ public class RpcHandlerThreadPool {
     }
 
     public Executor createExecutor(int threads, int queues) {
-        String name = "RpcThreadPool";
+        String name = GlobalConstants.Thread.RPC_HANDLER;
         ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS, createBlockingQueue(queues), new ThreadNameFactory(name, false), createPolicy());
-        this.excutor = executor;
+        this.executor = executor;
         return executor;
     }
 
-    public ExecutorService getExcutor() {
-        return excutor;
+    public ExecutorService getExecutor() {
+        return executor;
     }
 
-    public void setExcutor(ExecutorService excutor) {
-        this.excutor = excutor;
+    public void setExecutor(ExecutorService executor) {
+        this.executor = executor;
     }
 }
 

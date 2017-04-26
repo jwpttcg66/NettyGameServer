@@ -35,10 +35,10 @@ public class RemoteRpcHandlerService implements IService{
 
     @Override
     public void shutdown() throws Exception {
-        ExecutorUtil.shutdownAndAwaitTermination(rpcHandlerThreadPool.getExcutor());
+        ExecutorUtil.shutdownAndAwaitTermination(rpcHandlerThreadPool.getExecutor());
     }
 
     public void submit(Runnable runnable){
-        rpcHandlerThreadPool.getExcutor().submit(runnable);
+        rpcHandlerThreadPool.getExecutor().submit(runnable);
     }
 }

@@ -16,7 +16,7 @@ public class JdomUtils {
 
 	public static Element getRootElemet(String xmlPath) {
 		SAXBuilder builder = new SAXBuilder();
-		builder.setValidation(false);
+//		builder.setValidation(false);
 		Document doc = null;
 		try {
 			doc = builder.build(xmlPath);
@@ -29,7 +29,7 @@ public class JdomUtils {
 
 	public static Element getRootElemet(URL xmlPath) {
 		SAXBuilder builder = new SAXBuilder();
-		builder.setValidation(false);
+//		builder.setValidation(false);
 		Document doc = null;
 		try {
 			doc = builder.build(xmlPath);
