@@ -72,5 +72,10 @@ public class RpcProxyService implements IService{
         }
         return (T) service;
     }
+
+
+    public <T> IAsyncRpcProxy createRemoteAsync(Object service, Class<T> interfaceClass) {
+        return new AsyncRpcProxy<T>(interfaceClass);
+    }
 }
 

@@ -7,7 +7,6 @@ import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
-import com.wolf.shoot.service.rpc.service.server.HelloServiceImpl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,8 +36,9 @@ public class HelloServiceStressTest {
     @Test
     public void helloTest1() {
         int serverId = 9001;
-        HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
-        HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
+//        HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
+//        HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
+        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
         final String result = "Hello! World";
         final int test_size = 1_000;
         int wrong_size = 0;

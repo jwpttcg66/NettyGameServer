@@ -5,7 +5,6 @@ import com.wolf.shoot.service.rpc.client.RpcContextHolder;
 import com.wolf.shoot.service.rpc.client.RpcContextHolderObject;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
-import com.wolf.shoot.service.rpc.service.server.HelloServiceImpl;
 import org.junit.Assert;
 
 import java.util.concurrent.CountDownLatch;
@@ -38,8 +37,9 @@ public class RpcTpsRunable implements Runnable{
 
         try {
 //            System.out.println("tps thread start");
-            HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
-            HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
+//            HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
+//            HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
+            HelloService helloService = rpcProxyService.createProxy(HelloService.class);
             int serverId = 9001;
             RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
             RpcContextHolder.setContextHolder(rpcContextHolderObject);
