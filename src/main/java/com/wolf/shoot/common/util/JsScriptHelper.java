@@ -1,23 +1,11 @@
 package com.wolf.shoot.common.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.script.Compilable;
-import javax.script.CompiledScript;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.LoggerFactory;
+
+import javax.script.*;
+import java.io.*;
+import java.util.Map;
 
 public class JsScriptHelper {
 	private static org.slf4j.Logger logger = LoggerFactory
@@ -109,31 +97,31 @@ public class JsScriptHelper {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		Properties p = new Properties();
-		System.out.println(p.getProperty("b"));
-		String script = "prop.setProperty(\"a\", \"b\");";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("prop", p);
-		System.out.println(executeScriptContent(script, params));
-		System.out.println(p);
-
-		String scriptFile = "test.script";
-		script = "prop.setProperty(\"c\", \"d\");return";
-
-		try {
-			FileUtils.writeStringToFile(new File(scriptFile), script,
-					STRING_CHARSET);
-		} catch (IOException e) {
-			logger.error("", e);
-		}
-
-		executeScriptFile(scriptFile, params);
-
-		System.out.println(p);
-
-		System.out.println(new File(scriptFile).delete());
-
-	}
+//	public static void main(String[] args) {
+//		Properties p = new Properties();
+//		System.out.println(p.getProperty("b"));
+//		String script = "prop.setProperty(\"a\", \"b\");";
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("prop", p);
+//		System.out.println(executeScriptContent(script, params));
+//		System.out.println(p);
+//
+//		String scriptFile = "test.script";
+//		script = "prop.setProperty(\"c\", \"d\");return";
+//
+//		try {
+//			FileUtils.writeStringToFile(new File(scriptFile), script,
+//					STRING_CHARSET);
+//		} catch (IOException e) {
+//			logger.error("", e);
+//		}
+//
+//		executeScriptFile(scriptFile, params);
+//
+//		System.out.println(p);
+//
+//		System.out.println(new File(scriptFile).delete());
+//
+//	}
 
 }

@@ -14,13 +14,15 @@ import org.slf4j.Logger;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class ObjectProxy<T> implements InvocationHandler{
     private Logger logger = Loggers.rpcLogger;
     private Class<T> clazz;
-
-    public ObjectProxy(Class<T> clazz) {
+    private int timeOut;
+    public ObjectProxy(Class<T> clazz, int timeOut) {
         this.clazz = clazz;
+        this.timeOut = timeOut;
     }
 
     @Override
@@ -64,6 +66,9 @@ public class ObjectProxy<T> implements InvocationHandler{
         AbstractRpcConnectManager abstractRpcConnectManager = rpcClientConnectService.getRpcConnectMannger(rpcContextHolderObject.getBoEnum());
         RpcClient rpcClient = abstractRpcConnectManager.chooseClient(rpcContextHolderObject.getServerId());
         RPCFuture rpcFuture = rpcClient.sendRequest(request);
+        if(timeOut > 0){
+            return rpcFuture.get(timeOut, TimeUnit.MILLISECONDS);
+        }
         return rpcFuture.get();
     }
 }

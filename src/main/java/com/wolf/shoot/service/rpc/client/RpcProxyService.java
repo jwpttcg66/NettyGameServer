@@ -26,10 +26,12 @@ public class RpcProxyService implements IService{
 
     @SuppressWarnings("unchecked")
     public <T> T createProxy(Class<T> interfaceClass) {
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        int timeOut = gameServerConfigService.getGameServerConfig().getRpcTimeOut();
         return (T) Proxy.newProxyInstance(
                 interfaceClass.getClassLoader(),
                 new Class<?>[]{interfaceClass},
-                new ObjectProxy<T>(interfaceClass)
+                new ObjectProxy<T>(interfaceClass, timeOut)
         );
     }
 

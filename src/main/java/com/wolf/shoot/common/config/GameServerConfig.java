@@ -69,6 +69,8 @@ public class GameServerConfig extends ServerConfig {
     private int rpcConnectThreadSize;
     /*rpc连接线程池大小*/
     private int rpcSendProxyThreadSize;
+    /*rpc超时时间 单位毫秒*/
+    private  int rpcTimeOut;
     /*这个是提供外网使用的，请使用外网地址*/
     private String rpcBindIp;
     /*rpc服务的包名字*/
@@ -343,5 +345,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setUdpOpen(boolean udpOpen) {
         this.udpOpen = udpOpen;
+    }
+
+    public int getRpcTimeOut() {
+        return rpcTimeOut;
+    }
+
+    public void setRpcTimeOut(int rpcTimeOut) {
+        this.rpcTimeOut = rpcTimeOut;
     }
 }
