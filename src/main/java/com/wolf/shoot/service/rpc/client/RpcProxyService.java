@@ -2,13 +2,17 @@ package com.wolf.shoot.service.rpc.client;
 
 
 import com.wolf.shoot.common.annotation.RpcService;
+import com.wolf.shoot.common.annotation.RpcServiceBoEnum;
 import com.wolf.shoot.common.config.GameServerConfigService;
+import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.wolf.shoot.service.rpc.client.proxy.ObjectProxy;
+import com.wolf.shoot.service.rpc.server.RpcConfig;
+import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Proxy;
@@ -25,7 +29,7 @@ public class RpcProxyService implements IService{
     private static ThreadPoolExecutor threadPoolExecutor;
 
     @SuppressWarnings("unchecked")
-    public <T> T createProxy(Class<T> interfaceClass) {
+    private <T> T createProxy(Class<T> interfaceClass) {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int timeOut = gameServerConfigService.getGameServerConfig().getRpcTimeOut();
         return (T) Proxy.newProxyInstance(
@@ -61,17 +65,40 @@ public class RpcProxyService implements IService{
     }
 
     /**
-     * 如果是rpc接口的接口的话,
-     * @param service
+     * 如果本机已经提供了远程对应的rpc服务，进行本地调用
+     * @param interfaceClass
      * @return
      */
-    public <T> T  createRemoteProxy (Object service, Class<T> interfaceClass){
-        Class serviceClass = service.getClass();
-        RpcService rpcService = (RpcService) serviceClass.getAnnotation(RpcService.class);
-        if(rpcService != null){
-            return createProxy(interfaceClass);
+    public <T> T  createRemoteProxy (Class<T> interfaceClass){
+        RpcMethodRegistry rpcMethodRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getRpcMethodRegistry();
+        String serviceName = interfaceClass.getName();
+        Object bean = rpcMethodRegistry.getServiceBean(serviceName);
+        if (bean == null){
+            //如果是空，进行rpc调用
+            return  null;
         }
-        return (T) service;
+
+        RpcService rpcService = bean.getClass().getAnnotation(RpcService.class);
+        if(rpcService == null){
+            //找不到rpc服务
+            return null;
+        }
+
+        RpcServiceBoEnum rpcServiceBoEnum = bean.getClass().getAnnotation(RpcServiceBoEnum.class);
+        if(rpcServiceBoEnum == null){
+            //找不到rpc服务
+            return null;
+        }
+
+        //是否本地提供服务
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+        BOEnum boEnum = rpcServiceBoEnum.bo();
+        if(rpcConfig.getSdRpcServiceProvider().validServer(boEnum.getBoId())){
+            return (T) bean;
+        }
+
+        return createProxy(interfaceClass);
     }
 
 }

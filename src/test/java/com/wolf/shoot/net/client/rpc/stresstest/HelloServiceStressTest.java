@@ -36,9 +36,7 @@ public class HelloServiceStressTest {
     @Test
     public void helloTest1() {
         int serverId = 9001;
-//        HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
-//        HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
-        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
+        HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
         final String result = "Hello! World";
         final int test_size = 1_000;
         int wrong_size = 0;

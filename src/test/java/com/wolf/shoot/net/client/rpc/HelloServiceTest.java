@@ -34,9 +34,7 @@ public class HelloServiceTest {
 
     @Test
     public void helloTest1() {
-//        HelloServiceImpl helloServiceImpl = new HelloServiceImpl();
-//        HelloService helloService = rpcProxyService.createRemoteProxy(helloServiceImpl, HelloService.class);
-        HelloService helloService = rpcProxyService.createProxy(HelloService.class);
+        HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
         int serverId = 8001;
         RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
         RpcContextHolder.setContextHolder(rpcContextHolderObject);
