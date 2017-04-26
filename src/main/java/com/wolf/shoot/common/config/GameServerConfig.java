@@ -71,6 +71,8 @@ public class GameServerConfig extends ServerConfig {
     private int rpcSendProxyThreadSize;
     /*rpc超时时间 单位毫秒*/
     private  int rpcTimeOut;
+    /*rpcfuture删除超时时间 单位毫秒*/
+    private  int rpcFutureDeleteTimeOut;
     /*这个是提供外网使用的，请使用外网地址*/
     private String rpcBindIp;
     /*rpc服务的包名字*/
@@ -353,5 +355,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setRpcTimeOut(int rpcTimeOut) {
         this.rpcTimeOut = rpcTimeOut;
+    }
+
+    public int getRpcFutureDeleteTimeOut() {
+        return rpcFutureDeleteTimeOut;
+    }
+
+    public void setRpcFutureDeleteTimeOut(int rpcFutureDeleteTimeOut) {
+        this.rpcFutureDeleteTimeOut = rpcFutureDeleteTimeOut;
     }
 }

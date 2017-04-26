@@ -27,7 +27,6 @@ public class RPCFuture implements Future<Object> {
     private long startTime;
 
     private long responseTimeThreshold = 5000;
-//    private long timeout = 10000;
 
     private List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
     private ReentrantLock lock = new ReentrantLock();
@@ -93,7 +92,7 @@ public class RPCFuture implements Future<Object> {
     public boolean isTimeout(){
     	long responseTime = System.currentTimeMillis() - startTime;
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        int timeOut = gameServerConfigService.getGameServerConfig().getRpcTimeOut();
+        int timeOut = gameServerConfigService.getGameServerConfig().getRpcFutureDeleteTimeOut();
         if (responseTime >= timeOut) {
             return true;
         }
