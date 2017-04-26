@@ -1,6 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 
+import com.wolf.shoot.common.annotation.RpcService;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.manager.LocalMananger;
@@ -24,7 +25,7 @@ public class RpcProxyService implements IService{
     private static ThreadPoolExecutor threadPoolExecutor;
 
     @SuppressWarnings("unchecked")
-    public <T> T createProxy(Class<T> interfaceClass) {
+    private <T> T createProxy(Class<T> interfaceClass) {
         return (T) Proxy.newProxyInstance(
                 interfaceClass.getClassLoader(),
                 new Class<?>[]{interfaceClass},
@@ -55,6 +56,21 @@ public class RpcProxyService implements IService{
     @Override
     public void shutdown() throws Exception {
         threadPoolExecutor.shutdown();
+    }
+
+    /**
+     * 如果是rpc接口的接口的话,
+     * @param service
+     * @return
+     */
+    public <T> T  createRemoteProxy (Object service, Class<T> interfaceClass){
+        Class serviceClass = service.getClass();
+        RpcService rpcService = (RpcService) serviceClass.getAnnotation(RpcService.class);
+        if(rpcService != null){
+            service = createProxy(interfaceClass);
+            return (T) service;
+        }
+        return (T) service;
     }
 }
 
