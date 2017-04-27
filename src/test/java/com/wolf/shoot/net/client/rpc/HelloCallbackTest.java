@@ -2,6 +2,7 @@ package com.wolf.shoot.net.client.rpc;
 
 import com.wolf.shoot.TestStartUp;
 import com.wolf.shoot.common.constant.BOEnum;
+import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.service.rpc.client.*;
 import com.wolf.shoot.service.rpc.client.proxy.AsyncRpcProxy;
 import com.wolf.shoot.service.rpc.service.client.HelloService;
@@ -18,19 +19,22 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by jwp on 2017/3/9.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class HelloCallbackTest {
 
-    @Autowired
     private RpcProxyService rpcProxyService;
 
-    @Before
     public void init() {
         TestStartUp.startUpWithSpring();
+        rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }
 
-    @Test
+    public static void main(String[] args) {
+        HelloCallbackTest helloCallbackTest = new HelloCallbackTest();
+        helloCallbackTest.init();
+        helloCallbackTest.test();
+        helloCallbackTest.setTear();
+    }
+
     public void test() {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -64,7 +68,6 @@ public class HelloCallbackTest {
         System.out.println("End");
     }
 
-    @After
     public void setTear() {
         if (rpcProxyService != null) {
             try {
