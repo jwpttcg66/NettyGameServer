@@ -53,24 +53,17 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     private Random random = new Random();
 
-    private ZooKeeper zk;
-
     private CuratorFramework client;
     
     public void discovery(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
-        if(zk == null){
-            zk = connectServer();
-            if (zk != null) {
-                watchNode(zooKeeperNodeBoEnum);
-            }
-        }
-    	if(client != null){
-    		try {
-				setListenter(client,zooKeeperNodeBoEnum);
-			} catch (Exception e) {
-				logger.debug("CuratorFramework Listenning Exception:"+e.getMessage());
-			}
+    	if(client == null){
+    		client = creatClient();
     	}
+    	try {
+			setListenter(client,zooKeeperNodeBoEnum);
+		} catch (Exception e) {
+			logger.debug("CuratorFramework Listenning Exception:"+e.getMessage());
+		}
     }
 
     private ZooKeeperNodeInfo chooseService(ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
@@ -114,42 +107,10 @@ public class ZookeeperRpcServiceDiscovery implements IService{
         return zk;
     }
 
-    private void watchNode(final ZooKeeperNodeBoEnum zooKeeperNodeBoEnum){
-        try{
-            GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-            String rootPath = zooKeeperNodeBoEnum.getRootPath();
-            List<String> nodeList = zk.getChildren(rootPath, new Watcher() {
-                @Override
-                public void process(WatchedEvent event) {
-                    watchNode(zooKeeperNodeBoEnum);
-                }
-            });
-
-            List<ZooKeeperNodeInfo> tempNodeList = new ArrayList<>();
-            for (String node: nodeList){
-                ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo();
-                byte[] bytes = zk.getData(zooKeeperNodeBoEnum.getRootPath() + "/" + node, false, null);
-                if(bytes != null) {
-                    zooKeeperNodeInfo.deserialize(new String(bytes));
-                    tempNodeList.add(zooKeeperNodeInfo);
-                }
-            }
-
-            logger.debug("node data: {}", tempNodeList);
-            this.nodeMap.put(zooKeeperNodeBoEnum, tempNodeList);
-            logger.debug("Service discovery triggered updating connected server node.");
-
-            //通知链接服务器进行链接
-            RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
-            rpcClientConnectService.notifyConnect(zooKeeperNodeBoEnum, nodeMap.get(zooKeeperNodeBoEnum));
-        }catch (Exception e){
-            logger.error(e.toString(), e);
-        }
-    }
     public void stop(){
-        if(zk != null){
+        if(client != null){
             try {
-                zk.close();
+                client.close();
             }catch (Exception e){
                 logger.error(e.toString(), e);
             }
@@ -185,9 +146,9 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     @Override
     public void shutdown() throws Exception {
-        if(zk != null){
+        if(client != null){
             try {
-                zk.close();
+                client.close();
             }catch (Exception e){
                 logger.error(e.toString(), e);
             }
@@ -229,8 +190,26 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 		client.start();
 		return client;
 	}
-    private static void setListenter(CuratorFramework client,ZooKeeperNodeBoEnum zooKeeperNodeBoEnum)throws Exception {
+    private void setListenter(CuratorFramework client,ZooKeeperNodeBoEnum zooKeeperNodeBoEnum)throws Exception {
 		ExecutorService pool = Executors.newCachedThreadPool();
+		List<String> childrens = client.getChildren().forPath(zooKeeperNodeBoEnum.getRootPath());
+		List<ZooKeeperNodeInfo> tempNodeList = new ArrayList<>();
+        for (String node: childrens){
+            ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo();
+            byte[] bytes = client.getData().forPath(zooKeeperNodeBoEnum.getRootPath()+"/"+node);
+            if(bytes != null) {
+                zooKeeperNodeInfo.deserialize(new String(bytes));
+                tempNodeList.add(zooKeeperNodeInfo);
+            }
+        }
+
+        logger.debug("node data: {}", tempNodeList);
+        nodeMap.put(zooKeeperNodeBoEnum, tempNodeList);
+        logger.debug("Service discovery triggered updating connected server node.");
+
+        RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
+        rpcClientConnectService.notifyConnect(zooKeeperNodeBoEnum, nodeMap.get(zooKeeperNodeBoEnum));
+		
 		TreeCache cache = new TreeCache(client, zooKeeperNodeBoEnum.getRootPath());
 		cache.getListenable().addListener(new TreeCacheListener() {
 			@Override
