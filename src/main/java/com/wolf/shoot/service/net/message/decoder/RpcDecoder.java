@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.net.message.decoder;
 
 import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.service.rpc.serialize.RpcSerialize;
+import com.wolf.shoot.service.rpc.serialize.IRpcSerialize;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -36,8 +36,8 @@ public class RpcDecoder extends ByteToMessageDecoder {
         byte[] data = new byte[dataLength];
         in.readBytes(data);
 
-        RpcSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-        Object obj = rpcSerialize.deserialize(data, genericClass);
+        IRpcSerialize IRpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
+        Object obj = IRpcSerialize.deserialize(data, genericClass);
         //Object obj = JsonUtil.deserialize(data,genericClass); // Not use this, have some bugs
         out.add(obj);
     }

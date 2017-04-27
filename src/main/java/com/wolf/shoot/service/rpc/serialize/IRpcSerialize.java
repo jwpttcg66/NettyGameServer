@@ -7,8 +7,9 @@ import java.io.Serializable;
 
 /**
  * Created by jwp on 2017/3/8.
+ * rpc对象序列化
  */
-public interface RpcSerialize {
+public interface IRpcSerialize {
 
     public <T> byte[] serialize(T obj);
 

@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by jwp on 2017/3/9.
  */
 @Service
-public class RpcRequestFactroy {
+public class RpcRequestFactory {
 
     public Logger logger = Loggers.rpcLogger;
 

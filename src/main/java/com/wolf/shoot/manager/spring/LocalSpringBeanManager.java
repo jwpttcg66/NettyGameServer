@@ -8,8 +8,8 @@ import com.wolf.shoot.service.net.pipeline.DefaultTcpServerPipeLine;
 import com.wolf.shoot.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.wolf.shoot.service.net.session.builder.NettyTcpSessionBuilder;
 import com.wolf.shoot.service.net.session.builder.NettyUdpSessionBuilder;
-import com.wolf.shoot.service.rpc.client.RpcRequestFactroy;
-import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerialize;
+import com.wolf.shoot.service.rpc.client.RpcRequestFactory;
+import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,10 +46,10 @@ public class LocalSpringBeanManager {
     private TcpMessageFactory tcpMessageFactory;
 
     @Autowired
-    private ProtostuffSerialize protostuffSerialize;
+    private ProtostuffSerializeI protostuffSerialize;
 
     @Autowired
-    private RpcRequestFactroy requestFactroy;
+    private RpcRequestFactory requestFactory;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -115,19 +115,19 @@ public class LocalSpringBeanManager {
         this.tcpMessageFactory = tcpMessageFactory;
     }
 
-    public ProtostuffSerialize getProtostuffSerialize() {
+    public ProtostuffSerializeI getProtostuffSerialize() {
         return protostuffSerialize;
     }
 
-    public void setProtostuffSerialize(ProtostuffSerialize protostuffSerialize) {
+    public void setProtostuffSerialize(ProtostuffSerializeI protostuffSerialize) {
         this.protostuffSerialize = protostuffSerialize;
     }
 
-    public RpcRequestFactroy getRequestFactroy() {
-        return requestFactroy;
+    public RpcRequestFactory getRequestFactory() {
+        return requestFactory;
     }
 
-    public void setRequestFactroy(RpcRequestFactroy requestFactroy) {
-        this.requestFactroy = requestFactroy;
+    public void setRequestFactory(RpcRequestFactory requestFactory) {
+        this.requestFactory = requestFactory;
     }
 }

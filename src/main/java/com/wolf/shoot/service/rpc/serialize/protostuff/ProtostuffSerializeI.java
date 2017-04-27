@@ -8,7 +8,7 @@ import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
-import com.wolf.shoot.service.rpc.serialize.RpcSerialize;
+import com.wolf.shoot.service.rpc.serialize.IRpcSerialize;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2016/10/7
  */
 @Service
-public class ProtostuffSerialize implements RpcSerialize {
+public class ProtostuffSerializeI implements IRpcSerialize {
     private Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
 
     private Objenesis objenesis = new ObjenesisStd(true);

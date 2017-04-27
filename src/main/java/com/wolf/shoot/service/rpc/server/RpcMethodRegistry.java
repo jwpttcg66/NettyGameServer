@@ -1,6 +1,6 @@
 package com.wolf.shoot.service.rpc.server;
 
-import com.wolf.shoot.common.annotation.RpcService;
+import com.wolf.shoot.common.annotation.RpcServiceAnnotation;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
@@ -9,7 +9,7 @@ import com.wolf.shoot.common.loader.scanner.ClassScanner;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.Reloadable;
-import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerialize;
+import com.wolf.shoot.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -62,10 +62,10 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 Class<?> messageClass = Class.forName(realClass);
 
                 logger.info("rpc load:" + messageClass);
-                RpcService rpcService = messageClass.getAnnotation(RpcService.class);
-                if(rpcService != null) {
-                    String interfaceName = messageClass.getAnnotation(RpcService.class).value().getName();
-                    ProtostuffSerialize rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
+                RpcServiceAnnotation rpcServiceAnnotation = messageClass.getAnnotation(RpcServiceAnnotation.class);
+                if(rpcServiceAnnotation != null) {
+                    String interfaceName = messageClass.getAnnotation(RpcServiceAnnotation.class).value().getName();
+                    ProtostuffSerializeI rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
                     Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
                     registryMap.put(interfaceName, serviceBean);
                     logger.info("rpc register:" + messageClass);

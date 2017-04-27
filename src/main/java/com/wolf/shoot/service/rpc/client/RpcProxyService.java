@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.rpc.client;
 
 
-import com.wolf.shoot.common.annotation.RpcService;
+import com.wolf.shoot.common.annotation.RpcServiceAnnotation;
 import com.wolf.shoot.common.annotation.RpcServiceBoEnum;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.BOEnum;
@@ -78,8 +78,8 @@ public class RpcProxyService implements IService{
             return  null;
         }
 
-        RpcService rpcService = bean.getClass().getAnnotation(RpcService.class);
-        if(rpcService == null){
+        RpcServiceAnnotation rpcServiceAnnotation = bean.getClass().getAnnotation(RpcServiceAnnotation.class);
+        if(rpcServiceAnnotation == null){
             //找不到rpc服务
             return null;
         }
