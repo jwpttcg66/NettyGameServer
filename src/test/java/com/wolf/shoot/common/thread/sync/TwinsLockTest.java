@@ -9,8 +9,7 @@ import java.util.concurrent.locks.Lock;
  */
 public class TwinsLockTest {
 
-    @Test
-    public void test() {
+    public static void main(String[] args) {
 //        final Lock lock = new TwinsLock();
         final Lock lock = new SingleLock();
         class Worker extends Thread {
