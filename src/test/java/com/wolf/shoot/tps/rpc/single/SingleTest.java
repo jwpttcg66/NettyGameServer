@@ -1,6 +1,7 @@
 package com.wolf.shoot.tps.rpc.single;
 
 import com.wolf.shoot.TestStartUp;
+import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.tps.rpc.RpcTpsRunable;
 import org.junit.After;
@@ -17,19 +18,22 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by jiangwenping on 17/4/19.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class SingleTest {
 
-    @Autowired
     private RpcProxyService rpcProxyService;
 
-    @Before
-    public void init(){
-        TestStartUp.startUpWithSpring();
+    public static void main(String[] args) throws InterruptedException {
+        SingleTest singleTest = new SingleTest();
+        singleTest.init();
+        singleTest.tps();
+        singleTest.setTear();
     }
 
-    @Test
+    public void init(){
+        TestStartUp.startUpWithSpring();
+        rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
+    }
+
     public void tps() throws InterruptedException {
         AtomicLong atomicLong = new AtomicLong();
         int size = 10000;
@@ -43,7 +47,6 @@ public class SingleTest {
         System.out.println("rpc 数量" + atomicLong.get() + "时间" + useTime);
     }
 
-    @After
     public void setTear(){
         if (rpcProxyService != null) {
             try {

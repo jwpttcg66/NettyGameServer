@@ -2,6 +2,7 @@ package com.wolf.shoot.tps.rpc.mutil;
 
 import com.wolf.shoot.TestStartUp;
 import com.wolf.shoot.common.ThreadNameFactory;
+import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.service.rpc.client.RpcProxyService;
 import com.wolf.shoot.tps.rpc.RpcTpsRunable;
 import org.junit.After;
@@ -21,19 +22,21 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by jiangwenping on 17/4/19.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean/*.xml")
 public class MutilTest {
 
-    @Autowired
     private RpcProxyService rpcProxyService;
 
-    @Before
+    public static void main(String[] args) throws InterruptedException {
+        MutilTest mutilTest = new MutilTest();
+        mutilTest.init();
+        mutilTest.tps();
+        mutilTest.setTear();
+    }
     public void init(){
         TestStartUp.startUpWithSpring();
+        rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }
 
-    @Test
     public void tps() throws InterruptedException {
         AtomicLong atomicLong = new AtomicLong();
         int size = 1000;
@@ -52,7 +55,6 @@ public class MutilTest {
         System.out.println("rpc 总数量" + atomicLong.get() + "时间" + useTime);
     }
 
-    @After
     public void setTear(){
         if (rpcProxyService != null) {
             try {
