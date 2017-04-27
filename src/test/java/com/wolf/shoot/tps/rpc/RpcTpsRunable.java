@@ -36,7 +36,8 @@ public class RpcTpsRunable implements Runnable{
     public void run() {
 
         try {
-            HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
+//            HelloService helloService = rpcProxyService.createRemoteProxy(HelloService.class);
+            HelloService helloService = rpcProxyService.createProxy(HelloService.class);
             int serverId = 9001;
             RpcContextHolderObject rpcContextHolderObject = new RpcContextHolderObject(BOEnum.WORLD, serverId);
             RpcContextHolder.setContextHolder(rpcContextHolderObject);

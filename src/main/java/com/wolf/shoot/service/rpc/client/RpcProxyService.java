@@ -29,7 +29,7 @@ public class RpcProxyService implements IService{
     private static ThreadPoolExecutor threadPoolExecutor;
 
     @SuppressWarnings("unchecked")
-    private <T> T createProxy(Class<T> interfaceClass) {
+    public <T> T createProxy(Class<T> interfaceClass) {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         int timeOut = gameServerConfigService.getGameServerConfig().getRpcTimeOut();
         return (T) Proxy.newProxyInstance(
