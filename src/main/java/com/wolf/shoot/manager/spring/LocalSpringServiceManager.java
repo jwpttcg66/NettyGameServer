@@ -4,6 +4,7 @@ import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.loader.DefaultClassLoader;
 import com.wolf.shoot.service.async.pool.AsyncThreadService;
+import com.wolf.shoot.service.excel.ExcelDataService;
 import com.wolf.shoot.service.lookup.cache.EhcacheService;
 import com.wolf.shoot.service.lookup.GamePlayerLoopUpService;
 import com.wolf.shoot.service.lookup.NetTcpSessionLoopUpService;
@@ -15,6 +16,7 @@ import com.wolf.shoot.service.rpc.server.RemoteRpcHandlerService;
 import com.wolf.shoot.service.rpc.server.RpcMethodRegistry;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
 import com.wolf.shoot.service.time.SystemTimeService;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,6 +70,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncThreadService asyncThreadService;
+    
+    @Autowired
+    private ExcelDataService excelDataService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -182,4 +187,10 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     public void setAsyncThreadService(AsyncThreadService asyncThreadService) {
         this.asyncThreadService = asyncThreadService;
     }
+	public ExcelDataService getExcelDataService() {
+		return excelDataService;
+	}
+	public void setExcelDataService(ExcelDataService excelDataService) {
+		this.excelDataService = excelDataService;
+	}
 }

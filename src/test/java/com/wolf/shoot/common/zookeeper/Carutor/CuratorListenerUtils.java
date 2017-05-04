@@ -55,9 +55,9 @@ public class CuratorListenerUtils {
 		String connectString = "192.168.0.158:2181";
 		String namespace = "";
 		CuratorFramework client = CuratorFrameworkFactory.builder()
-				.aclProvider(aclProvider).authorization(scheme, auth)
+				.aclProvider(aclProvider)//.authorization(scheme, auth)
 				.connectionTimeoutMs(connectionTimeoutMs)
-				.connectString(connectString).namespace(namespace)
+				.connectString(connectString)//.namespace(namespace)
 				.retryPolicy(new RetryNTimes(Integer.MAX_VALUE, 1000)).build();
 		client.start();
 		return client;
