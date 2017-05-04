@@ -62,7 +62,9 @@ public class ZookeeperRpcServiceDiscovery implements IService{
     	try {
 			setListenter(client,zooKeeperNodeBoEnum);
 		} catch (Exception e) {
-			logger.debug("CuratorFramework Listenning Exception:"+e.getMessage());
+            if(logger.isDebugEnabled()){
+                logger.debug("CuratorFramework Listenning Exception:"+e.getMessage());
+            }
 		}
     }
 
@@ -74,10 +76,14 @@ public class ZookeeperRpcServiceDiscovery implements IService{
             if (size > 0) {
                 if (size == 1) {
                     data = nodeList.get(0);
-                    logger.debug("use only data: ", data);
+                    if(logger.isDebugEnabled()) {
+                        logger.debug("use only data: ", data);
+                    }
                 } else {
                     data = nodeList.get(random.nextInt(size));
-                    logger.debug("use random data:", data);
+                    if(logger.isDebugEnabled()) {
+                        logger.debug("use random data:", data);
+                    }
                 }
             }
         }
@@ -135,7 +141,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
         	try {
         		client = creatClient();
 			} catch (Exception e) {
-				logger.debug("Create CuratorFramework Client Exception:"+e.getMessage());
+				logger.error("Create CuratorFramework Client Exception:" + e.getMessage());
 			}
             ZooKeeperNodeBoEnum[] zooKeeperNodeBoEnums = ZooKeeperNodeBoEnum.values();
             for (ZooKeeperNodeBoEnum zooKeeperNodeBoEnum : zooKeeperNodeBoEnums) {
@@ -202,10 +208,13 @@ public class ZookeeperRpcServiceDiscovery implements IService{
                 tempNodeList.add(zooKeeperNodeInfo);
             }
         }
-
-        logger.debug("node data: {}", tempNodeList);
+        if(logger.isDebugEnabled()) {
+            logger.debug("node data: {}", tempNodeList);
+        }
         nodeMap.put(zooKeeperNodeBoEnum, tempNodeList);
-        logger.debug("Service discovery triggered updating connected server node.");
+        if(logger.isDebugEnabled()) {
+            logger.debug("Service discovery triggered updating connected server node.");
+        }
 
         RpcClientConnectService rpcClientConnectService = LocalMananger.getInstance().getLocalSpringServicerAfterManager().getRpcClientConnectService();
         rpcClientConnectService.notifyConnect(zooKeeperNodeBoEnum, nodeMap.get(zooKeeperNodeBoEnum));
@@ -219,13 +228,19 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 				if (data != null) {
 					switch (event.getType()) {
 					case NODE_ADDED:
-						logger.debug("NODE_ADDED : " + data.getPath()+ "  数据:" + new String(data.getData()));
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("NODE_ADDED : " + data.getPath() + "  数据:" + new String(data.getData()));
+                        }
 						break;
 					case NODE_REMOVED:
-						logger.debug("NODE_REMOVED : " + data.getPath()+ "  数据:" + new String(data.getData()));
+                        if(logger.isDebugEnabled()) {
+						    logger.debug("NODE_REMOVED : " + data.getPath()+ "  数据:" + new String(data.getData()));
+                        }
 						break;
 					case NODE_UPDATED:
-						logger.debug("NODE_UPDATED : " + data.getPath()+ "  数据:" + new String(data.getData()));
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("NODE_UPDATED : " + data.getPath() + "  数据:" + new String(data.getData()));
+                        }
 						break;
 					default:
 						break;
@@ -233,20 +248,26 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 				} else {
 					switch (event.getType()) {
 					case CONNECTION_SUSPENDED:
-						logger.debug("data is null : " + "CONNECTION_SUSPENDED");
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("data is null : " + "CONNECTION_SUSPENDED");
+                        }
 						break;
 					case CONNECTION_RECONNECTED:
-						logger.debug("data is null : " + "CONNECTION_RECONNECTED");
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("data is null : " + "CONNECTION_RECONNECTED");
+                        }
 						break;
 					case CONNECTION_LOST:
-						logger.debug("data is null : " + "CONNECTION_LOST");
+                        if(logger.isDebugEnabled()) {
+                            logger.debug("data is null : " + "CONNECTION_LOST");
+                        }
 						break;
 					default:
 						break;
 					}
 				}
 			}
-		});
+            });
 		// 开始监听
 		cache.start();
 	}
