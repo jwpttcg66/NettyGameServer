@@ -1,27 +1,23 @@
 package com.wolf.shoot.common.zookeeper.Carutor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.ACLProvider;
-import org.apache.curator.framework.recipes.cache.ChildData;
-import org.apache.curator.framework.recipes.cache.NodeCache;
-import org.apache.curator.framework.recipes.cache.NodeCacheListener;
-import org.apache.curator.framework.recipes.cache.TreeCache;
-import org.apache.curator.framework.recipes.cache.TreeCacheEvent;
-import org.apache.curator.framework.recipes.cache.TreeCacheListener;
+import org.apache.curator.framework.recipes.cache.*;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooDefs.Perms;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class CuratorListenerUtils {
 
+	public static String connectString = "192.168.0.158:2181";
 	public static void main(String[] args) throws Exception {
 		CuratorFramework client = creatClient();
 		setListenter(client);
@@ -52,7 +48,7 @@ public class CuratorListenerUtils {
 		String scheme = "digest";
 		byte[] auth = "admin:admin".getBytes();
 		int connectionTimeoutMs = 5000;
-		String connectString = "192.168.0.158:2181";
+//		String connectString = "192.168.0.158:2181";
 		String namespace = "";
 		CuratorFramework client = CuratorFrameworkFactory.builder()
 				.aclProvider(aclProvider)//.authorization(scheme, auth)
