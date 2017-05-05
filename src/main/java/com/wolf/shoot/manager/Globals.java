@@ -1,15 +1,9 @@
 package com.wolf.shoot.manager;
 
-import com.snowcattle.game.excutor.event.EventBus;
-import com.snowcattle.game.excutor.event.impl.listener.DispatchCreateEventListener;
-import com.snowcattle.game.excutor.event.impl.listener.DispatchFinishEventListener;
-import com.snowcattle.game.excutor.event.impl.listener.DispatchUpdateEventListener;
-import com.snowcattle.game.excutor.pool.UpdateBindExcutorService;
-import com.snowcattle.game.excutor.pool.UpdateExecutorService;
-import com.snowcattle.game.excutor.service.UpdateService;
-import com.snowcattle.game.excutor.thread.dispatch.BindLockSupportDisptachThread;
-import com.snowcattle.game.excutor.thread.dispatch.LockSupportDisptachThread;
-import com.snowcattle.game.excutor.utils.Constants;
+import com.snowcattle.game.executor.common.utils.Constants;
+import com.snowcattle.game.executor.event.EventBus;
+import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
+import com.snowcattle.game.executor.update.service.UpdateService;
 import com.wolf.shoot.common.config.GameServerConfig;
 import com.wolf.shoot.common.config.GameServerConfigService;
 import com.wolf.shoot.common.constant.GlobalConstants;
@@ -73,26 +67,26 @@ public class Globals {
         int cycleSleepTime = gameServerConfigService.getGameServerConfig().getGameExcutorCycleTime() / Constants.cycle.cycleSize;
         long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleSleepTime;
 
-        if (gameServerConfig.isUpdateServiceExcutorFlag()) {
-            UpdateBindExcutorService updateEventExcutorService = new UpdateBindExcutorService(corePoolSize);
-
-            BindLockSupportDisptachThread dispatchThread = new BindLockSupportDisptachThread(updateEventBus, updateEventExcutorService
-                    , cycleSleepTime, minCycleTime);
-            updateEventExcutorService.setDispatchThread(dispatchThread);
-            UpdateService updateService = new UpdateService(dispatchThread, updateEventExcutorService);
-            updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
-            updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
-            updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
-            LocalMananger.getInstance().add(updateService, UpdateService.class);
-        } else {
-            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
-            LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
-                    , cycleSleepTime, minCycleTime);
-            UpdateService updateService = new UpdateService(dispatchThread, updateExecutorService);
-            updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
-            updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
-            updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
-        }
+//        if (gameServerConfig.isUpdateServiceExcutorFlag()) {
+//            UpdateBindExcutorService updateEventExcutorService = new UpdateBindExcutorService(corePoolSize);
+//
+//            BindLockSupportDisptachThread dispatchThread = new BindLockSupportDisptachThread(updateEventBus, updateEventExcutorService
+//                    , cycleSleepTime, minCycleTime);
+//            updateEventExcutorService.setDispatchThread(dispatchThread);
+//            UpdateService updateService = new UpdateService(dispatchThread, updateEventExcutorService);
+//            updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
+//            updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
+//            updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+//            LocalMananger.getInstance().add(updateService, UpdateService.class);
+//        } else {
+//            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
+//            LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
+//                    , cycleSleepTime, minCycleTime);
+//            UpdateService updateService = new UpdateService(dispatchThread, updateExecutorService);
+//            updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
+//            updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
+//            updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+//        }
     }
 
     public static void initNetMessageProcessor() throws Exception {

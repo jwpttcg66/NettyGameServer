@@ -1,9 +1,9 @@
 package com.wolf.shoot.service.rpc.client;
 
-import com.snowcattle.game.excutor.utils.ExecutorUtil;
 import com.wolf.shoot.common.ThreadNameFactory;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.ServiceName;
+import com.wolf.shoot.common.util.ExecutorUtil;
 import com.wolf.shoot.service.IService;
 import org.springframework.stereotype.Service;
 

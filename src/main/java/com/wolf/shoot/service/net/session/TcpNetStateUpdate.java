@@ -1,7 +1,7 @@
 package com.wolf.shoot.service.net.session;
 
 
-import com.snowcattle.game.excutor.entity.AbstractUpdate;
+import com.snowcattle.game.executor.update.entity.AbstractUpdate;
 
 /**
  * Created by jiangwenping on 17/2/21.

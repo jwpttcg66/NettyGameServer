@@ -29,7 +29,7 @@
         <!--jwpttcg66 maven工程-->
         <GameShardingDb.version>1.2.001</GameShardingDb.version>
         <GameThreadPool.version>1.1.1</GameThreadPool.version>
-        <game-executor.version>1.7.0</game-executor.version>
+        <game-executor.version>1.7.1</game-executor.version>
         <game-expression.version>1.1</game-expression.version>
 
         <project.build.directory>target</project.build.directory>

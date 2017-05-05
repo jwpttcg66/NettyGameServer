@@ -1,9 +1,9 @@
 package com.wolf.shoot.service.net;
 
-import com.snowcattle.game.excutor.event.CycleEvent;
-import com.snowcattle.game.excutor.event.EventParam;
-import com.snowcattle.game.excutor.service.UpdateService;
-import com.snowcattle.game.excutor.utils.Constants;
+import com.snowcattle.game.executor.common.utils.Constants;
+import com.snowcattle.game.executor.event.CycleEvent;
+import com.snowcattle.game.executor.event.EventParam;
+import com.snowcattle.game.executor.update.service.UpdateService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.exception.NetMessageException;
 import com.wolf.shoot.manager.LocalMananger;
