@@ -51,7 +51,7 @@ public class GameServer extends AbstractServerService{
 
 
     /** 日志 */
-    private static final Logger logger = Loggers.gameLogger;
+    public static final Logger logger = Loggers.gameLogger;
 
     /**
      * @param
