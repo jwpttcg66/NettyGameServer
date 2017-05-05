@@ -60,6 +60,7 @@ public class Globals {
     public static void initLocalService() throws Exception {
         //初始化game-excutor更新服务
         initUpdateService();
+
     }
 
     public static void initUpdateService() throws Exception {

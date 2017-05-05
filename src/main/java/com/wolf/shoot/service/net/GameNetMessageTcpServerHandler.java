@@ -36,7 +36,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         netTcpSessionLoopUpService.addNettySession(nettyTcpSession);
 
         //加入到updateservice
-        UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
+        UpdateService updateService = LocalMananger.getInstance().getUpdateService();
         NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);;
         EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
         CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getId(), param);

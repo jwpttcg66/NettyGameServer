@@ -4,6 +4,8 @@ package com.wolf.shoot.manager;
  * Created by jwp on 2017/2/4.
  */
 
+import com.snowcattle.game.executor.event.service.AsyncEventService;
+import com.snowcattle.game.executor.update.service.UpdateService;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
@@ -12,6 +14,7 @@ import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.net.process.GameTcpMessageProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageOrderProcessor;
 import com.wolf.shoot.service.net.process.GameUdpMessageProcessor;
+import net.sf.jsqlparser.statement.update.Update;
 import org.slf4j.Logger;
 
 import java.util.LinkedHashMap;
@@ -47,6 +50,9 @@ public class LocalMananger implements ILocalManager{
     private GameTcpMessageProcessor gameTcpMessageProcessor;
     private GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor;
     private GameUdpMessageProcessor gameUdpMessageProcessor;
+    private UpdateService updateService;
+    private AsyncEventService asyncEventService;
+
 
     public LocalSpringBeanManager getLocalSpringBeanManager() {
         return localSpringBeanManager;
@@ -77,14 +83,18 @@ public class LocalMananger implements ILocalManager{
     @Override
     public <T> void add(Object service, Class<T> inter) {
         log.info(service.getClass().getSimpleName() + " is add");
-        if(service.getClass()!=inter&&!inter.isAssignableFrom(service.getClass())) //接口和实现类必须相等或者继承关系
+        if (service.getClass() != inter && !inter.isAssignableFrom(service.getClass())) //接口和实现类必须相等或者继承关系
             throw new IllegalArgumentException();
-        if(service instanceof  GameTcpMessageProcessor){
+        if (service instanceof GameTcpMessageProcessor) {
             this.gameTcpMessageProcessor = (GameTcpMessageProcessor) service;
-        }else if(service instanceof GameUdpMessageOrderProcessor){
+        } else if (service instanceof GameUdpMessageOrderProcessor) {
             this.gameUdpMessageOrderProcessor = (GameUdpMessageOrderProcessor) service;
-        }else if(service instanceof  GameUdpMessageProcessor){
+        } else if (service instanceof GameUdpMessageProcessor) {
             this.gameUdpMessageProcessor = (GameUdpMessageProcessor) service;
+        } else if (service instanceof UpdateService) {
+            this.updateService = (UpdateService) service;
+        } else if(service instanceof AsyncEventService){
+            this.asyncEventService = (AsyncEventService) service;
         }
 
         services.put(inter, service);
@@ -143,5 +153,21 @@ public class LocalMananger implements ILocalManager{
 
     public void setLocalSpringServicerAfterManager(LocalSpringServicerAfterManager localSpringServicerAfterManager) {
         this.localSpringServicerAfterManager = localSpringServicerAfterManager;
+    }
+
+    public UpdateService getUpdateService() {
+        return updateService;
+    }
+
+    public void setUpdateService(UpdateService updateService) {
+        this.updateService = updateService;
+    }
+
+    public AsyncEventService getAsyncEventService() {
+        return asyncEventService;
+    }
+
+    public void setAsyncEventService(AsyncEventService asyncEventService) {
+        this.asyncEventService = asyncEventService;
     }
 }
