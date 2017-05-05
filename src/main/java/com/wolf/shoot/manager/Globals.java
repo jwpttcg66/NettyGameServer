@@ -84,6 +84,7 @@ public class Globals {
             updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
             updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
             LocalMananger.getInstance().add(updateService, UpdateService.class);
+
         } else {
             UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
             LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
@@ -92,6 +93,8 @@ public class Globals {
             updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
             updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
             updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+            LocalMananger.getInstance().add(updateService, UpdateService.class);
+
         }
     }
 
@@ -121,7 +124,12 @@ public class Globals {
     public static void start() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
-        updateService.start();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        if (gameServerConfig.isUpdateServiceExcutorFlag()) {
+            updateService.notifyStart();
+        }else {
+            updateService.start();
+        }
 
         if(gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
