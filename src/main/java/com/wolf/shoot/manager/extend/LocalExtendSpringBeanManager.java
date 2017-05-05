@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by jwp on 2017/4/27.
  */
-public class LocalExtendSpringBeanManager {
+public abstract class LocalExtendSpringBeanManager {
 
 }

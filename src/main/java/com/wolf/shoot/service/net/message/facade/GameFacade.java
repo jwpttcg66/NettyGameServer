@@ -83,24 +83,25 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
                         + "."
                         + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
-                Class<?> messageClass = null;
-                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
-                if (!defaultClassLoader.isJarLoad()) {
-                    defaultClassLoader.initClassLoaderPath(realClass, ext);
-                    byte[] bytes = fileClassLoader.getClassData(realClass);
-                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
-                } else {
-                    //读取 game_server_handler.jar包所在位置
-                    URL url = ClassLoader.getSystemClassLoader().getResource("./");
-                    File file = new File(url.getPath());
-                    File parentFile = new File(file.getParent());
-                    String jarPath = parentFile.getPath() + File.separator + "lib/game_server_handler.jar";
-                    logger.info("message load jar path:" + jarPath);
-                    JarFile jarFile = new JarFile(new File(jarPath));
-                    fileClassLoader.initJarPath(jarFile);
-                    byte[] bytes = fileClassLoader.getClassData(realClass);
-                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
-                }
+//                Class<?> messageClass = null;
+//                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
+//                if (!defaultClassLoader.isJarLoad()) {
+//                    defaultClassLoader.initClassLoaderPath(realClass, ext);
+//                    byte[] bytes = fileClassLoader.getClassData(realClass);
+//                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+//                } else {
+//                    //读取 game_server_handler.jar包所在位置
+//                    URL url = ClassLoader.getSystemClassLoader().getResource("./");
+//                    File file = new File(url.getPath());
+//                    File parentFile = new File(file.getParent());
+//                    String jarPath = parentFile.getPath() + File.separator + "lib/game_server_handler.jar";
+//                    logger.info("message load jar path:" + jarPath);
+//                    JarFile jarFile = new JarFile(new File(jarPath));
+//                    fileClassLoader.initJarPath(jarFile);
+//                    byte[] bytes = fileClassLoader.getClassData(realClass);
+//                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+//                }
+                Class<?> messageClass = Class.forName(realClass);
                 logger.info("handler load: " + messageClass);
 
                 IMessageHandler iMessageHandler = getMessageHandler(messageClass);
