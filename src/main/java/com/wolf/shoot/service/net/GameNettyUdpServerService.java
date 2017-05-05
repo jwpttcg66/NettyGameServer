@@ -1,5 +1,7 @@
 package com.wolf.shoot.service.net;
 
+import io.netty.channel.ChannelInitializer;
+
 import java.net.InetSocketAddress;
 
 /**
@@ -7,7 +9,7 @@ import java.net.InetSocketAddress;
  * udp启动服务
  */
 public class GameNettyUdpServerService extends AbstractNettyUdpServerService{
-    public GameNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName) {
-        super(serviceId, serverPort, threadNameFactoryName);
+    public GameNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName, ChannelInitializer channelInitializer) {
+        super(serviceId, serverPort, threadNameFactoryName, channelInitializer);
     }
 }

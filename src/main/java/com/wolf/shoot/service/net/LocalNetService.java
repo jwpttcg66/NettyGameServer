@@ -29,8 +29,8 @@ public class LocalNetService implements IService{
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         //根据rpc配置来决定启动服务器
-        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
-        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
+//        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+//        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
 
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, new GameNetProtoMessageTcpServerChannleInitializer());
@@ -41,7 +41,7 @@ public class LocalNetService implements IService{
 
         if(gameServerConfig.isUdpOpen()) {
             gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(), gameServerConfig.getUdpPort()
-                    , GlobalConstants.Thread.NET_UDP_WORKER);
+                    , GlobalConstants.Thread.NET_UDP_WORKER, new GameNetProtoMessageUdpServerChannleInitializer());
             startUpFlag = gameNettyUdpServerService.startService();
             if (!startUpFlag) {
                 throw new StartUpException("udp server startup error");

@@ -5,6 +5,7 @@ import com.wolf.shoot.common.constant.Loggers;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -26,9 +27,12 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
 
     private ChannelFuture serverChannelFuture;
 
-    public AbstractNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName) {
+    private ChannelInitializer channelInitializer;
+
+    public AbstractNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName, ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);
         this.eventThreadNameFactory = new ThreadNameFactory(threadNameFactoryName);
+        this.channelInitializer = channelInitializer;
     }
 
     @Override
@@ -46,7 +50,8 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
                     .option(ChannelOption.SO_SNDBUF, 65536)
                     .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.DEBUG))
-                    .handler(new GameNetProtoMessageUdpServerChannleInitializer());
+                    .handler(channelInitializer);
+//                    .handler(new GameNetProtoMessageUdpServerChannleInitializer());
 
             // 服务端监听在9999端口
             serverChannelFuture = b.bind(serverPort).sync();
