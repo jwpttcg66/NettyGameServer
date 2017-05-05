@@ -5,6 +5,7 @@ import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchFinishEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchUpdateEventListener;
+import com.snowcattle.game.executor.event.service.AsyncEventService;
 import com.snowcattle.game.executor.update.pool.UpdateBindExecutorService;
 import com.snowcattle.game.executor.update.pool.UpdateExecutorService;
 import com.snowcattle.game.executor.update.service.UpdateService;
@@ -18,6 +19,7 @@ import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.net.process.*;
+import sun.nio.cs.ext.IBM037;
 
 import java.util.concurrent.TimeUnit;
 
@@ -60,7 +62,14 @@ public class Globals {
     public static void initLocalService() throws Exception {
         //初始化game-excutor更新服务
         initUpdateService();
+        //初始化事件服务
+        initEventService();
+    }
 
+    public static void initEventService() throws Exception{
+        EventBus eventBus = new EventBus();
+        AsyncEventService asyncEventService = new AsyncEventService(eventBus, Short.MAX_VALUE * 10, 1, GlobalConstants.Thread.EVENT_WORKER, 60, GlobalConstants.Thread.EVENT_HANDLER, Integer.MAX_VALUE);
+        LocalMananger.getInstance().add(asyncEventService, AsyncEventService.class);
     }
 
     public static void initUpdateService() throws Exception {
@@ -132,6 +141,9 @@ public class Globals {
             updateService.start();
         }
 
+        AsyncEventService asyncEventService = LocalMananger.getInstance().getAsyncEventService();
+        asyncEventService.startUp();
+
         if(gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
             gameUdpMessageOrderProcessor.start();
@@ -145,6 +157,9 @@ public class Globals {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         updateService.stop();
+
+        AsyncEventService asyncEventService = LocalMananger.getInstance().getAsyncEventService();
+        asyncEventService.shutDown();
 
         if(gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
