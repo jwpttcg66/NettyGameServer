@@ -54,8 +54,8 @@ public class GameServer extends AbstractServerService{
     private static final Logger logger = Loggers.gameLogger;
 
     /**
-     * @param cfgPath
-     *            主配置文件路径
+     * @param
+     *
      */
     public GameServer() {
         super(ServerServiceManager.SERVICE_ID_ROOT);
@@ -87,7 +87,7 @@ public class GameServer extends AbstractServerService{
     /**
      * 启动服务器
      *
-     * @throws IOException
+     * @throws Exception
      */
     public void start() throws Exception {
 
@@ -95,9 +95,11 @@ public class GameServer extends AbstractServerService{
         Globals.start();
         logger.info("Globals started");
 
-        logger.info("TCP Server started");
         LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
+        logger.info("local net Server started");
         LocalMananger.getInstance().create(GamerServerStartFinishedService.class, GamerServerStartFinishedService.class);
+        logger.info("GamerServerStartFinishedService started");
+
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -105,7 +107,9 @@ public class GameServer extends AbstractServerService{
                 logger.info("Begin to shutdown Game Server ");
                 // 设置GameServer关闭状态
                 GameServerRuntime.setShutdowning();
-                ServerStatusLog.getDefaultLog().logRunning();
+                logger.info("GameServerRuntime shutdown:ok");
+                ServerStatusLog.getDefaultLog().logStoppping();
+                logger.info("ServerStatusLog shutdown:ok");
                 // 关闭游戏连接服务
                 try {
                     LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
@@ -115,6 +119,7 @@ public class GameServer extends AbstractServerService{
                     logger.info("Globals.shutdown:ok");
                     GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
                     gamerServerStartFinishedService.shutdown();
+                    logger.info("GamerServerStartFinishedService.shutdown:ok");
                 } catch (Exception e) {
                     logger.error("close connector service exception:", e);
                 } catch (Error e) {
@@ -155,12 +160,5 @@ public class GameServer extends AbstractServerService{
         logger.info(MemUtils.memoryInfo());
 
         logger.info("Server started");
-
-//        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-//        if(gameServerConfigService.getGameServerConfig().getServerType().equals(BOEnum.WORLD)){
-//            logger.info("World Server started");
-//        }else {
-//            logger.info("Game Server started");
-//        }
     }
 }
