@@ -23,7 +23,7 @@ public abstract class AbstractLocalManager implements ILocalManager{
     protected static final Logger log = Loggers.serverLogger;
 
 
-    protected static Map<Class,Object> services;
+    protected Map<Class,Object> services;
 
     public AbstractLocalManager() {
         services = new LinkedHashMap<Class,Object>(40,0.5f);

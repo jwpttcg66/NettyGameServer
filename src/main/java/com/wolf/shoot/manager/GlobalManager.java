@@ -43,6 +43,13 @@ public class GlobalManager {
         //初始化消息处理器
         initNetMessageProcessor();
 
+        initGameManager();
+
+    }
+
+    //拓展使用
+    public void initGameManager() throws Exception {
+
     }
 
     public void initLocalManger() throws Exception {
@@ -151,6 +158,12 @@ public class GlobalManager {
             GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
             gameUdpMessageProcessor.start();
         }
+
+        startGameManager();
+    }
+
+    public void startGameManager() throws Exception{
+
     }
 
     public void stop() throws Exception {
@@ -171,6 +184,11 @@ public class GlobalManager {
 
         LocalMananger.getInstance().getLocalSpringServiceManager().stop();
         LocalMananger.getInstance().getLocalSpringServicerAfterManager().stop();
+
+        stopGameManager();
     }
 
+    public void stopGameManager() throws Exception{
+
+    }
 }
