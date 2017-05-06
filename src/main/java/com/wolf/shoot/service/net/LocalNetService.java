@@ -9,15 +9,22 @@ import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.rpc.server.RpcConfig;
 import com.wolf.shoot.service.rpc.server.SdRpcServiceProvider;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.socket.nio.NioDatagramChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * Created by jiangwenping on 17/2/15.
+ * 本地网络服务
  */
 public class LocalNetService implements IService{
 
     private GameNettyTcpServerService gameNettyTcpServerService;
     private GameNettyUdpServerService gameNettyUdpServerService;
     private GameNettyRPCService gameNettyRPCService;
+
+    private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
+    private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
 
     @Override
     public String getId() {
@@ -33,7 +40,7 @@ public class LocalNetService implements IService{
 //        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
 
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
-                , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, new GameNetProtoMessageTcpServerChannleInitializer());
+                , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, nettyTcpChannelInitializer);
         boolean startUpFlag = gameNettyTcpServerService.startService();
         if(!startUpFlag){
             throw  new StartUpException("tcp server startup error");
@@ -41,7 +48,7 @@ public class LocalNetService implements IService{
 
         if(gameServerConfig.isUdpOpen()) {
             gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(), gameServerConfig.getUdpPort()
-                    , GlobalConstants.Thread.NET_UDP_WORKER, new GameNetProtoMessageUdpServerChannleInitializer());
+                    , GlobalConstants.Thread.NET_UDP_WORKER, nettyUdpChannelInitializer);
             startUpFlag = gameNettyUdpServerService.startService();
             if (!startUpFlag) {
                 throw new StartUpException("udp server startup error");
@@ -104,5 +111,21 @@ public class LocalNetService implements IService{
 
     public void setGameNettyRPCService(GameNettyRPCService gameNettyRPCService) {
         this.gameNettyRPCService = gameNettyRPCService;
+    }
+
+    public ChannelInitializer<NioSocketChannel> getNettyTcpChannelInitializer() {
+        return nettyTcpChannelInitializer;
+    }
+
+    public void setNettyTcpChannelInitializer(ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer) {
+        this.nettyTcpChannelInitializer = nettyTcpChannelInitializer;
+    }
+
+    public ChannelInitializer<NioDatagramChannel> getNettyUdpChannelInitializer() {
+        return nettyUdpChannelInitializer;
+    }
+
+    public void setNettyUdpChannelInitializer(ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer) {
+        this.nettyUdpChannelInitializer = nettyUdpChannelInitializer;
     }
 }

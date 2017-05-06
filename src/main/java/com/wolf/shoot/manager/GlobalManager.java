@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * Created by jiangwenping on 17/2/7.
  * 各种全局的业务管理器、公共服务实例的持有者，负责各种管理器的初始化和实例的获取
  */
-public class Globals {
+public class GlobalManager {
 
     /**
      * 服务器启动时调用，初始化所有管理器实例
@@ -35,7 +35,7 @@ public class Globals {
      * @param configFile
      * @throws Exception
      */
-    public static void init(String configFile) throws Exception {
+    public void init(String configFile) throws Exception {
         initLocalManger();
         //初始化本地服务
         initLocalService();
@@ -45,7 +45,7 @@ public class Globals {
 
     }
 
-    public static void initLocalManger() throws Exception {
+    public void initLocalManger() throws Exception {
 
         LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
         LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
@@ -59,20 +59,20 @@ public class Globals {
     }
 
 
-    public static void initLocalService() throws Exception {
+    public void initLocalService() throws Exception {
         //初始化game-excutor更新服务
         initUpdateService();
         //初始化事件服务
         initEventService();
     }
 
-    public static void initEventService() throws Exception{
+    public void initEventService() throws Exception{
         EventBus eventBus = new EventBus();
         AsyncEventService asyncEventService = new AsyncEventService(eventBus, Short.MAX_VALUE * 10, 1, GlobalConstants.Thread.EVENT_WORKER, 60, GlobalConstants.Thread.EVENT_HANDLER, Integer.MAX_VALUE);
         LocalMananger.getInstance().add(asyncEventService, AsyncEventService.class);
     }
 
-    public static void initUpdateService() throws Exception {
+    public void initUpdateService() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         EventBus eventBus = new EventBus();
         EventBus updateEventBus = new EventBus();
@@ -108,7 +108,7 @@ public class Globals {
         }
     }
 
-    public static void initNetMessageProcessor() throws Exception {
+    public void initNetMessageProcessor() throws Exception {
         //tcp处理队列
         int tcpWorkersize = 0;
         QueueTcpMessageExecutorProcessor queueTcpMessageExecutorProcessor = new QueueTcpMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, tcpWorkersize);
@@ -131,7 +131,7 @@ public class Globals {
     }
 
 
-    public static void start() throws Exception {
+    public void start() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
@@ -153,7 +153,7 @@ public class Globals {
         }
     }
 
-    public static void stop() throws Exception {
+    public void stop() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         updateService.stop();

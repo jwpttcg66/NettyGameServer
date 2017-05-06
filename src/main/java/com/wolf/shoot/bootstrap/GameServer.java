@@ -1,11 +1,9 @@
 package com.wolf.shoot.bootstrap;
 
-import com.wolf.shoot.common.config.GameServerConfigService;
-import com.wolf.shoot.common.constant.BOEnum;
 import com.wolf.shoot.common.constant.GlobalConstants;
 import com.wolf.shoot.common.constant.Loggers;
 import com.wolf.shoot.common.util.MemUtils;
-import com.wolf.shoot.manager.Globals;
+import com.wolf.shoot.manager.GlobalManager;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.manager.ServerServiceManager;
 import com.wolf.shoot.service.net.AbstractServerService;
@@ -53,12 +51,17 @@ public class GameServer extends AbstractServerService{
     /** 日志 */
     public static final Logger logger = Loggers.gameLogger;
 
+    protected GlobalManager globalManager;
+    protected LocalNetService localNetService;
+
     /**
      * @param
      *
      */
     public GameServer() {
         super(ServerServiceManager.SERVICE_ID_ROOT);
+        this.globalManager = new GlobalManager();
+        this.localNetService = new LocalNetService();
     }
 
     /**
@@ -69,15 +72,15 @@ public class GameServer extends AbstractServerService{
     public void init(String configFile) throws Exception {
         logger.info("Begin to initialize spring");
         initSpring();
-        logger.info("Begin to initialize Globals");
-        Globals.init(configFile);
-        logger.info("Globals initialized");
+        logger.info("Begin to initialize GlobalManager");
+        globalManager.init(configFile);
+        logger.info("GlobalManager initialized");
         this.initServer();
     }
 
     public void initSpring()throws Exception{
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
-        Runtime.getRuntime().addShutdownHook( new Thread(new ShutdownHook(classPathXmlApplicationContext)));
+        Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownHook(classPathXmlApplicationContext)));
     }
 
     private void initServer() {
@@ -91,15 +94,19 @@ public class GameServer extends AbstractServerService{
      */
     public void start() throws Exception {
 
-        logger.info("Begin to start Globals");
-        Globals.start();
-        logger.info("Globals started");
-
-        LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
+        logger.info("Begin to start GlobalManager");
+        globalManager.start();
+        logger.info("GlobalManager started");
+        LocalMananger.getInstance().add(localNetService, LocalNetService.class);
+        localNetService.startup();
         logger.info("local net Server started");
         LocalMananger.getInstance().create(GamerServerStartFinishedService.class, GamerServerStartFinishedService.class);
         logger.info("GamerServerStartFinishedService started");
+        addShutdownHook();
+        GameServerRuntime.setOpenOn();
+    }
 
+    public void addShutdownHook(){
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -115,8 +122,8 @@ public class GameServer extends AbstractServerService{
                     LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
                     localNetService.shutdown();
                     logger.info("tcp server shutdown:ok");
-                    Globals.stop();
-                    logger.info("Globals.shutdown:ok");
+                    globalManager.stop();
+                    logger.info("GlobalManager.shutdown:ok");
                     GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
                     gamerServerStartFinishedService.shutdown();
                     logger.info("GamerServerStartFinishedService.shutdown:ok");
@@ -133,10 +140,14 @@ public class GameServer extends AbstractServerService{
                 logger.info("Game Server shutdowned");
             }
         });
-        GameServerRuntime.setOpenOn();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {;
+        GameServer server = new GameServer();
+        server.startServer();
+    }
+
+    public void startServer(){
         logger.info("Starting Game Server");
         logger.info(MemUtils.memoryInfo());
         String configFile = GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
@@ -146,9 +157,8 @@ public class GameServer extends AbstractServerService{
              */
 
             ServerStatusLog.getDefaultLog().logStarting();
-            GameServer server = new GameServer();
-            server.init(configFile);
-            server.start();
+            init(configFile);
+            start();
             ServerStatusLog.getDefaultLog().logRunning();
         } catch (Exception e) {
             logger.error("Failed to start server", e);
@@ -158,7 +168,22 @@ public class GameServer extends AbstractServerService{
             return;
         }
         logger.info(MemUtils.memoryInfo());
-
         logger.info("Server started");
+    }
+
+    public GlobalManager getGlobalManager() {
+        return globalManager;
+    }
+
+    public void setGlobalManager(GlobalManager globalManager) {
+        this.globalManager = globalManager;
+    }
+
+    public LocalNetService getLocalNetService() {
+        return localNetService;
+    }
+
+    public void setLocalNetService(LocalNetService localNetService) {
+        this.localNetService = localNetService;
     }
 }
