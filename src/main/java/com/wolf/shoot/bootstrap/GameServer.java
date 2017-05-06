@@ -52,6 +52,7 @@ public class GameServer extends AbstractServerService{
     public static final Logger logger = Loggers.gameLogger;
 
     protected GlobalManager globalManager;
+    protected LocalNetService localNetService;
 
     /**
      * @param
@@ -60,6 +61,7 @@ public class GameServer extends AbstractServerService{
     public GameServer() {
         super(ServerServiceManager.SERVICE_ID_ROOT);
         this.globalManager = new GlobalManager();
+        this.localNetService = new LocalNetService();
     }
 
     /**
@@ -95,12 +97,16 @@ public class GameServer extends AbstractServerService{
         logger.info("Begin to start GlobalManager");
         globalManager.start();
         logger.info("GlobalManager started");
-
-        LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
+        LocalMananger.getInstance().add(localNetService, LocalNetService.class);
+        localNetService.startup();
         logger.info("local net Server started");
         LocalMananger.getInstance().create(GamerServerStartFinishedService.class, GamerServerStartFinishedService.class);
         logger.info("GamerServerStartFinishedService started");
+        addShutdownHook();
+        GameServerRuntime.setOpenOn();
+    }
 
+    public void addShutdownHook(){
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -134,7 +140,6 @@ public class GameServer extends AbstractServerService{
                 logger.info("Game Server shutdowned");
             }
         });
-        GameServerRuntime.setOpenOn();
     }
 
     public static void main(String[] args) {;
@@ -164,5 +169,21 @@ public class GameServer extends AbstractServerService{
         }
         logger.info(MemUtils.memoryInfo());
         logger.info("Server started");
+    }
+
+    public GlobalManager getGlobalManager() {
+        return globalManager;
+    }
+
+    public void setGlobalManager(GlobalManager globalManager) {
+        this.globalManager = globalManager;
+    }
+
+    public LocalNetService getLocalNetService() {
+        return localNetService;
+    }
+
+    public void setLocalNetService(LocalNetService localNetService) {
+        this.localNetService = localNetService;
     }
 }
