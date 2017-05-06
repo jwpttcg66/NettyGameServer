@@ -1,0 +1,36 @@
+
+{
+    "header" : [
+        ["编号", "名称", "描述", "资源路径", "攻击方资源路径", "头顶板高度", "头像图标"],
+        ["ID", "name", "desc", "resource", "resource2", "topHeight", "icon"],
+        ["int", "String", "String", "String", "String", "float", "String"]
+    ],
+    "body" : [
+        {"ID": 1, "desc": "扁圆的子弹", "name": "扁圆弹", "resource": "Bullet/bullet_oblate_blue", "resource2": "Bullet/bullet_oblate_red"},
+        {"ID": 2, "desc": "着火的子弹", "name": "火焰球", "resource": "Bullet/bullet_fire_red", "resource2": "Bullet/bullet_fire_red"},
+        {"ID": 3, "desc": "近战消弹并制造伤害", "name": "砍杀消弹", "resource": "Bullet/hack", "resource2": "Bullet/hack"},
+        {"ID": 4, "name": "圆球子弹", "resource": "Bullet/bullet_yuan", "resource2": "Bullet/bullet_yuan"},
+        {"ID": 5, "name": "三角子弹", "resource": "Bullet/bullet_sanjiaoxing", "resource2": "Bullet/bullet_sanjiaoxing"},
+        {"ID": 6, "name": "心形子弹", "resource": "Bullet/bullet_xinxing", "resource2": "Bullet/bullet_xinxing"},
+        {"ID": 7, "name": "菱形子弹", "resource": "Bullet/bullet_lingxing", "resource2": "Bullet/bullet_lingxing"},
+        {"ID": 8, "icon": "UI/SpyScene/headicon/1", "name": "角色1", "resource": "NewChars/01", "topHeight": 3},
+        {"ID": 9, "icon": "UI/SpyScene/headicon/2", "name": "角色2", "resource": "NewChars/02", "topHeight": 3},
+        {"ID": 10, "icon": "UI/SpyScene/headicon/3", "name": "角色3", "resource": "NewChars/03", "topHeight": 3},
+        {"ID": 11, "icon": "UI/SpyScene/headicon/4", "name": "角色4", "resource": "NewChars/04", "topHeight": 3},
+        {"ID": 12, "name": "水晶塔", "resource": "Chars/magictower"},
+        {"ID": 13, "name": "飞行弹", "resource": "Bullet/bullet_fire_blue"},
+        {"ID": 14, "name": "弯月斩", "resource": "Bullet/Likemoon"},
+        {"ID": 15, "name": "火球弹", "resource": "Bullet/FireBall"},
+        {"ID": 16, "name": "X线子弹", "resource": "Bullet/wan"},
+        {"ID": 17, "name": "花子弹", "resource": "Bullet/Flower"},
+        {"ID": 999, "name": "大导弹", "resource": "Bullet/RocketBoom", "resource2": "Bullet/RocketBoom"},
+        {"ID": 10000, "name": "护卫", "resource": "Chars/HeroGreen0", "resource2": "Chars/HeroRed0", "topHeight": 2},
+        {"ID": 10001, "name": "蝴蝶", "resource": "Chars/HeroGreen1", "resource2": "Chars/HeroRed1", "topHeight": 2},
+        {"ID": 10002, "name": "魔女", "resource": "Chars/HeroGreen2", "resource2": "Chars/HeroRed2", "topHeight": 2},
+        {"ID": 10003, "name": "小偷", "resource": "Chars/HeroGreen3", "resource2": "Chars/HeroRed3", "topHeight": 2},
+        {"ID": 20000, "name": "大象", "resource": "Chars/Hellephant", "resource2": "Chars/Hellephant", "topHeight": 3},
+        {"ID": 20004, "name": "塔", "resource": "Chars/Tower", "resource2": "Chars/Tower", "topHeight": 2},
+        {"ID": 50000, "name": "盾牌", "resource": "Buff/ShieldGreen", "resource2": "Buff/ShieldRed"},
+        {"ID": 201001, "name": "大盾", "resource": "Chars/BigDun", "resource2": "Chars/BigDun"}
+    ]
+}

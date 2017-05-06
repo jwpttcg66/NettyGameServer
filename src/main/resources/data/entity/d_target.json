@@ -1,0 +1,12 @@
+
+{
+    "header" : [
+        ["编号", "阶段", "1级目标", "2级目标", "3级目标", "4级目标", "5级目标"],
+        ["ID", "stage", "target_0", "target_1", "target_2", "target_3", "target_4"],
+        ["int", "int", "String", "String", "String", "String", "String"]
+    ],
+    "body" : [
+        {"ID": 70001, "stage": 1, "target_0": "Prince"},
+        {"ID": 99001, "stage": 1, "target_0": "Avatar"}
+    ]
+}

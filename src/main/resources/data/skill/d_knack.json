@@ -1,0 +1,21 @@
+
+{
+    "header" : [
+        ["ID", "描述", "技能类", "触发类型", "技能", "效果", "Buff", "血量比例", "魔法比例"],
+        ["ID", "desc", "className", "kind", "skill", "impacts", "buffs", "hpRatio", "mpRatio"],
+        ["int", "String", "String", "int", "int", "String", "String", "int", "int"]
+    ],
+    "body" : [
+        {"ID": 1, "buffs": "60000", "className": "normal", "desc": "立即生效，加速", "kind": 1},
+        {"ID": 2, "buffs": "60000", "className": "normal", "desc": "受击加速", "kind": 2},
+        {"ID": 3, "className": "normal", "desc": "死亡触发", "kind": 3, "skill": 91000},
+        {"ID": 4, "className": "normal", "desc": "血量低于时触发", "hpRatio": 10, "impacts": "60010", "kind": 10},
+        {"ID": 5, "className": "normal", "desc": "魔法高于时触发", "impacts": "9090", "kind": 21, "mpRatio": 90},
+        {"ID": 6, "className": "normal", "desc": "眩晕效果", "kind": 1, "skill": 102},
+        {"ID": 7, "className": "normal", "desc": "加血被动", "impacts": "302", "kind": 1},
+        {"ID": 8, "buffs": "2", "className": "normal", "desc": "减速被动", "kind": 1},
+        {"ID": 9, "className": "normal", "desc": "护盾爆炸", "kind": 20, "mpRatio": 98},
+        {"ID": 10, "buffs": "5", "className": "normal", "desc": "护盾减能量", "kind": 1},
+        {"ID": 11, "buffs": "7", "className": "normal", "desc": "魔王特技", "kind": 1}
+    ]
+}

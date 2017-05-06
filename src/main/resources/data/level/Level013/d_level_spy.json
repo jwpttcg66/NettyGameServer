@@ -1,0 +1,11 @@
+
+{
+    "header" : [
+        ["编号", "描述", "体积能量比", "能量阀值", "能量触发技能", "房间最大人数", "创建房间时间", "准备时间", "大鬼复活次数", "小鬼复活次数", "农民复活次数", "大鬼缩放", "技能"],
+        ["ID", "desc", "mpScale", "mpThreshold", "mpSkill", "maxPlayer", "waitingTime", "prepareTime", "bigGhostRebornCounts", "smallGhostRebornCounts", "farmerCounts", "kingScale", "skills"],
+        ["int", "String", "float", "float", "int", "int", "float", "float", "int", "int", "int", "float", null]
+    ],
+    "body" : [
+        {"ID": 1, "bigGhostRebornCounts": 3, "farmerCounts": 2, "kingScale": 1.5, "kingSkills": "10016,10017", "maxPlayer": 3, "prepareTime": 3, "smallGhostRebornCounts": 5, "waitingTime": 180}
+    ]
+}

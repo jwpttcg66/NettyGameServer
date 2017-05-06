@@ -1,0 +1,15 @@
+
+{
+    "header" : [
+        ["编号", "关卡名", "类型", "场景", "关卡路径名", "小地图编号", "持续时间", "攻击方角色", "防守方角色", "最大等级", "死亡坐标Y阈值", "复活方式", "复活cd", "复活cd增量", "相机参数", "出生点", "复活点"],
+        ["ID", "levelName", "className", "sceneName", "levelPath", "minimap", "duration", "atkEntities", "defEntities", "maxLvl", "DeadPosY", "rebornType", "rebornCD", "rebornCDDelta", "cameras", "originPoints", "rebornPoints"],
+        ["int", "String", "String", "String", "String", "int", "int", "String", "String", "int", "float", "int", "float", "float", null, null, null]
+    ],
+    "body" : [
+        {"DeadPosY": -10, "ID": 1, "atkCameraOffset": "0,10,15", "atkCameraRotation": "30,180,0", "atkCampPos": "10,0,13", "atkEntities": "910000", "atkRebornPoints": "0,0,0", "className": "SpyScene", "defCameraOffset": "0,10,-15", "defCameraRotation": "30,0,0", "defCampPos": "-9,0,-8", "defEntities": "910010", "defRebornPoints": "0,0,0", "duration": 600, "levelName": "二营长", "levelPath": "Level013", "maxLvl": 10, "rebornCD": 2, "rebornCDDelta": 0, "rebornType": 3, "sceneName": "Level013"},
+        {"DeadPosY": -10, "ID": 2, "atkCameraOffset": "0,18,15", "atkCameraRotation": "40,180,0", "atkCampPos": "10,0,13", "atkEntities": "910000", "atkRebornPoints": "0,0,0", "className": "NormalScene", "defCameraOffset": "0,18,-15", "defCameraRotation": "40,0,0", "defCampPos": "-9,0,-8", "defEntities": "910010", "defRebornPoints": "0,0,0", "duration": 600, "levelName": "测试关卡", "levelPath": "LevelTest", "maxLvl": 10, "rebornCD": 2, "rebornCDDelta": 0, "rebornType": 3, "sceneName": "Level003"},
+        {"DeadPosY": -10, "ID": 3, "atkCameraOffset": "0,18,15", "atkCameraRotation": "40,180,0", "atkCampPos": "10,0,13", "atkEntities": "910000", "atkRebornPoints": "0,0,0", "className": "SpyScene", "defCameraOffset": "0,18,-15", "defCameraRotation": "40,0,0", "defCampPos": "-38,0,-36", "defEntities": "910010", "defRebornPoints": "0,0,0", "duration": 600, "levelName": "仙境传奇", "levelPath": "Level014", "maxLvl": 10, "minimap": 8, "rebornCD": 2, "rebornCDDelta": 0, "rebornType": 3, "sceneName": "Level014"},
+        {"DeadPosY": -10, "ID": 4, "atkCameraOffset": "0,18,15", "atkCameraRotation": "40,180,0", "atkCampPos": "10,0,13", "atkEntities": "910000", "atkRebornPoints": "0,0,0", "className": "NormalScene", "defCameraOffset": "0,18,-15", "defCameraRotation": "40,0,0", "defCampPos": "-38,0,-36", "defEntities": "910010", "defRebornPoints": "0,0,0", "duration": 600, "levelName": "测试仙境", "levelPath": "Level015", "maxLvl": 10, "minimap": 8, "rebornCD": 2, "rebornCDDelta": 0, "rebornType": 3, "sceneName": "Level015"},
+        {"DeadPosY": -10, "ID": 999, "atkCameraOffset": "0,18,15", "atkCameraRotation": "40,180,0", "atkCampPos": "10,0,13", "atkEntities": "910000", "atkRebornPoints": "0,0,0", "className": "PerformanceScene", "defCameraOffset": "0,18,-15", "defCameraRotation": "40,0,0", "defCampPos": "-9,0,-8", "defEntities": "910010", "defRebornPoints": "0,0,0", "duration": 600, "levelName": "性能测试关卡", "levelPath": "LevelTest", "maxLvl": 10, "rebornCD": 2, "rebornCDDelta": 0, "rebornType": 3, "sceneName": "PerformanceTest"}
+    ]
+}

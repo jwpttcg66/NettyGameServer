@@ -1,0 +1,25 @@
+
+{
+    "header" : [
+        ["编号", "描述", "等级", "能量百分比", "属性变化"],
+        ["ID", "desc", "lvl", "mpStage", "fontal"],
+        ["int", null, null, "int", null]
+    ],
+    "body" : [
+        {"ID": 1001, "attack": 0, "attackRate": 0.1, "defend": 0, "defendRate": 0.1, "hpMax": 0, "hpRate": 0.1, "moveSpeed": 1, "moveSpeedRate": 0.1, "mpMax": 0, "mpStage": 10},
+        {"ID": 1001, "attack": 0, "attackRate": 0.3, "defend": 0, "defendRate": 0.3, "hpMax": 0, "hpRate": 0.3, "moveSpeed": 1, "moveSpeedRate": 0.3, "mpMax": 0, "mpStage": 20},
+        {"ID": 1001, "attack": 0, "attackRate": 0.5, "defend": 0, "defendRate": 0.5, "hpMax": 0, "hpRate": 0.5, "moveSpeed": 1, "moveSpeedRate": 0.5, "mpMax": 0, "mpStage": 30},
+        {"ID": 1001, "attack": 0, "attackRate": 0.7, "defend": 0, "defendRate": 0.7, "hpMax": 0, "hpRate": 0.7, "moveSpeed": 1, "moveSpeedRate": 0.7, "mpMax": 0, "mpStage": 40},
+        {"ID": 1001, "attack": 0, "attackRate": 0.9, "defend": 0, "defendRate": 0.9, "hpMax": 0, "hpRate": 0.9, "moveSpeed": 1, "moveSpeedRate": 0.9, "mpMax": 0, "mpStage": 50},
+        {"ID": 1001, "attack": 0, "attackRate": 1.1, "defend": 0, "defendRate": 1.1, "hpMax": 0, "hpRate": 1.1, "moveSpeed": 1, "moveSpeedRate": 1.1, "mpMax": 0, "mpStage": 60},
+        {"ID": 1001, "attack": 0, "attackRate": 1.3, "defend": 0, "defendRate": 1.3, "hpMax": 0, "hpRate": 1.3, "moveSpeed": 1, "moveSpeedRate": 1.3, "mpMax": 0, "mpStage": 70},
+        {"ID": 1001, "attack": 0, "attackRate": 1.5, "defend": 0, "defendRate": 1.5, "hpMax": 0, "hpRate": 1.5, "moveSpeed": 1, "moveSpeedRate": 1.5, "mpMax": 0, "mpStage": 80},
+        {"ID": 1001, "attack": 0, "attackRate": 1.7, "defend": 0, "defendRate": 1.7, "hpMax": 0, "hpRate": 1.7, "moveSpeed": 1, "moveSpeedRate": 1.7, "mpMax": 0, "mpStage": 90},
+        {"ID": 1001, "attack": 0, "attackRate": 1.9, "defend": 0, "defendRate": 1.9, "hpMax": 0, "hpRate": 1.9, "moveSpeed": 1, "moveSpeedRate": 1.9, "mpMax": 0, "mpStage": 100},
+        {"ID": 1002, "attack": 0, "attackRate": 0, "defend": 0, "defendRate": 0, "hpMax": 0, "hpRate": 0.1, "moveSpeed": 1, "moveSpeedRate": 0.1, "mpMax": 0, "mpRateDamage": 0.1, "mpRateKill": 0.3, "mpStage": 20},
+        {"ID": 1002, "attack": 0, "attackRate": 0, "defend": 0, "defendRate": 0, "hpMax": 0, "hpRate": 0.2, "moveSpeed": 1, "moveSpeedRate": 0, "mpMax": 0, "mpRateDamage": 0.1, "mpRateKill": 0.3, "mpStage": 40},
+        {"ID": 1002, "attack": 0, "attackRate": 0, "defend": 0, "defendRate": 0, "hpMax": 0, "hpRate": 0.3, "moveSpeed": 1, "moveSpeedRate": 0, "mpMax": 0, "mpRateDamage": 0.1, "mpRateKill": 0.3, "mpStage": 60},
+        {"ID": 1002, "attack": 0, "attackRate": 0, "defend": 0, "defendRate": 0, "hpMax": 0, "hpRate": 0.4, "moveSpeed": 1, "moveSpeedRate": 0, "mpMax": 0, "mpRateDamage": 0.1, "mpRateKill": 0.3, "mpStage": 80},
+        {"ID": 1002, "attack": 0, "attackRate": 0, "defend": 0, "defendRate": 0, "hpMax": 0, "hpRate": 0.5, "moveSpeed": 1, "moveSpeedRate": 0, "mpMax": 0, "mpRateDamage": 0.1, "mpRateKill": 0.3, "mpStage": 100}
+    ]
+}

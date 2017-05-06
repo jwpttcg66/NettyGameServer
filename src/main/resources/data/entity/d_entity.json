@@ -1,0 +1,25 @@
+
+{
+    "header" : [
+        ["编号", "关联编号", "名称", "描述", "游戏类", "模型id", "AI时间间隔", "巡逻半径", "近战距离", "攻击距离", "是否可被攻击", "等级", "升级公式", "隐藏头顶板", "隐藏飘字", "阵营参考", "属性组id", "技能组id", "AI编号", "目标筛选编号", "能量属性组id", "能量技能组id", "在小地图中显示", "存活时间"],
+        ["ID", "extraID", "name", "desc", "className", "model", "aiInterval", "patrolRadius", "stoppingDistance", "attackDistance", "attackable", "lvl", "lvlID", "hideTopboard", "hideLabel", "campReference", "attrGroup", "skillGroup", "AI", "target", "mpAttrGroup", "mpSkillGroup", "showInMinimap", "life"],
+        ["int", "int", "String", "String", "String", "int", "float", "float", "float", "float", "int", "int", "int", "int", "byte", "int", "int", "int", "int", "int", "int", "int", "byte", "float"]
+    ],
+    "body" : [
+        {"ID": 1, "aiInterval": 1, "attackDistance": 0, "attackable": 1, "attrGroup": 101, "className": "Enemy", "desc": "不要删", "lvl": 1, "lvlID": 4, "model": 10000, "name": "靶子", "patrolRadius": 0, "stoppingDistance": 0},
+        {"ID": 100, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 100, "campReference": 1, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 8, "name": "肉盾型", "patrolRadius": 12, "skillGroup": 100, "stoppingDistance": 8},
+        {"ID": 101, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 101, "campReference": 1, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 9, "name": "击杀型", "patrolRadius": 12, "skillGroup": 101, "stoppingDistance": 8},
+        {"ID": 102, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 102, "campReference": 1, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 10, "name": "刺客", "patrolRadius": 12, "skillGroup": 102, "stoppingDistance": 8},
+        {"ID": 103, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 103, "campReference": 1, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 11, "name": "团战型", "patrolRadius": 12, "skillGroup": 103, "stoppingDistance": 8},
+        {"ID": 200, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 200, "campReference": 2, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 8, "name": "肉盾型", "patrolRadius": 12, "skillGroup": 200, "stoppingDistance": 8},
+        {"ID": 201, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 201, "campReference": 2, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 9, "name": "击杀型", "patrolRadius": 12, "skillGroup": 201, "stoppingDistance": 8},
+        {"ID": 202, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 202, "campReference": 2, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 10, "name": "刺客", "patrolRadius": 12, "skillGroup": 202, "stoppingDistance": 8},
+        {"ID": 203, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 203, "campReference": 2, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 11, "name": "团战型", "patrolRadius": 12, "skillGroup": 203, "stoppingDistance": 8},
+        {"ID": 300, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 300, "campReference": 1, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 10, "name": "大魔王", "patrolRadius": 12, "skillGroup": 300, "stoppingDistance": 8},
+        {"ID": 10001, "aiInterval": 4, "attackDistance": 0, "attackable": 1, "attrGroup": 10001, "className": "Shield", "hideLabel": 1, "hideTopboard": 1, "lvl": 1, "model": 50000, "name": "护盾", "patrolRadius": 0, "stoppingDistance": 1},
+        {"ID": 10002, "aiInterval": 0.5, "attackDistance": 50, "attackable": 0, "attrGroup": 10001, "className": "TransportTower", "hideTopboard": 1, "life": 8, "lvl": 1, "lvlID": 4, "model": 12, "name": "减速塔", "patrolRadius": 3000, "skillGroup": 10002, "stoppingDistance": 5},
+        {"ID": 10003, "aiInterval": 4, "attackDistance": 0, "attackable": 1, "attrGroup": 10001, "className": "Shield", "hideLabel": 1, "hideTopboard": 1, "life": 3, "lvl": 1, "model": 201001, "name": "弧形盾", "patrolRadius": 0, "skillGroup": 10001, "stoppingDistance": 1},
+        {"ID": 10004, "aiInterval": 1, "attackDistance": 0, "attackable": false, "attrGroup": 10001, "className": "Trigger", "extraID": 10004, "hideTopboard": 1, "lvl": 1, "model": 50000, "name": "加血包", "patrolRadius": 0, "stoppingDistance": 1},
+        {"ID": 910000, "aiInterval": 1, "attackDistance": 10, "attackable": 1, "attrGroup": 100, "campReference": 2, "className": "Avatar", "lvl": 1, "lvlID": 3, "model": 10000, "name": "捣蛋1", "patrolRadius": 12, "skillGroup": 100, "stoppingDistance": 8}
+    ]
+}
