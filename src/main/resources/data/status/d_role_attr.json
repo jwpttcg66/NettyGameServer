@@ -1,0 +1,21 @@
+
+{
+    "header" : [
+        ["编号", "描述", "等级", "能量百分比", "属性变化"],
+        ["ID", "desc", "lvl", "mpStage", "fontal"],
+        ["int", null, "int", null, null]
+    ],
+    "body" : [
+        {"ID": 100, "attack": 1, "defend": 0, "hpMax": 500, "lvl": 1, "moveSpeed": 4},
+        {"ID": 101, "attack": 1, "defend": 0, "hpMax": 440, "lvl": 1, "moveSpeed": 4},
+        {"ID": 102, "attack": 1, "defend": 0, "hpMax": 400, "lvl": 1, "moveSpeed": 4},
+        {"ID": 103, "attack": 1, "defend": 0, "hpMax": 400, "lvl": 1, "moveSpeed": 4},
+        {"ID": 200, "attack": 1, "defend": 0, "hpMax": 500, "lvl": 1, "moveSpeed": 4},
+        {"ID": 201, "attack": 1, "defend": 0, "hpMax": 440, "lvl": 1, "moveSpeed": 4},
+        {"ID": 202, "attack": 1, "defend": 0, "hpMax": 400, "lvl": 1, "moveSpeed": 4},
+        {"ID": 203, "attack": 1, "defend": 0, "hpMax": 400, "lvl": 1, "moveSpeed": 4},
+        {"ID": 300, "attack": 2, "defend": 0, "hpMax": 1600, "lvl": 1, "moveSpeed": 4, "mpMax": 100, "mpRateDamage": 0.1, "mpRateKill": 0.3},
+        {"ID": 10001, "attack": 0, "defend": 9999, "hpMax": 9999, "lvl": 1, "moveSpeed": 0, "mpMax": 100, "mpRateDamage": 0, "mpRateKill": 0},
+        {"ID": 910000, "attack": 7, "defend": 0, "hpMax": 90, "lvl": 1, "moveSpeed": 4, "mpMax": 100, "mpRateDamage": 0.1, "mpRateKill": 0.3}
+    ]
+}

@@ -1,0 +1,18 @@
+
+{
+    "header" : [
+        ["编号", "描述", "图片路径", "左下角坐标", "缩放系数", "地图大小"],
+        ["ID", "desc", "path", "origin", "scale", "size"],
+        ["int", "String", "String", "String", "float", null]
+    ],
+    "body" : [
+        {"ID": 1, "desc": "王子争霸", "origin": "-37.67, -16.67", "path": "UI/minimap/dt4", "rightTop": "37.67, 16.67", "scale": 0.6},
+        {"ID": 2, "desc": "弹幕竞技场", "origin": "-20, -9.8", "path": "UI/minimap/dt2", "rightTop": "20, 9.8", "scale": 0.2},
+        {"ID": 3, "desc": "梦境", "origin": "-25, -25", "path": "UI/minimap/dt3", "rightTop": "25, 25", "scale": 0.2},
+        {"ID": 4, "desc": "dota", "origin": "-50,-50", "path": "UI/minimap/littleMap", "rightTop": "50,50", "scale": 0.4},
+        {"ID": 5, "desc": "pvp", "origin": "-47.5,-47.5", "path": "UI/minimap/dt0", "rightTop": "47.5,47.5", "scale": 0.33},
+        {"ID": 6, "desc": "抢花", "origin": "-20,-20", "path": "UI/minimap/002", "rightTop": "20,20", "scale": 0.4},
+        {"ID": 7, "desc": "推塔", "origin": "-28,-38", "path": "UI/minimap/011", "rightTop": "28,38", "scale": 0.2},
+        {"ID": 8, "desc": "仙境", "origin": "-43,-43", "path": "UI/minimap/Level14", "rightTop": "14,18", "scale": 0.25}
+    ]
+}

@@ -13,7 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.service.excel.Bullet;
+import com.wolf.shoot.service.excel.entity.Bullet;
 
 public class D_BulletLoaderManager {
 	private static final Logger logger = Loggers.utilLogger;

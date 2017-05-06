@@ -1,0 +1,14 @@
+
+{
+    "header" : [
+        ["编号", "描述", "时间", "阶段"],
+        ["ID", "desc", "time", "stage"],
+        ["int", "String", "float", "String"]
+    ],
+    "body" : [
+        {"ID": 1, "stage": "1", "time": 0},
+        {"ID": 2, "time": 120},
+        {"ID": 3, "stage": "2", "time": 240},
+        {"ID": 4, "time": 300}
+    ]
+}

@@ -1,0 +1,17 @@
+
+{
+    "header" : [
+        ["buff编号", "名称", "描述", "Buff类", "类型", "可并行", "最大叠加层数", "循环时间间隔", "总循环次数", "减少CD", "控制", "效果", "抵挡伤害", "切换弹幕", "自动发射", "防御力变化", "显示特效", "属性变化"],
+        ["no", "name", "desc", "className", "kind", "concurrency", "maxTier", "duration", "loops", "cd", "control", "impacts", "reduceDmg", "emitterID", "autoEmit", "defence", "effect", "fontal"],
+        ["int", "String", "String", "String", "int", "byte", "int", "float", "int", "float", "int", "String", "int", "int", "int", "int", "String", "String"]
+    ],
+    "body" : [
+        {"className": "normal", "concurrency": false, "control": 1, "duration": 2, "effect": "Prefabs/Buff/xuanyun", "loops": 1, "maxTier": 1, "name": "眩晕buff", "no": 1},
+        {"className": "normal", "concurrency": false, "duration": 3, "effect": "Prefabs/Buff/xuanyun", "loops": 1, "maxTier": 1, "moveSpeedRate": -0.8, "name": "减速buff", "no": 2},
+        {"className": "laser", "concurrency": false, "duration": 0.5, "effect": "Prefabs/luoxuanyuan", "impacts": "100100", "loops": 10, "maxTier": 1, "name": "激光", "no": 3},
+        {"className": "normal", "concurrency": false, "duration": 2, "loops": 1, "maxTier": 1, "moveSpeedRate": 0.8, "name": "加速buff", "no": 4},
+        {"className": "normal", "concurrency": false, "duration": 1, "impacts": "20003", "loops": 3, "maxTier": 1, "name": "减能量buff", "no": 5},
+        {"attack": 1, "className": "normal", "concurrency": false, "duration": 3, "loops": 1, "maxTier": 1, "moveSpeedRate": 0.8, "name": "冲锋buff", "no": 6},
+        {"attack": 1, "className": "normal", "concurrency": false, "defence": 0, "duration": -1, "hpMax": 2000, "loops": 1, "maxTier": 1, "moveSpeedRate": 0.5, "name": "魔王buff", "no": 7}
+    ]
+}

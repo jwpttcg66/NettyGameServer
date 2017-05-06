@@ -1,0 +1,10 @@
+
+{
+    "header" : [
+        ["编号", "名称", "描述", "实体id", "位置", "朝向", "阵营"],
+        ["ID", "name", "desc", "entityID", "position", "rotation", "camp"],
+        ["int", "String", "String", "int", "String", "float", "int"]
+    ],
+    "body" : [
+    ]
+}
