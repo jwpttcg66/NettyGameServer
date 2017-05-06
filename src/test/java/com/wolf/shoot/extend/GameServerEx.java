@@ -17,6 +17,8 @@ public class GameServerEx extends GameServer{
 
     public static void main(String[] args) {
         GameServerEx gameServerEx = new GameServerEx();
+        GlobalManagerEx globalManagerEx = new GlobalManagerEx();
+        gameServerEx.setGlobalManager(globalManagerEx);
         gameServerEx.startServer();
     }
 }
