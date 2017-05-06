@@ -1,7 +1,6 @@
 package com.wolf.shoot.extend;
 
 import com.wolf.shoot.manager.AbstractGameManager;
-import com.wolf.shoot.manager.AbstractLocalManager;
 
 import java.util.LinkedHashMap;
 
@@ -17,4 +16,22 @@ public class GameManager extends AbstractGameManager{
         return instance;
     }
 
+    private LocalSpringBeanGameManager localSpringBeanGameManager;
+    private LocalSpringServiceGameManager localSpringServiceGameManager;
+
+    public LocalSpringBeanGameManager getLocalSpringBeanGameManager() {
+        return localSpringBeanGameManager;
+    }
+
+    public void setLocalSpringBeanGameManager(LocalSpringBeanGameManager localSpringBeanGameManager) {
+        this.localSpringBeanGameManager = localSpringBeanGameManager;
+    }
+
+    public LocalSpringServiceGameManager getLocalSpringServiceGameManager() {
+        return localSpringServiceGameManager;
+    }
+
+    public void setLocalSpringServiceGameManager(LocalSpringServiceGameManager localSpringServiceGameManager) {
+        this.localSpringServiceGameManager = localSpringServiceGameManager;
+    }
 }
