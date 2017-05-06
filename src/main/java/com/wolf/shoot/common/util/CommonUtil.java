@@ -74,7 +74,7 @@ public class CommonUtil {
 	 * @return true 成功，false失败
 	 */
 	public static boolean getRate(int rate){
-//		int percentageOfPrecision = Globals.getGameConstants().getPercentageOfPrecision();
+//		int percentageOfPrecision = GlobalManager.getGameConstants().getPercentageOfPrecision();
 
 		if(rate <= 0){
 			return false;

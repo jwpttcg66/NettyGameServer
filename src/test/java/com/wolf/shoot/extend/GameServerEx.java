@@ -5,9 +5,8 @@ import com.wolf.shoot.bootstrap.GameServerRuntime;
 import com.wolf.shoot.bootstrap.GamerServerStartFinishedService;
 import com.wolf.shoot.bootstrap.ServerStatusLog;
 import com.wolf.shoot.common.constant.GlobalConstants;
-import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.common.util.MemUtils;
-import com.wolf.shoot.manager.Globals;
+import com.wolf.shoot.manager.GlobalManager;
 import com.wolf.shoot.manager.LocalMananger;
 import com.wolf.shoot.service.net.LocalNetService;
 
@@ -17,29 +16,8 @@ import com.wolf.shoot.service.net.LocalNetService;
 public class GameServerEx extends GameServer{
 
     public static void main(String[] args) {
-        logger.info("Starting Game Server");
-        logger.info(MemUtils.memoryInfo());
-        String configFile = GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
-        try {
-            /**
-             * 程序初始化程序缓存模块
-             */
-
-            ServerStatusLog.getDefaultLog().logStarting();
-            GameServerEx server = new GameServerEx();
-            server.init(configFile);
-            server.start();
-            ServerStatusLog.getDefaultLog().logRunning();
-        } catch (Exception e) {
-            logger.error("Failed to start server", e);
-            System.err.println(e);
-            ServerStatusLog.getDefaultLog().logStartFail();
-            System.exit(1);
-            return;
-        }
-        logger.info(MemUtils.memoryInfo());
-
-        logger.info("Server started");
+        GameServerEx gameServerEx = new GameServerEx();
+        gameServerEx.startServer();
     }
 
     /**
@@ -49,9 +27,9 @@ public class GameServerEx extends GameServer{
      */
     public void start() throws Exception {
 
-        logger.info("Begin to start Globals");
-        Globals.start();
-        logger.info("Globals started");
+        logger.info("Begin to start GlobalManager");
+        globalManager.start();
+        logger.info("GlobalManager started");
 
         LocalMananger.getInstance().create(LocalNetService.class, LocalNetService.class);
         logger.info("local net Server started");
@@ -73,8 +51,8 @@ public class GameServerEx extends GameServer{
                     LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
                     localNetService.shutdown();
                     logger.info("tcp server shutdown:ok");
-                    Globals.stop();
-                    logger.info("Globals.shutdown:ok");
+                    globalManager.stop();
+                    logger.info("GlobalManager.shutdown:ok");
                     GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
                     gamerServerStartFinishedService.shutdown();
                     logger.info("GamerServerStartFinishedService.shutdown:ok");
