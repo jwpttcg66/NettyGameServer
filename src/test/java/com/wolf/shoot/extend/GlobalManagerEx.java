@@ -2,13 +2,10 @@ package com.wolf.shoot.extend;
 
 import com.wolf.shoot.common.util.BeanUtil;
 import com.wolf.shoot.manager.GlobalManager;
-import com.wolf.shoot.manager.LocalMananger;
-import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
-import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
-import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 
 /**
  * Created by jwp on 2017/5/6.
+ * 用户拓展
  */
 public class GlobalManagerEx extends GlobalManager{
 
@@ -18,16 +15,17 @@ public class GlobalManagerEx extends GlobalManager{
         GameManager.getInstance().setLocalSpringBeanGameManager(localSpringBeanGameManager);
         LocalSpringServiceGameManager localSpringServiceGameManager = (LocalSpringServiceGameManager) BeanUtil.getBean("localSpringServiceGameManager");
         GameManager.getInstance().setLocalSpringServiceGameManager(localSpringServiceGameManager);
-        localSpringServiceGameManager.start();
 
     }
 
     public void startGameManager() throws Exception{
-
+        LocalSpringServiceGameManager localSpringServiceGameManager = GameManager.getInstance().getLocalSpringServiceGameManager();
+        localSpringServiceGameManager.start();
     }
 
     public void stopGameManager() throws Exception{
-
+        LocalSpringServiceGameManager localSpringServiceGameManager = GameManager.getInstance().getLocalSpringServiceGameManager();
+        localSpringServiceGameManager.stop();
     }
 
 

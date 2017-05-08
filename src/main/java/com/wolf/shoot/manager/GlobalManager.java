@@ -19,7 +19,6 @@ import com.wolf.shoot.manager.spring.LocalSpringBeanManager;
 import com.wolf.shoot.manager.spring.LocalSpringServiceManager;
 import com.wolf.shoot.manager.spring.LocalSpringServicerAfterManager;
 import com.wolf.shoot.service.net.process.*;
-import sun.nio.cs.ext.IBM037;
 
 import java.util.concurrent.TimeUnit;
 
@@ -138,6 +137,10 @@ public class GlobalManager {
     }
 
 
+    /**
+     * 非spring的start
+     * @throws Exception
+    */
     public void start() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
