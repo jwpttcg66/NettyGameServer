@@ -9,7 +9,6 @@ import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.loader.DefaultClassLoader;
 import com.snowcattle.game.service.async.pool.AsyncThreadService;
-import com.snowcattle.game.service.excel.ExcelDataService;
 import com.snowcattle.game.service.lookup.cache.EhcacheService;
 import com.snowcattle.game.service.net.message.facade.GameFacade;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
@@ -70,9 +69,6 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncThreadService asyncThreadService;
-    
-    @Autowired
-    private ExcelDataService excelDataService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -187,10 +183,4 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     public void setAsyncThreadService(AsyncThreadService asyncThreadService) {
         this.asyncThreadService = asyncThreadService;
     }
-	public ExcelDataService getExcelDataService() {
-		return excelDataService;
-	}
-	public void setExcelDataService(ExcelDataService excelDataService) {
-		this.excelDataService = excelDataService;
-	}
 }
