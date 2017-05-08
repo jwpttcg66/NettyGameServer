@@ -16,10 +16,12 @@
         <setting name="localCacheScope" value="SESSION"/>
         <setting name="jdbcTypeForNull" value="OTHER"/>
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+        <!--自动转换mysql中的字段，去掉下划线并转换成驼峰命名字段。-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
     <typeAliases>
-        <typeAlias alias="order" type="com.wolf.shoot.jdbc.entity.Order"/>
+        <typeAlias alias="order" type="com.snowcattle.game.jdbc.entity.Order"/>
     </typeAliases>
 
     <mappers>

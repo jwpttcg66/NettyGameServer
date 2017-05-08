@@ -11,13 +11,11 @@ import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 import org.springframework.stereotype.Service;
 
-import com.wolf.shoot.common.constant.ServiceName;
-import com.wolf.shoot.service.IService;
+import com.snowcattle.game.common.constant.ServiceName;
+import com.snowcattle.game.service.IService;
 import com.wolf.shoot.service.excel.manager.D_BulletLoaderManager;
 import com.wolf.shoot.service.excel.manager.DataLoaderManager;
 import com.wolf.shoot.service.excel.manager.EntityLoaderManager;
@@ -27,12 +25,10 @@ import com.wolf.shoot.service.excel.manager.StatusLoaderManager;
 @Service
 public class ExcelDataService implements IService {
 
-	@Override
 	public String getId() {
 		return ServiceName.EXCELDATASERVICE;
 	}
 
-	@Override
 	public void startup() throws Exception {
 		D_BulletLoaderManager.getInstance().load();
 		DataLoaderManager.getInstance().load();
@@ -46,7 +42,6 @@ public class ExcelDataService implements IService {
 	}
 
 
-	@Override
 	public void shutdown() throws Exception {
 
 	}

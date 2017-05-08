@@ -31,13 +31,13 @@ config.rpcThreadPoolSize=60;
 config.rpcThreadPoolQueueSize=65536;
 config.rpcConnectThreadSize=16;
 config.rpcSendProxyThreadSize=16;
-config.rpcServicePackage="com.wolf.shoot.service.rpc.service.server";
+config.rpcServicePackage="com.snowcattle.game.service.rpc.service.server";
 //config.rpcTimeOut=60*1000;
 config.rpcTimeOut=0;
 config.rpcFutureDeleteTimeOut=60*1000;
 /**message**/
-config.netMessageHandlerNameSpace="com.wolf.shoot.message.handler.impl";
-config.netMsgNameSpace="com.wolf.shoot.message.logic";
+config.netMessageHandlerNameSpace="com.snowcattle.game.message.handler.impl";
+config.netMsgNameSpace="com.snowcattle.game.message.logic";
 /**异步线程池配置**/
 config.asyncThreadPoolCoreSize=1;
 config.asyncThreadPoolMaxSize=100;

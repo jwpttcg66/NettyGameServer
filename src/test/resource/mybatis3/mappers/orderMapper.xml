@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.wolf.shoot.jdbc.mapper.OrderMapper">
+<mapper namespace="com.snowcattle.game.jdbc.mapper.OrderMapper">
 
     <!--批量插入-->
     <insert id="insertEntity" parameterType="order">
@@ -18,7 +18,7 @@
     <select id="getEntityList" resultType="order" parameterType="order">
         select id, user_id, status
         from `t_order_${sharding_table_index}`
-        where user_id=#{userId};
+        where user_id=#{userId} order by id
     </select>
 
     <update id="updateEntityByMap" parameterType="map">

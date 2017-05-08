@@ -1,4 +1,4 @@
-option java_package = "com.wolf.shoot.message.auto.tcp.online.client";
+option java_package = "com.snowcattle.game.message.auto.tcp.online.client";
 option java_outer_classname = "OnlineTCPClientProBuf";
 
 message OnlineHeartTCPClientProBuf

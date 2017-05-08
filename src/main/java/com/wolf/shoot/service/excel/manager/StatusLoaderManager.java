@@ -12,27 +12,10 @@ import org.slf4j.Logger;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.wolf.shoot.common.constant.Loggers;
-import com.wolf.shoot.service.excel.entity.Buff;
-import com.wolf.shoot.service.excel.entity.Bullet;
-import com.wolf.shoot.service.excel.entity.Control;
-import com.wolf.shoot.service.excel.entity.Demiurge;
+import com.snowcattle.game.common.constant.Loggers;
 import com.wolf.shoot.service.excel.entity.DropExp;
-import com.wolf.shoot.service.excel.entity.Emitter;
-import com.wolf.shoot.service.excel.entity.EmitterAttr;
-import com.wolf.shoot.service.excel.entity.Entity;
-import com.wolf.shoot.service.excel.entity.EntityAi;
-import com.wolf.shoot.service.excel.entity.EntityTarget;
-import com.wolf.shoot.service.excel.entity.EntityTrigger;
-import com.wolf.shoot.service.excel.entity.Impact;
-import com.wolf.shoot.service.excel.entity.Item;
-import com.wolf.shoot.service.excel.entity.Knack;
-import com.wolf.shoot.service.excel.entity.Minimap;
-import com.wolf.shoot.service.excel.entity.Model;
 import com.wolf.shoot.service.excel.entity.RoleAttr;
 import com.wolf.shoot.service.excel.entity.RoleSkill;
-import com.wolf.shoot.service.excel.entity.Skill;
-import com.wolf.shoot.service.excel.entity.SkillUpgrade;
 import com.wolf.shoot.service.excel.entity.Upgrade;
 
 public class StatusLoaderManager {
