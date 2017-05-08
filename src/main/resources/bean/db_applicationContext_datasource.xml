@@ -36,13 +36,13 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dynamicDataSource" />
-        <property name="typeAliasesPackage" value="com.wolf.shoot.jdbc.entity"/>
-        <property name="typeHandlersPackage" value="com.wolf.shoot.jdbc"/>
+        <property name="typeAliasesPackage" value="com.game.snowcattle.jdbc.entity"/>
+        <property name="typeHandlersPackage" value="com.game.snowcattle.jdbc"/>
         <property name="configLocation"  value="classpath:mybatis3/sqlMapConfig.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.wolf.shoot.jdbc.mapper"/>
+        <property name="basePackage" value="com.game.snowcattle.jdbc.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

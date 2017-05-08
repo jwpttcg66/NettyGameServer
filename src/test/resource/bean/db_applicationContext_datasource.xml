@@ -42,7 +42,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.wolf.shoot.jdbc.mapper"/>
+        <property name="basePackage" value="com.snowcattle.game.jdbc.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
