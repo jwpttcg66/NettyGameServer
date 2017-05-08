@@ -1,4 +1,4 @@
-option java_package = "com.wolf.shoot.message.auto.common";
+option java_package = "com.snowcattle.game.message.auto.common";
 option java_outer_classname = "CommonMessageProBuf";
 
 message CommonResponseServerProBuf

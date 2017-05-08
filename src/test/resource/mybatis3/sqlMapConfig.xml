@@ -19,7 +19,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="order" type="com.wolf.shoot.jdbc.entity.Order"/>
+        <typeAlias alias="order" type="Order"/>
     </typeAliases>
 
     <mappers>
