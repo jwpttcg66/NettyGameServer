@@ -13,36 +13,36 @@ public class Map {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getPath() {
         return path;
     }
-    public void setPath(String _path) {
-        path = _path;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getMusic() {
         return music;
     }
-    public void setMusic(String _music) {
-        music = _music;
+    public void setMusic(String music) {
+        this.music = music;
     }
 
 

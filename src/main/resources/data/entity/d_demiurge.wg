@@ -1,0 +1,11 @@
+
+{
+    "class" : "Demiurge",
+    "header" : [
+        ["编号", "名称", "是否可见", "是否手动触发", "实体id", "是否随机id", "总生成次数", "同时存活数量", "单次创建数量下限", "单次创建数量上限", "首次生成时间", "时间间隔", "区域类型", "区域半径", "区域角度", "区域宽", "区域高"], 
+        ["ID", "name", "visible", "isManual", "entities", "isRandomID", "maxTrigger", "maxAlive", "minLimit", "maxLimit", "startTime", "interval", "areaType", "radius", "angle", "width", "height"]
+    ],
+    "body" : [
+        {"ID" : 70000, "areaType" : 0, "entities" : "10004", "height" : 24, "interval" : 30, "isRandomID" : 0, "maxAlive" : 1, "maxLimit" : 1, "minLimit" : 0, "name" : "加血包", "startTime" : 5, "visible" : true, "width" : 24}
+    ]
+}

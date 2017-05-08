@@ -19,78 +19,78 @@ public class LevelFlower {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getMpScale() {
         return mpScale;
     }
-    public void setMpScale(float _mpScale) {
-        mpScale = _mpScale;
+    public void setMpScale(float mpScale) {
+        this.mpScale = mpScale;
     }
 
     public float getMpThreshold() {
         return mpThreshold;
     }
-    public void setMpThreshold(float _mpThreshold) {
-        mpThreshold = _mpThreshold;
+    public void setMpThreshold(float mpThreshold) {
+        this.mpThreshold = mpThreshold;
     }
 
     public int getMpSkill() {
         return mpSkill;
     }
-    public void setMpSkill(int _mpSkill) {
-        mpSkill = _mpSkill;
+    public void setMpSkill(int mpSkill) {
+        this.mpSkill = mpSkill;
     }
 
     public float getStartTime() {
         return startTime;
     }
-    public void setStartTime(float _startTime) {
-        startTime = _startTime;
+    public void setStartTime(float startTime) {
+        this.startTime = startTime;
     }
 
     public String getNStartAreas() {
         return nStartAreas;
     }
-    public void setNStartAreas(String _nStartAreas) {
-        nStartAreas = _nStartAreas;
+    public void setNStartAreas(String nStartAreas) {
+        this.nStartAreas = nStartAreas;
     }
 
     public float getInterval() {
         return interval;
     }
-    public void setInterval(float _interval) {
-        interval = _interval;
+    public void setInterval(float interval) {
+        this.interval = interval;
     }
 
     public String getNAreas() {
         return nAreas;
     }
-    public void setNAreas(String _nAreas) {
-        nAreas = _nAreas;
+    public void setNAreas(String nAreas) {
+        this.nAreas = nAreas;
     }
 
     public String getEntityName() {
         return entityName;
     }
-    public void setEntityName(String _entityName) {
-        entityName = _entityName;
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
     }
 
     public int getRevivalID() {
         return revivalID;
     }
-    public void setRevivalID(int _revivalID) {
-        revivalID = _revivalID;
+    public void setRevivalID(int revivalID) {
+        this.revivalID = revivalID;
     }
 
 

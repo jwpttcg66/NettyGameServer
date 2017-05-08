@@ -24,113 +24,113 @@ public class RoleAttr {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getLvl() {
         return lvl;
     }
-    public void setLvl(int _lvl) {
-        lvl = _lvl;
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public int getHpMax() {
         return hpMax;
     }
-    public void setHpMax(int _hpMax) {
-        hpMax = _hpMax;
+    public void setHpMax(int hpMax) {
+        this.hpMax = hpMax;
     }
 
     public int getMpMax() {
         return mpMax;
     }
-    public void setMpMax(int _mpMax) {
-        mpMax = _mpMax;
+    public void setMpMax(int mpMax) {
+        this.mpMax = mpMax;
     }
 
     public int getAttack() {
         return attack;
     }
-    public void setAttack(int _attack) {
-        attack = _attack;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public int getDefend() {
         return defend;
     }
-    public void setDefend(int _defend) {
-        defend = _defend;
+    public void setDefend(int defend) {
+        this.defend = defend;
     }
 
     public float getMoveSpeed() {
         return moveSpeed;
     }
-    public void setMoveSpeed(float _moveSpeed) {
-        moveSpeed = _moveSpeed;
+    public void setMoveSpeed(float moveSpeed) {
+        this.moveSpeed = moveSpeed;
     }
 
     public float getMpRateDamage() {
         return mpRateDamage;
     }
-    public void setMpRateDamage(float _mpRateDamage) {
-        mpRateDamage = _mpRateDamage;
+    public void setMpRateDamage(float mpRateDamage) {
+        this.mpRateDamage = mpRateDamage;
     }
 
     public float getMpRateKill() {
         return mpRateKill;
     }
-    public void setMpRateKill(float _mpRateKill) {
-        mpRateKill = _mpRateKill;
+    public void setMpRateKill(float mpRateKill) {
+        this.mpRateKill = mpRateKill;
     }
 
     public int getMpStage() {
         return mpStage;
     }
-    public void setMpStage(int _mpStage) {
-        mpStage = _mpStage;
+    public void setMpStage(int mpStage) {
+        this.mpStage = mpStage;
     }
 
     public float getHpRate() {
         return hpRate;
     }
-    public void setHpRate(float _hpRate) {
-        hpRate = _hpRate;
+    public void setHpRate(float hpRate) {
+        this.hpRate = hpRate;
     }
 
     public float getMpRate() {
         return mpRate;
     }
-    public void setMpRate(float _mpRate) {
-        mpRate = _mpRate;
+    public void setMpRate(float mpRate) {
+        this.mpRate = mpRate;
     }
 
     public float getAttackRate() {
         return attackRate;
     }
-    public void setAttackRate(float _attackRate) {
-        attackRate = _attackRate;
+    public void setAttackRate(float attackRate) {
+        this.attackRate = attackRate;
     }
 
     public float getDefendRate() {
         return defendRate;
     }
-    public void setDefendRate(float _defendRate) {
-        defendRate = _defendRate;
+    public void setDefendRate(float defendRate) {
+        this.defendRate = defendRate;
     }
 
     public float getMoveSpeedRate() {
         return moveSpeedRate;
     }
-    public void setMoveSpeedRate(float _moveSpeedRate) {
-        moveSpeedRate = _moveSpeedRate;
+    public void setMoveSpeedRate(float moveSpeedRate) {
+        this.moveSpeedRate = moveSpeedRate;
     }
 
 

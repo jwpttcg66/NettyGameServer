@@ -39,218 +39,218 @@ public class Upgrade {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getExp1() {
         return exp1;
     }
-    public void setExp1(int _exp1) {
-        exp1 = _exp1;
+    public void setExp1(int exp1) {
+        this.exp1 = exp1;
     }
 
     public int getExp2() {
         return exp2;
     }
-    public void setExp2(int _exp2) {
-        exp2 = _exp2;
+    public void setExp2(int exp2) {
+        this.exp2 = exp2;
     }
 
     public int getExp3() {
         return exp3;
     }
-    public void setExp3(int _exp3) {
-        exp3 = _exp3;
+    public void setExp3(int exp3) {
+        this.exp3 = exp3;
     }
 
     public int getExp4() {
         return exp4;
     }
-    public void setExp4(int _exp4) {
-        exp4 = _exp4;
+    public void setExp4(int exp4) {
+        this.exp4 = exp4;
     }
 
     public int getExp5() {
         return exp5;
     }
-    public void setExp5(int _exp5) {
-        exp5 = _exp5;
+    public void setExp5(int exp5) {
+        this.exp5 = exp5;
     }
 
     public int getExp6() {
         return exp6;
     }
-    public void setExp6(int _exp6) {
-        exp6 = _exp6;
+    public void setExp6(int exp6) {
+        this.exp6 = exp6;
     }
 
     public int getExp7() {
         return exp7;
     }
-    public void setExp7(int _exp7) {
-        exp7 = _exp7;
+    public void setExp7(int exp7) {
+        this.exp7 = exp7;
     }
 
     public int getExp8() {
         return exp8;
     }
-    public void setExp8(int _exp8) {
-        exp8 = _exp8;
+    public void setExp8(int exp8) {
+        this.exp8 = exp8;
     }
 
     public int getExp9() {
         return exp9;
     }
-    public void setExp9(int _exp9) {
-        exp9 = _exp9;
+    public void setExp9(int exp9) {
+        this.exp9 = exp9;
     }
 
     public int getExp10() {
         return exp10;
     }
-    public void setExp10(int _exp10) {
-        exp10 = _exp10;
+    public void setExp10(int exp10) {
+        this.exp10 = exp10;
     }
 
     public int getExp11() {
         return exp11;
     }
-    public void setExp11(int _exp11) {
-        exp11 = _exp11;
+    public void setExp11(int exp11) {
+        this.exp11 = exp11;
     }
 
     public int getExp12() {
         return exp12;
     }
-    public void setExp12(int _exp12) {
-        exp12 = _exp12;
+    public void setExp12(int exp12) {
+        this.exp12 = exp12;
     }
 
     public int getExp13() {
         return exp13;
     }
-    public void setExp13(int _exp13) {
-        exp13 = _exp13;
+    public void setExp13(int exp13) {
+        this.exp13 = exp13;
     }
 
     public int getExp14() {
         return exp14;
     }
-    public void setExp14(int _exp14) {
-        exp14 = _exp14;
+    public void setExp14(int exp14) {
+        this.exp14 = exp14;
     }
 
     public int getExp15() {
         return exp15;
     }
-    public void setExp15(int _exp15) {
-        exp15 = _exp15;
+    public void setExp15(int exp15) {
+        this.exp15 = exp15;
     }
 
     public int getExp16() {
         return exp16;
     }
-    public void setExp16(int _exp16) {
-        exp16 = _exp16;
+    public void setExp16(int exp16) {
+        this.exp16 = exp16;
     }
 
     public int getExp17() {
         return exp17;
     }
-    public void setExp17(int _exp17) {
-        exp17 = _exp17;
+    public void setExp17(int exp17) {
+        this.exp17 = exp17;
     }
 
     public int getExp18() {
         return exp18;
     }
-    public void setExp18(int _exp18) {
-        exp18 = _exp18;
+    public void setExp18(int exp18) {
+        this.exp18 = exp18;
     }
 
     public int getExp19() {
         return exp19;
     }
-    public void setExp19(int _exp19) {
-        exp19 = _exp19;
+    public void setExp19(int exp19) {
+        this.exp19 = exp19;
     }
 
     public int getExp20() {
         return exp20;
     }
-    public void setExp20(int _exp20) {
-        exp20 = _exp20;
+    public void setExp20(int exp20) {
+        this.exp20 = exp20;
     }
 
     public int getExp21() {
         return exp21;
     }
-    public void setExp21(int _exp21) {
-        exp21 = _exp21;
+    public void setExp21(int exp21) {
+        this.exp21 = exp21;
     }
 
     public int getExp22() {
         return exp22;
     }
-    public void setExp22(int _exp22) {
-        exp22 = _exp22;
+    public void setExp22(int exp22) {
+        this.exp22 = exp22;
     }
 
     public int getExp23() {
         return exp23;
     }
-    public void setExp23(int _exp23) {
-        exp23 = _exp23;
+    public void setExp23(int exp23) {
+        this.exp23 = exp23;
     }
 
     public int getExp24() {
         return exp24;
     }
-    public void setExp24(int _exp24) {
-        exp24 = _exp24;
+    public void setExp24(int exp24) {
+        this.exp24 = exp24;
     }
 
     public int getExp25() {
         return exp25;
     }
-    public void setExp25(int _exp25) {
-        exp25 = _exp25;
+    public void setExp25(int exp25) {
+        this.exp25 = exp25;
     }
 
     public int getExp26() {
         return exp26;
     }
-    public void setExp26(int _exp26) {
-        exp26 = _exp26;
+    public void setExp26(int exp26) {
+        this.exp26 = exp26;
     }
 
     public int getExp27() {
         return exp27;
     }
-    public void setExp27(int _exp27) {
-        exp27 = _exp27;
+    public void setExp27(int exp27) {
+        this.exp27 = exp27;
     }
 
     public int getExp28() {
         return exp28;
     }
-    public void setExp28(int _exp28) {
-        exp28 = _exp28;
+    public void setExp28(int exp28) {
+        this.exp28 = exp28;
     }
 
     public int getExp29() {
         return exp29;
     }
-    public void setExp29(int _exp29) {
-        exp29 = _exp29;
+    public void setExp29(int exp29) {
+        this.exp29 = exp29;
     }
 
     public int getExp30() {
         return exp30;
     }
-    public void setExp30(int _exp30) {
-        exp30 = _exp30;
+    public void setExp30(int exp30) {
+        this.exp30 = exp30;
     }
 
 

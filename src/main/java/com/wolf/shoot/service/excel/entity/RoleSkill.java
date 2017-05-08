@@ -14,43 +14,43 @@ public class RoleSkill {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getLvl() {
         return lvl;
     }
-    public void setLvl(int _lvl) {
-        lvl = _lvl;
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public int getEmitterID() {
         return emitterID;
     }
-    public void setEmitterID(int _emitterID) {
-        emitterID = _emitterID;
+    public void setEmitterID(int emitterID) {
+        this.emitterID = emitterID;
     }
 
     public String getSkills() {
         return skills;
     }
-    public void setSkills(String _skills) {
-        skills = _skills;
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     public int getMpStage() {
         return mpStage;
     }
-    public void setMpStage(int _mpStage) {
-        mpStage = _mpStage;
+    public void setMpStage(int mpStage) {
+        this.mpStage = mpStage;
     }
 
 

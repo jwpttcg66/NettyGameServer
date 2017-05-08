@@ -17,64 +17,64 @@ public class EmitterAttr {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getBulletID() {
         return bulletID;
     }
-    public void setBulletID(int _bulletID) {
-        bulletID = _bulletID;
+    public void setBulletID(int bulletID) {
+        this.bulletID = bulletID;
     }
 
     public int getCount() {
         return count;
     }
-    public void setCount(int _count) {
-        count = _count;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public float getInterval() {
         return interval;
     }
-    public void setInterval(float _interval) {
-        interval = _interval;
+    public void setInterval(float interval) {
+        this.interval = interval;
     }
 
     public String getPosition() {
         return position;
     }
-    public void setPosition(String _position) {
-        position = _position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public float getAngle() {
         return angle;
     }
-    public void setAngle(float _angle) {
-        angle = _angle;
+    public void setAngle(float angle) {
+        this.angle = angle;
     }
 
     public String getOffset() {
         return offset;
     }
-    public void setOffset(String _offset) {
-        offset = _offset;
+    public void setOffset(String offset) {
+        this.offset = offset;
     }
 
     public float getAngleStep() {
         return angleStep;
     }
-    public void setAngleStep(float _angleStep) {
-        angleStep = _angleStep;
+    public void setAngleStep(float angleStep) {
+        this.angleStep = angleStep;
     }
 
 

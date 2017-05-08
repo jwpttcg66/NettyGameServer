@@ -19,6 +19,10 @@ import org.springframework.stereotype.Service;
 import com.wolf.shoot.common.constant.ServiceName;
 import com.wolf.shoot.service.IService;
 import com.wolf.shoot.service.excel.manager.D_BulletLoaderManager;
+import com.wolf.shoot.service.excel.manager.DataLoaderManager;
+import com.wolf.shoot.service.excel.manager.EntityLoaderManager;
+import com.wolf.shoot.service.excel.manager.SkillLoaderManager;
+import com.wolf.shoot.service.excel.manager.StatusLoaderManager;
 
 @Service
 public class ExcelDataService implements IService {
@@ -31,9 +35,13 @@ public class ExcelDataService implements IService {
 	@Override
 	public void startup() throws Exception {
 		D_BulletLoaderManager.getInstance().load();
-		Set<Class<?>> classes = getClasses("com.wolf.shoot.service.excel");
+		DataLoaderManager.getInstance().load();
+		EntityLoaderManager.getInstance().load();
+		SkillLoaderManager.getInstance().load();
+		StatusLoaderManager.getInstance().load();
+		/*Set<Class<?>> classes = getClasses("com.wolf.shoot.service.excel");
 		List<File> filelist = new ArrayList<>();
-		getResourceFiles(getClass().getClassLoader().getResource("data").getPath(),filelist);
+		getResourceFiles(getClass().getClassLoader().getResource("data").getPath(),filelist);*/
 		
 	}
 
@@ -100,6 +108,10 @@ public class ExcelDataService implements IService {
                 if (files[i].isDirectory()) {
                 	getResourceFiles(files[i].getAbsolutePath(),filelist);
                 } else if (fileName.endsWith("json")) {
+                	System.err.println(files[i].getParent());
+                	System.err.println("-"+files[i].getPath());
+                	System.err.println("--"+files[i].getAbsolutePath());
+                	System.err.println(fileName);
                     filelist.add(files[i]);
                 } else {
                     continue;

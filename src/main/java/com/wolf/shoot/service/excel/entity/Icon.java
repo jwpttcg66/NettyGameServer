@@ -12,29 +12,29 @@ public class Icon {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getPath() {
         return path;
     }
-    public void setPath(String _path) {
-        path = _path;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getAnimation() {
         return animation;
     }
-    public void setAnimation(String _animation) {
-        animation = _animation;
+    public void setAnimation(String animation) {
+        this.animation = animation;
     }
 
 

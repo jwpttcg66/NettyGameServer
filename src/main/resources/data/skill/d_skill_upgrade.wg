@@ -1,0 +1,33 @@
+
+{
+    "class" : "SkillUpgrade",
+    "header" : [
+        ["编号", "描述", "技能组", "等级", "升级消耗技能点", "显示位置"], 
+        ["ID", "name", "group", "lvl", "skillPoint", "column"]
+    ],
+    "body" : [
+        {"ID" : 10001, "column" : 2, "group" : 10001, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10002, "column" : 3, "group" : 10002, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10003, "column" : 4, "group" : 10003, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10004, "column" : 2, "group" : 10004, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10005, "column" : 10, "group" : 10005, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10006, "column" : 4, "group" : 10006, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10007, "column" : 2, "group" : 10007, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10008, "column" : 3, "group" : 10008, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10009, "column" : 10, "group" : 10009, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10010, "column" : 11, "group" : 10010, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10011, "column" : 1, "group" : 10011, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10012, "column" : 1, "group" : 10012, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10013, "column" : 1, "group" : 10013, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10014, "column" : 1, "group" : 10014, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10015, "column" : 1, "group" : 10015, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10016, "column" : 1, "group" : 10016, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 10018, "column" : 1, "group" : 10018, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 20001, "column" : 2, "group" : 20001, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 40001, "column" : 3, "group" : 40001, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 40002, "column" : 4, "group" : 40002, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 99001, "column" : 1, "group" : 99001, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 99002, "column" : 2, "group" : 99002, "lvl" : 1, "skillPoint" : 1}, 
+        {"ID" : 99003, "column" : 3, "group" : 99003, "lvl" : 1, "skillPoint" : 1}
+    ]
+}

@@ -19,78 +19,78 @@ public class Control {
     public int getNo() {
         return no;
     }
-    public void setNo(int _no) {
-        no = _no;
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public boolean getDisableMove() {
         return disableMove;
     }
-    public void setDisableMove(boolean _disableMove) {
-        disableMove = _disableMove;
+    public void setDisableMove(boolean disableMove) {
+        this.disableMove = disableMove;
     }
 
     public boolean getDisableSkill() {
         return disableSkill;
     }
-    public void setDisableSkill(boolean _disableSkill) {
-        disableSkill = _disableSkill;
+    public void setDisableSkill(boolean disableSkill) {
+        this.disableSkill = disableSkill;
     }
 
     public boolean getDisableAI() {
         return disableAI;
     }
-    public void setDisableAI(boolean _disableAI) {
-        disableAI = _disableAI;
+    public void setDisableAI(boolean disableAI) {
+        this.disableAI = disableAI;
     }
 
     public boolean getFreezeAction() {
         return freezeAction;
     }
-    public void setFreezeAction(boolean _freezeAction) {
-        freezeAction = _freezeAction;
+    public void setFreezeAction(boolean freezeAction) {
+        this.freezeAction = freezeAction;
     }
 
     public boolean getBreakSkill() {
         return breakSkill;
     }
-    public void setBreakSkill(boolean _breakSkill) {
-        breakSkill = _breakSkill;
+    public void setBreakSkill(boolean breakSkill) {
+        this.breakSkill = breakSkill;
     }
 
     public String getShader() {
         return shader;
     }
-    public void setShader(String _shader) {
-        shader = _shader;
+    public void setShader(String shader) {
+        this.shader = shader;
     }
 
     public String getAction() {
         return action;
     }
-    public void setAction(String _action) {
-        action = _action;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public String getTopboard() {
         return topboard;
     }
-    public void setTopboard(String _topboard) {
-        topboard = _topboard;
+    public void setTopboard(String topboard) {
+        this.topboard = topboard;
     }
 
 

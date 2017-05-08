@@ -17,64 +17,64 @@ public class Knack {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getClassName() {
         return className;
     }
-    public void setClassName(String _className) {
-        className = _className;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public int getKind() {
         return kind;
     }
-    public void setKind(int _kind) {
-        kind = _kind;
+    public void setKind(int kind) {
+        this.kind = kind;
     }
 
     public int getSkill() {
         return skill;
     }
-    public void setSkill(int _skill) {
-        skill = _skill;
+    public void setSkill(int skill) {
+        this.skill = skill;
     }
 
     public String getImpacts() {
         return impacts;
     }
-    public void setImpacts(String _impacts) {
-        impacts = _impacts;
+    public void setImpacts(String impacts) {
+        this.impacts = impacts;
     }
 
     public String getBuffs() {
         return buffs;
     }
-    public void setBuffs(String _buffs) {
-        buffs = _buffs;
+    public void setBuffs(String buffs) {
+        this.buffs = buffs;
     }
 
     public int getHpRatio() {
         return hpRatio;
     }
-    public void setHpRatio(int _hpRatio) {
-        hpRatio = _hpRatio;
+    public void setHpRatio(int hpRatio) {
+        this.hpRatio = hpRatio;
     }
 
     public int getMpRatio() {
         return mpRatio;
     }
-    public void setMpRatio(int _mpRatio) {
-        mpRatio = _mpRatio;
+    public void setMpRatio(int mpRatio) {
+        this.mpRatio = mpRatio;
     }
 
 

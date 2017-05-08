@@ -32,169 +32,169 @@ public class Entity {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getExtraID() {
         return extraID;
     }
-    public void setExtraID(int _extraID) {
-        extraID = _extraID;
+    public void setExtraID(int extraID) {
+        this.extraID = extraID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getClassName() {
         return className;
     }
-    public void setClassName(String _className) {
-        className = _className;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public int getModel() {
         return model;
     }
-    public void setModel(int _model) {
-        model = _model;
+    public void setModel(int model) {
+        this.model = model;
     }
 
     public float getAiInterval() {
         return aiInterval;
     }
-    public void setAiInterval(float _aiInterval) {
-        aiInterval = _aiInterval;
+    public void setAiInterval(float aiInterval) {
+        this.aiInterval = aiInterval;
     }
 
     public float getPatrolRadius() {
         return patrolRadius;
     }
-    public void setPatrolRadius(float _patrolRadius) {
-        patrolRadius = _patrolRadius;
+    public void setPatrolRadius(float patrolRadius) {
+        this.patrolRadius = patrolRadius;
     }
 
     public float getStoppingDistance() {
         return stoppingDistance;
     }
-    public void setStoppingDistance(float _stoppingDistance) {
-        stoppingDistance = _stoppingDistance;
+    public void setStoppingDistance(float stoppingDistance) {
+        this.stoppingDistance = stoppingDistance;
     }
 
     public float getAttackDistance() {
         return attackDistance;
     }
-    public void setAttackDistance(float _attackDistance) {
-        attackDistance = _attackDistance;
+    public void setAttackDistance(float attackDistance) {
+        this.attackDistance = attackDistance;
     }
 
     public boolean getAttackable() {
         return attackable;
     }
-    public void setAttackable(boolean _attackable) {
-        attackable = _attackable;
+    public void setAttackable(boolean attackable) {
+        this.attackable = attackable;
     }
 
     public int getLvl() {
         return lvl;
     }
-    public void setLvl(int _lvl) {
-        lvl = _lvl;
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public int getLvlID() {
         return lvlID;
     }
-    public void setLvlID(int _lvlID) {
-        lvlID = _lvlID;
+    public void setLvlID(int lvlID) {
+        this.lvlID = lvlID;
     }
 
     public boolean getHideTopboard() {
         return hideTopboard;
     }
-    public void setHideTopboard(boolean _hideTopboard) {
-        hideTopboard = _hideTopboard;
+    public void setHideTopboard(boolean hideTopboard) {
+        this.hideTopboard = hideTopboard;
     }
 
     public boolean getHideLabel() {
         return hideLabel;
     }
-    public void setHideLabel(boolean _hideLabel) {
-        hideLabel = _hideLabel;
+    public void setHideLabel(boolean hideLabel) {
+        this.hideLabel = hideLabel;
     }
 
     public int getCampReference() {
         return campReference;
     }
-    public void setCampReference(int _campReference) {
-        campReference = _campReference;
+    public void setCampReference(int campReference) {
+        this.campReference = campReference;
     }
 
     public int getAttrGroup() {
         return attrGroup;
     }
-    public void setAttrGroup(int _attrGroup) {
-        attrGroup = _attrGroup;
+    public void setAttrGroup(int attrGroup) {
+        this.attrGroup = attrGroup;
     }
 
     public int getSkillGroup() {
         return skillGroup;
     }
-    public void setSkillGroup(int _skillGroup) {
-        skillGroup = _skillGroup;
+    public void setSkillGroup(int skillGroup) {
+        this.skillGroup = skillGroup;
     }
 
     public int getAI() {
         return AI;
     }
-    public void setAI(int _AI) {
-        AI = _AI;
+    public void setAI(int AI) {
+        this.AI = AI;
     }
 
     public int getTarget() {
         return target;
     }
-    public void setTarget(int _target) {
-        target = _target;
+    public void setTarget(int target) {
+        this.target = target;
     }
 
     public int getMpAttrGroup() {
         return mpAttrGroup;
     }
-    public void setMpAttrGroup(int _mpAttrGroup) {
-        mpAttrGroup = _mpAttrGroup;
+    public void setMpAttrGroup(int mpAttrGroup) {
+        this.mpAttrGroup = mpAttrGroup;
     }
 
     public int getMpSkillGroup() {
         return mpSkillGroup;
     }
-    public void setMpSkillGroup(int _mpSkillGroup) {
-        mpSkillGroup = _mpSkillGroup;
+    public void setMpSkillGroup(int mpSkillGroup) {
+        this.mpSkillGroup = mpSkillGroup;
     }
 
     public boolean getShowInMinimap() {
         return showInMinimap;
     }
-    public void setShowInMinimap(boolean _showInMinimap) {
-        showInMinimap = _showInMinimap;
+    public void setShowInMinimap(boolean showInMinimap) {
+        this.showInMinimap = showInMinimap;
     }
 
     public float getLife() {
         return life;
     }
-    public void setLife(float _life) {
-        life = _life;
+    public void setLife(float life) {
+        this.life = life;
     }
 
 

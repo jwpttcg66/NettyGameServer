@@ -18,71 +18,71 @@ public class Emitter {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getType() {
         return type;
     }
-    public void setType(int _type) {
-        type = _type;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public float getInterval() {
         return interval;
     }
-    public void setInterval(float _interval) {
-        interval = _interval;
+    public void setInterval(float interval) {
+        this.interval = interval;
     }
 
     public int getCount() {
         return count;
     }
-    public void setCount(int _count) {
-        count = _count;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getGroups() {
         return groups;
     }
-    public void setGroups(String _groups) {
-        groups = _groups;
+    public void setGroups(String groups) {
+        this.groups = groups;
     }
 
     public String getIntervals() {
         return intervals;
     }
-    public void setIntervals(String _intervals) {
-        intervals = _intervals;
+    public void setIntervals(String intervals) {
+        this.intervals = intervals;
     }
 
     public boolean getBlockMove() {
         return blockMove;
     }
-    public void setBlockMove(boolean _blockMove) {
-        blockMove = _blockMove;
+    public void setBlockMove(boolean blockMove) {
+        this.blockMove = blockMove;
     }
 
     public boolean getPlayOrigin() {
         return playOrigin;
     }
-    public void setPlayOrigin(boolean _playOrigin) {
-        playOrigin = _playOrigin;
+    public void setPlayOrigin(boolean playOrigin) {
+        this.playOrigin = playOrigin;
     }
 
 

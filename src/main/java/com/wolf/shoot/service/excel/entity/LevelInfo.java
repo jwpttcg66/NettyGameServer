@@ -30,155 +30,155 @@ public class LevelInfo {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getLevelName() {
         return levelName;
     }
-    public void setLevelName(String _levelName) {
-        levelName = _levelName;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 
     public String getClassName() {
         return className;
     }
-    public void setClassName(String _className) {
-        className = _className;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public String getSceneName() {
         return sceneName;
     }
-    public void setSceneName(String _sceneName) {
-        sceneName = _sceneName;
+    public void setSceneName(String sceneName) {
+        this.sceneName = sceneName;
     }
 
     public String getLevelPath() {
         return levelPath;
     }
-    public void setLevelPath(String _levelPath) {
-        levelPath = _levelPath;
+    public void setLevelPath(String levelPath) {
+        this.levelPath = levelPath;
     }
 
     public String getAtkCampPos() {
         return atkCampPos;
     }
-    public void setAtkCampPos(String _atkCampPos) {
-        atkCampPos = _atkCampPos;
+    public void setAtkCampPos(String atkCampPos) {
+        this.atkCampPos = atkCampPos;
     }
 
     public String getDefCampPos() {
         return defCampPos;
     }
-    public void setDefCampPos(String _defCampPos) {
-        defCampPos = _defCampPos;
+    public void setDefCampPos(String defCampPos) {
+        this.defCampPos = defCampPos;
     }
 
     public String getAtkCameraOffset() {
         return atkCameraOffset;
     }
-    public void setAtkCameraOffset(String _atkCameraOffset) {
-        atkCameraOffset = _atkCameraOffset;
+    public void setAtkCameraOffset(String atkCameraOffset) {
+        this.atkCameraOffset = atkCameraOffset;
     }
 
     public String getAtkCameraRotation() {
         return atkCameraRotation;
     }
-    public void setAtkCameraRotation(String _atkCameraRotation) {
-        atkCameraRotation = _atkCameraRotation;
+    public void setAtkCameraRotation(String atkCameraRotation) {
+        this.atkCameraRotation = atkCameraRotation;
     }
 
     public String getDefCameraOffset() {
         return defCameraOffset;
     }
-    public void setDefCameraOffset(String _defCameraOffset) {
-        defCameraOffset = _defCameraOffset;
+    public void setDefCameraOffset(String defCameraOffset) {
+        this.defCameraOffset = defCameraOffset;
     }
 
     public String getDefCameraRotation() {
         return defCameraRotation;
     }
-    public void setDefCameraRotation(String _defCameraRotation) {
-        defCameraRotation = _defCameraRotation;
+    public void setDefCameraRotation(String defCameraRotation) {
+        this.defCameraRotation = defCameraRotation;
     }
 
     public int getMinimap() {
         return minimap;
     }
-    public void setMinimap(int _minimap) {
-        minimap = _minimap;
+    public void setMinimap(int minimap) {
+        this.minimap = minimap;
     }
 
     public int getDuration() {
         return duration;
     }
-    public void setDuration(int _duration) {
-        duration = _duration;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public String getAtkEntities() {
         return atkEntities;
     }
-    public void setAtkEntities(String _atkEntities) {
-        atkEntities = _atkEntities;
+    public void setAtkEntities(String atkEntities) {
+        this.atkEntities = atkEntities;
     }
 
     public String getDefEntities() {
         return defEntities;
     }
-    public void setDefEntities(String _defEntities) {
-        defEntities = _defEntities;
+    public void setDefEntities(String defEntities) {
+        this.defEntities = defEntities;
     }
 
     public int getMaxLvl() {
         return maxLvl;
     }
-    public void setMaxLvl(int _maxLvl) {
-        maxLvl = _maxLvl;
+    public void setMaxLvl(int maxLvl) {
+        this.maxLvl = maxLvl;
     }
 
     public float getDeadPosY() {
         return DeadPosY;
     }
-    public void setDeadPosY(float _DeadPosY) {
-        DeadPosY = _DeadPosY;
+    public void setDeadPosY(float DeadPosY) {
+        this.DeadPosY = DeadPosY;
     }
 
     public int getRebornType() {
         return rebornType;
     }
-    public void setRebornType(int _rebornType) {
-        rebornType = _rebornType;
+    public void setRebornType(int rebornType) {
+        this.rebornType = rebornType;
     }
 
     public String getAtkRebornPoints() {
         return atkRebornPoints;
     }
-    public void setAtkRebornPoints(String _atkRebornPoints) {
-        atkRebornPoints = _atkRebornPoints;
+    public void setAtkRebornPoints(String atkRebornPoints) {
+        this.atkRebornPoints = atkRebornPoints;
     }
 
     public String getDefRebornPoints() {
         return defRebornPoints;
     }
-    public void setDefRebornPoints(String _defRebornPoints) {
-        defRebornPoints = _defRebornPoints;
+    public void setDefRebornPoints(String defRebornPoints) {
+        this.defRebornPoints = defRebornPoints;
     }
 
     public float getRebornCD() {
         return rebornCD;
     }
-    public void setRebornCD(float _rebornCD) {
-        rebornCD = _rebornCD;
+    public void setRebornCD(float rebornCD) {
+        this.rebornCD = rebornCD;
     }
 
     public float getRebornCDDelta() {
         return rebornCDDelta;
     }
-    public void setRebornCDDelta(float _rebornCDDelta) {
-        rebornCDDelta = _rebornCDDelta;
+    public void setRebornCDDelta(float rebornCDDelta) {
+        this.rebornCDDelta = rebornCDDelta;
     }
 
 

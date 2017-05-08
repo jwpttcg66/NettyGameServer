@@ -12,29 +12,29 @@ public class LevelEvent {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getTime() {
         return time;
     }
-    public void setTime(float _time) {
-        time = _time;
+    public void setTime(float time) {
+        this.time = time;
     }
 
     public int getStage() {
         return stage;
     }
-    public void setStage(int _stage) {
-        stage = _stage;
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 
 

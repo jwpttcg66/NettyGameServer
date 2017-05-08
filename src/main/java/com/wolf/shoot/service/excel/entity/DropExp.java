@@ -10,15 +10,15 @@ public class DropExp {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getExp() {
         return exp;
     }
-    public void setExp(int _exp) {
-        exp = _exp;
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 
 

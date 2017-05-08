@@ -17,64 +17,64 @@ public class EntityAi {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getStep() {
         return step;
     }
-    public void setStep(int _step) {
-        step = _step;
+    public void setStep(int step) {
+        this.step = step;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getPosition() {
         return position;
     }
-    public void setPosition(String _position) {
-        position = _position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getPath() {
         return path;
     }
-    public void setPath(String _path) {
-        path = _path;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public float getWait() {
         return wait;
     }
-    public void setWait(float _wait) {
-        wait = _wait;
+    public void setWait(float wait) {
+        this.wait = wait;
     }
 
     public String getSkills() {
         return skills;
     }
-    public void setSkills(String _skills) {
-        skills = _skills;
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     public String getJumps() {
         return jumps;
     }
-    public void setJumps(String _jumps) {
-        jumps = _jumps;
+    public void setJumps(String jumps) {
+        this.jumps = jumps;
     }
 
     public boolean getBreakable() {
         return breakable;
     }
-    public void setBreakable(boolean _breakable) {
-        breakable = _breakable;
+    public void setBreakable(boolean breakable) {
+        this.breakable = breakable;
     }
 
 

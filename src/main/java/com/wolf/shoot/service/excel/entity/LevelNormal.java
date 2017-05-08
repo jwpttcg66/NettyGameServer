@@ -13,36 +13,36 @@ public class LevelNormal {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getMpScale() {
         return mpScale;
     }
-    public void setMpScale(float _mpScale) {
-        mpScale = _mpScale;
+    public void setMpScale(float mpScale) {
+        this.mpScale = mpScale;
     }
 
     public float getMpThreshold() {
         return mpThreshold;
     }
-    public void setMpThreshold(float _mpThreshold) {
-        mpThreshold = _mpThreshold;
+    public void setMpThreshold(float mpThreshold) {
+        this.mpThreshold = mpThreshold;
     }
 
     public int getMpSkill() {
         return mpSkill;
     }
-    public void setMpSkill(int _mpSkill) {
-        mpSkill = _mpSkill;
+    public void setMpSkill(int mpSkill) {
+        this.mpSkill = mpSkill;
     }
 
 

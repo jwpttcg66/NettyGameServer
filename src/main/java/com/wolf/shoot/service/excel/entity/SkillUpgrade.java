@@ -14,43 +14,43 @@ public class SkillUpgrade {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getGroup() {
         return group;
     }
-    public void setGroup(int _group) {
-        group = _group;
+    public void setGroup(int group) {
+        this.group = group;
     }
 
     public int getLvl() {
         return lvl;
     }
-    public void setLvl(int _lvl) {
-        lvl = _lvl;
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public int getSkillPoint() {
         return skillPoint;
     }
-    public void setSkillPoint(int _skillPoint) {
-        skillPoint = _skillPoint;
+    public void setSkillPoint(int skillPoint) {
+        this.skillPoint = skillPoint;
     }
 
     public int getColumn() {
         return column;
     }
-    public void setColumn(int _column) {
-        column = _column;
+    public void setColumn(int column) {
+        this.column = column;
     }
 
 

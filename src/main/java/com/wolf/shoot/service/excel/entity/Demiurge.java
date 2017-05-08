@@ -25,120 +25,120 @@ public class Demiurge {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean getVisible() {
         return visible;
     }
-    public void setVisible(boolean _visible) {
-        visible = _visible;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public boolean getIsManual() {
         return isManual;
     }
-    public void setIsManual(boolean _isManual) {
-        isManual = _isManual;
+    public void setIsManual(boolean isManual) {
+        this.isManual = isManual;
     }
 
     public String getEntities() {
         return entities;
     }
-    public void setEntities(String _entities) {
-        entities = _entities;
+    public void setEntities(String entities) {
+        this.entities = entities;
     }
 
     public boolean getIsRandomID() {
         return isRandomID;
     }
-    public void setIsRandomID(boolean _isRandomID) {
-        isRandomID = _isRandomID;
+    public void setIsRandomID(boolean isRandomID) {
+        this.isRandomID = isRandomID;
     }
 
     public int getMaxTrigger() {
         return maxTrigger;
     }
-    public void setMaxTrigger(int _maxTrigger) {
-        maxTrigger = _maxTrigger;
+    public void setMaxTrigger(int maxTrigger) {
+        this.maxTrigger = maxTrigger;
     }
 
     public int getMaxAlive() {
         return maxAlive;
     }
-    public void setMaxAlive(int _maxAlive) {
-        maxAlive = _maxAlive;
+    public void setMaxAlive(int maxAlive) {
+        this.maxAlive = maxAlive;
     }
 
     public int getMinLimit() {
         return minLimit;
     }
-    public void setMinLimit(int _minLimit) {
-        minLimit = _minLimit;
+    public void setMinLimit(int minLimit) {
+        this.minLimit = minLimit;
     }
 
     public int getMaxLimit() {
         return maxLimit;
     }
-    public void setMaxLimit(int _maxLimit) {
-        maxLimit = _maxLimit;
+    public void setMaxLimit(int maxLimit) {
+        this.maxLimit = maxLimit;
     }
 
     public float getStartTime() {
         return startTime;
     }
-    public void setStartTime(float _startTime) {
-        startTime = _startTime;
+    public void setStartTime(float startTime) {
+        this.startTime = startTime;
     }
 
     public float getInterval() {
         return interval;
     }
-    public void setInterval(float _interval) {
-        interval = _interval;
+    public void setInterval(float interval) {
+        this.interval = interval;
     }
 
     public int getAreaType() {
         return areaType;
     }
-    public void setAreaType(int _areaType) {
-        areaType = _areaType;
+    public void setAreaType(int areaType) {
+        this.areaType = areaType;
     }
 
     public float getRadius() {
         return radius;
     }
-    public void setRadius(float _radius) {
-        radius = _radius;
+    public void setRadius(float radius) {
+        this.radius = radius;
     }
 
     public float getAngle() {
         return angle;
     }
-    public void setAngle(float _angle) {
-        angle = _angle;
+    public void setAngle(float angle) {
+        this.angle = angle;
     }
 
     public float getWidth() {
         return width;
     }
-    public void setWidth(float _width) {
-        width = _width;
+    public void setWidth(float width) {
+        this.width = width;
     }
 
     public float getHeight() {
         return height;
     }
-    public void setHeight(float _height) {
-        height = _height;
+    public void setHeight(float height) {
+        this.height = height;
     }
 
 

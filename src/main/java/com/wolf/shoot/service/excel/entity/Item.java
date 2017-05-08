@@ -13,36 +13,36 @@ public class Item {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getIcon() {
         return icon;
     }
-    public void setIcon(String _icon) {
-        icon = _icon;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public int getMaxTier() {
         return maxTier;
     }
-    public void setMaxTier(int _maxTier) {
-        maxTier = _maxTier;
+    public void setMaxTier(int maxTier) {
+        this.maxTier = maxTier;
     }
 
 

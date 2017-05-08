@@ -15,50 +15,50 @@ public class Fontal {
     public int getNo() {
         return no;
     }
-    public void setNo(int _no) {
-        no = _no;
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getInit() {
         return init;
     }
-    public void setInit(String _init) {
-        init = _init;
+    public void setInit(String init) {
+        this.init = init;
     }
 
     public float getUpper() {
         return upper;
     }
-    public void setUpper(float _upper) {
-        upper = _upper;
+    public void setUpper(float upper) {
+        this.upper = upper;
     }
 
     public float getLower() {
         return lower;
     }
-    public void setLower(float _lower) {
-        lower = _lower;
+    public void setLower(float lower) {
+        this.lower = lower;
     }
 
     public String getConverts() {
         return converts;
     }
-    public void setConverts(String _converts) {
-        converts = _converts;
+    public void setConverts(String converts) {
+        this.converts = converts;
     }
 
 

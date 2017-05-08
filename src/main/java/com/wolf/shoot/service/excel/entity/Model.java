@@ -15,50 +15,50 @@ public class Model {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getResource() {
         return resource;
     }
-    public void setResource(String _resource) {
-        resource = _resource;
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     public String getResource2() {
         return resource2;
     }
-    public void setResource2(String _resource2) {
-        resource2 = _resource2;
+    public void setResource2(String resource2) {
+        this.resource2 = resource2;
     }
 
     public float getTopHeight() {
         return topHeight;
     }
-    public void setTopHeight(float _topHeight) {
-        topHeight = _topHeight;
+    public void setTopHeight(float topHeight) {
+        this.topHeight = topHeight;
     }
 
     public String getIcon() {
         return icon;
     }
-    public void setIcon(String _icon) {
-        icon = _icon;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
 

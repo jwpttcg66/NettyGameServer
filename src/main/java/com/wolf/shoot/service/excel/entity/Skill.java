@@ -36,197 +36,197 @@ public class Skill {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getClassName() {
         return className;
     }
-    public void setClassName(String _className) {
-        className = _className;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public int getKind() {
         return kind;
     }
-    public void setKind(int _kind) {
-        kind = _kind;
+    public void setKind(int kind) {
+        this.kind = kind;
     }
 
     public int getPlayType() {
         return playType;
     }
-    public void setPlayType(int _playType) {
-        playType = _playType;
+    public void setPlayType(int playType) {
+        this.playType = playType;
     }
 
     public float getDistance() {
         return distance;
     }
-    public void setDistance(float _distance) {
-        distance = _distance;
+    public void setDistance(float distance) {
+        this.distance = distance;
     }
 
     public int getConsumeHp() {
         return consumeHp;
     }
-    public void setConsumeHp(int _consumeHp) {
-        consumeHp = _consumeHp;
+    public void setConsumeHp(int consumeHp) {
+        this.consumeHp = consumeHp;
     }
 
     public int getConsumeMp() {
         return consumeMp;
     }
-    public void setConsumeMp(int _consumeMp) {
-        consumeMp = _consumeMp;
+    public void setConsumeMp(int consumeMp) {
+        this.consumeMp = consumeMp;
     }
 
     public int getConsumeCash() {
         return consumeCash;
     }
-    public void setConsumeCash(int _consumeCash) {
-        consumeCash = _consumeCash;
+    public void setConsumeCash(int consumeCash) {
+        this.consumeCash = consumeCash;
     }
 
     public String getConsumeItem() {
         return consumeItem;
     }
-    public void setConsumeItem(String _consumeItem) {
-        consumeItem = _consumeItem;
+    public void setConsumeItem(String consumeItem) {
+        this.consumeItem = consumeItem;
     }
 
     public float getCd() {
         return cd;
     }
-    public void setCd(float _cd) {
-        cd = _cd;
+    public void setCd(float cd) {
+        this.cd = cd;
     }
 
     public String getImpacts() {
         return impacts;
     }
-    public void setImpacts(String _impacts) {
-        impacts = _impacts;
+    public void setImpacts(String impacts) {
+        this.impacts = impacts;
     }
 
     public String getSelfHatred() {
         return selfHatred;
     }
-    public void setSelfHatred(String _selfHatred) {
-        selfHatred = _selfHatred;
+    public void setSelfHatred(String selfHatred) {
+        this.selfHatred = selfHatred;
     }
 
     public String getTargetHatred() {
         return targetHatred;
     }
-    public void setTargetHatred(String _targetHatred) {
-        targetHatred = _targetHatred;
+    public void setTargetHatred(String targetHatred) {
+        this.targetHatred = targetHatred;
     }
 
     public float getAttack2mp() {
         return attack2mp;
     }
-    public void setAttack2mp(float _attack2mp) {
-        attack2mp = _attack2mp;
+    public void setAttack2mp(float attack2mp) {
+        this.attack2mp = attack2mp;
     }
 
     public float getDamage2mp() {
         return damage2mp;
     }
-    public void setDamage2mp(float _damage2mp) {
-        damage2mp = _damage2mp;
+    public void setDamage2mp(float damage2mp) {
+        this.damage2mp = damage2mp;
     }
 
     public String getIcon() {
         return icon;
     }
-    public void setIcon(String _icon) {
-        icon = _icon;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public int getIndType() {
         return indType;
     }
-    public void setIndType(int _indType) {
-        indType = _indType;
+    public void setIndType(int indType) {
+        this.indType = indType;
     }
 
     public float getIndRadius() {
         return indRadius;
     }
-    public void setIndRadius(float _indRadius) {
-        indRadius = _indRadius;
+    public void setIndRadius(float indRadius) {
+        this.indRadius = indRadius;
     }
 
     public float getIndAngle() {
         return indAngle;
     }
-    public void setIndAngle(float _indAngle) {
-        indAngle = _indAngle;
+    public void setIndAngle(float indAngle) {
+        this.indAngle = indAngle;
     }
 
     public int getEmitterID() {
         return emitterID;
     }
-    public void setEmitterID(int _emitterID) {
-        emitterID = _emitterID;
+    public void setEmitterID(int emitterID) {
+        this.emitterID = emitterID;
     }
 
     public float getEmitterDuration() {
         return emitterDuration;
     }
-    public void setEmitterDuration(float _emitterDuration) {
-        emitterDuration = _emitterDuration;
+    public void setEmitterDuration(float emitterDuration) {
+        this.emitterDuration = emitterDuration;
     }
 
     public boolean getAutoAim() {
         return autoAim;
     }
-    public void setAutoAim(boolean _autoAim) {
-        autoAim = _autoAim;
+    public void setAutoAim(boolean autoAim) {
+        this.autoAim = autoAim;
     }
 
     public int getKnack() {
         return knack;
     }
-    public void setKnack(int _knack) {
-        knack = _knack;
+    public void setKnack(int knack) {
+        this.knack = knack;
     }
 
     public float getSpellTime() {
         return spellTime;
     }
-    public void setSpellTime(float _spellTime) {
-        spellTime = _spellTime;
+    public void setSpellTime(float spellTime) {
+        this.spellTime = spellTime;
     }
 
     public String getSpellAction() {
         return spellAction;
     }
-    public void setSpellAction(String _spellAction) {
-        spellAction = _spellAction;
+    public void setSpellAction(String spellAction) {
+        this.spellAction = spellAction;
     }
 
     public String getSpellEffect() {
         return spellEffect;
     }
-    public void setSpellEffect(String _spellEffect) {
-        spellEffect = _spellEffect;
+    public void setSpellEffect(String spellEffect) {
+        this.spellEffect = spellEffect;
     }
 
 

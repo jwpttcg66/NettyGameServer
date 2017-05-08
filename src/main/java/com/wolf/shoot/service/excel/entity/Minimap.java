@@ -14,43 +14,43 @@ public class Minimap {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getPath() {
         return path;
     }
-    public void setPath(String _path) {
-        path = _path;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getOrigin() {
         return origin;
     }
-    public void setOrigin(String _origin) {
-        origin = _origin;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getRightTop() {
         return rightTop;
     }
-    public void setRightTop(String _rightTop) {
-        rightTop = _rightTop;
+    public void setRightTop(String rightTop) {
+        this.rightTop = rightTop;
     }
 
     public float getScale() {
         return scale;
     }
-    public void setScale(float _scale) {
-        scale = _scale;
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 
 

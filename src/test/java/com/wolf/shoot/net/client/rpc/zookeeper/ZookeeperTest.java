@@ -11,6 +11,7 @@ import com.wolf.shoot.service.rpc.server.SdRpcServiceProvider;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZooKeeperNodeInfo;
 import com.wolf.shoot.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,6 +58,12 @@ public class ZookeeperTest {
         zookeeperRpcServiceDiscovery.discovery(ZooKeeperNodeBoEnum.WORLD);
         List<ZooKeeperNodeInfo> dataList = zookeeperRpcServiceDiscovery.getNodeList(ZooKeeperNodeBoEnum.WORLD);
         System.out.println(dataList);
+        try {
+			new Thread().sleep(9999999l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void close() throws Exception {

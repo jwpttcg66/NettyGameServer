@@ -12,29 +12,29 @@ public class Example {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
         return name;
     }
-    public void setName(String _name) {
-        name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescribe() {
         return describe;
     }
-    public void setDescribe(String _describe) {
-        describe = _describe;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public int getQuality() {
         return quality;
     }
-    public void setQuality(int _quality) {
-        quality = _quality;
+    public void setQuality(int quality) {
+        this.quality = quality;
     }
 
 

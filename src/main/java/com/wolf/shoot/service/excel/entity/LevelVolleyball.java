@@ -22,99 +22,99 @@ public class LevelVolleyball {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getMpScale() {
         return mpScale;
     }
-    public void setMpScale(float _mpScale) {
-        mpScale = _mpScale;
+    public void setMpScale(float mpScale) {
+        this.mpScale = mpScale;
     }
 
     public float getMpThreshold() {
         return mpThreshold;
     }
-    public void setMpThreshold(float _mpThreshold) {
-        mpThreshold = _mpThreshold;
+    public void setMpThreshold(float mpThreshold) {
+        this.mpThreshold = mpThreshold;
     }
 
     public int getMpSkill() {
         return mpSkill;
     }
-    public void setMpSkill(int _mpSkill) {
-        mpSkill = _mpSkill;
+    public void setMpSkill(int mpSkill) {
+        this.mpSkill = mpSkill;
     }
 
     public String getAttackRect() {
         return attackRect;
     }
-    public void setAttackRect(String _attackRect) {
-        attackRect = _attackRect;
+    public void setAttackRect(String attackRect) {
+        this.attackRect = attackRect;
     }
 
     public String getDefenceRect() {
         return defenceRect;
     }
-    public void setDefenceRect(String _defenceRect) {
-        defenceRect = _defenceRect;
+    public void setDefenceRect(String defenceRect) {
+        this.defenceRect = defenceRect;
     }
 
     public float getMinHeight() {
         return minHeight;
     }
-    public void setMinHeight(float _minHeight) {
-        minHeight = _minHeight;
+    public void setMinHeight(float minHeight) {
+        this.minHeight = minHeight;
     }
 
     public float getMaxHeight() {
         return maxHeight;
     }
-    public void setMaxHeight(float _maxHeight) {
-        maxHeight = _maxHeight;
+    public void setMaxHeight(float maxHeight) {
+        this.maxHeight = maxHeight;
     }
 
     public float getShadowTime() {
         return shadowTime;
     }
-    public void setShadowTime(float _shadowTime) {
-        shadowTime = _shadowTime;
+    public void setShadowTime(float shadowTime) {
+        this.shadowTime = shadowTime;
     }
 
     public int getScoreBounce() {
         return scoreBounce;
     }
-    public void setScoreBounce(int _scoreBounce) {
-        scoreBounce = _scoreBounce;
+    public void setScoreBounce(int scoreBounce) {
+        this.scoreBounce = scoreBounce;
     }
 
     public int getScoreKill() {
         return scoreKill;
     }
-    public void setScoreKill(int _scoreKill) {
-        scoreKill = _scoreKill;
+    public void setScoreKill(int scoreKill) {
+        this.scoreKill = scoreKill;
     }
 
     public int getScoreLost() {
         return scoreLost;
     }
-    public void setScoreLost(int _scoreLost) {
-        scoreLost = _scoreLost;
+    public void setScoreLost(int scoreLost) {
+        this.scoreLost = scoreLost;
     }
 
     public String getRects() {
         return rects;
     }
-    public void setRects(String _rects) {
-        rects = _rects;
+    public void setRects(String rects) {
+        this.rects = rects;
     }
 
 

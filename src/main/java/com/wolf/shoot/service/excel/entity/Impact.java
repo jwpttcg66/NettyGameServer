@@ -45,260 +45,260 @@ public class Impact {
     public int getNo() {
         return no;
     }
-    public void setNo(int _no) {
-        no = _no;
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getClassName() {
         return className;
     }
-    public void setClassName(String _className) {
-        className = _className;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public int getDamageType() {
         return damageType;
     }
-    public void setDamageType(int _damageType) {
-        damageType = _damageType;
+    public void setDamageType(int damageType) {
+        this.damageType = damageType;
     }
 
     public float getBeginTime() {
         return beginTime;
     }
-    public void setBeginTime(float _beginTime) {
-        beginTime = _beginTime;
+    public void setBeginTime(float beginTime) {
+        this.beginTime = beginTime;
     }
 
     public float getCastTime() {
         return castTime;
     }
-    public void setCastTime(float _castTime) {
-        castTime = _castTime;
+    public void setCastTime(float castTime) {
+        this.castTime = castTime;
     }
 
     public float getEndTime() {
         return endTime;
     }
-    public void setEndTime(float _endTime) {
-        endTime = _endTime;
+    public void setEndTime(float endTime) {
+        this.endTime = endTime;
     }
 
     public float getBulletSpeed() {
         return bulletSpeed;
     }
-    public void setBulletSpeed(float _bulletSpeed) {
-        bulletSpeed = _bulletSpeed;
+    public void setBulletSpeed(float bulletSpeed) {
+        this.bulletSpeed = bulletSpeed;
     }
 
     public int getMaxTargets() {
         return maxTargets;
     }
-    public void setMaxTargets(int _maxTargets) {
-        maxTargets = _maxTargets;
+    public void setMaxTargets(int maxTargets) {
+        this.maxTargets = maxTargets;
     }
 
     public String getNpcs() {
         return npcs;
     }
-    public void setNpcs(String _npcs) {
-        npcs = _npcs;
+    public void setNpcs(String npcs) {
+        this.npcs = npcs;
     }
 
     public String getBuffAdd() {
         return buffAdd;
     }
-    public void setBuffAdd(String _buffAdd) {
-        buffAdd = _buffAdd;
+    public void setBuffAdd(String buffAdd) {
+        this.buffAdd = buffAdd;
     }
 
     public String getBuffDel() {
         return buffDel;
     }
-    public void setBuffDel(String _buffDel) {
-        buffDel = _buffDel;
+    public void setBuffDel(String buffDel) {
+        this.buffDel = buffDel;
     }
 
     public String getControlDel() {
         return controlDel;
     }
-    public void setControlDel(String _controlDel) {
-        controlDel = _controlDel;
+    public void setControlDel(String controlDel) {
+        this.controlDel = controlDel;
     }
 
     public int getHpType() {
         return hpType;
     }
-    public void setHpType(int _hpType) {
-        hpType = _hpType;
+    public void setHpType(int hpType) {
+        this.hpType = hpType;
     }
 
     public int getHpBasic() {
         return hpBasic;
     }
-    public void setHpBasic(int _hpBasic) {
-        hpBasic = _hpBasic;
+    public void setHpBasic(int hpBasic) {
+        this.hpBasic = hpBasic;
     }
 
     public float getHpFactor() {
         return hpFactor;
     }
-    public void setHpFactor(float _hpFactor) {
-        hpFactor = _hpFactor;
+    public void setHpFactor(float hpFactor) {
+        this.hpFactor = hpFactor;
     }
 
     public int getMpType() {
         return mpType;
     }
-    public void setMpType(int _mpType) {
-        mpType = _mpType;
+    public void setMpType(int mpType) {
+        this.mpType = mpType;
     }
 
     public int getMpBasic() {
         return mpBasic;
     }
-    public void setMpBasic(int _mpBasic) {
-        mpBasic = _mpBasic;
+    public void setMpBasic(int mpBasic) {
+        this.mpBasic = mpBasic;
     }
 
     public float getMpFactor() {
         return mpFactor;
     }
-    public void setMpFactor(float _mpFactor) {
-        mpFactor = _mpFactor;
+    public void setMpFactor(float mpFactor) {
+        this.mpFactor = mpFactor;
     }
 
     public int getChType() {
         return chType;
     }
-    public void setChType(int _chType) {
-        chType = _chType;
+    public void setChType(int chType) {
+        this.chType = chType;
     }
 
     public float getChRadius() {
         return chRadius;
     }
-    public void setChRadius(float _chRadius) {
-        chRadius = _chRadius;
+    public void setChRadius(float chRadius) {
+        this.chRadius = chRadius;
     }
 
     public float getChAngle() {
         return chAngle;
     }
-    public void setChAngle(float _chAngle) {
-        chAngle = _chAngle;
+    public void setChAngle(float chAngle) {
+        this.chAngle = chAngle;
     }
 
     public float getChWidth() {
         return chWidth;
     }
-    public void setChWidth(float _chWidth) {
-        chWidth = _chWidth;
+    public void setChWidth(float chWidth) {
+        this.chWidth = chWidth;
     }
 
     public float getChHeight() {
         return chHeight;
     }
-    public void setChHeight(float _chHeight) {
-        chHeight = _chHeight;
+    public void setChHeight(float chHeight) {
+        this.chHeight = chHeight;
     }
 
     public String getRelations() {
         return relations;
     }
-    public void setRelations(String _relations) {
-        relations = _relations;
+    public void setRelations(String relations) {
+        this.relations = relations;
     }
 
     public String getTargetClasses() {
         return targetClasses;
     }
-    public void setTargetClasses(String _targetClasses) {
-        targetClasses = _targetClasses;
+    public void setTargetClasses(String targetClasses) {
+        this.targetClasses = targetClasses;
     }
 
     public String getBeganAction() {
         return beganAction;
     }
-    public void setBeganAction(String _beganAction) {
-        beganAction = _beganAction;
+    public void setBeganAction(String beganAction) {
+        this.beganAction = beganAction;
     }
 
     public String getBeganEffect() {
         return beganEffect;
     }
-    public void setBeganEffect(String _beganEffect) {
-        beganEffect = _beganEffect;
+    public void setBeganEffect(String beganEffect) {
+        this.beganEffect = beganEffect;
     }
 
     public String getCastAction() {
         return castAction;
     }
-    public void setCastAction(String _castAction) {
-        castAction = _castAction;
+    public void setCastAction(String castAction) {
+        this.castAction = castAction;
     }
 
     public String getCastEffect() {
         return castEffect;
     }
-    public void setCastEffect(String _castEffect) {
-        castEffect = _castEffect;
+    public void setCastEffect(String castEffect) {
+        this.castEffect = castEffect;
     }
 
     public String getBulletEffect() {
         return bulletEffect;
     }
-    public void setBulletEffect(String _bulletEffect) {
-        bulletEffect = _bulletEffect;
+    public void setBulletEffect(String bulletEffect) {
+        this.bulletEffect = bulletEffect;
     }
 
     public String getEndedAction() {
         return endedAction;
     }
-    public void setEndedAction(String _endedAction) {
-        endedAction = _endedAction;
+    public void setEndedAction(String endedAction) {
+        this.endedAction = endedAction;
     }
 
     public String getEndedEffect() {
         return endedEffect;
     }
-    public void setEndedEffect(String _endedEffect) {
-        endedEffect = _endedEffect;
+    public void setEndedEffect(String endedEffect) {
+        this.endedEffect = endedEffect;
     }
 
     public String getHitAction() {
         return hitAction;
     }
-    public void setHitAction(String _hitAction) {
-        hitAction = _hitAction;
+    public void setHitAction(String hitAction) {
+        this.hitAction = hitAction;
     }
 
     public String getHitEffect() {
         return hitEffect;
     }
-    public void setHitEffect(String _hitEffect) {
-        hitEffect = _hitEffect;
+    public void setHitEffect(String hitEffect) {
+        this.hitEffect = hitEffect;
     }
 
     public String getEmitter() {
         return emitter;
     }
-    public void setEmitter(String _emitter) {
-        emitter = _emitter;
+    public void setEmitter(String emitter) {
+        this.emitter = emitter;
     }
 
     public boolean getTransport() {
         return transport;
     }
-    public void setTransport(boolean _transport) {
-        transport = _transport;
+    public void setTransport(boolean transport) {
+        this.transport = transport;
     }
 
 

@@ -23,106 +23,106 @@ public class LevelSpy {
     public int getID() {
         return ID;
     }
-    public void setID(int _ID) {
-        ID = _ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getDesc() {
         return desc;
     }
-    public void setDesc(String _desc) {
-        desc = _desc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public float getMpScale() {
         return mpScale;
     }
-    public void setMpScale(float _mpScale) {
-        mpScale = _mpScale;
+    public void setMpScale(float mpScale) {
+        this.mpScale = mpScale;
     }
 
     public float getMpThreshold() {
         return mpThreshold;
     }
-    public void setMpThreshold(float _mpThreshold) {
-        mpThreshold = _mpThreshold;
+    public void setMpThreshold(float mpThreshold) {
+        this.mpThreshold = mpThreshold;
     }
 
     public int getMpSkill() {
         return mpSkill;
     }
-    public void setMpSkill(int _mpSkill) {
-        mpSkill = _mpSkill;
+    public void setMpSkill(int mpSkill) {
+        this.mpSkill = mpSkill;
     }
 
     public String getKingSkills() {
         return kingSkills;
     }
-    public void setKingSkills(String _kingSkills) {
-        kingSkills = _kingSkills;
+    public void setKingSkills(String kingSkills) {
+        this.kingSkills = kingSkills;
     }
 
     public String getSpySkills() {
         return spySkills;
     }
-    public void setSpySkills(String _spySkills) {
-        spySkills = _spySkills;
+    public void setSpySkills(String spySkills) {
+        this.spySkills = spySkills;
     }
 
     public String getCivilianSkills() {
         return civilianSkills;
     }
-    public void setCivilianSkills(String _civilianSkills) {
-        civilianSkills = _civilianSkills;
+    public void setCivilianSkills(String civilianSkills) {
+        this.civilianSkills = civilianSkills;
     }
 
     public int getMaxPlayer() {
         return maxPlayer;
     }
-    public void setMaxPlayer(int _maxPlayer) {
-        maxPlayer = _maxPlayer;
+    public void setMaxPlayer(int maxPlayer) {
+        this.maxPlayer = maxPlayer;
     }
 
     public float getWaitingTime() {
         return waitingTime;
     }
-    public void setWaitingTime(float _waitingTime) {
-        waitingTime = _waitingTime;
+    public void setWaitingTime(float waitingTime) {
+        this.waitingTime = waitingTime;
     }
 
     public float getPrepareTime() {
         return prepareTime;
     }
-    public void setPrepareTime(float _prepareTime) {
-        prepareTime = _prepareTime;
+    public void setPrepareTime(float prepareTime) {
+        this.prepareTime = prepareTime;
     }
 
     public int getBigGhostRebornCounts() {
         return bigGhostRebornCounts;
     }
-    public void setBigGhostRebornCounts(int _bigGhostRebornCounts) {
-        bigGhostRebornCounts = _bigGhostRebornCounts;
+    public void setBigGhostRebornCounts(int bigGhostRebornCounts) {
+        this.bigGhostRebornCounts = bigGhostRebornCounts;
     }
 
     public int getSmallGhostRebornCounts() {
         return smallGhostRebornCounts;
     }
-    public void setSmallGhostRebornCounts(int _smallGhostRebornCounts) {
-        smallGhostRebornCounts = _smallGhostRebornCounts;
+    public void setSmallGhostRebornCounts(int smallGhostRebornCounts) {
+        this.smallGhostRebornCounts = smallGhostRebornCounts;
     }
 
     public int getFarmerCounts() {
         return farmerCounts;
     }
-    public void setFarmerCounts(int _farmerCounts) {
-        farmerCounts = _farmerCounts;
+    public void setFarmerCounts(int farmerCounts) {
+        this.farmerCounts = farmerCounts;
     }
 
     public float getKingScale() {
         return kingScale;
     }
-    public void setKingScale(float _kingScale) {
-        kingScale = _kingScale;
+    public void setKingScale(float kingScale) {
+        this.kingScale = kingScale;
     }
 
 
