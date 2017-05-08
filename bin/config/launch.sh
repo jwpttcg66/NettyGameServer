@@ -9,7 +9,7 @@ start(){
         echo "path :$jar_lib"
         #init logs
         if [ ! -d 'logs' ] ; then mkdir logs ; fi
-        java -Dserver.name=game-server -server -Xmx1024M -Xms1024M -Xmn512M -Xss256k -XX:NewRatio=2 -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/logs  -XX:ErrorFile=/logs/hs_error%p.log -cp resource:resource:${jar_lib}  com.wolf.shoot.server.GameServer &
+        java -Dserver.name=game-server -server -Xmx1024M -Xms1024M -Xmn512M -Xss256k -XX:NewRatio=2 -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/logs  -XX:ErrorFile=/logs/hs_error%p.log -cp resource:resource:${jar_lib}  com.snowcattle.game.bootstrap.GameServer &
         pid=$!
         echo "$pid" >pid
         echo "game-server ProcessId:$pid"
