@@ -22,7 +22,7 @@ public class DictService implements IService{
 
     private Logger logger = Loggers.serverLogger;
 
-    private Map<IDictModleType, IDictCollections> collectionsMap;
+    private Map<String, IDictCollections> collectionsMap;
     @Override
     public String getId() {
         return ServiceName.DictService;
@@ -30,7 +30,7 @@ public class DictService implements IService{
 
     @Override
     public void startup() throws Exception {
-        Map<IDictModleType, IDictCollections> collectionsMap = new ConcurrentHashMap<>();
+        Map<String, IDictCollections> collectionsMap = new ConcurrentHashMap<>();
 
         String filePath = GlobalConstants.ConfigFile.dict_root_file;
         String jsonString = ResourceUtil.getTextFormResource(filePath);
@@ -59,11 +59,15 @@ public class DictService implements IService{
                         } else {
                             Class classes = Class.forName(packages + "." + ClassName);
                             JSONObject[] dictModleJsonObjects = bodyJson.toArray(new JSONObject[0]);
+                            DictMap dictMap = new DictMap();
                             for(JSONObject dictJson: dictModleJsonObjects) {
                                 //唯一的数据
                                 Object object = JSONObject.toJavaObject(dictJson, classes);
                                 logger.debug("加载" + dictJson.toJSONString());
+                                IDict dict = (IDict) object;
+                                dictMap.putIDict(dict.getID(), dict);
                             }
+                            collectionsMap.put(enumString,dictMap);
                         }
                     }
                 }
@@ -71,7 +75,6 @@ public class DictService implements IService{
         }
 
         this.collectionsMap = collectionsMap;
-
 
     }
 

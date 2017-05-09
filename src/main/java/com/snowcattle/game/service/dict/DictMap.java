@@ -12,7 +12,7 @@ public class DictMap implements IDictCollections{
     //存放map形数据字典
     private Map<Integer, IDict> dictMap;
 
-    private DictMap(){
+    public DictMap(){
         this.dictMap = new ConcurrentHashMap<>();
     }
 
