@@ -1,6 +1,5 @@
 package com.snowcattle.game.service.dict;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
@@ -24,7 +23,12 @@ public class DictService implements IService{
         String filePath = GlobalConstants.ConfigFile.dict_root_file;
         String jsonString = ResourceUtil.getTextFormResource(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
-            JSON json = (JSON) JSONObject.parse(jsonString);
+            JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
+//            JSONArray files = (JSONArray) jsonObject.get(GlobalConstants.JSONFile.dict_fils);
+//            for(Object temp: files.toArray()){
+//                System.out.println(temp);
+//            }
+
         }
 
     }

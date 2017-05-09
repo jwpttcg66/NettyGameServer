@@ -89,6 +89,15 @@ public class GlobalConstants {
     }
 
     /**
+     * JSONFile
+     */
+    public static class JSONFile{
+        public static final String  dict_fils  = "files";
+
+    }
+
+
+    /**
      * Thread的名字前缀
      */
     public static class Thread{
