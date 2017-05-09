@@ -1,21 +1,21 @@
 package com.snowcattle.game.manager.spring;
 
-import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
-import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
-import com.snowcattle.game.service.rpc.client.RPCFutureService;
-import com.snowcattle.game.service.rpc.server.RpcMethodRegistry;
-import com.snowcattle.game.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.loader.DefaultClassLoader;
 import com.snowcattle.game.service.async.pool.AsyncThreadService;
+import com.snowcattle.game.service.dict.DictService;
+import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
+import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.lookup.cache.EhcacheService;
 import com.snowcattle.game.service.net.message.facade.GameFacade;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
+import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;
+import com.snowcattle.game.service.rpc.server.RpcMethodRegistry;
+import com.snowcattle.game.service.rpc.server.zookeeper.ZookeeperRpcServiceRegistry;
 import com.snowcattle.game.service.time.SystemTimeService;
-
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -69,6 +69,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncThreadService asyncThreadService;
+
+    @Autowired
+    private DictService dictService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -182,5 +185,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setAsyncThreadService(AsyncThreadService asyncThreadService) {
         this.asyncThreadService = asyncThreadService;
+    }
+
+    public DictService getDictService() {
+        return dictService;
+    }
+
+    public void setDictService(DictService dictService) {
+        this.dictService = dictService;
     }
 }

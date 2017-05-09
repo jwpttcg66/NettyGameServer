@@ -59,4 +59,18 @@ public class ResourceUtil {
 		}
 		return getTextFormURL(_url, charset);
 	}
+
+	/**
+	 * 取得指定resource中文本内容 默认utf8
+	 *
+	 * @param resource
+	 * @return
+	 */
+	public static String getTextFormResource(String resource) {
+		URL _url = getResourceURL(resource);
+		if (_url == null) {
+			throw new IllegalArgumentException("Can't load config from resource [" + resource + "]");
+		}
+		return getTextFormURL(_url, null);
+	}
 }
