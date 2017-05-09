@@ -115,7 +115,7 @@ public class DictService implements IService{
         return null;
     }
 
-    public <T> T[] getIDictArray(String dictModleType, int id, Class<T> t){
+    public <T extends IDict> List<T> getIDictArray(String dictModleType, int id, Class<T> t){
         if(!collectionsMap.containsKey(dictModleType)){
             return null;
         }
@@ -123,7 +123,12 @@ public class DictService implements IService{
         IDictCollections iDictCollections = collectionsMap.get(dictModleType);
         if(iDictCollections instanceof DictArrayMaps){
             DictArrayMaps dictArrayMaps = (DictArrayMaps) iDictCollections;
-            return (T[]) dictArrayMaps.getDictArary(id);
+            IDict[] iDictArrays = dictArrayMaps.getDictArary(id);
+            List<T> list = new ArrayList<>();
+            for(IDict iDict: iDictArrays){
+                list.add((T) iDict);
+            }
+            return list;
         }
         return null;
     }

@@ -4,6 +4,9 @@ import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.dict.entity.Bullet;
+import com.snowcattle.game.service.dict.entity.RoleSkill;
+
+import java.util.List;
 
 /**
  * Created by jiangwenping on 17/5/9.
@@ -16,5 +19,9 @@ public class DictServiceTest {
         int id = 1;
         Bullet bullet = dictService.getIDict(dictModleType, id, Bullet.class);
         System.out.println(bullet);
+        dictModleType= "STATUS_ROLE_SKILL";
+        id = 100;
+        List<RoleSkill> roleSkills = dictService.getIDictArray(dictModleType, id, RoleSkill.class);
+        System.out.println(roleSkills);
     }
 }
