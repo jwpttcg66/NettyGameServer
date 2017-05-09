@@ -1,4 +1,4 @@
-package com.snowcattle.game.common.util;
+package com.snowcattle.game.service.json;
 
 /**
  * 将对象中的数据转化成json格式字符串的转化器

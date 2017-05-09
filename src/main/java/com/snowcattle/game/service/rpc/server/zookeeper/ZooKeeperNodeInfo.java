@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.rpc.server.zookeeper;
 
 import com.alibaba.fastjson.JSON;
-import com.snowcattle.game.common.util.JsonSerializer;
+import com.snowcattle.game.service.json.JsonSerializer;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.service.rpc.server.RpcNodeInfo;
 

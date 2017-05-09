@@ -18,5 +18,5 @@ public class ServiceName {
     public static final String ZookeeperRpcServiceRegistry = "ZookeeperRpcServiceRegistry";
     public static final String ZookeeperRpcServiceDiscovery = "ZookeeperRpcServiceDiscovery";
     public static final String AsyncThreadService = "AsyncThreadService";
-    public static final String EXCELDATASERVICE = "ExcelDataService"; 
+    public static final String DictService = "DictService";
 }

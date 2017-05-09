@@ -1,7 +1,5 @@
 package com.snowcattle.game.bootstrap;
 
-import com.snowcattle.game.common.util.ServerVersion;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -98,7 +96,7 @@ public class ServerStatusLog {
             _out = new FileOutputStream(_logFile);
             String _time = new SimpleDateFormat("yyyy-MM-dd HH:mm")
                     .format(new Date());
-            String _status = status + "\t" + _time + "\t" + ServerVersion.getServerVersion();
+            String _status = status + "\t" + _time + "\t";
             _out.write(_status.getBytes(Charset.forName("ISO8859-1")));
         } catch (Exception e) {
             e.printStackTrace();
