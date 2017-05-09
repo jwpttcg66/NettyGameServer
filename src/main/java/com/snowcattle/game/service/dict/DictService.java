@@ -44,7 +44,7 @@ public class DictService implements IService{
             for(JSONArray dictModleJsonArray: dictModle){
                 String enumString = dictModleJsonArray.get(0).toString();
                 String path = dictModleJsonArray.get(1).toString();
-                String ClassName = dictModleJsonArray.get(2).toString();
+                String className = dictModleJsonArray.get(2).toString();
 
 //                logger.debug(dictModleJsonArray.toJSONString());
                 //加载文件
@@ -56,7 +56,7 @@ public class DictService implements IService{
                     JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
                     boolean multiKey = Boolean.parseBoolean(multiKeyString);
                     if(bodyJson != null) {
-                        Class classes = Class.forName(packages + "." + ClassName);
+                        Class classes = Class.forName(packages + "." + className);
                         if (multiKey) {
                             JSONArray[] dictModleJsonArrays = bodyJson.toArray(new JSONArray[0]);
                             DictArrayMaps dictMap = new DictArrayMaps();
@@ -68,7 +68,9 @@ public class DictService implements IService{
                                 for(JSONObject dictJson: dictModleJsonObjects) {
                                     //唯一的数据
                                     Object object = JSONObject.toJavaObject(dictJson, classes);
-                                    logger.debug("加载" + dictJson.toJSONString());
+                                    if(logger.isDebugEnabled()) {
+                                        logger.debug("加载dict className:" +  className + dictJson.toJSONString());
+                                    }
                                     IDict dict = (IDict) object;
                                     dictList.add(dict);
                                     dictId = dict.getID();
@@ -82,7 +84,9 @@ public class DictService implements IService{
                             for(JSONObject dictJson: dictModleJsonObjects) {
                                 //唯一的数据
                                 Object object = JSONObject.toJavaObject(dictJson, classes);
-                                logger.debug("加载" + dictJson.toJSONString());
+                                if(logger.isDebugEnabled()) {
+                                    logger.debug("加载dict className:" + className + dictJson.toJSONString());
+                                }
                                 IDict dict = (IDict) object;
                                 dictMap.put(dict.getID(), dict);
                             }
