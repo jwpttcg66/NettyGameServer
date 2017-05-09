@@ -13,14 +13,10 @@ public class Loggers {
     public static final Logger serverLogger = LoggerFactory.getLogger("server");
     /** Game Server相关的日志 */
     public static final Logger gameLogger = LoggerFactory.getLogger("game");
-    /** Game Server相关的日志 */
-    public static final Logger updateLogger = LoggerFactory.getLogger("updateLogger");
     /** 登录相关的日志 */
     public static final Logger loginLogger = LoggerFactory.getLogger("login");
     /** 玩家相关的日志 */
     public static final Logger playerLogger = LoggerFactory.getLogger("player");
-    /** 数据库相关的日志 */
-    public static final Logger dbLogger = LoggerFactory.getLogger("db");
     /** 任务调度相关的日志 */
     public static final Logger scheduleLogger = LoggerFactory.getLogger("shcedule");
     /** 异步操作相关的日志 */
@@ -43,17 +39,15 @@ public class Loggers {
     public static final Logger cheatLogger = LoggerFactory.getLogger("cheat");
     /** error相关的日志 */
     public static final Logger errorLogger = LoggerFactory.getLogger("error");
-    /**event相关的日志 */
-    public static final Logger eventLogger = LoggerFactory.getLogger("event");
     /**util相关的日志 */
     public static final Logger utilLogger = LoggerFactory.getLogger("util");
-
-    /**communication相关的日志 */
-    public static final Logger communicationLogger = LoggerFactory.getLogger("communication");
 
     /**rpc相关的日志 */
     public static final Logger rpcLogger = LoggerFactory.getLogger("rpc");
 
     /**thread相关的日志 */
     public static final Logger threadLogger = LoggerFactory.getLogger("thread");
+
+    /**TimeMonitor相关的日志 */
+    public static final Logger timeMonitorLogger = LoggerFactory.getLogger("timeMonitorLogger");
 }
