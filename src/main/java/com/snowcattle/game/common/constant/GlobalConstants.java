@@ -85,7 +85,7 @@ public class GlobalConstants {
         public static final String RPC_SERVEICE_CONFIG="rpc-service-register.xml";
 
         /**dictService*/
-        public static final String dict_root_file="data/dict.wg";
+        public static final String dict_root_file="dict/dict.wg";
     }
 
     /**
