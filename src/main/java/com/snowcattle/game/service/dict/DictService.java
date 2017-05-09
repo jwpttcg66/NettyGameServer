@@ -101,4 +101,30 @@ public class DictService implements IService{
     public void shutdown() throws Exception {
 
     }
+
+    public <T> T getIDict(String dictModleType, int id, Class<T> t){
+        if(!collectionsMap.containsKey(dictModleType)){
+            return null;
+        }
+
+        IDictCollections iDictCollections = collectionsMap.get(dictModleType);
+        if(iDictCollections instanceof DictMap){
+            DictMap dictMap = (DictMap) iDictCollections;
+            return (T) dictMap.getDict(id);
+        }
+        return null;
+    }
+
+    public <T> T[] getIDictArray(String dictModleType, int id, Class<T> t){
+        if(!collectionsMap.containsKey(dictModleType)){
+            return null;
+        }
+
+        IDictCollections iDictCollections = collectionsMap.get(dictModleType);
+        if(iDictCollections instanceof DictArrayMaps){
+            DictArrayMaps dictArrayMaps = (DictArrayMaps) iDictCollections;
+            return (T[]) dictArrayMaps.getDictArary(id);
+        }
+        return null;
+    }
 }
