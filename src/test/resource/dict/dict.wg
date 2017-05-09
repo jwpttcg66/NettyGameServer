@@ -1,6 +1,6 @@
 {
     "dict" : [
-        [ "bullet", "dict/bullet/bullet.wg",  "Bullet"],
-        [ "bullet", "dict/bullet/bullet.wg",  "Bullet"]
+        ["BULLET_BULLET", "dict/bullet/d_bullet.wg", "Bullet"],
+        ["STATUS_ROLE_SKILL", "dict/status/d_role_skill.wg", "RoleSkill"],
     ]
 }

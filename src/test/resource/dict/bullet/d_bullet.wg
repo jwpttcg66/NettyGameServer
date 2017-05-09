@@ -1,0 +1,46 @@
+
+{
+    "class" : "Bullet",
+    "multiKey" : false,
+    "header" : [
+        ["编号", "名称", "描述", "游戏类", "模型id", "伤害系数", "吸血系数", "移动速度", "存活时间", "等级", "是否贯穿", "是否追随", "追随角速度", "命中特效", "消散特效", "震屏参数", "是否继承速度", "加速度", "加速度开始时间", "加速度持续时间", "切线移动速度", "切线加速度", "切线加速度开始时间", "切线加速度持续时间", "角速度", "爆炸触发技能"], 
+        ["ID", "name", "desc", "className", "model", "attackRate", "imbibeRate", "moveSpeed", "life", "lvl", "penetrate", "track", "trackAngleSpeed", "hitEffect", "deadEffect", "shakeParam", "inheritSpeed", "accelerate", "accStartTime", "accDuration", "tSpeed", "tAccelerate", "tAccStartTime", "tAccDuration", "angleSpeed", "exploseSkill"]
+    ],
+    "body" : [
+        {"ID" : 1, "attackRate" : 3, "className" : "Bullet", "imbibeRate" : 0, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "普通子弹", "trackAngleSpeed" : 360}, 
+        {"ID" : 2, "attackRate" : 5, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "追踪子弹", "trackAngleSpeed" : 360}, 
+        {"ID" : 3, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "贯穿子弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 4, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0.3, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "吸血子弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 5, "attackRate" : 5, "className" : "Bullet", "exploseSkill" : 40003, "imbibeRate" : 0, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "减速子弹", "trackAngleSpeed" : 360}, 
+        {"ID" : 101, "attackRate" : 10, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 4, "moveSpeed" : 1, "name" : "肉盾普攻", "trackAngleSpeed" : 360}, 
+        {"ID" : 102, "attackRate" : 3, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 5, "moveSpeed" : 1, "name" : "僵尸普攻", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 103, "attackRate" : 10, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 6, "moveSpeed" : 1, "name" : "刺客普攻", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 104, "attackRate" : 8, "className" : "Bullet", "imbibeRate" : 0, "inheritSpeed" : 1, "life" : 1, "lvl" : 1, "model" : 6, "moveSpeed" : 1, "name" : "刺客大招", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 105, "attackRate" : 35, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 6, "moveSpeed" : 1, "name" : "刺客追踪弹", "trackAngleSpeed" : 1080}, 
+        {"ID" : 106, "attackRate" : 10, "className" : "Bullet", "imbibeRate" : 0, "inheritSpeed" : 1, "life" : 1, "lvl" : 1, "model" : 1, "moveSpeed" : 1, "name" : "战士普攻", "trackAngleSpeed" : 360}, 
+        {"ID" : 107, "attackRate" : 18, "className" : "Bullet", "imbibeRate" : 0.2, "inheritSpeed" : 1, "life" : 1, "lvl" : 1, "model" : 14, "moveSpeed" : 1, "name" : "战士吸血", "trackAngleSpeed" : 360}, 
+        {"ID" : 108, "attackRate" : 10, "className" : "Bullet", "imbibeRate" : 0.2, "life" : 1, "lvl" : 1, "model" : 7, "moveSpeed" : 1, "name" : "射手普攻", "trackAngleSpeed" : 360}, 
+        {"ID" : 109, "attackRate" : 10, "className" : "Bullet", "exploseSkill" : 40003, "imbibeRate" : 0.2, "life" : 1, "lvl" : 1, "model" : 7, "moveSpeed" : 1, "name" : "射手减速", "trackAngleSpeed" : 360}, 
+        {"ID" : 110, "attackRate" : 10, "className" : "Bullet", "exploseSkill" : 40003, "imbibeRate" : 0.2, "life" : 1, "lvl" : 1, "model" : 6, "moveSpeed" : 1, "name" : "塔减速", "trackAngleSpeed" : 360}, 
+        {"ID" : 111, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0.05, "life" : 1, "lvl" : 1, "model" : 2, "moveSpeed" : 1, "name" : "着火弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 112, "attackRate" : 6, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 6, "moveSpeed" : 1, "name" : "刺客回旋", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 113, "attackRate" : 1, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 13, "moveSpeed" : 1, "name" : "闪电弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 114, "attackRate" : 1, "className" : "Bullet", "imbibeRate" : 1, "life" : 1, "lvl" : 1, "model" : 16, "moveSpeed" : 1, "name" : "X线子弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 115, "attackRate" : 1, "className" : "Bullet", "imbibeRate" : 1, "life" : 1, "lvl" : 1, "model" : 17, "moveSpeed" : 1, "name" : "花子弹", "penetrate" : 1, "trackAngleSpeed" : 360}, 
+        {"ID" : 9999, "attackRate" : 5, "className" : "BulletCollision", "imbibeRate" : 0, "life" : 5, "lvl" : 1, "model" : 999, "moveSpeed" : 5, "name" : "测试子弹"}, 
+        {"ID" : 37001, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 1, "moveSpeed" : 6, "name" : "菊爆光线"}, 
+        {"ID" : 38001, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 2, "lvl" : 1, "model" : 1, "moveSpeed" : 3, "name" : "x光慢速"}, 
+        {"ID" : 38002, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 1, "lvl" : 1, "model" : 1, "moveSpeed" : 6, "name" : "x光快速"}, 
+        {"ID" : 39001, "angleSpeed" : 90, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 3.5, "name" : "内交爆"}, 
+        {"ID" : 39002, "angleSpeed" : 60, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : -3.5, "name" : "外交爆"}, 
+        {"ID" : 201701, "attackRate" : 3, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 2, "lvl" : 1, "model" : 1, "moveSpeed" : 3.5, "name" : "追踪1", "trackAngleSpeed" : 360}, 
+        {"ID" : 201702, "accDuration" : 0, "accStartTime" : 0, "accelerate" : 0, "attackRate" : 3, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 5, "lvl" : 1, "model" : 1, "moveSpeed" : 3, "name" : "追踪2", "trackAngleSpeed" : 360}, 
+        {"ID" : 201703, "attackRate" : 3, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 3, "name" : "追踪3", "trackAngleSpeed" : 360}, 
+        {"ID" : 201704, "attackRate" : 5, "className" : "Bullet", "exploseSkill" : 201766, "imbibeRate" : 0, "life" : 0.8, "lvl" : 1, "model" : 1, "moveSpeed" : 10, "name" : "喷射1", "trackAngleSpeed" : 360}, 
+        {"ID" : 201705, "attackRate" : 5, "className" : "BulletTrack", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 5, "name" : "喷射2", "trackAngleSpeed" : 360}, 
+        {"ID" : 201706, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 2, "lvl" : 1, "model" : 1, "moveSpeed" : 3, "name" : "喷射3", "trackAngleSpeed" : 360}, 
+        {"ID" : 201707, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 5, "name" : "井1", "trackAngleSpeed" : 360}, 
+        {"ID" : 201708, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 5, "name" : "井2", "trackAngleSpeed" : 360}, 
+        {"ID" : 201709, "attackRate" : 5, "className" : "Bullet", "imbibeRate" : 0, "life" : 3, "lvl" : 1, "model" : 1, "moveSpeed" : 5, "name" : "井3", "trackAngleSpeed" : 360}
+    ]
+}
