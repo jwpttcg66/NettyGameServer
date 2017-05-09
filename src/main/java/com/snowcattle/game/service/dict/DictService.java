@@ -36,6 +36,7 @@ public class DictService implements IService{
         String jsonString = ResourceUtil.getTextFormResource(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
             JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
+            String packages = jsonObject.getString(GlobalConstants.JSONFile.dict_package);
             JSONArray jsonArray = (JSONArray) jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
             JSONArray[] dictModle = jsonArray.toArray(new JSONArray[0]);
             for(JSONArray dictModleJsonArray: dictModle){
@@ -47,14 +48,23 @@ public class DictService implements IService{
                 //加载文件
                 jsonString = ResourceUtil.getTextFormResource(path);
                 if(!StringUtils.isEmpty(jsonString)){
-                    jsonObject = (JSONObject) JSONObject.parse(jsonString);
+                    JSONObject dictJsonObjects = (JSONObject) JSONObject.parse(jsonString);
                     //加载数据
-                    String multiKeyString = jsonObject.getString(GlobalConstants.JSONFile.multiKey);
+                    String multiKeyString = dictJsonObjects.getString(GlobalConstants.JSONFile.multiKey);
+                    JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
                     boolean multiKey = Boolean.parseBoolean(multiKeyString);
-                    if(multiKey){
+                    if(bodyJson != null) {
+                        if (multiKey) {
 
-                    }else{
-
+                        } else {
+                            Class classes = Class.forName(packages + "." + ClassName);
+                            JSONObject[] dictModleJsonObjects = bodyJson.toArray(new JSONObject[0]);
+                            for(JSONObject dictJson: dictModleJsonObjects) {
+                                //唯一的数据
+                                Object object = JSONObject.toJavaObject(dictJson, classes);
+                                logger.debug("加载" + dictJson.toJSONString());
+                            }
+                        }
                     }
                 }
             }

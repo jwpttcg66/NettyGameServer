@@ -1,6 +1,6 @@
 // 此文件由导表工具自动生成，禁止手动修改。
 
-package com.snowcattle.game.serice.dict.entity;
+package com.snowcattle.game.service.dict.entity;
 
 import com.snowcattle.game.service.dict.IDict;
 
