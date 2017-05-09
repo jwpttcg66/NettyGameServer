@@ -92,7 +92,7 @@ public class GlobalConstants {
      * JSONFile
      */
     public static class JSONFile{
-        public static final String  dict_fils  = "files";
+        public static final String  dict_fils  = "dict";
 
     }
 

@@ -1,11 +1,14 @@
 package com.snowcattle.game.service.dict;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.util.ResourceUtil;
 import com.snowcattle.game.common.util.StringUtils;
 import com.snowcattle.game.service.IService;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DictService implements IService{
+
+    private Logger logger = Loggers.serverLogger;
     @Override
     public String getId() {
         return ServiceName.DictService;
@@ -24,10 +29,8 @@ public class DictService implements IService{
         String jsonString = ResourceUtil.getTextFormResource(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
             JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
-//            JSONArray files = (JSONArray) jsonObject.get(GlobalConstants.JSONFile.dict_fils);
-//            for(Object temp: files.toArray()){
-//                System.out.println(temp);
-//            }
+            JSONArray jsonArray = (JSONArray) jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
+            logger.debug(jsonArray.toJSONString());
 
         }
 
