@@ -11,6 +11,9 @@ import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by jiangwenping on 17/5/9.
  */
@@ -18,6 +21,8 @@ import org.springframework.stereotype.Service;
 public class DictService implements IService{
 
     private Logger logger = Loggers.serverLogger;
+
+    private Map<IDictModleType, IDictCollections> collectionsMap;
     @Override
     public String getId() {
         return ServiceName.DictService;
@@ -25,6 +30,8 @@ public class DictService implements IService{
 
     @Override
     public void startup() throws Exception {
+        Map<IDictModleType, IDictCollections> collectionsMap = new ConcurrentHashMap<>();
+
         String filePath = GlobalConstants.ConfigFile.dict_root_file;
         String jsonString = ResourceUtil.getTextFormResource(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
@@ -36,9 +43,25 @@ public class DictService implements IService{
                 String path = dictModleJsonArray.get(1).toString();
                 String ClassName = dictModleJsonArray.get(2).toString();
 
-                logger.debug(dictModleJsonArray.toJSONString());
+//                logger.debug(dictModleJsonArray.toJSONString());
+                //加载文件
+                jsonString = ResourceUtil.getTextFormResource(path);
+                if(!StringUtils.isEmpty(jsonString)){
+                    jsonObject = (JSONObject) JSONObject.parse(jsonString);
+                    //加载数据
+                    String multiKeyString = jsonObject.getString(GlobalConstants.JSONFile.multiKey);
+                    boolean multiKey = Boolean.parseBoolean(multiKeyString);
+                    if(multiKey){
+
+                    }else{
+
+                    }
+                }
             }
         }
+
+        this.collectionsMap = collectionsMap;
+
 
     }
 
