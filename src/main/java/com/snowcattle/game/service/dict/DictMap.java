@@ -16,7 +16,7 @@ public class DictMap implements IDictCollections{
         this.dictMap = new ConcurrentHashMap<>();
     }
 
-    public void putIDict(int id, IDict iDict){
+    public void put(int id, IDict iDict){
         this.dictMap.put(id, iDict);
     }
 

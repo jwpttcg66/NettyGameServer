@@ -11,6 +11,8 @@ import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -54,10 +56,27 @@ public class DictService implements IService{
                     JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
                     boolean multiKey = Boolean.parseBoolean(multiKeyString);
                     if(bodyJson != null) {
+                        Class classes = Class.forName(packages + "." + ClassName);
                         if (multiKey) {
-
+                            JSONArray[] dictModleJsonArrays = bodyJson.toArray(new JSONArray[0]);
+                            DictArrayMaps dictMap = new DictArrayMaps();
+                            for(JSONArray dictJsonArray: dictModleJsonArrays) {
+//                                //多个数据
+                                JSONObject[] dictModleJsonObjects = dictJsonArray.toArray(new JSONObject[0]);
+                                List<IDict> dictList = new ArrayList<>();
+                                int dictId = -1;
+                                for(JSONObject dictJson: dictModleJsonObjects) {
+                                    //唯一的数据
+                                    Object object = JSONObject.toJavaObject(dictJson, classes);
+                                    logger.debug("加载" + dictJson.toJSONString());
+                                    IDict dict = (IDict) object;
+                                    dictList.add(dict);
+                                    dictId = dict.getID();
+                                }
+                                dictMap.put(dictId, dictList.toArray(new IDict[0]));
+                            }
+                            collectionsMap.put(enumString,dictMap);
                         } else {
-                            Class classes = Class.forName(packages + "." + ClassName);
                             JSONObject[] dictModleJsonObjects = bodyJson.toArray(new JSONObject[0]);
                             DictMap dictMap = new DictMap();
                             for(JSONObject dictJson: dictModleJsonObjects) {
@@ -65,7 +84,7 @@ public class DictService implements IService{
                                 Object object = JSONObject.toJavaObject(dictJson, classes);
                                 logger.debug("加载" + dictJson.toJSONString());
                                 IDict dict = (IDict) object;
-                                dictMap.putIDict(dict.getID(), dict);
+                                dictMap.put(dict.getID(), dict);
                             }
                             collectionsMap.put(enumString,dictMap);
                         }
