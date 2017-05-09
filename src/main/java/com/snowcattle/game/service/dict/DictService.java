@@ -30,8 +30,14 @@ public class DictService implements IService{
         if(!StringUtils.isEmpty(jsonString)) {
             JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
             JSONArray jsonArray = (JSONArray) jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
-            logger.debug(jsonArray.toJSONString());
+            JSONArray[] dictModle = jsonArray.toArray(new JSONArray[0]);
+            for(JSONArray dictModleJsonArray: dictModle){
+                String enumString = dictModleJsonArray.get(0).toString();
+                String path = dictModleJsonArray.get(1).toString();
+                String ClassName = dictModleJsonArray.get(2).toString();
 
+                logger.debug(dictModleJsonArray.toJSONString());
+            }
         }
 
     }
