@@ -73,4 +73,18 @@ public class ResourceUtil {
 		}
 		return getTextFormURL(_url, null);
 	}
+
+	/**
+	 * 取得指定resource中文本内容 默认utf8
+	 *
+	 * @param resource
+	 * @return
+	 */
+	public static String getTextFormResourceNoException(String resource) {
+		URL _url = getResourceURL(resource);
+		if (_url == null) {
+			return null;
+		}
+		return getTextFormURL(_url, null);
+	}
 }

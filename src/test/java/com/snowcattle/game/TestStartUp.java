@@ -32,7 +32,7 @@ public class TestStartUp {
     public static void startUp() throws  Exception{
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
         GameServerConfigService gameServerConfigService = new GameServerConfigService();
-        gameServerConfigService.startup();;
+        gameServerConfigService.startup();
         localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
         LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
