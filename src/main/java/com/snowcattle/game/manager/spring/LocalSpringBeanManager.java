@@ -1,15 +1,16 @@
 package com.snowcattle.game.manager.spring;
 
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
+import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;
+import com.snowcattle.game.service.net.message.command.MessageCommandFactory;
+import com.snowcattle.game.service.net.message.factory.TcpMessageFactory;
 import com.snowcattle.game.service.net.pipeline.DefaultTcpServerPipeLine;
+import com.snowcattle.game.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.net.session.builder.NettyUdpSessionBuilder;
-import com.snowcattle.game.service.uuid.ClientSessionIdGenerator;
-import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;
-import com.snowcattle.game.service.net.message.factory.TcpMessageFactory;
-import com.snowcattle.game.service.net.pipeline.DefaultUdpServerPipeLine;
 import com.snowcattle.game.service.rpc.client.RpcRequestFactory;
 import com.snowcattle.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
+import com.snowcattle.game.service.uuid.ClientSessionIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +51,9 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private RpcRequestFactory requestFactory;
+
+    @Autowired
+    private MessageCommandFactory messageCommandFactory;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -129,5 +133,13 @@ public class LocalSpringBeanManager {
 
     public void setRequestFactory(RpcRequestFactory requestFactory) {
         this.requestFactory = requestFactory;
+    }
+
+    public MessageCommandFactory getMessageCommandFactory() {
+        return messageCommandFactory;
+    }
+
+    public void setMessageCommandFactory(MessageCommandFactory messageCommandFactory) {
+        this.messageCommandFactory = messageCommandFactory;
     }
 }

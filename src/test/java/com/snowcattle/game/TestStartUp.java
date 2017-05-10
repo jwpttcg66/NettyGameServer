@@ -1,11 +1,12 @@
 package com.snowcattle.game;
 
-import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.util.BeanUtil;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
+import com.snowcattle.game.service.net.message.command.MessageCommandFactory;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -31,10 +32,14 @@ public class TestStartUp {
 
     public static void startUp() throws  Exception{
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
+        LocalSpringBeanManager localSpringBeanManager = new LocalSpringBeanManager();
+        MessageCommandFactory messageCommandFactory = new MessageCommandFactory();
+        localSpringBeanManager.setMessageCommandFactory(messageCommandFactory);
         GameServerConfigService gameServerConfigService = new GameServerConfigService();
         gameServerConfigService.startup();
         localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
         LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
     }

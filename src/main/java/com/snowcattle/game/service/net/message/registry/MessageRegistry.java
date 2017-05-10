@@ -8,11 +8,12 @@ import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
 import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
-import com.snowcattle.game.service.net.message.command.MessageCommand;
-import com.snowcattle.game.service.net.message.command.MessageCommandEnum;
+import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.Reloadable;
+import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.net.message.command.MessageCommand;
+import com.snowcattle.game.service.net.message.command.MessageCommandFactory;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -85,12 +86,20 @@ public class MessageRegistry implements Reloadable, IService{
     }
 
     public final void loadMessageCommand(){
-        MessageCommandEnum[] set = MessageCommandEnum.values();
-        for(int i = 0; i< set.length; i++){
-            MessageCommandEnum messageCommandEnum = set[i];
-            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter);
-            messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
-            logger.info("messageCommands load:" + messageCommandEnum);
+//        MessageCommandEnum[] set = MessageCommandEnum.values();
+//        for(int i = 0; i< set.length; i++){
+//            MessageCommandEnum messageCommandEnum = set[i];
+//            MessageCommand messageCommand = new MessageCommand(messageCommandEnum.command_id, messageCommandEnum.bo_id, messageCommandEnum.is_need_filter);
+//            messageCommandMap.put((short) messageCommandEnum.command_id, messageCommand);
+//            logger.info("messageCommands load:" + messageCommandEnum);
+//        }
+
+        LocalSpringBeanManager localSpringBeanManager = LocalMananger.getInstance().getLocalSpringBeanManager();
+        MessageCommandFactory messageCommandFactory = localSpringBeanManager.getMessageCommandFactory();
+        MessageCommand[] messageCommands = messageCommandFactory.getAllCommands();
+        for(MessageCommand messageCommand: messageCommands){
+            messageCommandMap.put((short) messageCommand.getCommand_id(), messageCommand);
+            logger.info("messageCommands load:" + messageCommand);
         }
     }
 
