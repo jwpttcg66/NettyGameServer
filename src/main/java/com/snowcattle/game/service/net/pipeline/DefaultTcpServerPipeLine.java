@@ -33,7 +33,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + MessageCommandEnum.values()[commandId]);
+            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommand.getCommand_id());
         }
 
         AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
