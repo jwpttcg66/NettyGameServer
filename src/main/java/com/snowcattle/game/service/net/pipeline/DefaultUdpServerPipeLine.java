@@ -33,11 +33,10 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         short commandId = abstractNetMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
-        if (logger.isDebugEnabled()) {
-            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommand.getCommand_id());
-        }
-
         AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
+        if (logger.isDebugEnabled()) {
+            logger.debug("RECV_UDP_PROBUF_MESSAGE commandId :" + messageCommand.getCommand_id() + " class:" + abstractNetMessage.getClass().getSimpleName());
+        }
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();

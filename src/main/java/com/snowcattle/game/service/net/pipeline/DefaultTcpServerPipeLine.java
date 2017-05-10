@@ -1,9 +1,5 @@
 package com.snowcattle.game.service.net.pipeline;
 
-import com.snowcattle.game.service.net.message.command.MessageCommand;
-import com.snowcattle.game.service.net.message.command.MessageCommandEnum;
-import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.Loggers;
@@ -12,9 +8,12 @@ import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetMessage;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.net.message.command.MessageCommand;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.process.GameTcpMessageProcessor;
 import com.snowcattle.game.service.net.session.NettyTcpSession;
+import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
+import com.snowcattle.game.service.rpc.server.RpcConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -32,11 +31,10 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
         short commandId = abstractNetMessage.getNetMessageHead().getCmd();
         MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
-        if (logger.isDebugEnabled()) {
-            logger.debug("RECV_TCP_PROBUF_MESSAGE:" + messageCommand.getCommand_id());
-        }
-
         AbstractNetProtoBufMessage abstractNetProtoBufMessage = (AbstractNetProtoBufMessage) abstractNetMessage;
+        if (logger.isDebugEnabled()) {
+            logger.debug("RECV_TCP_PROBUF_MESSAGE commandId :" + messageCommand.getCommand_id()  + " class:" + abstractNetMessage.getClass().getSimpleName());
+        }
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
