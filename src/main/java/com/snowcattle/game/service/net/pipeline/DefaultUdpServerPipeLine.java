@@ -3,20 +3,19 @@ package com.snowcattle.game.service.net.pipeline;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.DynamicPropertiesEnum;
+import com.snowcattle.game.common.constant.Loggers;
+import com.snowcattle.game.logic.player.GamePlayer;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetMessage;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufUdpMessage;
 import com.snowcattle.game.service.net.message.command.MessageCommand;
-import com.snowcattle.game.service.net.message.command.MessageCommandEnum;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
-import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.logic.player.GamePlayer;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.process.GameUdpMessageOrderProcessor;
 import com.snowcattle.game.service.net.process.GameUdpMessageProcessor;
 import com.snowcattle.game.service.net.session.NettyUdpSession;
+import com.snowcattle.game.service.rpc.server.RpcConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();
         MessageCommand messageCommand = messageRegistry.getMessageCommand(commandId);
         if (logger.isDebugEnabled()) {
-            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + MessageCommandEnum.values()[commandId]);
+            logger.debug("RECV_UDP_PROBUF_MESSAGE:" + messageCommand.getCommand_id());
         }
 
         AbstractNetProtoBufUdpMessage message = (AbstractNetProtoBufUdpMessage) abstractNetMessage;
