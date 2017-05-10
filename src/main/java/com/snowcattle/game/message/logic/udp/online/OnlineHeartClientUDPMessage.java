@@ -13,10 +13,6 @@ public class OnlineHeartClientUDPMessage extends AbstractNetProtoBufUdpMessage {
 
     private int id;
 
-    public OnlineHeartClientUDPMessage(){
-        setCmd(MessageCommandIndex.ONLINE_HEART_CLIENT_UDP_MESSAGE);
-    }
-
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();

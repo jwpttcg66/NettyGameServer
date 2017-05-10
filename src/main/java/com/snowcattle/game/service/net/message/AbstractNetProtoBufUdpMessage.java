@@ -37,6 +37,7 @@ public abstract class AbstractNetProtoBufUdpMessage extends AbstractNetProtoBufM
         super();
         setNetMessageHead(new NetUdpMessageHead());
         setNetMessageBody(new NetProtoBufMessageBody());
+        initHeadCmd();
     }
 
     public void setPlayerId(long playerId) {

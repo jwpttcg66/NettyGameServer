@@ -12,10 +12,6 @@ import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
 @MessageCommandAnnotation(command = MessageCommandIndex.COMMON_RESPONSE_MESSAGE)
 public class CommonResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
-    public CommonResponseServerMessage() {
-        setCmd(MessageCommandIndex.COMMON_RESPONSE_MESSAGE);
-    }
-
     @Override
     public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
         byte[] bytes = getNetMessageBody().getBytes();

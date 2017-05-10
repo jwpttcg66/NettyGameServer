@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.net.message;
 
+import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.common.exception.CodecException;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -15,6 +16,13 @@ public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
         setNetMessageBody(new NetMessageBody());
     }
 
+    protected void initHeadCmd(){
+        //设置包头
+        MessageCommandAnnotation messageCommandAnnotation = this.getClass().getAnnotation(MessageCommandAnnotation.class);
+        if(messageCommandAnnotation != null){
+            getNetMessageHead().setCmd((short) messageCommandAnnotation.command());
+        }
+    }
     /*解析protobuf协议*/
     public abstract void decoderNetProtoBufMessageBody() throws CodecException, Exception;
 
@@ -27,9 +35,6 @@ public abstract  class AbstractNetProtoBufMessage extends AbstractNetMessage {
 
     public abstract  void encodeNetProtoBufMessageBody() throws CodecException, Exception;
 
-    public void setCmd(int cmd){
-        getNetMessageHead().setCmd((short)cmd);
-    }
     public void setSerial(int serial){
         getNetMessageHead().setSerial(serial);
     }
