@@ -102,6 +102,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+            return;
         }
 
         nettySession.close();
