@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.snowcattle.game.jdbc.mapper.OrderMapper">
+
+    <!--批量插入-->
+    <insert id="insertEntity" parameterType="order">
+        INSERT INTO `t_order_${sharding_table_index}` (id, user_id, status)
+        VALUES (#{id},#{userId},#{status})
+    </insert>
+
+    <select id="getEntity" resultType="order" parameterType="order">
+        select id, user_id, status
+        from `t_order_${sharding_table_index}`
+        where user_id=#{userId} and id=#{id};
+    </select>
+
+    <select id="getEntityList" resultType="order" parameterType="order">
+        select id, user_id, status
+        from `t_order_${sharding_table_index}`
+        where user_id=#{userId} order by id
+    </select>
+
+    <update id="updateEntityByMap" parameterType="map">
+        update `t_order_${sharding_table_index}`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status!=null and status!='' ">
+                status=#{status},
+            </if>
+        </trim>
+        where user_id=#{userId} and id=#{id};
+    </update>
+
+    <delete id="deleteEntity" parameterType="order" >
+        delete from `t_order_${sharding_table_index}` where user_id=#{userId} and id=#{id};
+    </delete>
+
+</mapper>

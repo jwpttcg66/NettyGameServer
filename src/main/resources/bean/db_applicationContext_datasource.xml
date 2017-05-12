@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dynamicDataSource" />
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="sqlSessionBatchTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+        <constructor-arg>
+            <value type="org.apache.ibatis.session.ExecutorType">BATCH</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dynamicDataSource" />
+        <property name="typeAliasesPackage" value="com.snowcattle.game.jdbc.entity"/>
+        <property name="typeHandlersPackage" value="com.snowcattle.game.jdbc"/>
+        <property name="configLocation"  value="classpath:mybatis3/sqlMapConfig.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.snowcattle.game.jdbc.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+    <!-- 所有的数据源 -->
+    <bean id="dynamicDataSource" class="com.snowcattle.game.db.sharding.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="jdbc_player_db0" value-ref="jdbc_player_db0"/>
+                <entry key="jdbc_player_db1" value-ref="jdbc_player_db1"/>
+                <entry key="jdbc_player_db2" value-ref="jdbc_player_db2"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="jdbc_player_db0"/>
+    </bean>
+
+    <!-- 数据源公共配置 -->
+    <bean id="parent_datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <!-- 同一时间可以从池分配的最多连接数量 设置为0时表示无限制-->
+        <property name="maxActive" value="8" />
+        <!-- 超时等待时间以毫秒为单位  -->
+        <property name="maxWait" value="1500" />
+        <!-- 池里不会被释放的最多空闲连接数量 设置为0时表示无限制-->
+        <property name="maxIdle" value="2" />
+        <!-- 池里不会被释放的最少空闲连接数量-->
+        <property name="minIdle" value="1" />
+        <property name="initialSize" value="2" />
+        <!-- 设置自动回收超时连接 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 自动回收超时时间(以秒数为单位) -->
+        <property name="removeAbandonedTimeout" value="60" />
+        <!-- 输出回收的日志 -->
+        <property name="logAbandoned" value="true"/>
+        <!-- 向调用者输出“链接”资源时，是否检测是有有效，如果无效则从连接池中移除，并尝试获取继续获取。默认为false。建议保持默认值 -->
+        <property name= "testOnBorrow" value="false" />
+        <!-- 打开检查,用异步线程evict进行检查 -->
+        <property name= "testWhileIdle" value="true" />
+        <property name= "validationQuery" value="select 1" />
+        <!-- 设置的Evict线程的时间，单位ms，大于0才会开启evict检查线程,两次扫描之间要sleep的毫秒数 -->
+        <property name= "timeBetweenEvictionRunsMillis" value="30000" />
+        <!-- 代表每次检查链接的数量，建议设置和maxActive一样大，这样每次可以有效检查所有的链接 -->
+        <property name= "numTestsPerEvictionRun" value="10" />
+        <!-- 校验连接池中闲置时间超过minEvictableIdleTimeMillis的连接对象 -->
+        <property name="minEvictableIdleTimeMillis" value="60000" />
+    </bean>
+
+    <bean id="jdbc_player_db0" parent="parent_datasource">
+        <property name="driverClassName" value="${jdbc-driver}" />
+        <property name="url" value="${jdbc-url-0}" />
+        <property name="username" value="${jdbc-user-0}" />
+        <property name="password" value="${jdbc-password-0}" />
+    </bean>
+
+    <bean id="jdbc_player_db1" parent="parent_datasource">
+        <property name="driverClassName" value="${jdbc-driver}" />
+        <property name="url" value="${jdbc-url-1}" />
+        <property name="username" value="${jdbc-user-1}" />
+        <property name="password" value="${jdbc-password-1}" />
+    </bean>
+
+    <bean id="jdbc_player_db2" parent="parent_datasource">
+        <property name="driverClassName" value="${jdbc-driver}" />
+        <property name="url" value="${jdbc-url-2}" />
+        <property name="username" value="${jdbc-user-2}" />
+        <property name="password" value="${jdbc-password-2}" />
+    </bean>
+
+    <bean id="defaultEntityServiceShardingStrategy" class="com.snowcattle.game.db.sharding.EntityServiceShardingStrategy">
+        <property name="dbCount" value="3"/>
+        <property name="tableCount" value="2"/>
+        <property name="dataSource" value="jdbc_player_db"/>
+    </bean>
+
+
+</beans>

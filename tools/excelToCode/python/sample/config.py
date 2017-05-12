@@ -3,6 +3,12 @@
 # 导出模式
 EXPORTER_CLASS = "DirectExporter"
 
+# 默认Java路径
+DEFAULT_JAVA_PATH = "../../../../src/main/java/com/snowcattle/game/service/dict/entity"
+
+# 默认Java路径
+DEFAULT_DICT_PATH = "../../../../src/main/resources/dict"
+
 # 数据行索引
 SHEET_ROW_INDEX = {
 	"argument" : 0,
@@ -19,7 +25,7 @@ INPUT_PATH  = "excels"
 TEMP_PATH = "export/xtemp"
 
 # 默认Java包名。用于生成Java代码用
-DEFAULT_JAVA_PACKAGE = "com.snowcattle.game.wolfshoot.service.dict.entity"
+DEFAULT_JAVA_PACKAGE = "com.snowcattle.game.service.dict.entity"
 
 # python 插件安装包路径
 DEPENDENCIES = {
@@ -31,7 +37,7 @@ CODE_GENERATORS = [
 	{
 		"class" : "JavaCodeGen", # Java代码生成器
 		"name_format" : "Dict%s",
-		"file_path" : "export/java/code",
+		"file_path" : DEFAULT_JAVA_PATH,
 		"imports" : ["com.snowcattle.game.service.dict.IDict"],
 		"interface" : "IDict",
 	#	"base" : "BaseClass"
@@ -41,7 +47,7 @@ CODE_GENERATORS = [
 # 输出数据
 DATA_WRITERS = [
 	# Java专用json数据格式
-	{"stage" : 1, "class" : "JavaWriter", "file_path": "export/java/data", "file_posfix" : ".wg"},
+	{"stage" : 1, "class" : "JavaWriter", "file_path": DEFAULT_DICT_PATH, "file_posfix" : ".wg"},
 ]
 
 # 后处理器
@@ -49,14 +55,14 @@ POSTPROCESSORS = [
 	# 生成Java文件列表。Json格式
 	{
 		"class" : "JavaFileListProcessor",
-		"file_path": "export/java/data/dict.wg",
+		"file_path": DEFAULT_DICT_PATH + "/dict.wg",
 		"class_name_format" : "Dict%s",
 #		"enum_name_format" : "Files.%s"
 	},
 	# 生成Java枚举类，列举了所有文件。
 	{
 		"class" : "JavaFileEnumProcessor",
-		"file_path": "export/java/code/DictEnum.java"
+		"file_path": DEFAULT_JAVA_PATH + "/DictEnum.java"
 	}
 ]
 
