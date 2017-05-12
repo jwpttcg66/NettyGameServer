@@ -1,0 +1,14 @@
+
+{
+    "class" : "Example",
+    "multiKey" : false,
+    "header" : [
+        ["编号", "描述", "掉落关卡", "名称", "品质"], 
+        ["ID", "describe", "drops", "name", "quality"]
+    ],
+    "body" : [
+        {"ID" : 1, "describe" : "切菜用的", "drops" : "1,2,3,4", "name" : "菜刀", "quality" : 1}, 
+        {"ID" : 2, "drops" : "2", "name" : "上方宝剑", "quality" : 5}, 
+        {"ID" : 3, "name" : "偃月弯刀"}
+    ]
+}
