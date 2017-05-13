@@ -1,0 +1,6 @@
+{
+    "package" : "com.snowcattle.game.wolfshoot.service.dict.entity",
+    "dict" : [
+        ["EXAMPLE", "dict/d_example.wg", "DictExample"]
+    ]
+}

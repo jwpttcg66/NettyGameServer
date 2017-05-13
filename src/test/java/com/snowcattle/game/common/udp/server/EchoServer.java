@@ -1,9 +1,7 @@
 package com.snowcattle.game.common.udp.server;
 
 
-import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.service.net.message.registry.MessageRegistry;
+import com.snowcattle.game.TestStartUp;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelOption;
@@ -18,11 +16,14 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public class EchoServer {
     public static void main(String[] args) throws Exception {
-        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
-        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
-        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+//        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
+//        MessageCommandFactory messageCommandFactory = new MessageCommandFactory();
+//        localSpringBeanManager.setMessageCommandFactory(messageCommandFactory);
+//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+//        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+//        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
 
+        TestStartUp.startUp();
         Bootstrap b = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
         b.group(group)
@@ -38,6 +39,6 @@ public class EchoServer {
                 .handler(new UdpProtoBufServerChannelInitializer());
 
         // 服务端监听在9999端口
-        b.bind(9999).sync().channel().closeFuture().await();
+        b.bind(9999).sync().channel().closeFuture().sync();
     }
 }

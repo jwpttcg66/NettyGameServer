@@ -4,10 +4,7 @@ import com.snowcattle.game.common.ThreadNameFactory;
 import com.snowcattle.game.common.constant.Loggers;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.handler.logging.LogLevel;
@@ -56,7 +53,8 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
             // 服务端监听在9999端口
             serverChannelFuture = b.bind(serverPort).sync();
 
-            //        channelFuture.channel().closeFuture().await();
+//            serverChannelFuture.channel().closeFuture().sync();
+            serverChannelFuture.channel().closeFuture().addListener(ChannelFutureListener.CLOSE);
         }catch (Exception e){
             logger.error(e.toString(), e);
             serviceFlag = false;
@@ -74,7 +72,7 @@ public abstract class AbstractNettyUdpServerService extends  AbstractNettyServer
     }
 
     public void finish() throws  Exception{
-        serverChannelFuture.channel().closeFuture().await();
+//        serverChannelFuture.channel().closeFuture().sync();
     }
 
 }

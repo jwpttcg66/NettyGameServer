@@ -13,10 +13,6 @@ public class OnlineHeartClientTcpMessage extends AbstractNetProtoBufTcpMessage {
 
     private int id;
 
-    public OnlineHeartClientTcpMessage(){
-        setCmd(MessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE);
-    }
-
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();

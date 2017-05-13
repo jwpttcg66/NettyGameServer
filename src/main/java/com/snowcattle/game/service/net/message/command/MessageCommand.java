@@ -38,4 +38,8 @@ public class MessageCommand
         return is_need_filter;
     }
 
+    public String toString(){
+        return "command_id:" + command_id + " bo_id:" + bo_id + " is_need_filter:" + is_need_filter;
+    }
+
 }

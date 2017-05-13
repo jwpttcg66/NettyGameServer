@@ -13,10 +13,6 @@ public class OnlineLoginClientTcpMessage extends AbstractNetProtoBufTcpMessage {
 
     private int id;
 
-    public OnlineLoginClientTcpMessage(){
-        setCmd(MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE);
-    }
-
     @Override
     public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();

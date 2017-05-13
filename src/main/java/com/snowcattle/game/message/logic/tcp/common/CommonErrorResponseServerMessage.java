@@ -21,10 +21,6 @@ public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMess
      */
     private String arg;
 
-    public CommonErrorResponseServerMessage() {
-        setCmd(MessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE);
-    }
-
     @Override
     public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
         byte[] bytes = getNetMessageBody().getBytes();

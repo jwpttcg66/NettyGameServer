@@ -4,10 +4,7 @@ import com.snowcattle.game.common.ThreadNameFactory;
 import com.snowcattle.game.common.constant.Loggers;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
@@ -58,6 +55,7 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
 
             //TODO这里会阻塞main线程，暂时先注释掉
 //            serverChannelFuture.channel().closeFuture().sync();
+            serverChannelFuture.channel().closeFuture().addListener(ChannelFutureListener.CLOSE);
         }catch (Exception e) {
             logger.error(e.toString(), e);
             serviceFlag = false;
@@ -78,6 +76,6 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
     }
 
     public void finish() throws InterruptedException {
-        serverChannelFuture.channel().closeFuture().sync();
+//        serverChannelFuture.channel().closeFuture().sync();
     }
 }

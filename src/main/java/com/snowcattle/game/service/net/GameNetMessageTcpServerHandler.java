@@ -60,13 +60,18 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws NetMessageException {
         // Close the connection when an exception is raised.
         if (cause instanceof java.io.IOException)
             return;
         if(logger.isDebugEnabled()) {
             logger.debug("channel exceptionCaught", cause);
         }
+
+        //设置下线
+        disconnect(ctx.channel());
+
+        //销毁上下文
         ctx.close();
     }
 
@@ -97,6 +102,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+            return;
         }
 
         nettySession.close();

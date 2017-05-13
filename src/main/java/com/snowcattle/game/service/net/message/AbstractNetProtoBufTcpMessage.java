@@ -18,6 +18,8 @@ public abstract class AbstractNetProtoBufTcpMessage extends AbstractNetProtoBufM
     public AbstractNetProtoBufTcpMessage(){
         super();
         setNetMessageBody(new NetProtoBufMessageBody());
+        initHeadCmd();
+
     }
 
 }

@@ -6,7 +6,7 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>netty-game-server</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.4-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -27,13 +27,14 @@
         <spring.version>4.3.2.RELEASE</spring.version>
         <ehcache.version>3.2.0</ehcache.version>
         <!--jwpttcg66 maven工程-->
-        <GameShardingDb.version>1.2.001</GameShardingDb.version>
+        <GameShardingDb.version>1.2.004</GameShardingDb.version>
         <GameThreadPool.version>1.1.1</GameThreadPool.version>
         <game-executor.version>1.7.3</game-executor.version>
         <game-expression.version>1.1</game-expression.version>
 
-        <project.build.directory>target</project.build.directory>
-        <project.build.resource.directory>target/resource</project.build.resource.directory>
+        <project.build.directory>target/classes/com</project.build.directory>
+        <!--<project.build.directory>target</project.build.directory>-->
+        <!--<project.build.resource.directory>target/resource</project.build.resource.directory>-->
 
     </properties>
 
@@ -178,7 +179,7 @@
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>GameShardingDb</artifactId>
-            <version>1.2.001</version>
+            <version>${GameShardingDb.version}</version>
         </dependency>
 
         <dependency>
@@ -229,17 +230,64 @@
 		
     </dependencies>
     <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/Java</directory>
+                <!-- 包含 -->
+                <includes>
+                    <include>**/*.vm</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <!-- 排除  -->
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-            <encoding>${project.build.sourceEncoding}</encoding>
-            <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
-            </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+                <encoding>${project.build.sourceEncoding}</encoding>
+                <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <!-- 定义在prepare-package时将classes/com打jar -->
+                <goals>
+                    <goal>jar</goal>
+                </goals>
+                <configuration>
+                    <classesDirectory>${project.basedir}/target/classes</classesDirectory>
+                    <includes>
+                        <include>com/**</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase><!--  要绑定到的生命周期的阶段 在verify之后，install之前执行下面指定的goal -->
+                        <goals>
+                            <goal>jar-no-fork</goal><!-- 类似执行mvn source:jar -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -249,16 +297,16 @@
     <!--<build>-->
 
         <!--<directory>${project.build.directory}</directory>-->
-        <!--&lt;!&ndash; 过滤配置文件 &ndash;&gt;-->
-        <!--&lt;!&ndash;<resources>&ndash;&gt;-->
-            <!--&lt;!&ndash;<resource>&ndash;&gt;-->
-                <!--&lt;!&ndash;<directory>src/main/resources</directory>&ndash;&gt;-->
-                <!--&lt;!&ndash;<excludes>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<exclude>**/*</exclude>&ndash;&gt;-->
-                <!--&lt;!&ndash;</excludes>&ndash;&gt;-->
-                <!--&lt;!&ndash;<filtering>true</filtering>&ndash;&gt;-->
-            <!--&lt;!&ndash;</resource>&ndash;&gt;-->
-        <!--&lt;!&ndash;</resources>&ndash;&gt;-->
+         <!--过滤配置文件-->
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<excludes>-->
+                    <!--<exclude>**/*</exclude>-->
+                <!--</excludes>-->
+                <!--<filtering>true</filtering>-->
+            <!--</resource>-->
+        <!--</resources>-->
 
         <!--<plugins>-->
             <!--<plugin>-->
