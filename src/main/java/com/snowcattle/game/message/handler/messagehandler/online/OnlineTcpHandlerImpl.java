@@ -1,23 +1,25 @@
-package com.snowcattle.game.message.handler.impl.online;
+package com.snowcattle.game.message.handler.messagehandler.online;
 
+import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
+import com.snowcattle.game.common.constant.Loggers;
+import com.snowcattle.game.logic.player.GamePlayer;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.message.handler.AbstractMessageHandler;
+import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
+import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.logic.player.GamePlayer;
-import com.snowcattle.game.message.handler.auto.online.OnlineTcpHandler;
-import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
-import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
+import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
 import com.snowcattle.game.service.net.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 17/2/21.
  */
-public class OnlineTcpHandlerImpl extends OnlineTcpHandler {
+public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
 
-    @Override
-    public AbstractNetMessage handleOnlineLoginClientTcpMessageImpl(OnlineLoginClientTcpMessage message) throws Exception {
+    @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
+    public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {
         OnlineLoginServerTcpMessage onlineLoginServerTcpMessage = new OnlineLoginServerTcpMessage();
         long playerId = 6666;
         int tocken = 333;
