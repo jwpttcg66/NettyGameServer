@@ -113,7 +113,7 @@ public class FileUtil {
 		return classLoader.getResource(fileName).getPath();
 	}
 
-	public static File getFill(String filePath)
+	public static File getFile(String filePath)
 	{
 		URL url= getConfigURL(filePath);
 		if(url != null){
