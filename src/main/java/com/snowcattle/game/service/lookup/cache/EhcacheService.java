@@ -2,17 +2,9 @@ package com.snowcattle.game.service.lookup.cache;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
-import com.snowcattle.game.common.loader.DefaultClassLoader;
-import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
-import org.ehcache.CacheManager;
-import org.ehcache.config.Configuration;
-import org.ehcache.config.builders.CacheManagerBuilder;
-import org.ehcache.xml.XmlConfiguration;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
-
-import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Created by jwp on 2017/3/9.
@@ -80,20 +72,20 @@ public class EhcacheService implements IService {
 
     @Override
     public void startup() throws Exception {
-        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringServiceManager().getDefaultClassLoader();
-        Configuration xmlConfig = new XmlConfiguration(defaultClassLoader.getClass().getResource("/ehcache.xml"));
-        CacheManager cacheManager = CacheManagerBuilder.newCacheManager(xmlConfig);
-
-        try {
-            cacheManager.init();
-
-//            Cache<String, String> basicCache = cacheManager.getCache("stringCache", String.class, String.class);
+//        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringServiceManager().getDefaultClassLoader();
+//        Configuration xmlConfig = new XmlConfiguration(defaultClassLoader.getClass().getResource("/ehcache.xml"));
+//        CacheManager cacheManager = CacheManagerBuilder.newCacheManager(xmlConfig);
 //
-//            basicCache.put("dd", "kk");
-//            System.out.println(basicCache.get("dd"));
-        }catch (Exception e){
-            logger.error(e.toString(), e);
-        }
+//        try {
+//            cacheManager.init();
+//
+////            Cache<String, String> basicCache = cacheManager.getCache("stringCache", String.class, String.class);
+////
+////            basicCache.put("dd", "kk");
+////            System.out.println(basicCache.get("dd"));
+//        }catch (Exception e){
+//            logger.error(e.toString(), e);
+//        }
 
     }
 
