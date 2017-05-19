@@ -56,9 +56,6 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     private RemoteRpcHandlerService remoteRpcHandlerService;
 
     @Autowired
-    private EhcacheService ehcacheService;
-
-    @Autowired
     private RpcProxyService rpcProxyService;
     
     @Autowired
@@ -152,14 +149,6 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setDefaultClassLoader(DefaultClassLoader defaultClassLoader) {
         this.defaultClassLoader = defaultClassLoader;
-    }
-
-    public EhcacheService getEhcacheService() {
-        return ehcacheService;
-    }
-
-    public void setEhcacheService(EhcacheService ehcacheService) {
-        this.ehcacheService = ehcacheService;
     }
 
     public RpcProxyService getRpcProxyService() {
