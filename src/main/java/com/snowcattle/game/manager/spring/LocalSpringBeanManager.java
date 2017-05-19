@@ -10,7 +10,7 @@ import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.net.session.builder.NettyUdpSessionBuilder;
 import com.snowcattle.game.service.rpc.client.RpcRequestFactory;
 import com.snowcattle.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
-import com.snowcattle.game.service.uuid.ClientSessionIdGenerator;
+import com.snowcattle.game.service.uuid.LongIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +29,7 @@ public class LocalSpringBeanManager {
     private NettyUdpSessionBuilder nettyUdpSessionBuilder;
 
     @Autowired
-    private ClientSessionIdGenerator clientSessionIdGenerator;
+    private LongIdGenerator longIdGenerator;
 
     @Autowired
     private NetMessageTcpDispatchLogic netMessageTcpDispatchLogic;
@@ -71,12 +71,12 @@ public class LocalSpringBeanManager {
         this.nettyTcpSessionBuilder = nettyTcpSessionBuilder;
     }
 
-    public ClientSessionIdGenerator getClientSessionIdGenerator() {
-        return clientSessionIdGenerator;
+    public LongIdGenerator getLongIdGenerator() {
+        return longIdGenerator;
     }
 
-    public void setClientSessionIdGenerator(ClientSessionIdGenerator clientSessionIdGenerator) {
-        this.clientSessionIdGenerator = clientSessionIdGenerator;
+    public void setLongIdGenerator(LongIdGenerator longIdGenerator) {
+        this.longIdGenerator = longIdGenerator;
     }
 
     public NetMessageTcpDispatchLogic getNetMessageTcpDispatchLogic() {

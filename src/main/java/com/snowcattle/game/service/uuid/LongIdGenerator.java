@@ -8,11 +8,11 @@ import java.util.concurrent.atomic.AtomicLong;
  * sessionId生成器
  */
 @Service
-public class ClientSessionIdGenerator {
+public class LongIdGenerator {
 
     protected AtomicLong id_gen = new AtomicLong(0);
 
-    public long generateSessionId(){
+    public long generateId(){
         return id_gen.incrementAndGet();
     }
 }

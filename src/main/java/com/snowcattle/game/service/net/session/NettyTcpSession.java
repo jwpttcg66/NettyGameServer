@@ -5,7 +5,7 @@ import com.snowcattle.game.common.exception.NetMessageException;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.net.message.AbstractNetMessage;
 import com.snowcattle.game.service.net.message.process.NetProtoBufMessageProcess;
-import com.snowcattle.game.service.uuid.ClientSessionIdGenerator;
+import com.snowcattle.game.service.uuid.LongIdGenerator;
 import io.netty.channel.Channel;
 
 /**
@@ -33,8 +33,8 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     public NettyTcpSession(Channel channel) {
         super(channel);
-        ClientSessionIdGenerator clientSessionIdGenerator = LocalMananger.getInstance().getLocalSpringBeanManager().getClientSessionIdGenerator();
-        sessionId = clientSessionIdGenerator.generateSessionId();
+        LongIdGenerator longIdGenerator = LocalMananger.getInstance().getLocalSpringBeanManager().getLongIdGenerator();
+        sessionId = longIdGenerator.generateId();
         nettyTcpNetMessageSender = new NettyTcpNetMessageSender(this);
         netProtoBufMessageProcess = new NetProtoBufMessageProcess(this);
         tcpNetStateUpdate = new TcpNetStateUpdate();
