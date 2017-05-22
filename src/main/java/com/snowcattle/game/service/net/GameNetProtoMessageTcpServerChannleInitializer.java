@@ -4,10 +4,14 @@ package com.snowcattle.game.service.net;
  * Created by jiangwenping on 17/2/7.
  */
 
+import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.net.handler.GameNetMessageTcpServerHandler;
-import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
+import com.snowcattle.game.service.net.handler.async.AsyncNettyGameNetMessageTcpServerHandler;
+import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -43,6 +47,14 @@ public class GameNetProtoMessageTcpServerChannleInitializer extends ChannelIniti
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-        channelPipLine.addLast("handler", new GameNetMessageTcpServerHandler());
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        boolean tcpMessageQueueDirectDispatch = gameServerConfigService.getGameServerConfig().isTcpMessageQueueDirectDispatch();
+        if(tcpMessageQueueDirectDispatch) {
+            channelPipLine.addLast("handler", new GameNetMessageTcpServerHandler());
+        }else{
+            AsyncNettyTcpHandlerService asyncNettyTcpHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyTcpHandlerService();
+            channelPipLine.addLast(asyncNettyTcpHandlerService.getDefaultEventExecutorGroup(), new AsyncNettyGameNetMessageTcpServerHandler());
+        }
     }
 }

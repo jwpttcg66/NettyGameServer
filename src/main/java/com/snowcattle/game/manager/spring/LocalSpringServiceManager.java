@@ -7,7 +7,7 @@ import com.snowcattle.game.service.async.pool.AsyncThreadService;
 import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
-import com.snowcattle.game.service.lookup.cache.EhcacheService;
+import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.net.message.facade.GameFacade;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
@@ -69,6 +69,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private DictService dictService;
+
+    @Autowired
+    private AsyncNettyTcpHandlerService asyncNettyTcpHandlerService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -182,5 +185,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setDictService(DictService dictService) {
         this.dictService = dictService;
+    }
+
+    public AsyncNettyTcpHandlerService getAsyncNettyTcpHandlerService() {
+        return asyncNettyTcpHandlerService;
+    }
+
+    public void setAsyncNettyTcpHandlerService(AsyncNettyTcpHandlerService asyncNettyTcpHandlerService) {
+        this.asyncNettyTcpHandlerService = asyncNettyTcpHandlerService;
     }
 }
