@@ -14,10 +14,11 @@ public class ServiceName {
     public static final String EhcacheService = "EhcacheService";
     public static final String GamerServerStartFinishedService = "GamerServerStartFinishedService";
     public static final String RpcSenderProxy = "RpcSenderProxy";
-    public static final String DetectRPCPendingService = "DetectRPCPendingService";
+    public static final String RPCFutureService = "RPCFutureService";
     public static final String ZookeeperRpcServiceRegistry = "ZookeeperRpcServiceRegistry";
     public static final String ZookeeperRpcServiceDiscovery = "ZookeeperRpcServiceDiscovery";
     public static final String AsyncThreadService = "AsyncThreadService";
     public static final String DictService = "DictService";
     public static final String AsyncTcpHandlerService = "AsyncTcpHandlerService";
+    public static final String GameAsyncEventService = "GameAsyncEventService";
 }

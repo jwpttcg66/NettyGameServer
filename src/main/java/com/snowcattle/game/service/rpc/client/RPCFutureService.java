@@ -22,7 +22,7 @@ public class RPCFutureService implements IService {
 
 	@Override
 	public String getId() {
-		return ServiceName.DetectRPCPendingService;
+		return ServiceName.RPCFutureService;
 	}
 
 	private ScheduledExecutorService executorService;
