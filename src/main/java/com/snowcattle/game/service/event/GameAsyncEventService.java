@@ -11,6 +11,7 @@ import com.snowcattle.game.common.loader.DynamicGameClassLoader;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
 import com.snowcattle.game.executor.event.AbstractEventListener;
 import com.snowcattle.game.executor.event.EventBus;
+import com.snowcattle.game.executor.event.SingleEvent;
 import com.snowcattle.game.executor.event.service.AsyncEventService;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
@@ -129,5 +130,10 @@ public class GameAsyncEventService implements IService{
                     + ". ", e);
         }
         return null;
+    }
+
+    /*放入消息*/
+    public void putEvent(SingleEvent event){
+        asyncEventService.put(event);
     }
 }

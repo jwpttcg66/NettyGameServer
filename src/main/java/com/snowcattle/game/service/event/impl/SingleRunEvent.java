@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.event;
+package com.snowcattle.game.service.event.impl;
 
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.event.EventType;
