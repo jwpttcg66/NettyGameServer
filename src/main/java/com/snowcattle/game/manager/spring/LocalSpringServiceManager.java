@@ -59,7 +59,7 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     private RpcProxyService rpcProxyService;
     
     @Autowired
-    private com.snowcattle.game.service.rpc.client.RPCFutureService RPCFutureService;
+    private RPCFutureService RPCFutureService;
 
     @Autowired
     private ZookeeperRpcServiceRegistry zookeeperRpcServiceRegistry;
