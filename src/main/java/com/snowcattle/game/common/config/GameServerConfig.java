@@ -366,4 +366,12 @@ public class GameServerConfig extends ServerConfig {
     public void setRpcFutureDeleteTimeOut(int rpcFutureDeleteTimeOut) {
         this.rpcFutureDeleteTimeOut = rpcFutureDeleteTimeOut;
     }
+
+    public String getAsyncEventListenerNameSpace() {
+        return asyncEventListenerNameSpace;
+    }
+
+    public void setAsyncEventListenerNameSpace(String asyncEventListenerNameSpace) {
+        this.asyncEventListenerNameSpace = asyncEventListenerNameSpace;
+    }
 }

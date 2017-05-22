@@ -138,7 +138,7 @@ public class GlobalConstants {
     /**
      *上传协议
      */
-    public static class MessageCommandConstants{
+    public static class FileExtendConstants {
         public static final String Ext = ".class";
     };
 

@@ -5,6 +5,7 @@ import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.loader.DefaultClassLoader;
 import com.snowcattle.game.service.async.pool.AsyncThreadService;
 import com.snowcattle.game.service.dict.DictService;
+import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
@@ -72,6 +73,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncNettyTcpHandlerService asyncNettyTcpHandlerService;
+
+    @Autowired
+    private GameAsyncEventService gameAsyncEventService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -193,5 +197,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setAsyncNettyTcpHandlerService(AsyncNettyTcpHandlerService asyncNettyTcpHandlerService) {
         this.asyncNettyTcpHandlerService = asyncNettyTcpHandlerService;
+    }
+
+    public GameAsyncEventService getGameAsyncEventService() {
+        return gameAsyncEventService;
+    }
+
+    public void setGameAsyncEventService(GameAsyncEventService gameAsyncEventService) {
+        this.gameAsyncEventService = gameAsyncEventService;
     }
 }

@@ -41,3 +41,5 @@ config.netMsgNameSpace="com.snowcattle.game.message.logic";
 /**异步线程池配置**/
 config.asyncThreadPoolCoreSize=1;
 config.asyncThreadPoolMaxSize=100;
+/*事件服务*/
+config.asyncEventListenerNameSpace="com.snowcattle.game.service.event.listener";

@@ -121,7 +121,6 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     /**
      * 获取消息对象
      *
-     * @param commandId
      * @return
      * @throws Exception
      */
@@ -146,7 +145,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     public void reload() throws Exception {
         try {
             GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-            loadPackage(gameServerConfigService.getGameServerConfig().getNetMessageHandlerNameSpace(), GlobalConstants.MessageCommandConstants.Ext);
+            loadPackage(gameServerConfigService.getGameServerConfig().getNetMessageHandlerNameSpace(), GlobalConstants.FileExtendConstants.Ext);
         } catch (Exception e) {
             logger.error(e.toString(), e);
         }

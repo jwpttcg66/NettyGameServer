@@ -1,11 +1,17 @@
 package com.snowcattle.game.service.event;
 
+import com.snowcattle.game.common.annotation.GlobalEventListenerAnnotation;
+import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
+import com.snowcattle.game.common.loader.DefaultClassLoader;
+import com.snowcattle.game.common.loader.DynamicGameClassLoader;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
+import com.snowcattle.game.executor.event.AbstractEventListener;
 import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.service.AsyncEventService;
+import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -25,6 +31,9 @@ public class GameAsyncEventService implements IService{
     public ClassScanner classScanner = new ClassScanner();
 
     private AsyncEventService asyncEventService;
+
+    private EventBus eventBus;
+
     @Override
     public String getId() {
         return ServiceName.GameAsyncEventService;
@@ -32,9 +41,10 @@ public class GameAsyncEventService implements IService{
 
     @Override
     public void startup() throws Exception {
-        EventBus eventBus = new EventBus();
-
-//        eventBus.addEventListener(new SingleRunEventListener());
+        eventBus = new EventBus();
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        String nameSpace = gameServerConfigService.getGameServerConfig().getAsyncEventListenerNameSpace();
+        scanListener(nameSpace, GlobalConstants.FileExtendConstants.Ext);
         int eventQueueSize = Short.MAX_VALUE;
         int workSize = 2;
         String queueWorkTheadName = GlobalConstants.Thread.EVENT_WORKER;
@@ -45,8 +55,77 @@ public class GameAsyncEventService implements IService{
         asyncEventService.startUp();
     }
 
+    private void scanListener(String namespace, String ext) throws Exception {
+        String[] fileNames = classScanner.scannerPackage(namespace, ext);
+        // 加载class,获取协议命令
+        DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringServiceManager().getDefaultClassLoader();
+        defaultClassLoader.resetDynamicGameClassLoader();
+        DynamicGameClassLoader dynamicGameClassLoader = defaultClassLoader.getDynamicGameClassLoader();
+
+        if(fileNames != null) {
+            for (String fileName : fileNames) {
+                String realClass = namespace
+                        + "."
+                        + fileName.subSequence(0, fileName.length()
+                        - (ext.length()));
+//                Class<?> messageClass = null;
+//                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
+//                if (!defaultClassLoader.isJarLoad()) {
+//                    defaultClassLoader.initClassLoaderPath(realClass, ext);
+//                    byte[] bytes = fileClassLoader.getClassData(realClass);
+//                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+//                } else {
+//                    //读取 game_server_handler.jar包所在位置
+//                    URL url = ClassLoader.getSystemClassLoader().getResource("./");
+//                    File file = new File(url.getPath());
+//                    File parentFile = new File(file.getParent());
+//                    String jarPath = parentFile.getPath() + File.separator + "lib/game_server_handler.jar";
+//                    logger.info("message load jar path:" + jarPath);
+//                    JarFile jarFile = new JarFile(new File(jarPath));
+//                    fileClassLoader.initJarPath(jarFile);
+//                    byte[] bytes = fileClassLoader.getClassData(realClass);
+//                    messageClass = dynamicGameClassLoader.findClass(realClass, bytes);
+//                }
+                Class<?> messageClass = Class.forName(realClass);
+                logger.info("GameAsyncEventService load: " + messageClass);
+
+                AbstractEventListener eventListener = getListener(messageClass);
+                GlobalEventListenerAnnotation annotation = (GlobalEventListenerAnnotation) messageClass
+                        .getAnnotation(GlobalEventListenerAnnotation.class);
+                if (annotation != null) {
+                    eventBus.addEventListener(eventListener);
+                }
+            }
+        }
+    }
+
+
     @Override
     public void shutdown() throws Exception {
         asyncEventService.shutDown();
+        eventBus.clear();
+    }
+
+    /**
+     * 获取消息对象
+     *
+     * @return
+     * @throws Exception
+     */
+    public final AbstractEventListener getListener(Class<?> classes) {
+
+        try {
+            if (classes == null) {
+                return null;
+            }
+
+            AbstractEventListener object = (AbstractEventListener) classes
+                    .newInstance();
+            return object;
+        } catch (Exception e) {
+            logger.error("getListener - classes=" + classes.getName()
+                    + ". ", e);
+        }
+        return null;
     }
 }

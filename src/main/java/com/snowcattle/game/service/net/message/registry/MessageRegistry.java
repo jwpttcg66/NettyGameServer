@@ -111,7 +111,7 @@ public class MessageRegistry implements Reloadable, IService{
         loadMessageCommand();
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         loadPackage(gameServerConfigService.getGameServerConfig().getNetMsgNameSpace(),
-                GlobalConstants.MessageCommandConstants.Ext);
+                GlobalConstants.FileExtendConstants.Ext);
     }
 
     @Override
