@@ -103,6 +103,13 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
         }
+
+        //生成aysnc事件
+        long sessionId = nettyTcpSession.getSessionId();
+        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
+        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
+        gameAsyncEventService.putEvent(sessionRegisterEvent);
+
         ctx.fireChannelUnregistered();
     }
 
@@ -117,10 +124,5 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
 
         nettyTcpSession.close();
 
-        //生成aysnc事件
-        long sessionId = nettyTcpSession.getSessionId();
-        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
-        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
-        gameAsyncEventService.putEvent(sessionRegisterEvent);
     }
 }
