@@ -4,11 +4,10 @@ package com.snowcattle.game.manager;
  * Created by jwp on 2017/2/4.
  */
 
-import com.snowcattle.game.executor.event.service.AsyncEventService;
 import com.snowcattle.game.executor.update.service.UpdateService;
-import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.net.process.GameTcpMessageProcessor;
 import com.snowcattle.game.service.net.process.GameUdpMessageOrderProcessor;
 import com.snowcattle.game.service.net.process.GameUdpMessageProcessor;
@@ -42,7 +41,6 @@ public class LocalMananger extends AbstractLocalManager{
     private GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor;
     private GameUdpMessageProcessor gameUdpMessageProcessor;
     private UpdateService updateService;
-    private AsyncEventService asyncEventService;
 
 
     public LocalSpringBeanManager getLocalSpringBeanManager() {
@@ -72,8 +70,6 @@ public class LocalMananger extends AbstractLocalManager{
             this.gameUdpMessageProcessor = (GameUdpMessageProcessor) service;
         } else if (service instanceof UpdateService) {
             this.updateService = (UpdateService) service;
-        } else if(service instanceof AsyncEventService){
-            this.asyncEventService = (AsyncEventService) service;
         }
 
     }
@@ -118,11 +114,4 @@ public class LocalMananger extends AbstractLocalManager{
         this.updateService = updateService;
     }
 
-    public AsyncEventService getAsyncEventService() {
-        return asyncEventService;
-    }
-
-    public void setAsyncEventService(AsyncEventService asyncEventService) {
-        this.asyncEventService = asyncEventService;
-    }
 }

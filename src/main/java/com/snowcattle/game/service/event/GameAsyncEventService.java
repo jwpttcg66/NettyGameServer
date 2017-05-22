@@ -1,8 +1,11 @@
 package com.snowcattle.game.service.event;
 
+import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
+import com.snowcattle.game.executor.event.EventBus;
+import com.snowcattle.game.executor.event.service.AsyncEventService;
 import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,7 @@ public class GameAsyncEventService implements IService{
 
     public ClassScanner classScanner = new ClassScanner();
 
+    private AsyncEventService asyncEventService;
     @Override
     public String getId() {
         return ServiceName.GameAsyncEventService;
@@ -28,11 +32,21 @@ public class GameAsyncEventService implements IService{
 
     @Override
     public void startup() throws Exception {
+        EventBus eventBus = new EventBus();
 
+//        eventBus.addEventListener(new SingleRunEventListener());
+        int eventQueueSize = Short.MAX_VALUE;
+        int workSize = 2;
+        String queueWorkTheadName = GlobalConstants.Thread.EVENT_WORKER;
+        int handleSize = 20;
+        String workerHanlderName = GlobalConstants.Thread.EVENT_HANDLER;
+        int handleQueueSize =  Short.MAX_VALUE;
+        asyncEventService = new AsyncEventService(eventBus, eventQueueSize, workSize, queueWorkTheadName, handleSize, workerHanlderName, handleQueueSize);
+        asyncEventService.startUp();
     }
 
     @Override
     public void shutdown() throws Exception {
-
+        asyncEventService.shutDown();
     }
 }

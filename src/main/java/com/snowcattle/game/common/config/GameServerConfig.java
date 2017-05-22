@@ -86,6 +86,8 @@ public class GameServerConfig extends ServerConfig {
     /*异步线程池最大线程池数量*/
     private int asyncThreadPoolMaxSize;
 
+    /*异步监听器命名空间*/
+    private String asyncEventListenerNameSpace;
     public GameServerConfig() {
     }
 
