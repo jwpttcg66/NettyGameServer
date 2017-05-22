@@ -232,18 +232,27 @@
     <build>
 
         <resources>
+            <!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
             <resource>
-                <directory>src/main/Java</directory>
-                <!-- 包含 -->
+                <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.vm</include>
-                    <include>**/*.properties</include>
+                    <include>**/*</include>
                 </includes>
-                <!-- 排除  -->
-                <excludes>
-                    <exclude>**/*.xml</exclude>
-                </excludes>
             </resource>
+
+
+            <!--<resource>-->
+                <!--<directory>src/main/Java</directory>-->
+                <!--&lt;!&ndash; 包含 &ndash;&gt;-->
+                <!--<includes>-->
+                    <!--<include>**/*.vm</include>-->
+                    <!--<include>**/*.properties</include>-->
+                <!--</includes>-->
+                <!--&lt;!&ndash; 排除  &ndash;&gt;-->
+                <!--<excludes>-->
+                    <!--<exclude>**/*.xml</exclude>-->
+                <!--</excludes>-->
+            <!--</resource>-->
         </resources>
 
         <plugins>
