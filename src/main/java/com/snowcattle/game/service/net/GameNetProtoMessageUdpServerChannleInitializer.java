@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.net;
 
+import com.snowcattle.game.service.net.handler.GameNetMessageUdpServerHandler;
 import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageUDPDecoder;
 import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageUDPEncoder;
 import io.netty.channel.ChannelInitializer;

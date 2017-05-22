@@ -1,7 +1,9 @@
-package com.snowcattle.game.service.net;
+package com.snowcattle.game.service.net.handler;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.net.RpcRequest;
+import com.snowcattle.game.service.net.RpcResponse;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;
 import com.snowcattle.game.service.rpc.server.RpcMethodRegistry;
 import io.netty.channel.ChannelFuture;

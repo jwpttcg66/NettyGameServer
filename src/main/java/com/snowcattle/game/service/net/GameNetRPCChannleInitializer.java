@@ -1,6 +1,7 @@
 package com.snowcattle.game.service.net;
 
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.service.net.handler.GameNetRPCServerHandler;
 import com.snowcattle.game.service.net.message.decoder.RpcDecoder;
 import com.snowcattle.game.service.net.message.encoder.RpcEncoder;
 import io.netty.channel.ChannelInitializer;

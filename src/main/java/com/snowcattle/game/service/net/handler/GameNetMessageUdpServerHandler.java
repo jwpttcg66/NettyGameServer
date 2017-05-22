@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net;
+package com.snowcattle.game.service.net.handler;
 
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufUdpMessage;
