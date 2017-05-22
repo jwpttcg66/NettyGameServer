@@ -2,6 +2,7 @@ package com.snowcattle.game.service.net.handler.async;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.NetMessageException;
+import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.event.GameAsyncEventService;
@@ -38,7 +39,8 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
 
         //生成aysnc事件
         long sessionId = nettyTcpSession.getSessionId();
-        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, sessionEventParam);
         GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
         gameAsyncEventService.putEvent(sessionRegisterEvent);
     }
@@ -107,7 +109,8 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
 
         //生成aysnc事件
         long sessionId = nettyTcpSession.getSessionId();
-        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, sessionEventParam);
         GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
         gameAsyncEventService.putEvent(sessionUnRegisterEvent);
 
