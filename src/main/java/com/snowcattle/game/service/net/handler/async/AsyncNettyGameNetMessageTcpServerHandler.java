@@ -7,6 +7,7 @@ import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.SingleEventConstants;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
+import com.snowcattle.game.service.event.impl.SessionUnRegisterEvent;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
@@ -106,9 +107,9 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
 
         //生成aysnc事件
         long sessionId = nettyTcpSession.getSessionId();
-        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
+        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, null);
         GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
-        gameAsyncEventService.putEvent(sessionRegisterEvent);
+        gameAsyncEventService.putEvent(sessionUnRegisterEvent);
 
         ctx.fireChannelUnregistered();
     }
