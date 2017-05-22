@@ -23,7 +23,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
 
     public static Logger logger = Loggers.serverLogger;
 
-    public ClassScanner messageScanner = new ClassScanner();
+    public ClassScanner classScanner = new ClassScanner();
 
     private ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
 
@@ -51,7 +51,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
     }
 
     public void loadPackage(String namespace, String ext) throws Exception {
-        String[] fileNames = messageScanner.scannerPackage(namespace, ext);
+        String[] fileNames = classScanner.scannerPackage(namespace, ext);
         // 加载class,获取协议命令
         if(fileNames != null) {
             for (String fileName : fileNames) {

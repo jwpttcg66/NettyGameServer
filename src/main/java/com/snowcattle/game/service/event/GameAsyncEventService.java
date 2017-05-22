@@ -1,7 +1,10 @@
 package com.snowcattle.game.service.event;
 
+import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
+import com.snowcattle.game.common.loader.scanner.ClassScanner;
 import com.snowcattle.game.service.IService;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +13,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GameAsyncEventService implements IService{
+
+    /**
+     * Logger for this class
+     */
+    public static final Logger logger = Loggers.serverLogger;
+
+    public ClassScanner classScanner = new ClassScanner();
 
     @Override
     public String getId() {

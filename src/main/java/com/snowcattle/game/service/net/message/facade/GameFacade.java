@@ -33,7 +33,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
      */
     public static final Logger logger = Loggers.serverLogger;
 
-    public ClassScanner messageScanner = new ClassScanner();
+    public ClassScanner classScanner = new ClassScanner();
 
     public String[] fileNames;
 
@@ -66,7 +66,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
     public void loadPackage(String namespace, String ext)
             throws Exception {
         if(fileNames == null){
-            fileNames = messageScanner.scannerPackage(namespace, ext);
+            fileNames = classScanner.scannerPackage(namespace, ext);
         }
         // 加载class,获取协议命令
         DefaultClassLoader defaultClassLoader = LocalMananger.getInstance().getLocalSpringServiceManager().getDefaultClassLoader();
