@@ -88,6 +88,15 @@ public class GameServerConfig extends ServerConfig {
 
     /*异步监听器命名空间*/
     private String asyncEventListenerNameSpace;
+    /*异步监听器处理队列大小*/
+    private int asyncEventQueueSize;
+    /*异步监听器work线程大小*/
+    private int asyncEventWorkSize;
+    /*异步监听器handler线程大小*/
+    private int asyncEventHandlerThreadSize;
+    /*异步监听器 handler线程队列大小*/
+    private int asyncEventHandleQueueSize;
+
     public GameServerConfig() {
     }
 
@@ -373,5 +382,37 @@ public class GameServerConfig extends ServerConfig {
 
     public void setAsyncEventListenerNameSpace(String asyncEventListenerNameSpace) {
         this.asyncEventListenerNameSpace = asyncEventListenerNameSpace;
+    }
+
+    public int getAsyncEventQueueSize() {
+        return asyncEventQueueSize;
+    }
+
+    public void setAsyncEventQueueSize(int asyncEventQueueSize) {
+        this.asyncEventQueueSize = asyncEventQueueSize;
+    }
+
+    public int getAsyncEventWorkSize() {
+        return asyncEventWorkSize;
+    }
+
+    public void setAsyncEventWorkSize(int asyncEventWorkSize) {
+        this.asyncEventWorkSize = asyncEventWorkSize;
+    }
+
+    public int getAsyncEventHandleQueueSize() {
+        return asyncEventHandleQueueSize;
+    }
+
+    public void setAsyncEventHandleQueueSize(int asyncEventHandleQueueSize) {
+        this.asyncEventHandleQueueSize = asyncEventHandleQueueSize;
+    }
+
+    public int getAsyncEventHandlerThreadSize() {
+        return asyncEventHandlerThreadSize;
+    }
+
+    public void setAsyncEventHandlerThreadSize(int asyncEventHandlerThreadSize) {
+        this.asyncEventHandlerThreadSize = asyncEventHandlerThreadSize;
     }
 }

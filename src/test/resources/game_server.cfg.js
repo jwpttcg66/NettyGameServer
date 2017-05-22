@@ -43,3 +43,7 @@ config.asyncThreadPoolCoreSize=1;
 config.asyncThreadPoolMaxSize=100;
 /*事件服务*/
 config.asyncEventListenerNameSpace="com.snowcattle.game.service.event.listener";
+config.asyncEventQueueSize=65536;
+config.asyncEventWorkSize=2;
+config.asyncEventHandlerThreadSize=60;
+config.asyncEventHandleQueueSize=65536;

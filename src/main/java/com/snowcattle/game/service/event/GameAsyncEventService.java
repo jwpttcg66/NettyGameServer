@@ -1,6 +1,7 @@
 package com.snowcattle.game.service.event;
 
 import com.snowcattle.game.common.annotation.GlobalEventListenerAnnotation;
+import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
@@ -43,15 +44,16 @@ public class GameAsyncEventService implements IService{
     public void startup() throws Exception {
         eventBus = new EventBus();
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        String nameSpace = gameServerConfigService.getGameServerConfig().getAsyncEventListenerNameSpace();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        String nameSpace = gameServerConfig.getAsyncEventListenerNameSpace();
         scanListener(nameSpace, GlobalConstants.FileExtendConstants.Ext);
-        int eventQueueSize = Short.MAX_VALUE;
-        int workSize = 2;
+        int eventQueueSize = gameServerConfig.getAsyncEventQueueSize();
+        int workerSize = gameServerConfig.getAsyncEventWorkSize();
         String queueWorkTheadName = GlobalConstants.Thread.EVENT_WORKER;
-        int handleSize = 20;
+        int handleSize = gameServerConfig.getAsyncEventHandlerThreadSize();
         String workerHanlderName = GlobalConstants.Thread.EVENT_HANDLER;
-        int handleQueueSize =  Short.MAX_VALUE;
-        asyncEventService = new AsyncEventService(eventBus, eventQueueSize, workSize, queueWorkTheadName, handleSize, workerHanlderName, handleQueueSize);
+        int handleQueueSize =  gameServerConfig.getAsyncEventHandleQueueSize();
+        asyncEventService = new AsyncEventService(eventBus, eventQueueSize, workerSize, queueWorkTheadName, handleSize, workerHanlderName, handleQueueSize);
         asyncEventService.startUp();
     }
 
