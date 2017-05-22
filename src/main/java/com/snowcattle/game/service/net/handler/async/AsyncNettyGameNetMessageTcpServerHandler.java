@@ -2,11 +2,13 @@ package com.snowcattle.game.service.net.handler.async;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.NetMessageException;
+import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.SingleEventConstants;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
+import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.net.session.NettyTcpSession;
 import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
@@ -44,7 +46,22 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         AbstractNetProtoBufMessage netMessage = (AbstractNetProtoBufMessage) msg;
+        Channel channel = ctx.channel();
         //直接进行处理
+
+        //装配session
+        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
+        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
+        if (nettySession == null) {
+            logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+        }
+        netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
+
+        //进行处理
+        NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+        netMessageProcessLogic.processMessage(netMessage, nettySession);
+
     }
 
 
