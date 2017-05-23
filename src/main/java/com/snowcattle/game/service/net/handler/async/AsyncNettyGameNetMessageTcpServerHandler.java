@@ -58,6 +58,8 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+            //已经丢失session， 停止处理
+            return;
         }
         netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
 
