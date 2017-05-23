@@ -180,6 +180,7 @@
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>GameShardingDb</artifactId>
             <version>${GameShardingDb.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
