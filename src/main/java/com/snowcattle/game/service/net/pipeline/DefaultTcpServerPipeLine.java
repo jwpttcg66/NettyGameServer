@@ -36,7 +36,7 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
             logger.debug("RECV_TCP_PROBUF_MESSAGE commandId :" + messageCommand.getCommand_id()  + " class:" + abstractNetMessage.getClass().getSimpleName());
         }
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());

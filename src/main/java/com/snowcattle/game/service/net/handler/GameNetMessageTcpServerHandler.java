@@ -87,7 +87,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
@@ -98,7 +98,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
 
     private void disconnect(Channel channel) throws NetMessageException {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
