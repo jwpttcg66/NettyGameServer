@@ -89,6 +89,7 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
+        disconnect(ctx.channel());
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
             //因为updateService会自己删除，这里不需要逻辑
