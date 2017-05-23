@@ -3,6 +3,7 @@ package com.snowcattle.game.service.event.impl;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.event.EventType;
 import com.snowcattle.game.executor.event.SingleEvent;
+import com.snowcattle.game.service.event.SingleEventConstants;
 
 /**
  * Created by jiangwenping on 2017/5/22.
@@ -10,8 +11,8 @@ import com.snowcattle.game.executor.event.SingleEvent;
  */
 public class SessionRegisterEvent extends SingleEvent<Long>{
 
-    public SessionRegisterEvent(EventType eventType, Long eventId, long shardingId, EventParam... parms) {
-        super(eventType, eventId, shardingId, parms);
+    public SessionRegisterEvent(Long eventId, long shardingId, EventParam... parms) {
+        super(SingleEventConstants.sessionRegister, eventId, shardingId, parms);
     }
 
 }

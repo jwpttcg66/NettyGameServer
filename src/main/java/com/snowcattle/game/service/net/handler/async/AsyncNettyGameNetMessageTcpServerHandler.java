@@ -40,7 +40,7 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         //生成aysnc事件
         long sessionId = nettyTcpSession.getSessionId();
         EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
-        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, sessionEventParam);
+        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(sessionId, sessionId, sessionEventParam);
         GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
         gameAsyncEventService.putEvent(sessionRegisterEvent);
     }
@@ -112,7 +112,7 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         //生成aysnc事件
         long sessionId = nettyTcpSession.getSessionId();
         EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
-        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(SingleEventConstants.sessionRegister, sessionId, sessionId, sessionEventParam);
+        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(sessionId, sessionId, sessionEventParam);
         GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
         gameAsyncEventService.putEvent(sessionUnRegisterEvent);
 

@@ -4,6 +4,10 @@ import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.update.service.UpdateService;
+import com.snowcattle.game.service.event.GameAsyncEventService;
+import com.snowcattle.game.service.event.SingleEventConstants;
+import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
+import com.snowcattle.game.service.event.impl.SessionUnRegisterEvent;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.update.NettyTcpSerssionUpdate;
@@ -42,6 +46,13 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getId(), param);
         updateService.addReadyCreateEvent(cycleEvent);
 
+
+        //生成aysnc事件
+        long sessionId = nettyTcpSession.getSessionId();
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(sessionId, sessionId, sessionEventParam);
+        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
+        gameAsyncEventService.putEvent(sessionRegisterEvent);
     }
 
 
@@ -94,6 +105,14 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
             //因为updateService会自己删除，这里不需要逻辑
         }
+
+        //生成aysnc事件
+        long sessionId = nettyTcpSession.getSessionId();
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(sessionId, sessionId, sessionEventParam);
+        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
+        gameAsyncEventService.putEvent(sessionUnRegisterEvent);
+
         ctx.fireChannelUnregistered();
     }
 
