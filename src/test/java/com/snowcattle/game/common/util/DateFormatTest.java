@@ -42,7 +42,7 @@ public class DateFormatTest extends Thread {
 
         try {
             date = sdf.parse(dateStr);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -53,11 +53,19 @@ public class DateFormatTest extends Thread {
 
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        // A 会sleep 2s 后开始执行sdf.parse()
-        executor.execute(new DateFormatTest("A", "1991-09-13", true));
-        // B 打了断点,会卡在方法中间
-        executor.execute(new DateFormatTest("B", "2013-09-13", false));
+        for(int i = 1991; i< 2200; i++){
+            String dateString = String.valueOf(i) + "-09-13";
+//            executor.execute(new DateFormatTest("A", "1991-09-13", true));
+            executor.execute(new DateFormatTest("A", dateString, i%2==0));
+        }
+
 
         executor.shutdown();
+        try {
+            Date date = sdf.parse("2033-09-13");
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
