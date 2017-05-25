@@ -43,8 +43,9 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
             channel.close();
 //            Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket",
 //                    event, event.getType());
-
-            Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket");
+            if( Loggers.sessionLogger.isDebugEnabled()) {
+                Loggers.sessionLogger.debug("Unable to write the Event {} with type {} to socket");
+            }
         }
     }
 }
