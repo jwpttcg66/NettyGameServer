@@ -37,14 +37,13 @@ public class NetMessageTcpDispatchLogic {
         try {
             NettyTcpSession clientSesion = (NettyTcpSession) msg.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
             if(clientSesion != null){
-                GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-                RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
-                if(rpcConfig.getSdRpcServiceProvider().isWorldOpen()){
-                    Loggers.serverStatusStatistics.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getCmd());
-                    clientSesion.addNetMessage(msg);
-                }
-
-
+//                GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+//                RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+//                if(rpcConfig.getSdRpcServiceProvider().isWorldOpen()){
+//                    Loggers.serverStatusStatistics.debug("processor session" + clientSesion.getPlayerId() + " process message" + msg.getCmd());
+//                    clientSesion.addNetMessage(msg);
+//                }
+                clientSesion.addNetMessage(msg);
             }else{
                 Loggers.serverStatusStatistics.info("session is closed, the message is unDispatch");
             }
