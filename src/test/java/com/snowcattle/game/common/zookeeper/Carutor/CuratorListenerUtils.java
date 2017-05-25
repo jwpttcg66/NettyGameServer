@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class CuratorListenerUtils {
 
-	public static String connectString = "192.168.0.158:2181";
+	public static String connectString = "127.0.0.1:2181";
 	public static void main(String[] args) throws Exception {
 		CuratorFramework client = creatClient();
 		setListenter(client);

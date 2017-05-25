@@ -45,7 +45,7 @@ public class Carutor2 {
 		String scheme = "digest";
 		byte[] auth = "admin:admin".getBytes();
 		int connectionTimeoutMs = 5000;
-		String connectString = "192.168.0.158:2181";
+		String connectString = "127.0.0.1:2181";
 		String namespace = "";
 		CuratorFramework client = CuratorFrameworkFactory.builder()
 				.aclProvider(aclProvider).authorization(scheme, auth)

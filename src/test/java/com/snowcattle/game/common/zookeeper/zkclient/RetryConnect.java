@@ -16,7 +16,7 @@ public class RetryConnect implements Callable<String>{
 
 	@Override
 	public String call() throws Exception {
-		zk = new ZkClient("192.168.0.158:2181");
+		zk = new ZkClient("127.0.0.1:2181");
 		return "success";
 	}
 

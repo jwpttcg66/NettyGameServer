@@ -11,7 +11,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 public class Listener implements Runnable{
 
 	private String path;
-	private ZkClient zkClient = new ZkClient("192.168.0.158:2181");;
+	private ZkClient zkClient = new ZkClient("127.0.0.1:2181");;
 	
 	public Listener(String path, org.I0Itec.zkclient.ZkClient z) {
 		super();

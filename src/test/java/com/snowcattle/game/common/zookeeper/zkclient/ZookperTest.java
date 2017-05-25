@@ -4,7 +4,7 @@ import org.I0Itec.zkclient.ZkClient;
 
 public class ZookperTest {
 	public static void main(String[] args) {
-		ZkClient zkClient = new ZkClient("192.168.0.158:2181");
+		ZkClient zkClient = new ZkClient("127.0.0.1:2181");
 		String path = "/master123";
 		//创建节点
 		zkClient.createEphemeral(path);
