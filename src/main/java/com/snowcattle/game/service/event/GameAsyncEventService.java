@@ -9,6 +9,8 @@ import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.loader.DefaultClassLoader;
 import com.snowcattle.game.common.loader.DynamicGameClassLoader;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
+import com.snowcattle.game.common.util.BeanUtil;
+import com.snowcattle.game.common.util.StringUtils;
 import com.snowcattle.game.executor.event.AbstractEventListener;
 import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.SingleEvent;
@@ -120,6 +122,10 @@ public class GameAsyncEventService implements IService{
         try {
             if (classes == null) {
                 return null;
+            }
+            //如果是spring对象，直接获取，使用spring
+            if(classes.getAnnotation(Service.class) != null){
+                return (AbstractEventListener) BeanUtil.getBean(StringUtils.toLowerCaseFirstOne(classes.getSimpleName()));
             }
 
             AbstractEventListener object = (AbstractEventListener) classes

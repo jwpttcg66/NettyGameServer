@@ -4,6 +4,10 @@ import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.update.service.UpdateService;
+import com.snowcattle.game.service.event.GameAsyncEventService;
+import com.snowcattle.game.service.event.SingleEventConstants;
+import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
+import com.snowcattle.game.service.event.impl.SessionUnRegisterEvent;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.update.NettyTcpSerssionUpdate;
@@ -39,9 +43,16 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         UpdateService updateService = LocalMananger.getInstance().getUpdateService();
         NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);;
         EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
-        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getId(), param);
+        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getUpdateId(), param);
         updateService.addReadyCreateEvent(cycleEvent);
 
+
+        //生成aysnc事件
+        long sessionId = nettyTcpSession.getSessionId();
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(sessionId, sessionId, sessionEventParam);
+        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
+        gameAsyncEventService.putEvent(sessionRegisterEvent);
     }
 
 
@@ -87,18 +98,27 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
+        disconnect(ctx.channel());
         if(nettyTcpSession != null) {
             netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
             //因为updateService会自己删除，这里不需要逻辑
         }
+
+        //生成aysnc事件
+        long sessionId = nettyTcpSession.getSessionId();
+        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
+        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(sessionId, sessionId, sessionEventParam);
+        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
+        gameAsyncEventService.putEvent(sessionUnRegisterEvent);
+
         ctx.fireChannelUnregistered();
     }
 
     private void disconnect(Channel channel) throws NetMessageException {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_sessionId).get();
+        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         if (nettySession == null) {
             logger.error("tcp netsession null channelId is:" + channel.id().asLongText());

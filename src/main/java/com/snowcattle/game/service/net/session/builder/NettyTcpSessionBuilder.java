@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class NettyTcpSessionBuilder implements ISessionBuilder {
 
-    public static final AttributeKey<Long> channel_sessionId       = AttributeKey
-            .valueOf("channel_sessionId");
+    public static final AttributeKey<Long> channel_session_id = AttributeKey
+            .valueOf("channel_session_id");
 
     @Override
     public ISession buildSession(Channel channel) {
         NettyTcpSession nettyTcpSession = new NettyTcpSession(channel);
-        channel.attr(channel_sessionId).set(nettyTcpSession.getSessionId());
+        channel.attr(channel_session_id).set(nettyTcpSession.getSessionId());
         return nettyTcpSession ;
     }
 }

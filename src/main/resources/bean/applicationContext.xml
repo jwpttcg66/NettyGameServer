@@ -17,15 +17,4 @@
     <context:component-scan base-package="com.snowcattle.game" />
     <bean class="com.snowcattle.game.common.util.BeanUtil"/>
 
-    <context:property-placeholder location="classpath:db_jdbc.properties" />
-
-    <bean id="dbConfig" class="com.snowcattle.game.db.service.config.DbConfig">
-        <property name="dbId" value="1"/>
-        <property name="asyncDbOperationSaveWorkerSize" value="1"/>
-        <property name="asyncDbOperationSelectWorkerSize" value="1"/>
-        <property name="asyncOperationPackageName" value="com.snowcattle.game.db"/>
-    </bean>
-    <bean id="transactionService" class="com.redis.transaction.service.TransactionServiceImpl"/>
-
-
 </beans>
