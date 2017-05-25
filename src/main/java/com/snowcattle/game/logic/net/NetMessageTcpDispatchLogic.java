@@ -45,7 +45,9 @@ public class NetMessageTcpDispatchLogic {
 //                }
                 clientSesion.addNetMessage(msg);
             }else{
-                Loggers.serverStatusStatistics.info("session is closed, the message is unDispatch");
+                if(Loggers.serverStatusStatistics.isInfoEnabled()) {
+                    Loggers.serverStatusStatistics.info("session is closed, the message is unDispatch");
+                }
             }
 
         } catch (Exception e) {
