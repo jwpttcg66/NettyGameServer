@@ -56,7 +56,7 @@ public class NetMessageTcpDispatchLogic {
             }
 
         } finally {
-            msg.removeAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+//            msg.removeAttribute(MessageAttributeEnum.DISPATCH_SESSION);
 
             if (Loggers.serverStatusStatistics.isInfoEnabled()) {
                 // 特例，统计时间跨度
