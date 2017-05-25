@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jiangwenping on 17/2/21.
- * 抽象
+ * 抽象long型id查找内容
  */
 public abstract class AbstractLongLookUpService<T extends ILongId> implements ILongLookUpService<T>{
     protected static final Logger log = Loggers.serverStatusStatistics;
@@ -22,17 +22,17 @@ public abstract class AbstractLongLookUpService<T extends ILongId> implements IL
     @Override
     public void addT(T t) {
         if(log.isDebugEnabled()){
-            log.debug("add T " + t.id());
+            log.debug("add T " + t.longId());
         }
-        tMap.put(t.id(), t);
+        tMap.put(t.longId(), t);
     }
 
     @Override
     public boolean removeT(T t) {
         if(log.isDebugEnabled()){
-            log.debug("remove t " + t.id());
+            log.debug("remove t " + t.longId());
         }
-        return tMap.remove(t.id(), t);
+        return tMap.remove(t.longId(), t);
     }
 
 }

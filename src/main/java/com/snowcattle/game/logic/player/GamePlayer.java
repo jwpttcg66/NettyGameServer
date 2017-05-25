@@ -53,7 +53,7 @@ public class GamePlayer implements  IPlayer, ILongId {
     }
 
     @Override
-    public long id() {
+    public long longId() {
         return playerId;
     }
 }
