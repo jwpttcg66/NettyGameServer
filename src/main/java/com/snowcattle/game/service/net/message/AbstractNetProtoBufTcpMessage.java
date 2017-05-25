@@ -5,16 +5,6 @@ package com.snowcattle.game.service.net.message;
  */
 public abstract class AbstractNetProtoBufTcpMessage extends AbstractNetProtoBufMessage{
 
-    private long sessionId;
-
-    public long getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(long sessionId) {
-        this.sessionId = sessionId;
-    }
-
     public AbstractNetProtoBufTcpMessage(){
         super();
         setNetMessageBody(new NetProtoBufMessageBody());
