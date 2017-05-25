@@ -13,6 +13,9 @@ public class Loggers {
     public static final Logger serverLogger = LoggerFactory.getLogger("server");
     /** Game Server相关的日志 */
     public static final Logger gameLogger = LoggerFactory.getLogger("game");
+    /** Game Server相关的日志 */
+    public static final Logger handlerLogger = LoggerFactory.getLogger("handler");
+
     /** 登录相关的日志 */
     public static final Logger loginLogger = LoggerFactory.getLogger("login");
     /** 玩家相关的日志 */

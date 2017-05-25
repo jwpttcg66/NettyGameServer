@@ -29,7 +29,7 @@ import org.slf4j.Logger;
  */
 public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
 
-    public static Logger logger = Loggers.sessionLogger;
+    public static Logger logger = Loggers.handlerLogger;
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
@@ -75,8 +75,9 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
         // Close the connection when an exception is raised.
         if (cause instanceof java.io.IOException)
             return;
-        if(logger.isDebugEnabled()) {
-            logger.debug("channel exceptionCaught", cause);
+
+        if(logger.isErrorEnabled()) {
+            logger.error("channel exceptionCaught", cause);
         }
 
         //设置下线
