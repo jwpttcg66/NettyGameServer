@@ -1,6 +1,7 @@
 package com.snowcattle.game.service.event;
 
 import com.snowcattle.game.common.annotation.GlobalEventListenerAnnotation;
+import com.snowcattle.game.common.annotation.SpecialEventListenerAnnotation;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
@@ -20,6 +21,9 @@ import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by jiangwenping on 2017/5/22.
  * 游戏内的事件全局服务
@@ -38,6 +42,10 @@ public class GameAsyncEventService implements IService{
 
     private EventBus eventBus;
 
+    /**
+     * 特殊事件监听器缓存
+     */
+    private Map<Integer ,AbstractEventListener> specialEventListenerMap;
     @Override
     public String getId() {
         return ServiceName.GameAsyncEventService;
@@ -46,6 +54,8 @@ public class GameAsyncEventService implements IService{
     @Override
     public void startup() throws Exception {
         eventBus = new EventBus();
+        specialEventListenerMap = new ConcurrentHashMap<>();
+
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         String nameSpace = gameServerConfig.getAsyncEventListenerNameSpace();
@@ -100,6 +110,13 @@ public class GameAsyncEventService implements IService{
                 if (annotation != null) {
                     eventBus.addEventListener(eventListener);
                 }
+
+                //如果存在特殊监听器，放入特殊监听器
+                SpecialEventListenerAnnotation specialEventListenerAnnotation = messageClass.getAnnotation(SpecialEventListenerAnnotation.class);
+                if(specialEventListenerAnnotation != null){
+                    int speical = specialEventListenerAnnotation.listener();
+                    specialEventListenerMap.put(speical, eventListener);
+                }
             }
         }
     }
@@ -141,5 +158,14 @@ public class GameAsyncEventService implements IService{
     /*放入消息*/
     public void putEvent(SingleEvent event){
         asyncEventService.put(event);
+    }
+
+    /**
+     * 获取特殊条件事件类型
+     * @param eventType
+     * @return
+     */
+    public AbstractEventListener getSpecialEventListener(int eventType){
+        return specialEventListenerMap.get(eventType);
     }
 }
