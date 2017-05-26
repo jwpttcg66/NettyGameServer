@@ -20,6 +20,10 @@ public class NettyTcpNetMessageSender implements INetMessageSender{
         try {
             nettySession.write(message);
         }catch (Exception e){
+            //增加session 消息输出的错误日志
+            if(Loggers.sessionLogger.isErrorEnabled()){
+                Loggers.sessionLogger.error(e.toString(), e);
+            }
             throw new NetMessageException("write tcp netmessage exception", e);
         }
 
