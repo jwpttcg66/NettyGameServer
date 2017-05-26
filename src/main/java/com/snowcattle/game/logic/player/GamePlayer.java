@@ -1,7 +1,6 @@
 package com.snowcattle.game.logic.player;
 
 import com.snowcattle.game.service.lookup.ILongId;
-import com.snowcattle.game.service.net.session.NettySession;
 import com.snowcattle.game.service.net.session.NettyTcpNetMessageSender;
 
 /**
@@ -10,18 +9,17 @@ import com.snowcattle.game.service.net.session.NettyTcpNetMessageSender;
  */
 public class GamePlayer implements  IPlayer, ILongId {
 
-    private NettySession nettyTcpSession;
     //玩家id
     private long playerId;
-    //玩家的udptocken
-    private int udpTocken;
+    //玩家的udptoken
+    private int udpToken;
 
     private NettyTcpNetMessageSender nettyTcpNetMessageSender;
 
-    public GamePlayer(NettyTcpNetMessageSender nettyTcpNetMessageSender, long playerId, int udpTocken) {
+    public GamePlayer(NettyTcpNetMessageSender nettyTcpNetMessageSender, long playerId, int udpToken) {
         this.nettyTcpNetMessageSender = nettyTcpNetMessageSender;
         this.playerId = playerId;
-        this.udpTocken = udpTocken;
+        this.udpToken = udpToken;
     }
 
     @Override
@@ -31,23 +29,19 @@ public class GamePlayer implements  IPlayer, ILongId {
 
     @Override
     public int getPlayerUdpTocken() {
-        return udpTocken;
-    }
-
-    public NettySession getNettyTcpSession() {
-        return nettyTcpSession;
+        return udpToken;
     }
 
     public void setPlayerId(long playerId) {
         this.playerId = playerId;
     }
 
-    public int getUdpTocken() {
-        return udpTocken;
+    public int getUdpToken() {
+        return udpToken;
     }
 
-    public void setUdpTocken(int udpTocken) {
-        this.udpTocken = udpTocken;
+    public void setUdpToken(int udpToken) {
+        this.udpToken = udpToken;
     }
 
     @Override
