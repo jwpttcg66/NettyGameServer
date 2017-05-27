@@ -79,7 +79,7 @@ public class GameServerConfig extends ServerConfig {
     private String rpcServicePackage;
     /*rpc服务的包名字*/
     private String netMessageHandlerNameSpace;
-    /*rpc服务的包名字*/
+    /*网络的包名字*/
     private String netMsgNameSpace;
     /*异步线程池最小核心线程池数量*/
     private int asyncThreadPoolCoreSize;

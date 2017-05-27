@@ -7,6 +7,7 @@ import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.loader.scanner.ClassScanner;
+import com.snowcattle.game.common.util.StringUtils;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.service.IService;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -110,8 +112,12 @@ public class MessageRegistry implements Reloadable, IService{
     public void reload() throws Exception {
         loadMessageCommand();
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        loadPackage(gameServerConfigService.getGameServerConfig().getNetMsgNameSpace(),
-                GlobalConstants.FileExtendConstants.Ext);
+        String netMsgNameSpace = gameServerConfigService.getGameServerConfig().getNetMsgNameSpace();
+        List<String> splits = StringUtils.getListBySplit(netMsgNameSpace, ",");
+        for(String key: splits) {
+            loadPackage(key,
+                    GlobalConstants.FileExtendConstants.Ext);
+        }
     }
 
     @Override
