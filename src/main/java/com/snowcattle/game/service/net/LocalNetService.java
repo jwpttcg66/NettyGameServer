@@ -21,8 +21,8 @@ public class LocalNetService implements IService{
     private GameNettyUdpServerService gameNettyUdpServerService;
     private GameNettyRPCService gameNettyRPCService;
 
-    private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
-    private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
+    private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
+    private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
 
     @Override
     public String getId() {
@@ -31,12 +31,9 @@ public class LocalNetService implements IService{
 
     @Override
     public void startup() throws Exception {
+        initChannelInitializer();
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        //根据rpc配置来决定启动服务器
-//        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
-//        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
-
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
                 , GlobalConstants.Thread.NET_TCP_BOSS, GlobalConstants.Thread.NET_TCP_WORKER, nettyTcpChannelInitializer);
         boolean startUpFlag = gameNettyTcpServerService.startService();
@@ -63,6 +60,11 @@ public class LocalNetService implements IService{
 
         }
 
+    }
+
+    public void initChannelInitializer(){
+        nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
+        nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
     }
 
     @Override
