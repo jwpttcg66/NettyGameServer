@@ -31,6 +31,11 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
      */
     private TcpNetStateUpdate tcpNetStateUpdate;
 
+    /**
+     * 网络消息切换开关，当玩家进入房间的时候，关闭开关，所有消息处理放入房间内，保证房间内协议处理单线程
+     */
+    private volatile boolean netMessageProcessSwitch = true;
+
     public NettyTcpSession(Channel channel) {
         super(channel);
         LongIdGenerator longIdGenerator = LocalMananger.getInstance().getLocalSpringBeanManager().getLongIdGenerator();
@@ -58,10 +63,23 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
 
     @Override
     public boolean update() {
-        netProtoBufMessageProcess.update();
+//        netProtoBufMessageProcess.update();
+        processNetMessage(false);
         tcpNetStateUpdate.update();
         return false;
     }
+
+    /**
+     * 增加消息处理切换。
+     * @param switchFlag
+     */
+    public void processNetMessage(boolean switchFlag){
+        if(netMessageProcessSwitch || switchFlag){
+            netProtoBufMessageProcess.update();
+        }
+    }
+
+
 
     public void addNetMessage(AbstractNetMessage abstractNetMessage){
         this.netProtoBufMessageProcess.addNetMessage(abstractNetMessage);
@@ -84,5 +102,13 @@ public class NettyTcpSession extends NettySession implements IUpdatable {
         this.tcpNetStateUpdate.setDisconnecting();
         this.netProtoBufMessageProcess.close();
         this.nettyTcpNetMessageSender.close();
+    }
+
+    public boolean isNetMessageProcessSwitch() {
+        return netMessageProcessSwitch;
+    }
+
+    public void setNetMessageProcessSwitch(boolean netMessageProcessSwitch) {
+        this.netMessageProcessSwitch = netMessageProcessSwitch;
     }
 }
