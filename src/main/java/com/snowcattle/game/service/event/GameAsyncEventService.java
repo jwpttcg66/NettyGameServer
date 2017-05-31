@@ -62,9 +62,9 @@ public class GameAsyncEventService implements IService{
         scanListener(nameSpace, GlobalConstants.FileExtendConstants.Ext);
         int eventQueueSize = gameServerConfig.getAsyncEventQueueSize();
         int workerSize = gameServerConfig.getAsyncEventWorkSize();
-        String queueWorkTheadName = GlobalConstants.Thread.EVENT_WORKER;
+        String queueWorkTheadName = GlobalConstants.Thread.ASYNC_EVENT_WORKER;
         int handleSize = gameServerConfig.getAsyncEventHandlerThreadSize();
-        String workerHanlderName = GlobalConstants.Thread.EVENT_HANDLER;
+        String workerHanlderName = GlobalConstants.Thread.ASYNC_EVENT_HANDLER;
         int handleQueueSize =  gameServerConfig.getAsyncEventHandleQueueSize();
         asyncEventService = new AsyncEventService(eventBus, eventQueueSize, workerSize, queueWorkTheadName, handleSize, workerHanlderName, handleQueueSize);
         asyncEventService.startUp();

@@ -19,6 +19,9 @@ public class GameServerConfig extends ServerConfig {
     /** 存储时间间隔,单位为毫秒 */
     private int dbUpdateInterval = 200 * 1000;
 
+    /**
+     * tpc消息是否进行转发，如果不转发直接进行异步处理，如果进行转发，按照具体功能进行转发
+     */
     private boolean tcpMessageQueueDirectDispatch=true;
     /** session过期失效 ，单位为秒 */
     private int sessionExpireTime = 30 * 60 * 1000;
@@ -54,7 +57,7 @@ public class GameServerConfig extends ServerConfig {
     private boolean udpMessageOrderQueueFlag = true;
 
     /*updateservice是否使用将多个update绑定在一个线程执行*/
-    private boolean updateServiceExcutorFlag = true;
+    private byte updateServiceExcutorFlag;
 
     //开启rpc
     private boolean rpcOpen = false;
@@ -234,11 +237,11 @@ public class GameServerConfig extends ServerConfig {
         this.updQueueMessageProcessWorkerSize = updQueueMessageProcessWorkerSize;
     }
 
-    public boolean isUpdateServiceExcutorFlag() {
+    public byte getUpdateServiceExcutorFlag() {
         return updateServiceExcutorFlag;
     }
 
-    public void setUpdateServiceExcutorFlag(boolean updateServiceExcutorFlag) {
+    public void setUpdateServiceExcutorFlag(byte updateServiceExcutorFlag) {
         this.updateServiceExcutorFlag = updateServiceExcutorFlag;
     }
 

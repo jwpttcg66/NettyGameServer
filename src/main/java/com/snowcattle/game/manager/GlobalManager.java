@@ -4,6 +4,7 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.util.BeanUtil;
+import com.snowcattle.game.executor.common.UpdateExecutorEnum;
 import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
@@ -81,7 +82,7 @@ public class GlobalManager {
         int cycleSleepTime = gameServerConfigService.getGameServerConfig().getGameExcutorCycleTime() / Constants.cycle.cycleSize;
         long minCycleTime = gameServerConfigService.getGameServerConfig().getGameExcutorMinCycleTime() * cycleSleepTime;
 
-        if (gameServerConfig.isUpdateServiceExcutorFlag()) {
+        if (gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.bindThread.ordinal()) {
             UpdateBindExecutorService updateBindExcutorService = new UpdateBindExecutorService(corePoolSize);
 
             BindDisptachThread dispatchThread = new BindDisptachThread(updateEventBus, updateBindExcutorService
@@ -137,7 +138,7 @@ public class GlobalManager {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        if (gameServerConfig.isUpdateServiceExcutorFlag()) {
+        if (gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.bindThread.ordinal()) {
             updateService.notifyStart();
         }else {
             updateService.start();
