@@ -18,11 +18,11 @@ import java.net.URL;
 @Service
 public class GameServerConfigService implements IService {
 
-    private GameServerDiffConfig gameServerDiffConfig;
-    private GameServerConfig gameServerConfig;
-    private GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
-    private ZooKeeperConfig zooKeeperConfig;
-    private RpcConfig rpcConfig;
+    protected GameServerDiffConfig gameServerDiffConfig;
+    protected GameServerConfig gameServerConfig;
+    protected GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
+    protected ZooKeeperConfig zooKeeperConfig;
+    protected RpcConfig rpcConfig;
 
     @Override
     public String getId() {
@@ -78,13 +78,13 @@ public class GameServerConfigService implements IService {
         return gameServerConfig;
     }
 
-     private void initConfig(){
+    protected void initConfig(){
          String cfgPath = GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
          ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
          URL url = classLoader.getResource(cfgPath);
          GameServerConfig  gameServerConfig = ConfigUtil.buildConfig(GameServerConfig.class, url);
          this.gameServerConfig = gameServerConfig;
-         LocalMananger.getInstance().add(this.gameServerConfig, GameServerConfig.class);
+//         LocalMananger.getInstance().add(this.gameServerConfig, GameServerConfig.class);
     }
 
     private void initDiffConfig(){
@@ -93,7 +93,7 @@ public class GameServerConfigService implements IService {
         URL url = classLoader.getResource(cfgPath);
         GameServerDiffConfig gameServerDiffConfig = ConfigUtil.buildConfig(GameServerDiffConfig.class, url);
         this.gameServerDiffConfig = gameServerDiffConfig;
-        LocalMananger.getInstance().add(this.gameServerDiffConfig, GameServerDiffConfig.class);
+//        LocalMananger.getInstance().add(this.gameServerDiffConfig, GameServerDiffConfig.class);
     }
 
     public GameDynamicPropertiesConfig getGameDynamicPropertiesConfig() {
