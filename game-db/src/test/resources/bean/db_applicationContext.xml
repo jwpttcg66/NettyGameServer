@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <context:annotation-config />
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.snowcattle.game.db" />
+
+    <context:property-placeholder location="classpath:db_jdbc.properties" />
+
+    <bean id="dbConfig" class="com.snowcattle.game.db.service.config.DbConfig">
+        <property name="dbId" value="1"/>
+        <property name="asyncDbOperationSaveWorkerSize" value="1"/>
+        <property name="asyncDbOperationSelectWorkerSize" value="1"/>
+        <property name="asyncOperationPackageName" value="com.snowcattle.game.db"/>
+    </bean>
+    <bean id="transactionService" class="com.redis.transaction.service.TransactionServiceImpl"/>
+</beans>

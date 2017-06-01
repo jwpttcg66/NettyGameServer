@@ -12,6 +12,7 @@
         <module>game-executor</module>
         <module>game-server</module>
         <module>game-code-generate</module>
+        <module>game-db</module>
     </modules>
 
     <repositories>
@@ -33,7 +34,6 @@
         <spring.version>4.3.2.RELEASE</spring.version>
         <ehcache.version>3.2.0</ehcache.version>
         <!--jwpttcg66 maven工程-->
-        <GameShardingDb.version>1.2.004</GameShardingDb.version>
         <GameThreadPool.version>1.1.1</GameThreadPool.version>
         <game-expression.version>1.1</game-expression.version>
         <disruptor.version>3.3.6</disruptor.version>
@@ -173,14 +173,6 @@
 		    <artifactId>zookeeper</artifactId>
 		    <version>3.5.2-alpha</version>
 		</dependency>
-
-
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>GameShardingDb</artifactId>
-            <version>${GameShardingDb.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>GameThreadPool</artifactId>

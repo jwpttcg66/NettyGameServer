@@ -23,5 +23,11 @@
             <version>${parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.snowcattle.game</groupId>
+            <artifactId>game-db</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
     </dependencies>
 </project>
