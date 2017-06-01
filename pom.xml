@@ -6,7 +6,12 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>netty-game-server</artifactId>
+    <packaging>pom</packaging>
     <version>1.1.6-SNAPSHOT</version>
+    <modules>
+        <module>game-executor</module>
+        <module>game-server</module>
+    </modules>
 
     <repositories>
         <repository>
@@ -29,9 +34,8 @@
         <!--jwpttcg66 maven工程-->
         <GameShardingDb.version>1.2.004</GameShardingDb.version>
         <GameThreadPool.version>1.1.1</GameThreadPool.version>
-        <game-executor.version>master-SNAPSHOT</game-executor.version>
         <game-expression.version>1.1</game-expression.version>
-
+        <disruptor.version>3.3.6</disruptor.version>
         <project.build.directory>target/classes/com</project.build.directory>
         <!--<project.build.directory>target</project.build.directory>-->
         <!--<project.build.resource.directory>target/resource</project.build.resource.directory>-->
@@ -162,12 +166,6 @@
             <version>3.1</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.ehcache</groupId>-->
-            <!--<artifactId>ehcache</artifactId>-->
-            <!--<version>${ehcache.version}</version>-->
-        <!--</dependency>-->
-
         <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
 		<dependency>
 		    <groupId>org.apache.zookeeper</groupId>
@@ -188,31 +186,18 @@
             <version>${GameThreadPool.version}</version>
         </dependency>
 
-        <!-- game-excutor -->
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>game-executor</artifactId>
-            <version>${game-executor.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>game-expression</artifactId>
             <version>${game-expression.version}</version>
         </dependency>
-		<!--<dependency>-->
-            <!--<groupId>org.eclipse.jetty.aggregate</groupId>  -->
-            <!--<artifactId>jetty-all</artifactId>  -->
-            <!--<version>8.0.4.v20111024</version>  -->
-            <!--<type>jar</type>  -->
-            <!--<scope>provided</scope>  -->
-        <!--</dependency>-->
-		<!--<dependency>-->
-		    <!--<groupId>com.alibaba</groupId>-->
-		    <!--<artifactId>druid</artifactId>-->
-		    <!--<version>1.0.29</version>-->
-		<!--</dependency>-->
-		<!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+
+        <dependency>
+            <groupId>com.github.jwpttcg66</groupId>
+            <artifactId>future-listener</artifactId>
+            <version>1.0</version>
+        </dependency>
+
 		<dependency>
 		    <groupId>com.101tec</groupId>
 		    <artifactId>zkclient</artifactId>
@@ -225,7 +210,12 @@
 		    <version>3.3.0</version>
 		</dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
+        </dependency>
 
 		
     </dependencies>
