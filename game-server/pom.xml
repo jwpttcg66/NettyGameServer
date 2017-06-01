@@ -6,12 +6,13 @@
         <artifactId>netty-game-server</artifactId>
         <groupId>com.snowcattle.game</groupId>
         <version>1.1.6-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>game-server</artifactId>
-    <version>1.0.1</version>
+    <version>${parent.version}</version>
 
 
     <dependencies>
@@ -19,7 +20,7 @@
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-executor</artifactId>
-            <version>1.0.1</version>
+            <version>${parent.version}</version>
         </dependency>
 
     </dependencies>

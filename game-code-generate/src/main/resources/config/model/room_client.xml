@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+
+    <message comment="room tcp 心跳协议" name = "RoomHeartClientMessage" javaPackage="com.snowcattle.game.message.logicgenerate.tcp.room.client"
+             importPackage="com.snowcattle.game.message.protogenerate.tcp.room.client.GameRoomTCPClientProBuf.*" cmdType="GameMessageCommandIndex.ROOM_HEART_CLIENT_TCP_MESSAGE" vm="templatetcp">
+        <field type="RoomHeartTCPClientProBuf" name="req" comment="请求" />
+    </message>
+</messages>

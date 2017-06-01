@@ -11,6 +11,7 @@
     <modules>
         <module>game-executor</module>
         <module>game-server</module>
+        <module>game-code-generate</module>
     </modules>
 
     <repositories>

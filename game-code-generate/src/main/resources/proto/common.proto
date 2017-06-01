@@ -1,0 +1,57 @@
+option java_package = "com.snowcattle.game.message.protogenerate.common";
+option java_outer_classname = "GameCommonMessageProBuf";
+
+message CommonPlayerProBuf
+{
+    required int64 playerId = 1;
+    required string name = 2;
+}
+
+message CommonRoomPlayerProBuf
+{
+    required int64 playerId = 1;
+    required string name = 2;
+    required int32 charaId = 3;
+}
+
+message Vector3ProBuf
+{
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
+}
+
+message Vector4ProBuf
+{
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
+    required float w = 4;
+}
+
+message GameEndSinglePlayerProBuf{
+    required int32 camp = 1;
+    required int32 score = 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

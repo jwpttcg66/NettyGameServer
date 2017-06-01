@@ -1,0 +1,107 @@
+#macro( smallType $type)
+#if($type == "Short")short#elseif( $type == "Integer" )int#elseif( $type == "Byte" )byte#elseif( $type == "Long" )long#elseif( $type == "Float" )float#elseif( $type == "Double" )double#elseif( $type == "Boolean" )boolean#else$type#end
+#end
+#macro( bigType $type)
+#if( $type == "String" )UTF#elseif( $type == "Integer" )Int#else$type#end
+#end
+#macro( upperFirstChar $type)$type.substring(0,1).toUpperCase()$type.substring(1)#end
+#macro( generic $field)#if($field.type == "List")<${field.genericObj.clazz}>#end#end
+#macro( readfield $field)
+#if(${field.type} == "List")
+		for(int i = 0, num = dis.readShort(); i < num; i++){
+			${field.genericObj.clazz} tmp = new ${field.genericObj.clazz}();
+#foreach( ${subField} in ${field.genericObj.fieldList})
+			tmp.set#upperFirstChar(${subField.name})(dis.read#bigType(${subField.type})());
+#end
+			${field.name}.add(tmp);
+		}
+#elseif(${field.type} == "Integer" || ${field.type} == "Short" || ${field.type} == "Long" || ${field.type} == "Boolean" || ${field.type} == "Float" || ${field.type} == "Double" || ${field.type} == "String" || ${field.type} == "Byte")
+		${field.name} = dis.read#bigType(${field.type})();
+#else
+		${field.name} = new ${field.selfObj.clazz}();
+#foreach( ${subField} in ${field.selfObj.fieldList})
+		${field.name}.set#upperFirstChar(${subField.name})(dis.read#bigType(${subField.type})());
+#end
+#end
+#end
+#macro( writefield $field)
+#if(${field.type} == "List")
+		dos.writeShort(${field.name}.size());
+		if(${field.name}.size() > 0){
+			for(${field.genericObj.clazz} temp : ${field.name}){
+#foreach( ${subfield} in ${field.genericObj.fieldList})
+#if(${subfield.type} == "Boolean" )
+				dos.write#bigType(${subfield.type})(temp.is#upperFirstChar(${subfield.name})());
+#else
+				dos.write#bigType(${subfield.type})(temp.get#upperFirstChar(${subfield.name})());
+#end
+#end
+			}
+		}
+#elseif(${field.type} == "Integer" || ${field.type} == "Short" || ${field.type} == "Long" || ${field.type} == "Boolean" || ${field.type} == "Float" || ${field.type} == "Double" || ${field.type} == "String" || ${field.type} == "Byte")
+		dos.write#bigType(${field.type})(${field.name});
+#else
+#foreach( ${subField} in ${field.selfObj.fieldList})
+#if(${subField.type} == "Boolean" )
+		dos.write#bigType(${subField.type})(${field.name}.is#upperFirstChar(${subField.name})());
+#else
+		dos.write#bigType(${subField.type})(${field.name}.get#upperFirstChar(${subField.name})());
+#end
+#end
+#end
+#end
+#macro( createGetterSetter $field)
+#if(${field.type} == "List")
+	public void set#upperFirstChar(${field.name} )(java.util.List<${field.genericObj.clazz}> ${field.name}){
+		this.${field.name} = ${field.name};
+	}
+	public java.util.List<${field.genericObj.clazz}> get#upperFirstChar(${field.name} )(){
+		return this.${field.name};
+	}
+#elseif(${field.type} == "Integer" || ${field.type} == "Short" || ${field.type} == "Long" || ${field.type} == "Float" || ${field.type} == "Double" || ${field.type} == "String" || ${field.type} == "Byte")
+	public void set#upperFirstChar(${field.name} )(#smallType(${field.type}) ${field.name}){
+		this.${field.name} = ${field.name};
+	}
+	public #smallType(${field.type}) get#upperFirstChar(${field.name} )(){
+		return this.${field.name};
+	}
+#elseif(${field.type} == "Boolean")
+	public void set#upperFirstChar(${field.name} )(#smallType(${field.type}) ${field.name}){
+		this.${field.name} = ${field.name};
+	}
+	public #smallType(${field.type}) is#upperFirstChar(${field.name} )(){
+		return this.${field.name};
+	}
+#else
+	public void set#upperFirstChar(${field.name} )(${field.selfObj.clazz} ${field.name}){
+		this.${field.name} = ${field.name};
+	}
+	public ${field.selfObj.clazz} get#upperFirstChar(${field.name} )(){
+		return this.${field.name};
+	}
+#end
+#end
+package ${msg.namespace};
+
+/**
+ * $msg.comment
+ *
+ * @author CodeGenerator, don't modify this file please.
+ */
+ 
+public class ${msg.className} {
+#foreach( ${field} in ${msg.fieldList})
+	/**${field.comment}*/
+#if(${field.type} == "List")
+	private java.util.List#generic($field) ${field.name} = new java.util.ArrayList#generic($field)() ;
+#elseif(${field.type} == "Integer" || ${field.type} == "Short" || ${field.type} == "Long" || ${field.type} == "Boolean" || ${field.type} == "Float" || ${field.type} == "Double" || ${field.type} == "String" || ${field.type} == "Byte")
+	private #smallType(${field.type}) ${field.name};
+#else
+	private ${field.selfObj.clazz} ${field.name};
+#end
+#end
+
+#foreach(${field} in ${msg.fieldList})
+#createGetterSetter(${field})
+#end
+}

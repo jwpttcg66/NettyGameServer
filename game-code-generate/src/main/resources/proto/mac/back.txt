@@ -1,0 +1,1 @@
+sudo protoc -I=/Users/jiangwenping/data/github-idea-workspace/NettyGameServer/game-code-generate/src/main/resources/proto/ --java_out=/Users/jiangwenping/data/github-idea-workspace/NettyGameServer/game-code-generate/src/main/java /Users/jiangwenping/data/github-idea-workspace/NettyGameServer/game-code-generate/src/main/resources/proto/*.proto

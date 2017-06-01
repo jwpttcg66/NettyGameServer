@@ -1,0 +1,11 @@
+option java_package = "com.snowcattle.game.message.protogenerate.tcp.room.client";
+option java_outer_classname = "GameRoomTCPClientProBuf";
+
+import "common.proto";
+
+/*心跳协议*/
+message RoomHeartTCPClientProBuf
+{
+}
+
+

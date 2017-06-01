@@ -1,0 +1,6 @@
+
+C:\Users\B053-mac\Desktop\windws\server\proto\windows>protoc.exe -I C:\Users\B053-mac\Desktop\windws\server\proto --java_out=C:\Users\B053-mac\Desktop\windws\server\src C:\Users\B053-mac\Desktop\windws\server\proto\map.proto
+
+sudo protoc -I=/Users/b053-mac/data/IDEA-clover-200-workspace/game_server/proto/ --java_out=/Users/b053-mac/data/IDEA-clover-200-workspace/game_server/src /Users/b053-mac/data/IDEA-clover-200-workspace/game_server/proto/room.proto
+
+sudo protoc -I=/Users/jwp/data/wolfshoot-workspace/Server-Code/proto/ --java_out=/Users/jwp/data/wolfshoot-workspace/Server-Code/src/main/java /Users/jwp/data/wolfshoot-workspace/Server-Code/proto/common.proto
