@@ -117,6 +117,7 @@ public class GlobalConstants {
         public static final String RPC_HANDLER = "rpc_handler";
         public static final String ASYNC_EVENT_WORKER = "async_event_worker";
         public static final String ASYNC_EVENT_HANDLER = "async_event_handler";
+        public static final String UPDATE_EXECUTOR_SERVICE = "UpdateExecutorService";
     }
 
     /**

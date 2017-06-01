@@ -10,10 +10,12 @@ import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchFinishEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchUpdateEventListener;
+import com.snowcattle.game.executor.update.pool.DisruptorExecutorService;
 import com.snowcattle.game.executor.update.pool.UpdateBindExecutorService;
 import com.snowcattle.game.executor.update.pool.UpdateExecutorService;
 import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.executor.update.thread.dispatch.BindDisptachThread;
+import com.snowcattle.game.executor.update.thread.dispatch.DisruptorDispatchThread;
 import com.snowcattle.game.executor.update.thread.dispatch.LockSupportDisptachThread;
 import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
@@ -94,7 +96,7 @@ public class GlobalManager {
             updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
             LocalMananger.getInstance().add(updateService, UpdateService.class);
 
-        } else {
+        } else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.locksupport.ordinal()){
             UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
             LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
                     , cycleSleepTime, minCycleTime);
@@ -104,6 +106,18 @@ public class GlobalManager {
             updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
             LocalMananger.getInstance().add(updateService, UpdateService.class);
 
+        }else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.disruptor.ordinal()){
+            String poolName = GlobalConstants.Thread.UPDATE_EXECUTOR_SERVICE;
+            DisruptorExecutorService disruptorExcutorService = new DisruptorExecutorService(poolName, corePoolSize);
+            DisruptorDispatchThread dispatchThread = new DisruptorDispatchThread(updateEventBus, disruptorExcutorService
+                    , cycleSleepTime, cycleSleepTime*1000);
+            disruptorExcutorService.setDisruptorDispatchThread(dispatchThread);
+            UpdateService updateService = new UpdateService(dispatchThread, disruptorExcutorService);
+            updateEventBus.addEventListener(new DispatchCreateEventListener(dispatchThread, updateService));
+            updateEventBus.addEventListener(new DispatchUpdateEventListener(dispatchThread, updateService));
+            updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
+
+            LocalMananger.getInstance().add(updateService, UpdateService.class);
         }
     }
 
@@ -140,7 +154,9 @@ public class GlobalManager {
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         if (gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.bindThread.ordinal()) {
             updateService.notifyStart();
-        }else {
+        }else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.locksupport.ordinal()){
+            updateService.start();
+        }else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.disruptor.ordinal()){
             updateService.start();
         }
 
