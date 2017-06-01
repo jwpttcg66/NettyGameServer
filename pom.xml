@@ -10,7 +10,7 @@
     <version>1.1.6-SNAPSHOT</version>
     <modules>
         <module>game-executor</module>
-        <module>game-server</module>
+        <module>game-core</module>
         <module>game-code-generate</module>
         <module>game-db</module>
     </modules>
