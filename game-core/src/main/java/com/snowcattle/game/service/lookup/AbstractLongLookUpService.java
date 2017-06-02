@@ -22,7 +22,7 @@ public abstract class AbstractLongLookUpService<T extends ILongId> implements IL
     @Override
     public void addT(T t) {
         if(log.isDebugEnabled()){
-            log.debug("add T " + t.longId());
+            log.debug("add T "  + t.getClass().getSimpleName()+ t.longId());
         }
         tMap.put(t.longId(), t);
     }
@@ -30,7 +30,7 @@ public abstract class AbstractLongLookUpService<T extends ILongId> implements IL
     @Override
     public boolean removeT(T t) {
         if(log.isDebugEnabled()){
-            log.debug("remove t " + t.longId());
+            log.debug("remove t "  + t.getClass().getSimpleName() + t.longId());
         }
         return tMap.remove(t.longId(), t);
     }
