@@ -1,6 +1,7 @@
 package com.snowcattle.game.net.client.tcp;
 
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.service.net.handler.GameLoggingHandler;
 import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
 import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
 import io.netty.channel.ChannelInitializer;
@@ -26,8 +27,9 @@ public class GameClientChannleInitializer extends ChannelInitializer<NioSocketCh
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
+        channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
-        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
+//        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
         channelPipLine.addLast("handler", new GameClientHandler());
     }
 }

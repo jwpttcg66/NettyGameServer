@@ -7,6 +7,7 @@ package com.snowcattle.game.service.net;
 import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.net.handler.GameLoggingHandler;
 import com.snowcattle.game.service.net.handler.GameNetMessageTcpServerHandler;
 import com.snowcattle.game.service.net.handler.async.AsyncNettyGameNetMessageTcpServerHandler;
 import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
@@ -45,9 +46,9 @@ public class GameNetProtoMessageTcpServerChannleInitializer extends ChannelIniti
         int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
+        channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
-        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
-
+//        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         boolean tcpMessageQueueDirectDispatch = gameServerConfigService.getGameServerConfig().isTcpMessageQueueDirectDispatch();
         if(tcpMessageQueueDirectDispatch) {
