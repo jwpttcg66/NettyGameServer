@@ -107,11 +107,7 @@ public class DictService implements IService{
     }
 
     public <T> T getIDict(String dictModleType, int id, Class<T> t){
-        if(!collectionsMap.containsKey(dictModleType)){
-            return null;
-        }
-
-        IDictCollections iDictCollections = collectionsMap.get(dictModleType);
+        IDictCollections iDictCollections = getIDictCollections(dictModleType, id);
         if(iDictCollections instanceof DictMap){
             DictMap dictMap = (DictMap) iDictCollections;
             return (T) dictMap.getDict(id);
@@ -120,11 +116,7 @@ public class DictService implements IService{
     }
 
     public <T extends IDict> List<T> getIDictArray(String dictModleType, int id, Class<T> t){
-        if(!collectionsMap.containsKey(dictModleType)){
-            return null;
-        }
-
-        IDictCollections iDictCollections = collectionsMap.get(dictModleType);
+        IDictCollections iDictCollections = getIDictCollections(dictModleType, id);
         if(iDictCollections instanceof DictArrayMaps){
             DictArrayMaps dictArrayMaps = (DictArrayMaps) iDictCollections;
             IDict[] iDictArrays = dictArrayMaps.getDictArary(id);
@@ -135,5 +127,20 @@ public class DictService implements IService{
             return list;
         }
         return null;
+    }
+
+    /**
+     * 获取数据集合
+     * @param dictModleType
+     * @param id
+     * @return
+     */
+    public IDictCollections getIDictCollections(String dictModleType, int id){
+        if(!collectionsMap.containsKey(dictModleType)){
+            return null;
+        }
+
+        IDictCollections iDictCollections = collectionsMap.get(dictModleType);
+        return iDictCollections;
     }
 }
