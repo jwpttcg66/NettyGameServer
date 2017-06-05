@@ -29,10 +29,10 @@ public class RpcHandlerThreadPool {
                 return new CallerRunsPolicy();
             case ABORT_POLICY:
                 return new AbortPolicy();
-            case REJECTED_POLICY:
-                return new RejectedPolicy();
-            case DISCARDED_POLICY:
-                return new DiscardedPolicy();
+            case DISCARD_OLDEST_POLICY:
+                return new DiscardOldestPolicy();
+            case DISCARD_POLICY:
+                return new DiscardPolicy();
         }
 
         return null;

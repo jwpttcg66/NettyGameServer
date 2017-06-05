@@ -27,7 +27,6 @@
         <mybatis-spring.version>1.2.0</mybatis-spring.version>
         <mysql.version>5.1.30</mysql.version>
         <commons.dbcp.version>1.4</commons.dbcp.version>
-        <GameThreadPool.version>1.1</GameThreadPool.version>
         <redis-game-transaction.version>1.8.010</redis-game-transaction.version>
     </properties>
 
@@ -114,12 +113,6 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>5.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>GameThreadPool</artifactId>
-            <version>${GameThreadPool.version}</version>
         </dependency>
 
         <dependency>
