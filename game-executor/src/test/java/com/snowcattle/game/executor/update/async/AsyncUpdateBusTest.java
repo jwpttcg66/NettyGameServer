@@ -14,6 +14,7 @@ import com.snowcattle.game.executor.update.pool.UpdateExecutorService;
 import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.executor.update.thread.dispatch.LockSupportDisptachThread;
 import com.snowcattle.game.executor.common.utils.Constants;
+import com.snowcattle.game.thread.policy.RejectedPolicyType;
 
 /**
  * Created by jiangwenping on 17/1/9.
@@ -29,7 +30,7 @@ public class AsyncUpdateBusTest {
 //        int corePoolSize = 100;
         int maxSize = 2000;
         int corePoolSize = 50;
-        UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
+        UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, corePoolSize * 2, RejectedPolicyType.BLOCKING_POLICY);
         int cycleSleepTime = 1000 / Constants.cycle.cycleSize;
         LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
                 , cycleSleepTime, cycleSleepTime * 1000000);

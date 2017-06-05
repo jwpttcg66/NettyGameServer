@@ -21,6 +21,7 @@ import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.net.process.*;
+import com.snowcattle.game.thread.policy.RejectedPolicyType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -97,7 +98,7 @@ public class GlobalManager {
             LocalMananger.getInstance().add(updateService, UpdateService.class);
 
         } else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.locksupport.ordinal()){
-            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize);
+            UpdateExecutorService updateExecutorService = new UpdateExecutorService(corePoolSize, corePoolSize * 2 , RejectedPolicyType.BLOCKING_POLICY);
             LockSupportDisptachThread dispatchThread = new LockSupportDisptachThread(updateEventBus, updateExecutorService
                     , cycleSleepTime, minCycleTime);
             UpdateService updateService = new UpdateService(dispatchThread, updateExecutorService);
