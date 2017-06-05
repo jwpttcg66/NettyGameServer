@@ -107,7 +107,7 @@ public class DictService implements IService{
     }
 
     public <T> T getIDict(String dictModleType, int id, Class<T> t){
-        IDictCollections iDictCollections = getIDictCollections(dictModleType, id);
+        IDictCollections iDictCollections = getIDictCollections(dictModleType);
         if(iDictCollections instanceof DictMap){
             DictMap dictMap = (DictMap) iDictCollections;
             return (T) dictMap.getDict(id);
@@ -116,7 +116,7 @@ public class DictService implements IService{
     }
 
     public <T extends IDict> List<T> getIDictArray(String dictModleType, int id, Class<T> t){
-        IDictCollections iDictCollections = getIDictCollections(dictModleType, id);
+        IDictCollections iDictCollections = getIDictCollections(dictModleType);
         if(iDictCollections instanceof DictArrayMaps){
             DictArrayMaps dictArrayMaps = (DictArrayMaps) iDictCollections;
             IDict[] iDictArrays = dictArrayMaps.getDictArary(id);
@@ -135,7 +135,7 @@ public class DictService implements IService{
      * @param id
      * @return
      */
-    public IDictCollections getIDictCollections(String dictModleType, int id){
+    public IDictCollections getIDictCollections(String dictModleType){
         if(!collectionsMap.containsKey(dictModleType)){
             return null;
         }
