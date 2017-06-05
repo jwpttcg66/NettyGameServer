@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.dict;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,5 +28,9 @@ public class DictMap implements IDictCollections{
      */
     public  IDict getDict(int id){
         return dictMap.get(id);
+    }
+
+    public Collection<IDict> getAllDicts(){
+        return dictMap.values();
     }
 }
