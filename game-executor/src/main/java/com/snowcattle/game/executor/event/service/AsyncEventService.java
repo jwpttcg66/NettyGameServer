@@ -10,6 +10,8 @@ import com.snowcattle.game.executor.event.SingleEvent;
 import com.snowcattle.game.expression.Expression;
 import com.snowcattle.game.expression.ExpressionUtil;
 import com.snowcattle.game.thread.executor.OrderedQueuePoolExecutor;
+import com.snowcattle.game.thread.factory.GameThreadPoolHelpFactory;
+import com.snowcattle.game.thread.policy.RejectedPolicyType;
 import org.slf4j.Logger;
 
 import java.util.concurrent.*;
@@ -79,7 +81,8 @@ public class AsyncEventService {
             throw new IllegalStateException(
                     "AsyncEventService The executorSerive has not been stopped.");
         }
-        orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(threadFactoryName, handlerSize, orderQueueMaxSize);
+        GameThreadPoolHelpFactory gameThreadPoolHelpFactory = new GameThreadPoolHelpFactory();
+        orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(threadFactoryName, handlerSize, orderQueueMaxSize, gameThreadPoolHelpFactory.createPolicy(RejectedPolicyType.CALLER_RUNS_POLICY));
         String expressionString = "${0}%" + handlerSize;
         shardingExpresson = ExpressionUtil.buildExpression(expressionString);
         eventLogger.info("AsyncEventService processor executorService started ["
