@@ -26,7 +26,7 @@ public class UpdateExecutorService implements IUpdateExecutor {
     public UpdateExecutorService(int corePoolSize, int maxSize, RejectedPolicyType rejectedPolicyType) {
         String name = Constants.Thread.UpdateExecutorService;
         GameThreadPoolHelpFactory gameThreadPoolHelpFactory = new GameThreadPoolHelpFactory();
-        nonOrderedQueuePoolExecutor = new NonOrderedQueuePoolExecutor(Constants.Thread.UpdateExecutorService, corePoolSize, maxSize, gameThreadPoolHelpFactory.createPolicy(rejectedPolicyType));
+        nonOrderedQueuePoolExecutor = new NonOrderedQueuePoolExecutor(Constants.Thread.UpdateExecutorService, corePoolSize, maxSize, gameThreadPoolHelpFactory.createPolicy(rejectedPolicyType, name));
     }
 
     @Override

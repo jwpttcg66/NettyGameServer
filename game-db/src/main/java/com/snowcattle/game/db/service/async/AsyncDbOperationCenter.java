@@ -43,7 +43,9 @@ public class AsyncDbOperationCenter implements IDbService{
     @Override
     public void startup() throws Exception {
         int coreSize =  dbConfig.getAsyncDbOperationSaveWorkerSize();
-        operationExecutor = new NonOrderedQueuePoolExecutor(coreSize);
+        String name = getDbServiceName();
+
+//        operationExecutor = new NonOrderedQueuePoolExecutor(name, coreSize);
         int selectSize = dbConfig.getAsyncDbOperationSaveWorkerSize();
         scheduledExecutorService = Executors.newScheduledThreadPool(selectSize);
 
@@ -62,9 +64,9 @@ public class AsyncDbOperationCenter implements IDbService{
 
     @Override
     public void shutdown() throws Exception {
-        if(operationExecutor != null){
-            ExecutorUtil.shutdownAndAwaitTermination(operationExecutor, 60, TimeUnit.SECONDS);
-        }
+//        if(operationExecutor != null){
+//            ExecutorUtil.shutdownAndAwaitTermination(operationExecutor, 60, TimeUnit.SECONDS);
+//        }
         if(scheduledExecutorService != null){
             ExecutorUtil.shutdownAndAwaitTermination(scheduledExecutorService, 60, TimeUnit.SECONDS);
         }
