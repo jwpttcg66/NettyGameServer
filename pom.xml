@@ -36,6 +36,7 @@
         <!--jwpttcg66 maven工程-->
         <GameThreadPool.version>1.1.4</GameThreadPool.version>
         <game-expression.version>1.1</game-expression.version>
+        <future-listener.version>1.1</future-listener.version>
         <disruptor.version>3.3.6</disruptor.version>
         <project.build.directory>target/classes/com</project.build.directory>
         <!--<project.build.directory>target</project.build.directory>-->
@@ -188,7 +189,7 @@
         <dependency>
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>future-listener</artifactId>
-            <version>1.0</version>
+            <version>${future-listener.version}</version>
         </dependency>
 
 		<dependency>
