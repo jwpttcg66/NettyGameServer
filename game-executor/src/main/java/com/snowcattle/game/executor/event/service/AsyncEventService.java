@@ -82,7 +82,7 @@ public class AsyncEventService {
                     "AsyncEventService The executorSerive has not been stopped.");
         }
         GameThreadPoolHelpFactory gameThreadPoolHelpFactory = new GameThreadPoolHelpFactory();
-        orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(threadFactoryName, handlerSize, orderQueueMaxSize, gameThreadPoolHelpFactory.createPolicy(RejectedPolicyType.CALLER_RUNS_POLICY));
+        orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(threadFactoryName, handlerSize, orderQueueMaxSize, gameThreadPoolHelpFactory.createPolicy(RejectedPolicyType.BLOCKING_POLICY, workThreadFactoryName));
         String expressionString = "${0}%" + handlerSize;
         shardingExpresson = ExpressionUtil.buildExpression(expressionString);
         eventLogger.info("AsyncEventService processor executorService started ["
