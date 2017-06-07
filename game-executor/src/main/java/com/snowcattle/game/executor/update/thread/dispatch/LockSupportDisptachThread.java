@@ -40,8 +40,10 @@ public class LockSupportDisptachThread extends DispatchThread {
         int cycleSize = getEventBus().getEventsSize();
         if(sleepFlag) {
             int size = getEventBus().cycle(cycleSize);
-            //调度计算
-            park();
+            if(size != 0){
+                //调度计算
+                park();
+            }
             checkSleep(startTime);
         }else{
             int size = getEventBus().cycle(cycleSize);

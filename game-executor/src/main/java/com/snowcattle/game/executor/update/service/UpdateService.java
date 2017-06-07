@@ -99,8 +99,10 @@ public class UpdateService <ID extends Serializable> {
         UpdateEventCacheService.start();
         dispatchThread.startup();
         iUpdateExecutor.startup();
+        dispatchThread.setName(Constants.Thread.DISPATCH);
         dispatchThread.start();
 //        dispatchExecutorService.execute(dispatchThread);
+//        dispatchThread.unpark();
 
     }
 
