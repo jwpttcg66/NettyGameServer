@@ -51,8 +51,8 @@ public class UpdateService <ID extends Serializable> {
     public UpdateService(DispatchThread dispatchThread, IUpdateExecutor iUpdateExecutor) {
         this.dispatchThread = dispatchThread;
         this.iUpdateExecutor = iUpdateExecutor;
-        ThreadNameFactory threadNameFactory = new ThreadNameFactory(Constants.Thread.DISPATCH);
-        dispatchExecutorService = Executors.newSingleThreadExecutor(threadNameFactory);
+//        ThreadNameFactory threadNameFactory = new ThreadNameFactory(Constants.Thread.DISPATCH);
+//        dispatchExecutorService = Executors.newSingleThreadExecutor(threadNameFactory);
     }
 
     public void addReadyCreateEvent(CycleEvent event){
@@ -89,9 +89,9 @@ public class UpdateService <ID extends Serializable> {
         dispatchThread.shutDown();
         this.updateMap.clear();
         UpdateEventCacheService.stop();
-        if(dispatchExecutorService != null) {
-            ExecutorUtil.shutdownAndAwaitTermination(dispatchExecutorService, 60, TimeUnit.SECONDS);
-        }
+//        if(dispatchExecutorService != null) {
+//            ExecutorUtil.shutdownAndAwaitTermination(dispatchExecutorService, 60, TimeUnit.SECONDS);
+//        }
     }
 
     public void start(){
@@ -102,7 +102,6 @@ public class UpdateService <ID extends Serializable> {
         dispatchThread.setName(Constants.Thread.DISPATCH);
         dispatchThread.start();
 //        dispatchExecutorService.execute(dispatchThread);
-//        dispatchThread.unpark();
 
     }
 
