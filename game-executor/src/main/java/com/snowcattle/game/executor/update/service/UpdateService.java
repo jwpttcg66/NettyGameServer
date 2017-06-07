@@ -1,6 +1,8 @@
 package com.snowcattle.game.executor.update.service;
 
+import com.snowcattle.game.executor.common.ThreadNameFactory;
 import com.snowcattle.game.executor.common.utils.Constants;
+import com.snowcattle.game.executor.common.utils.ExecutorUtil;
 import com.snowcattle.game.executor.common.utils.Loggers;
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
@@ -15,6 +17,9 @@ import com.snowcattle.game.executor.update.thread.dispatch.DispatchThread;
 
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jiangwenping on 17/1/12.
@@ -38,9 +43,16 @@ public class UpdateService <ID extends Serializable> {
     /*记录当前循环的更新接口*/
     private ConcurrentHashMap<ID, IUpdate> updateMap = new ConcurrentHashMap<ID, IUpdate>();
 
+    /**
+     * 负责dispatch
+     */
+    private ExecutorService dispatchExecutorService;
+
     public UpdateService(DispatchThread dispatchThread, IUpdateExecutor iUpdateExecutor) {
         this.dispatchThread = dispatchThread;
         this.iUpdateExecutor = iUpdateExecutor;
+        ThreadNameFactory threadNameFactory = new ThreadNameFactory(Constants.Thread.DISPATCH);
+        dispatchExecutorService = Executors.newSingleThreadExecutor(threadNameFactory);
     }
 
     public void addReadyCreateEvent(CycleEvent event){
@@ -77,14 +89,19 @@ public class UpdateService <ID extends Serializable> {
         dispatchThread.shutDown();
         this.updateMap.clear();
         UpdateEventCacheService.stop();
+        if(dispatchExecutorService != null) {
+            ExecutorUtil.shutdownAndAwaitTermination(dispatchExecutorService, 60, TimeUnit.SECONDS);
+        }
     }
 
     public void start(){
+        this.updateMap.clear();
         UpdateEventCacheService.start();
         dispatchThread.startup();
         iUpdateExecutor.startup();
         dispatchThread.start();
-        this.updateMap.clear();
+//        dispatchExecutorService.execute(dispatchThread);
+
     }
 
     public void notifyStart(){
