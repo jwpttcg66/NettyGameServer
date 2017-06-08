@@ -1,8 +1,8 @@
 package com.snowcattle.game.db.service.async;
 
 import com.alibaba.fastjson.JSON;
-import com.snowcattle.game.db.common.JsonSerializer;
 import com.snowcattle.game.db.common.enums.DbOperationEnum;
+import com.snowcattle.game.service.json.JsonSerializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.Map;
  * 异步实体封装箱, 里面包含了实体的快照
  *  所有需要异步存储的实体，都会包装在这里，然后传递到异步队列里面
  */
-public class AsyncEntityWrapper implements JsonSerializer{
+public class AsyncEntityWrapper implements JsonSerializer {
 
     /**
      * 包装时间

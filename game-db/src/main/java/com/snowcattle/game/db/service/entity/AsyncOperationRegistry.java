@@ -1,10 +1,10 @@
 package com.snowcattle.game.db.service.entity;
 
+import com.snowcattle.game.common.scanner.ClassScanner;
 import com.snowcattle.game.db.common.DbServiceName;
 import com.snowcattle.game.db.common.GlobalConstants;
 import com.snowcattle.game.db.common.Loggers;
 import com.snowcattle.game.db.common.annotation.AsyncEntityOperation;
-import com.snowcattle.game.db.common.loader.scanner.ClassScanner;
 import com.snowcattle.game.db.service.async.thread.AsyncDbOperation;
 import com.snowcattle.game.db.service.common.service.IDbService;
 import com.snowcattle.game.db.service.config.DbConfig;
