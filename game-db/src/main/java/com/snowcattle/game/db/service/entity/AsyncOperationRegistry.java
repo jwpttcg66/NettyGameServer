@@ -1,6 +1,7 @@
 package com.snowcattle.game.db.service.entity;
 
 import com.snowcattle.game.common.scanner.ClassScanner;
+import com.snowcattle.game.common.util.BeanUtil;
 import com.snowcattle.game.db.common.DbServiceName;
 import com.snowcattle.game.db.common.GlobalConstants;
 import com.snowcattle.game.db.common.Loggers;
@@ -8,7 +9,6 @@ import com.snowcattle.game.db.common.annotation.AsyncEntityOperation;
 import com.snowcattle.game.db.service.async.thread.AsyncDbOperation;
 import com.snowcattle.game.db.service.common.service.IDbService;
 import com.snowcattle.game.db.service.config.DbConfig;
-import com.snowcattle.game.db.util.DbBeanUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class AsyncOperationRegistry implements IDbService{
     private DbConfig dbConfig;
 
     @Autowired
-    private DbBeanUtils dbBeanUtils;
+    private BeanUtil beanUtil;
 
     /**
      * 包体扫描
@@ -71,7 +71,7 @@ public class AsyncOperationRegistry implements IDbService{
                 logger.info("AsyncEntityOperation load:" + messageClass);
                 AsyncEntityOperation asyncEntityOperation = messageClass.getAnnotation(AsyncEntityOperation.class);
                 if(asyncEntityOperation != null) {
-                    AsyncDbOperation asyncDbOperation = (AsyncDbOperation) dbBeanUtils.getBean(asyncEntityOperation.bean());
+                    AsyncDbOperation asyncDbOperation = (AsyncDbOperation) beanUtil.getBean(asyncEntityOperation.bean());
                     opeartionMap.put(messageClass.getSimpleName(), asyncDbOperation);
                 }
             }
@@ -98,11 +98,11 @@ public class AsyncOperationRegistry implements IDbService{
         return opeartionMap.values();
     }
 
-    public DbBeanUtils getDbBeanUtils() {
-        return dbBeanUtils;
+    public BeanUtil getBeanUtil() {
+        return beanUtil;
     }
 
-    public void setDbBeanUtils(DbBeanUtils dbBeanUtils) {
-        this.dbBeanUtils = dbBeanUtils;
+    public void setBeanUtil(BeanUtil beanUtil) {
+        this.beanUtil = beanUtil;
     }
 }

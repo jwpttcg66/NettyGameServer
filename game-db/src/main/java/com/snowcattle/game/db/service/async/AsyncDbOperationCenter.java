@@ -1,12 +1,12 @@
 package com.snowcattle.game.db.service.async;
 
+import com.snowcattle.game.common.util.ExecutorUtil;
 import com.snowcattle.game.db.common.DbServiceName;
 import com.snowcattle.game.db.service.async.thread.AsyncDbOperation;
 import com.snowcattle.game.db.service.async.thread.AsyncDbOperationMonitor;
 import com.snowcattle.game.db.service.common.service.IDbService;
 import com.snowcattle.game.db.service.config.DbConfig;
 import com.snowcattle.game.db.service.entity.AsyncOperationRegistry;
-import com.snowcattle.game.db.util.ExecutorUtil;
 import com.snowcattle.game.thread.executor.NonOrderedQueuePoolExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,9 +64,6 @@ public class AsyncDbOperationCenter implements IDbService{
 
     @Override
     public void shutdown() throws Exception {
-//        if(operationExecutor != null){
-//            ExecutorUtil.shutdownAndAwaitTermination(operationExecutor, 60, TimeUnit.SECONDS);
-//        }
         if(scheduledExecutorService != null){
             ExecutorUtil.shutdownAndAwaitTermination(scheduledExecutorService, 60, TimeUnit.SECONDS);
         }

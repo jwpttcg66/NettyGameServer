@@ -1,5 +1,6 @@
 package com.snowcattle.game.db.service.proxy;
 
+import com.snowcattle.game.common.util.ObjectUtils;
 import com.snowcattle.game.db.service.redis.RedisInterface;
 import com.snowcattle.game.db.service.redis.RedisListInterface;
 import com.snowcattle.game.db.service.redis.RedisService;
@@ -10,7 +11,6 @@ import com.snowcattle.game.db.entity.AbstractEntity;
 import com.snowcattle.game.db.entity.IEntity;
 import com.snowcattle.game.db.service.entity.EntityService;
 import com.snowcattle.game.db.util.EntityUtils;
-import com.snowcattle.game.db.util.ObjectUtils;
 import org.slf4j.Logger;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;

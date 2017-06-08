@@ -1,5 +1,6 @@
 package com.snowcattle.game.db.util;
 
+import com.snowcattle.game.common.util.ObjectUtils;
 import com.snowcattle.game.db.entity.AbstractEntity;
 import com.snowcattle.game.db.service.redis.RedisInterface;
 import com.snowcattle.game.db.service.redis.RedisListInterface;
