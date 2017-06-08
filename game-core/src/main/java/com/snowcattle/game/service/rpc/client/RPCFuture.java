@@ -1,8 +1,8 @@
 package com.snowcattle.game.service.rpc.client;
 
 import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.Loggers;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.RpcRequest;
 import com.snowcattle.game.service.net.RpcResponse;
 import org.slf4j.Logger;

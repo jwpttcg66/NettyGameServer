@@ -1,6 +1,5 @@
 package com.snowcattle.game.logic.net;
 
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.CommonErrorLogInfo;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.manager.LocalMananger;

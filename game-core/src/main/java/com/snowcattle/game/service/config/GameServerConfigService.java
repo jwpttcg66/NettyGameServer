@@ -1,5 +1,6 @@
-package com.snowcattle.game.common.config;
+package com.snowcattle.game.service.config;
 
+import com.snowcattle.game.common.config.*;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;

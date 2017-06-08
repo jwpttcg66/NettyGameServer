@@ -1,4 +1,4 @@
-package com.snowcattle.game.common.loader;
+package com.snowcattle.game.service.classloader.loader;
 
 import com.snowcattle.game.common.constant.Loggers;
 import org.slf4j.Logger;

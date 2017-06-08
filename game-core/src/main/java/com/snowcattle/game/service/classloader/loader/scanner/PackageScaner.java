@@ -1,11 +1,10 @@
-package com.snowcattle.game.common.loader.scanner;
+package com.snowcattle.game.service.classloader.loader.scanner;
 
 import com.snowcattle.game.common.constant.Loggers;
 import org.slf4j.Logger;
 import sun.net.www.protocol.file.FileURLConnection;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLConnection;

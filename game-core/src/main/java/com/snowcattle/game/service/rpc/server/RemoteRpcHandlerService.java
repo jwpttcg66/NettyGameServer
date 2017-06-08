@@ -1,11 +1,11 @@
 package com.snowcattle.game.service.rpc.server;
 
 import com.snowcattle.game.common.config.GameServerConfig;
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.common.util.ExecutorUtil;
 import com.snowcattle.game.service.IService;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

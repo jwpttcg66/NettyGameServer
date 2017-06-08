@@ -4,9 +4,9 @@ package com.snowcattle.game.service.net;
  * Created by jiangwenping on 17/2/7.
  */
 
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.handler.GameLoggingHandler;
 import com.snowcattle.game.service.net.handler.GameNetMessageTcpServerHandler;
 import com.snowcattle.game.service.net.handler.async.AsyncNettyGameNetMessageTcpServerHandler;

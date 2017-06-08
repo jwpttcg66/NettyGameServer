@@ -1,9 +1,9 @@
 package com.snowcattle.game.manager.spring;
 
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.common.loader.DefaultClassLoader;
+import com.snowcattle.game.service.classloader.loader.DefaultClassLoader;
 import com.snowcattle.game.service.async.pool.AsyncThreadService;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;

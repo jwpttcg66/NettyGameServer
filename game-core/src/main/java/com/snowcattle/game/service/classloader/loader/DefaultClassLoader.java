@@ -1,4 +1,4 @@
-package com.snowcattle.game.common.loader;
+package com.snowcattle.game.service.classloader.loader;
 
 /**
  * Created by jiangwenping on 17/2/8.

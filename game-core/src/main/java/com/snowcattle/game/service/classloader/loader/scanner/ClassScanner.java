@@ -1,4 +1,4 @@
-package com.snowcattle.game.common.loader.scanner;
+package com.snowcattle.game.service.classloader.loader.scanner;
 
 
 /**

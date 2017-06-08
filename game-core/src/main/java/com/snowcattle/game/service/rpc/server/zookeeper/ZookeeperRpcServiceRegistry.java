@@ -1,8 +1,8 @@
 package com.snowcattle.game.service.rpc.server.zookeeper;
 
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.common.config.GameServerConfig;
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.config.GameServerDiffConfig;
 import com.snowcattle.game.common.config.ZooKeeperConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;

@@ -1,9 +1,9 @@
 package com.snowcattle.game.net.client.rpc.zookeeper;
 
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.common.config.GameServerConfig;
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.util.BeanUtil;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.rpc.client.ZookeeperRpcServiceDiscovery;

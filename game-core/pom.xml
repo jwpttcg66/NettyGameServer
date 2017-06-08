@@ -19,6 +19,12 @@
 
         <dependency>
             <groupId>com.snowcattle.game</groupId>
+            <artifactId>game-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.snowcattle.game</groupId>
             <artifactId>game-executor</artifactId>
             <version>${parent.version}</version>
         </dependency>

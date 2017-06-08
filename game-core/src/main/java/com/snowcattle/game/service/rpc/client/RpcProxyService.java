@@ -2,9 +2,9 @@ package com.snowcattle.game.service.rpc.client;
 
 
 import com.snowcattle.game.common.annotation.RpcServiceAnnotation;
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.client.proxy.AsyncRpcProxy;
 import com.snowcattle.game.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.snowcattle.game.service.rpc.client.proxy.ObjectProxy;

@@ -1,10 +1,10 @@
 package com.snowcattle.game.service.net.process;
 
-import com.snowcattle.game.common.config.GameServerConfigService;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.MessageAttributeEnum;
 import com.snowcattle.game.service.net.message.AbstractNetMessage;
 import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;

@@ -1,7 +1,5 @@
 package com.snowcattle.game.common.util;
 
-import com.snowcattle.game.service.time.TimeService;
-
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -151,20 +149,20 @@ public class TimeUtils {
 		return start + validTime * timeUnit;
 	}
 
-	/**
-	 * 获取当天零点时间
-	 *
-	 * @return
-	 */
-	public static long getTodayBegin(TimeService timeService) {
-		Calendar _calendar = Calendar.getInstance();
-		_calendar.setTimeInMillis(timeService.now());
-		_calendar.set(Calendar.HOUR_OF_DAY, 0);
-		_calendar.set(Calendar.MINUTE, 0);
-		_calendar.set(Calendar.SECOND, 0);
-		_calendar.set(Calendar.MILLISECOND, 0);
-		return _calendar.getTimeInMillis();
-	}
+//	/**
+//	 * 获取当天零点时间
+//	 *
+//	 * @return
+//	 */
+//	public static long getTodayBegin(TimeService timeService) {
+//		Calendar _calendar = Calendar.getInstance();
+//		_calendar.setTimeInMillis(timeService.now());
+//		_calendar.set(Calendar.HOUR_OF_DAY, 0);
+//		_calendar.set(Calendar.MINUTE, 0);
+//		_calendar.set(Calendar.SECOND, 0);
+//		_calendar.set(Calendar.MILLISECOND, 0);
+//		return _calendar.getTimeInMillis();
+//	}
 
 	/**
 	 * 获取特定日期当天的零点时间

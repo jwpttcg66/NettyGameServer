@@ -32,6 +32,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.snowcattle.game</groupId>
+            <artifactId>game-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
