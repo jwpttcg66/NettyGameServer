@@ -1,12 +1,12 @@
 package com.snowcattle.game.executor.update.pool.excutor;
 
-import com.snowcattle.game.executor.common.ThreadNameFactory;
 import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.update.thread.dispatch.DispatchThread;
 import com.snowcattle.game.executor.update.thread.update.bind.BindingUpdateThread;
 import com.snowcattle.game.executor.update.entity.IUpdate;
 import com.snowcattle.game.executor.update.entity.NullWeakUpUpdate;
 import com.snowcattle.game.executor.common.utils.Loggers;
+import com.snowcattle.game.thread.ThreadNameFactory;
 
 import java.util.Queue;
 import java.util.concurrent.*;

@@ -1,8 +1,8 @@
 package com.snowcattle.game.executor.update.service;
 
-import com.snowcattle.game.executor.common.ThreadNameFactory;
+import com.snowcattle.game.common.utils.ExecutorUtil;
 import com.snowcattle.game.executor.common.utils.Constants;
-import com.snowcattle.game.executor.common.utils.ExecutorUtil;
+import com.snowcattle.game.thread.ThreadNameFactory;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

@@ -1,9 +1,9 @@
 package com.snowcattle.game.executor.update.pool;
 
+import com.snowcattle.game.common.utils.ExecutorUtil;
 import com.snowcattle.game.executor.update.pool.excutor.BindThreadUpdateExecutorService;
 import com.snowcattle.game.executor.update.thread.dispatch.DispatchThread;
 import com.snowcattle.game.executor.update.entity.IUpdate;
-import com.snowcattle.game.executor.common.utils.ExecutorUtil;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;

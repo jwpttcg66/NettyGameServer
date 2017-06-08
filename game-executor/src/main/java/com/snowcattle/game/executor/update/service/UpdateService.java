@@ -1,8 +1,6 @@
 package com.snowcattle.game.executor.update.service;
 
-import com.snowcattle.game.executor.common.ThreadNameFactory;
 import com.snowcattle.game.executor.common.utils.Constants;
-import com.snowcattle.game.executor.common.utils.ExecutorUtil;
 import com.snowcattle.game.executor.common.utils.Loggers;
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
@@ -18,8 +16,6 @@ import com.snowcattle.game.executor.update.thread.dispatch.DispatchThread;
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jiangwenping on 17/1/12.

@@ -20,4 +20,15 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.snowcattle.game</groupId>
+            <artifactId>game-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
+
+
 </project>
