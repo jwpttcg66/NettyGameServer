@@ -37,7 +37,7 @@ public class PackageScaner
         try
         {
             URL url = null;
-            logger.info("url path" + respath);
+            logger.info("scan url path" + respath);
             if (!respath.startsWith("/"))
                 url = PackageScaner.class.getResource("/" + respath);
             else

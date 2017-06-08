@@ -40,7 +40,7 @@ public class PackageScaner
 		try
 		{
 			URL url = null;
-			logger.info("url path" + respath);
+			logger.info("scan url path " + respath);
 			if (!respath.startsWith("/"))
 				url = PackageScaner.class.getResource("/" + respath);
 			else
@@ -144,8 +144,8 @@ public class PackageScaner
 	}
 
 	
-	public static void main(String[] args) throws IOException
-	{
+//	public static void main(String[] args) throws IOException
+//	{
 		
 //		JarPathLoader.getNewJarLoader("/dist/server-core-1.0.0.jar");
 //		URLClassLoader c = JarClassLoader.getClassLoad("D:/t4game/workspace3/GameServerCore/dist", true);
@@ -176,6 +176,6 @@ public class PackageScaner
 //            	  
 //              jarFile.getInputStream(entry);
 //	    } 
-	}
+//	}
 }
 
