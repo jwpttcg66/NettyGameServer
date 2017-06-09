@@ -29,4 +29,5 @@
         <property name="asyncOperationPackageName" value="com.snowcattle.game.db"/>
     </bean>
     <bean id="transactionService" class="com.redis.transaction.service.TransactionServiceImpl"/>
+    <bean class="com.snowcattle.game.common.util.BeanUtil"/>
 </beans>
