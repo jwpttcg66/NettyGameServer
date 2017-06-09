@@ -13,6 +13,7 @@
         <module>game-core</module>
         <module>game-code-generate</module>
         <module>game-db</module>
+        <module>game-common</module>
     </modules>
 
     <repositories>
