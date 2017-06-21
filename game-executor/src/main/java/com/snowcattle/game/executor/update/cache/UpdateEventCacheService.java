@@ -23,6 +23,7 @@ public class UpdateEventCacheService {
         long time = 1000 * 30;
         genericObjectPoolConfig.setMaxWaitMillis(time);
         genericObjectPoolConfig.setSoftMinEvictableIdleTimeMillis(time);
+        genericObjectPoolConfig.setTestOnReturn(true);
 
         updateEventCacheFactory = new UpdateEventCacheFactory(new UpdateEventPoolFactory(), genericObjectPoolConfig);
     }

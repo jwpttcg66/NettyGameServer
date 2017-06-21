@@ -26,7 +26,7 @@ public class UpdateEventPoolFactory implements PooledObjectFactory<UpdateEvent>{
     @Override
     public boolean validateObject(PooledObject<UpdateEvent> p) {
 //        System.out.println("validateObject updateEvent");
-        return true;
+        return false;
     }
 
     @Override
