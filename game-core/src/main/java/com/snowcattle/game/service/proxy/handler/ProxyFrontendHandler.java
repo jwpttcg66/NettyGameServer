@@ -2,7 +2,9 @@ package com.snowcattle.game.service.proxy.handler;
 
 import com.snowcattle.game.service.net.session.NettyTcpSession;
 import com.snowcattle.game.service.proxy.ProxyRule;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -78,16 +80,21 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
+//        cause.printStackTrace();
         closeOnFlush(ctx.channel());
     }
 
     /**
      * Closes the specified channel after all queued write requests are flushed.
      */
-    static void closeOnFlush(Channel ch) {
-//        if (ch.isActive()) {
-//            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-//        }
+    public void closeOnFlush(Channel ch) {
+        if (ch.isActive()) {
+            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+            ch.close();
+        }
+    }
+
+    public NettyTcpSession connectProxyRule(ProxyRule proxyRule){
+        return  null;
     }
 }
