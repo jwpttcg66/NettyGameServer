@@ -1,6 +1,9 @@
 package com.snowcattle.game.net.client.tcp;
 
+import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.handler.GameLoggingHandler;
 import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
 import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
@@ -27,7 +30,12 @@ public class GameClientChannleInitializer extends ChannelInitializer<NioSocketCh
         int readerIdleTimeSeconds = 0;
         int writerIdleTimeSeconds = 0;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
-        channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        if(gameServerConfig.isDevelopModel()) {
+            channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
+        }
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
 //        channelPipLine.addLast("logger", new LoggingHandler(LogLevel.DEBUG));
         channelPipLine.addLast("handler", new GameClientHandler());

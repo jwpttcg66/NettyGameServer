@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.proxy;
 
+import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
@@ -32,9 +33,12 @@ public class ProxyTcpChannelInitializer extends ChannelInitializer<NioSocketChan
         int readerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         int writerIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
         int allIdleTimeSeconds = GlobalConstants.Net.SESSION_HEART_ALL_TIMEOUT;
-        channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
-        channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        if(gameServerConfig.isDevelopModel()) {
+            channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
+        }
+        channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
 //        boolean tcpMessageQueueDirectDispatch = gameServerConfigService.getGameServerConfig().isTcpMessageQueueDirectDispatch();
 //        if(tcpMessageQueueDirectDispatch) {
 //            channelPipLine.addLast("handler", new GameNetMessageTcpServerHandler());
