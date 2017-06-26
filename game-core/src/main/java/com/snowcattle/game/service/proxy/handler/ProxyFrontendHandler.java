@@ -1,12 +1,12 @@
 package com.snowcattle.game.service.proxy.handler;
 
+import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.net.session.NettyTcpSession;
+import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.proxy.ProxyRule;
+import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
 
 /**
  * Created by jiangwenping on 2017/6/23.
@@ -15,23 +15,22 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
     /**
-     * 代理规则
-     */
-    private ProxyRule proxyRule;
-
-    /**
      * 代理产生的后端session
      */
     private NettyTcpSession proxySession;
 
-    public ProxyFrontendHandler(ProxyRule proxyRule) {
-        this.proxyRule = proxyRule;
-    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        final Channel inboundChannel = ctx.channel();
+        ProxyRule proxyRule = new ProxyRule();
+        long serverId = 1;
+        String host = "127.0.0.1";
+        int port = 7090;
+        proxyRule.setServerId(serverId);
+        proxyRule.setRemoteHost(host);
+        proxyRule.setRemotePort(port);
 
+        this.proxySession = connectProxyRule(ctx, proxyRule);
 //        // Start the connection attempt.
 //        Bootstrap b = new Bootstrap();
 //        b.group(inboundChannel.eventLoop())
@@ -56,26 +55,27 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(final ChannelHandlerContext ctx, Object msg) {
-//        if (outboundChannel.isActive()) {
-//            outboundChannel.writeAndFlush(msg).addListener(new ChannelFutureListener() {
-//                @Override
-//                public void operationComplete(ChannelFuture future) {
-//                    if (future.isSuccess()) {
-//                        // was able to flush out data, start to read the next chunk
-//                        ctx.channel().read();
-//                    } else {
-//                        future.channel().close();
-//                    }
-//                }
-//            });
-//        }
+        if (proxySession.isConnected()) {
+            final Channel outboundChannel = proxySession.getChannel();
+            outboundChannel.writeAndFlush(msg).addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture future) {
+                    if (future.isSuccess()) {
+                        // was able to flush out data, start to read the next chunk
+                        ctx.channel().read();
+                    } else {
+                        future.channel().close();
+                    }
+                }
+            });
+        }
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-//        if (outboundChannel != null) {
-//            closeOnFlush(outboundChannel);
-//        }
+        if (proxySession != null) {
+            closeOnFlush(proxySession.getChannel());
+        }
     }
 
     @Override
@@ -89,12 +89,44 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
      */
     public void closeOnFlush(Channel ch) {
         if (ch.isActive()) {
-            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+//            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+            ch.flush();
             ch.close();
         }
     }
 
-    public NettyTcpSession connectProxyRule(ProxyRule proxyRule){
-        return  null;
+    /**
+     * 链接制定地址
+     * @param ctx
+     * @param proxyRule
+     * @return
+     */
+    public NettyTcpSession connectProxyRule(final ChannelHandlerContext ctx, ProxyRule proxyRule){
+
+        final Channel inboundChannel = ctx.channel();
+        // Start the connection attempt.
+        Bootstrap b = new Bootstrap();
+        b.group(inboundChannel.eventLoop())
+                .channel(ctx.channel().getClass())
+                .handler(new ProxyBackendHandler(inboundChannel))
+                .option(ChannelOption.AUTO_READ, false);
+        ChannelFuture f = b.connect(proxyRule.getRemoteHost(), proxyRule.getRemotePort());
+        Channel outboundChannel = f.channel();
+        f.addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) {
+                if (future.isSuccess()) {
+                    // connection complete start to read first data
+                    inboundChannel.read();
+                } else {
+                    // Close the connection if the connection attempt has failed.
+                    inboundChannel.close();
+                }
+            }
+        });
+
+        NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().getLocalSpringBeanManager().getNettyTcpSessionBuilder();
+        NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
+        return  nettyTcpSession;
     }
 }

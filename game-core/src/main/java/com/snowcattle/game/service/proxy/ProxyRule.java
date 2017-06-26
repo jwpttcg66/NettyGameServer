@@ -1,10 +1,14 @@
 package com.snowcattle.game.service.proxy;
 
+import com.snowcattle.game.service.lookup.ILongId;
+
 /**
  * Created by jiangwenping on 2017/6/9.
  * 代理规则
  */
-public class ProxyRule {
+public class ProxyRule implements ILongId {
+
+    private long serverId;
 
     /**
      * 远程地址
@@ -30,5 +34,18 @@ public class ProxyRule {
 
     public void setRemotePort(int remotePort) {
         this.remotePort = remotePort;
+    }
+
+    @Override
+    public long longId() {
+        return serverId;
+    }
+
+    public long getServerId() {
+        return serverId;
+    }
+
+    public void setServerId(long serverId) {
+        this.serverId = serverId;
     }
 }
