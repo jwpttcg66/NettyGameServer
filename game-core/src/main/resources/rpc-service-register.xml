@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services>
-    <service boenum="world">
-    </service>
-    <service boenum="game" >
-    </service>
-    <service boenum="db" >
-    </service>
+    <service boenum="proxy"/>
+    <service boenum="world"/>
+    <service boenum="game" />
+    <service boenum="db" />
 </services>

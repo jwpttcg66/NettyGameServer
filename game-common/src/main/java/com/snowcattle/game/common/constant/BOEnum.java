@@ -10,7 +10,7 @@ package com.snowcattle.game.common.constant;
 public enum BOEnum {
 
     //网关
-    GATEWAY(1),
+    PROXY(1),
     //世界
     WORLD(2),
     //游戏
