@@ -2,6 +2,7 @@
 <servers>
     <server>
         <server-name>proxy-gate</server-name>
+        <server-gate-id>11001</server-gate-id>
         <server-gate-ip>127.0.0.1</server-gate-ip>
         <server-gate-port>9090</server-gate-port>
         <server-transfer-id>127.0.0.1</server-transfer-id>
