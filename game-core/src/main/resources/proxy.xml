@@ -2,9 +2,11 @@
 <servers>
     <server>
         <name>proxy-gate</name>
-        <gate-id>11001</gate-id>
-        <gate-ip>127.0.0.1</gate-ip>
-        <gate-port>9090</gate-port>
+        <id>11001</id>
+        <ip>127.0.0.1</ip>
+        <port>9090</port>
+        <!--<gate-thread-bosss>6</gate-thread-bosss>-->
+        <!--<gate-thread-worker>60</gate-thread-worker>-->
         <transfer-ip>127.0.0.1</transfer-ip>
         <transfer-port>7090</transfer-port>
     </server>

@@ -10,11 +10,14 @@ import org.jdom2.Element;
 public class SdProxyConfig {
 
     private String name;
-    private int id;
+    private String id;
     private String ip;
     private int port;
     private String transferIp;
     private int transferPort;
+    private int bossThreadSize;
+    private int workerThreadSize;
+
 
     public String getName() {
         return name;
@@ -24,11 +27,11 @@ public class SdProxyConfig {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,12 +67,32 @@ public class SdProxyConfig {
         this.transferPort = transferPort;
     }
 
+    public int getBossThreadSize() {
+        return bossThreadSize;
+    }
+
+    public void setBossThreadSize(int bossThreadSize) {
+        this.bossThreadSize = bossThreadSize;
+    }
+
+    public int getWorkerThreadSize() {
+        return workerThreadSize;
+    }
+
+    public void setWorkerThreadSize(int workerThreadSize) {
+        this.workerThreadSize = workerThreadSize;
+    }
+
     public void load(Element element) throws DataConversionException {
         name = element.getChildTextTrim("name");
-        id =Integer.valueOf(element.getChildTextTrim("id"));
+        id = element.getChildTextTrim("id");
         ip = element.getChildTextTrim("ip");
         port = Integer.valueOf(element.getChildTextTrim("port"));
         transferIp = element.getChildTextTrim("transfer-ip");
         transferPort = Integer.valueOf(element.getChildTextTrim("transfer-port"));
+//        bossThreadSize = Integer.valueOf(element.getChildTextTrim("gate-thread-bosss"));
+//        workerThreadSize = Integer.valueOf(element.getChildTextTrim("gate-thread-worker"));
     }
+
+
 }

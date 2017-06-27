@@ -9,6 +9,7 @@ import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.proxy.NetProxyConfig;
 import com.snowcattle.game.service.proxy.ProxyTcpChannelInitializer;
+import com.snowcattle.game.service.proxy.ProxyTcpServerService;
 import com.snowcattle.game.service.proxy.SdProxyConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
@@ -32,6 +33,11 @@ public class LocalNetService implements IService{
      * rpc的tcp服务
      */
     private GameNettyRPCService gameNettyRPCService;
+
+    /**
+     * 代理服务
+     */
+    private ProxyTcpServerService proxyTcpServerService;
 
     private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
     private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
@@ -82,6 +88,12 @@ public class LocalNetService implements IService{
         SdProxyConfig sdProxyConfig  = netProxyConfig.getSdProxyConfig();
         if(sdProxyConfig != null){
             //启动代理服务
+            proxyTcpServerService = new ProxyTcpServerService(sdProxyConfig.getId(), sdProxyConfig.getPort()
+                    , GlobalConstants.Thread.NET_PROXY_BOSS, GlobalConstants.Thread.NET_PROXY_WORKER, proxyChannleInitializer);
+            startUpFlag = proxyTcpServerService.startService();
+            if(!startUpFlag){
+                throw  new StartUpException("proxy server startup error");
+            }
         }
     }
 
@@ -111,6 +123,10 @@ public class LocalNetService implements IService{
             if (gameNettyRPCService != null) {
                 gameNettyRPCService.stopService();
             }
+        }
+
+        if (proxyTcpServerService != null) {
+            proxyTcpServerService.stopService();
         }
     }
 
