@@ -34,7 +34,7 @@ public class DictService implements IService{
     public void startup() throws Exception {
         Map<String, IDictCollections> collectionsMap = new ConcurrentHashMap<>();
 
-        String filePath = GlobalConstants.ConfigFile.dict_root_file;
+        String filePath = GlobalConstants.ConfigFile.DICT_ROOT_FILE;
         String jsonString = ResourceUtil.getTextFormResourceNoException(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
             JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);

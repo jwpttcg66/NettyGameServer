@@ -80,12 +80,12 @@ public class GlobalConstants {
         public static final String DYNAMIC_CONFIG = "dynamic_config.properties";
         /**zookeeper*/
         public static final String ZOOKEEPER_CONFIG = "zookeeper.properties";
-
         /**rpcservice*/
         public static final String RPC_SERVEICE_CONFIG="rpc-service-register.xml";
-
         /**dictService*/
-        public static final String dict_root_file="dict/dict.wg";
+        public static final String DICT_ROOT_FILE="dict/dict.wg";
+        /**proxy*/
+        public static final String PROXY_SERVER_CONFIG="proxy.xml";
     }
 
     /**

@@ -4,6 +4,7 @@ import com.snowcattle.game.common.config.*;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.proxy.NetProxyConfig;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.service.IService;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -24,6 +25,8 @@ public class GameServerConfigService implements IService {
     protected GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
     protected ZooKeeperConfig zooKeeperConfig;
     protected RpcConfig rpcConfig;
+    protected NetProxyConfig netProxyConfig;
+
 
     @Override
     public String getId() {
@@ -41,7 +44,13 @@ public class GameServerConfigService implements IService {
         initDynamicConfig();
         initRpcConfig();
         initZooKeeperConfig();
+        initNetProxyConfig();
+    }
 
+    public void initNetProxyConfig() throws Exception{
+        NetProxyConfig netProxyConfig = new NetProxyConfig();
+        netProxyConfig.init();
+        this.netProxyConfig = netProxyConfig;
     }
 
     public void initRpcConfig() throws Exception {
@@ -127,5 +136,13 @@ public class GameServerConfigService implements IService {
 
     public void setGameServerConfig(GameServerConfig gameServerConfig) {
         this.gameServerConfig = gameServerConfig;
+    }
+
+    public NetProxyConfig getNetProxyConfig() {
+        return netProxyConfig;
+    }
+
+    public void setNetProxyConfig(NetProxyConfig netProxyConfig) {
+        this.netProxyConfig = netProxyConfig;
     }
 }

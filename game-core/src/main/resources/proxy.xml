@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <servers>
     <server>
-        <server-name>proxy-gate</server-name>
-        <server-gate-id>11001</server-gate-id>
-        <server-gate-ip>127.0.0.1</server-gate-ip>
-        <server-gate-port>9090</server-gate-port>
-        <server-transfer-id>127.0.0.1</server-transfer-id>
-        <server-transfer-port>7090</server-transfer-port>
+        <name>proxy-gate</name>
+        <gate-id>11001</gate-id>
+        <gate-ip>127.0.0.1</gate-ip>
+        <gate-port>9090</gate-port>
+        <transfer-ip>127.0.0.1</transfer-ip>
+        <transfer-port>7090</transfer-port>
     </server>
 </servers>
