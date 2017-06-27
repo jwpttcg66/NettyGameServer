@@ -7,6 +7,9 @@ import com.snowcattle.game.common.exception.StartUpException;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
+import com.snowcattle.game.service.proxy.NetProxyConfig;
+import com.snowcattle.game.service.proxy.ProxyTcpChannelInitializer;
+import com.snowcattle.game.service.proxy.SdProxyConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -17,12 +20,23 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class LocalNetService implements IService{
 
+    /**
+     * tcp服务
+     */
     private GameNettyTcpServerService gameNettyTcpServerService;
+    /**
+     * udp服务
+     */
     private GameNettyUdpServerService gameNettyUdpServerService;
+    /**
+     * rpc的tcp服务
+     */
     private GameNettyRPCService gameNettyRPCService;
 
     private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
     private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
+    private  ChannelInitializer<NioSocketChannel> rpcChannelInitializer;
+    private ChannelInitializer<NioSocketChannel> proxyChannleInitializer;
 
     @Override
     public String getId() {
@@ -32,6 +46,11 @@ public class LocalNetService implements IService{
     @Override
     public void startup() throws Exception {
         initChannelInitializer();
+        initNetService();
+
+    }
+
+    public void initNetService() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         gameNettyTcpServerService = new GameNettyTcpServerService(gameServerConfig.getServerId(), gameServerConfig.getPort()
@@ -52,19 +71,25 @@ public class LocalNetService implements IService{
 
         if(gameServerConfig.isRpcOpen()) {
             gameNettyRPCService = new GameNettyRPCService(gameServerConfig.getServerId(), gameServerConfig.getFirstRpcPort()
-                    , GlobalConstants.Thread.NET_RPC_BOSS, GlobalConstants.Thread.NET_RPC_WORKER, new GameNetRPCChannleInitializer());
+                    , GlobalConstants.Thread.NET_RPC_BOSS, GlobalConstants.Thread.NET_RPC_WORKER, rpcChannelInitializer);
             startUpFlag = gameNettyRPCService.startService();
             if(!startUpFlag){
                 throw  new StartUpException("rpc server startup error");
             }
-
         }
 
+        NetProxyConfig netProxyConfig = gameServerConfigService.getNetProxyConfig();
+        SdProxyConfig sdProxyConfig  = netProxyConfig.getSdProxyConfig();
+        if(sdProxyConfig != null){
+            //启动代理服务
+        }
     }
 
     public void initChannelInitializer(){
         nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
         nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
+        rpcChannelInitializer = new GameNetRPCChannleInitializer();
+        proxyChannleInitializer = new ProxyTcpChannelInitializer();
     }
 
     @Override
