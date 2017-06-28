@@ -1,12 +1,17 @@
 package com.snowcattle.game.service.proxy.handler;
 
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
 import com.snowcattle.game.service.net.session.NettyTcpSession;
 import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.proxy.ProxyRule;
+import com.snowcattle.game.service.proxy.ProxyTcpBackChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
+import io.netty.channel.sctp.nio.NioSctpChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * Created by jiangwenping on 2017/6/23.
@@ -107,9 +112,10 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         // Start the connection attempt.
         Bootstrap b = new Bootstrap();
         b.group(inboundChannel.eventLoop())
-                .channel(ctx.channel().getClass())
-                .handler(new ProxyBackendHandler(inboundChannel))
-                .option(ChannelOption.AUTO_READ, false);
+                .channel(ctx.channel().getClass()).handler(new ProxyTcpBackChannelInitializer(inboundChannel));
+        b.option(ChannelOption.AUTO_READ, false);
+        b.option(ChannelOption.TCP_NODELAY, true);
+
         ChannelFuture f = b.connect(proxyRule.getRemoteHost(), proxyRule.getRemotePort());
         Channel outboundChannel = f.channel();
         f.addListener(new ChannelFutureListener() {
@@ -126,7 +132,7 @@ public class ProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         });
 
         NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().getLocalSpringBeanManager().getNettyTcpSessionBuilder();
-        NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
+        NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(outboundChannel);
         return  nettyTcpSession;
     }
 }

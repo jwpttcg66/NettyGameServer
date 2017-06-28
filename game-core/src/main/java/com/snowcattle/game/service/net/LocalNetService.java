@@ -8,7 +8,7 @@ import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.proxy.NetProxyConfig;
-import com.snowcattle.game.service.proxy.ProxyTcpChannelInitializer;
+import com.snowcattle.game.service.proxy.ProxyTcpFrontedChannelInitializer;
 import com.snowcattle.game.service.proxy.ProxyTcpServerService;
 import com.snowcattle.game.service.proxy.SdProxyConfig;
 import io.netty.channel.ChannelInitializer;
@@ -101,7 +101,7 @@ public class LocalNetService implements IService{
         nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
         nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
         rpcChannelInitializer = new GameNetRPCChannleInitializer();
-        proxyChannleInitializer = new ProxyTcpChannelInitializer();
+        proxyChannleInitializer = new ProxyTcpFrontedChannelInitializer();
     }
 
     @Override

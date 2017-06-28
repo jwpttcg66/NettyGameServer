@@ -10,6 +10,7 @@ import com.snowcattle.game.service.net.handler.async.AsyncNettyGameNetMessageTcp
 import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
 import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
+import com.snowcattle.game.service.proxy.handler.ProxyFrontendHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -21,7 +22,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  * Created by jiangwenping on 2017/6/9.
  * 代理的网络初始化器
  */
-public class ProxyTcpChannelInitializer extends ChannelInitializer<NioSocketChannel> {
+public class ProxyTcpFrontedChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
 
@@ -39,12 +40,6 @@ public class ProxyTcpChannelInitializer extends ChannelInitializer<NioSocketChan
             channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
         }
         channelPipLine.addLast("idleStateHandler", new IdleStateHandler(readerIdleTimeSeconds, writerIdleTimeSeconds, allIdleTimeSeconds));
-//        boolean tcpMessageQueueDirectDispatch = gameServerConfigService.getGameServerConfig().isTcpMessageQueueDirectDispatch();
-//        if(tcpMessageQueueDirectDispatch) {
-//            channelPipLine.addLast("handler", new GameNetMessageTcpServerHandler());
-//        }else{
-//            AsyncNettyTcpHandlerService asyncNettyTcpHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyTcpHandlerService();
-//            channelPipLine.addLast(asyncNettyTcpHandlerService.getDefaultEventExecutorGroup(), new AsyncNettyGameNetMessageTcpServerHandler());
-//        }
+        channelPipLine.addLast("handler", new ProxyFrontendHandler());
     }
 }
