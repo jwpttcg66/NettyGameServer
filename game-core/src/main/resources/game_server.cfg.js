@@ -51,4 +51,8 @@ config.asyncEventHandleQueueSize=65536;
 config.exceptionCloseSessionFlag=true;
 /*最大tcpsession链接数量*/
 config.maxTcpSessionNumber=20000;
+/*开启websocket模式*/
+config.webSockectModleFlag=false;
+/*websock模式启用ssl*/
+config.webSockectSSLFlag=false;
 

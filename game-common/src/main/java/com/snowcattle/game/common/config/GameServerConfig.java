@@ -110,6 +110,15 @@ public class GameServerConfig extends ServerConfig {
      */
     private int maxTcpSessionNumber;
 
+    /**
+     * 开启websocket模式
+     */
+    private boolean webSockectModleFlag;
+    /**
+     * websock模式启用ssl
+     */
+    private boolean webSockectSSLFlag;
+
     public GameServerConfig() {
     }
 
