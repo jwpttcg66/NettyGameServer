@@ -453,4 +453,20 @@ public class GameServerConfig extends ServerConfig {
     public void setMaxTcpSessionNumber(int maxTcpSessionNumber) {
         this.maxTcpSessionNumber = maxTcpSessionNumber;
     }
+
+    public boolean isWebSockectModleFlag() {
+        return webSockectModleFlag;
+    }
+
+    public void setWebSockectModleFlag(boolean webSockectModleFlag) {
+        this.webSockectModleFlag = webSockectModleFlag;
+    }
+
+    public boolean isWebSockectSSLFlag() {
+        return webSockectSSLFlag;
+    }
+
+    public void setWebSockectSSLFlag(boolean webSockectSSLFlag) {
+        this.webSockectSSLFlag = webSockectSSLFlag;
+    }
 }

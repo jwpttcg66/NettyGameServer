@@ -3,6 +3,7 @@ package com.snowcattle.game.service.lookup;
 import com.snowcattle.game.bootstrap.GameServer;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.Loggers;
+import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
@@ -65,7 +66,7 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService, IServi
 
     @Override
     public String getId() {
-        return null;
+        return ServiceName.NetTcpSessionLoopUpService;
     }
 
     @Override

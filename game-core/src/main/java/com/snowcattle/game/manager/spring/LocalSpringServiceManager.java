@@ -11,6 +11,7 @@ import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.net.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.net.message.facade.GameFacade;
 import com.snowcattle.game.service.net.message.registry.MessageRegistry;
+import com.snowcattle.game.service.net.ssl.SSLService;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;
@@ -76,6 +77,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private GameAsyncEventService gameAsyncEventService;
+
+    @Autowired
+    private SSLService sslService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -205,5 +209,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setGameAsyncEventService(GameAsyncEventService gameAsyncEventService) {
         this.gameAsyncEventService = gameAsyncEventService;
+    }
+
+    public SSLService getSslService() {
+        return sslService;
+    }
+
+    public void setSslService(SSLService sslService) {
+        this.sslService = sslService;
     }
 }

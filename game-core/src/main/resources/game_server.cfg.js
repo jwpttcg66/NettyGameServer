@@ -54,5 +54,5 @@ config.maxTcpSessionNumber=20000;
 /*开启websocket模式*/
 config.webSockectModleFlag=false;
 /*websock模式启用ssl*/
-config.webSockectSSLFlag=false;
+config.webSockectSSLFlag=true;
 

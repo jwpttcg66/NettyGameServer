@@ -8,8 +8,8 @@ package com.snowcattle.game.service.net;
  *	message附带参数
  */
 public enum MessageAttributeEnum {
-    SESSION,
-    ROOM,
-    PLAYER,
+//    SESSION,
+//    ROOM,
+//    PLAYER,
     DISPATCH_SESSION,
 }
