@@ -1,9 +1,11 @@
 package com.snowcattle.game.service.net.handler;
 
+import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.update.service.UpdateService;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.SingleEventConstants;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
@@ -80,11 +82,17 @@ public class GameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter
             logger.error("channel exceptionCaught", cause);
         }
 
-        //设置下线
-        disconnect(ctx.channel());
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        boolean exceptionCloseSessionFlag = gameServerConfig.isExceptionCloseSessionFlag();
 
-        //销毁上下文
-        ctx.close();
+        if(exceptionCloseSessionFlag) {
+            //设置下线
+            disconnect(ctx.channel());
+
+            //销毁上下文
+            ctx.close();
+        }
     }
 
     @Override

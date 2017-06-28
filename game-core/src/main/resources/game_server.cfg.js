@@ -49,4 +49,6 @@ config.asyncEventHandlerThreadSize=60;
 config.asyncEventHandleQueueSize=65536;
 /*tcp服务器异常时候关闭session标志*/
 config.exceptionCloseSessionFlag=true;
+/*最大tcpsession链接数量*/
+config.maxTcpSessionNumber=20000;
 

@@ -105,6 +105,11 @@ public class GameServerConfig extends ServerConfig {
      */
     private boolean exceptionCloseSessionFlag;
 
+    /**
+     * 最大tcpsession链接数量
+     */
+    private int maxTcpSessionNumber;
+
     public GameServerConfig() {
     }
 
@@ -430,5 +435,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setExceptionCloseSessionFlag(boolean exceptionCloseSessionFlag) {
         this.exceptionCloseSessionFlag = exceptionCloseSessionFlag;
+    }
+
+    public int getMaxTcpSessionNumber() {
+        return maxTcpSessionNumber;
+    }
+
+    public void setMaxTcpSessionNumber(int maxTcpSessionNumber) {
+        this.maxTcpSessionNumber = maxTcpSessionNumber;
     }
 }

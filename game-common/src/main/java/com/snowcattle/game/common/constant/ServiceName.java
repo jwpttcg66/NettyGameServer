@@ -21,4 +21,5 @@ public class ServiceName {
     public static final String DictService = "DictService";
     public static final String AsyncTcpHandlerService = "AsyncTcpHandlerService";
     public static final String GameAsyncEventService = "GameAsyncEventService";
+    public static final String NetTcpSessionLoopUpService = "NetTcpSessionLoopUpService";
 }

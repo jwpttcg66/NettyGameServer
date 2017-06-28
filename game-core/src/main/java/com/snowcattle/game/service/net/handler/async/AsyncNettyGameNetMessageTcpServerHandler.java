@@ -83,12 +83,13 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         if (cause instanceof java.io.IOException)
             return;
 
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        boolean exceptionCloseSessionFlag = gameServerConfig.isExceptionCloseSessionFlag();
         if(logger.isDebugEnabled()) {
             logger.debug("channel exceptionCaught", cause);
         }
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        boolean exceptionCloseSessionFlag = gameServerConfig.isExceptionCloseSessionFlag();
 
         if(exceptionCloseSessionFlag) {
             //设置下线

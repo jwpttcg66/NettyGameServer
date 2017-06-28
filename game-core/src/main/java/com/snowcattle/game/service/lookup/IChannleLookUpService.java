@@ -19,7 +19,7 @@ public interface IChannleLookUpService {
      * 增加
      * @param nettyTcpSession
      */
-    public void addNettySession(NettyTcpSession nettyTcpSession);
+    public boolean addNettySession(NettyTcpSession nettyTcpSession);
 
     /**
      * 移除
