@@ -9,6 +9,7 @@ public class GameHandlerException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public static final int COMMON_ERROR_STATE = 6000;
+	public static final int COMMON_ERROR_MAX_CONNECT_TCP_SESSION_NUMBER = 6001;
 	private int serial;
 	
 	public GameHandlerException(String name){

@@ -12,6 +12,13 @@ import org.springframework.stereotype.Service;
 public class TcpMessageFactory implements ITcpMessageFactory {
 
     @Override
+    public AbstractNetMessage createCommonErrorResponseMessage(int serial, int state, String tip) {
+        CommonErrorResponseServerMessage abstractNetMessage = (CommonErrorResponseServerMessage) createCommonErrorResponseMessage(serial, state);
+        abstractNetMessage.setArg(tip);
+        return abstractNetMessage;
+    }
+
+    @Override
     public AbstractNetMessage createCommonErrorResponseMessage(int serial, int state) {
         CommonErrorResponseServerMessage commonErrorResponseServerMessage = new CommonErrorResponseServerMessage();
         commonErrorResponseServerMessage.setSerial(serial);
@@ -25,5 +32,7 @@ public class TcpMessageFactory implements ITcpMessageFactory {
         commonResponseServerMessage.setSerial(serial);
         return commonResponseServerMessage;
     }
+
+
 
 }

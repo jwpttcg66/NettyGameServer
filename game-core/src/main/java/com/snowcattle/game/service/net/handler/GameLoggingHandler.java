@@ -1,12 +1,10 @@
 package com.snowcattle.game.service.net.handler;
 
 import com.snowcattle.game.common.constant.Loggers;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPromise;
+import io.netty.channel.*;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.concurrent.DefaultPromise;
 import org.slf4j.Logger;
 
 /**
@@ -22,7 +20,10 @@ public class GameLoggingHandler extends LoggingHandler {
         @Override
         public void operationComplete(ChannelFuture future) throws Exception {
             if(!future.isSuccess()){
-                errorLogger.error(future.toString());
+                Throwable throwable = future.cause();
+                if(throwable != null) {
+                    errorLogger.error(throwable.toString(), throwable);
+                }
             }
         }
     };
