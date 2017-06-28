@@ -1,10 +1,12 @@
 package com.snowcattle.game.service.net.handler.async;
 
+import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.NetMessageException;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.SingleEventConstants;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
@@ -80,15 +82,21 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         // Close the connection when an exception is raised.
         if (cause instanceof java.io.IOException)
             return;
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        boolean exceptionCloseSessionFlag = gameServerConfig.isExceptionCloseSessionFlag();
         if(logger.isDebugEnabled()) {
             logger.debug("channel exceptionCaught", cause);
         }
 
-        //设置下线
-        disconnect(ctx.channel());
+        if(exceptionCloseSessionFlag) {
+            //设置下线
+            disconnect(ctx.channel());
 
-        //销毁上下文
-        ctx.close();
+            //销毁上下文
+            ctx.close();
+        }
     }
 
     @Override

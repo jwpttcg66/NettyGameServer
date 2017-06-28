@@ -100,6 +100,11 @@ public class GameServerConfig extends ServerConfig {
     /*异步监听器 handler线程队列大小*/
     private int asyncEventHandleQueueSize;
 
+    /**
+     * tcp服务器异常时候关闭session标志
+     */
+    private boolean exceptionCloseSessionFlag;
+
     public GameServerConfig() {
     }
 
@@ -417,5 +422,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setAsyncEventHandlerThreadSize(int asyncEventHandlerThreadSize) {
         this.asyncEventHandlerThreadSize = asyncEventHandlerThreadSize;
+    }
+
+    public boolean isExceptionCloseSessionFlag() {
+        return exceptionCloseSessionFlag;
+    }
+
+    public void setExceptionCloseSessionFlag(boolean exceptionCloseSessionFlag) {
+        this.exceptionCloseSessionFlag = exceptionCloseSessionFlag;
     }
 }
