@@ -16,7 +16,7 @@ config.gameExcutorCorePoolSize=2;
 config.gameExcutorKeepAliveTime=60;
 config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
-config.updateServiceExcutorFlag=0;
+config.updateServiceExcutorFlag=2;
 /**udp配置***/
 config.udpOpen=true;
 config.updPorts="10090";
