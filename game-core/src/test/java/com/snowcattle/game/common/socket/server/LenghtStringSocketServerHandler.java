@@ -6,7 +6,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * Created by jiangwenping on 17/1/24.
  */
-public class ProtoSocketServerHandler  extends ChannelInboundHandlerAdapter {
+public class LenghtStringSocketServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

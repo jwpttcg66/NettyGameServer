@@ -8,10 +8,10 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * Created by jiangwenping on 17/1/24.
  */
-public class ProtoClientHandler  extends ChannelInboundHandlerAdapter {
+public class LenghtStringClientHandler extends ChannelInboundHandlerAdapter {
     private final ByteBuf firstMessage;
 
-    public ProtoClientHandler() {
+    public LenghtStringClientHandler() {
         firstMessage = Unpooled.buffer(1024);
         byte[] sendString = "hello world".getBytes();
         firstMessage.writeInt(sendString.length);

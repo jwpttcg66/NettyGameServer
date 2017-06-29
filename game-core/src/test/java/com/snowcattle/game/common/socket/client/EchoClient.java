@@ -30,7 +30,7 @@ public class EchoClient {
                     .handler(new LoggingHandler(LogLevel.INFO))
 //                    .handler(new ClientChannleInitializer());
 //                    .handler(new StringClientChannelInitializer());
-//                    .handler(new ProtoClientChannleInitializer());
+//                    .handler(new LengthStringClientChannleInitializer());
                     .handler(new NetMessageClientChannelInitializer());
             ChannelFuture f = b.connect(addr, port).sync();
             System.out.println("连接服务器:" + f.channel().remoteAddress() + ",本地地址:" + f.channel().localAddress());

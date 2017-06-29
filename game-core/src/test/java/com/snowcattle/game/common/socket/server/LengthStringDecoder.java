@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by jwp on 2017/1/24.
  */
-public class ProtoStringDecoder extends StringDecoder {
+public class LengthStringDecoder extends StringDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
         out.add(msg.toString(CharsetUtil.UTF_8));

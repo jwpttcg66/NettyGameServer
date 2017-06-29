@@ -18,16 +18,16 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
  *
  *
  */
-public class ProtoServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
+public class LengthStringServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
         short maxLength = Short.MAX_VALUE;
         nioSocketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxLength, 0, 4, 0, 0));
-        nioSocketChannel.pipeline().addLast(new ProtoStringDecoder());
+        nioSocketChannel.pipeline().addLast(new LengthStringDecoder());
 //        channelPipLine.addLast(new LineBasedFrameDecoder(1024));
 //        channelPipLine.addLast(new StringDecoder());
 //        channelPipLine.addLast(new StringEncoder());
-        channelPipLine.addLast(new ProtoSocketServerHandler());
+        channelPipLine.addLast(new LenghtStringSocketServerHandler());
     }
 }
