@@ -13,7 +13,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Created by jwp on 2017/2/17.
  */
-public class GameNetProtoMessageUdpServerChannleInitializer  extends ChannelInitializer<NioDatagramChannel> {
+public class GameNetProtoMessageUdpServerChannelInitializer extends ChannelInitializer<NioDatagramChannel> {
 
     @Override
     protected void initChannel(NioDatagramChannel ch) throws Exception {

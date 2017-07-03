@@ -32,7 +32,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  *  参数lengthAdjustment表示还需要拓展长度，具体表示为serial的长度
  *  参数initialBytesToStrip表示 传递给下个coder的时候跳过多少字节 如果从0开始为 head+messagelength+serial+body全部给下个coder
  */
-public class GameNetProtoMessageTcpServerChannleInitializer extends ChannelInitializer<NioSocketChannel> {
+public class GameNetProtoMessageTcpServerChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override
     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
 

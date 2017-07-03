@@ -8,8 +8,12 @@ import com.snowcattle.game.common.exception.StartUpException;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
+import com.snowcattle.game.service.net.http.GameNetProtoMessageHttpServerChannelInitializer;
+import com.snowcattle.game.service.net.http.GameNettyHttpServerService;
+import com.snowcattle.game.service.net.http.NetHttpServerConfig;
+import com.snowcattle.game.service.net.http.SdHttpServerConfig;
 import com.snowcattle.game.service.net.tcp.*;
-import com.snowcattle.game.service.net.udp.GameNetProtoMessageUdpServerChannleInitializer;
+import com.snowcattle.game.service.net.udp.GameNetProtoMessageUdpServerChannelInitializer;
 import com.snowcattle.game.service.net.udp.GameNettyUdpServerService;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.proxy.ProxyTcpFrontedChannelInitializer;
@@ -20,6 +24,7 @@ import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.channel.socket.SocketChannel;
 import org.slf4j.Logger;
 
 /**
@@ -47,11 +52,19 @@ public class LocalNetService implements IService{
      * 代理服务
      */
     private ProxyTcpServerService proxyTcpServerService;
+    /**
+     * http服务
+     */
+    private GameNettyHttpServerService gameNettyHttpServerService;
 
     private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
     private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
-    private  ChannelInitializer<NioSocketChannel> rpcChannelInitializer;
+    private ChannelInitializer<NioSocketChannel> rpcChannelInitializer;
     private ChannelInitializer<NioSocketChannel> proxyChannleInitializer;
+    private ChannelInitializer<SocketChannel>  httpChannelInitialier;
+
+    public LocalNetService() {
+    }
 
     @Override
     public String getId() {
@@ -110,15 +123,24 @@ public class LocalNetService implements IService{
             if(!startUpFlag){
                 throw  new StartUpException("proxy server startup error");
             }
-            serverLogger.info("proxyTcpServerService start " + startUpFlag);
+            serverLogger.info("proxyTcpServerService start " + startUpFlag + " port " + sdProxyConfig.getPort());
+        }
+
+        NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
+        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdUdpServerConfig();
+        if(sdHttpServerConfig != null){
+            gameNettyHttpServerService = new GameNettyHttpServerService(sdHttpServerConfig.getId(), sdHttpServerConfig.getPort()
+            , GlobalConstants.Thread.NET_HTTP_BOSS, GlobalConstants.Thread.NET_HTTP_WORKER, httpChannelInitialier);
+            serverLogger.info("gameNettyHttpServerService start " + startUpFlag + " port " + sdHttpServerConfig.getPort());
         }
     }
 
     public void initChannelInitializer(){
-        nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannleInitializer();
-        nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannleInitializer();
+        nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannelInitializer();
+        nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannelInitializer();
         rpcChannelInitializer = new GameNetRPCChannleInitializer();
         proxyChannleInitializer = new ProxyTcpFrontedChannelInitializer();
+        httpChannelInitialier = new GameNetProtoMessageHttpServerChannelInitializer();
     }
 
     @Override
@@ -145,6 +167,14 @@ public class LocalNetService implements IService{
 
         if (proxyTcpServerService != null) {
             proxyTcpServerService.stopService();
+        }
+
+        NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
+        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdUdpServerConfig();
+        if(sdHttpServerConfig != null){
+            if(gameNettyHttpServerService != null){
+                gameNettyHttpServerService.stopService();
+            }
         }
     }
 

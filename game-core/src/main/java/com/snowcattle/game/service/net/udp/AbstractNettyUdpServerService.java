@@ -49,7 +49,7 @@ public abstract class AbstractNettyUdpServerService extends AbstractNettyServerS
                     .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
                     .handler(new LoggingHandler(LogLevel.DEBUG))
                     .handler(channelInitializer);
-//                    .handler(new GameNetProtoMessageUdpServerChannleInitializer());
+//                    .handler(new GameNetProtoMessageUdpServerChannelInitializer());
 
             // 服务端监听在9999端口
             serverChannelFuture = b.bind(serverPort).sync();

@@ -124,6 +124,8 @@ public class GlobalConstants {
         public static final String UPDATE_EXECUTOR_SERVICE = "UpdateExecutorService";
         public static final String NET_PROXY_BOSS ="net_proxy_boss";
         public static final String NET_PROXY_WORKER ="net_proxy_worker";
+        public static final String NET_HTTP_BOSS ="net_http_boss";
+        public static final String NET_HTTP_WORKER ="net_http_worker";
     }
 
     /**
