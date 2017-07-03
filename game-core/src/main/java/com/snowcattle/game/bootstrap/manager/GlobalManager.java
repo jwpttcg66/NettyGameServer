@@ -21,6 +21,7 @@ import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.process.*;
+import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.thread.policy.RejectedPolicyType;
 
 import java.util.concurrent.TimeUnit;
@@ -131,8 +132,9 @@ public class GlobalManager {
 
         //udp处理队列
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        int udpWorkerSize = gameServerConfigService.getGameServerConfig().getUpdQueueMessageProcessWorkerSize();
-        if (gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        int udpWorkerSize = netUdpServerConfig.getSdUdpServerConfig().getUpdQueueMessageProcessWorkerSize();
+        if (netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
             //OrderedQueuePoolExecutor 顺序模型
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = new GameUdpMessageOrderProcessor();
             LocalMananger.getInstance().add(gameUdpMessageOrderProcessor, GameUdpMessageOrderProcessor.class);
@@ -161,7 +163,8 @@ public class GlobalManager {
             updateService.start();
         }
 
-        if(gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
             gameUdpMessageOrderProcessor.start();
         }else{
@@ -182,7 +185,8 @@ public class GlobalManager {
         updateService.stop();
 
 
-        if(gameServerConfigService.getGameServerConfig().isUdpMessageOrderQueueFlag()) {
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
             gameUdpMessageOrderProcessor.stop();
         }else {

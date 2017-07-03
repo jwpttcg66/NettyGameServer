@@ -47,14 +47,6 @@ public class GameServerConfig extends ServerConfig {
      * gameExcutor中LockSupportDisptachThread中最小循环时间 单位纳秒，计算需要出去gameExcutorCycleTime
      */
     private int gameExcutorMinCycleTime;
-    /*udp开发标志*/
-    private boolean udpOpen;
-    /**服务器监听的端口,多个商品以逗号","分隔 */
-    private String updPorts;
-    /*udp的queueMessageProcess默认的worker大小*/
-    private int updQueueMessageProcessWorkerSize;
-    /*udp是否采用GameUdpMessageOrderProcessor*/
-    private boolean udpMessageOrderQueueFlag = true;
 
     /*updateservice是否使用将多个update绑定在一个线程执行*/
     private byte updateServiceExcutorFlag;
@@ -234,28 +226,6 @@ public class GameServerConfig extends ServerConfig {
         this.gameExcutorMinCycleTime = gameExcutorMinCycleTime;
     }
 
-    public String getUpdPorts() {
-        return updPorts;
-    }
-
-    public void setUpdPorts(String updPorts) {
-        this.updPorts = updPorts;
-    }
-
-    public int getUdpPort(){
-        String ports = getUpdPorts();
-        String[] splitPorts = ports.split(",");
-        return Integer.parseInt(splitPorts[0]);
-    }
-
-    public int getUpdQueueMessageProcessWorkerSize() {
-        return updQueueMessageProcessWorkerSize;
-    }
-
-    public void setUpdQueueMessageProcessWorkerSize(int updQueueMessageProcessWorkerSize) {
-        this.updQueueMessageProcessWorkerSize = updQueueMessageProcessWorkerSize;
-    }
-
     public byte getUpdateServiceExcutorFlag() {
         return updateServiceExcutorFlag;
     }
@@ -301,15 +271,6 @@ public class GameServerConfig extends ServerConfig {
         String[] splitPorts = ports.split(",");
         return Integer.parseInt(splitPorts[0]);
     }
-
-    public boolean isUdpMessageOrderQueueFlag() {
-        return udpMessageOrderQueueFlag;
-    }
-
-    public void setUdpMessageOrderQueueFlag(boolean udpMessageOrderQueueFlag) {
-        this.udpMessageOrderQueueFlag = udpMessageOrderQueueFlag;
-    }
-
     public int getRpcConnectThreadSize() {
         return rpcConnectThreadSize;
     }
@@ -372,14 +333,6 @@ public class GameServerConfig extends ServerConfig {
 
     public void setAsyncThreadPoolMaxSize(int asyncThreadPoolMaxSize) {
         this.asyncThreadPoolMaxSize = asyncThreadPoolMaxSize;
-    }
-
-    public boolean isUdpOpen() {
-        return udpOpen;
-    }
-
-    public void setUdpOpen(boolean udpOpen) {
-        this.udpOpen = udpOpen;
     }
 
     public int getRpcTimeOut() {

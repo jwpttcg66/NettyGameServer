@@ -9,6 +9,7 @@ import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufUdpMessage;
+import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.net.udp.session.NettyUdpSession;
 import com.snowcattle.game.thread.executor.OrderedQueuePoolExecutor;
 import com.snowcattle.game.thread.worker.AbstractWork;
@@ -28,7 +29,8 @@ public class GameUdpMessageOrderProcessor implements  IMessageProcessor{
     @Override
     public void start() {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        int udpWorkerSize = gameServerConfigService.getGameServerConfig().getUpdQueueMessageProcessWorkerSize();
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        int udpWorkerSize = netUdpServerConfig.getSdUdpServerConfig().getUpdQueueMessageProcessWorkerSize();
         orderedQueuePoolExecutor = new OrderedQueuePoolExecutor(GlobalConstants.Thread.NET_UDP_MESSAGE_PROCESS, udpWorkerSize, Integer.MAX_VALUE);
         this.workSize = udpWorkerSize;
         logger.info("GameUdpMessageOrderProcessor executor " + this + " started");

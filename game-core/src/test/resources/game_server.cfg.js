@@ -16,12 +16,7 @@ config.gameExcutorCorePoolSize=2;
 config.gameExcutorKeepAliveTime=60;
 config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
-config.updateServiceExcutorFlag=0;
-/**udp配置***/
-config.udpOpen=true;
-config.updPorts="10090";
-config.updQueueMessageProcessWorkerSize=1;
-config.udpMessageOrderQueueFlag=true;
+config.updateServiceExcutorFlag=2;
 /**rpc配置*/
 config.rpcOpen=true;
 //这个是提供外网使用的，请使用外网地址

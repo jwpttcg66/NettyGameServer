@@ -14,7 +14,7 @@ public class SdUdpServerConfig {
     private String ip;
     private int port;
     private int updQueueMessageProcessWorkerSize;
-    private Boolean udpMessageOrderQueueFlag;
+    private boolean udpMessageOrderQueueFlag;
 
     public String getName() {
         return name;
@@ -56,11 +56,11 @@ public class SdUdpServerConfig {
         this.updQueueMessageProcessWorkerSize = updQueueMessageProcessWorkerSize;
     }
 
-    public Boolean getUdpMessageOrderQueueFlag() {
+    public boolean isUdpMessageOrderQueueFlag() {
         return udpMessageOrderQueueFlag;
     }
 
-    public void setUdpMessageOrderQueueFlag(Boolean udpMessageOrderQueueFlag) {
+    public void setUdpMessageOrderQueueFlag(boolean udpMessageOrderQueueFlag) {
         this.udpMessageOrderQueueFlag = udpMessageOrderQueueFlag;
     }
 

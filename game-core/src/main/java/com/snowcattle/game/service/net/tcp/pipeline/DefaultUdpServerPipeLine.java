@@ -14,6 +14,7 @@ import com.snowcattle.game.service.message.command.MessageCommand;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.tcp.process.GameUdpMessageOrderProcessor;
 import com.snowcattle.game.service.net.tcp.process.GameUdpMessageProcessor;
+import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.net.udp.session.NettyUdpSession;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import io.netty.channel.Channel;
@@ -99,7 +100,8 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
 //        //放入处理队列
         //TODO 优化UDPsession
         message.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, new NettyUdpSession(channel));
-        if(gameServerConfig.isUdpMessageOrderQueueFlag()) {
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
             GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().getGameUdpMessageOrderProcessor();
             gameUdpMessageOrderProcessor.put(message);
         }else{

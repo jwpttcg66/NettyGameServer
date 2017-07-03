@@ -13,6 +13,8 @@ import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.proxy.ProxyTcpFrontedChannelInitializer;
 import com.snowcattle.game.service.net.proxy.ProxyTcpServerService;
 import com.snowcattle.game.service.net.proxy.SdProxyConfig;
+import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
+import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -68,8 +70,10 @@ public class LocalNetService implements IService{
             throw  new StartUpException("tcp server startup error");
         }
 
-        if(gameServerConfig.isUdpOpen()) {
-            gameNettyUdpServerService = new GameNettyUdpServerService(gameServerConfig.getServerId(), gameServerConfig.getUdpPort()
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig() != null) {
+            SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
+            gameNettyUdpServerService = new GameNettyUdpServerService(sdUdpServerConfig.getId(), sdUdpServerConfig.getPort()
                     , GlobalConstants.Thread.NET_UDP_WORKER, nettyUdpChannelInitializer);
             startUpFlag = gameNettyUdpServerService.startService();
             if (!startUpFlag) {
@@ -115,7 +119,8 @@ public class LocalNetService implements IService{
             gameNettyTcpServerService.stopService();
         }
 
-        if(gameServerConfig.isUdpOpen()) {
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig() != null) {
             if (gameNettyUdpServerService != null) {
                 gameNettyUdpServerService.stopService();
             }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<servers>
+    <server>
+        <name>udp_server</name>
+        <id>11001</id>
+        <ip>127.0.0.1</ip>
+        <port>10090</port>
+        <updQueueMessageProcessWorkerSize>1</updQueueMessageProcessWorkerSize>
+        <udpMessageOrderQueueFlag>true</udpMessageOrderQueueFlag>
+    </server>
+</servers>
