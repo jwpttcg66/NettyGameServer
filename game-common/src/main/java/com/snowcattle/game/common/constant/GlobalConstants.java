@@ -75,7 +75,7 @@ public class GlobalConstants {
         /**game server*/
         public static final String GAME_SERVER_DIFF_CONIFG="game_server_diff.cfg.js";
         /**rpc*/
-        public static final String RPC_SERVER_CONFIG="rpc-server.xml";
+        public static final String RPC_SERVER_REGISTER_CONFIG ="rpc-server-register.xml";
         /**dynmic*/
         public static final String DYNAMIC_CONFIG = "dynamic_config.properties";
         /**zookeeper*/

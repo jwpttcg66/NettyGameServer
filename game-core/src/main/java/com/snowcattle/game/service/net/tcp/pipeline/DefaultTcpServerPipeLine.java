@@ -13,7 +13,7 @@ import com.snowcattle.game.service.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.tcp.process.GameTcpMessageProcessor;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -49,8 +49,8 @@ public class DefaultTcpServerPipeLine implements IServerPipeLine {
 
         //如果是通用消息，不进行服务器检测
 
-        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
-        if(!rpcConfig.validServer(messageCommand.bo_id)) {
+        RpcServerRegisterConfig rpcServerRegisterConfig = gameServerConfigService.getRpcServerRegisterConfig();
+        if(!rpcServerRegisterConfig.validServer(messageCommand.bo_id)) {
             if(logger.isDebugEnabled()) {
                 logger.debug("discard tcp message  sessionId:" + nettySession.getSessionId() + "playerId:" + nettySession.getPlayerId() + " messageId is " + commandId);
             }

@@ -8,7 +8,7 @@ import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.client.proxy.AsyncRpcProxy;
 import com.snowcattle.game.service.rpc.client.proxy.IAsyncRpcProxy;
 import com.snowcattle.game.service.rpc.client.proxy.ObjectProxy;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import com.snowcattle.game.service.rpc.server.RpcMethodRegistry;
 import com.snowcattle.game.common.annotation.RpcServiceBoEnum;
 import com.snowcattle.game.common.enums.BOEnum;
@@ -92,9 +92,9 @@ public class RpcProxyService implements IService{
 
         //是否本地提供服务
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+        RpcServerRegisterConfig rpcServerRegisterConfig = gameServerConfigService.getRpcServerRegisterConfig();
         BOEnum boEnum = rpcServiceBoEnum.bo();
-        if(rpcConfig.getSdRpcServiceProvider().validServer(boEnum.getBoId())){
+        if(rpcServerRegisterConfig.getSdRpcServiceProvider().validServer(boEnum.getBoId())){
             return (T) bean;
         }
 

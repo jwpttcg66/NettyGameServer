@@ -1,7 +1,7 @@
 package com.snowcattle.game.net.client.rpc.zookeeper;
 
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.util.BeanUtil;
@@ -38,8 +38,8 @@ public class ZookeeperTest {
     public void test() {
         zookeeperRpcServiceRegistry.registerZooKeeper();
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        RpcConfig rpcConfig  = gameServerConfigService.getRpcConfig();
-        SdRpcServiceProvider sdRpcServiceProvider = rpcConfig.getSdRpcServiceProvider();
+        RpcServerRegisterConfig rpcServerRegisterConfig = gameServerConfigService.getRpcServerRegisterConfig();
+        SdRpcServiceProvider sdRpcServiceProvider = rpcServerRegisterConfig.getSdRpcServiceProvider();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         String serverId = gameServerConfig.getServerId();
         String host = gameServerConfig.getRpcBindIp();

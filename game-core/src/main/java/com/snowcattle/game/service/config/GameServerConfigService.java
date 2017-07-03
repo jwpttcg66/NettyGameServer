@@ -5,7 +5,7 @@ import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import com.snowcattle.game.service.IService;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -24,7 +24,7 @@ public class GameServerConfigService implements IService {
     protected GameServerConfig gameServerConfig;
     protected GameDynamicPropertiesConfig gameDynamicPropertiesConfig;
     protected ZooKeeperConfig zooKeeperConfig;
-    protected RpcConfig rpcConfig;
+    protected RpcServerRegisterConfig rpcServerRegisterConfig;
     protected NetProxyConfig netProxyConfig;
     protected NetUdpServerConfig netUdpServerConfig;
 
@@ -62,9 +62,9 @@ public class GameServerConfigService implements IService {
     }
 
     public void initRpcConfig() throws Exception {
-        RpcConfig rpcConfig = new RpcConfig();
-        rpcConfig.init();
-        this.rpcConfig = rpcConfig;
+        RpcServerRegisterConfig rpcServerRegisterConfig = new RpcServerRegisterConfig();
+        rpcServerRegisterConfig.init();
+        this.rpcServerRegisterConfig = rpcServerRegisterConfig;
     }
 
     public void initZooKeeperConfig(){
@@ -130,12 +130,12 @@ public class GameServerConfigService implements IService {
         this.zooKeeperConfig = zooKeeperConfig;
     }
 
-    public RpcConfig getRpcConfig() {
-        return rpcConfig;
+    public RpcServerRegisterConfig getRpcServerRegisterConfig() {
+        return rpcServerRegisterConfig;
     }
 
-    public void setRpcConfig(RpcConfig rpcConfig) {
-        this.rpcConfig = rpcConfig;
+    public void setRpcServerRegisterConfig(RpcServerRegisterConfig rpcServerRegisterConfig) {
+        this.rpcServerRegisterConfig = rpcServerRegisterConfig;
     }
 
     public void setGameServerDiffConfig(GameServerDiffConfig gameServerDiffConfig) {

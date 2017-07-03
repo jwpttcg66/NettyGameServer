@@ -82,9 +82,9 @@ public class RpcClientConnectService implements IService {
     @SuppressWarnings("unchecked")
     public void init() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        initWorldConnectedServer(gameServerConfigService.getRpcConfig().getSdWorldServers());
-        initGameConnectedServer(gameServerConfigService.getRpcConfig().getSdGameServers());
-        initDbConnectServer(gameServerConfigService.getRpcConfig().getSdDbServers());
+        initWorldConnectedServer(gameServerConfigService.getRpcServerRegisterConfig().getSdWorldServers());
+        initGameConnectedServer(gameServerConfigService.getRpcServerRegisterConfig().getSdGameServers());
+        initDbConnectServer(gameServerConfigService.getRpcServerRegisterConfig().getSdDbServers());
     }
 
 

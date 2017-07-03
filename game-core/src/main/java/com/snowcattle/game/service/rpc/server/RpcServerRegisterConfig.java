@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by jiangwenping on 17/4/1.
  */
 @Service
-public class RpcConfig{
+public class RpcServerRegisterConfig {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
@@ -33,7 +33,7 @@ public class RpcConfig{
     @SuppressWarnings("unchecked")
     public void init() throws Exception {
 
-        Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_CONFIG).getFile());
+        Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_REGISTER_CONFIG).getFile());
 
         Map<Integer, SdServer> serverMap = new HashMap<>();
 

@@ -16,7 +16,7 @@ import com.snowcattle.game.service.net.tcp.process.GameUdpMessageOrderProcessor;
 import com.snowcattle.game.service.net.tcp.process.GameUdpMessageProcessor;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.net.udp.session.NettyUdpSession;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -42,9 +42,9 @@ public class DefaultUdpServerPipeLine implements IServerPipeLine {
         //检查是否可以处理该消息
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
 
-        RpcConfig rpcConfig = gameServerConfigService.getRpcConfig();
+        RpcServerRegisterConfig rpcServerRegisterConfig = gameServerConfigService.getRpcServerRegisterConfig();
         //如果是通用消息，不进行服务器检测
-        if (!rpcConfig.validServer(messageCommand.bo_id)) {
+        if (!rpcServerRegisterConfig.validServer(messageCommand.bo_id)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("discard udp message  playerId:" + message.getPlayerId() + " messageId is " + commandId);
             }
