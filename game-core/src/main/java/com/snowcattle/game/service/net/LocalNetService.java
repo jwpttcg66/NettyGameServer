@@ -71,8 +71,8 @@ public class LocalNetService implements IService{
         }
 
         NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
-        if(netUdpServerConfig.getSdUdpServerConfig() != null) {
-            SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
+        SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
+        if(sdUdpServerConfig != null) {
             gameNettyUdpServerService = new GameNettyUdpServerService(sdUdpServerConfig.getId(), sdUdpServerConfig.getPort()
                     , GlobalConstants.Thread.NET_UDP_WORKER, nettyUdpChannelInitializer);
             startUpFlag = gameNettyUdpServerService.startService();

@@ -22,6 +22,7 @@ import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterMana
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.process.*;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
+import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
 import com.snowcattle.game.thread.policy.RejectedPolicyType;
 
 import java.util.concurrent.TimeUnit;
@@ -124,26 +125,35 @@ public class GlobalManager {
     }
 
     public void initNetMessageProcessor() throws Exception {
+        initTcpNetMessageProcessor();
+        initUdpNetMessageProcessor();
+    }
+
+    public void initUdpNetMessageProcessor() throws  Exception{
+        //udp处理队列
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        if(netUdpServerConfig.getSdUdpServerConfig() != null) {
+            int udpWorkerSize = netUdpServerConfig.getSdUdpServerConfig().getUpdQueueMessageProcessWorkerSize();
+            if (netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
+                //OrderedQueuePoolExecutor 顺序模型
+                GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = new GameUdpMessageOrderProcessor();
+                LocalMananger.getInstance().add(gameUdpMessageOrderProcessor, GameUdpMessageOrderProcessor.class);
+            } else {
+                //生产者消费者模型
+                QueueMessageExecutorProcessor queueMessageUdpExecutorProcessor = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, udpWorkerSize);
+                GameUdpMessageProcessor gameUdpMessageProcessor = new GameUdpMessageProcessor(queueMessageUdpExecutorProcessor);
+                LocalMananger.getInstance().add(gameUdpMessageProcessor, GameUdpMessageProcessor.class);
+            }
+        }
+    }
+
+    public void initTcpNetMessageProcessor() throws Exception {
         //tcp处理队列
         int tcpWorkersize = 0;
         QueueTcpMessageExecutorProcessor queueTcpMessageExecutorProcessor = new QueueTcpMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, tcpWorkersize);
         GameTcpMessageProcessor gameTcpMessageProcessor = new GameTcpMessageProcessor(queueTcpMessageExecutorProcessor);
         LocalMananger.getInstance().add(gameTcpMessageProcessor, GameTcpMessageProcessor.class);
-
-        //udp处理队列
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
-        int udpWorkerSize = netUdpServerConfig.getSdUdpServerConfig().getUpdQueueMessageProcessWorkerSize();
-        if (netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
-            //OrderedQueuePoolExecutor 顺序模型
-            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = new GameUdpMessageOrderProcessor();
-            LocalMananger.getInstance().add(gameUdpMessageOrderProcessor, GameUdpMessageOrderProcessor.class);
-        } else {
-            //生产者消费者模型
-            QueueMessageExecutorProcessor queueMessageUdpExecutorProcessor = new QueueMessageExecutorProcessor(GlobalConstants.QueueMessageExecutor.processLeft, udpWorkerSize);
-            GameUdpMessageProcessor gameUdpMessageProcessor = new GameUdpMessageProcessor(queueMessageUdpExecutorProcessor);
-            LocalMananger.getInstance().add(gameUdpMessageProcessor, GameUdpMessageProcessor.class);
-        }
     }
 
 
@@ -163,16 +173,23 @@ public class GlobalManager {
             updateService.start();
         }
 
-        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
-        if(netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
-            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
-            gameUdpMessageOrderProcessor.start();
-        }else{
-            GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
-            gameUdpMessageProcessor.start();
-        }
-
+        startGameUdpMessageProcessor();
         startGameManager();
+    }
+
+    public void startGameUdpMessageProcessor() throws Exception{
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
+        if(sdUdpServerConfig != null) {
+            if (sdUdpServerConfig.isUdpMessageOrderQueueFlag()) {
+                GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
+                gameUdpMessageOrderProcessor.start();
+            } else {
+                GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+                gameUdpMessageProcessor.start();
+            }
+        }
     }
 
     public void startGameManager() throws Exception{
@@ -184,21 +201,29 @@ public class GlobalManager {
         UpdateService updateService = LocalMananger.getInstance().get(UpdateService.class);
         updateService.stop();
 
-
-        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
-        if(netUdpServerConfig.getSdUdpServerConfig().isUdpMessageOrderQueueFlag()) {
-            GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
-            gameUdpMessageOrderProcessor.stop();
-        }else {
-            GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
-            gameUdpMessageProcessor.stop();
-        }
+        stopGameUdpMessageProcessor();
 
         LocalMananger.getInstance().getLocalSpringServiceManager().stop();
         LocalMananger.getInstance().getLocalSpringServicerAfterManager().stop();
 
         stopGameManager();
     }
+
+    public void stopGameUdpMessageProcessor(){
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
+        SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
+        if(sdUdpServerConfig != null) {
+            if (sdUdpServerConfig.isUdpMessageOrderQueueFlag()) {
+                GameUdpMessageOrderProcessor gameUdpMessageOrderProcessor = LocalMananger.getInstance().get(GameUdpMessageOrderProcessor.class);
+                gameUdpMessageOrderProcessor.stop();
+            } else {
+                GameUdpMessageProcessor gameUdpMessageProcessor = LocalMananger.getInstance().get(GameUdpMessageProcessor.class);
+                gameUdpMessageProcessor.stop();
+            }
+        }
+    }
+
 
     public void stopGameManager() throws Exception{
 
