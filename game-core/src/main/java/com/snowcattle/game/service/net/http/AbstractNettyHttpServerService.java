@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net.tcp;
+package com.snowcattle.game.service.net.http;
 
 import com.snowcattle.game.common.ThreadNameFactory;
 import com.snowcattle.game.common.constant.Loggers;
@@ -13,9 +13,9 @@ import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 
 /**
- * Created by jiangwenping on 17/2/7.
+ * Created by jiangwenping on 2017/7/3.
  */
-public abstract class AbstractNettyTcpServerService extends AbstractNettyServerService {
+public abstract class AbstractNettyHttpServerService extends AbstractNettyServerService {
 
     private Logger logger = Loggers.serverLogger;
     private EventLoopGroup bossGroup;
@@ -26,7 +26,8 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
     private ChannelInitializer channelInitializer;
 
     private ChannelFuture serverChannelFuture;
-    public AbstractNettyTcpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName,ChannelInitializer channelInitializer) {
+
+    public AbstractNettyHttpServerService(String serviceId, int serverPort, String bossTreadName, String workThreadName,ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);
         this.bossThreadNameFactory = new ThreadNameFactory(bossTreadName);
         this.workerThreadNameFactory = new ThreadNameFactory(workThreadName);
@@ -54,8 +55,6 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
 
             serverChannelFuture = serverBootstrap.bind(serverPort).sync();
 
-            //TODO这里会阻塞main线程，暂时先注释掉
-//            serverChannelFuture.channel().closeFuture().sync();
             serverChannelFuture.channel().closeFuture().addListener(ChannelFutureListener.CLOSE);
         }catch (Exception e) {
             logger.error(e.toString(), e);
@@ -76,7 +75,4 @@ public abstract class AbstractNettyTcpServerService extends AbstractNettyServerS
         return flag;
     }
 
-    public void finish() throws InterruptedException {
-//        serverChannelFuture.channel().closeFuture().sync();
-    }
 }

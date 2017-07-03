@@ -2,7 +2,7 @@ package com.snowcattle.game.service.net.udp;
 
 import com.snowcattle.game.common.ThreadNameFactory;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.net.tcp.AbstractNettyServerService;
+import com.snowcattle.game.service.net.AbstractNettyServerService;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.*;
