@@ -4,6 +4,7 @@ import com.snowcattle.game.common.config.*;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
+import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.service.IService;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -25,6 +26,7 @@ public class GameServerConfigService implements IService {
     protected ZooKeeperConfig zooKeeperConfig;
     protected RpcConfig rpcConfig;
     protected NetProxyConfig netProxyConfig;
+    protected NetUdpServerConfig netUdpServerConfig;
 
 
     @Override
@@ -44,6 +46,13 @@ public class GameServerConfigService implements IService {
         initRpcConfig();
         initZooKeeperConfig();
         initNetProxyConfig();
+        initNetUdpServerConfig();
+    }
+
+    public void initNetUdpServerConfig() throws Exception{
+        NetUdpServerConfig netUdpServerConfig = new NetUdpServerConfig();
+        netUdpServerConfig.init();
+        this.netUdpServerConfig = netUdpServerConfig;
     }
 
     public void initNetProxyConfig() throws Exception{
@@ -143,5 +152,13 @@ public class GameServerConfigService implements IService {
 
     public void setNetProxyConfig(NetProxyConfig netProxyConfig) {
         this.netProxyConfig = netProxyConfig;
+    }
+
+    public NetUdpServerConfig getNetUdpServerConfig() {
+        return netUdpServerConfig;
+    }
+
+    public void setNetUdpServerConfig(NetUdpServerConfig netUdpServerConfig) {
+        this.netUdpServerConfig = netUdpServerConfig;
     }
 }

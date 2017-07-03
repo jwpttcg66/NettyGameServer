@@ -4,7 +4,7 @@
         <name>udp_server</name>
         <id>11001</id>
         <ip>127.0.0.1</ip>
-        <port>9090</port>
+        <port>10090</port>
         <updQueueMessageProcessWorkerSize>1</updQueueMessageProcessWorkerSize>
         <udpMessageOrderQueueFlag>true</udpMessageOrderQueueFlag>
     </server>

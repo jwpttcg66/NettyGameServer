@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net.tcp;
+package com.snowcattle.game.service.net.udp;
 
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
