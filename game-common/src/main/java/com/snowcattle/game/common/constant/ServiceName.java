@@ -23,4 +23,5 @@ public class ServiceName {
     public static final String GameAsyncEventService = "GameAsyncEventService";
     public static final String SSLService = "SSLService";
     public static final String NetTcpSessionLoopUpService = "NetTcpSessionLoopUpService";
+    public static final String AsyncNettyHttpHandlerService = "AsyncNettyHttpHandlerService";
 }

@@ -20,23 +20,23 @@ public class NetHttpServerConfig{
 
     private static final Logger LOGGER = Loggers.serverLogger;
 
-    private SdHttpServerConfig sdUdpServerConfig;
+    private SdHttpServerConfig sdHttpServerConfig;
 
     public void init() throws Exception {
         URL url =  FileUtil.getConfigURL(GlobalConstants.ConfigFile.HTTP_SERVER_CONFIG);
         if(url != null) {
             Element rootElement = JdomUtils.getRootElemet(url.getFile());
             Element element = rootElement.getChild("server");
-            sdUdpServerConfig = new SdHttpServerConfig();
-            sdUdpServerConfig.load(element);
+            sdHttpServerConfig = new SdHttpServerConfig();
+            sdHttpServerConfig.load(element);
         }
     }
 
-    public SdHttpServerConfig getSdUdpServerConfig() {
-        return sdUdpServerConfig;
+    public SdHttpServerConfig getSdHttpServerConfig() {
+        return sdHttpServerConfig;
     }
 
-    public void setSdUdpServerConfig(SdHttpServerConfig sdUdpServerConfig) {
-        this.sdUdpServerConfig = sdUdpServerConfig;
+    public void setSdHttpServerConfig(SdHttpServerConfig sdHttpServerConfig) {
+        this.sdHttpServerConfig = sdHttpServerConfig;
     }
 }

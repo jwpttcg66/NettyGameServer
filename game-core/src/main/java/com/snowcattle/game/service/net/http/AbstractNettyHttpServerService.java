@@ -50,7 +50,7 @@ public abstract class AbstractNettyHttpServerService extends AbstractNettyServer
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(false))  // heap buf 's better
-                    .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, Integer.valueOf(100))
+                    .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, Integer.valueOf(1000))
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(channelInitializer);
 

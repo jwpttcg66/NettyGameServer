@@ -8,7 +8,19 @@ import org.jdom2.Element;
  * Created by jiangwenping on 2017/7/3.
  */
 public class SdHttpServerConfig extends SdNetConfig{
+
+    private  int handleThreadSize;
+
     public void load(Element element) throws DataConversionException {
         super.load(element);
+        handleThreadSize = Integer.valueOf(element.getChildTextTrim("handleThreadSize"));
+    }
+
+    public int getHandleThreadSize() {
+        return handleThreadSize;
+    }
+
+    public void setHandleThreadSize(int handleThreadSize) {
+        this.handleThreadSize = handleThreadSize;
     }
 }

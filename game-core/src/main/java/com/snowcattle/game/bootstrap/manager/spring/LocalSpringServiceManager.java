@@ -8,6 +8,7 @@ import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
+import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
@@ -80,6 +81,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private SSLService sslService;
+
+    @Autowired
+    private AsyncNettyHttpHandlerService asyncNettyHttpHandlerService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -217,5 +221,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setSslService(SSLService sslService) {
         this.sslService = sslService;
+    }
+
+    public AsyncNettyHttpHandlerService getAsyncNettyHttpHandlerService() {
+        return asyncNettyHttpHandlerService;
+    }
+
+    public void setAsyncNettyHttpHandlerService(AsyncNettyHttpHandlerService asyncNettyHttpHandlerService) {
+        this.asyncNettyHttpHandlerService = asyncNettyHttpHandlerService;
     }
 }

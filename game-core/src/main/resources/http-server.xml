@@ -4,7 +4,8 @@
         <name>http_server</name>
         <id>11001</id>
         <ip>127.0.0.1</ip>
-        <port>10100</port>
+        <port>10200</port>
         <ssl>false</ssl>
+        <handleThreadSize>300</handleThreadSize>
     </server>
 </servers>

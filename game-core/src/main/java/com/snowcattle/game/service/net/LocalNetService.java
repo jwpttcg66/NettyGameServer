@@ -127,10 +127,14 @@ public class LocalNetService implements IService{
         }
 
         NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
-        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdUdpServerConfig();
+        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdHttpServerConfig();
         if(sdHttpServerConfig != null){
             gameNettyHttpServerService = new GameNettyHttpServerService(sdHttpServerConfig.getId(), sdHttpServerConfig.getPort()
-            , GlobalConstants.Thread.NET_HTTP_BOSS, GlobalConstants.Thread.NET_HTTP_WORKER, httpChannelInitialier);
+                , GlobalConstants.Thread.NET_HTTP_BOSS, GlobalConstants.Thread.NET_HTTP_WORKER, httpChannelInitialier);
+            startUpFlag = gameNettyHttpServerService.startService();
+            if(!startUpFlag){
+                throw  new StartUpException("http server startup error");
+            }
             serverLogger.info("gameNettyHttpServerService start " + startUpFlag + " port " + sdHttpServerConfig.getPort());
         }
     }
@@ -170,7 +174,7 @@ public class LocalNetService implements IService{
         }
 
         NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
-        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdUdpServerConfig();
+        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdHttpServerConfig();
         if(sdHttpServerConfig != null){
             if(gameNettyHttpServerService != null){
                 gameNettyHttpServerService.stopService();
