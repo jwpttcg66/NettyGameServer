@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.rpc.client.proxy;
 
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.net.tcp.RpcRequest;
 import com.snowcattle.game.service.rpc.client.RpcContextHolder;
 import com.snowcattle.game.service.rpc.client.RpcContextHolderObject;

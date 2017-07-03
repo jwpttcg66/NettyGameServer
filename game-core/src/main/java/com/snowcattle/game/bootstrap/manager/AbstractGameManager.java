@@ -1,4 +1,4 @@
-package com.snowcattle.game.manager;
+package com.snowcattle.game.bootstrap.manager;
 
 /**
  * Created by jwp on 2017/5/6.

@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.net.tcp;
 
 import com.snowcattle.game.service.IServerService;
-import com.snowcattle.game.manager.ServerServiceManager;
+import com.snowcattle.game.bootstrap.manager.ServerServiceManager;
 
 /**
  * 抽象服务基类

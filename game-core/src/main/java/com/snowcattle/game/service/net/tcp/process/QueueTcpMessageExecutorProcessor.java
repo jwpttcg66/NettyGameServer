@@ -4,7 +4,7 @@ import com.snowcattle.game.common.config.GameServerDiffConfig;
 import com.snowcattle.game.common.constant.CommonErrorLogInfo;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.common.util.ExecutorUtil;
 import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;

@@ -3,7 +3,7 @@ package com.snowcattle.game.message.handler.messagehandler.online;
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.logic.player.GamePlayer;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
 import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;

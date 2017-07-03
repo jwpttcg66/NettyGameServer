@@ -1,7 +1,7 @@
 package com.snowcattle.game.message.handler.messagehandler.common;
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineHeartClientTcpMessage;
 import com.snowcattle.game.service.message.AbstractNetMessage;

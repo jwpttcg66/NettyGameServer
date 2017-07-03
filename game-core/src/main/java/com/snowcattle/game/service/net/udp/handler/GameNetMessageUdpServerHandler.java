@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.net.udp.handler;
 
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetProtoBufUdpMessage;
 import com.snowcattle.game.service.net.tcp.pipeline.IServerPipeLine;
 import io.netty.channel.ChannelHandlerContext;

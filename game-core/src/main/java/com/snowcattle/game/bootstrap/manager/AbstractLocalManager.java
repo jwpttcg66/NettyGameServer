@@ -1,4 +1,4 @@
-package com.snowcattle.game.manager;
+package com.snowcattle.game.bootstrap.manager;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.service.IService;

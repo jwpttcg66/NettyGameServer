@@ -1,4 +1,4 @@
-package com.snowcattle.game.manager.spring;
+package com.snowcattle.game.bootstrap.manager.spring;
 
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;

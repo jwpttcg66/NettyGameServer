@@ -5,7 +5,7 @@ import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.util.BeanUtil;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.rpc.client.ZookeeperRpcServiceDiscovery;
 import com.snowcattle.game.service.rpc.server.SdRpcServiceProvider;
 import com.snowcattle.game.service.rpc.server.zookeeper.ZooKeeperNodeBoEnum;

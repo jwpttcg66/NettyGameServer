@@ -1,6 +1,6 @@
 package com.snowcattle.game.extend;
 
-import com.snowcattle.game.manager.spring.AbstractSpringStart;
+import com.snowcattle.game.bootstrap.manager.spring.AbstractSpringStart;
 import org.springframework.stereotype.Service;
 
 /**

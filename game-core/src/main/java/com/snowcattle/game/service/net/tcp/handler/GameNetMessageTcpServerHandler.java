@@ -17,7 +17,7 @@ import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilde
 import com.snowcattle.game.service.update.NettyTcpSerssionUpdate;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.NetMessageException;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.net.tcp.pipeline.IServerPipeLine;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;

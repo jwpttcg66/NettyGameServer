@@ -1,6 +1,6 @@
 package com.snowcattle.game.extend;
 
-import com.snowcattle.game.manager.AbstractGameManager;
+import com.snowcattle.game.bootstrap.manager.AbstractGameManager;
 
 import java.util.LinkedHashMap;
 

@@ -9,7 +9,7 @@ import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.util.StringUtils;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.rpc.server.SdRpcServiceProvider;
 import org.apache.zookeeper.*;

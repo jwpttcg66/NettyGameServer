@@ -1,10 +1,10 @@
 package com.snowcattle.game;
 
 import com.snowcattle.game.common.util.BeanUtil;
-import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
-import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringBeanManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.message.command.MessageCommandFactory;
 import com.snowcattle.game.service.message.registry.MessageRegistry;

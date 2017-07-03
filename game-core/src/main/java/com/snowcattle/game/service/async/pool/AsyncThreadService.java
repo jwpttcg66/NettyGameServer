@@ -5,7 +5,7 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.util.ExecutorUtil;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.async.AsyncCall;
 import com.snowcattle.game.service.config.GameServerConfigService;

@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.rpc.client;
 
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.server.RpcNodeInfo;
 import com.snowcattle.game.service.rpc.server.SdServer;

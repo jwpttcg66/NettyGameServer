@@ -4,7 +4,7 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.DynamicPropertiesEnum;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.logic.player.GamePlayer;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;

@@ -1,13 +1,13 @@
-package com.snowcattle.game.manager;
+package com.snowcattle.game.bootstrap.manager;
 
 /**
  * Created by jwp on 2017/2/4.
  */
 
 import com.snowcattle.game.executor.update.service.UpdateService;
-import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
-import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringBeanManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.net.tcp.process.GameTcpMessageProcessor;
 import com.snowcattle.game.service.net.tcp.process.GameUdpMessageOrderProcessor;
 import com.snowcattle.game.service.net.tcp.process.GameUdpMessageProcessor;

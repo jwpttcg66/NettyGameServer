@@ -1,7 +1,7 @@
 package com.snowcattle.game.common.dict;
 
 import com.snowcattle.game.TestStartUp;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.dict.entity.Bullet;
 import com.snowcattle.game.service.dict.entity.RoleSkill;

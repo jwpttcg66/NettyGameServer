@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.net.proxy.handler;
 
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.net.proxy.ProxyRule;

@@ -1,8 +1,8 @@
 package com.snowcattle.game.net.client.udp;
 
 import com.snowcattle.game.TestStartUp;
-import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.message.logic.udp.online.OnlineHeartClientUDPMessage;
 import com.snowcattle.game.common.udp.client.UdpProtoBufClientChannelInitializer;
 import com.snowcattle.game.service.message.registry.MessageRegistry;

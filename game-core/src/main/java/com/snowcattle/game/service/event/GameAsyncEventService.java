@@ -15,7 +15,7 @@ import com.snowcattle.game.executor.event.AbstractEventListener;
 import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.SingleEvent;
 import com.snowcattle.game.executor.event.service.AsyncEventService;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import org.slf4j.Logger;

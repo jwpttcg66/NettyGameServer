@@ -1,4 +1,4 @@
-package com.snowcattle.game.manager;
+package com.snowcattle.game.bootstrap.manager;
 
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
@@ -16,9 +16,9 @@ import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.executor.update.thread.dispatch.BindNotifyDisptachThread;
 import com.snowcattle.game.executor.update.thread.dispatch.DisruptorDispatchThread;
 import com.snowcattle.game.executor.update.thread.dispatch.LockSupportDisptachThread;
-import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
-import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringBeanManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.process.*;
 import com.snowcattle.game.thread.policy.RejectedPolicyType;

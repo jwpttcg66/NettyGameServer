@@ -6,7 +6,7 @@ import com.snowcattle.game.common.exception.GameHandlerException;
 import com.snowcattle.game.common.exception.NetMessageException;
 import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;

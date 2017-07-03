@@ -1,7 +1,7 @@
 package com.snowcattle.game.extend;
 
 import com.snowcattle.game.common.util.BeanUtil;
-import com.snowcattle.game.manager.GlobalManager;
+import com.snowcattle.game.bootstrap.manager.GlobalManager;
 
 /**
  * Created by jwp on 2017/5/6.

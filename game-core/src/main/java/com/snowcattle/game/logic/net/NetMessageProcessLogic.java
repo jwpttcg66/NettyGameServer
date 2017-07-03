@@ -3,7 +3,7 @@ package com.snowcattle.game.logic.net;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.GameHandlerException;
 import com.snowcattle.game.common.util.ErrorsUtil;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.facade.GameFacade;

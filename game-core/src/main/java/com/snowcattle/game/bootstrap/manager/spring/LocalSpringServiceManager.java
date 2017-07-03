@@ -1,4 +1,4 @@
-package com.snowcattle.game.manager.spring;
+package com.snowcattle.game.bootstrap.manager.spring;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.service.classes.loader.DefaultClassLoader;

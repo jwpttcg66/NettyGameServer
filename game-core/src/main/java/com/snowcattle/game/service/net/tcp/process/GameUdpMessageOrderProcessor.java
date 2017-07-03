@@ -3,7 +3,7 @@ package com.snowcattle.game.service.net.tcp.process;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import com.snowcattle.game.service.message.AbstractNetMessage;

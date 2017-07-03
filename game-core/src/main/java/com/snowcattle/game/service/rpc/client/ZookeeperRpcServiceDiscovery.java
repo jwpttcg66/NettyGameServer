@@ -2,7 +2,7 @@ package com.snowcattle.game.service.rpc.client;
 
 import com.snowcattle.game.common.config.GameServerDiffConfig;
 import com.snowcattle.game.common.config.ZooKeeperConfig;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.server.zookeeper.ZooKeeperNodeInfo;
 import com.snowcattle.game.common.constant.GlobalConstants;

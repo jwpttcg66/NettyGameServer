@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.message.encoder;
 
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.rpc.serialize.IRpcSerialize;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

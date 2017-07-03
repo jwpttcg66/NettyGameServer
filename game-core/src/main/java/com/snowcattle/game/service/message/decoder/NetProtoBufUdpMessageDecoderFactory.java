@@ -4,7 +4,7 @@ import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.NetProtoBufMessageBody;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.CodecException;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.NetUdpMessageHead;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;

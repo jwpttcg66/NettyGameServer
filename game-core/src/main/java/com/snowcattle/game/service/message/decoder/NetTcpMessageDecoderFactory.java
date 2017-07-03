@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.message.decoder;
 
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.NetMessageBody;
 import com.snowcattle.game.service.message.NetMessageHead;

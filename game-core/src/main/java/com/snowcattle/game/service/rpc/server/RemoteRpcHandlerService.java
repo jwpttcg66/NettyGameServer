@@ -2,7 +2,7 @@ package com.snowcattle.game.service.rpc.server;
 
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.ServiceName;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.util.ExecutorUtil;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;

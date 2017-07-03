@@ -7,7 +7,7 @@ import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.exception.GameHandlerException;
 import com.snowcattle.game.common.scanner.ClassScanner;
 import com.snowcattle.game.service.classes.loader.DefaultClassLoader;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.handler.IMessageHandler;
 import com.snowcattle.game.service.Reloadable;

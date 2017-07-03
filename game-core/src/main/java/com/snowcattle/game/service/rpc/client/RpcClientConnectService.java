@@ -6,7 +6,7 @@ import com.snowcattle.game.common.config.GameServerDiffConfig;
 import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.rpc.client.impl.DbRpcConnnectMananger;
 import com.snowcattle.game.service.rpc.client.impl.WorldRpcConnectManager;

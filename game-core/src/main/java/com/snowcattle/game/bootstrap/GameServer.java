@@ -2,11 +2,11 @@ package com.snowcattle.game.bootstrap;
 
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.util.MemUtils;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.net.tcp.AbstractServerService;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.manager.GlobalManager;
-import com.snowcattle.game.manager.ServerServiceManager;
+import com.snowcattle.game.bootstrap.manager.GlobalManager;
+import com.snowcattle.game.bootstrap.manager.ServerServiceManager;
 import com.snowcattle.game.service.net.LocalNetService;
 import org.slf4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

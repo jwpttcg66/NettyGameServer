@@ -2,7 +2,7 @@ package com.snowcattle.game.service.net.tcp.session;
 
 import com.snowcattle.game.common.IUpdatable;
 import com.snowcattle.game.common.exception.NetMessageException;
-import com.snowcattle.game.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.process.NetProtoBufMessageProcess;
 import com.snowcattle.game.service.uuid.LongIdGenerator;
