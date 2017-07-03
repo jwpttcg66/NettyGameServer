@@ -9,6 +9,7 @@ import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.*;
+import com.snowcattle.game.service.net.udp.GameNetProtoMessageUdpServerChannleInitializer;
 import com.snowcattle.game.service.net.udp.GameNettyUdpServerService;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.proxy.ProxyTcpFrontedChannelInitializer;

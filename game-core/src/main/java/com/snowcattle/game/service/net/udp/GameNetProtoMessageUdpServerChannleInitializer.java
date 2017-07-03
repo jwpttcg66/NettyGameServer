@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net.tcp;
+package com.snowcattle.game.service.net.udp;
 
 import com.snowcattle.game.service.net.udp.handler.GameNetMessageUdpServerHandler;
 import com.snowcattle.game.service.message.decoder.NetProtoBufMessageUDPDecoder;
