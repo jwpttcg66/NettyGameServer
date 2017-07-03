@@ -2,6 +2,7 @@ package com.snowcattle.game.service.net;
 
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
+import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.common.exception.StartUpException;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
@@ -18,12 +19,15 @@ import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
 
 /**
  * Created by jiangwenping on 17/2/15.
  * 本地网络服务
  */
 public class LocalNetService implements IService{
+
+    private Logger serverLogger = Loggers.serverLogger;
 
     /**
      * tcp服务
@@ -69,6 +73,7 @@ public class LocalNetService implements IService{
         if(!startUpFlag){
             throw  new StartUpException("tcp server startup error");
         }
+        serverLogger.info("gameNettyTcpServerService start " + startUpFlag);
 
         NetUdpServerConfig netUdpServerConfig = gameServerConfigService.getNetUdpServerConfig();
         SdUdpServerConfig sdUdpServerConfig = netUdpServerConfig.getSdUdpServerConfig();
@@ -79,6 +84,8 @@ public class LocalNetService implements IService{
             if (!startUpFlag) {
                 throw new StartUpException("udp server startup error");
             }
+
+            serverLogger.info("gameNettyUdpServerService start " + startUpFlag);
         }
 
         if(gameServerConfig.isRpcOpen()) {
@@ -88,6 +95,8 @@ public class LocalNetService implements IService{
             if(!startUpFlag){
                 throw  new StartUpException("rpc server startup error");
             }
+
+            serverLogger.info("gameNettyRPCService start " + startUpFlag);
         }
 
         NetProxyConfig netProxyConfig = gameServerConfigService.getNetProxyConfig();
@@ -100,6 +109,7 @@ public class LocalNetService implements IService{
             if(!startUpFlag){
                 throw  new StartUpException("proxy server startup error");
             }
+            serverLogger.info("proxyTcpServerService start " + startUpFlag);
         }
     }
 
