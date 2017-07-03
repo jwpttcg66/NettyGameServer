@@ -101,11 +101,6 @@ public class GameServerConfig extends ServerConfig {
      * 最大tcpsession链接数量
      */
     private int maxTcpSessionNumber;
-
-    /**
-     * 开启websocket模式
-     */
-    private boolean webSockectModleFlag;
     /**
      * websock模式启用ssl
      */
@@ -405,14 +400,6 @@ public class GameServerConfig extends ServerConfig {
 
     public void setMaxTcpSessionNumber(int maxTcpSessionNumber) {
         this.maxTcpSessionNumber = maxTcpSessionNumber;
-    }
-
-    public boolean isWebSockectModleFlag() {
-        return webSockectModleFlag;
-    }
-
-    public void setWebSockectModleFlag(boolean webSockectModleFlag) {
-        this.webSockectModleFlag = webSockectModleFlag;
     }
 
     public boolean isWebSockectSSLFlag() {

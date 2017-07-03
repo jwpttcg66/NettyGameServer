@@ -88,6 +88,8 @@ public class GlobalConstants {
         public static final String PROXY_SERVER_CONFIG="proxy-server.xml";
         /**udp-server*/
         public static final String UDP_SERVER_CONFIG="udp-server.xml";
+        /**http-server*/
+        public static final String HTTP_SERVER_CONFIG="http-server.xml";
     }
 
     /**

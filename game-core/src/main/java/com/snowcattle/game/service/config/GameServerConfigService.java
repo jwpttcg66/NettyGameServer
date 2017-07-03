@@ -3,6 +3,7 @@ package com.snowcattle.game.service.config;
 import com.snowcattle.game.common.config.*;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.ServiceName;
+import com.snowcattle.game.service.net.http.NetHttpServerConfig;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
@@ -27,6 +28,7 @@ public class GameServerConfigService implements IService {
     protected RpcServerRegisterConfig rpcServerRegisterConfig;
     protected NetProxyConfig netProxyConfig;
     protected NetUdpServerConfig netUdpServerConfig;
+    protected NetHttpServerConfig netHttpServerConfig;
 
 
     @Override
@@ -47,6 +49,13 @@ public class GameServerConfigService implements IService {
         initZooKeeperConfig();
         initNetProxyConfig();
         initNetUdpServerConfig();
+        initNetHttpServerConfig();
+    }
+
+    public void initNetHttpServerConfig() throws  Exception{
+        NetHttpServerConfig netHttpServerConfig = new NetHttpServerConfig();
+        netHttpServerConfig.init();
+        this.netHttpServerConfig = netHttpServerConfig;
     }
 
     public void initNetUdpServerConfig() throws Exception{
@@ -160,5 +169,13 @@ public class GameServerConfigService implements IService {
 
     public void setNetUdpServerConfig(NetUdpServerConfig netUdpServerConfig) {
         this.netUdpServerConfig = netUdpServerConfig;
+    }
+
+    public NetHttpServerConfig getNetHttpServerConfig() {
+        return netHttpServerConfig;
+    }
+
+    public void setNetHttpServerConfig(NetHttpServerConfig netHttpServerConfig) {
+        this.netHttpServerConfig = netHttpServerConfig;
     }
 }
