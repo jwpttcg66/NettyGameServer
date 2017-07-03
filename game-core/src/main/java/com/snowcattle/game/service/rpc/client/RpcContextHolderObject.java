@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.rpc.client;
 
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 
 /**
  * Created by jiangwenping on 17/3/15.

@@ -2,7 +2,7 @@ package com.snowcattle.game.net.client.rpc.stresstest;
 
 
 import com.snowcattle.game.TestStartUp;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.common.util.BeanUtil;
 import com.snowcattle.game.service.rpc.client.RpcContextHolder;
 import com.snowcattle.game.service.rpc.client.RpcContextHolderObject;

@@ -2,7 +2,7 @@ package com.snowcattle.game.service.rpc.service.server;
 
 import com.snowcattle.game.common.annotation.RpcServiceAnnotation;
 import com.snowcattle.game.common.annotation.RpcServiceBoEnum;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.service.rpc.service.client.HelloService;
 import org.springframework.stereotype.Repository;
 

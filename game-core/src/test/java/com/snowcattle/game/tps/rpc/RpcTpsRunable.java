@@ -4,7 +4,7 @@ import com.snowcattle.game.service.rpc.client.RpcContextHolder;
 import com.snowcattle.game.service.rpc.client.RpcContextHolderObject;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.service.client.HelloService;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import org.junit.Assert;
 
 import java.util.concurrent.CountDownLatch;

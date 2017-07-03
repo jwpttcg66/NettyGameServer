@@ -2,7 +2,7 @@ package com.snowcattle.game.net.client.rpc;
 
 import com.snowcattle.game.service.rpc.client.*;
 import com.snowcattle.game.TestStartUp;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.common.util.BeanUtil;
 import com.snowcattle.game.service.rpc.client.proxy.AsyncRpcProxy;
 import com.snowcattle.game.service.rpc.service.client.HelloService;

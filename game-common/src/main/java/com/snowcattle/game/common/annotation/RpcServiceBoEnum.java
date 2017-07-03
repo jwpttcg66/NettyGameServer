@@ -1,6 +1,6 @@
 package com.snowcattle.game.common.annotation;
 
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.ElementType;

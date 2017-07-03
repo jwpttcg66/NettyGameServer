@@ -1,4 +1,4 @@
-package com.snowcattle.game.common.constant;
+package com.snowcattle.game.common.enums;
 
 /**
  * Created by jwp on 2017/2/4.

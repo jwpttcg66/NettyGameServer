@@ -3,7 +3,7 @@ package com.snowcattle.game.service.rpc.client;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.rpc.client.impl.GameRpcConnecetMananger;
 import com.snowcattle.game.common.config.GameServerDiffConfig;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.manager.LocalMananger;

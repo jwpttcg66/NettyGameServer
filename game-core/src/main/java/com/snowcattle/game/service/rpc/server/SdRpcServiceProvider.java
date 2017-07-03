@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.rpc.server;
 
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 

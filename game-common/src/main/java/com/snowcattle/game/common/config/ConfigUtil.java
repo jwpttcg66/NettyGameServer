@@ -2,8 +2,9 @@ package com.snowcattle.game.common.config;
 
 import com.snowcattle.game.common.config.script.IScriptEngine;
 import com.snowcattle.game.common.config.script.JSScriptManagerImpl;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.common.constant.CommonErrorLogInfo;
+import com.snowcattle.game.common.enums.NetTypeEnum;
 import com.snowcattle.game.common.util.ErrorsUtil;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -70,6 +71,10 @@ public class ConfigUtil {
 		_bindings.put(BOEnum.WORLD.toString().toLowerCase(), BOEnum.WORLD);
 		_bindings.put(BOEnum.GAME.toString().toLowerCase(), BOEnum.GAME);
 		_bindings.put(BOEnum.DB.toString().toLowerCase(), BOEnum.DB);
+		_bindings.put(NetTypeEnum.HTTP.toString().toLowerCase(), NetTypeEnum.HTTP);
+		_bindings.put(NetTypeEnum.WEBSOCKET.toString().toLowerCase(), NetTypeEnum.WEBSOCKET);
+		_bindings.put(NetTypeEnum.TCP.toString().toLowerCase(), NetTypeEnum.TCP);
+		_bindings.put(NetTypeEnum.UDP.toString().toLowerCase(), NetTypeEnum.UDP);
 		Reader _r = null;
 		String _scriptContent = null;
 		try {

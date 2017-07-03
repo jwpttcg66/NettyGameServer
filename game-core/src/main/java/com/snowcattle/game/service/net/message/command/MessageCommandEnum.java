@@ -1,6 +1,6 @@
 package com.snowcattle.game.service.net.message.command;
 
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 
 /**
  * Created by jiangwenping on 17/2/20.

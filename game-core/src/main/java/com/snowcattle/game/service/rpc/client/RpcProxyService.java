@@ -11,7 +11,7 @@ import com.snowcattle.game.service.rpc.client.proxy.ObjectProxy;
 import com.snowcattle.game.service.rpc.server.RpcConfig;
 import com.snowcattle.game.service.rpc.server.RpcMethodRegistry;
 import com.snowcattle.game.common.annotation.RpcServiceBoEnum;
-import com.snowcattle.game.common.constant.BOEnum;
+import com.snowcattle.game.common.enums.BOEnum;
 import com.snowcattle.game.service.IService;
 import org.springframework.stereotype.Service;
 
