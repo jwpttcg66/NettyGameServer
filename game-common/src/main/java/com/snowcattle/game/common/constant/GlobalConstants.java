@@ -85,7 +85,7 @@ public class GlobalConstants {
         /**dictService*/
         public static final String DICT_ROOT_FILE="dict/dict.wg";
         /**proxy*/
-        public static final String PROXY_SERVER_CONFIG="proxy.xml";
+        public static final String PROXY_SERVER_CONFIG="proxy-server.xml";
         /**udp-server*/
         public static final String UDP_SERVER_CONFIG="udp-server.xml";
     }
