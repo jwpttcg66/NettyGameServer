@@ -4,8 +4,8 @@ import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.common.exception.CodecException;
 import com.snowcattle.game.common.util.StringUtils;
 import com.snowcattle.game.message.auto.common.CommonMessageProBuf;
-import com.snowcattle.game.service.net.message.AbstractNetProtoBufTcpMessage;
-import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
+import com.snowcattle.game.service.message.AbstractNetProtoBufTcpMessage;
+import com.snowcattle.game.service.message.command.MessageCommandIndex;
 
 /**
  * Created by jwp on 2017/2/10.

@@ -3,7 +3,7 @@ package com.snowcattle.game.net.client.tcp;
 import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.service.net.message.registry.MessageRegistry;
+import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;

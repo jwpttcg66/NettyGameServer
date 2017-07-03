@@ -1,9 +1,9 @@
 package com.snowcattle.game.service.rpc.client.net;
 
-import com.snowcattle.game.service.net.RpcRequest;
-import com.snowcattle.game.service.net.RpcResponse;
-import com.snowcattle.game.service.net.message.decoder.RpcDecoder;
-import com.snowcattle.game.service.net.message.encoder.RpcEncoder;
+import com.snowcattle.game.service.net.tcp.RpcRequest;
+import com.snowcattle.game.service.net.tcp.RpcResponse;
+import com.snowcattle.game.service.message.decoder.RpcDecoder;
+import com.snowcattle.game.service.message.encoder.RpcEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

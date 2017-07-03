@@ -8,10 +8,10 @@ import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
 import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
-import com.snowcattle.game.service.net.MessageAttributeEnum;
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
-import com.snowcattle.game.service.net.session.NettyTcpSession;
+import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
+import com.snowcattle.game.service.message.AbstractNetMessage;
+import com.snowcattle.game.service.message.command.MessageCommandIndex;
+import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 17/2/21.

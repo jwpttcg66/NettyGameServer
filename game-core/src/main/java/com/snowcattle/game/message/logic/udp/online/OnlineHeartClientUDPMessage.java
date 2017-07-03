@@ -2,8 +2,8 @@ package com.snowcattle.game.message.logic.udp.online;
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.message.auto.udp.online.OnlineUDPProBuf;
-import com.snowcattle.game.service.net.message.AbstractNetProtoBufUdpMessage;
-import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
+import com.snowcattle.game.service.message.AbstractNetProtoBufUdpMessage;
+import com.snowcattle.game.service.message.command.MessageCommandIndex;
 
 /**
  * Created by jwp on 2017/2/16.

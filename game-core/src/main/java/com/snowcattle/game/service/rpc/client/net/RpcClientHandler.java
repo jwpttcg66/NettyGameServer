@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.rpc.client.net;
 
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.net.RpcResponse;
+import com.snowcattle.game.service.net.tcp.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;

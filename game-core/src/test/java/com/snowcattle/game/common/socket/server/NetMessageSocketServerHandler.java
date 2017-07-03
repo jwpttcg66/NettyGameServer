@@ -1,6 +1,6 @@
 package com.snowcattle.game.common.socket.server;
 
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
+import com.snowcattle.game.service.message.AbstractNetMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;

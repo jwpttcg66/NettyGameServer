@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.rpc.client;
 
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.net.RpcRequest;
+import com.snowcattle.game.service.net.tcp.RpcRequest;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 

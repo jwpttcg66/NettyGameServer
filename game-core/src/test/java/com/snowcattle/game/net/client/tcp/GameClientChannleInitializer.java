@@ -4,15 +4,14 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.net.handler.GameLoggingHandler;
-import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageTCPDecoder;
-import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageTCPEncoder;
+import com.snowcattle.game.service.net.tcp.handler.GameLoggingHandler;
+import com.snowcattle.game.service.message.decoder.NetProtoBufMessageTCPDecoder;
+import com.snowcattle.game.service.message.encoder.NetProtoBufMessageTCPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 
 /**

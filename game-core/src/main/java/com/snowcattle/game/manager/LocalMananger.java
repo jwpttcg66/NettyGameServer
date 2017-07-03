@@ -8,9 +8,9 @@ import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
-import com.snowcattle.game.service.net.process.GameTcpMessageProcessor;
-import com.snowcattle.game.service.net.process.GameUdpMessageOrderProcessor;
-import com.snowcattle.game.service.net.process.GameUdpMessageProcessor;
+import com.snowcattle.game.service.net.tcp.process.GameTcpMessageProcessor;
+import com.snowcattle.game.service.net.tcp.process.GameUdpMessageOrderProcessor;
+import com.snowcattle.game.service.net.tcp.process.GameUdpMessageProcessor;
 
 import java.util.LinkedHashMap;
 

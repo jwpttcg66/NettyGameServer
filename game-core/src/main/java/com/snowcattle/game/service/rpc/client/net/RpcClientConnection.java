@@ -1,7 +1,7 @@
 package com.snowcattle.game.service.rpc.client.net;
 
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.net.RpcRequest;
+import com.snowcattle.game.service.net.tcp.RpcRequest;
 import com.snowcattle.game.service.rpc.server.RpcNodeInfo;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;

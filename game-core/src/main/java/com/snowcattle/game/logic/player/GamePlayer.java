@@ -1,7 +1,7 @@
 package com.snowcattle.game.logic.player;
 
 import com.snowcattle.game.service.lookup.ILongId;
-import com.snowcattle.game.service.net.session.NettyTcpNetMessageSender;
+import com.snowcattle.game.service.net.tcp.session.NettyTcpNetMessageSender;
 
 /**
  * Created by jiangwenping on 17/2/20.

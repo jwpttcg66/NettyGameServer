@@ -20,7 +20,7 @@ import com.snowcattle.game.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.manager.spring.LocalSpringServicerAfterManager;
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.net.process.*;
+import com.snowcattle.game.service.net.tcp.process.*;
 import com.snowcattle.game.thread.policy.RejectedPolicyType;
 
 import java.util.concurrent.TimeUnit;

@@ -2,8 +2,8 @@ package com.snowcattle.game.service.rpc.client.net;
 
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.service.net.RpcRequest;
-import com.snowcattle.game.service.net.RpcResponse;
+import com.snowcattle.game.service.net.tcp.RpcRequest;
+import com.snowcattle.game.service.net.tcp.RpcResponse;
 import com.snowcattle.game.service.rpc.client.RPCFuture;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.server.RpcNodeInfo;

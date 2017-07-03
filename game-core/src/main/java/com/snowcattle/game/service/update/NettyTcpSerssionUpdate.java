@@ -2,8 +2,8 @@ package com.snowcattle.game.service.update;
 
 import com.snowcattle.game.executor.update.entity.AbstractUpdate;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.net.session.NettyTcpSession;
-import com.snowcattle.game.service.net.session.TcpNetState;
+import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
+import com.snowcattle.game.service.net.tcp.session.TcpNetState;
 
 /**
  * Created by jiangwenping on 17/2/14.

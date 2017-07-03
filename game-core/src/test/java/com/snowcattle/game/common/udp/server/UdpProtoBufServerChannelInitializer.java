@@ -1,7 +1,7 @@
 package com.snowcattle.game.common.udp.server;
 
-import com.snowcattle.game.service.net.message.decoder.NetProtoBufMessageUDPDecoder;
-import com.snowcattle.game.service.net.message.encoder.NetProtoBufMessageUDPEncoder;
+import com.snowcattle.game.service.message.decoder.NetProtoBufMessageUDPDecoder;
+import com.snowcattle.game.service.message.encoder.NetProtoBufMessageUDPEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioDatagramChannel;

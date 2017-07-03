@@ -1,7 +1,7 @@
 package com.snowcattle.game.common.udp.server;
 
 import com.snowcattle.game.message.logic.udp.online.OnlineHeartClientUDPMessage;
-import com.snowcattle.game.service.net.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;

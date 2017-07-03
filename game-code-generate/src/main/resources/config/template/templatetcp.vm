@@ -84,7 +84,7 @@
 package ${msg.namespace};
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
-import com.snowcattle.game.service.net.message.AbstractNetProtoBufTcpMessage;
+import com.snowcattle.game.service.message.AbstractNetProtoBufTcpMessage;
 import com.snowcattle.game.wolfshoot.service.net.GameMessageCommandIndex;
 import ${msg.importPackage};
 

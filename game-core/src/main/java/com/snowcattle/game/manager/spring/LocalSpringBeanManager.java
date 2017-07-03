@@ -2,12 +2,12 @@ package com.snowcattle.game.manager.spring;
 
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;
-import com.snowcattle.game.service.net.message.command.MessageCommandFactory;
-import com.snowcattle.game.service.net.message.factory.TcpMessageFactory;
-import com.snowcattle.game.service.net.pipeline.DefaultTcpServerPipeLine;
-import com.snowcattle.game.service.net.pipeline.DefaultUdpServerPipeLine;
-import com.snowcattle.game.service.net.session.builder.NettyTcpSessionBuilder;
-import com.snowcattle.game.service.net.session.builder.NettyUdpSessionBuilder;
+import com.snowcattle.game.service.message.command.MessageCommandFactory;
+import com.snowcattle.game.service.message.factory.TcpMessageFactory;
+import com.snowcattle.game.service.net.tcp.pipeline.DefaultTcpServerPipeLine;
+import com.snowcattle.game.service.net.tcp.pipeline.DefaultUdpServerPipeLine;
+import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
+import com.snowcattle.game.service.net.tcp.session.builder.NettyUdpSessionBuilder;
 import com.snowcattle.game.service.rpc.client.RpcRequestFactory;
 import com.snowcattle.game.service.rpc.serialize.protostuff.ProtostuffSerializeI;
 import com.snowcattle.game.service.uuid.LongIdGenerator;

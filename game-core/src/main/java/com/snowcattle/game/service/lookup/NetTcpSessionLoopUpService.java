@@ -1,6 +1,5 @@
 package com.snowcattle.game.service.lookup;
 
-import com.snowcattle.game.bootstrap.GameServer;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.constant.ServiceName;
@@ -8,8 +7,8 @@ import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.limit.AtomicLimitNumber;
-import com.snowcattle.game.service.net.session.NettySession;
-import com.snowcattle.game.service.net.session.NettyTcpSession;
+import com.snowcattle.game.service.net.tcp.session.NettySession;
+import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 

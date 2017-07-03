@@ -1,7 +1,7 @@
 package com.snowcattle.game.common.socket.client;
 
-import com.snowcattle.game.service.net.message.decoder.NetMessageTCPDecoder;
-import com.snowcattle.game.service.net.message.encoder.NetMessageTcpEncoder;
+import com.snowcattle.game.service.message.decoder.NetMessageTCPDecoder;
+import com.snowcattle.game.service.message.encoder.NetMessageTcpEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;

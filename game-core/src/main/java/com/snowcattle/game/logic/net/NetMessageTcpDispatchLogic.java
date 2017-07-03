@@ -2,13 +2,11 @@ package com.snowcattle.game.logic.net;
 
 import com.snowcattle.game.common.constant.CommonErrorLogInfo;
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.manager.LocalMananger;
-import com.snowcattle.game.service.net.MessageAttributeEnum;
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.service.net.session.NettyTcpSession;
-import com.snowcattle.game.service.rpc.server.RpcConfig;
+import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
+import com.snowcattle.game.service.message.AbstractNetMessage;
+import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.common.util.ErrorsUtil;
-import com.snowcattle.game.service.net.process.IMessageProcessor;
+import com.snowcattle.game.service.net.tcp.process.IMessageProcessor;
 import org.springframework.stereotype.Service;
 
 /**

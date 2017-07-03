@@ -3,7 +3,7 @@ package com.snowcattle.game.common.udp.client;
 import com.snowcattle.game.manager.LocalMananger;
 import com.snowcattle.game.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.message.logic.udp.online.OnlineHeartClientUDPMessage;
-import com.snowcattle.game.service.net.message.registry.MessageRegistry;
+import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;

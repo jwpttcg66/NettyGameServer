@@ -1,9 +1,9 @@
 package com.snowcattle.game.common.socket.client;
 
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineHeartClientTcpMessage;
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.service.net.message.NetMessageBody;
-import com.snowcattle.game.service.net.message.NetMessageHead;
+import com.snowcattle.game.service.message.AbstractNetMessage;
+import com.snowcattle.game.service.message.NetMessageBody;
+import com.snowcattle.game.service.message.NetMessageHead;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;

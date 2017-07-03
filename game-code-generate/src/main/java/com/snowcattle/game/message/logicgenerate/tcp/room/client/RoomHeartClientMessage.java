@@ -1,7 +1,7 @@
 //package com.snowcattle.game.message.logicgenerate.tcp.room.client;
 //
 //import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
-//import com.snowcattle.game.service.net.message.AbstractNetProtoBufTcpMessage;
+//import com.snowcattle.game.service.message.AbstractNetProtoBufTcpMessage;
 //import com.snowcattle.game.wolfshoot.service.net.GameMessageCommandIndex;
 //import com.snowcattle.game.message.protogenerate.tcp.room.client.GameRoomTCPClientProBuf.*;
 //

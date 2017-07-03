@@ -3,8 +3,8 @@ package com.snowcattle.game.message.handler.messagehandler.online;
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.logic.udp.online.OnlineHeartClientUDPMessage;
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.service.net.message.command.MessageCommandIndex;
+import com.snowcattle.game.service.message.AbstractNetMessage;
+import com.snowcattle.game.service.message.command.MessageCommandIndex;
 
 /**
  * Created by jiangwenping on 17/2/22.

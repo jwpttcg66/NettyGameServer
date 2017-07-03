@@ -1,10 +1,10 @@
 package com.snowcattle.game.common.socket.message;
 
-import com.snowcattle.game.service.net.message.AbstractNetMessage;
-import com.snowcattle.game.service.net.message.NetMessageBody;
-import com.snowcattle.game.service.net.message.NetMessageHead;
-import com.snowcattle.game.service.net.message.decoder.NetTcpMessageDecoderFactory;
-import com.snowcattle.game.service.net.message.encoder.NetMessageEncoderFactory;
+import com.snowcattle.game.service.message.AbstractNetMessage;
+import com.snowcattle.game.service.message.NetMessageBody;
+import com.snowcattle.game.service.message.NetMessageHead;
+import com.snowcattle.game.service.message.decoder.NetTcpMessageDecoderFactory;
+import com.snowcattle.game.service.message.encoder.NetMessageEncoderFactory;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineHeartClientTcpMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
