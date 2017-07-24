@@ -12,13 +12,20 @@ public class UpdateEventCacheService {
 
     public static UpdateEventCacheFactory updateEventCacheFactory;
 
+    private static int size;
+    private static int maxSize;
+
+    public static void init(){
+        setSize(1024);
+        setMaxSize(1024 * 32);
+    }
+
     public static void start(){
-//        int size = 1024;
-        int size = 1024;
-        int max = 32;
+        int size = getSize();
+        int maxSize = getMaxSize();
         GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        genericObjectPoolConfig.setMaxTotal(size * max);
-        genericObjectPoolConfig.setMaxIdle(size * max);
+        genericObjectPoolConfig.setMaxTotal(maxSize);
+        genericObjectPoolConfig.setMaxIdle(maxSize);
         genericObjectPoolConfig.setMinIdle(size);
         long time = 1000 * 30;
         genericObjectPoolConfig.setMaxWaitMillis(time);
@@ -45,5 +52,21 @@ public class UpdateEventCacheService {
 
     public static void releaseUpdateEvent(UpdateEvent updateEvent){
             updateEventCacheFactory.returnObject(updateEvent);
+    }
+
+    public static int getSize() {
+        return size;
+    }
+
+    public static void setSize(int size) {
+        UpdateEventCacheService.size = size;
+    }
+
+    public static int getMaxSize() {
+        return maxSize;
+    }
+
+    public static void setMaxSize(int maxSize) {
+        UpdateEventCacheService.maxSize = maxSize;
     }
 }

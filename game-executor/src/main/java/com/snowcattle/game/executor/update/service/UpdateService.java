@@ -92,6 +92,7 @@ public class UpdateService <ID extends Serializable> {
 
     public void start(){
         this.updateMap.clear();
+        UpdateEventCacheService.init();
         UpdateEventCacheService.start();
         dispatchThread.startup();
         iUpdateExecutor.startup();
@@ -102,6 +103,7 @@ public class UpdateService <ID extends Serializable> {
     }
 
     public void notifyStart(){
+        UpdateEventCacheService.init();
         UpdateEventCacheService.start();
         iUpdateExecutor.startup();
         this.updateMap.clear();
