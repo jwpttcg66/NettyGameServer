@@ -17,6 +17,7 @@ config.gameExcutorKeepAliveTime=60;
 config.gameExcutorCycleTime=1000;
 config.gameExcutorMinCycleTime=1000;
 config.updateServiceExcutorFlag=2;
+config.updateEventCacheServicePoolOpenFlag=true;
 /**rpc配置*/
 config.rpcOpen=true;
 //这个是提供外网使用的，请使用外网地址

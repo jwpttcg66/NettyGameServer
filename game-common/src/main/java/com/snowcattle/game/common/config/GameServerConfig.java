@@ -50,6 +50,8 @@ public class GameServerConfig extends ServerConfig {
 
     /*updateservice是否使用将多个update绑定在一个线程执行*/
     private byte updateServiceExcutorFlag;
+    /*UpdateEventCacheService是否使用commonpoll2*/
+    private boolean updateEventCacheServicePoolOpenFlag;
 
     //开启rpc
     private boolean rpcOpen = false;
@@ -408,5 +410,13 @@ public class GameServerConfig extends ServerConfig {
 
     public void setWebSockectSSLFlag(boolean webSockectSSLFlag) {
         this.webSockectSSLFlag = webSockectSSLFlag;
+    }
+
+    public boolean isUpdateEventCacheServicePoolOpenFlag() {
+        return updateEventCacheServicePoolOpenFlag;
+    }
+
+    public void setUpdateEventCacheServicePoolOpenFlag(boolean updateEventCacheServicePoolOpenFlag) {
+        this.updateEventCacheServicePoolOpenFlag = updateEventCacheServicePoolOpenFlag;
     }
 }

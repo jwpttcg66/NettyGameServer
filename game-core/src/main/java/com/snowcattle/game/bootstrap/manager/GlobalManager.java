@@ -9,6 +9,7 @@ import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchFinishEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchUpdateEventListener;
+import com.snowcattle.game.executor.update.cache.UpdateEventCacheService;
 import com.snowcattle.game.executor.update.pool.DisruptorExecutorService;
 import com.snowcattle.game.executor.update.pool.UpdateBindExecutorService;
 import com.snowcattle.game.executor.update.pool.UpdateExecutorService;
@@ -170,6 +171,8 @@ public class GlobalManager {
         }else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.locksupport.ordinal()){
             updateService.start();
         }else if(gameServerConfig.getUpdateServiceExcutorFlag() == UpdateExecutorEnum.disruptor.ordinal()){
+            boolean openFlag = gameServerConfig.isUpdateEventCacheServicePoolOpenFlag();
+            UpdateEventCacheService.setPoolOpenFlag(openFlag);
             updateService.start();
         }
 
