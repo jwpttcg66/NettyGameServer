@@ -6,7 +6,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
  * Created by jiangwenping on 17/4/26.
- *  updateevent的缓存服务
+ * updateevent的缓存服务
  */
 public class UpdateEventCacheService {
 
@@ -15,12 +15,14 @@ public class UpdateEventCacheService {
     private static int size;
     private static int maxSize;
 
-    public static void init(){
+    private static boolean poolOpenFlag;
+
+    public static void init() {
         setSize(1024);
         setMaxSize(1024 * 32);
     }
 
-    public static void start(){
+    public static void start() {
         int size = getSize();
         int maxSize = getMaxSize();
         GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
@@ -35,13 +37,19 @@ public class UpdateEventCacheService {
         updateEventCacheFactory = new UpdateEventCacheFactory(new UpdateEventPoolFactory(), genericObjectPoolConfig);
     }
 
-    public static void stop(){
-        if(updateEventCacheFactory != null) {
+    public static void stop() {
+        if (updateEventCacheFactory != null) {
             updateEventCacheFactory.close();
         }
     }
 
-    public static UpdateEvent createUpdateEvent(){
+    public static UpdateEvent createUpdateEvent() {
+
+        if (!poolOpenFlag) {
+            UpdateEvent updateEvent = new UpdateEvent();
+            return updateEvent;
+        }
+
         try {
             return updateEventCacheFactory.borrowObject();
         } catch (Exception e) {
@@ -50,8 +58,12 @@ public class UpdateEventCacheService {
         return null;
     }
 
-    public static void releaseUpdateEvent(UpdateEvent updateEvent){
-            updateEventCacheFactory.returnObject(updateEvent);
+    public static void releaseUpdateEvent(UpdateEvent updateEvent) {
+        if (!poolOpenFlag) {
+            updateEvent = null;
+            return;
+        }
+        updateEventCacheFactory.returnObject(updateEvent);
     }
 
     public static int getSize() {
@@ -68,5 +80,13 @@ public class UpdateEventCacheService {
 
     public static void setMaxSize(int maxSize) {
         UpdateEventCacheService.maxSize = maxSize;
+    }
+
+    public static boolean isPoolOpenFlag() {
+        return poolOpenFlag;
+    }
+
+    public static void setPoolOpenFlag(boolean poolOpenFlag) {
+        UpdateEventCacheService.poolOpenFlag = poolOpenFlag;
     }
 }

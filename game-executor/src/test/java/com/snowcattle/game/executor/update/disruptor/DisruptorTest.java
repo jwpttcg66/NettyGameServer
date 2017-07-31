@@ -6,6 +6,7 @@ import com.snowcattle.game.executor.event.EventParam;
 import com.snowcattle.game.executor.event.impl.listener.DispatchCreateEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchFinishEventListener;
 import com.snowcattle.game.executor.event.impl.listener.DispatchUpdateEventListener;
+import com.snowcattle.game.executor.update.cache.UpdateEventCacheService;
 import com.snowcattle.game.executor.update.pool.DisruptorExecutorService;
 import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.executor.update.thread.dispatch.DisruptorDispatchThread;
@@ -26,7 +27,7 @@ public class DisruptorTest {
         EventBus updateEventBus = new EventBus();
 //        int maxSize = 10000;
 //        int corePoolSize = 100;
-        int maxSize = 20000;
+        int maxSize = 2;
         int corePoolSize = 20;
         long keepAliveTime = 60;
         TimeUnit timeUnit = TimeUnit.SECONDS;
@@ -43,8 +44,9 @@ public class DisruptorTest {
         updateEventBus.addEventListener(new DispatchFinishEventListener(dispatchThread, updateService));
 
 //        updateService.notifyStart();
+        UpdateEventCacheService.setPoolOpenFlag(false);
         updateService.start();
-        long updateMaxSize = 100;
+        long updateMaxSize = 10000;
         for (long i = 0; i < maxSize; i++) {
             IntegerUpdate integerUpdate = new IntegerUpdate(i, updateMaxSize);
             EventParam<IntegerUpdate> param = new EventParam<IntegerUpdate>(integerUpdate);
