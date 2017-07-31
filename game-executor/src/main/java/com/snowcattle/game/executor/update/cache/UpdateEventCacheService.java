@@ -12,14 +12,14 @@ public class UpdateEventCacheService {
 
     public static UpdateEventCacheFactory updateEventCacheFactory;
 
-    private static int size;
-    private static int maxSize;
+    private static int size = 1024;
+    private static int maxSize = 1024 * 32;
 
     private static boolean poolOpenFlag;
 
     public static void init() {
-        setSize(1024);
-        setMaxSize(1024 * 32);
+//        setSize(size);
+//        setMaxSize(1024 * 32);
     }
 
     public static void start() {
