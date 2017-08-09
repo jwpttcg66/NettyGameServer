@@ -142,7 +142,7 @@ public class EntityUtils {
             AbstractEntity entity = entityList.get(0);
             if(entity instanceof  RedisInterface){
                 for(AbstractEntity abstractEntity : entityList){
-                    updateAllFieldEntity(redisService, entity);
+                    updateAllFieldEntity(redisService, abstractEntity);
                 }
             }else if(entity instanceof RedisListInterface){
                 List<RedisListInterface> redisListInterfaceList = new ArrayList<>();
@@ -164,7 +164,7 @@ public class EntityUtils {
             if (entity != null) {
                 if (entity instanceof RedisInterface) {
                     for(AbstractEntity abstractEntity : entityList){
-                        updateChangedFieldEntity(redisService, entity);
+                        updateChangedFieldEntity(redisService, abstractEntity);
                     }
                 } else if (entity instanceof RedisListInterface) {
 
