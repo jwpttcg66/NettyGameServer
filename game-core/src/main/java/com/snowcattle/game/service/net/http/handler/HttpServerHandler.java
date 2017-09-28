@@ -1,5 +1,9 @@
 package com.snowcattle.game.service.net.http.handler;
 
+import com.snowcattle.game.bootstrap.GameServer;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.common.config.GameServerConfig;
+import com.snowcattle.game.service.config.GameServerConfigService;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -33,6 +37,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         if (msg instanceof HttpRequest) {
             //记录下request
             request = (HttpRequest) msg;
@@ -40,63 +46,69 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
                 send100Continue(ctx);
             }
 
-            log.setLength(0);
-            log.append("WELCOME TO THE WILD WILD WEB SERVER\r\n");
-            log.append("===================================\r\n");
+            if(gameServerConfig.isDevelopModel()) {
+                log.setLength(0);
+                log.append("WELCOME TO THE WILD WILD WEB SERVER\r\n");
+                log.append("===================================\r\n");
 
-            log.append("VERSION: ").append(request.protocolVersion()).append("\r\n");
-            log.append("HOSTNAME: ").append(request.headers().get(HttpHeaderNames.HOST, "unknown")).append("\r\n");
-            log.append("REQUEST_URI: ").append(request.uri()).append("\r\n\r\n");
+                log.append("VERSION: ").append(request.protocolVersion()).append("\r\n");
+                log.append("HOSTNAME: ").append(request.headers().get(HttpHeaderNames.HOST, "unknown")).append("\r\n");
+                log.append("REQUEST_URI: ").append(request.uri()).append("\r\n\r\n");
 
-            HttpHeaders headers = request.headers();
-            if (!headers.isEmpty()) {
-                for (Map.Entry<String, String> h: headers) {
-                    CharSequence key = h.getKey();
-                    CharSequence value = h.getValue();
-                    log.append("HEADER: ").append(key).append(" = ").append(value).append("\r\n");
-                }
-                log.append("\r\n");
-            }
-
-            QueryStringDecoder queryStringDecoder = new QueryStringDecoder(request.uri());
-            Map<String, List<String>> params = queryStringDecoder.parameters();
-            if (!params.isEmpty()) {
-                for (Map.Entry<String, List<String>> p: params.entrySet()) {
-                    String key = p.getKey();
-                    List<String> vals = p.getValue();
-                    for (String val : vals) {
-                        log.append("PARAM: ").append(key).append(" = ").append(val).append("\r\n");
+                HttpHeaders headers = request.headers();
+                if (!headers.isEmpty()) {
+                    for (Map.Entry<String, String> h : headers) {
+                        CharSequence key = h.getKey();
+                        CharSequence value = h.getValue();
+                        log.append("HEADER: ").append(key).append(" = ").append(value).append("\r\n");
                     }
+                    log.append("\r\n");
                 }
-                log.append("\r\n");
-            }
 
-            appendDecoderResult(log, request);
+                QueryStringDecoder queryStringDecoder = new QueryStringDecoder(request.uri());
+                Map<String, List<String>> params = queryStringDecoder.parameters();
+                if (!params.isEmpty()) {
+                    for (Map.Entry<String, List<String>> p : params.entrySet()) {
+                        String key = p.getKey();
+                        List<String> vals = p.getValue();
+                        for (String val : vals) {
+                            log.append("PARAM: ").append(key).append(" = ").append(val).append("\r\n");
+                        }
+                    }
+                    log.append("\r\n");
+                }
+
+                appendDecoderResult(log, request);
+            }
         }
 
         if (msg instanceof HttpContent) {
             HttpContent content = (HttpContent) msg;
             ByteBuf buf = content.content();
-            if (buf.isReadable()) {
-                log.append("CONTENT: ");
-                log.append(buf.toString(CharsetUtil.UTF_8));
-                log.append("\r\n");
-                appendDecoderResult(log, request);
+            if(gameServerConfig.isDevelopModel()) {
+                if (buf.isReadable()) {
+                    log.append("CONTENT: ");
+                    log.append(buf.toString(CharsetUtil.UTF_8));
+                    log.append("\r\n");
+                    appendDecoderResult(log, request);
+                }
             }
            //开始解析
             if (msg instanceof LastHttpContent) {
-                log.append("END OF CONTENT\r\n");
-
                 LastHttpContent trailer = (LastHttpContent) msg;
-                if (!trailer.trailingHeaders().isEmpty()) {
-                    log.append("\r\n");
-                    for (CharSequence name: trailer.trailingHeaders().names()) {
-                        for (CharSequence value: trailer.trailingHeaders().getAll(name)) {
-                            log.append("TRAILING HEADER: ");
-                            log.append(name).append(" = ").append(value).append("\r\n");
+                if(gameServerConfig.isDevelopModel()) {
+                    log.append("END OF CONTENT\r\n");
+                    if (!trailer.trailingHeaders().isEmpty()) {
+                        log.append("\r\n");
+                        for (CharSequence name : trailer.trailingHeaders().names()) {
+                            for (CharSequence value : trailer.trailingHeaders().getAll(name)) {
+                                log.append("TRAILING HEADER: ");
+                                log.append(name).append(" = ").append(value).append("\r\n");
+                            }
                         }
+                        log.append("\r\n");
                     }
-                    log.append("\r\n");
+
                 }
 
                 if (!writeResponse(trailer, ctx)) {
