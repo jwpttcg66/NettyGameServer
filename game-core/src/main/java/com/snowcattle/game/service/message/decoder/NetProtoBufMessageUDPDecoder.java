@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.message.decoder;
 
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetProtoBufUdpMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.DatagramPacket;
@@ -20,7 +21,8 @@ public class NetProtoBufMessageUDPDecoder extends MessageToMessageDecoder<Datagr
 
     public NetProtoBufMessageUDPDecoder() {
         this(CharsetUtil.UTF_8);
-        this.iNetMessageDecoderFactory = new NetProtoBufUdpMessageDecoderFactory();
+        NetProtoBufUdpMessageDecoderFactory netProtoBufUdpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufUdpMessageDecoderFactory();
+        this.iNetMessageDecoderFactory = netProtoBufUdpMessageDecoderFactory;
     }
 
     @Override

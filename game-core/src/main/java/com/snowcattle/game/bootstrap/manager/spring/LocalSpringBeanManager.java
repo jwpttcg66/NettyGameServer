@@ -3,6 +3,10 @@ package com.snowcattle.game.bootstrap.manager.spring;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;
 import com.snowcattle.game.service.message.command.MessageCommandFactory;
+import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
+import com.snowcattle.game.service.message.decoder.NetProtoBufUdpMessageDecoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufUdpMessageEncoderFactory;
 import com.snowcattle.game.service.message.factory.TcpMessageFactory;
 import com.snowcattle.game.service.net.tcp.pipeline.DefaultTcpServerPipeLine;
 import com.snowcattle.game.service.net.tcp.pipeline.DefaultUdpServerPipeLine;
@@ -54,6 +58,18 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private MessageCommandFactory messageCommandFactory;
+
+    @Autowired
+    private NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory;
+
+    @Autowired
+    private NetProtoBufUdpMessageDecoderFactory netProtoBufUdpMessageDecoderFactory;
+
+    @Autowired
+    private NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory;
+
+    @Autowired
+    private NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -141,5 +157,37 @@ public class LocalSpringBeanManager {
 
     public void setMessageCommandFactory(MessageCommandFactory messageCommandFactory) {
         this.messageCommandFactory = messageCommandFactory;
+    }
+
+    public NetProtoBufTcpMessageDecoderFactory getNetProtoBufTcpMessageDecoderFactory() {
+        return netProtoBufTcpMessageDecoderFactory;
+    }
+
+    public void setNetProtoBufTcpMessageDecoderFactory(NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory) {
+        this.netProtoBufTcpMessageDecoderFactory = netProtoBufTcpMessageDecoderFactory;
+    }
+
+    public NetProtoBufUdpMessageDecoderFactory getNetProtoBufUdpMessageDecoderFactory() {
+        return netProtoBufUdpMessageDecoderFactory;
+    }
+
+    public void setNetProtoBufUdpMessageDecoderFactory(NetProtoBufUdpMessageDecoderFactory netProtoBufUdpMessageDecoderFactory) {
+        this.netProtoBufUdpMessageDecoderFactory = netProtoBufUdpMessageDecoderFactory;
+    }
+
+    public NetProtoBufTcpMessageEncoderFactory getNetProtoBufTcpMessageEncoderFactory() {
+        return netProtoBufTcpMessageEncoderFactory;
+    }
+
+    public void setNetProtoBufTcpMessageEncoderFactory(NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory) {
+        this.netProtoBufTcpMessageEncoderFactory = netProtoBufTcpMessageEncoderFactory;
+    }
+
+    public NetProtoBufUdpMessageEncoderFactory getNetProtoBufUdpMessageEncoderFactory() {
+        return netProtoBufUdpMessageEncoderFactory;
+    }
+
+    public void setNetProtoBufUdpMessageEncoderFactory(NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory) {
+        this.netProtoBufUdpMessageEncoderFactory = netProtoBufUdpMessageEncoderFactory;
     }
 }

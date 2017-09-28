@@ -5,10 +5,12 @@ import com.snowcattle.game.service.message.NetMessageBody;
 import com.snowcattle.game.service.message.NetUdpMessageHead;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/20.
  */
+@Service
 public class NetProtoBufUdpMessageEncoderFactory implements INetProtoBufUdpMessageEncoderFactory {
     @Override
     public ByteBuf createByteBuf(AbstractNetProtoBufMessage netMessage) throws Exception {

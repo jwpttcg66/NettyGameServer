@@ -9,11 +9,13 @@ import com.snowcattle.game.common.exception.CodecException;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/3.
  */
 
+@Service
 public class NetProtoBufTcpMessageDecoderFactory implements INetProtoBufTcpMessageDecoderFactory {
 
     public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {

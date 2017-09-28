@@ -5,12 +5,13 @@ import com.snowcattle.game.service.message.NetMessageBody;
 import com.snowcattle.game.service.message.NetMessageHead;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/2/8.
  */
+@Service
 public class NetProtoBufTcpMessageEncoderFactory implements INetProtoBufTcpMessageEncoderFactory {
-
 
     @Override
     public ByteBuf createByteBuf(AbstractNetProtoBufMessage netMessage) throws Exception {
