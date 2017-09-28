@@ -3,7 +3,10 @@ package com.snowcattle.game.service.net.http.handler;
 import com.snowcattle.game.bootstrap.GameServer;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.config.GameServerConfig;
+import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.service.config.GameServerConfigService;
+import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -27,6 +30,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  * Created by jiangwenping on 2017/7/3.
+ * 默认读取全部，不使用trunked
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 
@@ -85,38 +89,22 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
         if (msg instanceof HttpContent) {
             HttpContent content = (HttpContent) msg;
             ByteBuf buf = content.content();
-            if(gameServerConfig.isDevelopModel()) {
+            if (gameServerConfig.isDevelopModel()) {
                 if (buf.isReadable()) {
                     log.append("CONTENT: ");
                     log.append(buf.toString(CharsetUtil.UTF_8));
                     log.append("\r\n");
                     appendDecoderResult(log, request);
                 }
-
             }
-           //开始解析
-            if (msg instanceof LastHttpContent) {
-                LastHttpContent trailer = (LastHttpContent) msg;
-                if(gameServerConfig.isDevelopModel()) {
-                    log.append("END OF CONTENT\r\n");
-                    if (!trailer.trailingHeaders().isEmpty()) {
-                        log.append("\r\n");
-                        for (CharSequence name : trailer.trailingHeaders().names()) {
-                            for (CharSequence value : trailer.trailingHeaders().getAll(name)) {
-                                log.append("TRAILING HEADER: ");
-                                log.append(name).append(" = ").append(value).append("\r\n");
-                            }
-                        }
-                        log.append("\r\n");
-                    }
+            //开始解析
+            NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
+            AbstractNetProtoBufMessage netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
 
-                }
-
-                if (!writeResponse(trailer, ctx)) {
-                    // If keep-alive is off, close the connection once the content is fully written.
-                    ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-                }
-            }
+            //进行处理
+            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+            HttpResponse httpResponse = netMessageProcessLogic.processMessage(netProtoBufMessage, request);
+            writeResponse(httpResponse, ctx);
         }
     }
 
@@ -149,19 +137,20 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     }
 
 
-    private boolean writeResponse(HttpObject currentObj, ChannelHandlerContext ctx) {
+    private boolean writeResponse(HttpResponse response, ChannelHandlerContext ctx) {
         // Decide whether to close the connection or not.
         boolean keepAlive = HttpUtil.isKeepAlive(request);
-        // Build the response object.
-        FullHttpResponse response = new DefaultFullHttpResponse(
-                HTTP_1_1, currentObj.decoderResult().isSuccess()? OK : BAD_REQUEST,
-                Unpooled.copiedBuffer(log.toString(), CharsetUtil.UTF_8));
+//        // Build the response object.
+//        FullHttpResponse response = new DefaultFullHttpResponse(
+//                HTTP_1_1, currentObj.decoderResult().isSuccess()? OK : BAD_REQUEST,
+//                Unpooled.copiedBuffer(log.toString(), CharsetUtil.UTF_8));
 
+        FullHttpResponse fullHttpResponse = (FullHttpResponse) response;
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
         if (keepAlive) {
             // Add 'Content-Length' header only for a keep-alive connection.
-            response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+            response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, fullHttpResponse.content().readableBytes());
             // Add keep alive header as per:
             // - http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#Connection
             response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
