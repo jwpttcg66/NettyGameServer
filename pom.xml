@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
     <version>1.1.6-SNAPSHOT</version>
     <modules>
+        <module>game-code-generate</module>
         <module>game-executor</module>
         <module>game-core</module>
-        <module>game-code-generate</module>
         <module>game-db</module>
         <module>game-common</module>
     </modules>
