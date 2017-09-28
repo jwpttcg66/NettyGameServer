@@ -8,8 +8,16 @@ package com.snowcattle.game.service.net.tcp;
  *	message附带参数
  */
 public enum MessageAttributeEnum {
-//    SESSION,
-//    ROOM,
-//    PLAYER,
+
+    /**
+     * tcp跟udp使用
+     */
     DISPATCH_SESSION,
+
+    /**
+     * http使用
+     */
+    DISPATCH_HTTP_REQUEST,
+
+    ;
 }
