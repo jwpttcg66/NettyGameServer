@@ -92,6 +92,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
                     log.append("\r\n");
                     appendDecoderResult(log, request);
                 }
+
             }
            //开始解析
             if (msg instanceof LastHttpContent) {

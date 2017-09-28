@@ -1,13 +1,14 @@
 package com.snowcattle.game.common.socket.client;
 
-import com.snowcattle.game.service.message.decoder.NetMessageTCPDecoder;
-import com.snowcattle.game.service.message.encoder.NetMessageTcpEncoder;
+import com.snowcattle.game.common.socket.message.NetMessageTCPDecoder;
+import com.snowcattle.game.common.socket.message.NetMessageTcpEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 
 /**
  * Created by jwp on 2017/1/26.
+ * 普通消息不带protobuf
  */
 public class NetMessageClientChannelInitializer extends ChannelInitializer<NioSocketChannel> {
     @Override

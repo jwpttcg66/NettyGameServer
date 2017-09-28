@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.message.decoder;
+package com.snowcattle.game.common.socket.message;
 
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import io.netty.buffer.ByteBuf;

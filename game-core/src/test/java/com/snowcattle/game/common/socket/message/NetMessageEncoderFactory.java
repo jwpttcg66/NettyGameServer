@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.message.encoder;
+package com.snowcattle.game.common.socket.message;
 
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.NetMessageBody;
@@ -10,7 +10,7 @@ import io.netty.buffer.Unpooled;
  * Created by jwp on 2017/1/24.
  * 网络消息编码
  */
-public class NetMessageEncoderFactory implements  INetMessageEncoderFactory{
+public class NetMessageEncoderFactory implements INetMessageEncoderFactory {
 
     public ByteBuf createByteBuf(AbstractNetMessage abstractNetMessage){
         ByteBuf byteBuf = Unpooled.buffer(256);

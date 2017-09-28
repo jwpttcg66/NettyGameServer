@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.message.decoder;
+package com.snowcattle.game.common.socket.message;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by jwp on 2017/1/24.
- * 网络消息解码
+ * 网络消息解码普通消息不带protobuf
  */
 public class NetMessageTCPDecoder extends MessageToMessageDecoder<ByteBuf> {
 

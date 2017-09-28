@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.message.encoder;
+package com.snowcattle.game.common.socket.message;
 
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import io.netty.buffer.ByteBuf;
@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by jwp on 2017/1/24.
+ * 普通消息不带protobuf
  */
 public class NetMessageTcpEncoder extends MessageToMessageEncoder<AbstractNetMessage> {
 
