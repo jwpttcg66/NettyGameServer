@@ -20,7 +20,7 @@ public class MessageGenerator {
 	private static String vmPath = "config/template/";
 	private static String encode = "UTF-8";
 	
-	private static String outputProjectPath = "game-code-template-generate/src/main/java/";
+	private static String outputProjectPath = "game-code-generate/src/main/java/";
 
 	public static List<MacroObject> formats = new ArrayList<>();
 	public static void main(String[] args) {
