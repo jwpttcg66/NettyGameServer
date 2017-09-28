@@ -7,6 +7,5 @@ import io.netty.buffer.ByteBuf;
 /**
  * Created by jiangwenping on 17/2/20.
  */
-public interface INetProtoBufUdpMessageDecoderFactory {
-    public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException;
+public interface INetProtoBufUdpMessageDecoderFactory extends  INetProtoBufMessageDecoderFactory{
 }
