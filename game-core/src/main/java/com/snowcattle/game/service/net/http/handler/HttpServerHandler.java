@@ -43,9 +43,15 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        boolean keepAlive = HttpUtil.isKeepAlive(request);
         if (msg instanceof HttpRequest) {
             //记录下request
             request = (HttpRequest) msg;
+
+            if (request.getMethod() != HttpMethod.POST) {
+                throw new IllegalStateException("请求不是GET请求.");
+            }
+
             if (HttpUtil.is100ContinueExpected(request)) {
                 send100Continue(ctx);
             }
@@ -105,6 +111,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
             NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
             HttpResponse httpResponse = netMessageProcessLogic.processMessage(netProtoBufMessage, request);
             writeResponse(httpResponse, ctx);
+
         }
     }
 
@@ -147,10 +154,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 
         FullHttpResponse fullHttpResponse = (FullHttpResponse) response;
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-
+        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, fullHttpResponse.content().readableBytes());
         if (keepAlive) {
-            // Add 'Content-Length' header only for a keep-alive connection.
-            response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, fullHttpResponse.content().readableBytes());
             // Add keep alive header as per:
             // - http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#Connection
             response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
@@ -172,8 +177,12 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
             response.headers().add(HttpHeaderNames.SET_COOKIE, io.netty.handler.codec.http.cookie.ServerCookieEncoder.STRICT.encode("key2", "value2"));
         }
 
-        // Write the response.
-        ctx.write(response);
+
+        if (!keepAlive) {
+            ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+        } else {
+            ctx.writeAndFlush(response);
+        }
 
         return keepAlive;
     }
