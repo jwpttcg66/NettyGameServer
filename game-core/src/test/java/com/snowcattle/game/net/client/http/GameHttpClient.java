@@ -1,33 +1,14 @@
-/*
- * Copyright 2012 The Netty Project
- *
- * The Netty Project licenses this file to you under the Apache License,
- * version 2.0 (the "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at:
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
-package com.snowcattle.game.common.http;
+package com.snowcattle.game.net.client.http;
 
+import com.snowcattle.game.common.http.HttpSnoopClientInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.http.DefaultFullHttpRequest;
-import io.netty.handler.codec.http.HttpHeaderNames;
-import io.netty.handler.codec.http.HttpHeaderValues;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.codec.http.HttpVersion;
-import io.netty.handler.codec.http.cookie.ClientCookieEncoder;
-import io.netty.handler.codec.http.cookie.DefaultCookie;
+import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.DefaultCookie;
+import io.netty.handler.codec.http.cookie.*;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -35,13 +16,11 @@ import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import java.net.URI;
 
 /**
- * A simple HTTP client that prints out the content of the HTTP response to
- * {@link System#out} to test {@link HttpSnoopServer}.
+ * Created by jiangwenping on 2017/9/29.
  */
-public final class HttpSnoopClient {
-
-    static final String URL = System.getProperty("url", "http://127.0.0.1:8080/");
-//    static final String URL = System.getProperty("url", "http://127.0.0.1:10200/");
+public final class GameHttpClient {
+    //    static final String URL = System.getProperty("url", "http://127.0.0.1:8080/");
+    static final String URL = System.getProperty("url", "http://127.0.0.1:10200/");
     public static void main(String[] args) throws Exception {
         URI uri = new URI(URL);
         String scheme = uri.getScheme() == null? "http" : uri.getScheme();
@@ -65,7 +44,7 @@ public final class HttpSnoopClient {
         final SslContext sslCtx;
         if (ssl) {
             sslCtx = SslContextBuilder.forClient()
-                .trustManager(InsecureTrustManagerFactory.INSTANCE).build();
+                    .trustManager(InsecureTrustManagerFactory.INSTANCE).build();
         } else {
             sslCtx = null;
         }
@@ -75,8 +54,8 @@ public final class HttpSnoopClient {
         try {
             Bootstrap b = new Bootstrap();
             b.group(group)
-             .channel(NioSocketChannel.class)
-             .handler(new HttpSnoopClientInitializer(sslCtx));
+                    .channel(NioSocketChannel.class)
+                    .handler(new HttpSnoopClientInitializer(sslCtx));
 
             // Make the connection attempt.
             Channel ch = b.connect(host, port).sync().channel();
@@ -91,9 +70,11 @@ public final class HttpSnoopClient {
             // Set some example cookies.
             request.headers().set(
                     HttpHeaderNames.COOKIE,
-                    ClientCookieEncoder.STRICT.encode(
-                            new DefaultCookie("my-cookie", "foo"),
-                            new DefaultCookie("another-cookie", "bar")));
+                    io.netty.handler.codec.http.cookie.ClientCookieEncoder.STRICT.encode(
+                            new io.netty.handler.codec.http.cookie.DefaultCookie("my-cookie", "foo"),
+                            new io.netty.handler.codec.http.cookie.DefaultCookie("another-cookie", "bar")));
+
+            //写入消息
 
             // Send the HTTP request.
             ch.writeAndFlush(request);
@@ -106,3 +87,4 @@ public final class HttpSnoopClient {
         }
     }
 }
+
