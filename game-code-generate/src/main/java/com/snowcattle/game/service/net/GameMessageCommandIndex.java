@@ -8,4 +8,5 @@ public class GameMessageCommandIndex {
     public static final int ONLINE_HEART_CLIENT_TCP_MESSAGE = 1001;
     public static final int COMMON_RESPONSE_MESSAGE = 1002;
     public static final int COMMON_ERROR_RESPONSE_MESSAGE = 1003;
+    public static final int HTTP_HEART_CLIENT_MESSAGE = 1004;
 }

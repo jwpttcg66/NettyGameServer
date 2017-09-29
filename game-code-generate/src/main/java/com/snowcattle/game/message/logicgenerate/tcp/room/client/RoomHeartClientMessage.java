@@ -36,10 +36,10 @@ public class RoomHeartClientMessage extends AbstractNetProtoBufTcpMessage {
 	public void release() {
 
 	}
-	public void setReq(RoomHeartTCPClientProBuf req){
-		this.req = req;
-	}
-	public RoomHeartTCPClientProBuf getReq(){
-		return this.req;
-	}
-}
+        public void setReq(RoomHeartTCPClientProBuf req){
+    this.req = req;
+    }
+    public RoomHeartTCPClientProBuf getReq(){
+    return this.req;
+    }
+    }

@@ -11,6 +11,7 @@ public enum GameMessageCommandEnum {
     ONLINE_HEART_MESSAGE(GameMessageCommandIndex.ONLINE_HEART_CLIENT_TCP_MESSAGE, BOEnum.WORLD,false),
     COMMON_RESPONSE_MESSAGE(GameMessageCommandIndex.COMMON_RESPONSE_MESSAGE, BOEnum.WORLD, false),
     COMMON_ERROR_RESPONSE_MESSAGE(GameMessageCommandIndex.COMMON_ERROR_RESPONSE_MESSAGE, BOEnum.WORLD, false),
+    HTTP_HEART_CLIENT_MESSAGE(GameMessageCommandIndex.HTTP_HEART_CLIENT_MESSAGE, BOEnum.WORLD, false),
     ;
     /**
      * 协议号
