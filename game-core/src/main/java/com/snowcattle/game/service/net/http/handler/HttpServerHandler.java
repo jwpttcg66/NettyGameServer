@@ -6,6 +6,7 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
 import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import io.netty.buffer.ByteBuf;
@@ -107,8 +108,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
                 }
             }
             //开始解析
-            NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
-            AbstractNetProtoBufMessage netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
+            NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufHttpMessageDecoderFactory();
+            AbstractNetProtoBufMessage netProtoBufMessage = netProtoBufHttpMessageDecoderFactory.praseMessage(buf);
 
             //封装属性
             netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_HTTP_REQUEST, request);

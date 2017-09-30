@@ -10,10 +10,12 @@ import com.snowcattle.game.service.message.NetUdpMessageHead;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 2017/9/28.
  */
+@Service
 public class NetProtoBufHttpMessageDecoderFactory implements INetProtoBufHttpMessageDecoderFactory{
     @Override
     public AbstractNetProtoBufMessage praseMessage(ByteBuf byteBuf) throws CodecException {

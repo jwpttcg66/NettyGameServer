@@ -3,8 +3,10 @@ package com.snowcattle.game.bootstrap.manager.spring;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.logic.net.NetMessageTcpDispatchLogic;
 import com.snowcattle.game.service.message.command.MessageCommandFactory;
+import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
 import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.snowcattle.game.service.message.decoder.NetProtoBufUdpMessageDecoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufUdpMessageEncoderFactory;
 import com.snowcattle.game.service.message.factory.TcpMessageFactory;
@@ -70,6 +72,12 @@ public class LocalSpringBeanManager {
 
     @Autowired
     private NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory;
+
+    @Autowired
+    private NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory;
+
+    @Autowired
+    private NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory;
 
     public NettyUdpSessionBuilder getNettyUdpSessionBuilder() {
         return nettyUdpSessionBuilder;
@@ -189,5 +197,21 @@ public class LocalSpringBeanManager {
 
     public void setNetProtoBufUdpMessageEncoderFactory(NetProtoBufUdpMessageEncoderFactory netProtoBufUdpMessageEncoderFactory) {
         this.netProtoBufUdpMessageEncoderFactory = netProtoBufUdpMessageEncoderFactory;
+    }
+
+    public NetProtoBufHttpMessageDecoderFactory getNetProtoBufHttpMessageDecoderFactory() {
+        return netProtoBufHttpMessageDecoderFactory;
+    }
+
+    public void setNetProtoBufHttpMessageDecoderFactory(NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory) {
+        this.netProtoBufHttpMessageDecoderFactory = netProtoBufHttpMessageDecoderFactory;
+    }
+
+    public NetProtoBufHttpMessageEncoderFactory getNetProtoBufHttpMessageEncoderFactory() {
+        return netProtoBufHttpMessageEncoderFactory;
+    }
+
+    public void setNetProtoBufHttpMessageEncoderFactory(NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory) {
+        this.netProtoBufHttpMessageEncoderFactory = netProtoBufHttpMessageEncoderFactory;
     }
 }
