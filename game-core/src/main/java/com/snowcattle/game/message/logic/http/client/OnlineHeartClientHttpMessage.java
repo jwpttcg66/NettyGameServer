@@ -11,7 +11,7 @@ import com.snowcattle.game.service.message.command.MessageCommandIndex;
  * Created by jiangwenping on 2017/9/30.
  */
 
-@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_HTTP_CLIENT_MESSAGE)
+@MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_HEART_HTTP_CLIENT_MESSAGE)
 public class OnlineHeartClientHttpMessage extends AbstractNetProtoBufHttpMessage {
 
     private int id;

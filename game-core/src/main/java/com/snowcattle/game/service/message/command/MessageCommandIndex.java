@@ -11,6 +11,6 @@ public class MessageCommandIndex {
     public static final int ONLINE_HEART_CLIENT_UDP_MESSAGE = 4;
     public static final int ONLINE_LOGIN_TCP_CLIENT_MESSAGE = 5;
     public static final int ONLINE_LOGIN_TCP_SERVER_MESSAGE = 6;
-    public static final int ONLINE_LOGIN_HTTP_CLIENT_MESSAGE = 7;
-    public static final int ONLINE_LOGIN_HTTP_SERVER_MESSAGE = 8;
+    public static final int ONLINE_HEART_HTTP_CLIENT_MESSAGE = 7;
+    public static final int ONLINE_HEART_HTTP_SERVER_MESSAGE = 8;
 }
