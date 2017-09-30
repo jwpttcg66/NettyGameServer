@@ -1,7 +1,10 @@
 package com.snowcattle.game.net.client.http;
 
 import com.snowcattle.game.common.http.HttpSnoopClientInitializer;
+import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
+import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -60,9 +63,16 @@ public final class GameHttpClient {
             // Make the connection attempt.
             Channel ch = b.connect(host, port).sync().channel();
 
+
+            //写入消息
+            OnlineHeartClientHttpMessage onlineHeartClientHttpMessage = new OnlineHeartClientHttpMessage();
+            onlineHeartClientHttpMessage.setId(1110);
+            NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory  = new NetProtoBufHttpMessageEncoderFactory();
+            ByteBuf byteBuf = netProtoBufHttpMessageEncoderFactory.createByteBuf(onlineHeartClientHttpMessage);
+
             // Prepare the HTTP request.
             HttpRequest request = new DefaultFullHttpRequest(
-                    HttpVersion.HTTP_1_1, HttpMethod.GET, uri.getRawPath());
+                    HttpVersion.HTTP_1_1, HttpMethod.POST, uri.getRawPath(), byteBuf);
             request.headers().set(HttpHeaderNames.HOST, host);
             request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);
             request.headers().set(HttpHeaderNames.ACCEPT_ENCODING, HttpHeaderValues.GZIP);
@@ -74,8 +84,10 @@ public final class GameHttpClient {
                             new io.netty.handler.codec.http.cookie.DefaultCookie("my-cookie", "foo"),
                             new io.netty.handler.codec.http.cookie.DefaultCookie("another-cookie", "bar")));
 
-            //写入消息
 
+            byte[] content = byteBuf.array();
+
+            request.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.length);
             // Send the HTTP request.
             ch.writeAndFlush(request);
 

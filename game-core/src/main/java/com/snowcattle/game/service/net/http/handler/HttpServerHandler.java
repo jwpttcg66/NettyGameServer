@@ -44,10 +44,12 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        boolean keepAlive = HttpUtil.isKeepAlive(request);
+        boolean keepAlive = false;
         if (msg instanceof HttpRequest) {
             //记录下request
             request = (HttpRequest) msg;
+
+            keepAlive = HttpUtil.isKeepAlive(request);
 
             if (request.getMethod() != HttpMethod.POST) {
                 throw new IllegalStateException("请求不是GET请求.");
