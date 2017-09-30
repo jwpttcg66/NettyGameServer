@@ -42,7 +42,7 @@ public final class OnlineTCPClientProBuf {
       id_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -89,14 +89,14 @@ public final class OnlineTCPClientProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
+      return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_fieldAccessorTable
+      return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              OnlineHeartTCPClientProBuf.class, Builder.class);
+              com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.class, com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.Builder.class);
     }
 
     private int bitField0_;
@@ -152,15 +152,15 @@ public final class OnlineTCPClientProBuf {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof OnlineHeartTCPClientProBuf)) {
+      if (!(obj instanceof com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf)) {
         return super.equals(obj);
       }
-      OnlineHeartTCPClientProBuf other = (OnlineHeartTCPClientProBuf) obj;
+      com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf other = (com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf) obj;
 
       boolean result = true;
       result = result && (hasId() == other.hasId());
@@ -172,7 +172,7 @@ public final class OnlineTCPClientProBuf {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -188,58 +188,58 @@ public final class OnlineTCPClientProBuf {
       return hash;
     }
 
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(byte[] data)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineHeartTCPClientProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static OnlineHeartTCPClientProBuf parseDelimitedFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineHeartTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -251,7 +251,7 @@ public final class OnlineTCPClientProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(OnlineHeartTCPClientProBuf prototype) {
+    public static Builder newBuilder(com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -259,9 +259,9 @@ public final class OnlineTCPClientProBuf {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -271,17 +271,17 @@ public final class OnlineTCPClientProBuf {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:OnlineHeartTCPClientProBuf)
-        OnlineHeartTCPClientProBufOrBuilder {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_fieldAccessorTable
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                OnlineHeartTCPClientProBuf.class, Builder.class);
+                com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.class, com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.Builder.class);
       }
 
       // Construct using com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.newBuilder()
@@ -290,7 +290,7 @@ public final class OnlineTCPClientProBuf {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -308,23 +308,23 @@ public final class OnlineTCPClientProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineHeartTCPClientProBuf_descriptor;
       }
 
-      public OnlineHeartTCPClientProBuf getDefaultInstanceForType() {
-        return OnlineHeartTCPClientProBuf.getDefaultInstance();
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf getDefaultInstanceForType() {
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.getDefaultInstance();
       }
 
-      public OnlineHeartTCPClientProBuf build() {
-        OnlineHeartTCPClientProBuf result = buildPartial();
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf build() {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public OnlineHeartTCPClientProBuf buildPartial() {
-        OnlineHeartTCPClientProBuf result = new OnlineHeartTCPClientProBuf(this);
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf buildPartial() {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf result = new com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -363,16 +363,16 @@ public final class OnlineTCPClientProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof OnlineHeartTCPClientProBuf) {
-          return mergeFrom((OnlineHeartTCPClientProBuf)other);
+        if (other instanceof com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf) {
+          return mergeFrom((com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(OnlineHeartTCPClientProBuf other) {
-        if (other == OnlineHeartTCPClientProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf other) {
+        if (other == com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -392,11 +392,11 @@ public final class OnlineTCPClientProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        OnlineHeartTCPClientProBuf parsedMessage = null;
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (OnlineHeartTCPClientProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -453,16 +453,16 @@ public final class OnlineTCPClientProBuf {
     }
 
     // @@protoc_insertion_point(class_scope:OnlineHeartTCPClientProBuf)
-    private static final OnlineHeartTCPClientProBuf DEFAULT_INSTANCE;
+    private static final com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new OnlineHeartTCPClientProBuf();
+      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf();
     }
 
-    public static OnlineHeartTCPClientProBuf getDefaultInstance() {
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @Deprecated public static final com.google.protobuf.Parser<OnlineHeartTCPClientProBuf>
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<OnlineHeartTCPClientProBuf>
         PARSER = new com.google.protobuf.AbstractParser<OnlineHeartTCPClientProBuf>() {
       public OnlineHeartTCPClientProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -476,12 +476,12 @@ public final class OnlineTCPClientProBuf {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<OnlineHeartTCPClientProBuf> getParserForType() {
       return PARSER;
     }
 
-    public OnlineHeartTCPClientProBuf getDefaultInstanceForType() {
+    public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineHeartTCPClientProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -515,7 +515,7 @@ public final class OnlineTCPClientProBuf {
       id_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -562,14 +562,14 @@ public final class OnlineTCPClientProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
+      return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_fieldAccessorTable
+      return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              OnlineLoginTCPClientProBuf.class, Builder.class);
+              com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.class, com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.Builder.class);
     }
 
     private int bitField0_;
@@ -625,15 +625,15 @@ public final class OnlineTCPClientProBuf {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof OnlineLoginTCPClientProBuf)) {
+      if (!(obj instanceof com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf)) {
         return super.equals(obj);
       }
-      OnlineLoginTCPClientProBuf other = (OnlineLoginTCPClientProBuf) obj;
+      com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf other = (com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf) obj;
 
       boolean result = true;
       result = result && (hasId() == other.hasId());
@@ -645,7 +645,7 @@ public final class OnlineTCPClientProBuf {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -661,58 +661,58 @@ public final class OnlineTCPClientProBuf {
       return hash;
     }
 
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(byte[] data)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineLoginTCPClientProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static OnlineLoginTCPClientProBuf parseDelimitedFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static OnlineLoginTCPClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -724,7 +724,7 @@ public final class OnlineTCPClientProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(OnlineLoginTCPClientProBuf prototype) {
+    public static Builder newBuilder(com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -732,9 +732,9 @@ public final class OnlineTCPClientProBuf {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -744,17 +744,17 @@ public final class OnlineTCPClientProBuf {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:OnlineLoginTCPClientProBuf)
-        OnlineLoginTCPClientProBufOrBuilder {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_fieldAccessorTable
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                OnlineLoginTCPClientProBuf.class, Builder.class);
+                com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.class, com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.Builder.class);
       }
 
       // Construct using com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.newBuilder()
@@ -763,7 +763,7 @@ public final class OnlineTCPClientProBuf {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -781,23 +781,23 @@ public final class OnlineTCPClientProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.internal_static_OnlineLoginTCPClientProBuf_descriptor;
       }
 
-      public OnlineLoginTCPClientProBuf getDefaultInstanceForType() {
-        return OnlineLoginTCPClientProBuf.getDefaultInstance();
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf getDefaultInstanceForType() {
+        return com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.getDefaultInstance();
       }
 
-      public OnlineLoginTCPClientProBuf build() {
-        OnlineLoginTCPClientProBuf result = buildPartial();
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf build() {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public OnlineLoginTCPClientProBuf buildPartial() {
-        OnlineLoginTCPClientProBuf result = new OnlineLoginTCPClientProBuf(this);
+      public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf buildPartial() {
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf result = new com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -836,16 +836,16 @@ public final class OnlineTCPClientProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof OnlineLoginTCPClientProBuf) {
-          return mergeFrom((OnlineLoginTCPClientProBuf)other);
+        if (other instanceof com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf) {
+          return mergeFrom((com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(OnlineLoginTCPClientProBuf other) {
-        if (other == OnlineLoginTCPClientProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf other) {
+        if (other == com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -865,11 +865,11 @@ public final class OnlineTCPClientProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        OnlineLoginTCPClientProBuf parsedMessage = null;
+        com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (OnlineLoginTCPClientProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -926,16 +926,16 @@ public final class OnlineTCPClientProBuf {
     }
 
     // @@protoc_insertion_point(class_scope:OnlineLoginTCPClientProBuf)
-    private static final OnlineLoginTCPClientProBuf DEFAULT_INSTANCE;
+    private static final com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new OnlineLoginTCPClientProBuf();
+      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf();
     }
 
-    public static OnlineLoginTCPClientProBuf getDefaultInstance() {
+    public static com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @Deprecated public static final com.google.protobuf.Parser<OnlineLoginTCPClientProBuf>
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<OnlineLoginTCPClientProBuf>
         PARSER = new com.google.protobuf.AbstractParser<OnlineLoginTCPClientProBuf>() {
       public OnlineLoginTCPClientProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -949,12 +949,12 @@ public final class OnlineTCPClientProBuf {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<OnlineLoginTCPClientProBuf> getParserForType() {
       return PARSER;
     }
 
-    public OnlineLoginTCPClientProBuf getDefaultInstanceForType() {
+    public com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf.OnlineLoginTCPClientProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -978,7 +978,7 @@ public final class OnlineTCPClientProBuf {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\017tcponline.proto\"(\n\032OnlineHeartTCPClien" +
       "tProBuf\022\n\n\002id\030\001 \002(\005\"(\n\032OnlineLoginTCPCli" +
       "entProBuf\022\n\n\002id\030\001 \002(\005BK\n2com.snowcattle." +
@@ -1002,13 +1002,13 @@ public final class OnlineTCPClientProBuf {
     internal_static_OnlineHeartTCPClientProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OnlineHeartTCPClientProBuf_descriptor,
-        new String[] { "Id", });
+        new java.lang.String[] { "Id", });
     internal_static_OnlineLoginTCPClientProBuf_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_OnlineLoginTCPClientProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OnlineLoginTCPClientProBuf_descriptor,
-        new String[] { "Id", });
+        new java.lang.String[] { "Id", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

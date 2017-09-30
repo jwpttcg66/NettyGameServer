@@ -32,7 +32,7 @@ public final class CommonMessageProBuf {
     private CommonResponseServerProBuf() {
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -73,14 +73,14 @@ public final class CommonMessageProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+      return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
+      return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              CommonResponseServerProBuf.class, Builder.class);
+              com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.class, com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.Builder.class);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -109,22 +109,22 @@ public final class CommonMessageProBuf {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof CommonResponseServerProBuf)) {
+      if (!(obj instanceof com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf)) {
         return super.equals(obj);
       }
-      CommonResponseServerProBuf other = (CommonResponseServerProBuf) obj;
+      com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf other = (com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) obj;
 
       boolean result = true;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -136,58 +136,58 @@ public final class CommonMessageProBuf {
       return hash;
     }
 
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonResponseServerProBuf parseFrom(byte[] data)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonResponseServerProBuf parseFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static CommonResponseServerProBuf parseDelimitedFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -199,7 +199,7 @@ public final class CommonMessageProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CommonResponseServerProBuf prototype) {
+    public static Builder newBuilder(com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -207,9 +207,9 @@ public final class CommonMessageProBuf {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -219,17 +219,17 @@ public final class CommonMessageProBuf {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:CommonResponseServerProBuf)
-        CommonResponseServerProBufOrBuilder {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                CommonResponseServerProBuf.class, Builder.class);
+                com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.class, com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.Builder.class);
       }
 
       // Construct using com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.newBuilder()
@@ -238,7 +238,7 @@ public final class CommonMessageProBuf {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -254,23 +254,23 @@ public final class CommonMessageProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonResponseServerProBuf_descriptor;
       }
 
-      public CommonResponseServerProBuf getDefaultInstanceForType() {
-        return CommonResponseServerProBuf.getDefaultInstance();
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstanceForType() {
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.getDefaultInstance();
       }
 
-      public CommonResponseServerProBuf build() {
-        CommonResponseServerProBuf result = buildPartial();
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf build() {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public CommonResponseServerProBuf buildPartial() {
-        CommonResponseServerProBuf result = new CommonResponseServerProBuf(this);
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf buildPartial() {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf result = new com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf(this);
         onBuilt();
         return result;
       }
@@ -302,16 +302,16 @@ public final class CommonMessageProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof CommonResponseServerProBuf) {
-          return mergeFrom((CommonResponseServerProBuf)other);
+        if (other instanceof com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) {
+          return mergeFrom((com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(CommonResponseServerProBuf other) {
-        if (other == CommonResponseServerProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf other) {
+        if (other == com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf.getDefaultInstance()) return this;
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -325,11 +325,11 @@ public final class CommonMessageProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        CommonResponseServerProBuf parsedMessage = null;
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (CommonResponseServerProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -353,16 +353,16 @@ public final class CommonMessageProBuf {
     }
 
     // @@protoc_insertion_point(class_scope:CommonResponseServerProBuf)
-    private static final CommonResponseServerProBuf DEFAULT_INSTANCE;
+    private static final com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new CommonResponseServerProBuf();
+      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf();
     }
 
-    public static CommonResponseServerProBuf getDefaultInstance() {
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @Deprecated public static final com.google.protobuf.Parser<CommonResponseServerProBuf>
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<CommonResponseServerProBuf>
         PARSER = new com.google.protobuf.AbstractParser<CommonResponseServerProBuf>() {
       public CommonResponseServerProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -376,12 +376,12 @@ public final class CommonMessageProBuf {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CommonResponseServerProBuf> getParserForType() {
       return PARSER;
     }
 
-    public CommonResponseServerProBuf getDefaultInstanceForType() {
+    public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonResponseServerProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -415,7 +415,7 @@ public final class CommonMessageProBuf {
      *
      * <code>optional string arg = 2;</code>
      */
-    String getArg();
+    java.lang.String getArg();
     /**
      * <pre>
      *错误参数，格式：xx,xxx,xxxx
@@ -442,7 +442,7 @@ public final class CommonMessageProBuf {
       arg_ = "";
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -495,14 +495,14 @@ public final class CommonMessageProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
+      return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
+      return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              CommonErrorResponseServerProBuf.class, Builder.class);
+              com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.class, com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder.class);
     }
 
     private int bitField0_;
@@ -522,7 +522,7 @@ public final class CommonMessageProBuf {
     }
 
     public static final int ARG_FIELD_NUMBER = 2;
-    private volatile Object arg_;
+    private volatile java.lang.Object arg_;
     /**
      * <pre>
      *错误参数，格式：xx,xxx,xxxx
@@ -540,14 +540,14 @@ public final class CommonMessageProBuf {
      *
      * <code>optional string arg = 2;</code>
      */
-    public String getArg() {
-      Object ref = arg_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getArg() {
+      java.lang.Object ref = arg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           arg_ = s;
         }
@@ -563,11 +563,11 @@ public final class CommonMessageProBuf {
      */
     public com.google.protobuf.ByteString
         getArgBytes() {
-      Object ref = arg_;
-      if (ref instanceof String) {
+      java.lang.Object ref = arg_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         arg_ = b;
         return b;
       } else {
@@ -618,15 +618,15 @@ public final class CommonMessageProBuf {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof CommonErrorResponseServerProBuf)) {
+      if (!(obj instanceof com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf)) {
         return super.equals(obj);
       }
-      CommonErrorResponseServerProBuf other = (CommonErrorResponseServerProBuf) obj;
+      com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf other = (com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) obj;
 
       boolean result = true;
       result = result && (hasState() == other.hasState());
@@ -643,7 +643,7 @@ public final class CommonMessageProBuf {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -663,58 +663,58 @@ public final class CommonMessageProBuf {
       return hash;
     }
 
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(byte[] data)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonErrorResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static CommonErrorResponseServerProBuf parseDelimitedFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CommonErrorResponseServerProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -726,7 +726,7 @@ public final class CommonMessageProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CommonErrorResponseServerProBuf prototype) {
+    public static Builder newBuilder(com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -734,9 +734,9 @@ public final class CommonMessageProBuf {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -746,17 +746,17 @@ public final class CommonMessageProBuf {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:CommonErrorResponseServerProBuf)
-        CommonErrorResponseServerProBufOrBuilder {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                CommonErrorResponseServerProBuf.class, Builder.class);
+                com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.class, com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder.class);
       }
 
       // Construct using com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder()
@@ -765,7 +765,7 @@ public final class CommonMessageProBuf {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -785,23 +785,23 @@ public final class CommonMessageProBuf {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.internal_static_CommonErrorResponseServerProBuf_descriptor;
       }
 
-      public CommonErrorResponseServerProBuf getDefaultInstanceForType() {
-        return CommonErrorResponseServerProBuf.getDefaultInstance();
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstanceForType() {
+        return com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.getDefaultInstance();
       }
 
-      public CommonErrorResponseServerProBuf build() {
-        CommonErrorResponseServerProBuf result = buildPartial();
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf build() {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public CommonErrorResponseServerProBuf buildPartial() {
-        CommonErrorResponseServerProBuf result = new CommonErrorResponseServerProBuf(this);
+      public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf buildPartial() {
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf result = new com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -844,16 +844,16 @@ public final class CommonMessageProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof CommonErrorResponseServerProBuf) {
-          return mergeFrom((CommonErrorResponseServerProBuf)other);
+        if (other instanceof com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) {
+          return mergeFrom((com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(CommonErrorResponseServerProBuf other) {
-        if (other == CommonErrorResponseServerProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf other) {
+        if (other == com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf.getDefaultInstance()) return this;
         if (other.hasState()) {
           setState(other.getState());
         }
@@ -878,11 +878,11 @@ public final class CommonMessageProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        CommonErrorResponseServerProBuf parsedMessage = null;
+        com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (CommonErrorResponseServerProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -925,7 +925,7 @@ public final class CommonMessageProBuf {
         return this;
       }
 
-      private Object arg_ = "";
+      private java.lang.Object arg_ = "";
       /**
        * <pre>
        *错误参数，格式：xx,xxx,xxxx
@@ -943,18 +943,18 @@ public final class CommonMessageProBuf {
        *
        * <code>optional string arg = 2;</code>
        */
-      public String getArg() {
-        Object ref = arg_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getArg() {
+        java.lang.Object ref = arg_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             arg_ = s;
           }
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -966,11 +966,11 @@ public final class CommonMessageProBuf {
        */
       public com.google.protobuf.ByteString
           getArgBytes() {
-        Object ref = arg_;
+        java.lang.Object ref = arg_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           arg_ = b;
           return b;
         } else {
@@ -985,7 +985,7 @@ public final class CommonMessageProBuf {
        * <code>optional string arg = 2;</code>
        */
       public Builder setArg(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1039,16 +1039,16 @@ public final class CommonMessageProBuf {
     }
 
     // @@protoc_insertion_point(class_scope:CommonErrorResponseServerProBuf)
-    private static final CommonErrorResponseServerProBuf DEFAULT_INSTANCE;
+    private static final com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new CommonErrorResponseServerProBuf();
+      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf();
     }
 
-    public static CommonErrorResponseServerProBuf getDefaultInstance() {
+    public static com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @Deprecated public static final com.google.protobuf.Parser<CommonErrorResponseServerProBuf>
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<CommonErrorResponseServerProBuf>
         PARSER = new com.google.protobuf.AbstractParser<CommonErrorResponseServerProBuf>() {
       public CommonErrorResponseServerProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -1062,12 +1062,12 @@ public final class CommonMessageProBuf {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CommonErrorResponseServerProBuf> getParserForType() {
       return PARSER;
     }
 
-    public CommonErrorResponseServerProBuf getDefaultInstanceForType() {
+    public com.snowcattle.game.message.auto.common.CommonMessageProBuf.CommonErrorResponseServerProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1091,7 +1091,7 @@ public final class CommonMessageProBuf {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\014common.proto\"\034\n\032CommonResponseServerPr" +
       "oBuf\"=\n\037CommonErrorResponseServerProBuf\022" +
       "\r\n\005state\030\001 \002(\005\022\013\n\003arg\030\002 \001(\tB>\n\'com.snowc" +
@@ -1115,13 +1115,13 @@ public final class CommonMessageProBuf {
     internal_static_CommonResponseServerProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommonResponseServerProBuf_descriptor,
-        new String[] { });
+        new java.lang.String[] { });
     internal_static_CommonErrorResponseServerProBuf_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_CommonErrorResponseServerProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommonErrorResponseServerProBuf_descriptor,
-        new String[] { "State", "Arg", });
+        new java.lang.String[] { "State", "Arg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

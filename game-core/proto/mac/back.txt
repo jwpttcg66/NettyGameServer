@@ -2,3 +2,5 @@ sudo protoc -I=/Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameSer
 sudo protoc -I=/Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/proto/ --java_out=/Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/src/main/java /Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/proto/*.proto
 sudo protoc -I=/Users/jwp/data/github-workspace/NettyGameServer/proto/ --java_out=/Users/jwp/data/github-workspace/NettyGameServer/src/main/java /Users/jwp/data/github-workspace/NettyGameServer/proto/common.proto
 sudo protoc -I=/Users/jwp/data/github-workspace/NettyGameServer/proto/ --java_out=/Users/jwp/data/github-workspace/NettyGameServer/src/main/java /Users/jwp/data/github-workspace/NettyGameServer/proto/*.proto
+
+sudo protoc -I=/Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/game-core/proto/ --java_out=/Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/game-core/src/main/java /Users/jiangwenping/data/wolf-shoot-server-workspace/NettyGameServer/game-core/proto/*.proto
