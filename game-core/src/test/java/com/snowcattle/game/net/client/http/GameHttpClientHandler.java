@@ -1,5 +1,11 @@
 package com.snowcattle.game.net.client.http;
 
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.common.exception.CodecException;
+import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
+import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
@@ -40,6 +46,22 @@ public class GameHttpClientHandler extends SimpleChannelInboundHandler<HttpObjec
 
             System.err.print(content.content().toString(CharsetUtil.UTF_8));
             System.err.flush();
+
+            ByteBuf byteBuf = content.content();
+
+            AbstractNetProtoBufMessage netProtoBufMessage = null;
+            //开始解析
+            NetProtoBufHttpMessageDecoderFactory netProtoBufHttpMessageDecoderFactory = new NetProtoBufHttpMessageDecoderFactory();
+            try {
+                netProtoBufMessage = netProtoBufHttpMessageDecoderFactory.praseMessage(byteBuf);
+            } catch (CodecException e) {
+                e.printStackTrace();
+            }
+
+            if(netProtoBufMessage instanceof OnlineHeartClientHttpMessage){
+                OnlineHeartClientHttpMessage onlineHeartClientHttpMessage = (OnlineHeartClientHttpMessage) netProtoBufMessage;
+                System.out.println(onlineHeartClientHttpMessage.getId());
+            }
 
             if (content instanceof LastHttpContent) {
                 System.err.println("} END OF CONTENT");
