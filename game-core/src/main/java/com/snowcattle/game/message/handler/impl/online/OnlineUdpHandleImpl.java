@@ -1,4 +1,4 @@
-package com.snowcattle.game.message.handler.messagehandler.online;
+package com.snowcattle.game.message.handler.impl.online;
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;

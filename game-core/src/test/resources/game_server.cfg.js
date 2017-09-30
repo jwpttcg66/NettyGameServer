@@ -32,7 +32,7 @@ config.rpcServicePackage="com.snowcattle.game.service.rpc.service.server";
 config.rpcTimeOut=0;
 config.rpcFutureDeleteTimeOut=60*1000;
 /**message**/
-config.netMessageHandlerNameSpace="com.snowcattle.game.message.handler.messagehandler";
+config.netMessageHandlerNameSpace="com.snowcattle.game.message.handler.impl";
 config.netMsgNameSpace="com.snowcattle.game.message.logic";
 /**异步线程池配置**/
 config.asyncThreadPoolCoreSize=1;
