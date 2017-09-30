@@ -15,10 +15,10 @@ import io.netty.util.CharsetUtil;
  * Created by jiangwenping on 2017/9/29.
  */
 
-public class GameHttpClientHandler extends SimpleChannelInboundHandler<HttpObject> {
+public class GameHttpClientHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, HttpObject msg) {
+    public void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof HttpResponse) {
             HttpResponse response = (HttpResponse) msg;
 

@@ -35,9 +35,9 @@ public class GameHttpClientInitializer extends ChannelInitializer<SocketChannel>
         // Uncomment the following line if you don't want to handle HttpContents.
         //p.addLast(new HttpObjectAggregator(1048576));
 
-        p.addLast("encoder", new HttpResponseEncoder());
+        p.addLast("encoder", new HttpRequestEncoder());
 //        p.addLast("trunk", new HttpObjectAggregator(1048576));
-        p.addLast("decoder", new HttpRequestDecoder());
+        p.addLast("decoder", new HttpResponseDecoder());
 
         p.addLast(new GameHttpClientHandler());
     }

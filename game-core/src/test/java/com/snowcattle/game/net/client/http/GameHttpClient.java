@@ -58,7 +58,7 @@ public final class GameHttpClient {
             Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioSocketChannel.class)
-                    .handler(new HttpSnoopClientInitializer(sslCtx));
+                    .handler(new GameHttpClientInitializer(sslCtx));
 
             // Make the connection attempt.
             Channel ch = b.connect(host, port).sync().channel();
