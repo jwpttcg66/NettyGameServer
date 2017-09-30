@@ -1,11 +1,12 @@
 option java_package = "com.snowcattle.game.message.auto.http.client";
-option java_outer_classname = "OnlineHttpClientProBuf";
+option java_outer_classname = "OnlineClientHttpProBuf";
 
 import "common.proto";
 
 /*心跳协议*/
-message OnlineHeartHttpClientProBuf
+message OnlineHeartClientHttpProBuf
 {
+    required int32 id = 1;
 }
 
 

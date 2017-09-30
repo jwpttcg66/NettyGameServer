@@ -3,8 +3,8 @@
 
 package com.snowcattle.game.message.auto.http.client;
 
-public final class OnlineHttpClientProBuf {
-  private OnlineHttpClientProBuf() {}
+public final class OnlineClientHttpProBuf {
+  private OnlineClientHttpProBuf() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -14,26 +14,36 @@ public final class OnlineHttpClientProBuf {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface OnlineHeartHttpClientProBufOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:OnlineHeartHttpClientProBuf)
+  public interface OnlineHeartClientHttpProBufOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:OnlineHeartClientHttpProBuf)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required int32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>required int32 id = 1;</code>
+     */
+    int getId();
   }
   /**
    * <pre>
    *心跳协议
    * </pre>
    *
-   * Protobuf type {@code OnlineHeartHttpClientProBuf}
+   * Protobuf type {@code OnlineHeartClientHttpProBuf}
    */
-  public  static final class OnlineHeartHttpClientProBuf extends
+  public  static final class OnlineHeartClientHttpProBuf extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:OnlineHeartHttpClientProBuf)
-      OnlineHeartHttpClientProBufOrBuilder {
-    // Use OnlineHeartHttpClientProBuf.newBuilder() to construct.
-    private OnlineHeartHttpClientProBuf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:OnlineHeartClientHttpProBuf)
+      OnlineHeartClientHttpProBufOrBuilder {
+    // Use OnlineHeartClientHttpProBuf.newBuilder() to construct.
+    private OnlineHeartClientHttpProBuf(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private OnlineHeartHttpClientProBuf() {
+    private OnlineHeartClientHttpProBuf() {
+      id_ = 0;
     }
 
     @java.lang.Override
@@ -41,11 +51,12 @@ public final class OnlineHttpClientProBuf {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private OnlineHeartHttpClientProBuf(
+    private OnlineHeartClientHttpProBuf(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -63,6 +74,11 @@ public final class OnlineHttpClientProBuf {
               }
               break;
             }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readInt32();
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -77,14 +93,30 @@ public final class OnlineHttpClientProBuf {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
+      return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable
+      return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.class, com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.Builder.class);
+              com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.class, com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>required int32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -93,12 +125,19 @@ public final class OnlineHttpClientProBuf {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
+      if (!hasId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, id_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -107,6 +146,10 @@ public final class OnlineHttpClientProBuf {
       if (size != -1) return size;
 
       size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -118,12 +161,17 @@ public final class OnlineHttpClientProBuf {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf)) {
+      if (!(obj instanceof com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf)) {
         return super.equals(obj);
       }
-      com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf other = (com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf) obj;
+      com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf other = (com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf) obj;
 
       boolean result = true;
+      result = result && (hasId() == other.hasId());
+      if (hasId()) {
+        result = result && (getId()
+            == other.getId());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -135,63 +183,67 @@ public final class OnlineHttpClientProBuf {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasId()) {
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(byte[] data)
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseDelimitedFrom(java.io.InputStream input)
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseDelimitedFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parseFrom(
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -203,7 +255,7 @@ public final class OnlineHttpClientProBuf {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf prototype) {
+    public static Builder newBuilder(com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -222,25 +274,25 @@ public final class OnlineHttpClientProBuf {
      *心跳协议
      * </pre>
      *
-     * Protobuf type {@code OnlineHeartHttpClientProBuf}
+     * Protobuf type {@code OnlineHeartClientHttpProBuf}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:OnlineHeartHttpClientProBuf)
-        com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBufOrBuilder {
+        // @@protoc_insertion_point(builder_implements:OnlineHeartClientHttpProBuf)
+        com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBufOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable
+        return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.class, com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.Builder.class);
+                com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.class, com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.Builder.class);
       }
 
-      // Construct using com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.newBuilder()
+      // Construct using com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -257,28 +309,37 @@ public final class OnlineHttpClientProBuf {
       }
       public Builder clear() {
         super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.internal_static_OnlineHeartHttpClientProBuf_descriptor;
+        return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.internal_static_OnlineHeartClientHttpProBuf_descriptor;
       }
 
-      public com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf getDefaultInstanceForType() {
-        return com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.getDefaultInstance();
+      public com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf getDefaultInstanceForType() {
+        return com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.getDefaultInstance();
       }
 
-      public com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf build() {
-        com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf result = buildPartial();
+      public com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf build() {
+        com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf buildPartial() {
-        com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf result = new com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf(this);
+      public com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf buildPartial() {
+        com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf result = new com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -310,22 +371,28 @@ public final class OnlineHttpClientProBuf {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf) {
-          return mergeFrom((com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf)other);
+        if (other instanceof com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf) {
+          return mergeFrom((com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf other) {
-        if (other == com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf other) {
+        if (other == com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
+        if (!hasId()) {
+          return false;
+        }
         return true;
       }
 
@@ -333,17 +400,50 @@ public final class OnlineHttpClientProBuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf parsedMessage = null;
+        com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf) e.getUnfinishedMessage();
+          parsedMessage = (com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>required int32 id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>required int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
         return this;
       }
       public final Builder setUnknownFields(
@@ -357,49 +457,49 @@ public final class OnlineHttpClientProBuf {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:OnlineHeartHttpClientProBuf)
+      // @@protoc_insertion_point(builder_scope:OnlineHeartClientHttpProBuf)
     }
 
-    // @@protoc_insertion_point(class_scope:OnlineHeartHttpClientProBuf)
-    private static final com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:OnlineHeartClientHttpProBuf)
+    private static final com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf();
+      DEFAULT_INSTANCE = new com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf();
     }
 
-    public static com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf getDefaultInstance() {
+    public static com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<OnlineHeartHttpClientProBuf>
-        PARSER = new com.google.protobuf.AbstractParser<OnlineHeartHttpClientProBuf>() {
-      public OnlineHeartHttpClientProBuf parsePartialFrom(
+    @java.lang.Deprecated public static final com.google.protobuf.Parser<OnlineHeartClientHttpProBuf>
+        PARSER = new com.google.protobuf.AbstractParser<OnlineHeartClientHttpProBuf>() {
+      public OnlineHeartClientHttpProBuf parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new OnlineHeartHttpClientProBuf(input, extensionRegistry);
+          return new OnlineHeartClientHttpProBuf(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<OnlineHeartHttpClientProBuf> parser() {
+    public static com.google.protobuf.Parser<OnlineHeartClientHttpProBuf> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<OnlineHeartHttpClientProBuf> getParserForType() {
+    public com.google.protobuf.Parser<OnlineHeartClientHttpProBuf> getParserForType() {
       return PARSER;
     }
 
-    public com.snowcattle.game.message.auto.http.client.OnlineHttpClientProBuf.OnlineHeartHttpClientProBuf getDefaultInstanceForType() {
+    public com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf.OnlineHeartClientHttpProBuf getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_OnlineHeartHttpClientProBuf_descriptor;
+    internal_static_OnlineHeartClientHttpProBuf_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable;
+      internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -409,10 +509,10 @@ public final class OnlineHttpClientProBuf {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021http_client.proto\032\014common.proto\"\035\n\033Onl" +
-      "ineHeartHttpClientProBufBF\n,com.snowcatt" +
-      "le.game.message.auto.http.clientB\026Online" +
-      "HttpClientProBuf"
+      "\n\021http_client.proto\032\014common.proto\")\n\033Onl" +
+      "ineHeartClientHttpProBuf\022\n\n\002id\030\001 \002(\005BF\n," +
+      "com.snowcattle.game.message.auto.http.cl" +
+      "ientB\026OnlineClientHttpProBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -427,12 +527,12 @@ public final class OnlineHttpClientProBuf {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.snowcattle.game.message.auto.common.CommonMessageProBuf.getDescriptor(),
         }, assigner);
-    internal_static_OnlineHeartHttpClientProBuf_descriptor =
+    internal_static_OnlineHeartClientHttpProBuf_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_OnlineHeartHttpClientProBuf_fieldAccessorTable = new
+    internal_static_OnlineHeartClientHttpProBuf_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_OnlineHeartHttpClientProBuf_descriptor,
-        new java.lang.String[] { });
+        internal_static_OnlineHeartClientHttpProBuf_descriptor,
+        new java.lang.String[] { "Id", });
     com.snowcattle.game.message.auto.common.CommonMessageProBuf.getDescriptor();
   }
 
