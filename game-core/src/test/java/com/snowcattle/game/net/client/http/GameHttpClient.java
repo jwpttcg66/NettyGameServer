@@ -1,8 +1,12 @@
 package com.snowcattle.game.net.client.http;
 
+import com.snowcattle.game.TestStartUp;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.common.http.HttpSnoopClientInitializer;
 import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
 import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
+import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -25,6 +29,12 @@ public final class GameHttpClient {
     //    static final String URL = System.getProperty("url", "http://127.0.0.1:8080/");
     static final String URL = System.getProperty("url", "http://127.0.0.1:10200/");
     public static void main(String[] args) throws Exception {
+
+
+        TestStartUp.startUp();
+        LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
+        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+
         URI uri = new URI(URL);
         String scheme = uri.getScheme() == null? "http" : uri.getScheme();
         String host = uri.getHost() == null? "127.0.0.1" : uri.getHost();

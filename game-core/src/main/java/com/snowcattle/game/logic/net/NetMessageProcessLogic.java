@@ -7,6 +7,7 @@ import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.factory.ITcpMessageFactory;
@@ -111,13 +112,13 @@ public class NetMessageProcessLogic {
 
         }
 
-        NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageEncoderFactory();
+        NetProtoBufHttpMessageEncoderFactory netProtoBufHttpMessageEncoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufHttpMessageEncoderFactory();
         if(respone != null) {
             respone.setSerial(message.getNetMessageHead().getSerial());
             try {
                 httpResponse = new DefaultFullHttpResponse(
                         HTTP_1_1, OK,
-                        Unpooled.copiedBuffer(netProtoBufTcpMessageEncoderFactory.createByteBuf(respone)));
+                        Unpooled.copiedBuffer(netProtoBufHttpMessageEncoderFactory.createByteBuf(respone)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
