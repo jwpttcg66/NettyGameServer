@@ -15,16 +15,6 @@ public class GameServerDiffConfig implements Config {
     private int heartCyleTime;
 
     /**
-     * 房间等待掉线时间(ms)
-     */
-    private int roomPlayerDisconnectTime;
-
-    /**
-     * 房间生命周期(s)
-     */
-    private int roomLifcCycleTime;
-
-    /**
      * 游戏发送loginout是否关闭session
      */
     private boolean loginOutCloseSession;
@@ -62,24 +52,6 @@ public class GameServerDiffConfig implements Config {
     public void setVersion(String version) {
         this.version = version;
     }
-
-
-    public int getRoomPlayerDisconnectTime() {
-        return roomPlayerDisconnectTime;
-    }
-
-    public void setRoomPlayerDisconnectTime(int roomPlayerDisconnectTime) {
-        this.roomPlayerDisconnectTime = roomPlayerDisconnectTime;
-    }
-
-    public int getRoomLifcCycleTime() {
-        return roomLifcCycleTime;
-    }
-
-    public void setRoomLifcCycleTime(int roomLifcCycleTime) {
-        this.roomLifcCycleTime = roomLifcCycleTime;
-    }
-
 
     public int getSession_prcoss_message_max_size() {
         return session_prcoss_message_max_size;
