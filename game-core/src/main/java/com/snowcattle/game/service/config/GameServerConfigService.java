@@ -6,6 +6,7 @@ import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.net.http.NetHttpServerConfig;
 import com.snowcattle.game.service.net.proxy.NetProxyConfig;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
+import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
 import com.snowcattle.game.service.rpc.server.RpcServerRegisterConfig;
 import com.snowcattle.game.service.IService;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -29,7 +30,7 @@ public class GameServerConfigService implements IService {
     protected NetProxyConfig netProxyConfig;
     protected NetUdpServerConfig netUdpServerConfig;
     protected NetHttpServerConfig netHttpServerConfig;
-
+    protected NetWebSocketServerConfig netWebSocketServerConfig;
 
     @Override
     public String getId() {
@@ -50,6 +51,17 @@ public class GameServerConfigService implements IService {
         initNetProxyConfig();
         initNetUdpServerConfig();
         initNetHttpServerConfig();
+        initWebSocketConfig();
+    }
+
+    /**
+     * 初始化websocket配置
+     * @throws Exception
+     */
+    public void  initWebSocketConfig() throws  Exception{
+        NetWebSocketServerConfig netWebSocketServerConfig = new NetWebSocketServerConfig();
+        netWebSocketServerConfig.init();
+        this.netWebSocketServerConfig = netWebSocketServerConfig;
     }
 
     public void initNetHttpServerConfig() throws  Exception{

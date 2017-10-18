@@ -90,6 +90,8 @@ public class GlobalConstants {
         public static final String UDP_SERVER_CONFIG="udp-server.xml";
         /**http-server*/
         public static final String HTTP_SERVER_CONFIG="http-server.xml";
+        /**websocket-server*/
+        public static final String WEBSOCKET_SERVER_CONFIG="websocket-server.xml";
     }
 
     /**
