@@ -190,4 +190,12 @@ public class GameServerConfigService implements IService {
     public void setNetHttpServerConfig(NetHttpServerConfig netHttpServerConfig) {
         this.netHttpServerConfig = netHttpServerConfig;
     }
+
+    public NetWebSocketServerConfig getNetWebSocketServerConfig() {
+        return netWebSocketServerConfig;
+    }
+
+    public void setNetWebSocketServerConfig(NetWebSocketServerConfig netWebSocketServerConfig) {
+        this.netWebSocketServerConfig = netWebSocketServerConfig;
+    }
 }

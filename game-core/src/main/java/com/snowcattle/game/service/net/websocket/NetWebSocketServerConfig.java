@@ -16,7 +16,7 @@ import java.net.URL;
  * Created by jiangwenping on 2017/10/18.
  */
 @Service
-public class NetWebSocketServerConfig {
+public class NetWebSocketServerConfig extends SdNetConfig{
     private static final Logger LOGGER = Loggers.serverLogger;
 
     private SdWebSocketServerConfig sdWebSocketServerConfig;

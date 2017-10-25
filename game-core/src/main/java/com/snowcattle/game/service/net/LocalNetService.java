@@ -21,6 +21,8 @@ import com.snowcattle.game.service.net.proxy.ProxyTcpServerService;
 import com.snowcattle.game.service.net.proxy.SdProxyConfig;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
+import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
+import com.snowcattle.game.service.net.websocket.SdWebSocketServerConfig;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -127,15 +129,22 @@ public class LocalNetService implements IService{
         }
 
         NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
-        SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdHttpServerConfig();
-        if(sdHttpServerConfig != null){
-            gameNettyHttpServerService = new GameNettyHttpServerService(sdHttpServerConfig.getId(), sdHttpServerConfig.getPort()
-                , GlobalConstants.Thread.NET_HTTP_BOSS, GlobalConstants.Thread.NET_HTTP_WORKER, httpChannelInitialier);
-            startUpFlag = gameNettyHttpServerService.startService();
-            if(!startUpFlag){
-                throw  new StartUpException("http server startup error");
+        if(netHttpServerConfig != null) {
+            SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdHttpServerConfig();
+            if (sdHttpServerConfig != null) {
+                gameNettyHttpServerService = new GameNettyHttpServerService(sdHttpServerConfig.getId(), sdHttpServerConfig.getPort()
+                        , GlobalConstants.Thread.NET_HTTP_BOSS, GlobalConstants.Thread.NET_HTTP_WORKER, httpChannelInitialier);
+                startUpFlag = gameNettyHttpServerService.startService();
+                if (!startUpFlag) {
+                    throw new StartUpException("http server startup error");
+                }
+                serverLogger.info("gameNettyHttpServerService start " + startUpFlag + " port " + sdHttpServerConfig.getPort());
             }
-            serverLogger.info("gameNettyHttpServerService start " + startUpFlag + " port " + sdHttpServerConfig.getPort());
+        }
+        NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
+        if(netWebSocketServerConfig  != null){
+            SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
+            serverLogger.info("gameNettyWebSocketService start " + startUpFlag + " port " + sdWebSocketServerConfig.getPort());
         }
     }
 
