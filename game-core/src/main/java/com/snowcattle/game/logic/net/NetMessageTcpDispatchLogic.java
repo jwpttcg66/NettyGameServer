@@ -26,7 +26,7 @@ public class NetMessageTcpDispatchLogic {
             }
             return;
         }
-        long begin = 0;
+        long begin = System.nanoTime();
         if (Loggers.serverStatusStatistics.isInfoEnabled()) {
             begin = System.nanoTime();
         }

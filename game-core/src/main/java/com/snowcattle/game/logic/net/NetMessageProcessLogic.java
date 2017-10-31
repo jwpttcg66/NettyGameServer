@@ -36,7 +36,7 @@ public class NetMessageProcessLogic {
     protected static final Logger statLog = Loggers.serverStatusStatistics;
 
     public void processMessage(AbstractNetMessage message, NettySession nettySession){
-        long begin = 0;
+        long begin = System.nanoTime();
         try {
             GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();
             AbstractNetProtoBufMessage respone = null;
@@ -83,7 +83,7 @@ public class NetMessageProcessLogic {
 
         FullHttpResponse httpResponse = null;
         AbstractNetProtoBufMessage respone = null;
-        long begin = 0;
+        long begin = System.nanoTime();
         try {
             GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();
             respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
