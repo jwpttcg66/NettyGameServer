@@ -1,5 +1,9 @@
 package com.snowcattle.game.net.client.websocket;
 
+import com.snowcattle.game.TestStartUp;
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
+import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -30,6 +34,11 @@ public final class GameWebSocketClient {
 //    static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
     static final String URL = System.getProperty("url", "ws://127.0.0.1:10300/websocket");
     public static void main(String[] args) throws Exception {
+
+        TestStartUp.startUp();
+        LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
+        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+
         URI uri = new URI(URL);
         String scheme = uri.getScheme() == null? "ws" : uri.getScheme();
         final String host = uri.getHost() == null? "127.0.0.1" : uri.getHost();

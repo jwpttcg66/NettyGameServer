@@ -2,6 +2,7 @@ package com.snowcattle.game.message.logic.tcp.online.server;
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.common.exception.CodecException;
+import com.snowcattle.game.message.auto.tcp.online.client.OnlineTCPClientProBuf;
 import com.snowcattle.game.message.auto.tcp.online.server.OnlineTCPServerProBuf;
 import com.snowcattle.game.service.message.AbstractNetProtoBufTcpMessage;
 import com.snowcattle.game.service.message.command.MessageCommandIndex;
@@ -18,7 +19,10 @@ public class OnlineLoginServerTcpMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
     public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
-
+        byte[] bytes = getNetMessageBody().getBytes();
+        OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf req = OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf.parseFrom(bytes);
+        setPlayerId(req.getPlayerId());
+        setTocken(req.getTocken());
     }
 
     @Override

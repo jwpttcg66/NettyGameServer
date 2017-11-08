@@ -28,10 +28,10 @@ public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
         if (Loggers.sessionLogger.isDebugEnabled()) {
             Loggers.sessionLogger.debug( "playerId " + playerId + "tocken " + tocken + "login");
         }
-        NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
-        GamePlayer gamePlayer = new GamePlayer(clientSesion.getNettyTcpNetMessageSender(), playerId, tocken);
-        GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getGamePlayerLoopUpService();
-        gamePlayerLoopUpService.addT(gamePlayer);
+//        NettyTcpSession clientSesion = (NettyTcpSession) message.getAttribute(MessageAttributeEnum.DISPATCH_SESSION);
+//        GamePlayer gamePlayer = new GamePlayer(clientSesion.getNettyTcpNetMessageSender(), playerId, tocken);
+//        GamePlayerLoopUpService gamePlayerLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getGamePlayerLoopUpService();
+//        gamePlayerLoopUpService.addT(gamePlayer);
         return onlineLoginServerTcpMessage;
     }
 }

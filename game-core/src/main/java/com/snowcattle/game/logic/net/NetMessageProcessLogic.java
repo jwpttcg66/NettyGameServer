@@ -12,11 +12,14 @@ import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderF
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.factory.ITcpMessageFactory;
 import com.snowcattle.game.service.net.tcp.session.NettySession;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -124,6 +127,50 @@ public class NetMessageProcessLogic {
             }
         }
         return httpResponse;
+    }
+
+
+    public void processWebSocketMessage(AbstractNetMessage message, Channel channel){
+
+        AbstractNetProtoBufMessage respone = null;
+        long begin = System.nanoTime();
+        try {
+            GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();
+            respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
+            if(respone != null) {
+                respone.setSerial(message.getNetMessageHead().getSerial());
+
+                NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();
+                ByteBuf byteBuf = netProtoBufTcpMessageEncoderFactory.createByteBuf(respone);
+
+                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(byteBuf);
+                channel.writeAndFlush(binaryWebSocketFrame);
+            }
+        } catch (Exception e) {
+            if (logger.isErrorEnabled()) {
+                Loggers.errorLogger.error(ErrorsUtil.error("Error",
+                        "#.QueueMessageExecutorProcessor.process", "param"), e);
+            }
+
+            if(e instanceof GameHandlerException){
+                GameHandlerException gameHandlerException = (GameHandlerException) e;
+                ITcpMessageFactory iTcpMessageFactory = LocalMananger.getInstance().get(ITcpMessageFactory.class);
+                AbstractNetMessage errorMessage = iTcpMessageFactory.createCommonErrorResponseMessage(gameHandlerException.getSerial(), gameHandlerException.COMMON_ERROR_STATE);
+            }
+
+        } finally {
+            if (logger.isInfoEnabled()) {
+                // 特例，统计时间跨度
+                long time = (System.nanoTime() - begin) / (1000 * 1000);
+                if (time > 1) {
+                    statLog.info("#CORE.MSG.PROCESS.STATICS Message id:"
+                            + message.getNetMessageHead().getCmd() + " Time:"
+                            + time + "ms");
+                }
+            }
+
+        }
+
     }
 
 }

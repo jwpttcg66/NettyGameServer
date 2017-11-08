@@ -19,5 +19,10 @@ public enum MessageAttributeEnum {
      */
     DISPATCH_HTTP_REQUEST,
 
+    /**
+     * websocket使用
+     */
+    DISPATCH_CHANNEL,
+
     ;
 }

@@ -124,12 +124,11 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
 
             //封装属性
-            netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_HTTP_REQUEST, ctx);
+            netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_CHANNEL, ctx);
 
-//            //进行处理
-//            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
-//            HttpResponse httpResponse = netMessageProcessLogic.processMessage(netProtoBufMessage, request);
-//            writeResponse(httpResponse, ctx);
+            //进行处理
+            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+            netMessageProcessLogic.processWebSocketMessage(netProtoBufMessage, ctx.channel());
 
             return;
         }

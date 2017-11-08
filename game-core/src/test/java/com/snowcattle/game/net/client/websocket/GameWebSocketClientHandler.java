@@ -37,7 +37,13 @@
 
 package com.snowcattle.game.net.client.websocket;
 
+import com.alibaba.druid.sql.visitor.functions.Bin;
+import com.snowcattle.game.common.exception.CodecException;
+import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
+import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
+import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
 import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
@@ -111,6 +117,24 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
         } else if (frame instanceof CloseWebSocketFrame) {
             System.out.println("WebSocket Client received closing");
             ch.close();
+        } else if(frame instanceof BinaryWebSocketFrame){
+            System.out.println("WebSocket Client received binary");
+            BinaryWebSocketFrame binaryWebSocketFrame = (BinaryWebSocketFrame) frame;
+            ByteBuf byteBuf = binaryWebSocketFrame.content();
+
+            AbstractNetProtoBufMessage netProtoBufMessage = null;
+            //开始解析
+            NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = new NetProtoBufTcpMessageDecoderFactory();
+            try {
+                netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(byteBuf);
+            } catch (CodecException e) {
+                e.printStackTrace();
+            }
+
+            if(netProtoBufMessage instanceof OnlineLoginServerTcpMessage){
+                OnlineLoginServerTcpMessage onlineLoginServerTcpMessage = (OnlineLoginServerTcpMessage) netProtoBufMessage;
+                System.out.println("playerId:" + onlineLoginServerTcpMessage.getPlayerId());
+            }
         }
     }
 
