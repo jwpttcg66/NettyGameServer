@@ -21,6 +21,8 @@ import com.snowcattle.game.service.net.proxy.ProxyTcpServerService;
 import com.snowcattle.game.service.net.proxy.SdProxyConfig;
 import com.snowcattle.game.service.net.udp.NetUdpServerConfig;
 import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
+import com.snowcattle.game.service.net.websocket.GameNetProtoMessageWebSocketServerChannelInitializer;
+import com.snowcattle.game.service.net.websocket.GameNettyWebSocketServerService;
 import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
 import com.snowcattle.game.service.net.websocket.SdWebSocketServerConfig;
 import io.netty.channel.ChannelInitializer;
@@ -59,11 +61,17 @@ public class LocalNetService implements IService{
      */
     private GameNettyHttpServerService gameNettyHttpServerService;
 
+    /**
+     * websocket服务
+     * */
+    private GameNettyWebSocketServerService gameNettyWebSocketServerService;
+
     private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
     private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
     private ChannelInitializer<NioSocketChannel> rpcChannelInitializer;
     private ChannelInitializer<NioSocketChannel> proxyChannleInitializer;
     private ChannelInitializer<SocketChannel>  httpChannelInitialier;
+    private ChannelInitializer<SocketChannel> webSocketChannelInitialer;
 
     public LocalNetService() {
     }
@@ -154,6 +162,7 @@ public class LocalNetService implements IService{
         rpcChannelInitializer = new GameNetRPCChannleInitializer();
         proxyChannleInitializer = new ProxyTcpFrontedChannelInitializer();
         httpChannelInitialier = new GameNetProtoMessageHttpServerChannelInitializer();
+        webSocketChannelInitialer = new GameNetProtoMessageWebSocketServerChannelInitializer();
     }
 
     @Override
