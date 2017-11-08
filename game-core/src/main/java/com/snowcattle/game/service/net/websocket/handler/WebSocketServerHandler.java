@@ -1,11 +1,21 @@
 package com.snowcattle.game.service.net.websocket.handler;
 
+import com.snowcattle.game.bootstrap.manager.LocalMananger;
+import com.snowcattle.game.common.config.GameServerConfig;
+import com.snowcattle.game.common.exception.CodecException;
+import com.snowcattle.game.logic.net.NetMessageProcessLogic;
+import com.snowcattle.game.service.config.GameServerConfigService;
+import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
+import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
+import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.DecoderResult;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
@@ -94,9 +104,33 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             ctx.write(frame.retain());
             return;
         }
+//        if (frame instanceof BinaryWebSocketFrame) {
+//            // Echo the frame
+//            ctx.write(frame.retain());
+//            return;
+//        }
+
         if (frame instanceof BinaryWebSocketFrame) {
-            // Echo the frame
-            ctx.write(frame.retain());
+            BinaryWebSocketFrame binaryWebSocketFrame = (BinaryWebSocketFrame) frame;
+            ByteBuf buf = binaryWebSocketFrame.content();
+            //开始解析
+            NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
+            AbstractNetProtoBufMessage netProtoBufMessage = null;
+            try {
+                netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
+            } catch (CodecException e) {
+                e.printStackTrace();
+            }
+
+
+            //封装属性
+            netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_HTTP_REQUEST, ctx);
+
+//            //进行处理
+//            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
+//            HttpResponse httpResponse = netMessageProcessLogic.processMessage(netProtoBufMessage, request);
+//            writeResponse(httpResponse, ctx);
+
             return;
         }
     }

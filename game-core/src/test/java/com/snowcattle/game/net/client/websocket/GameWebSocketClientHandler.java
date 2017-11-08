@@ -37,6 +37,11 @@
 
 package com.snowcattle.game.net.client.websocket;
 
+import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
+import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
+import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;
@@ -61,7 +66,7 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) {
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
         handshaker.handshake(ctx.channel());
     }
 
@@ -77,6 +82,16 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
             handshaker.finishHandshake(ch, (FullHttpResponse) msg);
             System.out.println("WebSocket Client connected!");
             handshakeFuture.setSuccess();
+
+
+            OnlineLoginClientTcpMessage onlineLoginClientTcpMessage = new OnlineLoginClientTcpMessage();
+            onlineLoginClientTcpMessage.setId(Integer.MAX_VALUE);
+            NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();
+            ByteBuf byteBuf = netProtoBufTcpMessageEncoderFactory.createByteBuf(onlineLoginClientTcpMessage);
+
+            BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(byteBuf);
+            ctx.writeAndFlush(binaryWebSocketFrame);
+
             return;
         }
 
