@@ -89,14 +89,7 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
             System.out.println("WebSocket Client connected!");
             handshakeFuture.setSuccess();
 
-
-            OnlineLoginClientTcpMessage onlineLoginClientTcpMessage = new OnlineLoginClientTcpMessage();
-            onlineLoginClientTcpMessage.setId(Integer.MAX_VALUE);
-            NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();
-            ByteBuf byteBuf = netProtoBufTcpMessageEncoderFactory.createByteBuf(onlineLoginClientTcpMessage);
-
-            BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(byteBuf);
-            ctx.writeAndFlush(binaryWebSocketFrame);
+            sendTestMessage(ctx);
 
             return;
         }
@@ -135,9 +128,23 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
                 OnlineLoginServerTcpMessage onlineLoginServerTcpMessage = (OnlineLoginServerTcpMessage) netProtoBufMessage;
                 System.out.println("playerId:" + onlineLoginServerTcpMessage.getPlayerId());
             }
+
+            //再次发送测试消息
+            Thread.sleep(1000L);
+            sendTestMessage(ctx);
         }
     }
 
+
+    private void sendTestMessage(ChannelHandlerContext ctx) throws Exception{
+        OnlineLoginClientTcpMessage onlineLoginClientTcpMessage = new OnlineLoginClientTcpMessage();
+        onlineLoginClientTcpMessage.setId(Integer.MAX_VALUE);
+        NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();
+        ByteBuf byteBuf = netProtoBufTcpMessageEncoderFactory.createByteBuf(onlineLoginClientTcpMessage);
+
+        BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(byteBuf);
+        ctx.writeAndFlush(binaryWebSocketFrame);
+    }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
