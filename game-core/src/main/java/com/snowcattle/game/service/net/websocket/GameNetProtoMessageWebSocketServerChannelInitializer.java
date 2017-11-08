@@ -6,6 +6,8 @@ import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.http.handler.HttpServerHandler;
 import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.tcp.handler.GameLoggingHandler;
+import com.snowcattle.game.service.net.websocket.handler.AsyncNettyWebSocketHandlerService;
+import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -28,7 +30,8 @@ public class GameNetProtoMessageWebSocketServerChannelInitializer  extends Chann
         if(gameServerConfig.isDevelopModel()) {
             channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
         }
-        AsyncNettyHttpHandlerService asyncNettyHttpHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyHttpHandlerService();
-        channelPipLine.addLast(asyncNettyHttpHandlerService.getDefaultEventExecutorGroup(), new HttpServerHandler());
+
+        AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyWebSocketHandlerService();
+        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), new WebSocketServerHandler());
     }
 }

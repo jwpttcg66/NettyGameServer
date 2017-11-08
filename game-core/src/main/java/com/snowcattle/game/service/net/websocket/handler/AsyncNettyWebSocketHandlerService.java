@@ -1,20 +1,22 @@
-package com.snowcattle.game.service.net.http.handler.async;
+package com.snowcattle.game.service.net.websocket.handler;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
-import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.http.NetHttpServerConfig;
 import com.snowcattle.game.service.net.http.SdHttpServerConfig;
+import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
+import com.snowcattle.game.service.net.websocket.SdWebSocketServerConfig;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jiangwenping on 2017/7/3.
+ * Created by jiangwenping on 2017/11/8.
  */
+
 @Service
-public class AsyncNettyHttpHandlerService implements IService {
+public class AsyncNettyWebSocketHandlerService implements IService {
 
     /**
      * handler线程组
@@ -23,17 +25,17 @@ public class AsyncNettyHttpHandlerService implements IService {
 
     @Override
     public String getId() {
-        return ServiceName.AsyncNettyHttpHandlerService;
+        return ServiceName.AsyncNettyWebSocketHandlerService;
     }
 
     @Override
     public void startup() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        NetHttpServerConfig netHttpServerConfig = gameServerConfigService.getNetHttpServerConfig();
-        if(netHttpServerConfig != null) {
-            SdHttpServerConfig sdHttpServerConfig = netHttpServerConfig.getSdHttpServerConfig();
-            if (sdHttpServerConfig != null) {
-                int threadSize = sdHttpServerConfig.getHandleThreadSize();
+        NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
+        if(netWebSocketServerConfig != null) {
+            SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
+            if (sdWebSocketServerConfig != null) {
+                int threadSize = sdWebSocketServerConfig.getHandleThreadSize();
                 defaultEventExecutorGroup = new DefaultEventExecutorGroup(threadSize);
             }
         }
@@ -54,4 +56,3 @@ public class AsyncNettyHttpHandlerService implements IService {
         this.defaultEventExecutorGroup = defaultEventExecutorGroup;
     }
 }
-

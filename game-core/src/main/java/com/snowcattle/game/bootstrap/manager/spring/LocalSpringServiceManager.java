@@ -13,6 +13,7 @@ import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerSer
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.ssl.SSLService;
+import com.snowcattle.game.service.net.websocket.handler.AsyncNettyWebSocketHandlerService;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;
@@ -84,6 +85,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncNettyHttpHandlerService asyncNettyHttpHandlerService;
+
+    @Autowired
+    private AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -229,5 +233,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setAsyncNettyHttpHandlerService(AsyncNettyHttpHandlerService asyncNettyHttpHandlerService) {
         this.asyncNettyHttpHandlerService = asyncNettyHttpHandlerService;
+    }
+
+    public AsyncNettyWebSocketHandlerService getAsyncNettyWebSocketHandlerService() {
+        return asyncNettyWebSocketHandlerService;
+    }
+
+    public void setAsyncNettyWebSocketHandlerService(AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService) {
+        this.asyncNettyWebSocketHandlerService = asyncNettyWebSocketHandlerService;
     }
 }
