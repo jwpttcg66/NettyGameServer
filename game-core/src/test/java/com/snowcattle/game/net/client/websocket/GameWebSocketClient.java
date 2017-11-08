@@ -92,7 +92,7 @@ public final class GameWebSocketClient {
                             p.addLast(
                                     new HttpClientCodec(),
                                     new HttpObjectAggregator(8192),
-                                    WebSocketClientCompressionHandler.INSTANCE,
+//                                    WebSocketClientCompressionHandler.INSTANCE,
                                     handler);
                         }
                     });
