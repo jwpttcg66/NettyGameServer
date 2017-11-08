@@ -128,6 +128,9 @@ public class GlobalConstants {
         public static final String NET_PROXY_WORKER ="net_proxy_worker";
         public static final String NET_HTTP_BOSS ="net_http_boss";
         public static final String NET_HTTP_WORKER ="net_http_worker";
+
+        public static final String NET_WEB_SOCKET_BOSS ="net_web_socket_boss";
+        public static final String NET_WEB_SOCKET_WORKER ="net_web_socket_worker";
     }
 
     /**

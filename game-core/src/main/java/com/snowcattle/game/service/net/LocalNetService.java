@@ -152,7 +152,18 @@ public class LocalNetService implements IService{
         NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
         if(netWebSocketServerConfig  != null){
             SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
-            serverLogger.info("gameNettyWebSocketService start " + startUpFlag + " port " + sdWebSocketServerConfig.getPort());
+            if(sdWebSocketServerConfig != null) {
+                gameNettyWebSocketServerService = new GameNettyWebSocketServerService(sdWebSocketServerConfig.getId(), sdWebSocketServerConfig.getPort()
+                        , GlobalConstants.Thread.NET_WEB_SOCKET_BOSS, GlobalConstants.Thread.NET_WEB_SOCKET_WORKER, webSocketChannelInitialer);
+
+                serverLogger.info("gameNettyWebSocketService start " + startUpFlag + " port " + sdWebSocketServerConfig.getPort());
+                startUpFlag = gameNettyWebSocketServerService.startService();
+                if (!startUpFlag) {
+                    throw new StartUpException("web socket server startup error");
+                }
+
+            }
+            serverLogger.info("gameNettyWebSocketServerService start " + startUpFlag + " port " + sdWebSocketServerConfig.getPort());
         }
     }
 
@@ -196,6 +207,14 @@ public class LocalNetService implements IService{
         if(sdHttpServerConfig != null){
             if(gameNettyHttpServerService != null){
                 gameNettyHttpServerService.stopService();
+            }
+        }
+
+        NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
+        SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
+        if(sdWebSocketServerConfig != null){
+            if(gameNettyWebSocketServerService != null){
+                gameNettyWebSocketServerService.stopService();
             }
         }
     }
