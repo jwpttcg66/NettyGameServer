@@ -11,8 +11,10 @@ import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.logging.LogLevel;
 
 /**
@@ -25,6 +27,8 @@ public class GameNetProtoMessageWebSocketServerChannelInitializer  extends Chann
         ChannelPipeline channelPipLine = socketChannel.pipeline();
         channelPipLine.addLast("encoder", new HttpResponseEncoder());
         channelPipLine.addLast("decoder", new HttpRequestDecoder());
+//        channelPipLine.addLast("codec" , new HttpServerCodec());
+        channelPipLine.addLast(new HttpObjectAggregator(65536));
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
         if(gameServerConfig.isDevelopModel()) {
