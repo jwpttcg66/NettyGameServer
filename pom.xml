@@ -6,7 +6,8 @@
     <groupId>com.snowcattle.game</groupId>
     <artifactId>netty-game-server</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.6-SNAPSHOT</version>
+    <version>${global.version}</version>
+    <!--<version>1.1.6-SNAPSHOT</version>-->
     <modules>
         <module>game-code-generate</module>
         <module>game-executor</module>
@@ -23,6 +24,7 @@
     </repositories>
 
     <properties>
+        <global.version>1.1.7-SNAPSHOT</global.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.version>1.2.5-SNAPSHOT</project.version>
         <netty.version>4.1.6.Final</netty.version>
