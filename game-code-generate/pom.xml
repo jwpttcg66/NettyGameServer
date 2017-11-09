@@ -12,7 +12,8 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>game-code-generate</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <!--<version>1.0.1-SNAPSHOT</version>-->
+    <version>${parent.version}</version>
     <dependencies>
 
         <dependency>

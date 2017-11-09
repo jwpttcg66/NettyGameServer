@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.snowcattle.game</groupId>
     <artifactId>netty-game-server</artifactId>
     <packaging>pom</packaging>
@@ -25,6 +24,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.version>1.2.5-SNAPSHOT</project.version>
         <netty.version>4.1.6.Final</netty.version>
         <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
         <junit.version>4.12</junit.version>
