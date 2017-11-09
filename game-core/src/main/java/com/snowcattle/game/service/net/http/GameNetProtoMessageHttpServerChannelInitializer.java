@@ -23,8 +23,6 @@ public class GameNetProtoMessageHttpServerChannelInitializer extends ChannelInit
     protected void initChannel(SocketChannel socketChannel) throws Exception {
 
         ChannelPipeline channelPipLine = socketChannel.pipeline();
-//        int maxLength = Integer.MAX_VALUE;
-//        channelPipLine.addLast("frame", new LengthFieldBasedFrameDecoder(maxLength, 2, 4, 0, 0));
         channelPipLine.addLast("encoder", new HttpResponseEncoder());
 //        channelPipLine.addLast("trunk", new HttpObjectAggregator(1048576));
         channelPipLine.addLast("decoder", new HttpRequestDecoder());
