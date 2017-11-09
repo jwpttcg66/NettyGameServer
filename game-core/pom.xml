@@ -12,7 +12,7 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>game-core</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.version}</version>
 
 
     <dependencies>
@@ -20,19 +20,19 @@
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-common</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-executor</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-db</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

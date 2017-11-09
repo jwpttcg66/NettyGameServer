@@ -12,7 +12,7 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>game-db</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-common</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->

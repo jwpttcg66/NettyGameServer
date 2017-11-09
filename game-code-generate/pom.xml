@@ -12,16 +12,14 @@
 
     <groupId>com.snowcattle.game</groupId>
     <artifactId>game-code-generate</artifactId>
-    <!--<version>1.0.1-SNAPSHOT</version>-->
-    <version>${parent.version}</version>
+    <version>${project.version}</version>
     <dependencies>
 
         <dependency>
             <groupId>com.snowcattle.game</groupId>
             <artifactId>game-core</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
-
 
         <!-- test -->
         <dependency>

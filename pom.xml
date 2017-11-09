@@ -53,6 +53,37 @@
             <!--<version>3.1</version>-->
         <!--</dependency>-->
 
+        <!--<dependency>-->
+            <!--<groupId>com.snowcattle.game</groupId>-->
+            <!--<artifactId>game-code-generate</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.snowcattle.game</groupId>-->
+            <!--<artifactId>game-common</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.snowcattle.game</groupId>-->
+            <!--<artifactId>game-core</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.snowcattle.game</groupId>-->
+            <!--<artifactId>game-db</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
+
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.snowcattle.game</groupId>-->
+            <!--<artifactId>game-executor</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>io.netty</groupId>
