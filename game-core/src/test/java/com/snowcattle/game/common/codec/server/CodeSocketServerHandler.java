@@ -4,15 +4,16 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 /**
- * Created by jiangwenping on 2017/11/13.
+ * Created by jiangwenping on 2017/11/14.
  */
-public class CodeSocketTwoServerHandler extends SimpleChannelInboundHandler<String> {
+public class CodeSocketServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         Thread.sleep(1000L);
 //        ctx.writeAndFlush(msg);
         System.out.println("服务端收到："+msg);
+        ctx.fireChannelRead("转发" + msg);
     }
 
 
@@ -31,4 +32,3 @@ public class CodeSocketTwoServerHandler extends SimpleChannelInboundHandler<Stri
 
 
 }
-

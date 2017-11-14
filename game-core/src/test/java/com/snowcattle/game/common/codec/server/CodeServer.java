@@ -27,7 +27,7 @@ public class CodeServer {
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new NetMessageServerChannleInitializer());
+                    .childHandler(new CodeServerChannelInitializer());
             ChannelFuture serverChannelFuture = serverBootstrap.bind(Port).sync();
 
             serverChannelFuture.channel().closeFuture().sync();
