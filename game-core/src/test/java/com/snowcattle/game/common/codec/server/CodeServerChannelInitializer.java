@@ -17,6 +17,7 @@ public class CodeServerChannelInitializer extends ChannelInitializer<NioSocketCh
         ChannelPipeline channelPipLine = nioSocketChannel.pipeline();
                             channelPipLine.addLast(new LineBasedFrameDecoder(1024));
                             channelPipLine.addLast(new StringDecoder());
+                            channelPipLine.addLast(new TwoStringDecoder());
 //                            channelPipLine.addLast(new StringEncoder());
         channelPipLine.addLast(new CodeSocketServerHandler());
         channelPipLine.addLast(new CodeSocketTwoServerHandler());
