@@ -77,4 +77,12 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService, IServi
     public void shutdown() throws Exception {
 
     }
+
+    public ConcurrentHashMap<Long, NettySession> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ConcurrentHashMap<Long, NettySession> sessions) {
+        this.sessions = sessions;
+    }
 }

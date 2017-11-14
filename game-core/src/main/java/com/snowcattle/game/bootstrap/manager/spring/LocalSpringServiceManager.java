@@ -8,6 +8,7 @@ import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
+import com.snowcattle.game.service.net.broadcast.GameTcpBroadCastService;
 import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.message.facade.GameFacade;
@@ -88,6 +89,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService;
+
+    @Autowired
+    private GameTcpBroadCastService gameTcpBroadCastService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -241,5 +245,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setAsyncNettyWebSocketHandlerService(AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService) {
         this.asyncNettyWebSocketHandlerService = asyncNettyWebSocketHandlerService;
+    }
+
+    public GameTcpBroadCastService getGameTcpBroadCastService() {
+        return gameTcpBroadCastService;
+    }
+
+    public void setGameTcpBroadCastService(GameTcpBroadCastService gameTcpBroadCastService) {
+        this.gameTcpBroadCastService = gameTcpBroadCastService;
     }
 }
