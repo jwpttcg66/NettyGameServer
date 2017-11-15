@@ -13,15 +13,19 @@ import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.command.MessageCommandIndex;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * Created by jiangwenping on 17/2/21.
  */
 public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
 
+    private AtomicLong id = new AtomicLong();
+
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
     public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {
         OnlineLoginServerTcpMessage onlineLoginServerTcpMessage = new OnlineLoginServerTcpMessage();
-        long playerId = 6666;
+        long playerId = 6666 + id.incrementAndGet();
         int tocken = 333;
         onlineLoginServerTcpMessage.setPlayerId(playerId);
         onlineLoginServerTcpMessage.setTocken(tocken);
