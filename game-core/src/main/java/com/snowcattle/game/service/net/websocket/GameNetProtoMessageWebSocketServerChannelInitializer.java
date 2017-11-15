@@ -2,6 +2,7 @@ package com.snowcattle.game.service.net.websocket;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.config.GameServerConfig;
+import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.http.handler.HttpServerHandler;
 import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
@@ -37,7 +38,7 @@ public class GameNetProtoMessageWebSocketServerChannelInitializer  extends Chann
         }
 
         AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyWebSocketHandlerService();
-        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), new WebSocketServerHandler());
-        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), new WebSocketFrameServerHandler());
+        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketServerHandler, new WebSocketServerHandler());
+        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketFrameServerHandler, new WebSocketFrameServerHandler());
     }
 }

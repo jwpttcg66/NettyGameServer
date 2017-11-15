@@ -163,4 +163,14 @@ public class GlobalConstants {
         public static final int ZK_SESSION_TIMEOUT = 5000;
     }
 
+
+    /**
+     * 网络管道
+     */
+    public static class ChannelPipeline{
+        public static final String WebSocketServerHandler = "WebSocketServerHandler";
+        public static final String WebSocketFrameServerHandler = "WebSocketFrameServerHandler";
+
+    }
+
 }
