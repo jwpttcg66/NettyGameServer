@@ -16,12 +16,12 @@ public class HelloCallbackTest {
 
     private RpcProxyService rpcProxyService;
 
-    public void init() {
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HelloCallbackTest helloCallbackTest = new HelloCallbackTest();
         helloCallbackTest.init();
         helloCallbackTest.test();

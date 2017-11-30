@@ -20,9 +20,7 @@ import io.netty.handler.logging.LoggingHandler;
 public class GameClient {
 
     public static void main(String[] args) throws Exception {
-        TestStartUp.startUp();
-        LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
-        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+        TestStartUp.startUpWithSpring();
 
         new GameClient().connect("127.0.0.1", 7090);
     }

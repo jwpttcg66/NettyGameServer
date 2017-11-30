@@ -15,14 +15,14 @@ public class SingleTest {
 
     private RpcProxyService rpcProxyService;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         SingleTest singleTest = new SingleTest();
         singleTest.init();
         singleTest.tps();
         singleTest.setTear();
     }
 
-    public void init(){
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }

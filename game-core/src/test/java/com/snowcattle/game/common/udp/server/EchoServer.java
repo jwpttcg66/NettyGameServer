@@ -23,7 +23,7 @@ public class EchoServer {
 //        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 //        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
 
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         Bootstrap b = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
         b.group(group)

@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Created by jiangwenping on 17/4/19.
  */
 public class TestStartUp {
-    public static void startUpWithSpring(){
+    public static void startUpWithSpring() throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");
         LocalSpringBeanManager localSpringBeanManager = (LocalSpringBeanManager) BeanUtil.getBean("localSpringBeanManager");
@@ -28,20 +28,22 @@ public class TestStartUp {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void startUp() throws  Exception{
-        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
-        LocalSpringBeanManager localSpringBeanManager = new LocalSpringBeanManager();
-        MessageCommandFactory messageCommandFactory = new MessageCommandFactory();
-        localSpringBeanManager.setMessageCommandFactory(messageCommandFactory);
-        GameServerConfigService gameServerConfigService = new GameServerConfigService();
-        gameServerConfigService.startup();
-        localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
-        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
-        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
         LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
     }
+
+//    public static void startUp() throws  Exception{
+//        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
+//        LocalSpringBeanManager localSpringBeanManager = new LocalSpringBeanManager();
+//        MessageCommandFactory messageCommandFactory = new MessageCommandFactory();
+//        localSpringBeanManager.setMessageCommandFactory(messageCommandFactory);
+//        GameServerConfigService gameServerConfigService = new GameServerConfigService();
+//        gameServerConfigService.startup();
+//        localSpringServiceManager.setGameServerConfigService(gameServerConfigService);
+//        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
+//        LocalMananger.getInstance().setLocalSpringBeanManager(localSpringBeanManager);
+//        LocalMananger.getInstance().create(MessageRegistry.class, MessageRegistry.class);
+//        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
+//    }
 
 }

@@ -16,6 +16,7 @@ import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.factory.TcpMessageFactory;
+import com.snowcattle.game.service.net.tcp.handler.AbstractGameNetMessageTcpServerHandler;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
 import io.netty.channel.Channel;
@@ -30,33 +31,8 @@ import org.slf4j.Logger;
  *
  *  不会进行session的游戏内循环经查，断网后直接删除缓存，抛出掉线事件
  */
-public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHandlerAdapter {
+public class AsyncNettyGameNetMessageTcpServerHandler extends AbstractGameNetMessageTcpServerHandler {
     public static Logger logger = Loggers.sessionLogger;
-
-    @Override
-    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        ctx.fireChannelRegistered();
-        NettyTcpSessionBuilder nettyTcpSessionBuilder = LocalMananger.getInstance().getLocalSpringBeanManager().getNettyTcpSessionBuilder();
-        NettyTcpSession nettyTcpSession = (NettyTcpSession) nettyTcpSessionBuilder.buildSession(ctx.channel());
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        boolean flag = netTcpSessionLoopUpService.addNettySession(nettyTcpSession);
-        if(!flag){
-            //被限制不能加入
-            TcpMessageFactory messageFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getTcpMessageFactory();
-            AbstractNetMessage abstractNetMessage = messageFactory.createCommonErrorResponseMessage(-1, GameHandlerException.COMMON_ERROR_MAX_CONNECT_TCP_SESSION_NUMBER);
-            nettyTcpSession.write(abstractNetMessage);
-            nettyTcpSession.close();
-            ctx.close();
-            return;
-
-        }
-        //生成aysnc事件
-        long sessionId = nettyTcpSession.getSessionId();
-        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
-        SessionRegisterEvent sessionRegisterEvent = new SessionRegisterEvent(sessionId, sessionId, sessionEventParam);
-        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
-        gameAsyncEventService.putEvent(sessionRegisterEvent);
-    }
 
 
     @Override
@@ -81,78 +57,8 @@ public class AsyncNettyGameNetMessageTcpServerHandler extends ChannelInboundHand
         netMessageProcessLogic.processMessage(netMessage, nettySession);
 
     }
-
-
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) {
-        ctx.flush();
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws NetMessageException {
-        // Close the connection when an exception is raised.
-        if (cause instanceof java.io.IOException)
-            return;
-
-        if(logger.isDebugEnabled()) {
-            logger.debug("channel exceptionCaught", cause);
-        }
-
-        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
-        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
-        boolean exceptionCloseSessionFlag = gameServerConfig.isExceptionCloseSessionFlag();
-
-        if(exceptionCloseSessionFlag) {
-            //设置下线
-            disconnect(ctx.channel());
-
-            //销毁上下文
-            ctx.close();
-        }
-    }
-
-    @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object var) throws Exception{
-        super.userEventTriggered(ctx, var);
-        if(var instanceof IdleStateEvent){
-            //说明是空闲事件
-            disconnect(ctx.channel());
-        }
-    }
-
-    @Override
-    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = ctx.channel().attr(NettyTcpSessionBuilder.channel_session_id).get();
-        NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
-
-        if(nettyTcpSession == null){
-            ctx.fireChannelUnregistered();
-            return;
-        }
-
-        netTcpSessionLoopUpService.removeNettySession(nettyTcpSession);
-
-        //生成aysnc事件
-        long sessionId = nettyTcpSession.getSessionId();
-        EventParam<NettyTcpSession> sessionEventParam = new EventParam<>(nettyTcpSession);
-        SessionUnRegisterEvent sessionUnRegisterEvent = new SessionUnRegisterEvent(sessionId, sessionId, sessionEventParam);
-        GameAsyncEventService gameAsyncEventService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameAsyncEventService();
-        gameAsyncEventService.putEvent(sessionUnRegisterEvent);
-
-        ctx.fireChannelUnregistered();
-    }
-
-    private void disconnect(Channel channel) throws NetMessageException {
-        NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
-        long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
-        NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
-        if (nettyTcpSession == null) {
-            logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
-            return;
-        }
-
-        nettyTcpSession.close();
+    public   void addUpdateSession(NettyTcpSession nettyTcpSession){
 
     }
 }

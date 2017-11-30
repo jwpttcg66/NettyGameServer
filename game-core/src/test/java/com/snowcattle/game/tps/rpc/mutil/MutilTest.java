@@ -19,13 +19,13 @@ public class MutilTest {
 
     private RpcProxyService rpcProxyService;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         MutilTest mutilTest = new MutilTest();
         mutilTest.init();
         mutilTest.tps();
         mutilTest.setTear();
     }
-    public void init(){
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }

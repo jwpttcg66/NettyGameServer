@@ -25,7 +25,7 @@ import java.nio.charset.Charset;
 public class GameNettyUdpClient {
     public static int port = 10090;
     public static void main(String[] args) throws Exception {
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 

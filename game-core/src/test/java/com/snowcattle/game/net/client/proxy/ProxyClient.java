@@ -11,7 +11,7 @@ import com.snowcattle.game.service.message.registry.MessageRegistry;
  */
 public class ProxyClient extends GameClient {
     public static void main(String[] args) throws Exception {
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 
