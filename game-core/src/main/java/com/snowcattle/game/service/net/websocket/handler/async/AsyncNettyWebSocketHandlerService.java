@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net.websocket.handler;
+package com.snowcattle.game.service.net.websocket.handler.async;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.constant.ServiceName;

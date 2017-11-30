@@ -4,11 +4,9 @@ import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.net.http.handler.HttpServerHandler;
-import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.tcp.handler.GameLoggingHandler;
-import com.snowcattle.game.service.net.websocket.handler.AsyncNettyWebSocketHandlerService;
-import com.snowcattle.game.service.net.websocket.handler.WebSocketFrameServerHandler;
+import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerService;
+import com.snowcattle.game.service.net.websocket.handler.async.AsyncWebSocketFrameServerHandler;
 import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -16,7 +14,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.logging.LogLevel;
 
 /**
@@ -39,6 +36,6 @@ public class GameNetProtoMessageWebSocketServerChannelInitializer  extends Chann
 
         AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyWebSocketHandlerService();
         channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketServerHandler, new WebSocketServerHandler());
-        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketFrameServerHandler, new WebSocketFrameServerHandler());
+        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketFrameServerHandler, new AsyncWebSocketFrameServerHandler());
     }
 }

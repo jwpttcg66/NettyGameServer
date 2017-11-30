@@ -14,7 +14,7 @@ import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerSer
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import com.snowcattle.game.service.net.ssl.SSLService;
-import com.snowcattle.game.service.net.websocket.handler.AsyncNettyWebSocketHandlerService;
+import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerService;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;

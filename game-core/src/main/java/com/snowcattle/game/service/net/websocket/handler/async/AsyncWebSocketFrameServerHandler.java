@@ -1,4 +1,4 @@
-package com.snowcattle.game.service.net.websocket.handler;
+package com.snowcattle.game.service.net.websocket.handler.async;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.constant.Loggers;
@@ -21,6 +21,7 @@ import com.snowcattle.game.service.message.factory.TcpMessageFactory;
 import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
+import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
 import com.snowcattle.game.service.update.NettyTcpSerssionUpdate;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -33,7 +34,7 @@ import org.slf4j.Logger;
 /**
  * Created by jiangwenping on 2017/11/15.
  */
-public class WebSocketFrameServerHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
+public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
     public static Logger logger = Loggers.handlerLogger;
 
@@ -54,12 +55,12 @@ public class WebSocketFrameServerHandler extends SimpleChannelInboundHandler<Web
             return;
 
         }
-        //加入到updateservice
-        UpdateService updateService = LocalMananger.getInstance().getUpdateService();
-        NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);
-        EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
-        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getUpdateId(), param);
-        updateService.addReadyCreateEvent(cycleEvent);
+//        //加入到updateservice
+//        UpdateService updateService = LocalMananger.getInstance().getUpdateService();
+//        NettyTcpSerssionUpdate nettyTcpSerssionUpdate = new NettyTcpSerssionUpdate(nettyTcpSession);
+//        EventParam<NettyTcpSerssionUpdate> param = new EventParam<NettyTcpSerssionUpdate>(nettyTcpSerssionUpdate);
+//        CycleEvent cycleEvent = new CycleEvent(Constants.EventTypeConstans.readyCreateEventType, nettyTcpSerssionUpdate.getUpdateId(), param);
+//        updateService.addReadyCreateEvent(cycleEvent);
 
 
         //生成aysnc事件
