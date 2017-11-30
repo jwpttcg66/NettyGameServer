@@ -36,6 +36,7 @@ import org.slf4j.Logger;
 public class WebSocketFrameServerHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
     public static Logger logger = Loggers.handlerLogger;
+
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelRegistered();
@@ -102,19 +103,29 @@ public class WebSocketFrameServerHandler extends SimpleChannelInboundHandler<Web
             ByteBuf buf = binaryWebSocketFrame.content();
             //开始解析
             NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
-            AbstractNetProtoBufMessage netProtoBufMessage = null;
+            AbstractNetProtoBufMessage netMessage = null;
             try {
-                netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
+                netMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
             } catch (CodecException e) {
                 e.printStackTrace();
             }
 
-            //封装属性
-            netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_CHANNEL, ctx);
+            Channel channel = ctx.channel();
+            //装配session
+            NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
+            long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
+            NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
+            if (nettySession == null) {
+                logger.error("tcp netsession null channelId is:" + channel.id().asLongText());
+                //已经丢失session， 停止处理
+                return;
+            }
 
+            //封装属性
+            netMessage.setAttribute(MessageAttributeEnum.DISPATCH_SESSION, nettySession);
             //进行处理
             NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
-            netMessageProcessLogic.processWebSocketMessage(netProtoBufMessage, ctx.channel());
+            netMessageProcessLogic.processWebSocketMessage(netMessage, ctx.channel());
 
             return;
         }
@@ -127,7 +138,7 @@ public class WebSocketFrameServerHandler extends SimpleChannelInboundHandler<Web
         NettyTcpSession nettyTcpSession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);
         disconnect(ctx.channel());
 
-        if(nettyTcpSession == null){
+        if (nettyTcpSession == null) {
             ctx.fireChannelUnregistered();
             return;
         }
