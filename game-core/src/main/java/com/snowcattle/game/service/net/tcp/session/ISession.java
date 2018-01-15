@@ -32,7 +32,7 @@ public interface ISession {
      */
     public boolean closeOnException();
 
-    public void write(byte[] msg);
+    public void write(byte[] msg) throws Exception;
 
 }
 

@@ -3,7 +3,6 @@ package com.snowcattle.game.service.net.broadcast;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
 import com.snowcattle.game.service.message.AbstractNetMessage;
-import com.snowcattle.game.service.message.INetMessage;
 import com.snowcattle.game.service.net.tcp.session.NettySession;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class GameTcpBroadCastService implements IBroadCastService{
                 try {
                     nettySession.write(netMessage);
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
         }

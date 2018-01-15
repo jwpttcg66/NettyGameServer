@@ -13,5 +13,9 @@ public class NetMessageException extends Exception {
     public NetMessageException(String name, Throwable t){
         super(name,t);
     }
+
+    public NetMessageException(Throwable t){
+        super(t);
+    }
 }
 
