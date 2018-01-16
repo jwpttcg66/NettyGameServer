@@ -1,19 +1,20 @@
 package com.snowcattle.game.bootstrap.manager.spring;
 
 import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.service.classes.loader.DefaultClassLoader;
 import com.snowcattle.game.service.async.pool.AsyncThreadService;
+import com.snowcattle.game.service.check.LifeCycleCheckService;
+import com.snowcattle.game.service.classes.loader.DefaultClassLoader;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.dict.DictService;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.lookup.NetTcpSessionLoopUpService;
-import com.snowcattle.game.service.net.broadcast.GameTcpBroadCastService;
-import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
-import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.message.facade.GameFacade;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
+import com.snowcattle.game.service.net.broadcast.GameTcpBroadCastService;
+import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.ssl.SSLService;
+import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerService;
 import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerService;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
@@ -92,6 +93,9 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     @Autowired
     private GameTcpBroadCastService gameTcpBroadCastService;
+
+    @Autowired
+    private LifeCycleCheckService lifeCycleCheckService;
 
     public RPCFutureService getRPCFutureService() {
 		return RPCFutureService;
@@ -253,5 +257,13 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
 
     public void setGameTcpBroadCastService(GameTcpBroadCastService gameTcpBroadCastService) {
         this.gameTcpBroadCastService = gameTcpBroadCastService;
+    }
+
+    public LifeCycleCheckService getLifeCycleCheckService() {
+        return lifeCycleCheckService;
+    }
+
+    public void setLifeCycleCheckService(LifeCycleCheckService lifeCycleCheckService) {
+        this.lifeCycleCheckService = lifeCycleCheckService;
     }
 }

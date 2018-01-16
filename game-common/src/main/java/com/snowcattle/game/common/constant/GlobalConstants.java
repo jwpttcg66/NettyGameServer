@@ -1,5 +1,7 @@
 package com.snowcattle.game.common.constant;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author b053-mac
  * 全局变量
@@ -42,16 +44,6 @@ public class GlobalConstants {
      */
     public static class QueueMessageExecutor{
         public static final boolean processLeft = true;
-    }
-
-
-    /**
-     * 地图移动
-     *
-     */
-    public static class MapMove{
-        /**移动的最小广播距离*/
-        public static int MINI_MOVE_INTERVAL_TIME = 1000;
     }
 
     /**
@@ -173,4 +165,9 @@ public class GlobalConstants {
 
     }
 
+    public static class WheelTimer{
+        public static final int tickDuration = 20;
+        public static final TimeUnit timeUnit = TimeUnit.SECONDS;
+        public static final int ticksPerWheel = 60;
+    }
 }

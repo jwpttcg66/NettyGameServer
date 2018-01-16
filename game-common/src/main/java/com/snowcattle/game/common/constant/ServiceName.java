@@ -25,4 +25,5 @@ public class ServiceName {
     public static final String NetTcpSessionLoopUpService = "NetTcpSessionLoopUpService";
     public static final String AsyncNettyHttpHandlerService = "AsyncNettyHttpHandlerService";
     public static final String AsyncNettyWebSocketHandlerService = "AsyncWebSocketHandlerService";
+    public static final String LifeCycleCheckService = "LifeCycleCheckService";
 }
