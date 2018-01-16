@@ -40,6 +40,7 @@
         <GameThreadPool.version>1.1.5</GameThreadPool.version>
         <game-expression.version>1.1</game-expression.version>
         <future-listener.version>1.1</future-listener.version>
+        <wheel-timer.version>v1.0</wheel-timer.version>
         <disruptor.version>3.3.6</disruptor.version>
         <project.build.directory>target/classes/com</project.build.directory>
         <!--<project.build.directory>target</project.build.directory>-->
@@ -224,6 +225,12 @@
             <groupId>com.github.jwpttcg66</groupId>
             <artifactId>future-listener</artifactId>
             <version>${future-listener.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.jwpttcg66</groupId>
+            <artifactId>wheel-timer</artifactId>
+            <version>${wheel-timer.version}</version>
         </dependency>
 
 		<dependency>
