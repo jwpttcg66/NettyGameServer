@@ -75,7 +75,7 @@ public class NetTcpSessionLoopUpService implements IChannleLookUpService, IServi
 
     @Override
     public void shutdown() throws Exception {
-
+        sessions.clear();
     }
 
     public ConcurrentHashMap<Long, NettySession> getSessions() {

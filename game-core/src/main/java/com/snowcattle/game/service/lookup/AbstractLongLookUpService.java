@@ -35,4 +35,11 @@ public abstract class AbstractLongLookUpService<T extends ILongId> implements IL
         return tMap.remove(t.longId(), t);
     }
 
+    @Override
+    public void clear() {
+        if(log.isDebugEnabled()){
+            log.debug("clear "  + getClass().getSimpleName());
+        }
+        tMap.clear();
+    }
 }

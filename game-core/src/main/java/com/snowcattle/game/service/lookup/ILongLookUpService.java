@@ -25,4 +25,9 @@ public interface ILongLookUpService<T extends ILongId> {
      * @return
      */
     public boolean removeT(T t);
+
+    /**
+     * 清除所有
+     */
+    public void clear();
 }
