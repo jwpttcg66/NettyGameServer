@@ -39,8 +39,11 @@ public class RPCFutureService implements IService {
 				for (Entry<String, RPCFuture> entry : entrySet) {
 					RPCFuture rpcFuture = entry.getValue();
 					if(rpcFuture.isTimeout()){
-						pendingRPC.remove(entry.getKey());
-						rpcFuture.cancel(false);
+						String requestId = entry.getKey();
+						boolean removeFlag = removeRPCFuture(requestId, rpcFuture);
+						if(removeFlag) {
+//							rpcFuture.done(rpcResponse);
+						}
 					}
 				}
 			}
