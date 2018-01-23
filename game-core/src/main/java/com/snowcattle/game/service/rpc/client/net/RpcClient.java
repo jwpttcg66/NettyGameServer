@@ -38,8 +38,7 @@ public class RpcClient
     }
 
     public void close(){
-        logger.error("rpc client close");
-//        pendingRPC.clear();
+        logger.info("rpc client close");
         if(rpcClientConnection != null) {
             rpcClientConnection.close();
         }
@@ -50,8 +49,13 @@ public class RpcClient
         RPCFutureService rpcFutureService = LocalMananger.getInstance().getLocalSpringServiceManager().getRPCFutureService();
         RPCFuture rpcFuture = rpcFutureService.getRPCFuture(requestId);
         if (rpcFuture != null) {
-            rpcFutureService.removeRPCFuture(requestId);
-            rpcFuture.done(rpcResponse);
+            boolean removeFlag = rpcFutureService.removeRPCFuture(requestId, rpcFuture);
+            if(removeFlag) {
+                rpcFuture.done(rpcResponse);
+            }else{
+                //表示服务器已经处理过了,可能已经超时了
+                logger.error("rpcFuture is remove " + requestId);
+            }
         }
     }
 
