@@ -4,8 +4,6 @@ import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.net.http.NetHttpServerConfig;
-import com.snowcattle.game.service.net.http.SdHttpServerConfig;
 import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
 import com.snowcattle.game.service.net.websocket.SdWebSocketServerConfig;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
@@ -16,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class AsyncNettyWebSocketHandlerService implements IService {
+public class AsyncNettyWebSocketHandlerExecutorService implements IService {
 
     /**
      * handler线程组

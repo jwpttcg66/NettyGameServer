@@ -5,7 +5,7 @@ import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.net.tcp.handler.GameLoggingHandler;
-import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerService;
+import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerExecutorService;
 import com.snowcattle.game.service.net.websocket.handler.async.AsyncWebSocketFrameServerHandler;
 import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
@@ -34,8 +34,8 @@ public class GameNetProtoMessageWebSocketServerChannelInitializer  extends Chann
             channelPipLine.addLast("logger", new GameLoggingHandler(LogLevel.DEBUG));
         }
 
-        AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyWebSocketHandlerService();
-        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketServerHandler, new WebSocketServerHandler());
-        channelPipLine.addLast(asyncNettyWebSocketHandlerService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketFrameServerHandler, new AsyncWebSocketFrameServerHandler());
+        AsyncNettyWebSocketHandlerExecutorService asyncNettyWebSocketHandlerExecutorService = LocalMananger.getInstance().getLocalSpringServiceManager().getAsyncNettyWebSocketHandlerExecutorService();
+        channelPipLine.addLast(asyncNettyWebSocketHandlerExecutorService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketServerHandler, new WebSocketServerHandler());
+        channelPipLine.addLast(asyncNettyWebSocketHandlerExecutorService.getDefaultEventExecutorGroup(), GlobalConstants.ChannelPipeline.WebSocketFrameServerHandler, new AsyncWebSocketFrameServerHandler());
     }
 }

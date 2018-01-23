@@ -5,10 +5,7 @@ import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.exception.CodecException;
 import com.snowcattle.game.common.exception.GameHandlerException;
 import com.snowcattle.game.common.exception.NetMessageException;
-import com.snowcattle.game.executor.common.utils.Constants;
-import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventParam;
-import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.service.event.GameAsyncEventService;
 import com.snowcattle.game.service.event.impl.SessionRegisterEvent;
@@ -22,12 +19,10 @@ import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 import com.snowcattle.game.service.net.tcp.session.builder.NettyTcpSessionBuilder;
 import com.snowcattle.game.service.net.websocket.handler.WebSocketServerHandler;
-import com.snowcattle.game.service.update.NettyTcpSerssionUpdate;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.websocketx.*;
 import org.slf4j.Logger;
 
@@ -110,6 +105,8 @@ public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandle
             } catch (CodecException e) {
                 e.printStackTrace();
             }
+
+            binaryWebSocketFrame.release();
 
             Channel channel = ctx.channel();
             //装配session

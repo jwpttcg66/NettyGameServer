@@ -15,7 +15,7 @@ import com.snowcattle.game.service.net.broadcast.GameTcpBroadCastService;
 import com.snowcattle.game.service.net.http.handler.async.AsyncNettyHttpHandlerService;
 import com.snowcattle.game.service.net.ssl.SSLService;
 import com.snowcattle.game.service.net.tcp.handler.async.AsyncNettyTcpHandlerService;
-import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerService;
+import com.snowcattle.game.service.net.websocket.handler.async.AsyncNettyWebSocketHandlerExecutorService;
 import com.snowcattle.game.service.rpc.client.RPCFutureService;
 import com.snowcattle.game.service.rpc.client.RpcProxyService;
 import com.snowcattle.game.service.rpc.server.RemoteRpcHandlerService;
@@ -89,7 +89,7 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
     private AsyncNettyHttpHandlerService asyncNettyHttpHandlerService;
 
     @Autowired
-    private AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService;
+    private AsyncNettyWebSocketHandlerExecutorService asyncNettyWebSocketHandlerExecutorService;
 
     @Autowired
     private GameTcpBroadCastService gameTcpBroadCastService;
@@ -243,12 +243,12 @@ public class LocalSpringServiceManager extends AbstractSpringStart{
         this.asyncNettyHttpHandlerService = asyncNettyHttpHandlerService;
     }
 
-    public AsyncNettyWebSocketHandlerService getAsyncNettyWebSocketHandlerService() {
-        return asyncNettyWebSocketHandlerService;
+    public AsyncNettyWebSocketHandlerExecutorService getAsyncNettyWebSocketHandlerExecutorService() {
+        return asyncNettyWebSocketHandlerExecutorService;
     }
 
-    public void setAsyncNettyWebSocketHandlerService(AsyncNettyWebSocketHandlerService asyncNettyWebSocketHandlerService) {
-        this.asyncNettyWebSocketHandlerService = asyncNettyWebSocketHandlerService;
+    public void setAsyncNettyWebSocketHandlerExecutorService(AsyncNettyWebSocketHandlerExecutorService asyncNettyWebSocketHandlerExecutorService) {
+        this.asyncNettyWebSocketHandlerExecutorService = asyncNettyWebSocketHandlerExecutorService;
     }
 
     public GameTcpBroadCastService getGameTcpBroadCastService() {
