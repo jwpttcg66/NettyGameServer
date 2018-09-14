@@ -43,13 +43,9 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
 
     @Override
     public void processNetMessage() {
-        if (isSuspendedProcess()) {
-            return;
-        }
-
         int i = 0;
         AbstractNetProtoBufMessage message;
-        while ((message = netMessagesQueue.poll())!= null && i < GlobalConstants.Constants.session_prcoss_message_max_size) {
+        while (!isSuspendedProcess() && (message = netMessagesQueue.poll())!= null && i < GlobalConstants.Constants.session_prcoss_message_max_size) {
             i++;
             statisticsMessageCount++;
             NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
