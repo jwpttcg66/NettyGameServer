@@ -92,9 +92,9 @@ public class AsyncEventService {
 
     public void shutDown(){
 
-        eventLogger.info("AsyncEventService eventbus" + this + " stopping ...");
+        eventLogger.info("AsyncEventService eventbus " + this + " stopping ...");
         eventBus.clear();
-        eventLogger.info("AsyncEventService worker" + this + " stopping ...");
+        eventLogger.info("AsyncEventService worker " + this + " stopping ...");
         if (this.executorService != null) {
             ExecutorUtil.shutdownAndAwaitTermination(this.executorService, 60,
                     TimeUnit.MILLISECONDS);

@@ -46,7 +46,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
     public void reload() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         String packageName = gameServerConfigService.getGameServerConfig().getRpcServicePackage();
-        loadPackage(gameServerConfigService.getGameServerConfig().getRpcServicePackage(),
+        loadPackage(packageName,
                 GlobalConstants.FileExtendConstants.Ext);
     }
 
