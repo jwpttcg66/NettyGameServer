@@ -10,13 +10,13 @@ mvn clean package -Dmaven.test.skip=true
 
 #### tar
 mkdir  bin/temp
-mv $target_path/lib bin/temp/
-mv $target_path/resource bin/temp/
+mv ${target_path}/lib bin/temp/
+mv ${target_path}/resource bin/temp/
 cp bin/config/launch.sh  bin/temp/
 
 cd bin/temp
-tar -zcvf netty_game_server$file_end.tar.gz  ./*
-mv netty_game_server$file_end.tar.gz ../
+tar -zcvf netty_game_server${file_end}.tar.gz  ./*
+mv netty_game_server${file_end}.tar.gz ../
 cd ..
 #### clean
 rm -rf temp
