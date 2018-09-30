@@ -70,7 +70,7 @@
     <module>game-common</module>
   </modules>
 
-  <!-- define all dependencies version , submodule chooses with demands -->
+  <!-- define all dependencies version , submodule chooses on demands -->
   <dependencyManagement>
     <dependencies>
       <dependency>
