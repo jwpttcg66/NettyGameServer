@@ -1,7 +1,9 @@
 package com.snowcattle.game.template;
 
 
+import com.snowcattle.game.template.utils.FileConentFactory;
 import com.snowcattle.game.template.utils.FileContent;
+import com.snowcattle.game.template.utils.FileContentFactoryImpl;
 import com.snowcattle.game.template.utils.FileUtils;
 import com.snowcattle.game.template.xml.MacroObject;
 import com.snowcattle.game.template.xml.MessageObject;
@@ -19,8 +21,10 @@ public class MessageGenerator {
 	private static String xmlPath = "config/model/";
 	private static String vmPath = "config/template/";
 	private static String encode = "UTF-8";
-	
+
 	private static String outputProjectPath = "game-code-generate/src/main/java/";
+
+	private static FileConentFactory fileConentFactory = new FileContentFactoryImpl();
 
 	public static List<MacroObject> formats = new ArrayList<>();
 	public static void main(String[] args) {
@@ -41,10 +45,8 @@ public class MessageGenerator {
 
 		Converter converter = new Converter(vmPath, encode);
 		for(MacroObject msgObj : formats){
-			FileContent fileContent = new FileContent();
-			fileContent.setContent(converter.convert(msgObj));
-			fileContent.setFileName(msgObj.getOutputFileName());
-			fileContent.setFilePath(outputProjectPath + msgObj.getPackPath() + "/");
+            FileContent fileContent = fileConentFactory.create(msgObj.getOutputFileName(), converter.convert(msgObj),
+                                                                outputProjectPath + msgObj.getPackPath() + "/");
 			try {
 				FileUtils.writeToFile(fileContent);
 				System.out.println("已生成"+msgObj.getOutputFileName());
@@ -64,10 +66,8 @@ public class MessageGenerator {
 
 		Converter converter = new Converter(vmPath, encode);
 		for(MessageObject msgObj : templateformats){
-			FileContent fileContent = new FileContent();
-			fileContent.setContent(converter.convert(msgObj));
-			fileContent.setFileName(msgObj.getOutputFileName());
-			fileContent.setFilePath(outputProjectPath + msgObj.getPackPath() + "/");
+            FileContent fileContent = fileConentFactory.create(msgObj.getOutputFileName(), converter.convert(msgObj),
+                                                               outputProjectPath + msgObj.getPackPath() + "/");
 			try {
 				FileUtils.writeToFile(fileContent);
 				System.out.println("已生成"+msgObj.getOutputFileName());

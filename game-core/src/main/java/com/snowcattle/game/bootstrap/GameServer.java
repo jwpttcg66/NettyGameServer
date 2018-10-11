@@ -142,7 +142,7 @@ public class GameServer extends AbstractServerService {
         });
     }
 
-    public static void main(String[] args) {;
+    public static void main(String[] args) {
         GameServer server = new GameServer();
         server.startServer();
     }

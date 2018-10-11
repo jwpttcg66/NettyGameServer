@@ -32,6 +32,7 @@ public class PackageScaner
 
 	public static String[] scanNamespaceFiles(String namespace, String fileext,boolean isReturnCanonicalPath, boolean checkSub)
 	{
+		logger.debug("namespace,{}",namespace);
 		String respath = namespace.replace('.', '/');
 		respath = respath.replace('.', '/');
 
