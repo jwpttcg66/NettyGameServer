@@ -4,11 +4,7 @@ import com.snowcattle.game.db.service.common.uuid.SnowFlakeUUIDService;
 import com.snowcattle.game.db.service.jdbc.entity.Order;
 import com.snowcattle.game.db.service.jdbc.service.entity.impl.OrderService;
 import com.snowcattle.game.db.service.jdbc.test.TestConstants;
-import com.snowcattle.game.db.service.proxy.EntityProxyFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jiangwenping on 17/3/20.

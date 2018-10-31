@@ -187,7 +187,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
         //只有数据变化的时候才会更新
         if (entityProxyWrapper != null && entityProxyWrapper.getEntityProxy().isDirtyFlag()) {
             hashMap.putAll(entityProxyWrapper.getEntityProxy().getChangeParamSet());
-            IDBMapper<T> idbMapper = getTemplateMapper((T) entity);
+            IDBMapper<T> idbMapper = getTemplateMapper(entity);
             try {
                 idbMapper.updateEntityByMap(hashMap);
             } catch (Exception e) {
@@ -327,7 +327,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
                 CustomerContextHolder.setCustomerType(getEntityServiceShardingStrategy().getShardingDBKeyByUserId(selectId));
                 int sharding_table_index = getEntityServiceShardingStrategy().getShardingDBTableIndexByUserId(selectId);
                 entity.setSharding_table_index(sharding_table_index);
-                IDBMapper<T> mapper = getBatchTemplateMapper(sqlSession, (T) entity);
+                IDBMapper<T> mapper = getBatchTemplateMapper(sqlSession, entity);
                 Map hashMap = new HashMap<>();
                 hashMap.put("sharding_table_index", sharding_table_index);
                 hashMap.put("userId", entity.getUserId());

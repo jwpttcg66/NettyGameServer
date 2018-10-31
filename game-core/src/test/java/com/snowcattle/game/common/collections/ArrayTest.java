@@ -12,7 +12,7 @@ public class ArrayTest {
 
         byte[] bytes = new byte[]{1,4,3};
         Arrays.sort(bytes);
-        System.out.println(bytes);
+        System.out.println(Arrays.toString(bytes));
 
         char[] chars = new char[]{'d','3', 'e'};
         String dest = Arrays.toString(chars);

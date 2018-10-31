@@ -202,7 +202,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 		List<ZooKeeperNodeInfo> tempNodeList = new ArrayList<>();
         for (String node: childrens){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo();
-            byte[] bytes = client.getData().forPath(zooKeeperNodeBoEnum.getRootPath()+"/"+node);
+            byte[] bytes = client.getData().forPath(zooKeeperNodeBoEnum.getRootPath() + '/' + node);
             if(bytes != null) {
                 zooKeeperNodeInfo.deserialize(new String(bytes));
                 tempNodeList.add(zooKeeperNodeInfo);

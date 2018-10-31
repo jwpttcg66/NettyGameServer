@@ -1,7 +1,6 @@
 package com.snowcattle.game.service.net.http.handler.async;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
-import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.ServiceName;
 import com.snowcattle.game.service.IService;
 import com.snowcattle.game.service.config.GameServerConfigService;

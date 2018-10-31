@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.dict;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.snowcattle.game.common.constant.GlobalConstants;
@@ -37,9 +38,9 @@ public class DictService implements IService{
         String filePath = GlobalConstants.ConfigFile.DICT_ROOT_FILE;
         String jsonString = ResourceUtil.getTextFormResourceNoException(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
-            JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
+            JSONObject jsonObject = (JSONObject) JSON.parse(jsonString);
             String packages = jsonObject.getString(GlobalConstants.JSONFile.dict_package);
-            JSONArray jsonArray = (JSONArray) jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
+            JSONArray jsonArray = jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
             JSONArray[] dictModle = jsonArray.toArray(new JSONArray[0]);
             for(JSONArray dictModleJsonArray: dictModle){
                 String enumString = dictModleJsonArray.get(0).toString();
@@ -56,7 +57,7 @@ public class DictService implements IService{
                     JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
                     boolean multiKey = Boolean.parseBoolean(multiKeyString);
                     if(bodyJson != null) {
-                        Class classes = Class.forName(packages + "." + className);
+                        Class classes = Class.forName(packages + '.' + className);
                         if (multiKey) {
                             JSONArray[] dictModleJsonArrays = bodyJson.toArray(new JSONArray[0]);
                             DictArrayMaps dictMap = new DictArrayMaps();
@@ -132,7 +133,6 @@ public class DictService implements IService{
     /**
      * 获取数据集合
      * @param dictModleType
-     * @param id
      * @return
      */
     public IDictCollections getIDictCollections(String dictModleType){

@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/aop
-						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context.xsd
-						http://www.springframework.org/schema/tx
-						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- ************************ 全局配置信息 ************************ -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
@@ -32,7 +22,7 @@
         <constructor-arg index="1" value="192.168.0.108" />
         <constructor-arg index="2" value="6379" />
         <constructor-arg index="3" value="3000" />
-        <constructor-arg index="4" value="" ></constructor-arg>
+        <constructor-arg index="4" value=""/>
         <constructor-arg index="5" value="0" />
     </bean>
 

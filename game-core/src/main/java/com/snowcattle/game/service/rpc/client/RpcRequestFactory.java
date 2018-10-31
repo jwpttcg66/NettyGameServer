@@ -43,7 +43,7 @@ public class RpcRequestFactory {
         return request;
     }
 
-    private Class<?> getClassType(Object obj){
+    private static Class<?> getClassType(Object obj){
         Class<?> classType = obj.getClass();
         String typeName = classType.getName();
         switch (typeName){

@@ -1,8 +1,5 @@
 package com.snowcattle.game.common.codec.client;
 
-import com.snowcattle.game.common.socket.client.LengthStringClientChannleInitializer;
-import com.snowcattle.game.common.socket.client.NetMessageClientChannelInitializer;
-import com.snowcattle.game.common.socket.client.StringClientChannelInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;

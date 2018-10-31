@@ -60,7 +60,6 @@ public class UpdateEventCacheService {
 
     public static void releaseUpdateEvent(UpdateEvent updateEvent) {
         if (!poolOpenFlag) {
-            updateEvent = null;
             return;
         }
         updateEventCacheFactory.returnObject(updateEvent);

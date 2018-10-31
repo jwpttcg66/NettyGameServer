@@ -28,7 +28,7 @@ public class BindThreadUpdateExecutorService extends  FinalizableDelegatedExecut
     private static final int ST_SHUTDOWN = 4;
     private static final int ST_TERMINATED = 5;
 
-    private final AtomicIntegerFieldUpdater<BindThreadUpdateExecutorService> STATE_UPDATER =  AtomicIntegerFieldUpdater.newUpdater(BindThreadUpdateExecutorService.class, "state");;
+    private static final AtomicIntegerFieldUpdater<BindThreadUpdateExecutorService> STATE_UPDATER =  AtomicIntegerFieldUpdater.newUpdater(BindThreadUpdateExecutorService.class, "state");;
 
     private volatile int state = ST_NOT_STARTED;
 

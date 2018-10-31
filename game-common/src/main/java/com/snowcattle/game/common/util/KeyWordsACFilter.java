@@ -92,8 +92,8 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 			queues.add(node);
 			node.failNode = dfaEntrance;// 失效节点指向状态机初始状态
 		}
-		DFANode curNode = null;
-		DFANode failNode = null;
+		DFANode curNode;
+		DFANode failNode;
 		while (!queues.isEmpty()) {
 			curNode = queues.remove(0);// 该节点的失效节点已计算
 			failNode = curNode.failNode;
@@ -129,10 +129,10 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 		boolean _filted = false;
 
 		DFANode currentDFANode = dfaEntrance;
-		DFANode _next = null;
+		DFANode _next;
 		int replaceFrom = 0;
 		for (int i = 0; i < input.length; i++) {
-			final Character _lc = this.toLowerCaseWithoutConfict(input[i]);
+			final Character _lc = KeyWordsACFilter.toLowerCaseWithoutConfict(input[i]);
 			_next = currentDFANode.dfaTransition.get(_lc);
 			while (_next == null && currentDFANode != dfaEntrance) {
 				currentDFANode = currentDFANode.failNode;
@@ -169,9 +169,9 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	public boolean contain(final String inputMsg) {
 		char[] input = inputMsg.toCharArray();
 		DFANode currentDFANode = dfaEntrance;
-		DFANode _next = null;
+		DFANode _next;
 		for (int i = 0; i < input.length; i++) {
-			final Character _lc = this.toLowerCaseWithoutConfict(input[i]);
+			final Character _lc = KeyWordsACFilter.toLowerCaseWithoutConfict(input[i]);
 			_next = currentDFANode.dfaTransition.get(_lc);
 			while (_next == null && currentDFANode != dfaEntrance) {
 				currentDFANode = currentDFANode.failNode;
@@ -205,7 +205,7 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	 * @param c
 	 * @return
 	 */
-	private char toLowerCaseWithoutConfict(final char c) {
+	private static char toLowerCaseWithoutConfict(final char c) {
 		return (c == ignowLowerCaseChars[0] || c == ignowLowerCaseChars[1]) ? c
 				: Character.toLowerCase(c);
 	}

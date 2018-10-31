@@ -56,8 +56,8 @@ public class RpcMethodRegistry implements Reloadable, IService {
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
@@ -66,7 +66,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 if(rpcServiceAnnotation != null) {
                     String interfaceName = messageClass.getAnnotation(RpcServiceAnnotation.class).value().getName();
                     ProtostuffSerializeI rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-                    Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
+                    Object serviceBean = rpcSerialize.newInstance(messageClass);
                     registryMap.put(interfaceName, serviceBean);
                     logger.info("rpc register:" + messageClass);
                 }

@@ -22,7 +22,7 @@ public class MD5Util {
 	/**
 	 * 验证MD5密码是否正确
 	 *
-	 * @param pass
+	 * @param md5
 	 * @param inputString
 	 * @return
 	 */
@@ -54,9 +54,9 @@ public class MD5Util {
 				byte[] _results = md.digest(_byteStr);
 				StringBuffer _hexValue = new StringBuffer();
 				for (int i = 0; i < _results.length; i++) {
-					int _val = ((int)_results[i]) & 0xff;
+					int _val = _results[i] & 0xff;
 					if(_val < 16){
-						_hexValue.append("0");
+						_hexValue.append('0');
 					}
 					_hexValue.append(Integer.toHexString(_val));
 				}

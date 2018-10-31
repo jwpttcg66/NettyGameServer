@@ -9,6 +9,7 @@ import com.snowcattle.game.executor.update.entity.AbstractUpdate;
  */
 public class TcpNetStateUpdate extends AbstractUpdate {
 
+    private static final long serialVersionUID = 8114145039789355085L;
     public volatile TcpNetState state = TcpNetState.CONNECTED;
 
     @Override
@@ -20,10 +21,8 @@ public class TcpNetStateUpdate extends AbstractUpdate {
 
         if(state == TcpNetState.DISCONNECTING){
             setDisconnected();
-            return;
         }else if(state == TcpNetState.DISCONNECTED){
             processDisconnect();
-            return;
         }
     }
 

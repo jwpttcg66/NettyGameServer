@@ -52,8 +52,7 @@ public class TimeUtils {
 	/** 年月日，格式如1970-07-10 */
 	private static final DateFormat ymdFormat = new SimpleDateFormat(
 			"yyyy-MM-dd");
-	/** 小时和分钟数，格式如10:20 */
-	
+
 	/**
 	 * 默认的日期格式
 	 */
@@ -724,7 +723,7 @@ public class TimeUtils {
 	 * @return
 	 */
 	public static int getDayOfTheWeekNum(long now) {
-		int dayNum = 0;
+		int dayNum;
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(now);
 		dayNum = c.get(Calendar.DAY_OF_WEEK);
@@ -738,7 +737,6 @@ public class TimeUtils {
 	/**
 	 * 格式化输出日期
 	 * @param date
-	 * @param format
 	 */
 	public static String dateToString(Date date){
 		SimpleDateFormat time = new SimpleDateFormat(DEFAULT_DATE_FAMAT);

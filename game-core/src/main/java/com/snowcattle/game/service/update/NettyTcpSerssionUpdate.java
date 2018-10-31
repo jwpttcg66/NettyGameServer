@@ -10,6 +10,7 @@ import com.snowcattle.game.service.net.tcp.session.TcpNetState;
  */
 public class NettyTcpSerssionUpdate extends AbstractUpdate<Long> {
 
+    private static final long serialVersionUID = -4490585465336581804L;
     private NettyTcpSession nettyTcpSession;
 
     public NettyTcpSerssionUpdate(NettyTcpSession nettyTcpSession) {

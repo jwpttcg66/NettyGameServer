@@ -4,7 +4,7 @@ package com.snowcattle.game.common.util;
 public class NumberUtil {
 	
 	public static long merge(int hi,int lo){
-		long redoLong =0;
+		long redoLong;
 		long a1 = ((long)hi << 32) & 0xFFFFFFFF00000000L;
 		long b1 = lo & 0x00000000FFFFFFFFL;
 		redoLong = a1 | b1;

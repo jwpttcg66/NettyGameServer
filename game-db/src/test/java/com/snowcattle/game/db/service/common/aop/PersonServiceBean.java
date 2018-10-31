@@ -1,7 +1,5 @@
 package com.snowcattle.game.db.service.common.aop;
 
-import com.snowcattle.game.db.service.common.aop.Person;
-import com.snowcattle.game.db.service.common.aop.PersonService;
 import org.springframework.stereotype.Service;
 
 /**

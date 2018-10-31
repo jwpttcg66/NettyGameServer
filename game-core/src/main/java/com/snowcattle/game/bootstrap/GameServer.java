@@ -108,38 +108,35 @@ public class GameServer extends AbstractServerService {
 
     public void addShutdownHook(){
         // 注册停服监听器，用于执行资源的销毁等停服时的处理工作
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                logger.info("Begin to shutdown Game Server ");
-                // 设置GameServer关闭状态
-                GameServerRuntime.setShutdowning();
-                logger.info("GameServerRuntime shutdown:ok");
-                ServerStatusLog.getDefaultLog().logStoppping();
-                logger.info("ServerStatusLog shutdown:ok");
-                // 关闭游戏连接服务
-                try {
-                    LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
-                    localNetService.shutdown();
-                    logger.info("tcp server shutdown:ok");
-                    globalManager.stop();
-                    logger.info("GlobalManager.shutdown:ok");
-                    GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
-                    gamerServerStartFinishedService.shutdown();
-                    logger.info("GamerServerStartFinishedService.shutdown:ok");
-                } catch (Exception e) {
-                    logger.error("close connector service exception:", e);
-                } catch (Error e) {
-                    logger.error("close connector service error:", e);
-                } catch (Throwable e) {
-                    logger.error("close connector service throwable:", e);
-                }
-
-                ServerStatusLog.getDefaultLog().logStopped();
-                // 注销性能收集
-                logger.info("Game Server shutdowned");
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("Begin to shutdown Game Server ");
+            // 设置GameServer关闭状态
+            GameServerRuntime.setShutdowning();
+            logger.info("GameServerRuntime shutdown:ok");
+            ServerStatusLog.getDefaultLog().logStoppping();
+            logger.info("ServerStatusLog shutdown:ok");
+            // 关闭游戏连接服务
+            try {
+                LocalNetService localNetService = LocalMananger.getInstance().get(LocalNetService.class);
+                localNetService.shutdown();
+                logger.info("tcp server shutdown:ok");
+                globalManager.stop();
+                logger.info("GlobalManager.shutdown:ok");
+                GamerServerStartFinishedService gamerServerStartFinishedService = LocalMananger.getInstance().get(GamerServerStartFinishedService.class);
+                gamerServerStartFinishedService.shutdown();
+                logger.info("GamerServerStartFinishedService.shutdown:ok");
+            } catch (Exception e) {
+                logger.error("close connector service exception:", e);
+            } catch (Error e) {
+                logger.error("close connector service error:", e);
+            } catch (Throwable e) {
+                logger.error("close connector service throwable:", e);
             }
-        });
+
+            ServerStatusLog.getDefaultLog().logStopped();
+            // 注销性能收集
+            logger.info("Game Server shutdowned");
+        }));
     }
 
     public static void main(String[] args) {
@@ -152,9 +149,6 @@ public class GameServer extends AbstractServerService {
         logger.info(MemUtils.memoryInfo());
         String configFile = GlobalConstants.ConfigFile.GAME_SERVER_CONIFG;
         try {
-            /**
-             * 程序初始化程序缓存模块
-             */
 
             ServerStatusLog.getDefaultLog().logStarting();
             init(configFile);

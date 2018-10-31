@@ -12,11 +12,11 @@ public class ResourcePathUtil {
 	 */
 	public static String getRootPathWithoutSlash(String resourceFileName){
 		try{
-			String result = ResourcePathUtil.class.getResource("/"+resourceFileName).getPath();
+			String result = ResourcePathUtil.class.getResource('/' + resourceFileName).getPath();
 			return result;
 		}
 		catch(Exception e){
-			return System.getProperty("user.dir")+"/"+resourceFileName;
+			return System.getProperty("user.dir") + '/' + resourceFileName;
 		}
 	}
 

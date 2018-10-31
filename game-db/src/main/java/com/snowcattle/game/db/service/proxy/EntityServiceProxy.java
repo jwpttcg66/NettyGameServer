@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Created by jwp on 2017/3/23.
@@ -140,10 +141,10 @@ public class EntityServiceProxy<T extends EntityService>  implements MethodInter
             if(changeParamSet != null){
                 for(IEntity iEntity: list) {
                     boolean equalFlag = false;
-                    for (String fieldName : changeParamSet.keySet()) {
-                        String value = ObjectUtils.getFieldsValueStr(iEntity, fieldName);
+                    for (Entry<String, Object> stringObjectEntry : changeParamSet.entrySet()) {
+                        String value = ObjectUtils.getFieldsValueStr(iEntity, stringObjectEntry.getKey());
 
-                        Object object = changeParamSet.get(fieldName);
+                        Object object = stringObjectEntry.getValue();
                         if(value.equals(object.toString())){
                             equalFlag = true;
                         }else{

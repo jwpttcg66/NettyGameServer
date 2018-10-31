@@ -7,6 +7,8 @@ import com.snowcattle.game.message.logic.tcp.online.client.OnlineHeartClientTcpM
 import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
 
+import java.util.Arrays;
+
 /**
  * Created by jwp on 2017/1/26.
  */
@@ -28,7 +30,7 @@ public class NetMessageEncodeTest {
         abstractNetMessage.setNetMessageHead(netMessageHead);
 
         ByteBuf byteBuf = new NetMessageEncoderFactory().createByteBuf(abstractNetMessage);
-        System.out.println(byteBuf.array());
+        System.out.println(Arrays.toString(byteBuf.array()));
 
         //解析编码
         AbstractNetMessage decoderMesage = new NetTcpMessageDecoderFactory().praseMessage(byteBuf);

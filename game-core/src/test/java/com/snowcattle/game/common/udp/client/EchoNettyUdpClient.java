@@ -51,7 +51,7 @@ public class EchoNettyUdpClient {
         }));
 
         while (true){
-            Thread.currentThread().sleep(100l);
+            Thread.currentThread().sleep(100L);
         }
     }
 

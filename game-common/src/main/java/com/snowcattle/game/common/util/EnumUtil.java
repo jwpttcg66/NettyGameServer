@@ -25,7 +25,7 @@ public class EnumUtil {
 	 * @return 枚举元素
 	 */
 	public static <T extends Enum<T>> T valueOf(List<T> values, int index) {
-		T value = null;
+		T value;
 		try {
 			value = values.get(index);
 		} catch (Exception e) {

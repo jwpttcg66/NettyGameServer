@@ -1,20 +1,5 @@
 package com.snowcattle.game.common.util;
 
-/**
- * Copyright 2003-2005 the original author or authors.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -105,7 +90,7 @@ public class RegisterCode {
       //g.drawString(randNumber, x, y);
 	  for(int i=0;i<randNumber.length();i++){
 		  g.setFont(new Font(fontList.get(random.nextInt(fontList.size())), Font.PLAIN, fontSize));
-		g.drawString(randNumber.charAt(i)+"", x+(i*fontSize)+random.nextInt(5)-random.nextInt(5), y+random.nextInt(10));
+		g.drawString(String.valueOf(randNumber.charAt(i)), x + (i * fontSize) + random.nextInt(5) - random.nextInt(5), y + random.nextInt(10));
 	  }
 
 	  switch (random.nextInt(3))
@@ -138,7 +123,7 @@ public class RegisterCode {
       g.dispose();
 
       // 输出图象到页面
-      ImageIO.write( (BufferedImage) image, "JPEG", out);
+      ImageIO.write(image, "JPEG", out);
     } catch (Exception ex) {
       System.err.println("generate image error: " + ex);
     }
@@ -171,7 +156,7 @@ public class RegisterCode {
 	public static final StringBuffer _getSpace(int num){//获得空格
 		StringBuffer o=new StringBuffer(num);
 		for(int i=0;i<num;i++){
-			o.append(" ");
+			o.append(' ');
 		}
 		return o;
 	}

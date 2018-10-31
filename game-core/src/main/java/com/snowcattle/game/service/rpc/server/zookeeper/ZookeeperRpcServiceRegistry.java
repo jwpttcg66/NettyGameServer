@@ -107,11 +107,7 @@ public class ZookeeperRpcServiceRegistry implements IService{
      *@throws InterruptedException
      */
     public String createRootNode(String path,byte[] data) throws  Exception{
-        /**
-         * 此处采用的是CreateMode是PERSISTENT  表示The znode will not be automatically deleted upon client's disconnect.
-         * EPHEMERAL 表示The znode will be deleted upon the client's disconnect.
-         */
-       return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
     }
 
 
@@ -126,10 +122,6 @@ public class ZookeeperRpcServiceRegistry implements IService{
      *@throws InterruptedException
      */
     public String create(String path,byte[] data) throws  Exception{
-        /**
-         * 此处采用的是CreateMode是PERSISTENT  表示The znode will not be automatically deleted upon client's disconnect.
-         * EPHEMERAL 表示The znode will be deleted upon the client's disconnect.
-         */
         return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
     }
 

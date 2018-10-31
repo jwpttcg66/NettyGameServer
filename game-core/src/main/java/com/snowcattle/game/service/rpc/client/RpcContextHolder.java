@@ -9,11 +9,11 @@ public class RpcContextHolder {
     private static  final ThreadLocal<RpcContextHolderObject> contextHolder = new ThreadLocal<RpcContextHolderObject>();
 
     public  static RpcContextHolderObject getContext() {
-        return (RpcContextHolderObject) contextHolder.get();
+        return contextHolder.get();
     }
     /**
      * 通过字符串选择数据源
-     * @param customerType
+     * @param rpcContextHolderObject
      */
     public static void setContextHolder(RpcContextHolderObject rpcContextHolderObject) {
         contextHolder.set(rpcContextHolderObject);

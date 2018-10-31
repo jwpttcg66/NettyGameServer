@@ -67,7 +67,7 @@ public class FileClassLoader extends ClassLoader {
 
     private static byte[] getBytesFromInput(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        int rd = 0;
+        int rd;
         int len = 0;
         byte[] buf = new byte[64];
         while((rd = in.read(buf)) != -1){

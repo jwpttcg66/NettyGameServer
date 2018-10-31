@@ -1,7 +1,6 @@
 package com.snowcattle.game.service.event.impl;
 
 import com.snowcattle.game.executor.event.EventParam;
-import com.snowcattle.game.executor.event.EventType;
 import com.snowcattle.game.executor.event.SingleEvent;
 import com.snowcattle.game.service.event.SingleEventConstants;
 

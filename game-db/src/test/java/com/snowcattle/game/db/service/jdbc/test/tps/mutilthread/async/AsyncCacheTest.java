@@ -5,7 +5,6 @@ import com.snowcattle.game.db.service.common.uuid.SnowFlakeUUIDService;
 import com.snowcattle.game.db.service.jdbc.service.entity.impl.OrderService;
 import com.snowcattle.game.db.service.jdbc.test.tps.mutilthread.SaveRunable;
 import com.snowcattle.game.db.service.proxy.EntityAysncServiceProxyFactory;
-import com.snowcattle.game.db.service.proxy.EntityServiceProxyFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.concurrent.CountDownLatch;

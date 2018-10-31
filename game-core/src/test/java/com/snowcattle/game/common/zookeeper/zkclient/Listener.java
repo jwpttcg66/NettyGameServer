@@ -10,11 +10,10 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 
 public class Listener implements Runnable{
 
-	private String path;
-	private ZkClient zkClient = new ZkClient("127.0.0.1:2181");;
-	
+	private final String path;
+	private final ZkClient zkClient = new ZkClient("127.0.0.1:2181");
+
 	public Listener(String path, ZkClient z) {
-		super();
 		this.path = path;
 		//zkClient = z;
 	}
@@ -23,7 +22,7 @@ public class Listener implements Runnable{
 	public void run() {
 		while (true) {
 			try {
-				new Thread().sleep(3000l);
+				Thread.sleep(3000L);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

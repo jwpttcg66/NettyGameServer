@@ -35,42 +35,38 @@ public abstract class AbstractRpcConnectManager {
         int threadSize = gameServerConfigService.getGameServerConfig().getRpcConnectThreadSize();
         threadPoolExecutor = new ThreadPoolExecutor(threadSize, threadSize, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
     }
-    public void initServers(List<SdServer> allServerAddress) throws InterruptedException {
+    public synchronized void initServers(List<SdServer> allServerAddress) throws InterruptedException {
         //增加同步，当前
-        synchronized (this) {
-            if (allServerAddress != null) {
+        if (allServerAddress != null) {
 //                serverNodes.clear();
-                for (SdServer sdServer : allServerAddress) {
-                    if(serverNodes.containsKey(sdServer.getServerId())){
-                        continue;
-                    }
-                    RpcNodeInfo rpcNodeInfo  = new RpcNodeInfo();
-                    rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
-                    rpcNodeInfo.setHost(sdServer.getIp());
-                    rpcNodeInfo.setPort(String.valueOf(sdServer.getRpcPort()));
-                    RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
-                    serverNodes.put(sdServer.getServerId(), rpcClient);
+            for (SdServer sdServer : allServerAddress) {
+                if (serverNodes.containsKey(sdServer.getServerId())) {
+                    continue;
                 }
+                RpcNodeInfo rpcNodeInfo = new RpcNodeInfo();
+                rpcNodeInfo.setServerId(String.valueOf(sdServer.getServerId()));
+                rpcNodeInfo.setHost(sdServer.getIp());
+                rpcNodeInfo.setPort(String.valueOf(sdServer.getRpcPort()));
+                RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
+                serverNodes.put(sdServer.getServerId(), rpcClient);
             }
         }
     }
 
-    public void initZookeeperRpcServers(List<ZooKeeperNodeInfo> zooKeeperNodeInfoList) throws InterruptedException {
+    public synchronized void initZookeeperRpcServers(List<ZooKeeperNodeInfo> zooKeeperNodeInfoList) throws InterruptedException {
         //增加同步，当前
-        synchronized (this) {
-            if (zooKeeperNodeInfoList != null) {
+        if (zooKeeperNodeInfoList != null) {
 //                serverNodes.clear();
-                for (ZooKeeperNodeInfo zooKeeperNodeInfo : zooKeeperNodeInfoList) {
-                    if(serverNodes.containsKey(zooKeeperNodeInfo.getServerId())){
-                        continue;
-                    }
-                    RpcNodeInfo rpcNodeInfo  = new RpcNodeInfo();
-                    rpcNodeInfo.setServerId(zooKeeperNodeInfo.getServerId());
-                    rpcNodeInfo.setHost(zooKeeperNodeInfo.getHost());
-                    rpcNodeInfo.setPort(zooKeeperNodeInfo.getPort());
-                    RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
-                    serverNodes.put(Integer.parseInt(zooKeeperNodeInfo.getServerId()), rpcClient);
+            for (ZooKeeperNodeInfo zooKeeperNodeInfo : zooKeeperNodeInfoList) {
+                if (serverNodes.containsKey(zooKeeperNodeInfo.getServerId())) {
+                    continue;
                 }
+                RpcNodeInfo rpcNodeInfo = new RpcNodeInfo();
+                rpcNodeInfo.setServerId(zooKeeperNodeInfo.getServerId());
+                rpcNodeInfo.setHost(zooKeeperNodeInfo.getHost());
+                rpcNodeInfo.setPort(zooKeeperNodeInfo.getPort());
+                RpcClient rpcClient = new RpcClient(rpcNodeInfo, threadPoolExecutor);
+                serverNodes.put(Integer.parseInt(zooKeeperNodeInfo.getServerId()), rpcClient);
             }
         }
     }

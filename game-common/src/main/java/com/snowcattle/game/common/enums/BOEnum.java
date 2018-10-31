@@ -1,9 +1,6 @@
 package com.snowcattle.game.common.enums;
 
 /**
- * Created by jwp on 2017/2/4.
- */
-/**
  * @author C172
  * BO 服务器对象类型
  */

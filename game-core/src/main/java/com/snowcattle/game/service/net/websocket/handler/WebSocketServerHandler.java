@@ -1,21 +1,11 @@
 package com.snowcattle.game.service.net.websocket.handler;
 
-import com.snowcattle.game.bootstrap.manager.LocalMananger;
-import com.snowcattle.game.common.config.GameServerConfig;
-import com.snowcattle.game.common.exception.CodecException;
-import com.snowcattle.game.logic.net.NetMessageProcessLogic;
-import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
-import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
-import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
-import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.DecoderResult;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
@@ -36,7 +26,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<HttpRequ
     @Override
     public void channelRead0(ChannelHandlerContext ctx, HttpRequest msg) {
 //        if (msg instanceof HttpRequest) {
-            handleHttpRequest(ctx, (HttpRequest) msg);
+            handleHttpRequest(ctx, msg);
 //        } else if (msg instanceof WebSocketFrame) {
 //            handleWebSocketFrame(ctx, (WebSocketFrame) msg);
 //        }

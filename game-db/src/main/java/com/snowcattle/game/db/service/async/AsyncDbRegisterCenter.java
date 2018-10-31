@@ -49,9 +49,9 @@ public class AsyncDbRegisterCenter implements IDbService{
 
         //必须先push再sadd
         String simapleClassName = entity.getClass().getSimpleName();
-        String aysncUnionKey = simapleClassName + "#" + unionKey;
+        String aysncUnionKey = simapleClassName + '#' + unionKey;
         redisService.rPushString(aysncUnionKey, asyncEntityWrapper.serialize());
-        redisService.saddString(AsyncRedisKeyEnum.ASYNC_DB.getKey() + dbSelectId + "#" + entity.getClass().getSimpleName(), aysncUnionKey);
+        redisService.saddString(AsyncRedisKeyEnum.ASYNC_DB.getKey() + dbSelectId + '#' + entity.getClass().getSimpleName(), aysncUnionKey);
     }
 
     /**

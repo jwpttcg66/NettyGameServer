@@ -55,9 +55,9 @@ public class ConfigUtil {
 		}
 		if (logger.isInfoEnabled()) {
 			logger.info("Load config [" + configClass + "] from [" + configURL
-					+ "]");
+                        + ']');
 		}
-		T _config = null;
+		T _config;
 		try {
 			_config = configClass.newInstance();
 		} catch (InstantiationException e1) {
@@ -76,13 +76,13 @@ public class ConfigUtil {
 		_bindings.put(NetTypeEnum.TCP.toString().toLowerCase(), NetTypeEnum.TCP);
 		_bindings.put(NetTypeEnum.UDP.toString().toLowerCase(), NetTypeEnum.UDP);
 		Reader _r = null;
-		String _scriptContent = null;
+		String _scriptContent;
 		try {
 			_r = new InputStreamReader(configURL.openStream(), "UTF-8");
 			_scriptContent = IOUtils.toString(_r);
 		} catch (IOException e) {
 			throw new IllegalStateException("Can't load config from url ["
-					+ configURL + "]");
+                                            + configURL + ']');
 		} finally {
 			IOUtils.closeQuietly(_r);
 		}

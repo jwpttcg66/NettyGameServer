@@ -2,7 +2,9 @@ package com.snowcattle.game.common.exception;
 
 public class NoEnoughValueException extends Exception {
 
-	public NoEnoughValueException() {
+    private static final long serialVersionUID = 8289893876272871973L;
+
+    public NoEnoughValueException() {
 	}
 
 	public NoEnoughValueException(String message) {

@@ -76,7 +76,7 @@ public class KeyValuePair<K,V> {
 
 	@Override
 	public String toString() {
-		return "KeyValuePair [key=" + key + ", value=" + value + "]";
+		return "KeyValuePair [key=" + key + ", value=" + value + ']';
 	}
 
 	@SuppressWarnings("unchecked")

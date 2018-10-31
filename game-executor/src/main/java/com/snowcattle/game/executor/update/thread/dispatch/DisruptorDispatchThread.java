@@ -103,7 +103,7 @@ public class DisruptorDispatchThread extends DispatchThread{
             int i = 0;
             long startTime = System.nanoTime();
             while (i < cycleSize) {
-                CycleEvent cycleEvent = null;
+                CycleEvent cycleEvent;
                 try {
                     cycleEvent = (CycleEvent) blockingQueue.take();
                     dispatch(cycleEvent);

@@ -1,9 +1,5 @@
 package com.snowcattle.game.executor.update.async;
 
-/**
- * Created by jiangwenping on 17/1/12.
- */
-
 import com.snowcattle.game.executor.event.CycleEvent;
 import com.snowcattle.game.executor.event.EventBus;
 import com.snowcattle.game.executor.event.EventParam;
@@ -58,8 +54,8 @@ public class AsyncUpdateBusTest {
 //        }
 //        updateService.shutDown();
         while (true) {
-            Thread.currentThread().sleep(100);
-            updateService.toString();
+            Thread.sleep(100);
+            System.out.println(updateService);
         }
 
     }

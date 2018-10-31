@@ -22,7 +22,7 @@ public class FileUtil {
 	 */
 	public static void createDir(File dir) {
 		if (!dir.exists() && !dir.mkdirs()) {
-			throw new RuntimeException("Can't create the dir [" + dir + "]");
+			throw new RuntimeException("Can't create the dir [" + dir + ']');
 		}
 	}
 
@@ -85,13 +85,13 @@ public class FileUtil {
 			out.putNextEntry(new ZipEntry(_entryName));
 			FileInputStream _fin = new FileInputStream(file);
 			byte[] _b = new byte[1024];
-			int len = 0;
+			int len;
 			while ((len = _fin.read(_b)) != -1) {
 				out.write(_b, 0, len);
 			}
 			_fin.close();
 		} else {
-			out.putNextEntry(new ZipEntry(_entryName + "/"));
+			out.putNextEntry(new ZipEntry(_entryName + '/'));
 			File[] _files = file.listFiles();
 			for (File _f : _files) {
 				zipFiles(_f, out, root);

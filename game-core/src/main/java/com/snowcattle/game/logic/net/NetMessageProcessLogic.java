@@ -6,7 +6,6 @@ import com.snowcattle.game.common.util.ErrorsUtil;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
-import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import com.snowcattle.game.service.message.facade.GameFacade;
@@ -20,11 +19,9 @@ import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
-import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
@@ -42,7 +39,7 @@ public class NetMessageProcessLogic {
         long begin = System.nanoTime();
         try {
             GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();
-            AbstractNetProtoBufMessage respone = null;
+            AbstractNetProtoBufMessage respone;
             respone = (AbstractNetProtoBufMessage) gameFacade.dispatch(message);
             if(respone != null) {
                 respone.setSerial(message.getNetMessageHead().getSerial());
@@ -132,7 +129,7 @@ public class NetMessageProcessLogic {
 
     public void processWebSocketMessage(AbstractNetMessage message, Channel channel){
 
-        AbstractNetProtoBufMessage respone = null;
+        AbstractNetProtoBufMessage respone;
         long begin = System.nanoTime();
         try {
             GameFacade gameFacade = LocalMananger.getInstance().getLocalSpringServiceManager().getGameFacade();

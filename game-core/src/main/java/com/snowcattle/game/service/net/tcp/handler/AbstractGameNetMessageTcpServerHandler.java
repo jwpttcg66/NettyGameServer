@@ -91,7 +91,7 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
         }
     }
 
-    private void disconnect(Channel channel) throws NetMessageException {
+    private static void disconnect(Channel channel) throws NetMessageException {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);

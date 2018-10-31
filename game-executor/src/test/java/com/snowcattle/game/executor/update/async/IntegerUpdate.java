@@ -8,6 +8,7 @@ import com.snowcattle.game.executor.common.utils.Loggers;
  */
 public class IntegerUpdate extends AbstractUpdate<Long> {
 
+    private static final long serialVersionUID = 3061631799252245500L;
     private long incrId;
 
     private  long maxSize;

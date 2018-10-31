@@ -22,7 +22,7 @@ public class RpcServerRegisterConfig {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    protected Object lock = new Object();
+    protected final Object lock = new Object();
 
     protected List<SdServer> sdWorldServers;
     protected List<SdServer> sdGameServers;

@@ -19,7 +19,7 @@ public class RpcHandlerThreadPool {
     private final Logger logger = Loggers.threadLogger;
     private ExecutorService executor;
 
-    private RejectedExecutionHandler createPolicy() {
+    private static RejectedExecutionHandler createPolicy() {
         RejectedPolicyType rejectedPolicyType = RejectedPolicyType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolRejectedPolicyAttr, "CallerRunsPolicy"));
 
         switch (rejectedPolicyType) {
@@ -38,7 +38,7 @@ public class RpcHandlerThreadPool {
         return null;
     }
 
-    private BlockingQueue<Runnable> createBlockingQueue(int queues) {
+    private static BlockingQueue<Runnable> createBlockingQueue(int queues) {
         BlockingQueueType queueType = BlockingQueueType.fromString(System.getProperty(RpcSystemConfig.SystemPropertyThreadPoolQueueNameAttr, "LinkedBlockingQueue"));
 
         switch (queueType) {

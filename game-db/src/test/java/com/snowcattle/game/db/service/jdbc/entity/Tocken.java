@@ -17,6 +17,8 @@ import com.snowcattle.game.db.service.jdbc.mapper.TockenMapper;
 @DbMapper(mapper = TockenMapper.class)
 public class Tocken extends BaseStringIDEntity implements RedisInterface{
 
+    private static final long serialVersionUID = -7982473729461839329L;
+
     @Override
     public String getUnionKey() {
         return getId();

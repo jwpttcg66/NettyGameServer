@@ -1,7 +1,5 @@
 package com.snowcattle.game.executor.update.service;
 
-import com.snowcattle.game.executor.update.service.UpdateService;
-
 import java.util.TimerTask;
 
 /**

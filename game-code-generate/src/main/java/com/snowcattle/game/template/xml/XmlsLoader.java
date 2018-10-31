@@ -31,8 +31,7 @@ public class XmlsLoader {
 				new MacroObject(macro);
 			}
 		}
-		
-		return;
+
 	}
 	
 	public static void loadFormat(String folderPath, List<MessageObject> list) throws JDOMException, IOException{

@@ -9,7 +9,6 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.snowcattle.game</groupId>
   <artifactId>game-core</artifactId>
   <version>${project.version}</version>
 

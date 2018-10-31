@@ -15,6 +15,7 @@ import com.snowcattle.game.db.util.EntityUtils;
 @DbMapper(mapper = OrderMapper.class)
 public class Order extends BaseLongIDEntity implements RedisInterface, AsyncSave {
 
+    private static final long serialVersionUID = -8850951957071270476L;
     @FieldSave
     private String status;
 

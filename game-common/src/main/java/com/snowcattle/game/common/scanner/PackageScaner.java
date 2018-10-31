@@ -39,10 +39,10 @@ public class PackageScaner
 		List<String> tmpNameList = new ArrayList<String>();
 		try
 		{
-			URL url = null;
+			URL url;
 			logger.info("scan url path " + respath);
 			if (!respath.startsWith("/"))
-				url = PackageScaner.class.getResource("/" + respath);
+				url = PackageScaner.class.getResource('/' + respath);
 			else
 				url = PackageScaner.class.getResource(respath);
 
@@ -96,7 +96,7 @@ public class PackageScaner
 					File[] fileArray = file.listFiles();
 					for (File f : fileArray)
 					{
-						if(f.isDirectory() && f.getName().indexOf(".")!=-1)
+						if(f.isDirectory() && f.getName().indexOf('.') != -1)
 							continue;
 						
 						if(isReturnCanonicalPath)
@@ -104,13 +104,13 @@ public class PackageScaner
 						else
 							tmpItemName = f.getName();
 						if(f.isDirectory()){
-							String[] inner = scanNamespaceFiles(namespace+"."+tmpItemName, fileext, isReturnCanonicalPath);
+							String[] inner = scanNamespaceFiles(namespace + '.' + tmpItemName, fileext, isReturnCanonicalPath);
 							if(inner == null){
 								continue;
 							}
 							for(String i : inner){
 								if(i!=null){
-									tmpNameList.add(tmpItemName+"."+i);
+									tmpNameList.add(tmpItemName + '.' + i);
 								}
 							}
 						}else if(fileext == null || tmpItemName.endsWith(fileext) )

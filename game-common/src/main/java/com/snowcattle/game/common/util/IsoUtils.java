@@ -75,8 +75,7 @@ public class IsoUtils {
 		}
 
 		g2d.dispose();
-		bufimage = null;
-	}
+    }
 
 	/**
 	 * 返回tile坐标对应的网格的中点坐标

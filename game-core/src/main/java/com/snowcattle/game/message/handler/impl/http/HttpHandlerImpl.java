@@ -1,18 +1,10 @@
 package com.snowcattle.game.message.handler.impl.http;
 
-import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
-import com.snowcattle.game.common.constant.Loggers;
-import com.snowcattle.game.logic.player.GamePlayer;
 import com.snowcattle.game.message.handler.AbstractMessageHandler;
 import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
-import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
-import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
-import com.snowcattle.game.service.lookup.GamePlayerLoopUpService;
 import com.snowcattle.game.service.message.AbstractNetMessage;
 import com.snowcattle.game.service.message.command.MessageCommandIndex;
-import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
-import com.snowcattle.game.service.net.tcp.session.NettyTcpSession;
 
 /**
  * Created by jiangwenping on 2017/9/30.

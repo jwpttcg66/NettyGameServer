@@ -1,7 +1,5 @@
 package com.snowcattle.game.db.service.common.aop;
-/**
- * Created by jwp on 2017/3/22.
- */
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Controller;

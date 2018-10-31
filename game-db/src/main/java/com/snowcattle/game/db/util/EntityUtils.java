@@ -40,7 +40,7 @@ public class EntityUtils {
 
     /**
      * 获取代理对象里面变化的值
-     * @param iEntity
+     * @param entity
      * @return
      */
     public static Map<String, String> getProxyChangedCacheValueMap(AbstractEntity entity){

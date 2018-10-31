@@ -5,8 +5,6 @@ import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServicerAfterManager;
-import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.message.command.MessageCommandFactory;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
