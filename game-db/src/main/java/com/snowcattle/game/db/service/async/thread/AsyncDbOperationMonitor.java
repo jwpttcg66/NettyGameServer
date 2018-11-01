@@ -1,7 +1,6 @@
 package com.snowcattle.game.db.service.async.thread;
 
 import com.snowcattle.game.db.common.Loggers;
-import com.snowcattle.game.db.service.entity.EntityService;
 import org.slf4j.Logger;
 
 import java.util.concurrent.atomic.AtomicLong;

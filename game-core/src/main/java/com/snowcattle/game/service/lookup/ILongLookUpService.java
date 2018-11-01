@@ -8,26 +8,26 @@ public interface ILongLookUpService<T extends ILongId> {
 
     /**
      * 查找
-     * @param Id
+     * @param id
      * @return
      */
-    public T lookup(long id);
+    T lookup(long id);
 
     /**
      * 增加
      * @param t
      */
-    public void addT(T t);
+    void addT(T t);
 
     /**
      * 移除
      * @param t
      * @return
      */
-    public boolean removeT(T t);
+    boolean removeT(T t);
 
     /**
      * 清除所有
      */
-    public void clear();
+    void clear();
 }

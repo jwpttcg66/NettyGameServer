@@ -10,6 +10,7 @@ import com.snowcattle.game.db.common.annotation.MethodSaveProxy;
 @EntitySave
 public class BaseStringIDEntity extends AbstractEntity<String> {
 
+    private static final long serialVersionUID = 4165629356522195369L;
     @FieldSave
     private String id;
 

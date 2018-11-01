@@ -1,6 +1,5 @@
 package com.snowcattle.game.executor.event.aysnc;
 
-import com.snowcattle.game.executor.common.utils.Constants;
 import com.snowcattle.game.executor.event.AbstractEventListener;
 
 /**

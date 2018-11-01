@@ -1,9 +1,6 @@
 package com.snowcattle.game.db.service.common.uuid;
 
 /**
- * Created by jiangwenping on 17/2/27.
- */
-/**
  * A snowflake is a source of k-ordered unique 64-bit integers.
  */
 public class Snowflake {

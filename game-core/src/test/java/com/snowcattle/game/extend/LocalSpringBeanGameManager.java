@@ -1,6 +1,5 @@
 package com.snowcattle.game.extend;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

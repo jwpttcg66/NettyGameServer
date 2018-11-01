@@ -19,9 +19,9 @@ public class CommonUtil {
         if (hex.length() == 1) {
           hex = '0' + hex;
         }
-        System.out.print(hex.toUpperCase() + " ");
+        System.out.print(hex.toUpperCase() + ' ');
       }
-      System.out.println("");
+      System.out.println();
    }
    /**
      *
@@ -29,15 +29,15 @@ public class CommonUtil {
      * @return String
      */
    public static String Bytes2HexString(byte[] b) {
-      String ret = "";
+      StringBuilder ret = new StringBuilder();
       for (int i = 0; i < b.length; i++) {
         String hex = Integer.toHexString(b[i] & 0xFF);
         if (hex.length() == 1) {
           hex = '0' + hex;
         }
-        ret += hex.toUpperCase();
+        ret.append(hex.toUpperCase());
       }
-      return ret;
+      return ret.toString();
    }
    /**
      * 将两个ASCII字符合成一个字节；
@@ -86,7 +86,7 @@ public class CommonUtil {
 		rateArray[0] = rate;
 		rateArray[1] = 100000 - rate;
 		int index = MathUtils.random(rateArray);
-		return (index == 0);
+		return index == 0;
 	}
 
 	public static String exceptionToString(Exception e){
@@ -94,10 +94,10 @@ public class CommonUtil {
 		StringBuilder sb = new StringBuilder();
 		String name = e.getClass().getName();
         String message = e.getMessage();
-        String content = (message != null) ? (name + ": " + message) : name;
-		sb.append(content + "\n");
+        String content = message != null? name + ": " + message : name;
+		sb.append(content + '\n');
 		for(StackTraceElement s : ste){
-			sb.append(s.toString() + "\n");
+			sb.append(s.toString() + '\n');
 		}
 		return sb.toString();
 	}
@@ -147,7 +147,7 @@ public class CommonUtil {
 	 * @return 返回列表总数为 nearByNum*2+1
 	 */
 	public static <T> List<T> getNearByList(List<T> listAll, T self, int nearByNum) {
-		List<T> nearByList = new ArrayList<T>();
+		List<T> nearByList;
 		
 		int totalIndex = listAll.size() - 1;
 		int selfIndex = listAll.indexOf(self);
@@ -158,7 +158,7 @@ public class CommonUtil {
 		int startIndex = selfIndex - nearByNum;
 		int endIndex = selfIndex + nearByNum;
 		
-		int addition = 0;
+		int addition;
 		// 左边不足时，从右边补齐
 		if (startIndex < 0) {
 			addition = 0 - startIndex;

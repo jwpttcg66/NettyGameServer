@@ -1,6 +1,5 @@
 package com.snowcattle.game.common.codec.server;
 
-import com.snowcattle.game.common.socket.server.EchoSocketServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.nio.NioSocketChannel;

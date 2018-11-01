@@ -1,9 +1,6 @@
 package com.snowcattle.game.common.uuid;
 
 /**
- * Created by jiangwenping on 17/2/22.
- */
-/**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
  * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 <br>
@@ -19,13 +16,13 @@ public class SnowflakeIdWorker {
 
     // ==============================Fields===========================================
     /** 开始时间截 (2015-01-01) */
-    private final long twepoch = 1420041600000L;
+    private static final long twepoch = 1420041600000L;
 
     /** 机器id所占的位数 */
-    private final long workerIdBits = 5L;
+    private static final long workerIdBits = 5L;
 
     /** 数据标识id所占的位数 */
-    private final long datacenterIdBits = 5L;
+    private static final long datacenterIdBits = 5L;
 
     /** 支持的最大机器id，结果是31 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */
     private final long maxWorkerId = -1L ^ (-1L << workerIdBits);
@@ -34,7 +31,7 @@ public class SnowflakeIdWorker {
     private final long maxDatacenterId = -1L ^ (-1L << datacenterIdBits);
 
     /** 序列在id中占的位数 */
-    private final long sequenceBits = 12L;
+    private static final long sequenceBits = 12L;
 
     /** 机器ID向左移12位 */
     private final long workerIdShift = sequenceBits;

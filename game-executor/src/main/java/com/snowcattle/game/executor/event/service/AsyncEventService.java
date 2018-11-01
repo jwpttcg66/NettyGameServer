@@ -140,7 +140,7 @@ public class AsyncEventService {
         if (event == null) {
             if (eventLogger.isWarnEnabled()) {
                 eventLogger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
-                        + CommonErrorInfo.EVENT_PRO_NULL_MSG + "]");
+                                 + CommonErrorInfo.EVENT_PRO_NULL_MSG + ']');
             }
             return;
         }

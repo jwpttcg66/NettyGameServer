@@ -18,7 +18,7 @@ public class JVMMonitor {
 	private final MBeanServer server;
 	private final OperatingSystemMXBean osm;
 	private final RuntimeMXBean runtimeMXBean;
-	private long preUpTime = 0;
+	private long preUpTime;
 	private long preCpuTime = 0;
 
 	public static final JVMMonitor instance = new JVMMonitor();

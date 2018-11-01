@@ -37,15 +37,11 @@
 
 package com.snowcattle.game.net.client.websocket;
 
-import com.alibaba.druid.sql.visitor.functions.Bin;
 import com.snowcattle.game.common.exception.CodecException;
-import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
 import com.snowcattle.game.message.logic.tcp.online.client.OnlineLoginClientTcpMessage;
 import com.snowcattle.game.message.logic.tcp.online.server.OnlineLoginServerTcpMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
-import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
 import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
-import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.encoder.NetProtoBufTcpMessageEncoderFactory;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
@@ -136,7 +132,7 @@ public class GameWebSocketClientHandler extends SimpleChannelInboundHandler<Obje
     }
 
 
-    private void sendTestMessage(ChannelHandlerContext ctx) throws Exception{
+    private static void sendTestMessage(ChannelHandlerContext ctx) throws Exception{
         OnlineLoginClientTcpMessage onlineLoginClientTcpMessage = new OnlineLoginClientTcpMessage();
         onlineLoginClientTcpMessage.setId(Integer.MAX_VALUE);
         NetProtoBufTcpMessageEncoderFactory netProtoBufTcpMessageEncoderFactory = new NetProtoBufTcpMessageEncoderFactory();

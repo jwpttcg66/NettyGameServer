@@ -61,7 +61,7 @@ public class RandomUtil {
 	 */
 	public static int getRadomIndex(List<Integer> listRate,int rateMaxNum) {
 		int left = 0;
-		int right = 0;
+		int right;
 		int index = -1;
 		int random = nextInt(0, rateMaxNum);
 		for(int i=0; i < listRate.size(); i++){

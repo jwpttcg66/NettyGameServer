@@ -75,7 +75,7 @@ public class StringUtils {
 
 	public static List<Integer> getIntList(String str, String sep) {
 		List<Integer> tmp = new ArrayList<Integer>();
-		if (str == null || str.trim().equals("")) {
+		if (str == null || str.trim().isEmpty()) {
 			return tmp;
 		}
 		String[] prop = getStringList(str, sep);
@@ -155,8 +155,8 @@ public class StringUtils {
 		if (obj == null) {
 			return "null";
 		} else {
-			return obj.getClass().getName() + "@" + obj.hashCode() + "[\r\n"
-					+ content + "\r\n]";
+			return obj.getClass().getName() + '@' + obj.hashCode() + "[\r\n"
+				   + content + "\r\n]";
 		}
 	}
 
@@ -324,7 +324,7 @@ public class StringUtils {
 	 */
 	public static int getChineseCount(String test) {
 		int count = 0;
-		boolean tempResult = false;
+		boolean tempResult;
 		for (int i = 0; i < test.length(); i++) {
 			char cha = test.charAt(i);
 			tempResult = isChineseChar(cha);
@@ -343,7 +343,7 @@ public class StringUtils {
 	 */
 	public static int getLetterAndDigitCount(String text) {
 		int count = 0;
-		boolean tempResult = false;
+		boolean tempResult;
 		for (int i = 0; i < text.length(); i++) {
 			tempResult = isLetterAndDigit(text);
 			if (tempResult) {

@@ -16,6 +16,7 @@ import java.util.Date;
 @EntitySave
 public abstract  class AbstractEntity<ID extends Serializable> extends ShardingTable implements ISoftDeleteEntity<ID>{
 
+    private static final long serialVersionUID = -982263584384234680L;
     @FieldSave
     private boolean deleted;
 

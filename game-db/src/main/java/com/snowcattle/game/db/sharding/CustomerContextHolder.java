@@ -1,6 +1,5 @@
 package com.snowcattle.game.db.sharding;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +12,7 @@ public class CustomerContextHolder {
 
 
     public  static String getCustomerType() {
-        return (String) contextHolder.get();
+        return contextHolder.get();
     }
     /**
      * 通过字符串选择数据源

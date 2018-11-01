@@ -1,8 +1,10 @@
 package com.snowcattle.game.common.exception;
 
 public class TransactionException extends RuntimeException {
-	
-	public TransactionException(){
+
+    private static final long serialVersionUID = -7019206205634720119L;
+
+    public TransactionException(){
 		super();
 	}
 	

@@ -63,8 +63,8 @@ public class AsyncOperationRegistry implements IDbService{
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 

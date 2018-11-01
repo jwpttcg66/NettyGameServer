@@ -2,6 +2,7 @@ package com.snowcattle.game.service.dict;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,9 +31,7 @@ public class DictArrayMaps implements IDictCollections{
     public Collection<IDict> getAllDicts() {
         List<IDict> list = new ArrayList<>();
         for(IDict[] iDicts: dictMap.values()){
-            for(IDict idict: iDicts) {
-                list.add(idict);
-            }
+            Collections.addAll(list, iDicts);
         }
         return list;
     }

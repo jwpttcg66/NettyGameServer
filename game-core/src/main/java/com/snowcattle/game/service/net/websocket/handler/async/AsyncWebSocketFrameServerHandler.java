@@ -68,10 +68,10 @@ public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandle
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, WebSocketFrame msg) throws Exception {
-        handleWebSocketFrame(ctx, (WebSocketFrame) msg);
+        handleWebSocketFrame(ctx, msg);
     }
 
-    private void handleWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
+    private static void handleWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
         // Check for closing frame
         if (frame instanceof CloseWebSocketFrame) {
             WebSocketServerHandler webSocketServerHandler = (WebSocketServerHandler) ctx.pipeline().get("webSocketServerHandler");
@@ -125,7 +125,6 @@ public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandle
             NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
             netMessageProcessLogic.processWebSocketMessage(netMessage, ctx.channel());
 
-            return;
         }
     }
 
@@ -154,7 +153,7 @@ public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandle
         ctx.fireChannelUnregistered();
     }
 
-    private void disconnect(Channel channel) throws NetMessageException {
+    private static void disconnect(Channel channel) throws NetMessageException {
         NetTcpSessionLoopUpService netTcpSessionLoopUpService = LocalMananger.getInstance().getLocalSpringServiceManager().getNetTcpSessionLoopUpService();
         long sessonId = channel.attr(NettyTcpSessionBuilder.channel_session_id).get();
         NettyTcpSession nettySession = (NettyTcpSession) netTcpSessionLoopUpService.lookup(sessonId);

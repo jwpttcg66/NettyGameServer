@@ -23,7 +23,8 @@ public class AES {
 	/**
 	 * 加密
 	 * 
-	 * @param encryptStr
+	 * @param src
+     * @param key
 	 * @return
 	 */
 	public static byte[] encrypt(byte[] src, String key) throws Exception {
@@ -36,7 +37,8 @@ public class AES {
 	/**
 	 * 解密
 	 * 
-	 * @param decryptStr
+	 * @param src
+	 * @param key
 	 * @return
 	 * @throws Exception
 	 */
@@ -54,16 +56,16 @@ public class AES {
 	 * @return
 	 */
 	public static String byte2hex(byte[] b) {
-		String hs = "";
-		String stmp = "";
+		StringBuilder hs = new StringBuilder();
+		String stmp;
 		for (int n = 0; n < b.length; n++) {
 			stmp = (Integer.toHexString(b[n] & 0XFF));
 			if (stmp.length() == 1)
-				hs = hs + "0" + stmp;
+				hs.append('0').append(stmp);
 			else
-				hs = hs + stmp;
+				hs.append(stmp);
 		}
-		return hs.toUpperCase();
+		return hs.toString().toUpperCase();
 	}
 
 	public static byte[] hex2byte(byte[] b) {

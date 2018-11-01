@@ -33,19 +33,17 @@ public class TwinsLockTest {
             w.start();
         }
 
-        new Thread() {
-            public void run() {
-                while (true) {
+        new Thread(() -> {
+            while (true) {
 
-                    try {
-                        Thread.sleep(200L);
-                        System.out.println();
-                    } catch (Exception ex) {
+                try {
+                    Thread.sleep(200L);
+                    System.out.println();
+                } catch (Exception ex) {
 
-                    }
                 }
             }
-        }.start();
+        }).start();
 
         try {
             Thread.sleep(20000L);

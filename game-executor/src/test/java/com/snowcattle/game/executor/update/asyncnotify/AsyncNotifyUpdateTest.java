@@ -59,8 +59,8 @@ public class AsyncNotifyUpdateTest {
         UpdateNotifyService updateNotifyService = new UpdateNotifyService(updateService, 10);
         updateNotifyService.startup();
         while (true) {
-            Thread.currentThread().sleep(100);
-            updateService.toString();
+            Thread.sleep(100);
+            System.out.println(updateService);
         }
     }
 }

@@ -71,14 +71,14 @@ public class MessageRegistry implements Reloadable, IService{
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
                 logger.info("message load:" + messageClass);
 
-                MessageCommandAnnotation annotation = (MessageCommandAnnotation) messageClass
+                MessageCommandAnnotation annotation = messageClass
                         .getAnnotation(MessageCommandAnnotation.class);
                 if (annotation != null) {
                     putMessageCommands(annotation.command(), messageClass);

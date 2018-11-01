@@ -91,9 +91,7 @@ public class RpcClientConnectService implements IService {
     public AbstractRpcConnectManager getRpcConnectMannger(BOEnum boEnum){
         AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
         if(boEnum.equals(BOEnum.GAME)){
-            abstractRpcConnectManager = gameRpcConnecetMananger;
         }else if (boEnum.equals(BOEnum.DB)){
-            abstractRpcConnectManager = dbRpcConnnectMananger;
         }
         return worldRpcConnectManager;
     }
@@ -101,9 +99,7 @@ public class RpcClientConnectService implements IService {
     public AbstractRpcConnectManager getRpcConnectMannger(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu){
         AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
         if(zooKeeperNodeBoEnu.equals(ZooKeeperNodeBoEnum.GAME)){
-            abstractRpcConnectManager = gameRpcConnecetMananger;
         }else if (zooKeeperNodeBoEnu.equals(ZooKeeperNodeBoEnum.DB)){
-            abstractRpcConnectManager = dbRpcConnnectMananger;
         }
         return worldRpcConnectManager;
     }

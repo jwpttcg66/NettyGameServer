@@ -85,7 +85,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
         if (msg == null) {
             if (logger.isWarnEnabled()) {
                 logger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
-                        + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + "]");
+                            + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + ']');
             }
             return;
         }

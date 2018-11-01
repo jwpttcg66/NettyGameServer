@@ -15,9 +15,6 @@ public class ScheduledThreadPoolExecutorTest
 
     public static void main(String[] args)
     {
-        /**
-         * 使用工厂方法初始化一个ScheduledThreadPool
-         */
         ScheduledExecutorService newScheduledThreadPool = Executors
                 .newScheduledThreadPool(2);
 

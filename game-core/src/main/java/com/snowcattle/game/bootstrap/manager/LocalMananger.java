@@ -1,9 +1,5 @@
 package com.snowcattle.game.bootstrap.manager;
 
-/**
- * Created by jwp on 2017/2/4.
- */
-
 import com.snowcattle.game.executor.update.service.UpdateService;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringBeanManager;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;

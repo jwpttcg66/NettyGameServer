@@ -46,7 +46,7 @@ public class MessageGenerator {
 		Converter converter = new Converter(vmPath, encode);
 		for(MacroObject msgObj : formats){
             FileContent fileContent = fileConentFactory.create(msgObj.getOutputFileName(), converter.convert(msgObj),
-                                                                outputProjectPath + msgObj.getPackPath() + "/");
+                                                               outputProjectPath + msgObj.getPackPath() + '/');
 			try {
 				FileUtils.writeToFile(fileContent);
 				System.out.println("已生成"+msgObj.getOutputFileName());
@@ -67,7 +67,7 @@ public class MessageGenerator {
 		Converter converter = new Converter(vmPath, encode);
 		for(MessageObject msgObj : templateformats){
             FileContent fileContent = fileConentFactory.create(msgObj.getOutputFileName(), converter.convert(msgObj),
-                                                               outputProjectPath + msgObj.getPackPath() + "/");
+                                                               outputProjectPath + msgObj.getPackPath() + '/');
 			try {
 				FileUtils.writeToFile(fileContent);
 				System.out.println("已生成"+msgObj.getOutputFileName());

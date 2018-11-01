@@ -1,7 +1,6 @@
 package com.snowcattle.game.executor.event.aysnc;
 
 import com.snowcattle.game.executor.event.EventBus;
-import com.snowcattle.game.executor.event.SingleEvent;
 import com.snowcattle.game.executor.event.service.AsyncEventService;
 
 /**

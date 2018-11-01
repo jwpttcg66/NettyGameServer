@@ -19,7 +19,7 @@ public abstract class AbstractGameConfigure implements GameConfigurable{
     private Properties properties;
     private File configFile;
     private Resource resource;
-    private Object lock=new Object();
+    private final Object lock=new Object();
     public void setResource(Resource resource) {
         this.resource = resource;
     }

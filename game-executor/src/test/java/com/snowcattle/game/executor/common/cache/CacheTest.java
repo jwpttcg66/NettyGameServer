@@ -52,8 +52,8 @@ public class CacheTest {
         }
 
         while (true) {
-            Thread.currentThread().sleep(100);
-            updateService.toString();
+            Thread.sleep(100);
+            System.out.println(updateService);
         }
     }
 

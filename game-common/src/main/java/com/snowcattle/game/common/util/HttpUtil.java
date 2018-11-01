@@ -95,7 +95,7 @@ public class HttpUtil {
 			reader = new BufferedReader(new InputStreamReader(urlStream, parseEncoding(urlConnection)));
 			char[] _buff = new char[128];
 			StringBuilder temp = new StringBuilder();
-			int _len = -1;
+			int _len;
 			while ((_len = reader.read(_buff)) != -1) {
 				temp.append(_buff, 0, _len);
 			}
@@ -186,9 +186,9 @@ public class HttpUtil {
 	 */
 	public static String doPost(String url) {
 		StringBuffer stringBuffer = new StringBuffer();
-		HttpEntity entity = null;
+		HttpEntity entity;
 		BufferedReader in = null;
-		HttpResponse response = null;
+		HttpResponse response;
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpParams params = httpclient.getParams();
@@ -215,8 +215,7 @@ public class HttpUtil {
 			if (null != in) {
 				try {
 					in.close();
-					in = null;
-				} catch (IOException e) {
+                } catch (IOException e) {
 					e.printStackTrace();
 				}
 			}

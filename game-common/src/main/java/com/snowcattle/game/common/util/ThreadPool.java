@@ -35,7 +35,7 @@ public class ThreadPool {
 	 * @param maxSize
 	 * @param keepAliveTime
 	 * @param workQueue
-	 * @param workQueueCapacity
+	 * @param threadFactory
 	 * @param handler
 	 */
 	public ThreadPool(int coreSize, int maxSize, int keepAliveTime, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
@@ -111,7 +111,7 @@ public class ThreadPool {
 	/**
 	 * 添加任务
 	 *
-	 * @param runnable
+	 * @param task
 	 */
 	public void addTask(Runnable task) {
 		this.threadPool.execute(task);

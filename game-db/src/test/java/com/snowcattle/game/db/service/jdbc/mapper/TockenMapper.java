@@ -1,6 +1,5 @@
 package com.snowcattle.game.db.service.jdbc.mapper;
 
-import com.snowcattle.game.db.service.jdbc.entity.Order;
 import com.snowcattle.game.db.service.jdbc.entity.Tocken;
 
 /**

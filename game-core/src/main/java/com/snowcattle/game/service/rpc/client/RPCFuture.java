@@ -144,8 +144,8 @@ public class RPCFuture implements Future<Object> {
         private static final long serialVersionUID = 1L;
 
         //future status
-        private final int done = 1;
-        private final int pending = 0;
+        private static final int done = 1;
+        private static final int pending = 0;
 
         protected boolean tryAcquire(int acquires) {
             return getState() == done ? true : false;

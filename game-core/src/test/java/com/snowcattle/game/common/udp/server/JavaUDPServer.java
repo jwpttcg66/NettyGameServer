@@ -27,7 +27,7 @@ public class JavaUDPServer {
             ds.receive(dp_receive);
             System.out.println("server received data from client：");
             String str_receive = new String(dp_receive.getData(),0,dp_receive.getLength()) +
-                    " from " + dp_receive.getAddress().getHostAddress() + ":" + dp_receive.getPort();
+                                 " from " + dp_receive.getAddress().getHostAddress() + ':' + dp_receive.getPort();
             System.out.println(str_receive);
             //数据发动到客户端的3000端口
             DatagramPacket dp_send= new DatagramPacket(str_send.getBytes(),str_send.length(),dp_receive.getAddress(),9000);

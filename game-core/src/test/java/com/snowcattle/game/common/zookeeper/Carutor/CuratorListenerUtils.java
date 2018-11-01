@@ -22,7 +22,7 @@ public class CuratorListenerUtils {
 		CuratorFramework client = creatClient();
 		setListenter(client);
 		setListenterThreeTwo(client);
-		Thread.sleep(99999999999l);
+		Thread.sleep(99999999999L);
 	}
 	private static CuratorFramework creatClient() {
 

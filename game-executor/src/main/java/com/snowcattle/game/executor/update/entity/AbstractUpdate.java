@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public abstract class AbstractUpdate<ID extends Serializable> implements IUpdate<ID> {
 
+    private static final long serialVersionUID = 7863793589498350565L;
     //是否存放标志
     private boolean activeFlag = true;
     //标示id

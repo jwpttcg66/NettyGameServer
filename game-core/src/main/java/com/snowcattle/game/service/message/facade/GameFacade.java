@@ -76,8 +76,8 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
 //                Class<?> messageClass = null;
 //                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
@@ -106,7 +106,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
                 Method[] methods = messageClass.getMethods();
                 for (Method method : methods) {
                     if (method.isAnnotationPresent(MessageCommandAnnotation.class)) {
-                        MessageCommandAnnotation messageCommandAnnotation = (MessageCommandAnnotation) method
+                        MessageCommandAnnotation messageCommandAnnotation = method
                                 .getAnnotation(MessageCommandAnnotation.class);
                         if (messageCommandAnnotation != null) {
                             addHandler(messageCommandAnnotation.command(), iMessageHandler);
@@ -124,7 +124,7 @@ public class  GameFacade implements IFacade ,Reloadable, IService{
      * @return
      * @throws Exception
      */
-    public final IMessageHandler getMessageHandler(Class<?> classes) {
+    public static IMessageHandler getMessageHandler(Class<?> classes) {
 
         try {
             if (classes == null) {

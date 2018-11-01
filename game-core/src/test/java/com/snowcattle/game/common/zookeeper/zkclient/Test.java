@@ -50,7 +50,7 @@ public class Test {
         zk.delete("/zoo2", -1);
 
         System.out.println("\n6. 查看节点是否被删除： ");
-        System.out.println(" 节点状态： [" + zk.exists("/zoo2", false) + "]");
+        System.out.println(" 节点状态： [" + zk.exists("/zoo2", false) + ']');
     }
 
     private void close() throws Exception{

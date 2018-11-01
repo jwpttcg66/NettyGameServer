@@ -9,7 +9,7 @@ public class ThreadUtil {
 		}
 		StringBuffer buffer = new StringBuffer();
 
-		buffer.append(root.toString()).append("\r");
+		buffer.append(root.toString()).append('\r');
 		visit(root, 1, buffer);
 		return buffer.toString();
 	}
@@ -23,7 +23,7 @@ public class ThreadUtil {
 			for(int j=0; j<level; j++){
 				buffer.append("  ");
 			}
-			buffer.append(t.toString()).append("\r");
+			buffer.append(t.toString()).append('\r');
 		}
 
 		int numGroups = group.activeGroupCount();
@@ -33,7 +33,7 @@ public class ThreadUtil {
 			for(int j=0; j<level; j++){
 				buffer.append("  ");
 			}
-			buffer.append(groups[i].toString()).append("\r");
+			buffer.append(groups[i].toString()).append('\r');
 			visit(groups[i], level+1, buffer);
 		}
 	}

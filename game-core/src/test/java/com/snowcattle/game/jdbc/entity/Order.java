@@ -13,6 +13,7 @@ import com.snowcattle.game.jdbc.mapper.OrderMapper;
 @DbMapper(mapper = OrderMapper.class)
 public class Order extends BaseLongIDEntity implements RedisInterface {
 
+    private static final long serialVersionUID = -4432810780168174210L;
     @FieldSave
     private String status;
 

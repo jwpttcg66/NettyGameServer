@@ -50,11 +50,11 @@ public class ByteArrayBitSet {
 		bytes = new byte[byteIndex(nbits - 1) + 1];
 	}
 
-	private int byteIndex(int bitIndex) {
+	private static int byteIndex(int bitIndex) {
 		return bitIndex >> ADDRESS_BITS_PER_BYTE;
 	}
 
-	private int indexMarkInByte(int bitIndex) {
+	private static int indexMarkInByte(int bitIndex) {
 		return 1 << (bitIndex & MASK_INDEX_PER_BYTE);
 	}
 

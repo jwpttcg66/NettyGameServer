@@ -37,7 +37,7 @@
         if (!window.WebSocket) {
             return;
         }
-        if (socket.readyState == WebSocket.OPEN) {
+        if (socket.readyState === WebSocket.OPEN) {
             socket.send(message);
         }
         else {

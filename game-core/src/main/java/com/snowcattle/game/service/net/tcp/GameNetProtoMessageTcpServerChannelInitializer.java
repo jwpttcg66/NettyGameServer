@@ -1,9 +1,5 @@
 package com.snowcattle.game.service.net.tcp;
 
-/**
- * Created by jiangwenping on 17/2/7.
- */
-
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;

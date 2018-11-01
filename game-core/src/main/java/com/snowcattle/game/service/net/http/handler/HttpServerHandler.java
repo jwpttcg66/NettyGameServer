@@ -1,23 +1,18 @@
 package com.snowcattle.game.service.net.http.handler;
 
-import com.snowcattle.game.bootstrap.GameServer;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.config.GameServerConfig;
 import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.service.config.GameServerConfigService;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
-import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
 import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.DecoderResult;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.codec.http.Cookie;
-import io.netty.handler.codec.http.ServerCookieEncoder;
 import io.netty.handler.codec.http.cookie.*;
 import io.netty.util.CharsetUtil;
 
@@ -25,9 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.CONTINUE;
-import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
@@ -128,7 +121,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
         ctx.flush();
     }
 
-    private void send100Continue(ChannelHandlerContext ctx) {
+    private static void send100Continue(ChannelHandlerContext ctx) {
         FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, CONTINUE);
         ctx.write(response);
     }

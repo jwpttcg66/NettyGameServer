@@ -90,8 +90,8 @@ public class LRUHashMap<K, V> extends LinkedHashMap<K, V> {
 	 * @return
 	 */
 	public String getStatistics() {
-		return "cache size:" + size() + "/" + this.maxSize + ",hit:" + getHitCount() + ",miss:" + getMissCount() + ",hitRate:"
-				+ (int) (getHitRate() * 100) + "%";
+		return "cache size:" + size() + '/' + this.maxSize + ",hit:" + getHitCount() + ",miss:" + getMissCount() + ",hitRate:"
+               + (int) (getHitRate() * 100) + '%';
 	}
 
 	@Override

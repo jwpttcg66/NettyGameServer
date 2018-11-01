@@ -14,17 +14,17 @@ import org.springframework.stereotype.Service;
 public class SnowFlakeUUIDService implements IUUIDService, IDbService{
     // ==============================Fields===========================================
     /** 开始时间截 (2017-01-01) */
-    private final long twepoch = 1483200000000L;
+    private static final long twepoch = 1483200000000L;
 
 
     /** node id所占的位数 */
-    private final long nodeIdBits = 10L;
+    private static final long nodeIdBits = 10L;
 
     /** 支持的最大机器nodeid，结果是1024 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */
     private final long maxNodeId = -1L ^ (-1L << nodeIdBits);
 
     /** 序列在id中占的位数 */
-    private final long sequenceBits = 15L;
+    private static final long sequenceBits = 15L;
 
     /** 时间截向左移25位(10+15) */
     private final long timestampLeftShift = sequenceBits + nodeIdBits;
@@ -54,7 +54,7 @@ public class SnowFlakeUUIDService implements IUUIDService, IDbService{
      * If you deploy different nodes, supplying a unique node id will guarantee the uniqueness
      * of ids generated concurrently on different nodes.
      *
-     * @param node This is an id you use to differentiate different nodes.
+     * @param nodeId This is an id you use to differentiate different nodes.
      */
     public SnowFlakeUUIDService(int nodeId) {
         if (nodeId < 0 || nodeId > maxNodeId) {
