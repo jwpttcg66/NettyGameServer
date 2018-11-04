@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class OnlineTcpHandlerImpl extends AbstractMessageHandler {
 
-    private AtomicLong id = new AtomicLong();
+    private final AtomicLong id = new AtomicLong();
 
     @MessageCommandAnnotation(command = MessageCommandIndex.ONLINE_LOGIN_TCP_CLIENT_MESSAGE)
     public AbstractNetMessage handleOnlineLoginClientTcpMessage(OnlineLoginClientTcpMessage message) throws Exception {

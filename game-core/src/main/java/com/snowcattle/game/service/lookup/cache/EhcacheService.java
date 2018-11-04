@@ -64,7 +64,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EhcacheService implements IService {
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
     @Override
     public String getId() {
         return ServiceName.EhcacheService;

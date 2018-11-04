@@ -11,10 +11,14 @@ import java.util.List;
 /**
  * Created by jiangwenping on 17/3/20.
  */
-public class Test {
+public final class Test {
     public static long userId = 99999;
     public static long id = 3603;
     public static int batchStart = 70000000;
+
+    private Test() {
+    }
+
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         OrderService orderService = getOrderService(classPathXmlApplicationContext);

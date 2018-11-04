@@ -3,7 +3,7 @@ package com.snowcattle.game.service.message.command;
 /**
  * Created by jiangwenping on 17/2/20.
  */
-public class MessageCommandIndex {
+public final class MessageCommandIndex {
     //
     public static final int ONLINE_HEART_CLIENT_TCP_MESSAGE = 1;
     public static final int COMMON_RESPONSE_MESSAGE = 2;
@@ -13,4 +13,7 @@ public class MessageCommandIndex {
     public static final int ONLINE_LOGIN_TCP_SERVER_MESSAGE = 6;
     public static final int ONLINE_HEART_HTTP_CLIENT_MESSAGE = 7;
     public static final int ONLINE_HEART_HTTP_SERVER_MESSAGE = 8;
+
+    private MessageCommandIndex() {
+    }
 }

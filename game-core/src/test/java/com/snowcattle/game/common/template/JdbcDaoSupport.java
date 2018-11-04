@@ -8,7 +8,7 @@ import java.lang.reflect.ParameterizedType;
 
 public abstract class JdbcDaoSupport<T> {
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     @SuppressWarnings("unchecked")
     protected JdbcDaoSupport() {

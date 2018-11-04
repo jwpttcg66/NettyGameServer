@@ -9,7 +9,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by jiangwenping on 17/3/20.
  */
-public class JdbcTest {
+public final class JdbcTest {
+
+    private JdbcTest() {
+    }
 
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});

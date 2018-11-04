@@ -47,11 +47,11 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     private static final Logger logger = Loggers.rpcLogger;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    private volatile Map<ZooKeeperNodeBoEnum, List<ZooKeeperNodeInfo>> nodeMap = new ConcurrentHashMap<>();
+    private final Map<ZooKeeperNodeBoEnum, List<ZooKeeperNodeInfo>> nodeMap = new ConcurrentHashMap<>();
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     private CuratorFramework client;
     

@@ -15,7 +15,7 @@ import com.snowcattle.game.executor.common.utils.Constants;
  */
 public abstract class AbstractBindingUpdateThread extends UpdateThread {
 
-    private DispatchThread dispatchThread;
+    private final DispatchThread dispatchThread;
 
     public AbstractBindingUpdateThread(DispatchThread dispatchThread, EventBus eventBus) {
         super(eventBus);

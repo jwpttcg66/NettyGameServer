@@ -12,7 +12,7 @@ import org.slf4j.Logger;
  */
 public abstract class NettySession implements ISession  {
 
-    private static Logger errorLogger = Loggers.errorLogger;
+    private static final Logger errorLogger = Loggers.errorLogger;
 
     protected volatile Channel channel;
 
@@ -31,7 +31,7 @@ public abstract class NettySession implements ISession  {
         return false;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public void write(AbstractNetMessage msg) throws Exception {
         if (msg != null) {

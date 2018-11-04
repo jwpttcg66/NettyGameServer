@@ -4,9 +4,12 @@ package com.snowcattle.game.service.rpc.client;
  * Created by jiangwenping on 17/3/13.
  * rpc 服务器列表选择
  */
-public class RpcContextHolder {
+public final class RpcContextHolder {
 
     private static  final ThreadLocal<RpcContextHolderObject> contextHolder = new ThreadLocal<RpcContextHolderObject>();
+
+    private RpcContextHolder() {
+    }
 
     public  static RpcContextHolderObject getContext() {
         return contextHolder.get();

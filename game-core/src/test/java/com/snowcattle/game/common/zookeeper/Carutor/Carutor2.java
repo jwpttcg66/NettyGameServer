@@ -11,7 +11,7 @@ import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooDefs.Perms;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
-public class Carutor2 {
+public final class Carutor2 {
 	public static void main(String[] args) throws Exception {
 		CuratorFramework client = clientTwo();
 		client.create().withMode(CreateMode.EPHEMERAL).forPath("/test", "111".getBytes());

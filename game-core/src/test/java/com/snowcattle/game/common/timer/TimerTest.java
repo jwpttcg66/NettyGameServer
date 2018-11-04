@@ -6,7 +6,7 @@ import java.util.TimerTask;
 /**
  * Created by jiangwenping on 17/3/27.
  */
-public class TimerTest {
+public final class TimerTest {
     public static void main(String[] args) {
         Timer timer = new Timer();
         timer.schedule(new TestTimeTask(), 0, 10);

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class UpdateBindExecutorService implements IUpdateExecutor {
 
-    private int excutorSize;
+    private final int excutorSize;
 
     private BindThreadUpdateExecutorService[] bindThreadUpdateExecutorServices;
 

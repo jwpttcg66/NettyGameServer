@@ -8,7 +8,10 @@ import java.util.Map;
 /**
  * Created by jwp on 2017/2/28.
  */
-public class JsonUtils {
+public final class JsonUtils {
+
+    private JsonUtils() {
+    }
 
     /**
      * 获取json字符串

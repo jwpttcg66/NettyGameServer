@@ -5,7 +5,10 @@ import java.util.concurrent.locks.LockSupport;
 /**
  * Created by jiangwenping on 17/1/6.
  */
-public class TestLockSupport {
+public final class TestLockSupport {
+    private TestLockSupport() {
+    }
+
     public static void main(String[] args) {
 
 //        test();

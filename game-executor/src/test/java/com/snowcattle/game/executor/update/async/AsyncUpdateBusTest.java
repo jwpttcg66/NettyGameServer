@@ -15,7 +15,10 @@ import com.snowcattle.game.thread.policy.RejectedPolicyType;
 /**
  * Created by jiangwenping on 17/1/9.
  */
-public class AsyncUpdateBusTest {
+public final class AsyncUpdateBusTest {
+    private AsyncUpdateBusTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         testUpdate();
     }

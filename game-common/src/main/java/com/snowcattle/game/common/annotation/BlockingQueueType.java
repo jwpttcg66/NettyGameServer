@@ -8,7 +8,7 @@ public enum BlockingQueueType {
     ARRAY_BLOCKING_QUEUE("ArrayBlockingQueue"),
     SYNCHRONOUS_QUEUE("SynchronousQueue");
 
-    private String value;
+    private final String value;
 
     private BlockingQueueType(String value) {
         this.value = value;

@@ -1,9 +1,12 @@
 package com.snowcattle.game.common.util;
 
 
-public class NumberUtil {
-	
-	public static long merge(int hi,int lo){
+public final class NumberUtil {
+
+    private NumberUtil() {
+    }
+
+    public static long merge(int hi, int lo){
 		long redoLong;
 		long a1 = ((long)hi << 32) & 0xFFFFFFFF00000000L;
 		long b1 = lo & 0x00000000FFFFFFFFL;
@@ -30,8 +33,9 @@ public class NumberUtil {
 
 	public static int parseInt( final String s )
 	{
-	    if ( s == null )
-	        throw new NumberFormatException( "Null string" );
+	    if ( s == null ) {
+			throw new NumberFormatException( "Null string" );
+		}
 
 	    int num  = 0;
 	    int sign = -1;
@@ -39,15 +43,17 @@ public class NumberUtil {
 	    final char ch  = s.charAt( 0 );
 	    if ( ch == '-' )
 	    {
-	        if ( len == 1 )
-	            throw new NumberFormatException( "Missing digits:  " + s );
+	        if ( len == 1 ) {
+				throw new NumberFormatException( "Missing digits:  " + s );
+			}
 	        sign = 1;
 	    }
 	    else
 	    {
 	        final int d = ch - '0';
-	        if ( d < 0 || d > 9 )
-	            throw new NumberFormatException( "Malformed:  " + s );
+	        if ( d < 0 || d > 9 ) {
+				throw new NumberFormatException( "Malformed:  " + s );
+			}
 	        num = -d;
 	    }
 
@@ -58,13 +64,16 @@ public class NumberUtil {
 	    while ( i < len )
 	    {
 	        int d = s.charAt(i++) - '0';
-	        if ( d < 0 || d > 9 )
-	            throw new NumberFormatException( "Malformed:  " + s );
-	        if ( num < multmax )
-	            throw new NumberFormatException( "Over/underflow:  " + s );
+	        if ( d < 0 || d > 9 ) {
+				throw new NumberFormatException( "Malformed:  " + s );
+			}
+	        if ( num < multmax ) {
+				throw new NumberFormatException( "Over/underflow:  " + s );
+			}
 	        num *= 10;
-	        if ( num < (max+d) )
-	            throw new NumberFormatException( "Over/underflow:  " + s );
+	        if ( num < (max+d) ) {
+				throw new NumberFormatException( "Over/underflow:  " + s );
+			}
 	        num -= d;
 	    }
 
@@ -77,14 +86,16 @@ public class NumberUtil {
 	    int sign = -1;
 	    final int len  = s.length( );
 	    final char ch  = s.charAt( 0 );
-	    if ( ch == '-' )
-	        sign = 1;
-	    else
-	        num = '0' - ch;
+	    if ( ch == '-' ) {
+			sign = 1;
+		} else {
+			num = '0' - ch;
+		}
 
 	    int i = 1;
-	    while ( i < len )
-	        num = num*10 + '0' - s.charAt( i++ );
+	    while ( i < len ) {
+			num = num*10 + '0' - s.charAt( i++ );
+		}
 
 	    return sign * num;
 

@@ -1,11 +1,13 @@
 package com.snowcattle.game.common.util;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class CommonUtil {
+public final class CommonUtil {
+    private CommonUtil() {
+    }
+
     /**
      * 将指定byte数组以16进制的形式打印到控制台
      * @param hint String
@@ -14,13 +16,13 @@ public class CommonUtil {
      */
    public static void printHexString(String hint, byte[] b) {
       System.out.print(hint);
-      for (int i = 0; i < b.length; i++) {
-        String hex = Integer.toHexString(b[i] & 0xFF);
-        if (hex.length() == 1) {
-          hex = '0' + hex;
-        }
-        System.out.print(hex.toUpperCase() + ' ');
-      }
+	   for (byte aB : b) {
+		   String hex = Integer.toHexString(aB & 0xFF);
+		   if (hex.length() == 1) {
+			   hex = '0' + hex;
+		   }
+		   System.out.print(hex.toUpperCase() + ' ');
+	   }
       System.out.println();
    }
    /**
@@ -30,13 +32,13 @@ public class CommonUtil {
      */
    public static String Bytes2HexString(byte[] b) {
       StringBuilder ret = new StringBuilder();
-      for (int i = 0; i < b.length; i++) {
-        String hex = Integer.toHexString(b[i] & 0xFF);
-        if (hex.length() == 1) {
-          hex = '0' + hex;
-        }
-        ret.append(hex.toUpperCase());
-      }
+	   for (byte aB : b) {
+		   String hex = Integer.toHexString(aB & 0xFF);
+		   if (hex.length() == 1) {
+			   hex = '0' + hex;
+		   }
+		   ret.append(hex.toUpperCase());
+	   }
       return ret.toString();
    }
    /**
@@ -190,11 +192,12 @@ public class CommonUtil {
 	
 	public static boolean byte2Boolean(byte value)
 	{
-		if(value == 1)
+		if(value == 1) {
 			return true;
-		else if(value == 0)
+		} else if(value == 0) {
 			return false;
-		else
+		} else {
 			throw new IllegalArgumentException("boolean transfer errorֵ:" + value);
+		}
 	}
 }

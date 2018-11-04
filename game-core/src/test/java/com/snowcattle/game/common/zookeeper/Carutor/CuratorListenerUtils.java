@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CuratorListenerUtils {
+public final class CuratorListenerUtils {
 
 	public static String connectString = "127.0.0.1:2181";
 	public static void main(String[] args) throws Exception {

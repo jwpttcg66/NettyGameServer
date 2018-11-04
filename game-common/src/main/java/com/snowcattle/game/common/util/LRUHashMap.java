@@ -15,14 +15,14 @@ public class LRUHashMap<K, V> extends LinkedHashMap<K, V> {
 	/** 最大个数 */
 	private final int maxSize;
 	/** 淘汰策略 */
-	private transient final EvictPolicy<V> evictPolicy;
+    private final transient EvictPolicy<V> evictPolicy;
 	/** 命中次数 */
 	private long hitCount = 0;
 	/** 未命中次数 */
 	private long missCount = 0;
 
 	/** 默认的淘汰策略:总是淘汰 */
-	private transient final EvictPolicy<V> DEFAULT = new EvictPolicy<V>() {
+    private final transient EvictPolicy<V> DEFAULT = new EvictPolicy<V>() {
 		@Override
 		public boolean evict(V value) {
 			return true;

@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
 /**
  * Created by jiangwenping on 17/1/22.
  */
-public class EchoJdkUdpClient {
+public final class EchoJdkUdpClient {
     public static final Logger utilLogger = LoggerFactory.getLogger("util");
     public static void main(String[] args) throws  Exception{
         final String data = "博主邮箱:zou90512@126.com";

@@ -21,16 +21,16 @@ public class SnowFlakeUUIDService implements IUUIDService, IDbService{
     private static final long nodeIdBits = 10L;
 
     /** 支持的最大机器nodeid，结果是1024 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */
-    private final long maxNodeId = -1L ^ (-1L << nodeIdBits);
+    private static final long maxNodeId = -1L ^ (-1L << nodeIdBits);
 
     /** 序列在id中占的位数 */
     private static final long sequenceBits = 15L;
 
     /** 时间截向左移25位(10+15) */
-    private final long timestampLeftShift = sequenceBits + nodeIdBits;
+    private static final long timestampLeftShift = sequenceBits + nodeIdBits;
 
     /** 生成序列的掩码，这里为4095*8 **/
-    private final long sequenceMask = -1L ^ (-1L << sequenceBits);
+    private static final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
 
     //序列号

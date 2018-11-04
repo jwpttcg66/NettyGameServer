@@ -7,11 +7,14 @@ import java.util.Random;
  * 随机数工具
  *
  */
-public class RandomUtil {
+public final class RandomUtil {
 
-	private static Random random = new Random();
+	private static final Random random = new Random();
 
-	/**
+    private RandomUtil() {
+    }
+
+    /**
 	 * 获取一个范围内的随机值
 	 *
 	 * @param randomMin

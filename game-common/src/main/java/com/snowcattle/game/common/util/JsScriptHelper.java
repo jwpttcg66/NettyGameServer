@@ -7,14 +7,17 @@ import javax.script.*;
 import java.io.*;
 import java.util.Map;
 
-public class JsScriptHelper {
-	private static org.slf4j.Logger logger = LoggerFactory
+public final class JsScriptHelper {
+	private static final org.slf4j.Logger logger = LoggerFactory
 			.getLogger(JsScriptHelper.class);
 
 	private static final ScriptEngineManager manager = new ScriptEngineManager();
 	public static final String STRING_CHARSET = "UTF-8";
 
-	/**
+    private JsScriptHelper() {
+    }
+
+    /**
 	 * 执行一个脚本文件
 	 *
 	 * @param path		脚本文件的路径
@@ -34,11 +37,7 @@ public class JsScriptHelper {
 			reader = new InputStreamReader(new FileInputStream(path),
 					STRING_CHARSET);
 			return engine.eval(reader);
-		} catch (FileNotFoundException e) {
-			logger.error("", e);
-		} catch (ScriptException e) {
-			logger.error("", e);
-		} catch (UnsupportedEncodingException e) {
+		} catch (FileNotFoundException | UnsupportedEncodingException | ScriptException e) {
 			logger.error("", e);
 		} finally {
 			if (reader != null) {
@@ -65,12 +64,10 @@ public class JsScriptHelper {
 			CompiledScript script = compiler.compile(FileUtils
 					.readFileToString(new File(path), STRING_CHARSET));
 			return script.eval();
-		} catch (IOException e) {
-			logger.error("", e);
-		} catch (ScriptException e) {
+		} catch (IOException | ScriptException e) {
 			logger.error("", e);
 		}
-		return null;
+        return null;
 
 	}
 

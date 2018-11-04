@@ -110,7 +110,7 @@ public final class ArgumentList {
      * @return String containing representation
      */
     public String toString() {
-        StringBuffer strBuf = new StringBuffer(256);
+        StringBuilder strBuf = new StringBuilder(256);
 
         strBuf.append('{');
 
@@ -135,8 +135,8 @@ public final class ArgumentList {
     }
 
     // Private data
-    private HashMap<String, Object> m_hashValues = new HashMap<String, Object>(5, 1.0f);
-    private ArrayList<String> m_arrOrderedNames = new ArrayList<String>(5);
+    private final HashMap<String, Object> m_hashValues = new HashMap<String, Object>(5, 1.0f);
+    private final ArrayList<String> m_arrOrderedNames = new ArrayList<String>(5);
 
 
 } // end ArgumentList

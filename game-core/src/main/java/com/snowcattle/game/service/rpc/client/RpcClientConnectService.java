@@ -79,7 +79,6 @@ public class RpcClientConnectService implements IService {
         dbRpcConnnectMananger.stop();
     }
 
-    @SuppressWarnings("unchecked")
     public void init() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         initWorldConnectedServer(gameServerConfigService.getRpcServerRegisterConfig().getSdWorldServers());
@@ -90,16 +89,16 @@ public class RpcClientConnectService implements IService {
 
     public AbstractRpcConnectManager getRpcConnectMannger(BOEnum boEnum){
         AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
-        if(boEnum.equals(BOEnum.GAME)){
-        }else if (boEnum.equals(BOEnum.DB)){
+        if(boEnum == BOEnum.GAME){
+        }else if (boEnum == BOEnum.DB){
         }
         return worldRpcConnectManager;
     }
 
     public AbstractRpcConnectManager getRpcConnectMannger(ZooKeeperNodeBoEnum zooKeeperNodeBoEnu){
         AbstractRpcConnectManager abstractRpcConnectManager = worldRpcConnectManager;
-        if(zooKeeperNodeBoEnu.equals(ZooKeeperNodeBoEnum.GAME)){
-        }else if (zooKeeperNodeBoEnu.equals(ZooKeeperNodeBoEnum.DB)){
+        if(zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.GAME){
+        }else if (zooKeeperNodeBoEnu == ZooKeeperNodeBoEnum.DB){
         }
         return worldRpcConnectManager;
     }

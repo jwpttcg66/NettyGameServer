@@ -62,8 +62,9 @@ public abstract class AbstractGameNetMessageTcpServerHandler extends ChannelInbo
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws NetMessageException {
         // Close the connection when an exception is raised.
-        if (cause instanceof java.io.IOException)
+        if (cause instanceof java.io.IOException) {
             return;
+        }
 
         if(logger.isErrorEnabled()) {
             logger.error("channel exceptionCaught", cause);

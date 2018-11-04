@@ -11,7 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by jiangwenping on 17/4/19.
  */
-public class TestStartUp {
+public final class TestStartUp {
+    private TestStartUp() {
+    }
+
     public static void startUpWithSpring() throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         LocalSpringServiceManager localSpringServiceManager = (LocalSpringServiceManager) BeanUtil.getBean("localSpringServiceManager");

@@ -15,19 +15,19 @@ public class ThreadPool {
 	/** 日志 */
 	private static final Logger logger = LoggerFactory.getLogger(ThreadPool.class);
 	/** 核心线程个数 */
-	private int coreSize;
+	private final int coreSize;
 	/** 最多线程个数 */
-	private int maxSize;
+	private final int maxSize;
 	/** 空闲线程保留时间 */
-	private int keepAliveTime;
+	private final int keepAliveTime;
 	/** 堵塞队列 */
-	private BlockingQueue<Runnable> workQueue;
+	private final BlockingQueue<Runnable> workQueue;
 	/** 被拒绝任务处理策略 */
-	private RejectedExecutionHandler handler;
+	private final RejectedExecutionHandler handler;
 	/** 线程池 */
 	private ThreadPoolExecutor threadPool;
 	/*线程工厂*/
-	private ThreadFactory threadFactory;
+	private final ThreadFactory threadFactory;
 	/**
 	 * 初始化
 	 *

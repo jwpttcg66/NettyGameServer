@@ -33,9 +33,9 @@ public class MessageRegistry implements Reloadable, IService{
 
     public ClassScanner classScanner = new ClassScanner();
 
-    private ConcurrentHashMap<Short, MessageCommand> messageCommandMap = new ConcurrentHashMap<Short, MessageCommand>();
+    private final ConcurrentHashMap<Short, MessageCommand> messageCommandMap = new ConcurrentHashMap<Short, MessageCommand>();
 
-    private Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
+    private final Map<Integer, Class<? extends AbstractNetProtoBufMessage>> messages = new HashMap<Integer, Class<? extends AbstractNetProtoBufMessage>>();
 
     public void putMessageCommands(int key, Class putClass) {
         messages.put(key, putClass);
@@ -49,8 +49,9 @@ public class MessageRegistry implements Reloadable, IService{
      * @throws Exception
      */
     public final AbstractNetProtoBufMessage getMessage(int commandId) {
-        if (commandId < 0)
+        if (commandId < 0) {
             return null;
+        }
 
         try {
             Class<? extends AbstractNetProtoBufMessage> cls = messages.get(commandId);

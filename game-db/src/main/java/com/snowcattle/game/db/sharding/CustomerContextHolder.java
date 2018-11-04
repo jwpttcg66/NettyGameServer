@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
  * Created by jiangwenping on 17/3/6.
  */
 @Service
-public class CustomerContextHolder {
+public final class CustomerContextHolder {
 
     private static  final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
+
+    private CustomerContextHolder() {
+    }
 
 
     public  static String getCustomerType() {

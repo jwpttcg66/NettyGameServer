@@ -32,9 +32,9 @@ public class EntityServiceProxy<T extends EntityService>  implements MethodInter
 
     private static final Logger proxyLogger = Loggers.dbServiceProxyLogger;
 
-    private RedisService redisService;
+    private final RedisService redisService;
 
-    private boolean useRedisFlag;
+    private final boolean useRedisFlag;
 
     public EntityServiceProxy(RedisService redisService, boolean useRedisFlag) {
         this.redisService = redisService;

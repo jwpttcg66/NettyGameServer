@@ -17,19 +17,19 @@ public class SaveRunable extends  Thread{
     /**
      * 订单服务
      */
-    private OrderService orderService;
+    private final OrderService orderService;
 
     /**
      * id服务
      */
-    private SnowFlakeUUIDService snowFlakeUUIDService;
+    private final SnowFlakeUUIDService snowFlakeUUIDService;
 
     /**
      * 数量
      */
-    private AtomicLong count;
+    private final AtomicLong count;
 
-    private CountDownLatch countDownLatch;
+    private final CountDownLatch countDownLatch;
 
     public SaveRunable(OrderService orderService, SnowFlakeUUIDService snowFlakeUUIDService, AtomicLong count, CountDownLatch countDownLatch) {
         this.orderService = orderService;

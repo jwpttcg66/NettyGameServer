@@ -37,7 +37,7 @@ import org.slf4j.Logger;
  */
 public class LocalNetService implements IService{
 
-    private Logger serverLogger = Loggers.serverLogger;
+    private final Logger serverLogger = Loggers.serverLogger;
 
     /**
      * tcp服务

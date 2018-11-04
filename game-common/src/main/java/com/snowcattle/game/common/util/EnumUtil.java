@@ -11,9 +11,12 @@ import java.util.List;
  *
  *
  */
-public class EnumUtil {
+public final class EnumUtil {
 
-	/**
+    private EnumUtil() {
+    }
+
+    /**
 	 * 根据枚举index返回枚举元素，index从0开始
 	 *
 	 * @param <T>

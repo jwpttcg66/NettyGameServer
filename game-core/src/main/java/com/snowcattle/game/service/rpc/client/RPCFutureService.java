@@ -55,7 +55,7 @@ public class RPCFutureService implements IService {
 		ExecutorUtil.shutdownAndAwaitTermination(executorService, 60L, TimeUnit.MILLISECONDS);
 	}
 
-	private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
 
 	public RPCFuture getRPCFuture(String requestId){
 		if(pendingRPC.get(requestId)!=null){

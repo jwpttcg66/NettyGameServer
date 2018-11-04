@@ -30,7 +30,6 @@ public class RpcServerRegisterConfig {
 
     private SdRpcServiceProvider sdRpcServiceProvider;
 
-    @SuppressWarnings("unchecked")
     public void init() throws Exception {
 
         Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_REGISTER_CONFIG).getFile());

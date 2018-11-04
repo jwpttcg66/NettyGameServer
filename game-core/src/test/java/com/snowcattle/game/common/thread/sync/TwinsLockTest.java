@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Lock;
 /**
  * Created by jiangwenping on 17/3/7.
  */
-public class TwinsLockTest {
+public final class TwinsLockTest {
 
     public static void main(String[] args) {
 //        final Lock lock = new TwinsLock();

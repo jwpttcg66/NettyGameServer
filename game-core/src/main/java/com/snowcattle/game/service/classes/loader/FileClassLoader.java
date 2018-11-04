@@ -15,9 +15,9 @@ public class FileClassLoader extends ClassLoader {
 
     public static final Logger logger = Loggers.serverLogger;
 
-    private Hashtable<String, Class> loadedClasses;
+    private final Hashtable<String, Class> loadedClasses;
     private File rootPath;
-    private HashMap<String, byte[]> classFiles;
+    private final HashMap<String, byte[]> classFiles;
 
     public FileClassLoader(File root) throws Exception {
         classFiles = new HashMap<String, byte[]>();

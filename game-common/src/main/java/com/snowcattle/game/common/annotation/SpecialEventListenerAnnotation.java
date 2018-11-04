@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 /**
  *特殊事件监听器
  */
-@Target({ElementType.TYPE})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Component
 public @interface SpecialEventListenerAnnotation {

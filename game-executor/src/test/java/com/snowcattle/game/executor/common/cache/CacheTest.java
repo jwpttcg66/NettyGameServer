@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by jiangwenping on 17/4/26.
  */
-public class CacheTest {
+public final class CacheTest {
     public static void main(String[] args) throws Exception {
         EventBus updateEventBus = new EventBus();
         int maxSize = 1;

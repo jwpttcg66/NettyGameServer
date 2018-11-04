@@ -42,9 +42,9 @@ public abstract class DispatchThread extends Thread{
     public void addFinishEvent(IEvent event){
         getEventBus().addEvent(event);
     }
-    abstract  public void unpark();
+    public abstract void unpark();
     abstract void park();
-    abstract public IUpdateExecutor getiUpdateExecutor();
-    abstract public void startup();
+    public abstract IUpdateExecutor getiUpdateExecutor();
+    public abstract void startup();
 
 }

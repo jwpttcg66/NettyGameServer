@@ -13,7 +13,10 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by jwp on 2017/4/18.
  */
-public class AsyncCacheTest {
+public final class AsyncCacheTest {
+    private AsyncCacheTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         OrderService orderService = getOrderService(classPathXmlApplicationContext);

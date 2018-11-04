@@ -8,7 +8,7 @@ public enum  AsyncRedisKeyEnum {
     ASYNC_DB("ay_db#"),
     ;
 
-    private String key;
+    private final String key;
 
     AsyncRedisKeyEnum(String key){
         this.key = key;

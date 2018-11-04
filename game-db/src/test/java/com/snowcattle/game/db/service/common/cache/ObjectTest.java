@@ -6,7 +6,7 @@ import com.snowcattle.game.db.service.jdbc.entity.Order;
 /**
  * Created by jwp on 2017/3/28.
  */
-public class ObjectTest {
+public final class ObjectTest {
 
     public static void main(String[] args) throws InterruptedException {
         int maxSize = 1000000;

@@ -24,7 +24,7 @@ import java.net.URLEncoder;
  * 
  * 
  */
-public class HttpUtil {
+public final class HttpUtil {
 	private static final Logger logger = LoggerFactory.getLogger("HttpUtil");
 
 	private static final int DEFAULT_TIMEOUT = 5;
@@ -37,7 +37,10 @@ public class HttpUtil {
 	/** 连接local的参数编码 */
 	private static final String DEFAULT_ENCODE_TYPE = "utf-8";
 
-	/**
+    private HttpUtil() {
+    }
+
+    /**
 	 * 按照utf-8的编码格式进行编码
 	 * 
 	 * @param param
@@ -185,7 +188,7 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static String doPost(String url) {
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		HttpEntity entity;
 		BufferedReader in = null;
 		HttpResponse response;

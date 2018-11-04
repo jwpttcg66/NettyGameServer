@@ -11,10 +11,13 @@ import java.util.Map.Entry;
 /**
  * Created by jiangwenping on 17/4/10.
  */
-public class Test {
+public final class Test {
     private static final SerializeConfig mapping = new SerializeConfig();
     static {
         mapping.put(Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    private Test() {
     }
 
     public static void main(String[] args) {

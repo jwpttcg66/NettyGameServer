@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 public class ZookeeperRpcServiceRegistry implements IService{
     private static final Logger logger = Loggers.rpcLogger;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
     private ZooKeeper zk;
     public void registerZooKeeper(){
@@ -43,10 +43,8 @@ public class ZookeeperRpcServiceRegistry implements IService{
                     if(zk.exists(nodePath, false) != null) {
                         deleteNode(zk, nodePath);
                     }
-                } catch (KeeperException e) {
+                } catch (KeeperException | InterruptedException e) {
 //                        e.printStackTrace();
-                } catch (InterruptedException e) {
-//                    e.printStackTrace();
                 }
                 createNode(zk, nodePath, nodeData);
             }

@@ -13,7 +13,7 @@ public class DynamicGameClassLoader extends ClassLoader {
 
     public static final Logger logger = Loggers.serverLogger;
 
-    private Hashtable<String, Class> loadedClasses = new Hashtable<String, Class>();
+    private final Hashtable<String, Class> loadedClasses = new Hashtable<String, Class>();
 
     public Class<?> findClass(String className, byte[] b) throws ClassNotFoundException {
         logger.info("class loader find:" + className);

@@ -17,7 +17,7 @@ public class OnlineLoginServerTcpMessage extends AbstractNetProtoBufTcpMessage {
     private int tocken;
 
     @Override
-    public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
+    public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
         OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf req = OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf.parseFrom(bytes);
         setPlayerId(req.getPlayerId());
@@ -30,7 +30,7 @@ public class OnlineLoginServerTcpMessage extends AbstractNetProtoBufTcpMessage {
     }
 
     @Override
-    public void encodeNetProtoBufMessageBody() throws CodecException, Exception {
+    public void encodeNetProtoBufMessageBody() throws Exception {
         OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf.Builder builder = OnlineTCPServerProBuf.OnlineHeartTCPServerProBuf.newBuilder();
         builder.setPlayerId(playerId);
         builder.setTocken(tocken);

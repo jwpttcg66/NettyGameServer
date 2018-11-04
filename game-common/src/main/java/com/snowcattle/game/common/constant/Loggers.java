@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  *
  *
  */
-public class Loggers {
+public final class Loggers {
     /** Server相关的日志 */
     public static final Logger serverLogger = LoggerFactory.getLogger("server");
     /** Game Server相关的日志 */
@@ -53,4 +53,7 @@ public class Loggers {
 
     /**TimeMonitor相关的日志 */
     public static final Logger timeMonitorLogger = LoggerFactory.getLogger("timeMonitorLogger");
+
+    private Loggers() {
+    }
 }

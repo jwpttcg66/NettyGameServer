@@ -13,8 +13,8 @@ import com.snowcattle.game.executor.common.utils.Constants;
  */
 public class DispatchFinishEventListener extends FinishEventListener {
 
-    private UpdateService updateService;
-    private DispatchThread dispatchThread;
+    private final UpdateService updateService;
+    private final DispatchThread dispatchThread;
 
     public DispatchFinishEventListener(DispatchThread dispatchThread, UpdateService updateService) {
         this.dispatchThread = dispatchThread;

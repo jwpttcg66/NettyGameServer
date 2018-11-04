@@ -12,7 +12,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Created by jiangwenping on 2017/11/13.
  */
-public class CodeServer {
+public final class CodeServer {
     public static  final int Port = 9999;
 
     public static void main(String[] args) {

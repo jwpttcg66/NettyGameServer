@@ -31,7 +31,7 @@ import java.util.TimerTask;
 @Service
 public abstract class AsyncDbOperation<T extends EntityService> extends TimerTask {
 
-    private Logger operationLogger = Loggers.dbLogger;
+    private final Logger operationLogger = Loggers.dbLogger;
     /**
      * db里面的redis服务
      */

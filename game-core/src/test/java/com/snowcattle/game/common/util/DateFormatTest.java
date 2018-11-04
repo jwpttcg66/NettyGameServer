@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  * 证明SimpleDateFormat为非线程安全
  */
 public class DateFormatTest extends Thread {
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
-    private String name;
-    private String dateStr;
-    private boolean sleep;
+    private final String name;
+    private final String dateStr;
+    private final boolean sleep;
 
     public DateFormatTest(String name, String dateStr, boolean sleep) {
         this.name = name;

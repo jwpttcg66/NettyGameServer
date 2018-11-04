@@ -14,7 +14,7 @@ import io.netty.channel.Channel;
  */
 public class NettyTcpSession extends NettySession implements IUpdatable {
 
-    private long sessionId;
+    private final long sessionId;
 
     /**
      * 消息发送

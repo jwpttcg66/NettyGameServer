@@ -263,9 +263,8 @@ public class RedisService{
 	 * @param clazz
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 
-	public <T> List<T> getListFromHash(String key,Class<?> clazz){
+    public <T> List<T> getListFromHash(String key,Class<?> clazz){
 		return getListFromHash(key, clazz, GlobalConstants.RedisKeyConfig.NORMAL_LIFECYCLE);
 	}
 
@@ -288,7 +287,7 @@ public class RedisService{
 				List<T> rt=new ArrayList<T>();
 				RedisListInterface po;
 				Map<String,String> mapFields;
-				String keyNames[]=null;
+				String[] keyNames = null;
 				for(Entry<String, String> entry:map.entrySet()){
 					String fieldKey = entry.getKey();
 					mapFields=JsonUtils.getMapFromJson(entry.getValue());
@@ -360,8 +359,8 @@ public class RedisService{
 		Jedis jedis = null;
 		boolean sucess = true;
 		try {
-			String keys[]=new String[list.size()];
-			String keyNames[]=null;
+			String[] keys = new String[list.size()];
+			String[] keyNames = null;
 			Map<String,String> keyMap=null;
 			int index=0;
 			for(RedisListInterface po:list){

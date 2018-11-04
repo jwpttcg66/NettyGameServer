@@ -21,9 +21,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class ProtostuffSerializeI implements IRpcSerialize {
-    private Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
 
-    private Objenesis objenesis = new ObjenesisStd(true);
+    private final Objenesis objenesis = new ObjenesisStd(true);
 
     @SuppressWarnings("unchecked")
     private <T> Schema<T> getSchema(Class<T> cls) {

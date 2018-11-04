@@ -10,7 +10,7 @@ import io.netty.channel.Channel;
  */
 public class NettyUdpSession  extends NettySession {
 
-    private NettyUdpNetMessageSender nettyUdpNetMessageSender;
+    private final NettyUdpNetMessageSender nettyUdpNetMessageSender;
     public NettyUdpSession(Channel channel) {
         super(channel);
         this.nettyUdpNetMessageSender = new NettyUdpNetMessageSender(this);

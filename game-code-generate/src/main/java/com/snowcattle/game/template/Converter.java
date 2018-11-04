@@ -13,7 +13,7 @@ import java.io.StringWriter;
 
 
 public class Converter {
-	private String vmPath;
+	private final String vmPath;
 	
 	// 创建引擎  
     VelocityEngine ve;

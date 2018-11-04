@@ -22,8 +22,12 @@ import java.nio.charset.Charset;
 /**
  * Created by jwp on 2017/2/17.
  */
-public class GameNettyUdpClient {
+public final class GameNettyUdpClient {
     public static int port = 10090;
+
+    private GameNettyUdpClient() {
+    }
+
     public static void main(String[] args) throws Exception {
         TestStartUp.startUpWithSpring();
         LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();

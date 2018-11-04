@@ -23,11 +23,14 @@ import java.util.Map;
  *
  *
  */
-public class ConfigUtil {
+public final class ConfigUtil {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ConfigUtil.class);
 
-	/**
+    private ConfigUtil() {
+    }
+
+    /**
 	 * 根据指定的配置类型<tt>configClass</tt>从<tt>configURL</tt>中加载配置
 	 *
 	 * @param <T>
@@ -60,12 +63,10 @@ public class ConfigUtil {
 		T _config;
 		try {
 			_config = configClass.newInstance();
-		} catch (InstantiationException e1) {
-			throw new RuntimeException(e1);
-		} catch (IllegalAccessException e1) {
+		} catch (InstantiationException | IllegalAccessException e1) {
 			throw new RuntimeException(e1);
 		}
-		IScriptEngine _jsEngine = new JSScriptManagerImpl("UTF-8");
+        IScriptEngine _jsEngine = new JSScriptManagerImpl("UTF-8");
 		Map<String, Object> _bindings = new HashMap<String, Object>();
 		_bindings.put("config", _config);
 		_bindings.put(BOEnum.WORLD.toString().toLowerCase(), BOEnum.WORLD);

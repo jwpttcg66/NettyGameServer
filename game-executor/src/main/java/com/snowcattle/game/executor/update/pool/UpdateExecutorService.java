@@ -19,7 +19,7 @@ import java.util.concurrent.*;
  */
 public class UpdateExecutorService implements IUpdateExecutor {
 
-    private NonOrderedQueuePoolExecutor nonOrderedQueuePoolExecutor;
+    private final NonOrderedQueuePoolExecutor nonOrderedQueuePoolExecutor;
 
 
     public UpdateExecutorService(int corePoolSize, int maxSize, RejectedPolicyType rejectedPolicyType) {

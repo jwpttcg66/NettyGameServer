@@ -12,7 +12,7 @@ public enum RedisKeyEnum {
 	ASYNC_PLAYER("ay_pr"),
 	;
 	
-	private String key;
+	private final String key;
 	
 	RedisKeyEnum(String key){
 		this.key = key;

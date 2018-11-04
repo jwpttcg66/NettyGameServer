@@ -5,7 +5,10 @@ import java.util.List;
 /**
  * Created by jwp on 2017/3/22.
  */
-public class PageUtils {
+public final class PageUtils {
+    private PageUtils() {
+    }
+
     /**
      * 截取某列表的部分数据
      * @param <T>

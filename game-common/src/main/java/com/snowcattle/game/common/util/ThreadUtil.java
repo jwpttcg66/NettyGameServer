@@ -1,8 +1,11 @@
 package com.snowcattle.game.common.util;
 
-public class ThreadUtil {
+public final class ThreadUtil {
 
-	public static String getThreadTree(){
+    private ThreadUtil() {
+    }
+
+    public static String getThreadTree(){
 		ThreadGroup root = Thread.currentThread().getThreadGroup();
 		while(root.getParent() != null){
 			root = root.getParent();
@@ -79,7 +82,7 @@ public class ThreadUtil {
 
 	public static String getThreadStack(Thread t){
 		StackTraceElement[] stacks = t.getStackTrace();
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		for(StackTraceElement stack : stacks){
 			String filename = stack.getFileName();
 			if(filename == null){

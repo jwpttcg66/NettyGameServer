@@ -15,14 +15,14 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class RpcTpsRunable implements Runnable{
 
-    private RpcProxyService rpcProxyService;
+    private final RpcProxyService rpcProxyService;
 
-    private AtomicLong atomicLong;
-    private int maxSize;
+    private final AtomicLong atomicLong;
+    private final int maxSize;
 
-    private CountDownLatch countDownLatch;
+    private final CountDownLatch countDownLatch;
 
-    private AtomicLong privateAtomicLong;
+    private final AtomicLong privateAtomicLong;
 
     public RpcTpsRunable(RpcProxyService rpcProxyService, AtomicLong atomicLong, int maxSize, CountDownLatch countDownLatch) {
         this.rpcProxyService = rpcProxyService;

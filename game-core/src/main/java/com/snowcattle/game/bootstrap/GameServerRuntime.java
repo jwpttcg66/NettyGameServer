@@ -3,7 +3,7 @@ package com.snowcattle.game.bootstrap;
 /**
  * 游戏服务器运行时数据
  */
-public class GameServerRuntime {
+public final class GameServerRuntime {
     /** 服务是否已经开放 */
     private static volatile boolean open;
     /** 服务是否正在关闭 */

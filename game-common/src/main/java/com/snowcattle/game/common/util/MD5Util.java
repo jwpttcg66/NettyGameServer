@@ -7,9 +7,12 @@ import java.security.MessageDigest;
  *
  *
  */
-public class MD5Util {
+public final class MD5Util {
 
-	/**
+    private MD5Util() {
+    }
+
+    /**
 	 * 将输入的字符串进行MD5加密（编码）
 	 *
 	 * @param inputString
@@ -52,14 +55,14 @@ public class MD5Util {
 					_byteStr[i] = (byte)_charStr[i];
 				}
 				byte[] _results = md.digest(_byteStr);
-				StringBuffer _hexValue = new StringBuffer();
-				for (int i = 0; i < _results.length; i++) {
-					int _val = _results[i] & 0xff;
-					if(_val < 16){
-						_hexValue.append('0');
-					}
-					_hexValue.append(Integer.toHexString(_val));
-				}
+				StringBuilder _hexValue = new StringBuilder();
+                for (byte _result : _results) {
+                    int _val = _result & 0xff;
+                    if (_val < 16) {
+                        _hexValue.append('0');
+                    }
+                    _hexValue.append(Integer.toHexString(_val));
+                }
 				return _hexValue.toString();
 			} catch (Exception ex) {
 				ex.printStackTrace();

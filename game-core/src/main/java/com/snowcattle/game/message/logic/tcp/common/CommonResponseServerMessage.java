@@ -13,7 +13,7 @@ import com.snowcattle.game.service.message.command.MessageCommandIndex;
 public class CommonResponseServerMessage extends AbstractNetProtoBufTcpMessage {
 
     @Override
-    public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
+    public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
         CommonMessageProBuf.CommonResponseServerProBuf req = CommonMessageProBuf.CommonResponseServerProBuf.parseFrom(bytes);
     }
@@ -24,7 +24,7 @@ public class CommonResponseServerMessage extends AbstractNetProtoBufTcpMessage {
     }
 
     @Override
-    public void encodeNetProtoBufMessageBody() throws CodecException, Exception {
+    public void encodeNetProtoBufMessageBody() throws Exception {
         CommonMessageProBuf.CommonResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonResponseServerProBuf.newBuilder();
         byte[] bytes = builder.build().toByteArray();
         getNetMessageBody().setBytes(bytes);

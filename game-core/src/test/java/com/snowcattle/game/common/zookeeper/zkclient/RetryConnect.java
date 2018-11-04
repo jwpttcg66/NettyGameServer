@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import org.I0Itec.zkclient.ZkClient;
 
 public class RetryConnect implements Callable<String>{
-	private String path;
+	private final String path;
 	private ZkClient zk;
 
 	public RetryConnect(String path, ZkClient zk) {

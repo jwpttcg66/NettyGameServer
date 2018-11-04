@@ -6,7 +6,7 @@ import com.snowcattle.game.executor.event.service.AsyncEventService;
 /**
  * Created by jwp on 2017/5/5.
  */
-public class AsyncEventServiceTest {
+public final class AsyncEventServiceTest {
     public static void main(String[] args) throws Exception {
         EventBus eventBus = new EventBus();
 

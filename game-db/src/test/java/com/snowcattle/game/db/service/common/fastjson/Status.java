@@ -9,14 +9,14 @@ public enum Status {
 
     Completed(20);
 
-    private int value;
+    private final int value;
 
     private Status(int value) {
         this.value = value;
     }
 
     public static Status create(String value) {
-        return Status.valueOf(value);
+        return valueOf(value);
     }
 
     public static int value(Status status){

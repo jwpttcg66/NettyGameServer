@@ -22,11 +22,11 @@ import java.util.concurrent.*;
  */
 public class AsyncEventService {
 
-    private Logger eventLogger = Loggers.gameExecutorEvent;
+    private final Logger eventLogger = Loggers.gameExecutorEvent;
 
-    private EventBus eventBus;
+    private final EventBus eventBus;
 
-    private BlockingQueue<SingleEvent> queue;
+    private final BlockingQueue<SingleEvent> queue;
 
     private OrderedQueuePoolExecutor orderedQueuePoolExecutor;
 
@@ -35,20 +35,20 @@ public class AsyncEventService {
     public long statisticsMessageCount = 0;
 
     /**work线程池大小*/
-    private int workSize;
+    private final int workSize;
 
     /**事件异步处理线程池大小*/
-    private int handlerSize;
+    private final int handlerSize;
 
     private Expression shardingExpresson;
 
-    private String threadFactoryName;
-    private int orderQueueMaxSize;
+    private final String threadFactoryName;
+    private final int orderQueueMaxSize;
 
 
     /** 消息处理线程池 */
     private volatile ExecutorService executorService;
-    private String workThreadFactoryName;
+    private final String workThreadFactoryName;
     /**
      *
      * @param eventBus
@@ -108,7 +108,7 @@ public class AsyncEventService {
             this.orderedQueuePoolExecutor = null;
         }
 
-        eventLogger.info("AsyncEventService" + this + " stopped");
+        eventLogger.info("AsyncEventService " + this + " stopped");
     }
 
 
@@ -135,7 +135,6 @@ public class AsyncEventService {
      *
      * @param event
      */
-    @SuppressWarnings("unchecked")
     public void process(SingleEvent event) {
         if (event == null) {
             if (eventLogger.isWarnEnabled()) {

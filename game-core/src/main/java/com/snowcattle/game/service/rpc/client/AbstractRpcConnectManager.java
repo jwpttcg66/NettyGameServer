@@ -22,13 +22,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public abstract class AbstractRpcConnectManager {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(AbstractRpcConnectManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractRpcConnectManager.class);
 
     private ThreadPoolExecutor threadPoolExecutor;
 
-    private Map<Integer, RpcClient> serverNodes = new HashMap<>();
+    private final Map<Integer, RpcClient> serverNodes = new HashMap<>();
 
-    private AtomicInteger roundRobin = new AtomicInteger();
+    private final AtomicInteger roundRobin = new AtomicInteger();
 
     public void initManager(){
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
