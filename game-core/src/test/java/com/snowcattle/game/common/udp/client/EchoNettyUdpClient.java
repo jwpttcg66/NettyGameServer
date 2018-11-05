@@ -20,7 +20,10 @@ import java.nio.charset.Charset;
 /**
  * @author TinyZ on 2015/6/8.
  */
-public class EchoNettyUdpClient {
+public final class EchoNettyUdpClient {
+
+    private EchoNettyUdpClient() {
+    }
 
     public static void main(String[] args) throws Exception {
         LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();

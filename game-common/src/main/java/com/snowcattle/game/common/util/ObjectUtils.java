@@ -14,7 +14,10 @@ import java.util.Map.Entry;
 /**
  * Created by jwp on 2017/2/28.
  */
-public class ObjectUtils {
+public final class ObjectUtils {
+
+    private ObjectUtils() {
+    }
 
     /**
      * 获取某个对象某些字段的Map
@@ -85,7 +88,7 @@ public class ObjectUtils {
     }
 
     public static String getFieldsValueStr(Object obj,String fieldName){
-        Object o = ObjectUtils.getFieldsValueObj(obj, fieldName);
+        Object o = getFieldsValueObj(obj, fieldName);
         return getObjectString(o);
     }
 
@@ -109,7 +112,7 @@ public class ObjectUtils {
     }
 
     public static String getFieldsValueStr(Object obj,String[] fieldName){
-        Map<String,String> keyMap=ObjectUtils.getMap(obj, fieldName);
+        Map<String,String> keyMap=getMap(obj, fieldName);
         StringBuilder sb=new StringBuilder();
         for(int i = 0; i < fieldName.length;i++){
             String keyName=fieldName[i];
@@ -198,7 +201,7 @@ public class ObjectUtils {
         return null;
     }
     private static String buildSetMethod(String fieldName){
-        StringBuffer sb=new StringBuffer("set");
+        StringBuilder sb=new StringBuilder("set");
         if(fieldName.length()>1){
             String first=fieldName.substring(0, 1);
             String next=fieldName.substring(1);

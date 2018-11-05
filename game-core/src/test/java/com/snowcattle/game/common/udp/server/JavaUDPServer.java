@@ -7,7 +7,7 @@ import java.net.SocketException;
 /**
  * Created by jiangwenping on 17/1/22.
  */
-public class JavaUDPServer {
+public final class JavaUDPServer {
     public static void main(String[] args)throws Exception{
         String str_send = "Hello UDPclient";
         byte[] buf = new byte[1024];

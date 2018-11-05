@@ -25,7 +25,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
 
     public ClassScanner classScanner = new ClassScanner();
 
-    private ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
+    private final ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
 
     @Override
     public String getId() {

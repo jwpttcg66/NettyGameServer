@@ -23,7 +23,7 @@ public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMess
     private String arg;
 
     @Override
-    public void decoderNetProtoBufMessageBody() throws CodecException, Exception {
+    public void decoderNetProtoBufMessageBody() throws Exception {
         byte[] bytes = getNetMessageBody().getBytes();
         CommonMessageProBuf.CommonErrorResponseServerProBuf req = CommonMessageProBuf.CommonErrorResponseServerProBuf.parseFrom(bytes);
         this.state = req.getState();
@@ -36,7 +36,7 @@ public class CommonErrorResponseServerMessage extends AbstractNetProtoBufTcpMess
     }
 
     @Override
-    public void encodeNetProtoBufMessageBody() throws CodecException, Exception {
+    public void encodeNetProtoBufMessageBody() throws Exception {
         CommonMessageProBuf.CommonErrorResponseServerProBuf.Builder builder = CommonMessageProBuf.CommonErrorResponseServerProBuf.newBuilder();
         if(!StringUtils.isEmpty(arg)) {
             builder.setArg(arg);

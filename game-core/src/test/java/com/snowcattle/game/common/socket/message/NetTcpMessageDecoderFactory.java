@@ -26,9 +26,7 @@ public class NetTcpMessageDecoderFactory implements INetMessageDecoderFactory {
         //读取body
         NetMessageBody netMessageBody = new NetMessageBody();
         int byteLength = byteBuf.readableBytes();
-        ByteBuf bodyByteBuffer = Unpooled.buffer(256);
         byte[] bytes = new byte[byteLength];
-        bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
         netMessageBody.setBytes(bytes);
 
         MessageRegistry messageRegistry = LocalMananger.getInstance().getLocalSpringServiceManager().getMessageRegistry();

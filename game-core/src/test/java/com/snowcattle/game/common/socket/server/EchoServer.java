@@ -12,7 +12,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Created by jiangwenping on 17/1/22.
  */
-public class EchoServer {
+public final class EchoServer {
 
     public static  final int Port = 9999;
 

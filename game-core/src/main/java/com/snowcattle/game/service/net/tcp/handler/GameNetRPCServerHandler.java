@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  */
 public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
-    private Logger logger = Loggers.rpcLogger;
+    private final Logger logger = Loggers.rpcLogger;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -68,11 +68,11 @@ public class GameNetRPCServerHandler extends SimpleChannelInboundHandler<RpcRequ
         if(logger.isDebugEnabled()) {
             logger.debug(serviceClass.getName());
             logger.debug(methodName);
-            for (int i = 0; i < parameterTypes.length; ++i) {
-                logger.debug(parameterTypes[i].getName());
+            for (Class<?> parameterType : parameterTypes) {
+                logger.debug(parameterType.getName());
             }
-            for (int i = 0; i < parameters.length; ++i) {
-                logger.debug(parameters[i].toString());
+            for (Object parameter : parameters) {
+                logger.debug(parameter.toString());
             }
         }
 

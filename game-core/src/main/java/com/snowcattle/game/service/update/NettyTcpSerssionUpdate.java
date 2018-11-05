@@ -11,7 +11,7 @@ import com.snowcattle.game.service.net.tcp.session.TcpNetState;
 public class NettyTcpSerssionUpdate extends AbstractUpdate<Long> {
 
     private static final long serialVersionUID = -4490585465336581804L;
-    private NettyTcpSession nettyTcpSession;
+    private final NettyTcpSession nettyTcpSession;
 
     public NettyTcpSerssionUpdate(NettyTcpSession nettyTcpSession) {
         this.nettyTcpSession = nettyTcpSession;
@@ -32,7 +32,7 @@ public class NettyTcpSerssionUpdate extends AbstractUpdate<Long> {
     }
 
     public void updateAlive(){
-        if(nettyTcpSession.getTcpNetStateUpdate().state.equals(TcpNetState.DESTROY)){
+        if(nettyTcpSession.getTcpNetStateUpdate().state == TcpNetState.DESTROY){
             setActive(false);
         }
     }

@@ -10,13 +10,16 @@ import java.util.Random;
 /**
  * 从LZR拷贝过来
  */
-public class MathUtils {
+public final class MathUtils {
 
     // public static final float EPSILON = 0.00001f;//10-6对于double转float容易误差
     // 宠物点数校验时。 modified by sxf 090121
     public static final float EPSILON = 0.00004f;// 再把误差调得大一点,现在这样,在150级时百万次检查大概会出现8次超出误差值
 
     public static Random random = new Random();
+
+    private MathUtils() {
+    }
 
     /**
      * 返回>=low, <=hi的整数随机数，均匀分布
@@ -55,7 +58,7 @@ public class MathUtils {
         for (int i = 0; i < rateArray.length; i++) {
             rateArrayInt[i] = rateArray[i];
         }
-        return MathUtils.random(rateArrayInt);
+        return random(rateArrayInt);
     }
 
     /**
@@ -94,7 +97,7 @@ public class MathUtils {
             return -1;
         }
 
-        int randomInt = MathUtils.random(1, rateSum);
+        int randomInt = random(1, rateSum);
         int bingoIndex = -1;
         for (int i = 0; i < arrayLength; i++) {
             if (randomInt <= rateSumArray[i]) {
@@ -205,15 +208,8 @@ public class MathUtils {
             } else if (dayone.get(Calendar.MONTH) < daytwo.get(Calendar.MONTH)) {
                 return -1;
             } else {
-                if (dayone.get(Calendar.DAY_OF_MONTH) > daytwo
-                        .get(Calendar.DAY_OF_MONTH)) {
-                    return 1;
-                } else if (dayone.get(Calendar.DAY_OF_MONTH) < daytwo
-                        .get(Calendar.DAY_OF_MONTH)) {
-                    return -1;
-                } else {
-                    return 0;
-                }
+                return Integer.compare(dayone.get(Calendar.DAY_OF_MONTH), daytwo
+                        .get(Calendar.DAY_OF_MONTH));
             }
         }
     }
@@ -462,8 +458,8 @@ public class MathUtils {
             return nums[0];
         }
         int total4 = 0, total3 = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i], tmp;
+        for (int num1 : nums) {
+            int num = num1, tmp;
             if (num <= 0) {
                 throw new IllegalArgumentException("num error");
             }

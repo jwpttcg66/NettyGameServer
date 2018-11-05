@@ -11,6 +11,6 @@ class FinalizableDelegatedExecutorService extends DelegatedExecutorService {
     }
 
     protected void finalize() {
-        super.shutdown();
+        shutdown();
     }
 }

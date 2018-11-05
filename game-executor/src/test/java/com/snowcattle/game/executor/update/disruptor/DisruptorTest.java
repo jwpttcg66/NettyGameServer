@@ -18,7 +18,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by jiangwenping on 17/4/25.
  */
-public class DisruptorTest {
+public final class DisruptorTest {
+    private DisruptorTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         testUpdate();
     }

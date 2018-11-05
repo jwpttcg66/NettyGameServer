@@ -37,8 +37,7 @@ public enum GameMessageCommandEnum {
     public static String getMessageCommandName(int commandId) {
         GameMessageCommandEnum commands = GameMessageCommandEnum.ONLINE_HEART_MESSAGE;
         GameMessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            GameMessageCommandEnum tempCommand = set[i];
+        for (GameMessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;
@@ -51,8 +50,7 @@ public enum GameMessageCommandEnum {
     public static GameMessageCommandEnum getMessageCommand(int commandId) {
         GameMessageCommandEnum commands = GameMessageCommandEnum.ONLINE_HEART_MESSAGE;
         GameMessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            GameMessageCommandEnum tempCommand = set[i];
+        for (GameMessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;
@@ -65,8 +63,7 @@ public enum GameMessageCommandEnum {
     public static int getBoIdByCommandId(int commandId) {
         GameMessageCommandEnum commands = GameMessageCommandEnum.ONLINE_HEART_MESSAGE;
         GameMessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            GameMessageCommandEnum tempCommand = set[i];
+        for (GameMessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;

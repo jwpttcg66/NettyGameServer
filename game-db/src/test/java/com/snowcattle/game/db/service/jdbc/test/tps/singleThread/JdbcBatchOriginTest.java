@@ -11,7 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by jwp on 2017/3/24.
  */
-public class JdbcBatchOriginTest {
+public final class JdbcBatchOriginTest {
+    private JdbcBatchOriginTest() {
+    }
+
     public static void main(String[] args) {
        commonTest();
     }

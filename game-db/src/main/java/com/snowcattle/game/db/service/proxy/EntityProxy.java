@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class EntityProxy< T extends IEntity> implements MethodInterceptor {
 
-    private Logger logger = Loggers.dbProxyLogger;
+    private final Logger logger = Loggers.dbProxyLogger;
     //实体对象
     private T entity;
 

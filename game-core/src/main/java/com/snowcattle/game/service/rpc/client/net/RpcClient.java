@@ -18,8 +18,8 @@ import java.util.concurrent.ExecutorService;
  */
 public class RpcClient
 {
-    private Logger logger = Loggers.rpcLogger;
-    private RpcClientConnection rpcClientConnection;
+    private final Logger logger = Loggers.rpcLogger;
+    private final RpcClientConnection rpcClientConnection;
 
 
     public RpcClient(RpcNodeInfo rpcNodeInfo, ExecutorService threadPool){

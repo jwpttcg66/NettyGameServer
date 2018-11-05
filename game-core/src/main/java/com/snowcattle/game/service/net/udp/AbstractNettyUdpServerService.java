@@ -17,15 +17,15 @@ import org.slf4j.Logger;
  */
 public abstract class AbstractNettyUdpServerService extends AbstractNettyServerService {
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     private EventLoopGroup eventLoopGroup;
 
-    private ThreadNameFactory eventThreadNameFactory;
+    private final ThreadNameFactory eventThreadNameFactory;
 
     private ChannelFuture serverChannelFuture;
 
-    private ChannelInitializer channelInitializer;
+    private final ChannelInitializer channelInitializer;
 
     public AbstractNettyUdpServerService(String serviceId, int serverPort, String threadNameFactoryName, ChannelInitializer channelInitializer) {
         super(serviceId, serverPort);

@@ -15,7 +15,7 @@ public class LifeCycleCheckService implements IService {
 
     private WheelTimer<Integer> wheelTimer;
 
-    private boolean openFlag = false;
+    private final boolean openFlag = false;
     @Override
     public String getId() {
         return ServiceName.LifeCycleCheckService;

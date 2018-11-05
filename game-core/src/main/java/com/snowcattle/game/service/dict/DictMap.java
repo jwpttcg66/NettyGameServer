@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DictMap implements IDictCollections{
 
     //存放map形数据字典
-    private Map<Integer, IDict> dictMap;
+    private final Map<Integer, IDict> dictMap;
 
     public DictMap(){
         this.dictMap = new ConcurrentHashMap<>();

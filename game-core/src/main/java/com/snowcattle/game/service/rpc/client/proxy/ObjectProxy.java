@@ -17,9 +17,9 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class ObjectProxy<T> implements InvocationHandler{
-    private Logger logger = Loggers.rpcLogger;
-    private Class<T> clazz;
-    private int timeOut;
+    private final Logger logger = Loggers.rpcLogger;
+    private final Class<T> clazz;
+    private final int timeOut;
     public ObjectProxy(Class<T> clazz, int timeOut) {
         this.clazz = clazz;
         this.timeOut = timeOut;
@@ -56,8 +56,8 @@ public class ObjectProxy<T> implements InvocationHandler{
             for (int i = 0; i < method.getParameterTypes().length; ++i) {
                 logger.debug(method.getParameterTypes()[i].getName());
             }
-            for (int i = 0; i < args.length; ++i) {
-                logger.debug(args[i].toString());
+            for (Object arg : args) {
+                logger.debug(arg.toString());
             }
         }
 

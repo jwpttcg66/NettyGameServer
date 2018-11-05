@@ -8,7 +8,7 @@ import java.util.TimerTask;
  */
 public class NotifyTask extends TimerTask {
 
-    private UpdateService updateService;
+    private final UpdateService updateService;
 
     public NotifyTask(UpdateService updateService) {
         this.updateService = updateService;

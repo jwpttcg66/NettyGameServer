@@ -30,10 +30,12 @@ public class ShootUtils {
 
 	  public Color getRandColor(int fc, int bc) { //给定范围获得随机颜色
 		    Random random = new Random();
-		    if (fc > 255)
-		      fc = 255;
-		    if (bc > 255)
-		      bc = 255;
+		    if (fc > 255) {
+				fc = 255;
+			}
+		    if (bc > 255) {
+				bc = 255;
+			}
 		    int r = fc + random.nextInt(bc - fc);
 		    int g = fc + random.nextInt(bc - fc);
 		    int b = fc + random.nextInt(bc - fc);
@@ -54,7 +56,7 @@ public class ShootUtils {
 	}
 
 	public static String getRandomChineseString(int length){
-		StringBuffer buffer = new StringBuffer(length);
+		StringBuilder buffer = new StringBuilder(length);
 		for(int i=0; i<length; i++){
 			buffer.append(getRandomChineseChar());
 		}
@@ -75,7 +77,7 @@ public class ShootUtils {
 	}
 
 	public static String getRandomNumber(int length){
-		StringBuffer buffer = new StringBuffer(length);
+		StringBuilder buffer = new StringBuilder(length);
 		for(int i=0; i<length; i++){
 			buffer.append(getRandomNumber());
 		}
@@ -113,7 +115,7 @@ public class ShootUtils {
 		ByteArrayOutputStream dest = new ByteArrayOutputStream();
 		new RegisterCode().create(150, 50, RegisterCode.insertSpace(chinese,1),
 							 "宋体", 24,//隶书  楷体_GB2312
-							 1+ShootUtils.getRandom(30), 33,
+							 1+getRandom(30), 33,
 							dest);
 		return dest.toByteArray();
 	}

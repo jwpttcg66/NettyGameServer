@@ -15,10 +15,12 @@ public class RegisterCode {
 
   public Color getRandColor(int fc, int bc) { //给定范围获得随机颜色
     Random random = new Random();
-    if (fc > 255)
-      fc = 255;
-    if (bc > 255)
-      bc = 255;
+    if (fc > 255) {
+		fc = 255;
+	}
+    if (bc > 255) {
+		bc = 255;
+	}
     int r = fc + random.nextInt(bc - fc);
     int g = fc + random.nextInt(bc - fc);
     int b = fc + random.nextInt(bc - fc);
@@ -129,7 +131,7 @@ public class RegisterCode {
     }
 
   }
-		private final static java.util.List<String> fontList=new ArrayList<String>();
+		private static final java.util.List<String> fontList=new ArrayList<String>();
 		static{
 			if(fontList.isEmpty()){
 				fontList.add("宋体");
@@ -142,8 +144,8 @@ public class RegisterCode {
 
 
 	//utils
-	public static final String insertSpace(String k,int inSnum){ //将insnum个空格随机插入k中间
-		StringBuffer o=new StringBuffer();
+	public static String insertSpace(String k, int inSnum){ //将insnum个空格随机插入k中间
+		StringBuilder o=new StringBuilder();
 		for(int i=0;i<k.length();i++){
 			o.append(
 				k.charAt(i)
@@ -153,7 +155,7 @@ public class RegisterCode {
 		}
 		return o.toString();
 	}
-	public static final StringBuffer _getSpace(int num){//获得空格
+	public static StringBuffer _getSpace(int num){//获得空格
 		StringBuffer o=new StringBuffer(num);
 		for(int i=0;i<num;i++){
 			o.append(' ');

@@ -3,7 +3,7 @@ package com.snowcattle.game.db.service.common.uuid;
 /**
  * Created by jiangwenping on 17/2/27.
  */
-public class SnowflakeTest {
+public final class SnowflakeTest {
     public static void main(String[] args) {
         int node = 10;
         Snowflake snowflake = new Snowflake(node);

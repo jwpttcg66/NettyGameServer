@@ -64,9 +64,9 @@ public class GameUdpMessageOrderProcessor implements  IMessageProcessor{
 
     private static final class UdpWorker extends AbstractWork {
 
-        private AbstractNetMessage netMessage;
+        private final AbstractNetMessage netMessage;
 
-        public UdpWorker(AbstractNetMessage netMessage) {
+        private UdpWorker(AbstractNetMessage netMessage) {
             this.netMessage = netMessage;
         }
 

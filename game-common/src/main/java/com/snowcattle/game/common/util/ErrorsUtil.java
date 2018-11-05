@@ -3,7 +3,10 @@ package com.snowcattle.game.common.util;
 
 import com.snowcattle.game.common.constant.CommonErrorLogInfo;
 
-public class ErrorsUtil {
+public final class ErrorsUtil {
+
+    private ErrorsUtil() {
+    }
 
     /**
      * 构造一个错误消息,处理动作无

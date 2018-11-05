@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class DictService implements IService{
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     private Map<String, IDictCollections> collectionsMap;
     @Override
@@ -51,7 +51,7 @@ public class DictService implements IService{
                 //加载文件
                 jsonString = ResourceUtil.getTextFormResource(path);
                 if(!StringUtils.isEmpty(jsonString)){
-                    JSONObject dictJsonObjects = (JSONObject) JSONObject.parse(jsonString);
+                    JSONObject dictJsonObjects = (JSONObject) JSON.parse(jsonString);
                     //加载数据
                     String multiKeyString = dictJsonObjects.getString(GlobalConstants.JSONFile.multiKey);
                     JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
@@ -68,7 +68,7 @@ public class DictService implements IService{
                                 int dictId = -1;
                                 for(JSONObject dictJson: dictModleJsonObjects) {
                                     //唯一的数据
-                                    Object object = JSONObject.toJavaObject(dictJson, classes);
+                                    Object object = JSON.toJavaObject(dictJson, classes);
                                     if(logger.isDebugEnabled()) {
                                         logger.debug("加载dict className:" +  className + dictJson.toJSONString());
                                     }
@@ -84,7 +84,7 @@ public class DictService implements IService{
                             DictMap dictMap = new DictMap();
                             for(JSONObject dictJson: dictModleJsonObjects) {
                                 //唯一的数据
-                                Object object = JSONObject.toJavaObject(dictJson, classes);
+                                Object object = JSON.toJavaObject(dictJson, classes);
                                 if(logger.isDebugEnabled()) {
                                     logger.debug("加载dict className:" + className + dictJson.toJSONString());
                                 }

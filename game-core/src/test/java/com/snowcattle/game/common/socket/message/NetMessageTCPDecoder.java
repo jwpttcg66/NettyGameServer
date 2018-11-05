@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class NetMessageTCPDecoder extends MessageToMessageDecoder<ByteBuf> {
 
-    private INetMessageDecoderFactory iNetMessageDecoderFactory;
+    private final INetMessageDecoderFactory iNetMessageDecoderFactory;
 
     public NetMessageTCPDecoder() {
         this.iNetMessageDecoderFactory = new NetTcpMessageDecoderFactory();

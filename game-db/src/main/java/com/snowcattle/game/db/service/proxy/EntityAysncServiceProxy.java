@@ -23,12 +23,12 @@ import java.util.List;
  * Created by jiangwenping on 17/3/29.
  * 存储策略为全部存入缓存(包括删除)，然后存入队列，进行异步线程存入db
  */
-public class EntityAysncServiceProxy<T extends EntityService> extends  EntityServiceProxy implements MethodInterceptor {
+public class EntityAysncServiceProxy<T extends EntityService> extends  EntityServiceProxy {
     private static final Logger proxyLogger = Loggers.dbServiceProxyLogger;
 
-    private RedisService redisService;
+    private final RedisService redisService;
 
-    private AsyncDbRegisterCenter asyncDbRegisterCenter;
+    private final AsyncDbRegisterCenter asyncDbRegisterCenter;
 
     public EntityAysncServiceProxy(RedisService redisService, AsyncDbRegisterCenter asyncDbRegisterCenter) {
         super(redisService, true);

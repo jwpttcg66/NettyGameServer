@@ -12,7 +12,7 @@ import com.snowcattle.game.service.rpc.client.net.RpcClient;
 
 public class AsyncRpcProxy<T> implements IAsyncRpcProxy{
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     public AsyncRpcProxy(Class<T> clazz) {
         this.clazz = clazz;

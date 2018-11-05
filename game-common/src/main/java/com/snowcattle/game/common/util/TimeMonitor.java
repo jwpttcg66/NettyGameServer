@@ -9,9 +9,9 @@ import org.slf4j.Logger;
  *
  */
 public class TimeMonitor {
-	private Logger logger = Loggers.timeMonitorLogger;
+	private final Logger logger = Loggers.timeMonitorLogger;
 	private final boolean isDebug;
-	public static TimeMonitor DEBUG = new TimeMonitor(true);
+	public static final TimeMonitor DEBUG = new TimeMonitor(true);
 
 	private long start = 0;
 

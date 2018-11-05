@@ -61,11 +61,13 @@ public class ConactString {
 			final int len = (int) (this.length * (double) encoder.maxBytesPerChar());
 			final ByteBuffer bb = ByteBuffer.allocate(len);
 			CoderResult cr = encoder.encode(cb, bb, true);
-			if (!cr.isUnderflow())
+			if (!cr.isUnderflow()) {
 				cr.throwException();
+			}
 			cr = encoder.flush(bb);
-			if (!cr.isUnderflow())
+			if (!cr.isUnderflow()) {
 				cr.throwException();
+			}
 			return bb;
 		} catch (Exception x) {
 			throw new Error(x);

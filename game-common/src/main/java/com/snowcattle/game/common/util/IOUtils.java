@@ -4,9 +4,12 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class IOUtils {
-	public static void writeLengthString(DataOutput dout, String content,
-			String charset) throws IOException {
+public final class IOUtils {
+    private IOUtils() {
+    }
+
+    public static void writeLengthString(DataOutput dout, String content,
+                                         String charset) throws IOException {
 		if (content == null) {
 			content = "";
 		}

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LocalSpringServicerAfterManager extends AbstractSpringStart{
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     @Autowired
     private RpcClientConnectService rpcClientConnectService;

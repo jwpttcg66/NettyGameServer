@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author hejingyuan
  *
  */
-public class ReadWriteLockTest {
+public final class ReadWriteLockTest {
     public static void main(String[] args) {
         final Queue3 q3 = new Queue3();
         int threadSize = 10;

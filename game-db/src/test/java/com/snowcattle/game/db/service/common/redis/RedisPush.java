@@ -8,8 +8,8 @@ import com.snowcattle.game.db.service.redis.RedisService;
 public class RedisPush extends Thread{
 
     RedisService redisService;
-    private String setKey;
-    private String listKey;
+    private final String setKey;
+    private final String listKey;
 
     public RedisPush(RedisService redisService, String setKey, String listKey) {
         this.redisService = redisService;

@@ -15,12 +15,15 @@ import java.util.concurrent.TimeUnit;
   *
  *
  */
-public class ExecutorUtil {
+public final class ExecutorUtil {
 	private static final Logger logger = Loggers.utilLogger;
 	/** 默认的{@link ExecutorService}关闭前等待其中的任务结束的时间:5分钟 */
 	private static final int DEFAULT_AWAIT_TERMINATE_MINUTES = 5;
 
-	/**
+    private ExecutorUtil() {
+    }
+
+    /**
 	 * 关闭{@link ExecutorService},在关闭之前最多等待
 	 * {@link #DEFAULT_AWAIT_TERMINATE_MINUTES}分钟来满足其中已经开始任务结束
 	 *

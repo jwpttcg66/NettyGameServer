@@ -16,18 +16,22 @@ import java.util.Map.Entry;
 
 
 
-public class MessageGenerator {
+public final class MessageGenerator {
 
-	private static String xmlPath = "config/model/";
-	private static String vmPath = "config/template/";
-	private static String encode = "UTF-8";
+	private static final String xmlPath = "config/model/";
+	private static final String vmPath = "config/template/";
+	private static final String encode = "UTF-8";
 
-	private static String outputProjectPath = "game-code-generate/src/main/java/";
+	private static final String outputProjectPath = "game-code-generate/src/main/java/";
 
-	private static FileConentFactory fileConentFactory = new FileContentFactoryImpl();
+	private static final FileConentFactory fileConentFactory = new FileContentFactoryImpl();
 
 	public static List<MacroObject> formats = new ArrayList<>();
-	public static void main(String[] args) {
+
+    private MessageGenerator() {
+    }
+
+    public static void main(String[] args) {
 		generateMacroObject();
 		generateTemplate();
 	}

@@ -7,9 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ArrayUtils {
+public final class ArrayUtils {
 
-	public static int[] intList2Array(List<Integer> list) {
+    private ArrayUtils() {
+    }
+
+    public static int[] intList2Array(List<Integer> list) {
 		if (list != null) {
 			int[] ary = new int[list.size()];
 			for (int i = 0; i < list.size(); i++) {

@@ -12,8 +12,11 @@ import java.net.URL;
  *
  *
  */
-public class ResourceUtil {
-	/**
+public final class ResourceUtil {
+    private ResourceUtil() {
+    }
+
+    /**
 	 * 在类路径中查找指定的资源
 	 *
 	 * @param resource

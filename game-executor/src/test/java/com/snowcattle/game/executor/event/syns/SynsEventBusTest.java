@@ -11,7 +11,10 @@ import com.snowcattle.game.executor.common.utils.Constants;
 /**
  * Created by jiangwenping on 17/1/9.
  */
-public class SynsEventBusTest {
+public final class SynsEventBusTest {
+    private SynsEventBusTest() {
+    }
+
     public static void main(String[] args) {
         testSynsEvent();
     }

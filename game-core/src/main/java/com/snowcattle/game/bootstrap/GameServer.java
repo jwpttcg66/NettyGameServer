@@ -133,8 +133,8 @@ public class GameServer extends AbstractServerService {
                 logger.error("close connector service throwable:", e);
             }
 
-            ServerStatusLog.getDefaultLog().logStopped();
             // 注销性能收集
+            ServerStatusLog.getDefaultLog().logStopped();
             logger.info("Game Server shutdowned");
         }));
     }

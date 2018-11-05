@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * Created by jwp on 2017/3/28.
  */
 
-public class ScheduledThreadPoolExecutorTest
+public final class ScheduledThreadPoolExecutorTest
 {
     private static long start;
 

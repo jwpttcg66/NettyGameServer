@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 /**
  */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
-    private Logger logger = Loggers.rpcLogger;
+    private final Logger logger = Loggers.rpcLogger;
 
     //那个服务器
     private RpcClient rpcClient;

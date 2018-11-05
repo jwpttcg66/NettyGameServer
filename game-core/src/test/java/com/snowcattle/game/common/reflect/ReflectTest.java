@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
  * Created by jiangwenping on 17/4/13.
  * 测试结果， fastclass是原生性能耗时的20倍
  */
-public class ReflectTest {
+public final class ReflectTest {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
         Class classes = ReflectTest.class;
 

@@ -19,7 +19,7 @@ import java.util.jar.JarFile;
  * @author C172
  *
  */
-public class PackageScaner
+public final class PackageScaner
 {
 	/**
 	 * Logger for this class
@@ -41,10 +41,11 @@ public class PackageScaner
 		{
 			URL url;
 			logger.info("scan url path " + respath);
-			if (!respath.startsWith("/"))
+			if (!respath.startsWith("/")) {
 				url = PackageScaner.class.getResource('/' + respath);
-			else
+			} else {
 				url = PackageScaner.class.getResource(respath);
+			}
 
 			URLConnection tmpURLConnection = url.openConnection();
 			String tmpItemName;
@@ -96,13 +97,15 @@ public class PackageScaner
 					File[] fileArray = file.listFiles();
 					for (File f : fileArray)
 					{
-						if(f.isDirectory() && f.getName().indexOf('.') != -1)
+						if(f.isDirectory() && f.getName().indexOf('.') != -1) {
 							continue;
+						}
 						
-						if(isReturnCanonicalPath)
+						if(isReturnCanonicalPath) {
 							tmpItemName = f.getCanonicalPath();
-						else
+						} else {
 							tmpItemName = f.getName();
+						}
 						if(f.isDirectory()){
 							String[] inner = scanNamespaceFiles(namespace + '.' + tmpItemName, fileext, isReturnCanonicalPath);
 							if(inner == null){

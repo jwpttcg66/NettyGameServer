@@ -28,23 +28,23 @@ import java.util.Map;
  */
 public class AsyncDBSaveTransactionEntity extends AbstractGameTransactionEntity {
 
-    private Logger logger = Loggers.dbErrorLogger;
+    private final Logger logger = Loggers.dbErrorLogger;
     /**
      * db中redis服务
      */
-    private RedisService redisService;
+    private final RedisService redisService;
 
     /**
      * 实体存储服务
      */
-    private EntityService entityService;
+    private final EntityService entityService;
 
     /**
      * 需要弹出的玩家key
      */
-    private String playerKey;
+    private final String playerKey;
 
-    private EntityProxyFactory entityProxyFactory;
+    private final EntityProxyFactory entityProxyFactory;
 
     private AsyncDbOperationMonitor asyncDbOperationMonitor;
 
@@ -84,21 +84,21 @@ public class AsyncDBSaveTransactionEntity extends AbstractGameTransactionEntity 
         //开始进行反射，存储到mysql
         Class targeClasses = entityService.getEntityTClass();
         DbOperationEnum dbOperationEnum = asyncEntityWrapper.getDbOperationEnum();
-        if(dbOperationEnum.equals(DbOperationEnum.insert)){
+        if(dbOperationEnum == DbOperationEnum.insert){
             AbstractEntity abstractEntity = ObjectUtils.getObjFromMap(asyncEntityWrapper.getParams(), targeClasses);
             entityService.insertEntity(abstractEntity);
-        }else if(dbOperationEnum.equals(DbOperationEnum.delete)){
+        }else if(dbOperationEnum == DbOperationEnum.delete){
             AbstractEntity abstractEntity = ObjectUtils.getObjFromMap(asyncEntityWrapper.getParams(), targeClasses);
             entityService.deleteEntity(abstractEntity);
             //TODO进行回调删除
             EntityUtils.deleteEntity(redisService, abstractEntity);
-        }else if(dbOperationEnum.equals(DbOperationEnum.update)){
+        }else if(dbOperationEnum == DbOperationEnum.update){
             AbstractEntity abstractEntity = (AbstractEntity) targeClasses.newInstance();
             abstractEntity =  entityProxyFactory.createProxyEntity(abstractEntity);
             Map<String, String > changeStrings = asyncEntityWrapper.getParams();
             ObjectUtils.getObjFromMap(changeStrings, abstractEntity);
             entityService.updateEntity(abstractEntity);
-        }else if(dbOperationEnum.equals(DbOperationEnum.insertBatch)){
+        }else if(dbOperationEnum == DbOperationEnum.insertBatch){
             List<Map<String, String>> paramList = asyncEntityWrapper.getParamList();
             List<AbstractEntity> abstractEntityList = new ArrayList<>();
             for(Map<String, String> temp: paramList){
@@ -106,7 +106,7 @@ public class AsyncDBSaveTransactionEntity extends AbstractGameTransactionEntity 
                 abstractEntityList.add(abstractEntity);
             }
             entityService.insertEntityBatch(abstractEntityList);
-        }else if(dbOperationEnum.equals(DbOperationEnum.updateBatch)){
+        }else if(dbOperationEnum == DbOperationEnum.updateBatch){
             List<Map<String, String>> paramList = asyncEntityWrapper.getParamList();
             List<AbstractEntity> abstractEntityList = new ArrayList<>();
             for(Map<String, String> temp: paramList){
@@ -115,7 +115,7 @@ public class AsyncDBSaveTransactionEntity extends AbstractGameTransactionEntity 
                 abstractEntityList.add(abstractEntity);
             }
             entityService.updateEntityBatch(abstractEntityList);
-        }else if(dbOperationEnum.equals(DbOperationEnum.deleteBatch)){
+        }else if(dbOperationEnum == DbOperationEnum.deleteBatch){
             List<Map<String, String>> paramList = asyncEntityWrapper.getParamList();
             List<AbstractEntity> abstractEntityList = new ArrayList<>();
             for(Map<String, String> temp: paramList){

@@ -16,8 +16,8 @@ import com.snowcattle.game.executor.update.thread.dispatch.DispatchThread;
  * Created by jiangwenping on 17/1/11.
  */
 public class DispatchUpdateEventListener extends UpdateEventListener {
-    private DispatchThread dispatchThread;
-    private UpdateService updateService;
+    private final DispatchThread dispatchThread;
+    private final UpdateService updateService;
     public DispatchUpdateEventListener(DispatchThread dispatchThread, UpdateService updateService) {
         this.dispatchThread = dispatchThread;
         this.updateService = updateService;

@@ -7,8 +7,8 @@ import com.snowcattle.game.db.service.redis.RedisService;
  */
 public class RedisPop extends Thread{
     RedisService redisService;
-    private String setKey;
-    private String listKey;
+    private final String setKey;
+    private final String listKey;
 
     public RedisPop(RedisService redisService, String setKey, String listKey) {
         this.redisService = redisService;

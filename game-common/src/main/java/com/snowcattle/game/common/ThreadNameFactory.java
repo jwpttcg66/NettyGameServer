@@ -8,10 +8,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 线程名字工厂
  */
 public class ThreadNameFactory implements ThreadFactory{
-    private ThreadGroup group;
-    private AtomicInteger threadNumber = new AtomicInteger(0);
-    private String namePrefix;
-    private boolean daemon;
+    private final ThreadGroup group;
+    private final AtomicInteger threadNumber = new AtomicInteger(0);
+    private final String namePrefix;
+    private final boolean daemon;
 
     public ThreadNameFactory(String namePreFix)
     {
@@ -35,10 +35,12 @@ public class ThreadNameFactory implements ThreadFactory{
         if(daemon) {
            t.setDaemon(daemon);
         }else{
-            if (t.isDaemon())
+            if (t.isDaemon()) {
                 t.setDaemon(false);
-            if (t.getPriority() != Thread.NORM_PRIORITY)
+            }
+            if (t.getPriority() != Thread.NORM_PRIORITY) {
                 t.setPriority(Thread.NORM_PRIORITY);
+            }
         }
         return t;
     }

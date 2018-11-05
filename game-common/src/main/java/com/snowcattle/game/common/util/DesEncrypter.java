@@ -52,13 +52,9 @@ public class DesEncrypter {
 			// Create the ciphers
 			ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
 			dcipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
-		} catch (InvalidAlgorithmParameterException e) {
-		} catch (InvalidKeySpecException e) {
-		} catch (NoSuchPaddingException e) {
-		} catch (NoSuchAlgorithmException e) {
-		} catch (InvalidKeyException e) {
+		} catch (InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeySpecException e) {
 		}
-	}
+    }
 
 	public String encrypt(String str) {
 		try {
@@ -70,11 +66,9 @@ public class DesEncrypter {
 
 			// Encode bytes to base64 to get a string
 			return new BASE64Encoder().encode(enc);
-		} catch (BadPaddingException e) {
-		} catch (IllegalBlockSizeException e) {
-		} catch (IOException e) {
+		} catch (BadPaddingException | IOException | IllegalBlockSizeException e) {
 		}
-		return null;
+        return null;
 	}
 
 	public String decrypt(String str) {
@@ -87,11 +81,9 @@ public class DesEncrypter {
 
 			// Decode using utf-8
 			return new String(utf8, "UTF8");
-		} catch (BadPaddingException e) {
-		} catch (IllegalBlockSizeException e) {
-		} catch (IOException e) {
+		} catch (BadPaddingException | IOException | IllegalBlockSizeException e) {
 		}
-		return null;
+        return null;
 	}
 	
 //	private static DesEncrypter encrypter = new DesEncrypter("4DP2bC5r",

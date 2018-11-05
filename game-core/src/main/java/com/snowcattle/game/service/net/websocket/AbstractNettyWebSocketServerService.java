@@ -17,13 +17,13 @@ import org.slf4j.Logger;
  */
 public abstract class AbstractNettyWebSocketServerService extends AbstractNettyServerService {
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    private ThreadNameFactory bossThreadNameFactory;
-    private ThreadNameFactory workerThreadNameFactory;
-    private ChannelInitializer channelInitializer;
+    private final ThreadNameFactory bossThreadNameFactory;
+    private final ThreadNameFactory workerThreadNameFactory;
+    private final ChannelInitializer channelInitializer;
 
     private ChannelFuture serverChannelFuture;
 

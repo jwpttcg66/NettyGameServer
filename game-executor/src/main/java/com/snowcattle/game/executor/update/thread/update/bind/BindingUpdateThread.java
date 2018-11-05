@@ -22,16 +22,16 @@ import java.util.concurrent.BlockingQueue;
  */
 public class BindingUpdateThread extends AbstractBindingUpdateThread {
 
-    private Queue<IUpdate> iUpdates;
+    private final Queue<IUpdate> iUpdates;
     //这里会用来阻塞
-    private BlockingQueue<IUpdate> fetchUpdates;
+    private final BlockingQueue<IUpdate> fetchUpdates;
 
     private int fetchSize;
     private int updateSize;
 
-    private List<IUpdate> finishList;
+    private final List<IUpdate> finishList;
 
-    private BindThreadUpdateExecutorService bindThreadUpdateExecutorService;
+    private final BindThreadUpdateExecutorService bindThreadUpdateExecutorService;
     public BindingUpdateThread(BindThreadUpdateExecutorService bindThreadUpdateExecutorService, DispatchThread dispatchThread, Queue<IUpdate> iUpdates, BlockingQueue<IUpdate> fetchUpdates) {
         super(dispatchThread, dispatchThread.getEventBus());
         this.bindThreadUpdateExecutorService = bindThreadUpdateExecutorService;
@@ -88,9 +88,8 @@ public class BindingUpdateThread extends AbstractBindingUpdateThread {
     }
 
     public void fetchUpdates() {
-        Iterator<IUpdate> iUpdateIterator = iUpdates.iterator();
-        while (iUpdateIterator.hasNext()){
-            fetchUpdates.add(iUpdateIterator.next());
+        for (IUpdate iUpdate : iUpdates) {
+            fetchUpdates.add(iUpdate);
             fetchSize++;
         }
     }

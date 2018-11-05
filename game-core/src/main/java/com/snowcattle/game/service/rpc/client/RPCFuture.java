@@ -20,16 +20,16 @@ import java.util.concurrent.locks.ReentrantLock;
  * RPCFuture for async RPC call
  */
 public class RPCFuture implements Future<Object> {
-    private Logger logger = Loggers.rpcLogger;
-    private Sync sync;
-    private RpcRequest request;
+    private final Logger logger = Loggers.rpcLogger;
+    private final Sync sync;
+    private final RpcRequest request;
     private RpcResponse response;
-    private long startTime;
+    private final long startTime;
 
-    private long responseTimeThreshold = 5000;
+    private final long responseTimeThreshold = 5000;
 
-    private List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
-    private ReentrantLock lock = new ReentrantLock();
+    private final List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
+    private final ReentrantLock lock = new ReentrantLock();
 
     public RPCFuture(RpcRequest request) {
         this.sync = new Sync();

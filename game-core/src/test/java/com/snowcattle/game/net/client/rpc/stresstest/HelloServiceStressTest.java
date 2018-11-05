@@ -45,10 +45,11 @@ public class HelloServiceStressTest {
         for (int i = 0; i < test_size; i++) {
             if(helloService!=null){
                 String test = helloService.hello("World");
-                if (test != null && result.equals(test))
+                if (test != null && result.equals(test)) {
                     right_size++;
-                else
+                } else {
                     wrong_size++;
+                }
             }
         }
 

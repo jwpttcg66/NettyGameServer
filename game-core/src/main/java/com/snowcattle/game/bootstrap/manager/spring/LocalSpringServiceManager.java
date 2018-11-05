@@ -32,7 +32,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class LocalSpringServiceManager extends AbstractSpringStart{
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     @Autowired
     private DefaultClassLoader defaultClassLoader;

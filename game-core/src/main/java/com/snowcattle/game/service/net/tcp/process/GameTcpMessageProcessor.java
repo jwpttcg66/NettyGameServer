@@ -13,7 +13,7 @@ public class GameTcpMessageProcessor implements ITcpMessageProcessor {
     protected static final Logger log = Loggers.msgLogger;
 
     /** 主消息处理器，处理服务器内部消息、玩家不属于任何场景时发送的消息 */
-    private ITcpMessageProcessor mainMessageProcessor;
+    private final ITcpMessageProcessor mainMessageProcessor;
 
     public GameTcpMessageProcessor(ITcpMessageProcessor messageProcessor) {
         mainMessageProcessor = messageProcessor;

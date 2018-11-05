@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DictArrayMaps implements IDictCollections{
 
-    private Map<Integer, IDict[]> dictMap;
+    private final Map<Integer, IDict[]> dictMap;
 
     public DictArrayMaps(){
         this.dictMap = new ConcurrentHashMap<>();

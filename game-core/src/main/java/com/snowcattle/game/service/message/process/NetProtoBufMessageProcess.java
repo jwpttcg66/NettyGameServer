@@ -27,8 +27,8 @@ public class NetProtoBufMessageProcess implements INetProtoBufMessageProcess, IU
     /**
      * 网络消息处理队列
      */
-    private Queue<AbstractNetProtoBufMessage> netMessagesQueue;
-    private NettySession nettySession;
+    private final Queue<AbstractNetProtoBufMessage> netMessagesQueue;
+    private final NettySession nettySession;
 
     /** 中断消息处理 */
     protected boolean suspendedProcess;

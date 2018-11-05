@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
  */
 public abstract class AbstractSpringStart {
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     public  void start() throws Exception {
         // 获取对象obj的所有属性域
@@ -23,7 +23,9 @@ public abstract class AbstractSpringStart {
             String varName = field.getName();
             try {
                 boolean access = field.isAccessible();
-                if (!access) field.setAccessible(true);
+                if (!access) {
+                    field.setAccessible(true);
+                }
 
                 //从obj中获取field变量
                 Object object = field.get(this);
@@ -34,7 +36,9 @@ public abstract class AbstractSpringStart {
                 }else{
                     logger.info(object.getClass().getSimpleName() + " start up");
                 }
-                if (!access) field.setAccessible(false);
+                if (!access) {
+                    field.setAccessible(false);
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -52,7 +56,9 @@ public abstract class AbstractSpringStart {
             String varName = field.getName();
             try {
                 boolean access = field.isAccessible();
-                if (!access) field.setAccessible(true);
+                if (!access) {
+                    field.setAccessible(true);
+                }
 
                 //从obj中获取field变量
                 Object object = field.get(this);
@@ -63,7 +69,9 @@ public abstract class AbstractSpringStart {
                 }else{
                     logger.info(object.getClass().getSimpleName() + " shut down");
                 }
-                if (!access) field.setAccessible(false);
+                if (!access) {
+                    field.setAccessible(false);
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

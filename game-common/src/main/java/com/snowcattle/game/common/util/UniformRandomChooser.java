@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class UniformRandomChooser<T> {
 
-	private List<Entry<T>> objects;
+	private final List<Entry<T>> objects;
 	private float maxup;
 
 	public UniformRandomChooser(){
@@ -82,10 +82,8 @@ public class UniformRandomChooser<T> {
 		if(rate > maxup){
 			rate = maxup;
 		}
-		Iterator<Entry<T>> iter = objects.iterator();
-		while(iter.hasNext()){
-			Entry<T> entry = iter.next();
-			if(rate <= entry.up){
+		for (Entry<T> entry : objects) {
+			if (rate <= entry.up) {
 				return entry.obj;
 			}
 		}

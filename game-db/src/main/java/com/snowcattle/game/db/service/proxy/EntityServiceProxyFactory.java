@@ -18,7 +18,7 @@ public class EntityServiceProxyFactory {
     private RedisService redisService;
 
     @Autowired(required = false)
-    private boolean useRedisFlag = true;
+    private final boolean useRedisFlag = true;
 
     private EntityServiceProxy createProxy(EntityService EntityService){
         return new EntityServiceProxy<>(redisService, useRedisFlag);

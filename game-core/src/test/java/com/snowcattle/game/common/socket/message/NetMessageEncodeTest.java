@@ -12,7 +12,7 @@ import java.util.Arrays;
 /**
  * Created by jwp on 2017/1/26.
  */
-public class NetMessageEncodeTest {
+public final class NetMessageEncodeTest {
 
     public static void main(String[] args) throws Exception{
         AbstractNetMessage abstractNetMessage = new OnlineHeartClientTcpMessage();

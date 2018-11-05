@@ -8,10 +8,10 @@ package com.snowcattle.game.common.util;
  *
  */
 public class ByteArrayBitSet {
-	private final static int ADDRESS_BITS_PER_BYTE = 3;
-	private final static int BITS_PER_BYTE = 1 << ADDRESS_BITS_PER_BYTE;
+	private static final int ADDRESS_BITS_PER_BYTE = 3;
+	private static final int BITS_PER_BYTE = 1 << ADDRESS_BITS_PER_BYTE;
 	/** 每字节索引掩码 */
-	private final static int MASK_INDEX_PER_BYTE = BITS_PER_BYTE - 1;
+	private static final int MASK_INDEX_PER_BYTE = BITS_PER_BYTE - 1;
 
 	/** 字节数组 */
 	private byte[] bytes;
@@ -67,8 +67,9 @@ public class ByteArrayBitSet {
 	 *                在索引小于0时抛出
 	 */
 	public boolean get(int bitIndex) {
-		if (bitIndex < 0)
+		if (bitIndex < 0) {
 			throw new IndexOutOfBoundsException("bitIndex < 0: " + bitIndex);
+		}
 
 		int _byteIndex = byteIndex(bitIndex);
 		return (_byteIndex < bytes.length)
@@ -101,8 +102,9 @@ public class ByteArrayBitSet {
 	 *                指定索引为负时抛出
 	 */
 	public void set(int bitIndex) {
-		if (bitIndex < 0)
+		if (bitIndex < 0) {
 			throw new IndexOutOfBoundsException("bitIndex < 0: " + bitIndex);
+		}
 		int _byteIndex = byteIndex(bitIndex);
 		if (_byteIndex < bytes.length) {
 			bytes[_byteIndex] |= indexMarkInByte(bitIndex);
@@ -118,8 +120,9 @@ public class ByteArrayBitSet {
 	 *                指定索引为负时抛出
 	 */
 	public void clear(int bitIndex) {
-		if (bitIndex < 0)
+		if (bitIndex < 0) {
 			throw new IndexOutOfBoundsException("bitIndex < 0: " + bitIndex);
+		}
 		int _byteIndex = byteIndex(bitIndex);
 		if (_byteIndex < bytes.length) {
 			bytes[_byteIndex] &= ~indexMarkInByte(bitIndex);

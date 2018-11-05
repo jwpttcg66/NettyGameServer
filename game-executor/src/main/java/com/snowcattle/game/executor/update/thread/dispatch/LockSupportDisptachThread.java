@@ -17,8 +17,8 @@ public class LockSupportDisptachThread extends DispatchThread {
     private boolean runningFlag = true;
     private IUpdateExecutor iUpdateExecutor;
 
-    private int cycleSleepTime;
-    private long minCycleTime;
+    private final int cycleSleepTime;
+    private final long minCycleTime;
 
     public LockSupportDisptachThread(EventBus eventBus, IUpdateExecutor iUpdateExecutor
             , int cycleSleepTime , long minCycleTime) {

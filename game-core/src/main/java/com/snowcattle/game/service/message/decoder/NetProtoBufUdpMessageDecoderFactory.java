@@ -39,9 +39,8 @@ public class NetProtoBufUdpMessageDecoderFactory implements INetProtoBufUdpMessa
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();
-        ByteBuf bodyByteBuffer = Unpooled.buffer(256);
         byte[] bytes = new byte[byteLength];
-        bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
+        byteBuf.getBytes(byteBuf.readerIndex(), bytes);
         netMessageBody.setBytes(bytes);
         netMessage.setNetMessageHead(netMessageHead);
         netMessage.setNetMessageBody(netMessageBody);

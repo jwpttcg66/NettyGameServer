@@ -12,8 +12,11 @@ import java.io.ObjectOutputStream;
  * @author ZERO
  *
  */
-public class CodecUtil {
-	/**
+public final class CodecUtil {
+    private CodecUtil() {
+    }
+
+    /**
 	 * 反序列化
 	 * @param <T>
 	 * @param bytes
@@ -21,17 +24,17 @@ public class CodecUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T decode(byte[] bytes){
-		if(bytes==null||bytes.length==0) return null;
+		if(bytes==null||bytes.length==0) {
+			return null;
+		}
 		ObjectInputStream objIn = null;
 		try {
 			objIn = new ObjectInputStream(new ByteArrayInputStream(bytes));
 			Object object = objIn.readObject();
 			return (T) object;
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}finally{
+		} finally{
 			if(objIn!=null){
 				try {
 					objIn.close();
@@ -49,7 +52,9 @@ public class CodecUtil {
 	 * @return
 	 */
 	public static <T> byte[] encode(T object){
-		if(object==null) return null;
+		if(object==null) {
+			return null;
+		}
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ObjectOutputStream objectOut = null;
 		try {

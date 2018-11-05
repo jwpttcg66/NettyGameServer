@@ -13,7 +13,7 @@ import java.util.BitSet;
 public class SdRpcServiceProvider {
 
     //开放功能模块
-    private BitSet bitSet = new BitSet();
+    private final BitSet bitSet = new BitSet();
 
     public void load(Element element) throws DataConversionException {
         String boenumString = element.getAttribute("boenum").getValue();

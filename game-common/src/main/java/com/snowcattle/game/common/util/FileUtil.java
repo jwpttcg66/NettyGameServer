@@ -12,8 +12,11 @@ import java.util.zip.ZipOutputStream;
  *
  *
  */
-public class FileUtil {
-	/**
+public final class FileUtil {
+    private FileUtil() {
+    }
+
+    /**
 	 * 创建一个目录
 	 *
 	 * @param dir
@@ -50,11 +53,15 @@ public class FileUtil {
 	 */
 	public static void cleanFolder(File file,String exculde)
 	{
-		if(!file.isDirectory()) return;
+		if(!file.isDirectory()) {
+			return;
+		}
 
 		File[] _files = file.listFiles();
 		for (File _f : _files) {
-			if(_f.getName().endsWith(exculde)) continue;
+			if(_f.getName().endsWith(exculde)) {
+				continue;
+			}
 			delete(_f);
 		}
 	}

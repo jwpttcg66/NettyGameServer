@@ -19,15 +19,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class RpcClientConnection {
 
-    private Logger logger = Loggers.rpcLogger;
+    private final Logger logger = Loggers.rpcLogger;
 
     private NioSocketChannel channel;
 
-    private ReentrantLock statusLock;
+    private final ReentrantLock statusLock;
     /**
      * 重连线程池工具
      */
-    private ExecutorService threadPool;
+    private final ExecutorService threadPool;
     EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
 
 //    /**
@@ -40,8 +40,8 @@ public class RpcClientConnection {
      */
     private volatile boolean reConnectOn = true;
 
-    private RpcClient rpcClient;
-    private RpcNodeInfo rpcNodeInfo;
+    private final RpcClient rpcClient;
+    private final RpcNodeInfo rpcNodeInfo;
 
     public RpcClientConnection(RpcClient rpcClient, RpcNodeInfo rpcNodeInfo, ExecutorService threadPool) {
         if (threadPool == null) {
@@ -158,9 +158,6 @@ public class RpcClientConnection {
                 if (logger.isErrorEnabled()) {
                     logger.error("Restart connection error.");
                 }
-            } finally {
-                // 设置为允许重连
-//                reConnect = false;
             }
         }
     }

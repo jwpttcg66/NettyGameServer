@@ -36,10 +36,9 @@ public enum MessageCommandEnum {
     }
 
     public static String getMessageCommandName(int commandId) {
-        MessageCommandEnum commands = MessageCommandEnum.ONLINE_HEART_MESSAGE;
+        MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
         MessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            MessageCommandEnum tempCommand = set[i];
+        for (MessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;
@@ -50,10 +49,9 @@ public enum MessageCommandEnum {
     }
 
     public static MessageCommandEnum getMessageCommand(int commandId) {
-        MessageCommandEnum commands = MessageCommandEnum.ONLINE_HEART_MESSAGE;
+        MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
         MessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            MessageCommandEnum tempCommand = set[i];
+        for (MessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;
@@ -64,10 +62,9 @@ public enum MessageCommandEnum {
     }
 
     public static int getBoIdByCommandId(int commandId) {
-        MessageCommandEnum commands = MessageCommandEnum.ONLINE_HEART_MESSAGE;
+        MessageCommandEnum commands = ONLINE_HEART_MESSAGE;
         MessageCommandEnum[] set = commands.values();
-        for (int i = 0; i < set.length; i++) {
-            MessageCommandEnum tempCommand = set[i];
+        for (MessageCommandEnum tempCommand : set) {
             if (tempCommand.command_id == commandId) {
                 commands = tempCommand;
                 break;

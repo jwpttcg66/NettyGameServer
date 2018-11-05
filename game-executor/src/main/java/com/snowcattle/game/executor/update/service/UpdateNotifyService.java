@@ -17,12 +17,12 @@ public class UpdateNotifyService {
     private ScheduledExecutorService scheduledExecutorService;
 
 
-    private UpdateService updateService;
+    private final UpdateService updateService;
 
     /**
      * 单位毫秒
      */
-    private int notifyTime;
+    private final int notifyTime;
 
     public UpdateNotifyService(UpdateService updateService, int notifyTime) {
         this.updateService = updateService;

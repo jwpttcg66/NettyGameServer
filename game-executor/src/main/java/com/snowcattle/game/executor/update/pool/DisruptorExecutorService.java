@@ -23,7 +23,7 @@ public class DisruptorExecutorService implements IUpdateExecutor {
 
     private WorkerPool workerPool;
 
-    private int excutorSize;
+    private final int excutorSize;
 
     private CycleEventHandler[] cycleEventHandler;
 
@@ -31,7 +31,7 @@ public class DisruptorExecutorService implements IUpdateExecutor {
 
     private ExecutorService executorService;
 
-    private String poolName;
+    private final String poolName;
     public DisruptorExecutorService(String poolName, int excutorSize) {
         this.excutorSize = excutorSize;
         this.poolName = poolName;
