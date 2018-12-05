@@ -10,10 +10,11 @@ import org.jdom2.Element;
 public class SdWebSocketServerConfig extends SdNetConfig {
 
     private  int handleThreadSize;
-
+    private  boolean ssl;
     public void load(Element element) throws DataConversionException {
         super.load(element);
         handleThreadSize = Integer.valueOf(element.getChildTextTrim("handleThreadSize"));
+        ssl = Boolean.valueOf(element.getChildTextTrim("ssl"));
     }
 
     public int getHandleThreadSize() {
@@ -22,5 +23,13 @@ public class SdWebSocketServerConfig extends SdNetConfig {
 
     public void setHandleThreadSize(int handleThreadSize) {
         this.handleThreadSize = handleThreadSize;
+    }
+
+    public boolean isSsl() {
+        return ssl;
+    }
+
+    public void setSsl(boolean ssl) {
+        this.ssl = ssl;
     }
 }
