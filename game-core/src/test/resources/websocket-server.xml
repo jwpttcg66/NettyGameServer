@@ -5,7 +5,7 @@
         <id>11001</id>
         <ip>127.0.0.1</ip>
         <port>10300</port>
-        <ssl>true</ssl>
+        <ssl>false</ssl>
         <handleThreadSize>300</handleThreadSize>
     </server>
 </servers>
