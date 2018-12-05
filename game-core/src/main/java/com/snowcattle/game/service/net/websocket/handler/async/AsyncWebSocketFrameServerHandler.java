@@ -106,7 +106,7 @@ public class AsyncWebSocketFrameServerHandler extends SimpleChannelInboundHandle
                 e.printStackTrace();
             }
 
-            binaryWebSocketFrame.release();
+//            binaryWebSocketFrame.release();
 
             Channel channel = ctx.channel();
             //装配session
