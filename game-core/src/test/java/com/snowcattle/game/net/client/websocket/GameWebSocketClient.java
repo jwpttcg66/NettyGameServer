@@ -31,8 +31,8 @@ import java.net.URI;
 public final class GameWebSocketClient {
 
 //    static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
-    static final String URL = System.getProperty("url", "ws://127.0.0.1:10300/websocket");
-//    static final String URL = System.getProperty("url", "wss://127.0.0.1:10300/websocket");
+//    static final String URL = System.getProperty("url", "ws://127.0.0.1:10300/websocket");
+    static final String URL = System.getProperty("url", "wss://127.0.0.1:10300/websocket");
     public static void main(String[] args) throws Exception {
 
         TestStartUp.startUpWithSpring();
