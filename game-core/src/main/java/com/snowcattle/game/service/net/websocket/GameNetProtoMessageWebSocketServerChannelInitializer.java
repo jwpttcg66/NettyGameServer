@@ -15,15 +15,27 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.logging.LogLevel;
+import io.netty.handler.ssl.SslContext;
 
 /**
  * Created by jiangwenping on 2017/11/8.
  */
 public class GameNetProtoMessageWebSocketServerChannelInitializer  extends ChannelInitializer<SocketChannel> {
 
+
+    private final SslContext sslCtx;
+
+    public GameNetProtoMessageWebSocketServerChannelInitializer(SslContext sslCtx) {
+        this.sslCtx = sslCtx;
+    }
+
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline channelPipLine = socketChannel.pipeline();
+        if(sslCtx != null){
+            channelPipLine.addLast(sslCtx.newHandler(socketChannel.alloc()));
+        }
+
         channelPipLine.addLast("encoder", new HttpResponseEncoder());
         channelPipLine.addLast("decoder", new HttpRequestDecoder());
 //        channelPipLine.addLast("codec" , new HttpServerCodec());

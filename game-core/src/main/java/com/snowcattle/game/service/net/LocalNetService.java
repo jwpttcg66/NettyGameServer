@@ -29,7 +29,13 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.SelfSignedCertificate;
 import org.slf4j.Logger;
+
+import javax.net.ssl.SSLException;
+import java.security.cert.CertificateException;
 
 /**
  * Created by jiangwenping on 17/2/15.
@@ -65,6 +71,8 @@ public class LocalNetService implements IService{
      * websocket服务
      * */
     private GameNettyWebSocketServerService gameNettyWebSocketServerService;
+
+    private SslContext sslContext;
 
     private ChannelInitializer<NioSocketChannel> nettyTcpChannelInitializer;
     private ChannelInitializer<NioDatagramChannel> nettyUdpChannelInitializer;
@@ -161,19 +169,34 @@ public class LocalNetService implements IService{
                 if (!startUpFlag) {
                     throw new StartUpException("web socket server startup error");
                 }
-
             }
             serverLogger.info("gameNettyWebSocketServerService start " + startUpFlag + " port " + sdWebSocketServerConfig.getPort());
         }
     }
 
-    public void initChannelInitializer(){
+    public void initChannelInitializer() throws CertificateException, SSLException {
+
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
+        if(netWebSocketServerConfig  != null){
+            SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
+            if(sdWebSocketServerConfig != null) {
+                boolean sslFlag  = sdWebSocketServerConfig.isSsl();
+                if(sslFlag) {
+                    SelfSignedCertificate ssc = new SelfSignedCertificate();
+                    sslContext = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+                }
+
+            }
+        }
+
         nettyTcpChannelInitializer = new GameNetProtoMessageTcpServerChannelInitializer();
         nettyUdpChannelInitializer = new GameNetProtoMessageUdpServerChannelInitializer();
         rpcChannelInitializer = new GameNetRPCChannleInitializer();
         proxyChannleInitializer = new ProxyTcpFrontedChannelInitializer();
         httpChannelInitialier = new GameNetProtoMessageHttpServerChannelInitializer();
-        webSocketChannelInitialer = new GameNetProtoMessageWebSocketServerChannelInitializer();
+        webSocketChannelInitialer = new GameNetProtoMessageWebSocketServerChannelInitializer(sslContext);
     }
 
     @Override
