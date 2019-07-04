@@ -9,6 +9,6 @@ NettyGameServer
 #### 贡献源码&合作&交流
 
 - 作者qq 330258845
-- QQ群:310158485  513178622
+- QQ群:310158485(已满)  513178622
 
 ![avatar](https://github.com/jwpttcg66/NettyGameServer/blob/master/qrcode.png)
