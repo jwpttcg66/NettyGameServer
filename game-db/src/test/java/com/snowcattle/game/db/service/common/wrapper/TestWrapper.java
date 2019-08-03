@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by jiangwenping on 17/4/6.
  */
-public class TestWrapper {
+public final class TestWrapper {
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         EntityProxyFactory entityProxyFactory = (EntityProxyFactory) classPathXmlApplicationContext.getBean("entityProxyFactory");

@@ -1,6 +1,5 @@
 package com.snowcattle.game.net.client.http;
 
-import com.snowcattle.game.common.http.HttpSnoopClientHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

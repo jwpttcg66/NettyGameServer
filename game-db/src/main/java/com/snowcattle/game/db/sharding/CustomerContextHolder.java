@@ -1,19 +1,21 @@
 package com.snowcattle.game.db.sharding;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by jiangwenping on 17/3/6.
  */
 @Service
-public class CustomerContextHolder {
+public final class CustomerContextHolder {
 
     private static  final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
 
+    private CustomerContextHolder() {
+    }
+
 
     public  static String getCustomerType() {
-        return (String) contextHolder.get();
+        return contextHolder.get();
     }
     /**
      * 通过字符串选择数据源

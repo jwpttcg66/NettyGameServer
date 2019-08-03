@@ -20,14 +20,14 @@ import java.net.InetSocketAddress;
  */
 public class RpcServerConnectTask implements Runnable{
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
-    private InetSocketAddress remotePeer;
+    private final InetSocketAddress remotePeer;
 
-    private EventLoopGroup eventLoopGroup;
+    private final EventLoopGroup eventLoopGroup;
 
 
-    private RpcClient rpcClient;
+    private final RpcClient rpcClient;
     public RpcServerConnectTask(RpcNodeInfo rpcNodeInfo, EventLoopGroup eventLoopGroup, RpcClient rpcClient) {
         this.remotePeer =  new InetSocketAddress(rpcNodeInfo.getHost(), rpcNodeInfo.getIntPort());
         this.eventLoopGroup = eventLoopGroup;

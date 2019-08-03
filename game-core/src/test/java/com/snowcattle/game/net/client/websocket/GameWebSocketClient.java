@@ -17,7 +17,6 @@ import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.*;
-import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketClientCompressionHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -32,10 +31,11 @@ import java.net.URI;
 public final class GameWebSocketClient {
 
 //    static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
-    static final String URL = System.getProperty("url", "ws://127.0.0.1:10300/websocket");
+//    static final String URL = System.getProperty("url", "ws://127.0.0.1:10300/websocket");
+    static final String URL = System.getProperty("url", "wss://127.0.0.1:10300/websocket");
     public static void main(String[] args) throws Exception {
 
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 

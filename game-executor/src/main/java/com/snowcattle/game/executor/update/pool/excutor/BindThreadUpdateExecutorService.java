@@ -28,19 +28,19 @@ public class BindThreadUpdateExecutorService extends  FinalizableDelegatedExecut
     private static final int ST_SHUTDOWN = 4;
     private static final int ST_TERMINATED = 5;
 
-    private final AtomicIntegerFieldUpdater<BindThreadUpdateExecutorService> STATE_UPDATER =  AtomicIntegerFieldUpdater.newUpdater(BindThreadUpdateExecutorService.class, "state");;
+    private static final AtomicIntegerFieldUpdater<BindThreadUpdateExecutorService> STATE_UPDATER =  AtomicIntegerFieldUpdater.newUpdater(BindThreadUpdateExecutorService.class, "state");;
 
-    private volatile int state = ST_NOT_STARTED;
+    private final int state = ST_NOT_STARTED;
 
-    private Queue<IUpdate> updateQueue;
-    private BlockingQueue<IUpdate> fetchUpdates;
-    private DispatchThread dispatchThread;
+    private final Queue<IUpdate> updateQueue;
+    private final BlockingQueue<IUpdate> fetchUpdates;
+    private final DispatchThread dispatchThread;
 
     //用来唤醒updatethread
     public static final NullWeakUpUpdate nullWeakUpUpdate = new NullWeakUpUpdate();
 
 
-    private int updateExcutorIndex;
+    private final int updateExcutorIndex;
     public BindThreadUpdateExecutorService(int updateExcutorIndex, DispatchThread dispatchThread) {
         super(new ThreadPoolExecutor(1, 1,
                 0L, TimeUnit.MILLISECONDS,

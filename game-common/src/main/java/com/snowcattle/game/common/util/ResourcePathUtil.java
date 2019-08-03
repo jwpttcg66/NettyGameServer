@@ -1,8 +1,11 @@
 package com.snowcattle.game.common.util;
 
-public class ResourcePathUtil {
+public final class ResourcePathUtil {
 
-	/**
+    private ResourcePathUtil() {
+    }
+
+    /**
 	 * 在指定资源路径找到给定资源文件，并返回资源文件的完整路径
 	 * 查找顺序如下
 	 * 1. 查找目标.jar的压缩包内路径
@@ -12,11 +15,11 @@ public class ResourcePathUtil {
 	 */
 	public static String getRootPathWithoutSlash(String resourceFileName){
 		try{
-			String result = ResourcePathUtil.class.getResource("/"+resourceFileName).getPath();
+			String result = ResourcePathUtil.class.getResource('/' + resourceFileName).getPath();
 			return result;
 		}
 		catch(Exception e){
-			return System.getProperty("user.dir")+"/"+resourceFileName;
+			return System.getProperty("user.dir") + '/' + resourceFileName;
 		}
 	}
 

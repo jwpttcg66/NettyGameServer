@@ -1,6 +1,5 @@
 package com.snowcattle.game.net.client.http;
 
-import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.exception.CodecException;
 import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;

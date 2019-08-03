@@ -9,15 +9,12 @@ import java.util.concurrent.TimeUnit;
  * Created by jwp on 2017/3/28.
  */
 
-public class ScheduledThreadPoolExecutorTest
+public final class ScheduledThreadPoolExecutorTest
 {
     private static long start;
 
     public static void main(String[] args)
     {
-        /**
-         * 使用工厂方法初始化一个ScheduledThreadPool
-         */
         ScheduledExecutorService newScheduledThreadPool = Executors
                 .newScheduledThreadPool(2);
 

@@ -3,7 +3,6 @@ package com.snowcattle.game.net.client.http;
 import com.snowcattle.game.TestStartUp;
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.bootstrap.manager.spring.LocalSpringServiceManager;
-import com.snowcattle.game.common.http.HttpSnoopClientInitializer;
 import com.snowcattle.game.message.logic.http.client.OnlineHeartClientHttpMessage;
 import com.snowcattle.game.service.message.encoder.NetProtoBufHttpMessageEncoderFactory;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
@@ -14,8 +13,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.codec.http.DefaultCookie;
-import io.netty.handler.codec.http.cookie.*;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -31,7 +28,7 @@ public final class GameHttpClient {
     public static void main(String[] args) throws Exception {
 
 
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         LocalSpringServiceManager localSpringServiceManager = LocalMananger.getInstance().getLocalSpringServiceManager();
         localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 

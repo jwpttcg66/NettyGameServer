@@ -18,13 +18,13 @@ public class HelloServiceTest {
 
     private RpcProxyService rpcProxyService;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HelloServiceTest helloServiceTest = new HelloServiceTest();
         helloServiceTest.init();
         helloServiceTest.helloTest1();
         helloServiceTest.setTear();
     }
-    public void init(){
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }

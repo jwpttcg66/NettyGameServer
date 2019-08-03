@@ -36,6 +36,6 @@ public class CycleEventHandler implements WorkHandler<CycleEvent>, EventReleaseA
 
     @Override
     public void setEventReleaser(EventReleaser eventReleaser) {
-        this.eventRelease = eventRelease;
+        this.eventRelease = eventReleaser;
     }
 }

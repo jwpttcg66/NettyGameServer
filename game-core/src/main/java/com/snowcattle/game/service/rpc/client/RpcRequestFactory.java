@@ -32,18 +32,18 @@ public class RpcRequestFactory {
         if(logger.isDebugEnabled()) {
             logger.debug(className);
             logger.debug(methodName);
-            for (int i = 0; i < parameterTypes.length; ++i) {
-                logger.debug(parameterTypes[i].getName());
+            for (Class parameterType : parameterTypes) {
+                logger.debug(parameterType.getName());
             }
-            for (int i = 0; i < args.length; ++i) {
-                logger.debug(args[i].toString());
+            for (Object arg : args) {
+                logger.debug(arg.toString());
             }
         }
 
         return request;
     }
 
-    private Class<?> getClassType(Object obj){
+    private static Class<?> getClassType(Object obj){
         Class<?> classType = obj.getClass();
         String typeName = classType.getName();
         switch (typeName){

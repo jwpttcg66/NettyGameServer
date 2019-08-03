@@ -14,7 +14,10 @@ import java.util.List;
 /**
  * Created by jiangwenping on 17/3/20.
  */
-public class redisTest {
+public final class redisTest {
+    private redisTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         RedisService redisService = (RedisService) classPathXmlApplicationContext.getBean("redisService");

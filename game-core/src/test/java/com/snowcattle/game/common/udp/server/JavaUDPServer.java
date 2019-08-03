@@ -7,7 +7,7 @@ import java.net.SocketException;
 /**
  * Created by jiangwenping on 17/1/22.
  */
-public class JavaUDPServer {
+public final class JavaUDPServer {
     public static void main(String[] args)throws Exception{
         String str_send = "Hello UDPclient";
         byte[] buf = new byte[1024];
@@ -27,7 +27,7 @@ public class JavaUDPServer {
             ds.receive(dp_receive);
             System.out.println("server received data from client：");
             String str_receive = new String(dp_receive.getData(),0,dp_receive.getLength()) +
-                    " from " + dp_receive.getAddress().getHostAddress() + ":" + dp_receive.getPort();
+                                 " from " + dp_receive.getAddress().getHostAddress() + ':' + dp_receive.getPort();
             System.out.println(str_receive);
             //数据发动到客户端的3000端口
             DatagramPacket dp_send= new DatagramPacket(str_send.getBytes(),str_send.length(),dp_receive.getAddress(),9000);

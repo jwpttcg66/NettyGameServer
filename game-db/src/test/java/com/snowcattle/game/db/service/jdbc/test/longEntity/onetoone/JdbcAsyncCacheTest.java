@@ -1,7 +1,6 @@
 package com.snowcattle.game.db.service.jdbc.test.longEntity.onetoone;
 
 import com.snowcattle.game.db.service.async.AsyncDbOperationCenter;
-import com.snowcattle.game.db.service.entity.AsyncOperationRegistry;
 import com.snowcattle.game.db.service.jdbc.entity.Order;
 import com.snowcattle.game.db.service.jdbc.service.entity.impl.OrderService;
 import com.snowcattle.game.db.service.proxy.EntityAysncServiceProxyFactory;

@@ -11,7 +11,7 @@ public class LockSupportUpdateFutureThread implements Runnable {
 
     private DispatchThread dispatchThread;
     private IUpdate iUpdate;
-    private LockSupportUpdateFuture lockSupportUpdateFuture;
+    private final LockSupportUpdateFuture lockSupportUpdateFuture;
 
     public LockSupportUpdateFutureThread(DispatchThread dispatchThread, IUpdate iUpdate
         , LockSupportUpdateFuture lockSupportUpdateFuture) {

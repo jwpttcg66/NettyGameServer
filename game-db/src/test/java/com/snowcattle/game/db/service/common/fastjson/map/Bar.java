@@ -11,7 +11,7 @@ import java.util.Random;
  * Created by jiangwenping on 17/4/10.
  */
 public class Bar {
-    public static SerializeConfig mapping = new SerializeConfig();
+    public static final SerializeConfig mapping = new SerializeConfig();
     private String barName;
     private int barAge;
     private Date barDate = new Date();

@@ -17,7 +17,7 @@ public class EntityProxyFactory {
         return new EntityProxy(entity);
     }
 
-    private <T extends  IEntity> T  createProxyEntity(EntityProxy entityProxy){
+    private static <T extends IEntity> T  createProxyEntity(EntityProxy entityProxy){
         Enhancer enhancer = new Enhancer();
         //设置需要创建子类的类
         enhancer.setSuperclass(entityProxy.getEntity().getClass());

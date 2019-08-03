@@ -34,7 +34,7 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
     private volatile ExecutorService executorService;
 
     /** 线程池的线程个数 */
-    private int excecutorCoreSize;
+    private final int excecutorCoreSize;
 
     /** 是否停止 */
     private volatile boolean stop = false;
@@ -44,12 +44,10 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
 
     private final boolean processLeft;
 
-    @SuppressWarnings("unchecked")
     public QueueMessageExecutorProcessor() {
         this(false, 1);
     }
 
-    @SuppressWarnings("unchecked")
     public QueueMessageExecutorProcessor(boolean processLeft, int executorCoreSize) {
         queue = new LinkedBlockingQueue<AbstractNetMessage>();
         this.processLeft = processLeft;
@@ -80,12 +78,11 @@ public class QueueMessageExecutorProcessor implements IMessageProcessor {
      *
      * @param msg
      */
-    @SuppressWarnings("unchecked")
     public void process(AbstractNetMessage msg) {
         if (msg == null) {
             if (logger.isWarnEnabled()) {
                 logger.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
-                        + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + "]");
+                            + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + ']');
             }
             return;
         }

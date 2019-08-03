@@ -39,7 +39,11 @@ public class RPCFutureService implements IService {
 				for (Entry<String, RPCFuture> entry : entrySet) {
 					RPCFuture rpcFuture = entry.getValue();
 					if(rpcFuture.isTimeout()){
-						pendingRPC.remove(entry.getKey());
+						String requestId = entry.getKey();
+						boolean removeFlag = removeRPCFuture(requestId, rpcFuture);
+						if(removeFlag) {
+//							rpcFuture.done(rpcResponse);
+						}
 					}
 				}
 			}
@@ -51,7 +55,7 @@ public class RPCFutureService implements IService {
 		ExecutorUtil.shutdownAndAwaitTermination(executorService, 60L, TimeUnit.MILLISECONDS);
 	}
 
-	private ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, RPCFuture> pendingRPC = new ConcurrentHashMap<>();
 
 	public RPCFuture getRPCFuture(String requestId){
 		if(pendingRPC.get(requestId)!=null){
@@ -65,8 +69,8 @@ public class RPCFutureService implements IService {
 	public ConcurrentHashMap<String, RPCFuture> getPendingRPC(){
 		return pendingRPC;
 	}
-	public void removeRPCFuture(String requestId){
-		pendingRPC.remove(requestId);
+	public boolean removeRPCFuture(String requestId, RPCFuture rpcFuture){
+		return pendingRPC.remove(requestId, rpcFuture);
 	}
 	public void clearPendRPC(){
 		pendingRPC.clear();

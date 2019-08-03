@@ -34,10 +34,10 @@ public class UpdateService <ID extends Serializable> {
     /**
      * 负责update的执行器
      */
-    private IUpdateExecutor iUpdateExecutor;
+    private final IUpdateExecutor iUpdateExecutor;
 
     /*记录当前循环的更新接口*/
-    private ConcurrentHashMap<ID, IUpdate> updateMap = new ConcurrentHashMap<ID, IUpdate>();
+    private final ConcurrentHashMap<ID, IUpdate> updateMap = new ConcurrentHashMap<ID, IUpdate>();
 
     /**
      * 负责dispatch

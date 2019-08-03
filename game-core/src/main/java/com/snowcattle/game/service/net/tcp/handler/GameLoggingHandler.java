@@ -11,7 +11,7 @@ import org.slf4j.Logger;
  */
 public class GameLoggingHandler extends LoggingHandler {
 
-    private static Logger errorLogger = Loggers.errorLogger;
+    private static final Logger errorLogger = Loggers.errorLogger;
     public GameLoggingHandler(LogLevel level) {
         super(level);
     }

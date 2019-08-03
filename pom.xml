@@ -2,377 +2,352 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.snowcattle.game</groupId>
+  <artifactId>netty-game-server</artifactId>
+  <packaging>pom</packaging>
+  <version>1.1.7-SNAPSHOT</version>
 
-    <groupId>com.snowcattle.game</groupId>
-    <artifactId>netty-game-server</artifactId>
-    <packaging>pom</packaging>
-    <version>1.1.6-SNAPSHOT</version>
-    <modules>
-        <module>game-code-generate</module>
-        <module>game-executor</module>
-        <module>game-core</module>
-        <module>game-db</module>
-        <module>game-common</module>
-    </modules>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+  <properties>
+    <global.version>1.1.7-SNAPSHOT</global.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.version>1.2.5-SNAPSHOT</project.version>
+    <netty.version>4.1.6.Final</netty.version>
+    <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
+    <junit.version>4.12</junit.version>
+    <app.encoding>UTF-8</app.encoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+    <version.template.file>version.txt.template</version.template.file>
+    <version.file>version.txt</version.file>
+    <spring.version>5.1.2.RELEASE</spring.version>
+    <ehcache.version>3.2.0</ehcache.version>
+    <GameThreadPool.version>1.1.5</GameThreadPool.version>
+    <game-expression.version>1.1</game-expression.version>
+    <future-listener.version>1.1</future-listener.version>
+    <wheel-timer.version>v1.0</wheel-timer.version>
+    <disruptor.version>3.3.6</disruptor.version>
+    <slf4j.version>1.7.21</slf4j.version>
+    <logback.version>1.1.7</logback.version>
+    <jdom.version>2.0.2</jdom.version>
+    <commons-pool2.version>2.4.2</commons-pool2.version>
+    <commons-lang.version>2.6</commons-lang.version>
+    <commons-io.version>1.4</commons-io.version>
+    <protobuf-java.version>3.1.0</protobuf-java.version>
+    <fastjson.version>1.2.51</fastjson.version>
+    <httpclient.version>4.5.6</httpclient.version>
+    <objenesis.version>2.1</objenesis.version>
+    <protostuff-core.version>1.0.8</protostuff-core.version>
+    <protostuff-runtime.version>1.0.8</protostuff-runtime.version>
+    <cglib.version>3.1</cglib.version>
+    <zookeeper.version>3.5.2-alpha</zookeeper.version>
+    <zkclient.version>0.10</zkclient.version>
+    <curator-recipes.version>3.3.0</curator-recipes.version>
+    <velocity.version>1.7</velocity.version>
+    <mybatis.version>3.2.2</mybatis.version>
+    <mybatis-spring.version>1.2.0</mybatis-spring.version>
+    <mysql.version>5.1.30</mysql.version>
+    <commons.dbcp.version>1.4</commons.dbcp.version>
+    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <redis-game-transaction.version>1.8.010</redis-game-transaction.version>
+    <druid.version>1.0.29</druid.version>
+    <pagehelper.version>5.0.0</pagehelper.version>
+    <project.build.directory>target/classes/com</project.build.directory>
+  </properties>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netty.version>4.1.6.Final</netty.version>
-        <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
-        <junit.version>4.12</junit.version>
-        <app.encoding>UTF-8</app.encoding>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
-        <version.template.file>version.txt.template</version.template.file>
-        <version.file>version.txt</version.file>
-        <spring.version>4.3.2.RELEASE</spring.version>
-        <ehcache.version>3.2.0</ehcache.version>
-        <!--jwpttcg66 maven工程-->
-        <GameThreadPool.version>1.1.5</GameThreadPool.version>
-        <game-expression.version>1.1</game-expression.version>
-        <future-listener.version>1.1</future-listener.version>
-        <disruptor.version>3.3.6</disruptor.version>
-        <project.build.directory>target/classes/com</project.build.directory>
-        <!--<project.build.directory>target</project.build.directory>-->
-        <!--<project.build.resource.directory>target/resource</project.build.resource.directory>-->
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
-    </properties>
+  <modules>
+    <module>game-code-generate</module>
+    <module>game-executor</module>
+    <module>game-core</module>
+    <module>game-db</module>
+    <module>game-common</module>
+  </modules>
 
+  <!-- define all dependencies version , submodule chooses on demands -->
+  <dependencyManagement>
     <dependencies>
-
-        <!--<dependency>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-compiler-plugin</artifactId>-->
-            <!--<version>3.1</version>-->
-        <!--</dependency>-->
-
-
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
-        </dependency>
-        <!-- test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j-log4j12.version}</version>
-        </dependency>
-        <!-- Logging -->
-
-        <dependency>
-            <groupId>org.jdom</groupId>
-            <artifactId>jdom</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>2.4.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.20</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Objenesis -->
-        <dependency>
-            <groupId>org.objenesis</groupId>
-            <artifactId>objenesis</artifactId>
-            <version>2.1</version>
-        </dependency>
-
-        <!-- Protostuff -->
-        <dependency>
-            <groupId>com.dyuproject.protostuff</groupId>
-            <artifactId>protostuff-core</artifactId>
-            <version>1.0.8</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dyuproject.protostuff</groupId>
-            <artifactId>protostuff-runtime</artifactId>
-            <version>1.0.8</version>
-        </dependency>
-
-        <!-- CGLib -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
-		<dependency>
-		    <groupId>org.apache.zookeeper</groupId>
-		    <artifactId>zookeeper</artifactId>
-		    <version>3.5.2-alpha</version>
-		</dependency>
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>GameThreadPool</artifactId>
-            <version>${GameThreadPool.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>game-expression</artifactId>
-            <version>${game-expression.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.jwpttcg66</groupId>
-            <artifactId>future-listener</artifactId>
-            <version>${future-listener.version}</version>
-        </dependency>
-
-		<dependency>
-		    <groupId>com.101tec</groupId>
-		    <artifactId>zkclient</artifactId>
-		    <version>0.10</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
-		<dependency>
-		    <groupId>org.apache.curator</groupId>
-		    <artifactId>curator-recipes</artifactId>
-		    <version>3.3.0</version>
-		</dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
-        <dependency>
-            <groupId>com.lmax</groupId>
-            <artifactId>disruptor</artifactId>
-            <version>${disruptor.version}</version>
-        </dependency>
-
-		
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+        <version>${netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j-log4j12.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jdom</groupId>
+        <artifactId>jdom</artifactId>
+        <version>${jdom.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-pool2</artifactId>
+        <version>${commons-pool2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons-lang.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${protobuf-java.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.objenesis</groupId>
+        <artifactId>objenesis</artifactId>
+        <version>${objenesis.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.dyuproject.protostuff</groupId>
+        <artifactId>protostuff-core</artifactId>
+        <version>${protostuff-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.dyuproject.protostuff</groupId>
+        <artifactId>protostuff-runtime</artifactId>
+        <version>${protostuff-runtime.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>${cglib.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>${zookeeper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jwpttcg66</groupId>
+        <artifactId>GameThreadPool</artifactId>
+        <version>${GameThreadPool.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jwpttcg66</groupId>
+        <artifactId>game-expression</artifactId>
+        <version>${game-expression.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jwpttcg66</groupId>
+        <artifactId>future-listener</artifactId>
+        <version>${future-listener.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jwpttcg66</groupId>
+        <artifactId>wheel-timer</artifactId>
+        <version>${wheel-timer.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.101tec</groupId>
+        <artifactId>zkclient</artifactId>
+        <version>${zkclient.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-recipes</artifactId>
+        <version>${curator-recipes.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.lmax</groupId>
+        <artifactId>disruptor</artifactId>
+        <version>${disruptor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity</artifactId>
+        <version>${velocity.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>${mybatis.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>${mybatis-spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>commons-dbcp</groupId>
+        <artifactId>commons-dbcp</artifactId>
+        <version>${commons.dbcp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>${commons-beanutils.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>${pagehelper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.jwpttcg66</groupId>
+        <artifactId>redis-game-transaction</artifactId>
+        <version>${redis-game-transaction.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
-    <build>
+  </dependencyManagement>
 
-        <resources>
-            <!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
+  <!-- all sumodules need these dependencies-->
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
+  <build>
 
-            <!--<resource>-->
-                <!--<directory>src/main/Java</directory>-->
-                <!--&lt;!&ndash; 包含 &ndash;&gt;-->
-                <!--<includes>-->
-                    <!--<include>**/*.vm</include>-->
-                    <!--<include>**/*.properties</include>-->
-                <!--</includes>-->
-                <!--&lt;!&ndash; 排除  &ndash;&gt;-->
-                <!--<excludes>-->
-                    <!--<exclude>**/*.xml</exclude>-->
-                <!--</excludes>-->
-            <!--</resource>-->
-        </resources>
+    <resources>
+      <!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                <source>1.7</source>
-                <target>1.7</target>
-                <encoding>${project.build.sourceEncoding}</encoding>
-                <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <!-- 定义在prepare-package时将classes/com打jar -->
-                <goals>
-                    <goal>jar</goal>
-                </goals>
-                <configuration>
-                    <classesDirectory>${project.basedir}/target/classes</classesDirectory>
-                    <includes>
-                        <include>com/**</include>
-                    </includes>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase><!--  要绑定到的生命周期的阶段 在verify之后，install之前执行下面指定的goal -->
-                        <goals>
-                            <goal>jar-no-fork</goal><!-- 类似执行mvn source:jar -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <!-- -->
-    <!--&lt;!&ndash;                       build-package                               &ndash;&gt;-->
-    <!--<build>-->
-
-        <!--<directory>${project.build.directory}</directory>-->
-         <!--过滤配置文件-->
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<excludes>-->
-                    <!--<exclude>**/*</exclude>-->
-                <!--</excludes>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-        <!--</resources>-->
-
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<version>3.1</version>-->
-                <!--<configuration>-->
-                    <!--<source>1.7</source>-->
-                    <!--<target>1.7</target>-->
-                    <!--<encoding>${project.build.sourceEncoding}</encoding>-->
-                    <!--<generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-jar-plugin</artifactId>-->
-                <!--<version>2.4</version>-->
-                <!--<configuration>-->
-                    <!--<outputDirectory>${project.build.directory}/lib/</outputDirectory>-->
-                    <!--<archive>-->
-                        <!--<manifest>-->
-                            <!--<addClasspath>true</addClasspath>-->
-                            <!--<classpathPrefix>lib/</classpathPrefix>-->
-                            <!--<mainClass>GameServer</mainClass>-->
-                        <!--</manifest>-->
-                    <!--</archive>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-dependency-plugin</artifactId>-->
-                <!--<version>2.10</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>copy-dependencies</id>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>copy-dependencies</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<outputDirectory>${project.build.directory}/lib</outputDirectory>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-resources-plugin</artifactId>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>copy-resources</id>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>copy-resources</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<encoding>UTF-8</encoding>-->
-                            <!--<outputDirectory>-->
-                                <!--${project.build.resource.directory}-->
-                            <!--</outputDirectory>   &lt;!&ndash; 表示把配置文件拷到和jar包同一个路径下 &ndash;&gt;-->
-                            <!--<resources>-->
-                                <!--<resource>-->
-                                    <!--<directory>src/main/resources/</directory>-->
-                                <!--</resource>-->
-                            <!--</resources>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <generatedSourcesDirectory>${project.build.directory}</generatedSourcesDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <!-- 定义在prepare-package时将classes/com打jar -->
+        <goals>
+          <goal>jar</goal>
+        </goals>
+        <configuration>
+          <classesDirectory>${project.basedir}/target/classes</classesDirectory>
+          <includes>
+            <include>com/**</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase><!--  要绑定到的生命周期的阶段 在verify之后，install之前执行下面指定的goal -->
+            <goals>
+              <goal>jar-no-fork</goal><!-- 类似执行mvn source:jar -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

@@ -1,9 +1,5 @@
 package com.snowcattle.game.service.rpc.serialize.protostuff;
 
-/**
- * Created by jwp on 2017/3/8.
- */
-
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
@@ -25,9 +21,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class ProtostuffSerializeI implements IRpcSerialize {
-    private Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
+    private final Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
 
-    private Objenesis objenesis = new ObjenesisStd(true);
+    private final Objenesis objenesis = new ObjenesisStd(true);
 
     @SuppressWarnings("unchecked")
     private <T> Schema<T> getSchema(Class<T> cls) {
@@ -63,7 +59,7 @@ public class ProtostuffSerializeI implements IRpcSerialize {
      */
     public  <T> T deserialize(byte[] data, Class<T> cls) {
         try {
-            T message = (T) objenesis.newInstance(cls);
+            T message = objenesis.newInstance(cls);
             Schema<T> schema = getSchema(cls);
             ProtostuffIOUtil.mergeFrom(data, message, schema);
             return message;
@@ -77,7 +73,7 @@ public class ProtostuffSerializeI implements IRpcSerialize {
      */
     public <T> T newInstance(Class<T> cls) {
         try {
-            T message = (T) objenesis.newInstance(cls);
+            T message = objenesis.newInstance(cls);
             return message;
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);

@@ -17,16 +17,13 @@ import org.apache.commons.io.FileUtils;
 
 /**
  * JS脚本执行管理器
- *
- *
  */
 public class JSScriptManagerImpl implements IScriptEngine {
     private final String charset;
     private final ScriptEngine engine;
 
     /**
-     * @param charset
-     *            脚本默认的字符编码
+     * @param charset 脚本默认的字符编码
      */
     public JSScriptManagerImpl(String charset) {
         this.charset = charset;
@@ -35,29 +32,28 @@ public class JSScriptManagerImpl implements IScriptEngine {
     }
 
     /**
-     * @param charset
-     *            如果为空,则使用JSScriptMangerImpl的charset
-     * @exception RuntimeException
+     * @param charset 如果为空,则使用JSScriptMangerImpl的charset
+     *
+     * @throws RuntimeException
      */
     @Override
     public Object runScript(Map<String, Object> binding, String scriptFile, String charset) {
         String content = null;
         try {
             Bindings _bindings = new SimpleBindings(binding);
-            content = FileUtils.readFileToString(new File(scriptFile), charset != null ? charset : this.charset);
+            content = FileUtils.readFileToString(new File(scriptFile), charset != null? charset : this.charset);
             return engine.eval(content, _bindings);
         } catch (IOException e) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.FILE_IO_FAIL, "Throw Exception",
-                    scriptFile), e);
+                                                        scriptFile), e);
         } catch (ScriptException se) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.SCRITP_EXECUTE_FAIL,
-                    "Throw Exception", scriptFile + " content:" + content), se);
+                                                        "Throw Exception", scriptFile + " content:" + content), se);
         }
     }
 
     /**
-     *
-     * @exception RuntimeException
+     * @throws RuntimeException
      */
     @Override
     public Object runScript(Map<String, Object> binding, String scriptContent) {
@@ -70,7 +66,7 @@ public class JSScriptManagerImpl implements IScriptEngine {
             }
         } catch (ScriptException se) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.SCRITP_EXECUTE_FAIL,
-                    "Throw Exception", scriptContent), se);
+                                                        "Throw Exception", scriptContent), se);
         }
     }
 
@@ -79,24 +75,25 @@ public class JSScriptManagerImpl implements IScriptEngine {
      *
      * @param scriptFile
      * @param charset
+     *
      * @return
      */
     public String getScriptContent(String scriptFile, String charset) {
         try {
-            return FileUtils.readFileToString(new File(scriptFile), charset != null ? charset : this.charset);
+            return FileUtils.readFileToString(new File(scriptFile), charset != null? charset : this.charset);
         } catch (IOException e) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.FILE_IO_FAIL, "Throw Exception",
-                    scriptFile), e);
+                                                        scriptFile), e);
         }
     }
+
     /**
      * 逻辑计算条件表达式
      *
-     * @param context
-     * @param exp
-     *            表达式
+     * @param binding
+     * @param exp 表达式
+     *
      * @return
-     * @throws AIException
      */
     public boolean doLogicEval(Map<String, Object> binding, String exp) {
         if (exp == null || exp.length() == 0) {
@@ -112,14 +109,14 @@ public class JSScriptManagerImpl implements IScriptEngine {
             }
         } catch (ScriptException se) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.SCRITP_EXECUTE_FAIL,
-                    "Throw Exception", exp), se);
+                                                        "Throw Exception", exp), se);
         }
     }
 
     /**
-     *
      * @param binding
      * @param exp
+     *
      * @return
      */
     public double doMathEval(Map<String, Object> binding, String exp) {
@@ -137,7 +134,7 @@ public class JSScriptManagerImpl implements IScriptEngine {
             }
         } catch (ScriptException se) {
             throw new RuntimeException(ErrorsUtil.error(CommonErrorLogInfo.SCRITP_EXECUTE_FAIL,
-                    "Throw Exception", exp), se);
+                                                        "Throw Exception", exp), se);
         }
     }
 }

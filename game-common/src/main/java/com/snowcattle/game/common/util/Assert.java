@@ -2,7 +2,7 @@ package com.snowcattle.game.common.util;
 
 /**
  * 断言工具类，用于对方法的传入参数进行校验，如果未通过则
- * 抛出<code>IllegalArgumentException</code>异常
+ * 抛出{@code IllegalArgumentException}异常
  *
  * @see IllegalArgumentException
  */

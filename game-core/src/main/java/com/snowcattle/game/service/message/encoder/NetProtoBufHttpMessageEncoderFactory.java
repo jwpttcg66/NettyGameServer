@@ -3,7 +3,6 @@ package com.snowcattle.game.service.message.encoder;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.NetHttpMessageHead;
 import com.snowcattle.game.service.message.NetMessageBody;
-import com.snowcattle.game.service.message.NetMessageHead;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.springframework.stereotype.Service;

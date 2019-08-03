@@ -8,7 +8,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * Created by jiangwenping on 17/4/26.
  * updateevent的缓存服务
  */
-public class UpdateEventCacheService {
+public final class UpdateEventCacheService {
 
     public static UpdateEventCacheFactory updateEventCacheFactory;
 
@@ -16,6 +16,9 @@ public class UpdateEventCacheService {
     private static int maxSize = 1024 * 32;
 
     private static boolean poolOpenFlag;
+
+    private UpdateEventCacheService() {
+    }
 
     public static void init() {
 //        setSize(size);
@@ -60,7 +63,6 @@ public class UpdateEventCacheService {
 
     public static void releaseUpdateEvent(UpdateEvent updateEvent) {
         if (!poolOpenFlag) {
-            updateEvent = null;
             return;
         }
         updateEventCacheFactory.returnObject(updateEvent);

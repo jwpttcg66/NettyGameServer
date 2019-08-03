@@ -10,13 +10,13 @@ import com.snowcattle.game.service.message.AbstractNetMessage;
 public interface INetMessageSender {
     /**
      * 发送消息
-     * @param message
+     * @param abstractNetMessage
      * @return
      */
-    public boolean sendMessage(AbstractNetMessage abstractNetMessage) throws NetMessageException;
+    boolean sendMessage(AbstractNetMessage abstractNetMessage) throws NetMessageException;
 
     /**
      * 关闭
      */
-    public void close() throws  NetMessageException;
+    void close() throws NetMessageException;
 }

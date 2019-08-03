@@ -22,7 +22,7 @@ public class RpcServerRegisterConfig {
 
     private static final Logger LOGGER = Loggers.rpcLogger;
 
-    protected Object lock = new Object();
+    protected final Object lock = new Object();
 
     protected List<SdServer> sdWorldServers;
     protected List<SdServer> sdGameServers;
@@ -30,7 +30,6 @@ public class RpcServerRegisterConfig {
 
     private SdRpcServiceProvider sdRpcServiceProvider;
 
-    @SuppressWarnings("unchecked")
     public void init() throws Exception {
 
         Element rootElement = JdomUtils.getRootElemet(FileUtil.getConfigURL(GlobalConstants.ConfigFile.RPC_SERVER_REGISTER_CONFIG).getFile());

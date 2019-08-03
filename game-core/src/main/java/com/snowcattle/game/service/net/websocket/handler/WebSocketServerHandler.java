@@ -2,22 +2,19 @@ package com.snowcattle.game.service.net.websocket.handler;
 
 import com.snowcattle.game.bootstrap.manager.LocalMananger;
 import com.snowcattle.game.common.config.GameServerConfig;
-import com.snowcattle.game.common.exception.CodecException;
-import com.snowcattle.game.logic.net.NetMessageProcessLogic;
 import com.snowcattle.game.service.config.GameServerConfigService;
-import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
-import com.snowcattle.game.service.message.decoder.NetProtoBufHttpMessageDecoderFactory;
-import com.snowcattle.game.service.message.decoder.NetProtoBufTcpMessageDecoderFactory;
-import com.snowcattle.game.service.net.tcp.MessageAttributeEnum;
+import com.snowcattle.game.service.net.websocket.NetWebSocketServerConfig;
+import com.snowcattle.game.service.net.websocket.SdWebSocketServerConfig;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.DecoderResult;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.SelfSignedCertificate;
 import io.netty.util.CharsetUtil;
 
 import static io.netty.handler.codec.http.HttpMethod.GET;
@@ -27,19 +24,19 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 /**
  * Created by jiangwenping on 2017/11/8.
  */
-public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
+public class WebSocketServerHandler extends SimpleChannelInboundHandler<HttpRequest> {
 
     private static final String WEBSOCKET_PATH = "/websocket";
 
     private WebSocketServerHandshaker handshaker;
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof HttpRequest) {
-            handleHttpRequest(ctx, (HttpRequest) msg);
-        } else if (msg instanceof WebSocketFrame) {
-            handleWebSocketFrame(ctx, (WebSocketFrame) msg);
-        }
+    public void channelRead0(ChannelHandlerContext ctx, HttpRequest msg) {
+//        if (msg instanceof HttpRequest) {
+            handleHttpRequest(ctx, msg);
+//        } else if (msg instanceof WebSocketFrame) {
+//            handleWebSocketFrame(ctx, (WebSocketFrame) msg);
+//        }
     }
 
     @Override
@@ -88,51 +85,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         }
     }
 
-    private void handleWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
-
-        // Check for closing frame
-        if (frame instanceof CloseWebSocketFrame) {
-            handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
-            return;
-        }
-        if (frame instanceof PingWebSocketFrame) {
-            ctx.write(new PongWebSocketFrame(frame.content().retain()));
-            return;
-        }
-        if (frame instanceof TextWebSocketFrame) {
-            // Echo the frame
-            ctx.write(frame.retain());
-            return;
-        }
-//        if (frame instanceof BinaryWebSocketFrame) {
-//            // Echo the frame
-//            ctx.write(frame.retain());
-//            return;
-//        }
-
-        if (frame instanceof BinaryWebSocketFrame) {
-            BinaryWebSocketFrame binaryWebSocketFrame = (BinaryWebSocketFrame) frame;
-            ByteBuf buf = binaryWebSocketFrame.content();
-            //开始解析
-            NetProtoBufTcpMessageDecoderFactory netProtoBufTcpMessageDecoderFactory = LocalMananger.getInstance().getLocalSpringBeanManager().getNetProtoBufTcpMessageDecoderFactory();
-            AbstractNetProtoBufMessage netProtoBufMessage = null;
-            try {
-                netProtoBufMessage = netProtoBufTcpMessageDecoderFactory.praseMessage(buf);
-            } catch (CodecException e) {
-                e.printStackTrace();
-            }
-
-
-            //封装属性
-            netProtoBufMessage.setAttribute(MessageAttributeEnum.DISPATCH_CHANNEL, ctx);
-
-            //进行处理
-            NetMessageProcessLogic netMessageProcessLogic = LocalMananger.getInstance().getLocalSpringBeanManager().getNetMessageProcessLogic();
-            netMessageProcessLogic.processWebSocketMessage(netProtoBufMessage, ctx.channel());
-
-            return;
-        }
-    }
 
     private static void sendHttpResponse(
             ChannelHandlerContext ctx, HttpRequest req, FullHttpResponse res) {
@@ -159,12 +111,31 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
     private static String getWebSocketLocation(HttpRequest req) {
         String location =  req.headers().get(HttpHeaderNames.HOST) + WEBSOCKET_PATH;
-        return "ws://" + location;
-//        if (WebSocketServer.SSL) {
-//            return "wss://" + location;
-//        } else {
-//            return "ws://" + location;
-//        }
+        boolean sslFlag = false;
+        GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
+        GameServerConfig gameServerConfig = gameServerConfigService.getGameServerConfig();
+        NetWebSocketServerConfig netWebSocketServerConfig = gameServerConfigService.getNetWebSocketServerConfig();
+        if(netWebSocketServerConfig  != null){
+            SdWebSocketServerConfig sdWebSocketServerConfig = netWebSocketServerConfig.getSdWebSocketServerConfig();
+            if(sdWebSocketServerConfig != null) {
+                sslFlag  = sdWebSocketServerConfig.isSsl();
+
+            }
+        }
+
+        if (sslFlag) {
+            return "wss://" + location;
+        } else {
+            return "ws://" + location;
+        }
+    }
+
+    public WebSocketServerHandshaker getHandshaker() {
+        return handshaker;
+    }
+
+    public void setHandshaker(WebSocketServerHandshaker handshaker) {
+        this.handshaker = handshaker;
     }
 }
 

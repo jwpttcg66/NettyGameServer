@@ -1,8 +1,5 @@
 package com.snowcattle.game.common.util;
 
-/**
- * Created by jiangwenping on 17/2/6.
- */
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
@@ -10,7 +7,7 @@ public class RandomStringGenerator
 {
     public static final int DEFAULT_LENGTH = 8;
 
-    static char[] alphaNumberic = new char[] { 'A', 'B', 'C', 'D', 'E', 'F',
+    static char[] alphaNumberic = { 'A', 'B', 'C', 'D', 'E', 'F',
             'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
             'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
             'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',

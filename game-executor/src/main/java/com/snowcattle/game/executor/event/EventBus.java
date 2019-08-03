@@ -20,12 +20,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class EventBus implements IEventBus {
 
-    private Map<EventType, Set<AbstractEventListener>> listenerMap;
+    private final Map<EventType, Set<AbstractEventListener>> listenerMap;
 
-    private Queue<IEvent> events;
+    private final Queue<IEvent> events;
 
     //调用线程size比较费性能，这里采用原子的更新器
-    private AtomicInteger size = new AtomicInteger();
+    private final AtomicInteger size = new AtomicInteger();
     public EventBus() {
         this.listenerMap = new ConcurrentHashMap<EventType, Set<AbstractEventListener>>();
         this.events = new ConcurrentLinkedQueue<IEvent>();

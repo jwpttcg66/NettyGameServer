@@ -12,7 +12,7 @@ import org.slf4j.Logger;
  */
 public class GamerServerStartFinishedService implements IService{
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
     private LocalNetService localNetService;
 
     private ThreadPool threadPool;

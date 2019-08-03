@@ -19,15 +19,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class RpcClientConnection {
 
-    private Logger logger = Loggers.rpcLogger;
+    private final Logger logger = Loggers.rpcLogger;
 
     private NioSocketChannel channel;
 
-    private ReentrantLock statusLock;
+    private final ReentrantLock statusLock;
     /**
      * 重连线程池工具
      */
-    private ExecutorService threadPool;
+    private final ExecutorService threadPool;
     EventLoopGroup eventLoopGroup = new NioEventLoopGroup(1);
 
 //    /**
@@ -40,8 +40,8 @@ public class RpcClientConnection {
      */
     private volatile boolean reConnectOn = true;
 
-    private RpcClient rpcClient;
-    private RpcNodeInfo rpcNodeInfo;
+    private final RpcClient rpcClient;
+    private final RpcNodeInfo rpcNodeInfo;
 
     public RpcClientConnection(RpcClient rpcClient, RpcNodeInfo rpcNodeInfo, ExecutorService threadPool) {
         if (threadPool == null) {
@@ -70,7 +70,7 @@ public class RpcClientConnection {
             logger.debug("connect to remote server. remote peer = " + remotePeer);
             Future future = threadPool.submit(new RpcServerConnectTask(rpcNodeInfo, eventLoopGroup, rpcClient));
             future.get();
-            if(isConnected()){
+            if (isConnected()) {
                 return false;
             }
             if (logger.isInfoEnabled()) {
@@ -85,8 +85,8 @@ public class RpcClientConnection {
     }
 
     //是否连接
-    public boolean isConnected(){
-        if(channel == null){
+    public boolean isConnected() {
+        if (channel == null) {
             return false;
         }
         return channel.isActive();
@@ -96,15 +96,16 @@ public class RpcClientConnection {
     /**
      * 发送一条消息
      *
-     * @param message
+     * @param rpcRequest
+     *
      * @return
      */
     public boolean writeRequest(RpcRequest rpcRequest) {
         if (!isConnected() && reConnectOn) {
             // 是否正在重连中
 //            if (!reConnect) {
-                // 重新连接
-                tryReConnect();
+            // 重新连接
+            tryReConnect();
 //            }
             //依然链接不上,返回false
             if (!isConnected()) {
@@ -126,7 +127,7 @@ public class RpcClientConnection {
 
         statusLock.lock();  // block until condition holds
         try {
-            if(!isConnected()) {
+            if (!isConnected()) {
 //                reConnect = true;
                 try {
                     //强制链接,进行等待
@@ -138,7 +139,7 @@ public class RpcClientConnection {
             }
         } catch (Exception e) {
 //            reConnect = false;
-        }finally {
+        } finally {
             statusLock.unlock();
         }
     }
@@ -157,9 +158,6 @@ public class RpcClientConnection {
                 if (logger.isErrorEnabled()) {
                     logger.error("Restart connection error.");
                 }
-            } finally {
-                // 设置为允许重连
-//                reConnect = false;
             }
         }
     }
@@ -186,8 +184,8 @@ public class RpcClientConnection {
         this.channel = channel;
     }
 
-    public void close(){
-        if(channel != null) {
+    public void close() {
+        if (channel != null) {
             channel.close();
         }
         eventLoopGroup.shutdownGracefully();

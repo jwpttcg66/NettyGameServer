@@ -10,7 +10,7 @@ class ThreadTesterA implements Runnable {
     @Override
     public void run() {
         while (counter <= 1000) {
-            System.out.println("Counter = " + counter + " ");
+            System.out.println("Counter = " + counter + ' ');
             counter++;
             try {
                 Thread.sleep(1);

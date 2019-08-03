@@ -19,13 +19,13 @@ public class HelloServiceStressTest {
     private RpcProxyService rpcProxyService;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HelloServiceStressTest helloServiceStressTest = new HelloServiceStressTest();
         helloServiceStressTest.init();
         helloServiceStressTest.helloTest1();
         helloServiceStressTest.setTear();
     }
-    public void init() {
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         rpcProxyService = (RpcProxyService) BeanUtil.getBean("rpcProxyService");
     }
@@ -45,10 +45,11 @@ public class HelloServiceStressTest {
         for (int i = 0; i < test_size; i++) {
             if(helloService!=null){
                 String test = helloService.hello("World");
-                if (test != null && result.equals(test))
+                if (test != null && result.equals(test)) {
                     right_size++;
-                else
+                } else {
                     wrong_size++;
+                }
             }
         }
 

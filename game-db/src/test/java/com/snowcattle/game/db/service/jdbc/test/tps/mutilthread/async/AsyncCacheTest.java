@@ -5,7 +5,6 @@ import com.snowcattle.game.db.service.common.uuid.SnowFlakeUUIDService;
 import com.snowcattle.game.db.service.jdbc.service.entity.impl.OrderService;
 import com.snowcattle.game.db.service.jdbc.test.tps.mutilthread.SaveRunable;
 import com.snowcattle.game.db.service.proxy.EntityAysncServiceProxyFactory;
-import com.snowcattle.game.db.service.proxy.EntityServiceProxyFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.concurrent.CountDownLatch;
@@ -14,7 +13,10 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by jwp on 2017/4/18.
  */
-public class AsyncCacheTest {
+public final class AsyncCacheTest {
+    private AsyncCacheTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext(new String[]{"bean/*.xml"});
         OrderService orderService = getOrderService(classPathXmlApplicationContext);

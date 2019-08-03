@@ -6,14 +6,18 @@ import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Created by jiangwenping on 17/4/10.
  */
-public class Test {
-    private static SerializeConfig mapping = new SerializeConfig();
+public final class Test {
+    private static final SerializeConfig mapping = new SerializeConfig();
     static {
         mapping.put(Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    private Test() {
     }
 
     public static void main(String[] args) {
@@ -51,8 +55,8 @@ public class Test {
         System.out.println(json);
         //JSON -> Map
         Map<String,Bar> map1 = (Map<String,Bar>)JSON.parse(json);
-        for (String key : map1.keySet()) {
-            System.out.println(key+":"+map1.get(key));
+        for (Entry<String, Bar> stringBarEntry : map1.entrySet()) {
+            System.out.println(stringBarEntry.getKey() + ':' + stringBarEntry.getValue());
         }
     }
 

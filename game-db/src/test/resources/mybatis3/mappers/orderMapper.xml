@@ -37,7 +37,7 @@
         select id, user_id, status
         from `t_order_${sharding_table_index}`
         <!-- 引用Sql片段 -->
-        <include refid="query_order_where"></include>
+        <include refid="query_order_where"/>
         order by id
     </select>
 

@@ -96,7 +96,7 @@ public class ServerStatusLog {
             _out = new FileOutputStream(_logFile);
             String _time = new SimpleDateFormat("yyyy-MM-dd HH:mm")
                     .format(new Date());
-            String _status = status + "\t" + _time + "\t";
+            String _status = status + "\t" + _time + '\t';
             _out.write(_status.getBytes(Charset.forName("ISO8859-1")));
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,9 +121,7 @@ public class ServerStatusLog {
         }
         if (_parentFile.mkdirs()) {
             return;
-        } else {
-            System.err.println("Can't create the server status log dir["
-                    + _parentFile + "]");
         }
+        System.err.println("Can't create the server status log dir[" + _parentFile + ']');
     }
 }

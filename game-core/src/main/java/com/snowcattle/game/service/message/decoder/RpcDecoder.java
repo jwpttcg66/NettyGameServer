@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class RpcDecoder extends ByteToMessageDecoder {
 
-    private Class<?> genericClass;
+    private final Class<?> genericClass;
 
     public RpcDecoder(Class<?> genericClass) {
         this.genericClass = genericClass;

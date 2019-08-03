@@ -12,11 +12,14 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-public class StringUtils {
+public final class StringUtils {
 	
 	/**默认的文本分隔符 */
 	public static final String Default_Split= "#";
-	
+
+	private StringUtils() {
+	}
+
 	public static String trim(String str) {
 		if (str == null) {
 			str = "";
@@ -58,14 +61,14 @@ public class StringUtils {
 	public static int[] getIntArray(String str, String sep) {
 		String[] prop = getStringList(str, sep);
 		List<Integer> tmp = new ArrayList<Integer>();
-		for (int i = 0; i < prop.length; i++) {
-			try {
-				int r = Integer.parseInt(prop[i]);
-				tmp.add(r);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
+        for (String aProp : prop) {
+            try {
+                int r = Integer.parseInt(aProp);
+                tmp.add(r);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 		int[] ints = new int[tmp.size()];
 		for (int i = 0; i < tmp.size(); i++) {
 			ints[i] = tmp.get(i);
@@ -75,23 +78,23 @@ public class StringUtils {
 
 	public static List<Integer> getIntList(String str, String sep) {
 		List<Integer> tmp = new ArrayList<Integer>();
-		if (str == null || str.trim().equals("")) {
+		if (str == null || str.trim().isEmpty()) {
 			return tmp;
 		}
 		String[] prop = getStringList(str, sep);
-		for (int i = 0; i < prop.length; i++) {
-			try {
-				int r = Integer.parseInt(prop[i]);
-				tmp.add(r);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+        for (String aProp : prop) {
+            try {
+                int r = Integer.parseInt(aProp);
+                tmp.add(r);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 		return tmp;
 	}
 
 	public static String join(String[] strs, String sep) {
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		buffer.append(strs[0]);
 		for (int i = 1; i < strs.length; i++) {
 			buffer.append(sep).append(strs[i]);
@@ -100,7 +103,7 @@ public class StringUtils {
 	}
 
 	public static String join(List<Integer> ints, String sep) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append(ints.get(0));
 		for (int i = 1; i < ints.size(); i++) {
 			sb.append(sep).append(ints.get(i));
@@ -119,11 +122,12 @@ public class StringUtils {
 
 	public static List<String> getListBySplit(String str, String split) {
 		List<String> list = new ArrayList<String>();
-		if (str == null || str.trim().equalsIgnoreCase(""))
+		if (str == null || "".equalsIgnoreCase(str.trim())) {
 			return list;
+		}
 		String[] strs = str.split(split);
 		for (String temp : strs) {
-			if (temp != null && !temp.trim().equalsIgnoreCase("")) {
+			if (temp != null && !"".equalsIgnoreCase(temp.trim())) {
 				list.add(temp.trim());
 			}
 		}
@@ -133,16 +137,16 @@ public class StringUtils {
 	public static int[] getIntList(String str) {
 		String[] prop = getStringList(str);
 		List<Integer> tmp = new ArrayList<Integer>();
-		for (int i = 0; i < prop.length; i++) {
-			try {
-				String sInt = prop[i].trim();
-				if (sInt.length() < 20) {
-					int r = Integer.parseInt(prop[i].trim());
-					tmp.add(r);
-				}
-			} catch (Exception e) {
-			}
-		}
+        for (String aProp : prop) {
+            try {
+                String sInt = aProp.trim();
+                if (sInt.length() < 20) {
+                    int r = Integer.parseInt(aProp.trim());
+                    tmp.add(r);
+                }
+            } catch (Exception e) {
+            }
+        }
 		int[] ints = new int[tmp.size()];
 		for (int i = 0; i < tmp.size(); i++) {
 			ints[i] = tmp.get(i);
@@ -155,8 +159,8 @@ public class StringUtils {
 		if (obj == null) {
 			return "null";
 		} else {
-			return obj.getClass().getName() + "@" + obj.hashCode() + "[\r\n"
-					+ content + "\r\n]";
+			return obj.getClass().getName() + '@' + obj.hashCode() + "[\r\n"
+				   + content + "\r\n]";
 		}
 	}
 
@@ -183,14 +187,14 @@ public class StringUtils {
 	public static boolean hasExcludeChar(String str) {
 		if (str != null) {
 			char[] chs = str.toCharArray();
-			for (int i = 0; i < chs.length; i++) {
+            for (char ch : chs) {
 
-				if (Character.getType(chs[i]) == Character.PRIVATE_USE) {
+                if (Character.getType(ch) == Character.PRIVATE_USE) {
 
-					return true;
-				}
+                    return true;
+                }
 
-			}
+            }
 		}
 		return false;
 	}
@@ -244,8 +248,8 @@ public class StringUtils {
 			ReflectionToStringBuilder {
 		private final Map<String, Boolean> excludes;
 
-		public BaseReflectionToStringBuilder(Object object,
-				ToStringStyle style, Map<String, Boolean> excludes) {
+		private BaseReflectionToStringBuilder(Object object,
+											  ToStringStyle style, Map<String, Boolean> excludes) {
 			super(object, style);
 			this.excludes = excludes;
 		}
@@ -324,7 +328,7 @@ public class StringUtils {
 	 */
 	public static int getChineseCount(String test) {
 		int count = 0;
-		boolean tempResult = false;
+		boolean tempResult;
 		for (int i = 0; i < test.length(); i++) {
 			char cha = test.charAt(i);
 			tempResult = isChineseChar(cha);
@@ -343,7 +347,7 @@ public class StringUtils {
 	 */
 	public static int getLetterAndDigitCount(String text) {
 		int count = 0;
-		boolean tempResult = false;
+		boolean tempResult;
 		for (int i = 0; i < text.length(); i++) {
 			tempResult = isLetterAndDigit(text);
 			if (tempResult) {
@@ -388,11 +392,12 @@ public class StringUtils {
         if (s == null || s.length == 0){
         	return "";
         }
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         if (s != null) {
             for (int i = 0; i < s.length; i++) {
-                if (i > 0)
-                    buf.append(sep);
+                if (i > 0) {
+					buf.append(sep);
+				}
                 buf.append(s[i]);
             }
         }
@@ -406,7 +411,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static String getString(String splitString, String... strings){
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		for(int i = 0; i < strings.length; i++){
 			stringBuffer.append(strings[i]);
 			if(i == strings.length - 1){
@@ -425,7 +430,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static String getString(String splitString, int start, Serializable... strings){
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		for(int i = start; i < strings.length; i++){
 			stringBuffer.append(strings[i]);
 			if(i == strings.length - 1){
@@ -438,9 +443,10 @@ public class StringUtils {
 
 	//首字母转小写
 	public static String toLowerCaseFirstOne(String s){
-		if(Character.isLowerCase(s.charAt(0)))
+		if(Character.isLowerCase(s.charAt(0))) {
 			return s;
-		else
+		} else {
 			return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
+		}
 	}
 }

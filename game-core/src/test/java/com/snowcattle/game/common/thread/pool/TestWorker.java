@@ -8,7 +8,7 @@ import com.snowcattle.game.thread.worker.AbstractWork;
  */
 public class TestWorker extends AbstractWork {
 
-    private int i;
+    private final int i;
 
     public TestWorker(int i) {
         this.i = i;

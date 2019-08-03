@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  *
  *
  */
-public class TimeUtils {
+public final class TimeUtils {
 
 	static {
 		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
@@ -52,8 +52,7 @@ public class TimeUtils {
 	/** 年月日，格式如1970-07-10 */
 	private static final DateFormat ymdFormat = new SimpleDateFormat(
 			"yyyy-MM-dd");
-	/** 小时和分钟数，格式如10:20 */
-	
+
 	/**
 	 * 默认的日期格式
 	 */
@@ -63,7 +62,10 @@ public class TimeUtils {
 	private static final Calendar calendar = Calendar.getInstance();
 	public static final TimeZone TIME_ZONE;
 
-	/**
+    private TimeUtils() {
+    }
+
+    /**
 	 * 判断是否合法的时间格式(HH:mm:ss)
 	 *
 	 * @param dayTime
@@ -131,7 +133,7 @@ public class TimeUtils {
 	 */
 	public static long getDeadLine(Timestamp start, long validTime,
 			long timeUnit) {
-		return TimeUtils.getDeadLine(start.getTime(), validTime, timeUnit);
+		return getDeadLine(start.getTime(), validTime, timeUnit);
 	}
 
 	/**
@@ -274,7 +276,7 @@ public class TimeUtils {
 		calendar.setTime(date);
 		int hour = calendar.get(Calendar.HOUR_OF_DAY);
 		int minute = calendar.get(Calendar.MINUTE);
-		return hour * TimeUtils.HOUR + minute * TimeUtils.MIN;
+		return hour * HOUR + minute * MIN;
 	}
 
 	/**
@@ -363,7 +365,7 @@ public class TimeUtils {
 	 * @return
 	 */
 	public static long translateTime(int time, long fromTimeUnit) {
-		return TimeUtils.translateTime(time, fromTimeUnit, MILLI_SECOND);
+		return translateTime(time, fromTimeUnit, MILLI_SECOND);
 	}
 
 	/**
@@ -484,8 +486,8 @@ public class TimeUtils {
 		st.setTimeInMillis(start);
 		Calendar et = Calendar.getInstance();
 		et.setTimeInMillis(end);
-		int days = Math.abs(TimeUtils.getSoFarWentDays(st, et));
-		if (days < TimeUtils.DAYOFWEEK_CARDINALITY) {
+		int days = Math.abs(getSoFarWentDays(st, et));
+		if (days < DAYOFWEEK_CARDINALITY) {
 			// 设置Monday为一周的开始
 			st.setFirstDayOfWeek(Calendar.MONDAY);
 			et.setFirstDayOfWeek(Calendar.MONDAY);
@@ -724,7 +726,7 @@ public class TimeUtils {
 	 * @return
 	 */
 	public static int getDayOfTheWeekNum(long now) {
-		int dayNum = 0;
+		int dayNum;
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(now);
 		dayNum = c.get(Calendar.DAY_OF_WEEK);
@@ -738,7 +740,6 @@ public class TimeUtils {
 	/**
 	 * 格式化输出日期
 	 * @param date
-	 * @param format
 	 */
 	public static String dateToString(Date date){
 		SimpleDateFormat time = new SimpleDateFormat(DEFAULT_DATE_FAMAT);

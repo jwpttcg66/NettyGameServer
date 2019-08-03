@@ -8,11 +8,14 @@ import java.util.UUID;
   *
  *
  */
-public class KeyUtil {
+public final class KeyUtil {
 	/** Key的长度 */
 	public static final int KEY_LEN = 32;
 
-	/**
+    private KeyUtil() {
+    }
+
+    /**
 	 * 产生一个UUID的Key
 	 *
 	 * @return

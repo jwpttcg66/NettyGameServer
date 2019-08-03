@@ -5,25 +5,25 @@ import com.snowcattle.game.template.xml.MacroObject;
 import com.snowcattle.game.template.xml.MessageObject;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
 
 import java.io.StringWriter;
 
 
 
 public class Converter {
-	private String vmPath;
+	private final String vmPath;
 	
 	// 创建引擎  
-    VelocityEngine ve = null;  
-	String encode = "UTF-8";
+    VelocityEngine ve;
+	String encode;
     
 	public Converter(String vmPath, String encode){
 		this.vmPath = vmPath;
 		ve = new VelocityEngine();
 		// 设置模板加载路径，这里设置的是class下  
-	    ve.setProperty(Velocity.RESOURCE_LOADER, "class");
+	    ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "class");
 	    ve.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 	    this.encode = encode;
 	}

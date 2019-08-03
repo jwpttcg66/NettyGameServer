@@ -19,7 +19,7 @@ import java.util.jar.JarFile;
  * @author C172
  *
  */
-public class PackageScaner
+public final class PackageScaner
 {
 	/**
 	 * Logger for this class
@@ -32,18 +32,20 @@ public class PackageScaner
 
 	public static String[] scanNamespaceFiles(String namespace, String fileext,boolean isReturnCanonicalPath, boolean checkSub)
 	{
+		logger.debug("namespace,{}",namespace);
 		String respath = namespace.replace('.', '/');
 		respath = respath.replace('.', '/');
 
 		List<String> tmpNameList = new ArrayList<String>();
 		try
 		{
-			URL url = null;
+			URL url;
 			logger.info("scan url path " + respath);
-			if (!respath.startsWith("/"))
-				url = PackageScaner.class.getResource("/" + respath);
-			else
+			if (!respath.startsWith("/")) {
+				url = PackageScaner.class.getResource('/' + respath);
+			} else {
 				url = PackageScaner.class.getResource(respath);
+			}
 
 			URLConnection tmpURLConnection = url.openConnection();
 			String tmpItemName;
@@ -95,21 +97,23 @@ public class PackageScaner
 					File[] fileArray = file.listFiles();
 					for (File f : fileArray)
 					{
-						if(f.isDirectory() && f.getName().indexOf(".")!=-1)
+						if(f.isDirectory() && f.getName().indexOf('.') != -1) {
 							continue;
+						}
 						
-						if(isReturnCanonicalPath)
+						if(isReturnCanonicalPath) {
 							tmpItemName = f.getCanonicalPath();
-						else
+						} else {
 							tmpItemName = f.getName();
+						}
 						if(f.isDirectory()){
-							String[] inner = scanNamespaceFiles(namespace+"."+tmpItemName, fileext, isReturnCanonicalPath);
+							String[] inner = scanNamespaceFiles(namespace + '.' + tmpItemName, fileext, isReturnCanonicalPath);
 							if(inner == null){
 								continue;
 							}
 							for(String i : inner){
 								if(i!=null){
-									tmpNameList.add(tmpItemName+"."+i);
+									tmpNameList.add(tmpItemName + '.' + i);
 								}
 							}
 						}else if(fileext == null || tmpItemName.endsWith(fileext) )

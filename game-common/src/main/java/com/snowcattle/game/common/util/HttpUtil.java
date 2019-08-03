@@ -24,7 +24,7 @@ import java.net.URLEncoder;
  * 
  * 
  */
-public class HttpUtil {
+public final class HttpUtil {
 	private static final Logger logger = LoggerFactory.getLogger("HttpUtil");
 
 	private static final int DEFAULT_TIMEOUT = 5;
@@ -37,7 +37,10 @@ public class HttpUtil {
 	/** 连接local的参数编码 */
 	private static final String DEFAULT_ENCODE_TYPE = "utf-8";
 
-	/**
+    private HttpUtil() {
+    }
+
+    /**
 	 * 按照utf-8的编码格式进行编码
 	 * 
 	 * @param param
@@ -95,7 +98,7 @@ public class HttpUtil {
 			reader = new BufferedReader(new InputStreamReader(urlStream, parseEncoding(urlConnection)));
 			char[] _buff = new char[128];
 			StringBuilder temp = new StringBuilder();
-			int _len = -1;
+			int _len;
 			while ((_len = reader.read(_buff)) != -1) {
 				temp.append(_buff, 0, _len);
 			}
@@ -185,10 +188,10 @@ public class HttpUtil {
 	 * @return
 	 */
 	public static String doPost(String url) {
-		StringBuffer stringBuffer = new StringBuffer();
-		HttpEntity entity = null;
+		StringBuilder stringBuffer = new StringBuilder();
+		HttpEntity entity;
 		BufferedReader in = null;
-		HttpResponse response = null;
+		HttpResponse response;
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpParams params = httpclient.getParams();
@@ -215,8 +218,7 @@ public class HttpUtil {
 			if (null != in) {
 				try {
 					in.close();
-					in = null;
-				} catch (IOException e) {
+                } catch (IOException e) {
 					e.printStackTrace();
 				}
 			}

@@ -1,6 +1,5 @@
 package com.snowcattle.game.service.net.udp;
 
-import com.snowcattle.game.service.net.udp.AbstractNettyUdpServerService;
 import io.netty.channel.ChannelInitializer;
 
 /**

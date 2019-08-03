@@ -11,9 +11,12 @@ import java.util.List;
  *
  *
  */
-public class EnumUtil {
+public final class EnumUtil {
 
-	/**
+    private EnumUtil() {
+    }
+
+    /**
 	 * 根据枚举index返回枚举元素，index从0开始
 	 *
 	 * @param <T>
@@ -25,7 +28,7 @@ public class EnumUtil {
 	 * @return 枚举元素
 	 */
 	public static <T extends Enum<T>> T valueOf(List<T> values, int index) {
-		T value = null;
+		T value;
 		try {
 			value = values.get(index);
 		} catch (Exception e) {

@@ -22,7 +22,7 @@ public class NetMessageTcpDispatchLogic {
         if (msg == null) {
             if (Loggers.serverStatusStatistics.isWarnEnabled()) {
                 Loggers.serverStatusStatistics.warn("[#CORE.QueueMessageExecutorProcessor.process] ["
-                        + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + "]");
+                                                    + CommonErrorLogInfo.MSG_PRO_ERR_NULL_MSG + ']');
             }
             return;
         }

@@ -1,9 +1,5 @@
 package com.snowcattle.game.common.config;
 
-/**
- * Created by jiangwenping on 17/2/22.
- */
-
 
 /**
  * @author jwp

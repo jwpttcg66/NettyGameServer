@@ -1,7 +1,6 @@
 package com.snowcattle.game.db.service.async.thread;
 
 import com.snowcattle.game.db.common.Loggers;
-import com.snowcattle.game.db.service.entity.EntityService;
 import org.slf4j.Logger;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -12,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class AsyncDbOperationMonitor{
 
-    private Logger logger = Loggers.dbServerLogger;
+    private final Logger logger = Loggers.dbServerLogger;
     public AsyncDbOperationMonitor() {
         this.count = new AtomicLong();
     }
@@ -21,7 +20,7 @@ public class AsyncDbOperationMonitor{
 
 //    public long startTime;
 
-    private boolean totalFlag = true;
+    private final boolean totalFlag = true;
     public long startTime = System.currentTimeMillis();
 
     public void start(){

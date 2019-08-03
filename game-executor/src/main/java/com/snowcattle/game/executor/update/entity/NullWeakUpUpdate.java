@@ -6,6 +6,8 @@ package com.snowcattle.game.executor.update.entity;
  */
 public class NullWeakUpUpdate extends AbstractUpdate{
 
+    private static final long serialVersionUID = 8323340750934621540L;
+
     @Override
     public void update() {
 

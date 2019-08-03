@@ -15,9 +15,9 @@ import com.snowcattle.game.executor.common.utils.Constants;
  */
 public class DispatchCreateEventListener extends CreateEventListener {
 
-    private DispatchThread dispatchThread;
+    private final DispatchThread dispatchThread;
 
-    private UpdateService updateService;
+    private final UpdateService updateService;
     public DispatchCreateEventListener(DispatchThread dispatchThread, UpdateService updateService) {
         super();
         this.dispatchThread = dispatchThread;

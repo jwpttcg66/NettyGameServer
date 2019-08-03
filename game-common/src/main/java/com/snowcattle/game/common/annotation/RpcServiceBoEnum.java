@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  * Created by jiangwenping on 17/4/26.
  */
-@Target({ElementType.TYPE})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Component
 public @interface RpcServiceBoEnum {

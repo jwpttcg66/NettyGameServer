@@ -1,15 +1,18 @@
 package com.snowcattle.game.common.util;
 
-public class ThreadUtil {
+public final class ThreadUtil {
 
-	public static String getThreadTree(){
+    private ThreadUtil() {
+    }
+
+    public static String getThreadTree(){
 		ThreadGroup root = Thread.currentThread().getThreadGroup();
 		while(root.getParent() != null){
 			root = root.getParent();
 		}
 		StringBuffer buffer = new StringBuffer();
 
-		buffer.append(root.toString()).append("\r");
+		buffer.append(root.toString()).append('\r');
 		visit(root, 1, buffer);
 		return buffer.toString();
 	}
@@ -23,7 +26,7 @@ public class ThreadUtil {
 			for(int j=0; j<level; j++){
 				buffer.append("  ");
 			}
-			buffer.append(t.toString()).append("\r");
+			buffer.append(t.toString()).append('\r');
 		}
 
 		int numGroups = group.activeGroupCount();
@@ -33,7 +36,7 @@ public class ThreadUtil {
 			for(int j=0; j<level; j++){
 				buffer.append("  ");
 			}
-			buffer.append(groups[i].toString()).append("\r");
+			buffer.append(groups[i].toString()).append('\r');
 			visit(groups[i], level+1, buffer);
 		}
 	}
@@ -79,7 +82,7 @@ public class ThreadUtil {
 
 	public static String getThreadStack(Thread t){
 		StackTraceElement[] stacks = t.getStackTrace();
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		for(StackTraceElement stack : stacks){
 			String filename = stack.getFileName();
 			if(filename == null){

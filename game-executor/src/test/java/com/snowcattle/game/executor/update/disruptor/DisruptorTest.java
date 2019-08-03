@@ -18,7 +18,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by jiangwenping on 17/4/25.
  */
-public class DisruptorTest {
+public final class DisruptorTest {
+    private DisruptorTest() {
+    }
+
     public static void main(String[] args) throws Exception {
         testUpdate();
     }
@@ -56,8 +59,8 @@ public class DisruptorTest {
 
 
         while (true) {
-            Thread.currentThread().sleep(100);
-            updateService.toString();
+            Thread.sleep(100);
+            System.out.println(updateService);
         }
 
 //        updateService.stop();

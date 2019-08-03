@@ -17,6 +17,7 @@ import com.snowcattle.game.db.service.redis.RedisListInterface;
 public class MoreOrder  extends BaseLongIDEntity implements RedisListInterface{
 
 
+    private static final long serialVersionUID = -3254333196410443407L;
     @FieldSave
     private String status;
 

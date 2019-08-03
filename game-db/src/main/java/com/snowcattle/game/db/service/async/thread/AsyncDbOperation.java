@@ -31,7 +31,7 @@ import java.util.TimerTask;
 @Service
 public abstract class AsyncDbOperation<T extends EntityService> extends TimerTask {
 
-    private Logger operationLogger = Loggers.dbLogger;
+    private final Logger operationLogger = Loggers.dbLogger;
     /**
      * db里面的redis服务
      */
@@ -103,7 +103,7 @@ public abstract class AsyncDbOperation<T extends EntityService> extends TimerTas
      */
     public void saveDb(int dbId, EntityService entityService){
         String simpleClassName = entityService.getEntityTClass().getSimpleName();
-        String dbRedisKey = AsyncRedisKeyEnum.ASYNC_DB.getKey() + dbId + "#" + entityService.getEntityTClass().getSimpleName();
+        String dbRedisKey = AsyncRedisKeyEnum.ASYNC_DB.getKey() + dbId + '#' + entityService.getEntityTClass().getSimpleName();
         long saveSize = redisService.scardString(dbRedisKey);
         for(long k = 0; k < saveSize; k++){
             String playerKey = redisService.spopString(dbRedisKey);

@@ -43,7 +43,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
     @Autowired
     private EntityServiceShardingStrategy defaultEntityServiceShardingStrategy;
 
-    private static ThreadLocal<SqlSession> threadLocal = new ThreadLocal<SqlSession>();
+    private static final ThreadLocal<SqlSession> threadLocal = new ThreadLocal<SqlSession>();
 
     /**
      * 插入实体
@@ -63,7 +63,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
             result = idbMapper.insertEntity(entity);
         } catch (Exception e) {
             logger.error(e.toString(), e);
-        } finally {
         }
         return result;
     }
@@ -84,7 +83,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
             result = idbMapper.getEntity(entity);
         } catch (Exception e) {
             logger.error(e.toString(), e);
-        } finally {
         }
         return result;
     }
@@ -118,7 +116,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
 
         } catch (Exception e) {
             logger.error(e.toString(), e);
-        } finally {
         }
         return result;
     }
@@ -164,7 +161,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
 
         } catch (Exception e) {
             logger.error(e.toString(), e);
-        } finally {
         }
         return result;
     }
@@ -187,12 +183,11 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
         //只有数据变化的时候才会更新
         if (entityProxyWrapper != null && entityProxyWrapper.getEntityProxy().isDirtyFlag()) {
             hashMap.putAll(entityProxyWrapper.getEntityProxy().getChangeParamSet());
-            IDBMapper<T> idbMapper = getTemplateMapper((T) entity);
+            IDBMapper<T> idbMapper = getTemplateMapper(entity);
             try {
                 idbMapper.updateEntityByMap(hashMap);
             } catch (Exception e) {
                 logger.error(e.toString(), e);
-            } finally {
             }
         } else {
             logger.error("updateEntity cance " + entity.getClass().getSimpleName() + "id:" + entity.getId() + " userId:" + entity.getUserId());
@@ -214,7 +209,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
             idbMapper.deleteEntity(entity);
         } catch (Exception e) {
             logger.error(e.toString(), e);
-        } finally {
         }
     }
 
@@ -226,7 +220,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
     @Override
     public long getShardingId(T entity) {
         long shardingId = entity.getUserId();
-        if (entity.getEntityKeyShardingStrategyEnum().equals(EntityKeyShardingStrategyEnum.ID)) {
+        if (entity.getEntityKeyShardingStrategyEnum() == EntityKeyShardingStrategyEnum.ID) {
             if(entity instanceof BaseLongIDEntity) {
                 BaseLongIDEntity baseLongIDEntity = (BaseLongIDEntity) entity;
                 shardingId = baseLongIDEntity.getId();
@@ -327,7 +321,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
                 CustomerContextHolder.setCustomerType(getEntityServiceShardingStrategy().getShardingDBKeyByUserId(selectId));
                 int sharding_table_index = getEntityServiceShardingStrategy().getShardingDBTableIndexByUserId(selectId);
                 entity.setSharding_table_index(sharding_table_index);
-                IDBMapper<T> mapper = getBatchTemplateMapper(sqlSession, (T) entity);
+                IDBMapper<T> mapper = getBatchTemplateMapper(sqlSession, entity);
                 Map hashMap = new HashMap<>();
                 hashMap.put("sharding_table_index", sharding_table_index);
                 hashMap.put("userId", entity.getUserId());
@@ -340,7 +334,6 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
                         mapper.updateEntityByMap(hashMap);
                     } catch (Exception e) {
                         logger.error(e.toString(), e);
-                    } finally {
                     }
                 } else {
                     logger.error("updateEntityBatch cancer " + entity.getClass().getSimpleName() + "id:" + entity.getId() + " userId:" + entity.getUserId());
@@ -400,7 +393,7 @@ public abstract class EntityService<T extends AbstractEntity> implements IEntity
         this.defaultEntityServiceShardingStrategy = defaultEntityServiceShardingStrategy;
     }
 
-    abstract  public EntityServiceShardingStrategy getEntityServiceShardingStrategy();
+    public abstract EntityServiceShardingStrategy getEntityServiceShardingStrategy();
 
     //获取模版参数类
     public Class<T> getEntityTClass(){

@@ -120,11 +120,11 @@ public final class WebSocketServerBenchmarkPage {
                 "function onInvalidResponse(sent,recvd) {" + NEWLINE +
                 "    socket.close();" + NEWLINE +
                 "    alert(\"Error: Sent data did not match the received data!\");" + NEWLINE +
-                "}" + NEWLINE +
+                '}' + NEWLINE +
                 NEWLINE +
                 "function clearText() {" + NEWLINE +
                 "    output.value=\"\";" + NEWLINE +
-                "}" + NEWLINE +
+                '}' + NEWLINE +
                 NEWLINE +
                 "function createBenchData() {" + NEWLINE +
                 "    if (isBinary) {" + NEWLINE +
@@ -138,7 +138,7 @@ public final class WebSocketServerBenchmarkPage {
                 "            benchData += String.fromCharCode(Math.floor(Math.random() * (123 - 65) + 65));" + NEWLINE +
                 "        }" + NEWLINE +
                 "    }" + NEWLINE +
-                "}" + NEWLINE +
+                '}' + NEWLINE +
                 NEWLINE +
                 "function startBenchmark(message) {" + NEWLINE +
                 "  if (!window.WebSocket || benchRunning) { return; }" + NEWLINE +
@@ -179,7 +179,7 @@ public final class WebSocketServerBenchmarkPage {
                 "    output.value = output.value + '\\nThroughput: ' + throughputText;" + NEWLINE +
                 "    output.value = output.value + ' in each direction';" + NEWLINE +
                 "    benchRunning = false;" + NEWLINE +
-                "}" + NEWLINE +
+                '}' + NEWLINE +
                 "</script>" + NEWLINE +
                 "</body>" + NEWLINE +
                 "</html>" + NEWLINE, CharsetUtil.US_ASCII);

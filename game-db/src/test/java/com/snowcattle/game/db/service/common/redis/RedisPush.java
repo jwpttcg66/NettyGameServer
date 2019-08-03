@@ -8,8 +8,8 @@ import com.snowcattle.game.db.service.redis.RedisService;
 public class RedisPush extends Thread{
 
     RedisService redisService;
-    private String setKey;
-    private String listKey;
+    private final String setKey;
+    private final String listKey;
 
     public RedisPush(RedisService redisService, String setKey, String listKey) {
         this.redisService = redisService;
@@ -22,9 +22,9 @@ public class RedisPush extends Thread{
         int i = 1100;
         while(i<1500){
             redisService.rPushString(listKey, String.valueOf(i));
-            System.out.println("插入"  + listKey  + "值" + String.valueOf(i));
+            System.out.println("插入" + listKey + '值' + String.valueOf(i));
             redisService.rPushString(listKey, String.valueOf(i + 2000));
-            System.out.println("更新" + listKey  + "值" + String.valueOf(i + 2000));
+            System.out.println("更新" + listKey + '值' + String.valueOf(i + 2000));
 //            try {
 //                Thread.sleep(10);
 //            } catch (InterruptedException e) {
@@ -34,7 +34,7 @@ public class RedisPush extends Thread{
 
 
             redisService.rPushString(listKey, String.valueOf(i + 4000));
-            System.out.println("更新" + listKey  + "值" + String.valueOf(i + 4000));
+            System.out.println("更新" + listKey + '值' + String.valueOf(i + 4000));
 //            try {
 //                Thread.sleep(10);
 //            } catch (InterruptedException e) {

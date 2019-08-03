@@ -12,7 +12,7 @@ public class GameUdpMessageProcessor implements IMessageProcessor {
     protected static final Logger log = Loggers.msgLogger;
 
     /** 主消息处理器，处理服务器内部消息、玩家不属于任何场景时发送的消息 */
-    private IMessageProcessor mainMessageProcessor;
+    private final IMessageProcessor mainMessageProcessor;
 
     public GameUdpMessageProcessor(IMessageProcessor messageProcessor) {
         mainMessageProcessor = messageProcessor;

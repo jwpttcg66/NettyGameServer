@@ -24,18 +24,18 @@ public class DisruptorDispatchThread extends DispatchThread{
 
     private RingBuffer<CycleEvent> ringBuffer;
 
-    private int bufferSize = 1024 * 64;
+    private final int bufferSize = 1024 * 64;
 
     private DisruptorExecutorService disruptorExcutorService;
 
-    private BlockingQueue<IEvent> blockingQueue;
+    private final BlockingQueue<IEvent> blockingQueue;
 
     private boolean runningFlag = true;
 
-    private AtomicLong total;
+    private final AtomicLong total;
 
-    private int cycleSleepTime;
-    private long minCycleTime;
+    private final int cycleSleepTime;
+    private final long minCycleTime;
 
     public DisruptorDispatchThread(EventBus eventBus, IUpdateExecutor iUpdateExecutor,  int cycleSleepTime , long minCycleTime) {
         super(eventBus);
@@ -103,7 +103,7 @@ public class DisruptorDispatchThread extends DispatchThread{
             int i = 0;
             long startTime = System.nanoTime();
             while (i < cycleSize) {
-                CycleEvent cycleEvent = null;
+                CycleEvent cycleEvent;
                 try {
                     cycleEvent = (CycleEvent) blockingQueue.take();
                     dispatch(cycleEvent);

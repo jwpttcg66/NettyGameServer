@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
  * Created by jwp on 2017/3/3.
  */
 public class CglibProxy implements MethodInterceptor {
-    private Enhancer enhancer = new Enhancer();
+    private final Enhancer enhancer = new Enhancer();
     public Object getProxy(Class clazz){
         //设置需要创建子类的类
         enhancer.setSuperclass(clazz);

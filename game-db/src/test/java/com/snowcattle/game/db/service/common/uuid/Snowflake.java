@@ -1,9 +1,6 @@
 package com.snowcattle.game.db.service.common.uuid;
 
 /**
- * Created by jiangwenping on 17/2/27.
- */
-/**
  * A snowflake is a source of k-ordered unique 64-bit integers.
  */
 public class Snowflake {
@@ -17,7 +14,7 @@ public class Snowflake {
     private short sequence;
     private long referenceTime;
 
-    private int node;
+    private final int node;
 
     /**
      * A snowflake is designed to operate as a singleton instance within the context of a node.
@@ -51,7 +48,7 @@ public class Snowflake {
             } else if (currentTime > referenceTime) {
                 this.sequence = 0;
             } else {
-                if (this.sequence < Snowflake.MAX_SEQUENCE) {
+                if (this.sequence < MAX_SEQUENCE) {
                     this.sequence++;
                 } else {
                     throw new RuntimeException("Sequence exhausted at " + this.sequence);

@@ -1,5 +1,6 @@
 package com.snowcattle.game.service.dict;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.snowcattle.game.common.constant.GlobalConstants;
@@ -22,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class DictService implements IService{
 
-    private Logger logger = Loggers.serverLogger;
+    private final Logger logger = Loggers.serverLogger;
 
     private Map<String, IDictCollections> collectionsMap;
     @Override
@@ -37,9 +38,9 @@ public class DictService implements IService{
         String filePath = GlobalConstants.ConfigFile.DICT_ROOT_FILE;
         String jsonString = ResourceUtil.getTextFormResourceNoException(filePath);
         if(!StringUtils.isEmpty(jsonString)) {
-            JSONObject jsonObject = (JSONObject) JSONObject.parse(jsonString);
+            JSONObject jsonObject = (JSONObject) JSON.parse(jsonString);
             String packages = jsonObject.getString(GlobalConstants.JSONFile.dict_package);
-            JSONArray jsonArray = (JSONArray) jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
+            JSONArray jsonArray = jsonObject.getJSONArray(GlobalConstants.JSONFile.dict_fils);
             JSONArray[] dictModle = jsonArray.toArray(new JSONArray[0]);
             for(JSONArray dictModleJsonArray: dictModle){
                 String enumString = dictModleJsonArray.get(0).toString();
@@ -50,13 +51,13 @@ public class DictService implements IService{
                 //加载文件
                 jsonString = ResourceUtil.getTextFormResource(path);
                 if(!StringUtils.isEmpty(jsonString)){
-                    JSONObject dictJsonObjects = (JSONObject) JSONObject.parse(jsonString);
+                    JSONObject dictJsonObjects = (JSONObject) JSON.parse(jsonString);
                     //加载数据
                     String multiKeyString = dictJsonObjects.getString(GlobalConstants.JSONFile.multiKey);
                     JSONArray bodyJson= dictJsonObjects.getJSONArray(GlobalConstants.JSONFile.body);
                     boolean multiKey = Boolean.parseBoolean(multiKeyString);
                     if(bodyJson != null) {
-                        Class classes = Class.forName(packages + "." + className);
+                        Class classes = Class.forName(packages + '.' + className);
                         if (multiKey) {
                             JSONArray[] dictModleJsonArrays = bodyJson.toArray(new JSONArray[0]);
                             DictArrayMaps dictMap = new DictArrayMaps();
@@ -67,7 +68,7 @@ public class DictService implements IService{
                                 int dictId = -1;
                                 for(JSONObject dictJson: dictModleJsonObjects) {
                                     //唯一的数据
-                                    Object object = JSONObject.toJavaObject(dictJson, classes);
+                                    Object object = JSON.toJavaObject(dictJson, classes);
                                     if(logger.isDebugEnabled()) {
                                         logger.debug("加载dict className:" +  className + dictJson.toJSONString());
                                     }
@@ -83,7 +84,7 @@ public class DictService implements IService{
                             DictMap dictMap = new DictMap();
                             for(JSONObject dictJson: dictModleJsonObjects) {
                                 //唯一的数据
-                                Object object = JSONObject.toJavaObject(dictJson, classes);
+                                Object object = JSON.toJavaObject(dictJson, classes);
                                 if(logger.isDebugEnabled()) {
                                     logger.debug("加载dict className:" + className + dictJson.toJSONString());
                                 }
@@ -132,7 +133,6 @@ public class DictService implements IService{
     /**
      * 获取数据集合
      * @param dictModleType
-     * @param id
      * @return
      */
     public IDictCollections getIDictCollections(String dictModleType){

@@ -7,4 +7,5 @@ import com.snowcattle.game.db.entity.BaseLongIDEntity;
  */
 public class TestEntity extends BaseLongIDEntity {
 
+    private static final long serialVersionUID = -7157884788511223454L;
 }

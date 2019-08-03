@@ -3,7 +3,7 @@ package com.snowcattle.game.common.constant;
 /**
  * Created by jwp on 2017/2/4.
  */
-public class ServiceName {
+public final class ServiceName {
     public static final String GameServerConfigServiceString = "GameServerConfigService";
     public static final String MessageRegistry = "MessageRegistry";
     public static final String GameFacade = "GameFacade";
@@ -25,4 +25,8 @@ public class ServiceName {
     public static final String NetTcpSessionLoopUpService = "NetTcpSessionLoopUpService";
     public static final String AsyncNettyHttpHandlerService = "AsyncNettyHttpHandlerService";
     public static final String AsyncNettyWebSocketHandlerService = "AsyncWebSocketHandlerService";
+    public static final String LifeCycleCheckService = "LifeCycleCheckService";
+
+    private ServiceName() {
+    }
 }

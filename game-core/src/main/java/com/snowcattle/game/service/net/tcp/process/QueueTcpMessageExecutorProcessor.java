@@ -31,7 +31,7 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
     private volatile ExecutorService executorService;
 
     /** 线程池的线程个数 */
-    private int excecutorCoreSize;
+    private final int excecutorCoreSize;
 
     /** 是否停止 */
     private volatile boolean stop = false;
@@ -41,12 +41,10 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
 
     private final boolean processLeft;
 
-    @SuppressWarnings("unchecked")
     public QueueTcpMessageExecutorProcessor() {
         this(false, 0);
     }
 
-    @SuppressWarnings("unchecked")
     public QueueTcpMessageExecutorProcessor(boolean processLeft, int executorCoreSize) {
         queue = new LinkedBlockingQueue<AbstractNetMessage>();
         this.processLeft = processLeft;
@@ -89,7 +87,6 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
      *
      * @param msg
      */
-    @SuppressWarnings("unchecked")
     public void process(AbstractNetMessage msg) {
 //        if (msg == null) {
 //            if (logger.isWarnEnabled()) {
@@ -180,7 +177,7 @@ public class QueueTcpMessageExecutorProcessor implements ITcpMessageProcessor{
         if (this.processLeft) {
             // 将未处理的消息放入到leftQueue中,以备后续处理
             this.leftQueue = new LinkedList<AbstractNetMessage>();
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 AbstractNetMessage _msg = this.queue.poll();
                 if (_msg != null) {
                     this.leftQueue.add(_msg);

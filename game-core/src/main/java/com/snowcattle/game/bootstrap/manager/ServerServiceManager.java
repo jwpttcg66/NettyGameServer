@@ -14,10 +14,11 @@ public class ServerServiceManager {
     public static final String SERVICE_ID_ROOT="SERVICE_ROOT";
     private final Map<String, IServerService> serviceMap=new HashMap<String, IServerService>();
 
-    public static final ServerServiceManager getInstance()
+    public static ServerServiceManager getInstance()
     {
-        if(instance==null)
+        if(instance==null) {
             instance=new ServerServiceManager();
+        }
         return instance;
     }
 

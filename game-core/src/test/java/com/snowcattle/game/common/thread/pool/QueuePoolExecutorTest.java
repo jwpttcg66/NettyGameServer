@@ -7,7 +7,10 @@ import com.snowcattle.game.thread.executor.OrderedQueuePoolExecutor;
 /**
  * Created by jiangwenping on 17/3/10.
  */
-public class QueuePoolExecutorTest {
+public final class QueuePoolExecutorTest {
+
+    private QueuePoolExecutorTest() {
+    }
 
     public static void main(String[] args) {
         testOrder();

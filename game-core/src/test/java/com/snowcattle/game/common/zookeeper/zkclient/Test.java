@@ -15,7 +15,7 @@ public class Test {
      */
     private ZooKeeper zk;
 
-    private Watcher wh = new Watcher() {
+    private final Watcher wh = new Watcher() {
         @Override
         public void process(WatchedEvent event) {
             System.out.println("WatchedEvent >>>" + event.toString());
@@ -25,7 +25,7 @@ public class Test {
     private void createZkServie() throws Exception{
         String host = "127.0.0.1:2181:127.0.0.1:2181";
         String singleHost = "127.0.0.1";
-        zk = new ZooKeeper(singleHost, Test.Session_timeout,this.wh);
+        zk = new ZooKeeper(singleHost, Session_timeout,this.wh);
     }
 
     public void operations() throws Exception{
@@ -50,7 +50,7 @@ public class Test {
         zk.delete("/zoo2", -1);
 
         System.out.println("\n6. 查看节点是否被删除： ");
-        System.out.println(" 节点状态： [" + zk.exists("/zoo2", false) + "]");
+        System.out.println(" 节点状态： [" + zk.exists("/zoo2", false) + ']');
     }
 
     private void close() throws Exception{

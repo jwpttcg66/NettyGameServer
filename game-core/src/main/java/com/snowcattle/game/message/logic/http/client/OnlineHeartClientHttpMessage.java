@@ -2,9 +2,7 @@ package com.snowcattle.game.message.logic.http.client;
 
 import com.snowcattle.game.common.annotation.MessageCommandAnnotation;
 import com.snowcattle.game.message.auto.http.client.OnlineClientHttpProBuf;
-import com.snowcattle.game.message.auto.udp.online.OnlineUDPProBuf;
 import com.snowcattle.game.service.message.AbstractNetProtoBufHttpMessage;
-import com.snowcattle.game.service.message.AbstractNetProtoBufUdpMessage;
 import com.snowcattle.game.service.message.command.MessageCommandIndex;
 
 /**

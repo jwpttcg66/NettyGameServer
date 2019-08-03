@@ -12,8 +12,11 @@ import java.net.URL;
  *
  *
  */
-public class ResourceUtil {
-	/**
+public final class ResourceUtil {
+    private ResourceUtil() {
+    }
+
+    /**
 	 * 在类路径中查找指定的资源
 	 *
 	 * @param resource
@@ -33,12 +36,12 @@ public class ResourceUtil {
 	 */
 	public static String getTextFormURL(final URL url, final String charset) {
 		Reader _r = null;
-		String _text = null;
+		String _text;
 		try {
 			_r = new InputStreamReader(url.openStream(), charset != null ? charset : "UTF-8");
 			_text = IOUtils.toString(_r);
 		} catch (IOException e) {
-			throw new IllegalStateException("Can't load config from url [" + url + "]");
+			throw new IllegalStateException("Can't load config from url [" + url + ']');
 		} finally {
 			IOUtils.closeQuietly(_r);
 		}
@@ -55,7 +58,7 @@ public class ResourceUtil {
 	public static String getTextFormResource(String resource, String charset) {
 		URL _url = getResourceURL(resource);
 		if (_url == null) {
-			throw new IllegalArgumentException("Can't load config from resource [" + resource + "]");
+			throw new IllegalArgumentException("Can't load config from resource [" + resource + ']');
 		}
 		return getTextFormURL(_url, charset);
 	}
@@ -69,7 +72,7 @@ public class ResourceUtil {
 	public static String getTextFormResource(String resource) {
 		URL _url = getResourceURL(resource);
 		if (_url == null) {
-			throw new IllegalArgumentException("Can't load config from resource [" + resource + "]");
+			throw new IllegalArgumentException("Can't load config from resource [" + resource + ']');
 		}
 		return getTextFormURL(_url, null);
 	}

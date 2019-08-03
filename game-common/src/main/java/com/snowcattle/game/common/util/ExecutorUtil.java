@@ -15,12 +15,15 @@ import java.util.concurrent.TimeUnit;
   *
  *
  */
-public class ExecutorUtil {
+public final class ExecutorUtil {
 	private static final Logger logger = Loggers.utilLogger;
 	/** 默认的{@link ExecutorService}关闭前等待其中的任务结束的时间:5分钟 */
 	private static final int DEFAULT_AWAIT_TERMINATE_MINUTES = 5;
 
-	/**
+    private ExecutorUtil() {
+    }
+
+    /**
 	 * 关闭{@link ExecutorService},在关闭之前最多等待
 	 * {@link #DEFAULT_AWAIT_TERMINATE_MINUTES}分钟来满足其中已经开始任务结束
 	 *
@@ -32,9 +35,9 @@ public class ExecutorUtil {
 		return shutdownAndAwaitTermination(executorService, DEFAULT_AWAIT_TERMINATE_MINUTES, TimeUnit.MINUTES);
 	}
 	/**
-	 * 关闭{@link ExecutorService},在指定的时间内<code>awaitTermateTimeout</code>等待
-	 * <code>executorService</code>中已经开始的任务尽量结束. 此实现参照{@link ExecutorService}
-	 * 注释中的 <code>shutdownAndAwaitTermination</code>策略
+	 * 关闭{@link ExecutorService},在指定的时间内{@code awaitTermateTimeout}等待
+	 * {@code executorService}中已经开始的任务尽量结束. 此实现参照{@link ExecutorService}
+	 * 注释中的 {@code shutdownAndAwaitTermination}策略
 	 *
 	 * @param executorService
 	 *            将要被停止的{@link ExecutorService}
@@ -51,8 +54,8 @@ public class ExecutorUtil {
 		try {
 			boolean _terminateResult = executorService.awaitTermination(awaitTerminateTimeout, timeUnit);
 			if (logger.isInfoEnabled()) {
-				logger.info("[#GS.ExecutorUtil.safeShudown] [Shutdown " + executorService + " "
-						+ (_terminateResult ? "Success" : "Fail") + "]");
+				logger.info("[#GS.ExecutorUtil.safeShudown] [Shutdown " + executorService + ' '
+                            + (_terminateResult ? "Success" : "Fail") + ']');
 			}
 			if (!_terminateResult) {
 				//再次停止
@@ -64,8 +67,8 @@ public class ExecutorUtil {
 				}
 				_terminateResult = executorService.awaitTermination(awaitTerminateTimeout, timeUnit);
 				if (logger.isInfoEnabled()) {
-					logger.info("[#GS.ExecutorUtil.shutdownAndAwaitTermination] [ShutdwonNow " + executorService + " "
-							+ (_terminateResult ? "Success" : "Fail") + "]");
+					logger.info("[#GS.ExecutorUtil.shutdownAndAwaitTermination] [ShutdwonNow " + executorService + ' '
+                                + (_terminateResult ? "Success" : "Fail") + ']');
 				}
 			}
 		} catch (InterruptedException e) {

@@ -263,9 +263,8 @@ public class RedisService{
 	 * @param clazz
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 
-	public <T> List<T> getListFromHash(String key,Class<?> clazz){
+    public <T> List<T> getListFromHash(String key,Class<?> clazz){
 		return getListFromHash(key, clazz, GlobalConstants.RedisKeyConfig.NORMAL_LIFECYCLE);
 	}
 
@@ -280,15 +279,15 @@ public class RedisService{
 	public <T> List<T> getListFromHash(String key,Class<?> clazz,int seconds){
 		Jedis jedis = null;
 		boolean sucess = true;
-		Map<String,String> map=null;
+		Map<String,String> map;
 		try {
 			jedis=jedisPool.getResource();
 			map=jedis.hgetAll(key);
 			if(map != null && map.size()>0){
 				List<T> rt=new ArrayList<T>();
-				RedisListInterface po=null;
-				Map<String,String> mapFields=null;
-				String keyNames[]=null;
+				RedisListInterface po;
+				Map<String,String> mapFields;
+				String[] keyNames = null;
 				for(Entry<String, String> entry:map.entrySet()){
 					String fieldKey = entry.getKey();
 					mapFields=JsonUtils.getMapFromJson(entry.getValue());
@@ -360,8 +359,8 @@ public class RedisService{
 		Jedis jedis = null;
 		boolean sucess = true;
 		try {
-			String keys[]=new String[list.size()];
-			String keyNames[]=null;
+			String[] keys = new String[list.size()];
+			String[] keyNames = null;
 			Map<String,String> keyMap=null;
 			int index=0;
 			for(RedisListInterface po:list){
@@ -393,7 +392,7 @@ public class RedisService{
 	public boolean setNxString(String key, String value, int seconds) throws Exception{
 		Jedis jedis = null;
 		boolean success = true;
-		boolean result = false;
+		boolean result;
 		try {
 			jedis = jedisPool.getResource();
 			result = (jedis.setnx(key, value) != 0);
@@ -421,7 +420,7 @@ public class RedisService{
 	public boolean setHnxString(String key, String field, String value) throws Exception{
 		Jedis jedis = null;
 		boolean success = true;
-		boolean result = false;
+		boolean result;
 		try {
 			jedis = jedisPool.getResource();
 			result = (jedis.hsetnx(key, field, value) != 0);
@@ -446,7 +445,7 @@ public class RedisService{
 	public String getHgetString(String key, String field) throws Exception{
 		Jedis jedis = null;
 		boolean success = true;
-		String getResult = null;
+		String getResult;
 		try {
 			jedis = jedisPool.getResource();
 			getResult = jedis.hget(key, field);
@@ -554,7 +553,7 @@ public class RedisService{
 			jedis = jedisPool.getResource();
 			jedis.del(keys);
 		} catch (Exception e) {
-			returnBrokenResource(jedis, "deleteKey" + keys, e);
+			returnBrokenResource(jedis, "deleteKey" + Arrays.toString(keys), e);
 		} finally {
 			releaseReidsSource(true, jedis);
 		}
@@ -1052,7 +1051,7 @@ public class RedisService{
 	public Set<String> zrangeByScore(String key, long min, long max, int limit){
 		Jedis jedis = null;
 		boolean sucess = true;
-		Set<String> ret = null;
+		Set<String> ret;
 		try {
 			jedis = jedisPool.getResource();
 			ret = jedis.zrangeByScore(key, min, max, 0, limit);
@@ -1268,7 +1267,7 @@ public class RedisService{
 		Set<String> keys = null;
 		try {
 			jedis = jedisPool.getResource();
-			keys = jedis.keys("*" + key + "*");
+			keys = jedis.keys('*' + key + '*');
 		} catch (Exception e) {
 			sucess = false;
 			returnBrokenResource(jedis, "keys", e);
@@ -1335,7 +1334,7 @@ public class RedisService{
 	public List<String> lrange(String key, int start, int stop) {
 		Jedis jedis = null;
 		boolean sucess = true;
-		List<String> ret = null;
+		List<String> ret;
 		try {
 			jedis = jedisPool.getResource();
 			ret = jedis.lrange(key, start, stop);

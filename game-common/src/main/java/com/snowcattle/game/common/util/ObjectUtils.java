@@ -9,11 +9,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Created by jwp on 2017/2/28.
  */
-public class ObjectUtils {
+public final class ObjectUtils {
+
+    private ObjectUtils() {
+    }
 
     /**
      * 获取某个对象某些字段的Map
@@ -38,7 +42,7 @@ public class ObjectUtils {
                         }
                     }
                     if(needsAddToMap||addAllFields){
-                        map.put(field.getName(), getFieldsValueStr(obj,field.getName()).toString());
+                        map.put(field.getName(), getFieldsValueStr(obj, field.getName()));
                     }
                 }catch (Exception e) {
                     e.printStackTrace();
@@ -84,7 +88,7 @@ public class ObjectUtils {
     }
 
     public static String getFieldsValueStr(Object obj,String fieldName){
-        Object o = ObjectUtils.getFieldsValueObj(obj, fieldName);
+        Object o = getFieldsValueObj(obj, fieldName);
         return getObjectString(o);
     }
 
@@ -108,7 +112,7 @@ public class ObjectUtils {
     }
 
     public static String getFieldsValueStr(Object obj,String[] fieldName){
-        Map<String,String> keyMap=ObjectUtils.getMap(obj, fieldName);
+        Map<String,String> keyMap=getMap(obj, fieldName);
         StringBuilder sb=new StringBuilder();
         for(int i = 0; i < fieldName.length;i++){
             String keyName=fieldName[i];
@@ -116,7 +120,7 @@ public class ObjectUtils {
             if(i == fieldName.length - 1){
                 break;
             }
-            sb.append("#");
+            sb.append('#');
         }
         return sb.toString();
     }
@@ -145,34 +149,34 @@ public class ObjectUtils {
     @SuppressWarnings("unchecked")
     public static <T> T getObjFromMap(Map<String,String> map, Object obj){
         try {
-            for(String key:map.keySet()){
-                String value = map.get(key);
+            for(Entry<String, String> stringStringEntry : map.entrySet()){
+                String value = stringStringEntry.getValue();
                 //如果为空放弃，默认设置为空
                 if(StringUtils.isEmpty(value)){
                     continue;
                 }
-                Field field=getDeclaredField(obj, key);
-                Method method=getSetMethod(obj, buildSetMethod(key), field.getType());
+                Field field=getDeclaredField(obj, stringStringEntry.getKey());
+                Method method=getSetMethod(obj, buildSetMethod(stringStringEntry.getKey()), field.getType());
                 if(field.getType()==Integer.class||field.getType()==int.class){
-                    method.invoke(obj, Integer.parseInt(map.get(key)));
+                    method.invoke(obj, Integer.parseInt(stringStringEntry.getValue()));
                 }else if(field.getType()==Boolean.class||field.getType()==boolean.class){
-                    method.invoke(obj, Boolean.parseBoolean(map.get(key)));
+                    method.invoke(obj, Boolean.parseBoolean(stringStringEntry.getValue()));
                 }else if(field.getType()==Long.class||field.getType()==long.class){
-                    method.invoke(obj, Long.parseLong(map.get(key)));
+                    method.invoke(obj, Long.parseLong(stringStringEntry.getValue()));
                 }else if(field.getType()==Float.class||field.getType()==float.class){
-                    method.invoke(obj, Float.parseFloat(map.get(key)));
+                    method.invoke(obj, Float.parseFloat(stringStringEntry.getValue()));
                 }else if(field.getType()==Double.class||field.getType()==double.class){
-                    method.invoke(obj, Double.parseDouble(map.get(key)));
+                    method.invoke(obj, Double.parseDouble(stringStringEntry.getValue()));
                 }else if(field.getType()==Byte.class||field.getType()==byte.class){
-                    method.invoke(obj, Byte.parseByte(map.get(key)));
+                    method.invoke(obj, Byte.parseByte(stringStringEntry.getValue()));
                 }else if(field.getType()==Short.class||field.getType()==short.class){
-                    method.invoke(obj, Short.parseShort(map.get(key)));
+                    method.invoke(obj, Short.parseShort(stringStringEntry.getValue()));
                 }else if(field.getType()==String.class){
-                    method.invoke(obj, map.get(key));
+                    method.invoke(obj, stringStringEntry.getValue());
                 }else if(field.getType()==Date.class){
-                    method.invoke(obj, TimeUtils.stringToDate(map.get(key)));
+                    method.invoke(obj, TimeUtils.stringToDate(stringStringEntry.getValue()));
                 }else if(field.getType()==Timestamp.class){
-                    method.invoke(obj, TimeUtils.stringtoTimestamp(map.get(key)));
+                    method.invoke(obj, TimeUtils.stringtoTimestamp(stringStringEntry.getValue()));
                 }
             }
             return (T)obj;
@@ -197,7 +201,7 @@ public class ObjectUtils {
         return null;
     }
     private static String buildSetMethod(String fieldName){
-        StringBuffer sb=new StringBuffer("set");
+        StringBuilder sb=new StringBuilder("set");
         if(fieldName.length()>1){
             String first=fieldName.substring(0, 1);
             String next=fieldName.substring(1);

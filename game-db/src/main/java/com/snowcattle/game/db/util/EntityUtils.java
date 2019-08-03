@@ -18,10 +18,14 @@ import java.util.Map;
  * Created by jwp on 2017/3/22.
  * 实体辅助类
  */
-public class EntityUtils {
+public final class EntityUtils {
 
     //
-    public static String ENTITY_SPLIT_STRING="#";
+    public static final String ENTITY_SPLIT_STRING="#";
+
+    private EntityUtils() {
+    }
+
     /**
      * 获取所有缓存的字段跟值
      * @param iEntity
@@ -40,7 +44,7 @@ public class EntityUtils {
 
     /**
      * 获取代理对象里面变化的值
-     * @param iEntity
+     * @param entity
      * @return
      */
     public static Map<String, String> getProxyChangedCacheValueMap(AbstractEntity entity){
@@ -88,12 +92,12 @@ public class EntityUtils {
         if (entity != null) {
             if (entity instanceof RedisInterface) {
                 RedisInterface redisInterface = (RedisInterface) entity;
-                redisService.updateObjectHashMap(EntityUtils.getRedisKey(redisInterface), entity.getEntityProxyWrapper().getEntityProxy().getChangeParamSet());
+                redisService.updateObjectHashMap(getRedisKey(redisInterface), entity.getEntityProxyWrapper().getEntityProxy().getChangeParamSet());
             } else if (entity instanceof RedisListInterface) {
                 RedisListInterface redisListInterface = (RedisListInterface) entity;
                 List<RedisListInterface> redisListInterfaceList = new ArrayList<>();
                 redisListInterfaceList.add(redisListInterface);
-                redisService.setListToHash(EntityUtils.getRedisKeyByRedisListInterface(redisListInterface), redisListInterfaceList);
+                redisService.setListToHash(getRedisKeyByRedisListInterface(redisListInterface), redisListInterfaceList);
             }
         }
     }
@@ -106,12 +110,12 @@ public class EntityUtils {
         if (entity != null) {
             if (entity instanceof RedisInterface) {
                 RedisInterface redisInterface = (RedisInterface) entity;
-                redisService.setObjectToHash(EntityUtils.getRedisKey(redisInterface), entity);
+                redisService.setObjectToHash(getRedisKey(redisInterface), entity);
             } else if (entity instanceof RedisListInterface) {
                 RedisListInterface redisListInterface = (RedisListInterface) entity;
                 List<RedisListInterface> redisListInterfaceList = new ArrayList<>();
                 redisListInterfaceList.add(redisListInterface);
-                redisService.setListToHash(EntityUtils.getRedisKeyByRedisListInterface(redisListInterface), redisListInterfaceList);
+                redisService.setListToHash(getRedisKeyByRedisListInterface(redisListInterface), redisListInterfaceList);
             }
         }
     }
@@ -124,10 +128,10 @@ public class EntityUtils {
         if (abstractEntity != null) {
             if (abstractEntity instanceof RedisInterface) {
                 RedisInterface redisInterface = (RedisInterface) abstractEntity;
-                redisService.deleteKey(EntityUtils.getRedisKey(redisInterface));
+                redisService.deleteKey(getRedisKey(redisInterface));
             }else if(abstractEntity instanceof RedisListInterface){
                 RedisListInterface redisListInterface = (RedisListInterface) abstractEntity;
-                redisService.hdel(EntityUtils.getRedisKeyByRedisListInterface(redisListInterface), redisListInterface.getSubUniqueKey());
+                redisService.hdel(getRedisKeyByRedisListInterface(redisListInterface), redisListInterface.getSubUniqueKey());
             }
         }
     }
@@ -149,7 +153,7 @@ public class EntityUtils {
                 for(AbstractEntity abstractEntity : entityList){
                     redisListInterfaceList.add((RedisListInterface) abstractEntity);
                 }
-                redisService.setListToHash(EntityUtils.getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList);
+                redisService.setListToHash(getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList);
             }
         }
     }
@@ -173,7 +177,7 @@ public class EntityUtils {
                         RedisListInterface redisListInterface = (RedisListInterface) abstractEntity;
                         redisListInterfaceList.add(redisListInterface);
                     }
-                    redisService.setListToHash(EntityUtils.getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList);
+                    redisService.setListToHash(getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList);
                 }
             }
         }
@@ -194,7 +198,7 @@ public class EntityUtils {
                         RedisListInterface redisListInterface = (RedisListInterface) abstractEntity;
                         redisListInterfaceList.add(redisListInterface.getSubUniqueKey());
                     }
-                    redisService.hdel(EntityUtils.getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList.toArray(new String[0]));
+                    redisService.hdel(getRedisKeyByRedisListInterface((RedisListInterface) entity), redisListInterfaceList.toArray(new String[0]));
                 }
             }
         }

@@ -9,35 +9,29 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author hejingyuan
  *
  */
-public class ReadWriteLockTest {
+public final class ReadWriteLockTest {
     public static void main(String[] args) {
         final Queue3 q3 = new Queue3();
         int threadSize = 10;
         //创建几个线程
         for(int i=0;i<threadSize;i++)
         {
-            new Thread(){
-                public void run(){
-                    while(true){
-                        q3.get();
+            new Thread(() -> {
+                while(true){
+                    q3.get();
+                }
+            }).start();
+
+            new Thread(() -> {
+                while(true){
+                    q3.put(new Random().nextInt(10000));
+                    try {
+                        Thread.sleep((long) (Math.random() * 1000));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-
-            }.start();
-
-            new Thread(){
-                public void run(){
-                    while(true){
-                        q3.put(new Random().nextInt(10000));
-                        try {
-                            Thread.sleep((long) (Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }.start();
+            }).start();
 
         }
 

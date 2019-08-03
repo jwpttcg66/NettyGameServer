@@ -22,7 +22,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 public class ProxyTcpBackChannelInitializer extends ChannelInitializer<NioSocketChannel> {
 
 
-    private Channel inboundChannel;
+    private final Channel inboundChannel;
 
     public ProxyTcpBackChannelInitializer(Channel inboundChannel) {
         this.inboundChannel = inboundChannel;

@@ -29,7 +29,7 @@ public class ZookeeperTest {
         zookeeperTest.test();
         zookeeperTest.close();
     }
-    public void init() {
+    public void init() throws Exception {
         TestStartUp.startUpWithSpring();
         zookeeperRpcServiceRegistry = (ZookeeperRpcServiceRegistry) BeanUtil.getBean("zookeeperRpcServiceRegistry");
         zookeeperRpcServiceDiscovery = (ZookeeperRpcServiceDiscovery) BeanUtil.getBean("zookeeperRpcServiceDiscovery");

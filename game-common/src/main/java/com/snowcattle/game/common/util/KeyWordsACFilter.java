@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 基于天书，龙之刃代码修改，实现真正AC过滤算法
@@ -30,7 +31,7 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	 * <li>char code=8490,K -> k,</li>
 	 * </ul>
 	 */
-	private final static char[] ignowLowerCaseChars = new char[] { 304, 8490 };
+	private static final char[] ignowLowerCaseChars = { 304, 8490 };
 
 	/**
 	 *
@@ -50,15 +51,14 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	public boolean initialize(String[] keyWords) {
 		clear();
 		// 构造DFA
-		for (int s = 0; s < keyWords.length; s++) {
-			String _keyword = keyWords[s];
+		for (String keyWord : keyWords) {
+			String _keyword = keyWord;
 			if (_keyword == null || (_keyword = _keyword.trim()).length() == 0) {
 				continue;
 			}
 			char[] patternTextArray = _keyword.toCharArray();
 			DFANode currentDFANode = dfaEntrance;
-			for (int i = 0; i < patternTextArray.length; i++) {
-				final char _c = patternTextArray[i];
+			for (final char _c : patternTextArray) {
 				// 逐点加入DFA
 				final Character _lc = toLowerCaseWithoutConfict(_c);
 				DFANode _next = currentDFANode.dfaTransition.get(_lc);
@@ -81,30 +81,27 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	 * 构造失效节点：
 	 * 一个节点的失效节点所代表的字符串是该节点所表示它的字符串的最大 部分前缀
 	 */
-	private final void buildFailNode() {
+	private void buildFailNode() {
 		// 以下构造失效节点
 		List<DFANode> queues = new ArrayList<DFANode>();
 		dfaEntrance.failNode = dfaEntrance;//
-		for (Iterator<DFANode> it = dfaEntrance.dfaTransition.values()
-				.iterator(); it.hasNext();) {
-			DFANode node = it.next();
+		for (DFANode node : dfaEntrance.dfaTransition.values()) {
 			node.level = 1;
 			queues.add(node);
 			node.failNode = dfaEntrance;// 失效节点指向状态机初始状态
 		}
-		DFANode curNode = null;
-		DFANode failNode = null;
+		DFANode curNode;
+		DFANode failNode;
 		while (!queues.isEmpty()) {
 			curNode = queues.remove(0);// 该节点的失效节点已计算
 			failNode = curNode.failNode;
-			for (Iterator<Map.Entry<Character, DFANode>> it = curNode.dfaTransition
-					.entrySet().iterator(); it.hasNext();) {
-				Map.Entry<Character, DFANode> nextTrans = it.next();
+			for (Entry<Character, DFANode> nextTrans : curNode.dfaTransition
+					.entrySet()) {
 				Character nextKey = nextTrans.getKey();
 				DFANode nextNode = nextTrans.getValue();
 				// 如果父节点的失效节点中有条相同的出边，那么失效节点就是父节点的失效节点
 				while (failNode != dfaEntrance
-						&& !failNode.dfaTransition.containsKey(nextKey)) {
+					   && !failNode.dfaTransition.containsKey(nextKey)) {
 					failNode = failNode.failNode;
 				}
 				nextNode.failNode = failNode.dfaTransition.get(nextKey);
@@ -129,10 +126,10 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 		boolean _filted = false;
 
 		DFANode currentDFANode = dfaEntrance;
-		DFANode _next = null;
+		DFANode _next;
 		int replaceFrom = 0;
 		for (int i = 0; i < input.length; i++) {
-			final Character _lc = this.toLowerCaseWithoutConfict(input[i]);
+			final Character _lc = toLowerCaseWithoutConfict(input[i]);
 			_next = currentDFANode.dfaTransition.get(_lc);
 			while (_next == null && currentDFANode != dfaEntrance) {
 				currentDFANode = currentDFANode.failNode;
@@ -169,9 +166,9 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	public boolean contain(final String inputMsg) {
 		char[] input = inputMsg.toCharArray();
 		DFANode currentDFANode = dfaEntrance;
-		DFANode _next = null;
-		for (int i = 0; i < input.length; i++) {
-			final Character _lc = this.toLowerCaseWithoutConfict(input[i]);
+		DFANode _next;
+		for (char anInput : input) {
+			final Character _lc = toLowerCaseWithoutConfict(anInput);
 			_next = currentDFANode.dfaTransition.get(_lc);
 			while (_next == null && currentDFANode != dfaEntrance) {
 				currentDFANode = currentDFANode.failNode;
@@ -205,7 +202,7 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	 * @param c
 	 * @return
 	 */
-	private char toLowerCaseWithoutConfict(final char c) {
+	private static char toLowerCaseWithoutConfict(final char c) {
 		return (c == ignowLowerCaseChars[0] || c == ignowLowerCaseChars[1]) ? c
 				: Character.toLowerCase(c);
 	}
@@ -217,8 +214,8 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 	 * @return
 	 */
 	private boolean isIgnore(final char c) {
-		for (int i = 0; i < this.ignoreChars.length; i++) {
-			if (c == this.ignoreChars[i]) {
+		for (char ignoreChar : this.ignoreChars) {
+			if (c == ignoreChar) {
 				return true;
 			}
 		}
@@ -241,7 +238,7 @@ public class KeyWordsACFilter implements IKeyWordsFilter {
 		int level;
 
 		// public boolean canExit = false;
-		public DFANode() {
+		private DFANode() {
 			this.dfaTransition = new HashMap<Character, DFANode>();
 			isTerminal = false;
 			failNode = null;

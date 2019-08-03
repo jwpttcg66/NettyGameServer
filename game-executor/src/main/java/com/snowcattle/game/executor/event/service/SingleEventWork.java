@@ -11,8 +11,8 @@ import com.snowcattle.game.thread.worker.AbstractWork;
  */
 public class SingleEventWork extends AbstractWork{
 
-    private EventBus eventBus;
-    private SingleEvent singleEvent;
+    private final EventBus eventBus;
+    private final SingleEvent singleEvent;
 
     public SingleEventWork(EventBus eventBus, SingleEvent singleEvent) {
         this.eventBus = eventBus;

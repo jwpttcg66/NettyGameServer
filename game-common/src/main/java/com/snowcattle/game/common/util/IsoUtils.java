@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 
-public class IsoUtils {
+public final class IsoUtils {
 	// masks的区域
 	// _______
 	// |  /\  |
@@ -32,7 +32,10 @@ public class IsoUtils {
 		initMask();
 	}
 
-	public static void initMask() {
+    private IsoUtils() {
+    }
+
+    public static void initMask() {
 		int width = TILE_WIDTH;
 		int height = TILE_HEIGHT;
 
@@ -75,8 +78,7 @@ public class IsoUtils {
 		}
 
 		g2d.dispose();
-		bufimage = null;
-	}
+    }
 
 	/**
 	 * 返回tile坐标对应的网格的中点坐标
@@ -104,7 +106,7 @@ public class IsoUtils {
 			if (str != null) {
 				String[] coords = str.split(",");
 				if (coords.length == 2) {
-					pt = IsoUtils.tile2ImageCoord(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					pt = tile2ImageCoord(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 				}
 			}
 		} catch (NumberFormatException e) {

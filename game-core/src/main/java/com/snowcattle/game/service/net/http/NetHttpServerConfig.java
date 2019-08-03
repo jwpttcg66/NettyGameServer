@@ -4,7 +4,6 @@ import com.snowcattle.game.common.constant.GlobalConstants;
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.common.util.FileUtil;
 import com.snowcattle.game.common.util.JdomUtils;
-import com.snowcattle.game.service.net.udp.SdUdpServerConfig;
 import org.jdom2.Element;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;

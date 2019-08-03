@@ -6,10 +6,8 @@ import com.snowcattle.game.common.exception.CodecException;
 import com.snowcattle.game.service.message.AbstractNetProtoBufMessage;
 import com.snowcattle.game.service.message.NetHttpMessageHead;
 import com.snowcattle.game.service.message.NetProtoBufMessageBody;
-import com.snowcattle.game.service.message.NetUdpMessageHead;
 import com.snowcattle.game.service.message.registry.MessageRegistry;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,9 +41,8 @@ public class NetProtoBufHttpMessageDecoderFactory implements INetProtoBufHttpMes
         //读取body
         NetProtoBufMessageBody netMessageBody = new NetProtoBufMessageBody();
         int byteLength = byteBuf.readableBytes();
-        ByteBuf bodyByteBuffer = null;
         byte[] bytes = new byte[byteLength];
-        bodyByteBuffer = byteBuf.getBytes(byteBuf.readerIndex(), bytes);
+        byteBuf.getBytes(byteBuf.readerIndex(), bytes);
         netMessageBody.setBytes(bytes);
         netMessage.setNetMessageHead(netMessageHead);
         netMessage.setNetMessageBody(netMessageBody);

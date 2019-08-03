@@ -1,9 +1,5 @@
 package com.snowcattle.game.service.rpc.server;
 
-/**
- * Created by jwp on 2017/3/9.
- */
-
 import org.jdom2.DataConversionException;
 import org.jdom2.Element;
 

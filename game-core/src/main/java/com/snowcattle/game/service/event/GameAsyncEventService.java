@@ -80,8 +80,8 @@ public class GameAsyncEventService implements IService{
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
 //                Class<?> messageClass = null;
 //                FileClassLoader fileClassLoader = defaultClassLoader.getDefaultClassLoader();
@@ -105,7 +105,7 @@ public class GameAsyncEventService implements IService{
                 logger.info("GameAsyncEventService load: " + messageClass);
 
                 AbstractEventListener eventListener = getListener(messageClass);
-                GlobalEventListenerAnnotation annotation = (GlobalEventListenerAnnotation) messageClass
+                GlobalEventListenerAnnotation annotation = messageClass
                         .getAnnotation(GlobalEventListenerAnnotation.class);
                 if (annotation != null) {
                     eventBus.addEventListener(eventListener);
@@ -134,7 +134,7 @@ public class GameAsyncEventService implements IService{
      * @return
      * @throws Exception
      */
-    public final AbstractEventListener getListener(Class<?> classes) {
+    public static AbstractEventListener getListener(Class<?> classes) {
 
         try {
             if (classes == null) {

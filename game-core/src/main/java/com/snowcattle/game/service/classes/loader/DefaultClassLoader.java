@@ -1,9 +1,5 @@
 package com.snowcattle.game.service.classes.loader;
 
-/**
- * Created by jiangwenping on 17/2/8.
- */
-
 import com.snowcattle.game.common.constant.Loggers;
 import com.snowcattle.game.service.IService;
 import org.slf4j.Logger;
@@ -51,7 +47,7 @@ public class DefaultClassLoader implements IService {
         name = name.replace('.', '/');
         name = name + ".class";
 
-        URL loadurl = DefaultClassLoader.class.getResource("/" + name);
+        URL loadurl = DefaultClassLoader.class.getResource('/' + name);
         File file =new File(loadurl.getPath());
 
         logger.info("class load DefaultClassLoader " + loadurl.getPath() + "  load class " + name);
@@ -80,7 +76,7 @@ public class DefaultClassLoader implements IService {
         destRespath = destRespath.replace('.', '/');
         destRespath = destRespath + ext;
 
-        URL url = DefaultClassLoader.class.getResource("/" + destRespath);
+        URL url = DefaultClassLoader.class.getResource('/' + destRespath);
         File file =new File(url.getPath());
 
         logger.info("DefaultClassLoader root path" + url.getPath() + "  load class " + realClass);

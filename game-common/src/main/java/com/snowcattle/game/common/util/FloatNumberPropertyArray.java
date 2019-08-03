@@ -163,9 +163,9 @@ public final class FloatNumberPropertyArray implements Cloneable {
 	 */
 	public float sum() {
 		float _sum = 0;
-		for (int i = 0; i < this.values.length; i++) {
-			_sum += this.values[i];
-		}
+        for (float value : this.values) {
+            _sum += value;
+        }
 		return _sum;
 	}
 
@@ -178,9 +178,9 @@ public final class FloatNumberPropertyArray implements Cloneable {
 	 */
 	public float sum(int[] indexs) {
 		float _sum = 0;
-		for (int i = 0; i < indexs.length; i++) {
-			_sum += this.values[indexs[i]];
-		}
+        for (int index : indexs) {
+            _sum += this.values[index];
+        }
 		return _sum;
 	}
 
@@ -193,12 +193,12 @@ public final class FloatNumberPropertyArray implements Cloneable {
 	 */
 	public float sumExcept(final int[] exceptIndexs) {
 		float _sum = 0;
-		for (int i = 0; i < values.length; i++) {
-			_sum += this.values[i];
-		}
-		for (int i = 0; i < exceptIndexs.length; i++) {
-			_sum -= this.values[exceptIndexs[i]];
-		}
+        for (float value : values) {
+            _sum += value;
+        }
+        for (int exceptIndex : exceptIndexs) {
+            _sum -= this.values[exceptIndex];
+        }
 		return _sum;
 	}
 

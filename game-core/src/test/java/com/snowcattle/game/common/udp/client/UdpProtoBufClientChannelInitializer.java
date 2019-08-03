@@ -1,9 +1,5 @@
 package com.snowcattle.game.common.udp.client;
 
-/**
- * Created by jiangwenping on 17/2/16.
- */
-
 import com.snowcattle.game.service.message.decoder.NetProtoBufMessageUDPDecoder;
 import com.snowcattle.game.service.message.encoder.NetProtoBufMessageUDPEncoder;
 import io.netty.channel.ChannelInitializer;

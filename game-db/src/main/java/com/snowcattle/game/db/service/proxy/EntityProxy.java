@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class EntityProxy< T extends IEntity> implements MethodInterceptor {
 
-    private Logger logger = Loggers.dbProxyLogger;
+    private final Logger logger = Loggers.dbProxyLogger;
     //实体对象
     private T entity;
 
@@ -40,12 +40,12 @@ public class EntityProxy< T extends IEntity> implements MethodInterceptor {
     public Object intercept(Object obj, Method method, Object[] args,
                             MethodProxy methodProxy) throws Throwable {
         //通过代理类调用父类中的方法
-        Object result = null;
+        Object result;
         if(!collectFlag){
             result = methodProxy.invokeSuper(obj, args);
         }else {
             //检查MethodProxy注解
-            MethodSaveProxy methodSaveProxyAnnotation = (MethodSaveProxy) method
+            MethodSaveProxy methodSaveProxyAnnotation = method
                     .getAnnotation(MethodSaveProxy.class);
             if (methodSaveProxyAnnotation != null) {
                 //检查对象原来数值

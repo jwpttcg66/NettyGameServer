@@ -13,17 +13,21 @@ import org.apache.log4j.Logger;
  * reinstantiates a AES key from the key bytes. The reinstantiated key is used
  * to initialize a AES cipher for encryption and decryption.
  */
-public class AES {
+public final class AES {
 
 	private static final String AES = "AES";
 	private static final String CRYPT_KEY = "hsylgwk-20120101";
 
-	private static Logger logger = Logger.getLogger(AES.class);
+	private static final Logger logger = Logger.getLogger(AES.class);
+
+	private AES() {
+	}
 
 	/**
 	 * 加密
 	 * 
-	 * @param encryptStr
+	 * @param src
+     * @param key
 	 * @return
 	 */
 	public static byte[] encrypt(byte[] src, String key) throws Exception {
@@ -36,7 +40,8 @@ public class AES {
 	/**
 	 * 解密
 	 * 
-	 * @param decryptStr
+	 * @param src
+	 * @param key
 	 * @return
 	 * @throws Exception
 	 */
@@ -54,21 +59,23 @@ public class AES {
 	 * @return
 	 */
 	public static String byte2hex(byte[] b) {
-		String hs = "";
-		String stmp = "";
-		for (int n = 0; n < b.length; n++) {
-			stmp = (Integer.toHexString(b[n] & 0XFF));
-			if (stmp.length() == 1)
-				hs = hs + "0" + stmp;
-			else
-				hs = hs + stmp;
-		}
-		return hs.toUpperCase();
+		StringBuilder hs = new StringBuilder();
+		String stmp;
+        for (byte aB : b) {
+            stmp = (Integer.toHexString(aB & 0XFF));
+            if (stmp.length() == 1) {
+                hs.append('0').append(stmp);
+            } else {
+                hs.append(stmp);
+            }
+        }
+		return hs.toString().toUpperCase();
 	}
 
 	public static byte[] hex2byte(byte[] b) {
-		if ((b.length % 2) != 0)
+		if ((b.length % 2) != 0) {
 			throw new IllegalArgumentException("长度不是偶数");
+		}
 		byte[] b2 = new byte[b.length / 2];
 		for (int n = 0; n < b.length; n += 2) {
 			String item = new String(b, n, 2);
@@ -84,11 +91,11 @@ public class AES {
 	 * @return
 	 * @throws Exception
 	 */
-	public final static String decrypt(String data) {
+	public static String decrypt(String data) {
 		return decrypt(data, CRYPT_KEY);
 	}
 
-	public final static String decrypt(String data, String pass) {
+	public static String decrypt(String data, String pass) {
 		if (data == null||data.isEmpty()) {
 			return "";
 		}
@@ -107,11 +114,11 @@ public class AES {
 	 * @return
 	 * @throws Exception
 	 */
-	public final static String encrypt(String data) {
+	public static String encrypt(String data) {
 		return encrypt(data, CRYPT_KEY);
 	}
 
-	public final static String encrypt(String data, String pass) {
+	public static String encrypt(String data, String pass) {
 		if (data == null) {
 			data = "";
 		}

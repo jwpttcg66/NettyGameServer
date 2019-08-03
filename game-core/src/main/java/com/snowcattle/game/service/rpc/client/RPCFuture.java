@@ -20,16 +20,16 @@ import java.util.concurrent.locks.ReentrantLock;
  * RPCFuture for async RPC call
  */
 public class RPCFuture implements Future<Object> {
-    private Logger logger = Loggers.rpcLogger;
-    private Sync sync;
-    private RpcRequest request;
+    private final Logger logger = Loggers.rpcLogger;
+    private final Sync sync;
+    private final RpcRequest request;
     private RpcResponse response;
-    private long startTime;
+    private final long startTime;
 
-    private long responseTimeThreshold = 5000;
+    private final long responseTimeThreshold = 5000;
 
-    private List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
-    private ReentrantLock lock = new ReentrantLock();
+    private final List<AsyncRPCCallback> pendingCallbacks = new ArrayList<AsyncRPCCallback>();
+    private final ReentrantLock lock = new ReentrantLock();
 
     public RPCFuture(RpcRequest request) {
         this.sync = new Sync();
@@ -144,8 +144,8 @@ public class RPCFuture implements Future<Object> {
         private static final long serialVersionUID = 1L;
 
         //future status
-        private final int done = 1;
-        private final int pending = 0;
+        private static final int done = 1;
+        private static final int pending = 0;
 
         protected boolean tryAcquire(int acquires) {
             return getState() == done ? true : false;

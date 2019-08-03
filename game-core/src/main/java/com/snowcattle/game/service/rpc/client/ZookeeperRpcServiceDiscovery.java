@@ -47,11 +47,11 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 
     private static final Logger logger = Loggers.rpcLogger;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    private volatile Map<ZooKeeperNodeBoEnum, List<ZooKeeperNodeInfo>> nodeMap = new ConcurrentHashMap<>();
+    private final Map<ZooKeeperNodeBoEnum, List<ZooKeeperNodeInfo>> nodeMap = new ConcurrentHashMap<>();
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     private CuratorFramework client;
     
@@ -202,7 +202,7 @@ public class ZookeeperRpcServiceDiscovery implements IService{
 		List<ZooKeeperNodeInfo> tempNodeList = new ArrayList<>();
         for (String node: childrens){
             ZooKeeperNodeInfo zooKeeperNodeInfo = new ZooKeeperNodeInfo();
-            byte[] bytes = client.getData().forPath(zooKeeperNodeBoEnum.getRootPath()+"/"+node);
+            byte[] bytes = client.getData().forPath(zooKeeperNodeBoEnum.getRootPath() + '/' + node);
             if(bytes != null) {
                 zooKeeperNodeInfo.deserialize(new String(bytes));
                 tempNodeList.add(zooKeeperNodeInfo);

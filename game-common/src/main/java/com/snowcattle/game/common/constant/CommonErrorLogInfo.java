@@ -6,7 +6,7 @@ package com.snowcattle.game.common.constant;
  *
  *
  */
-public class CommonErrorLogInfo {
+public final class CommonErrorLogInfo {
 	/* 消息包错误定义开始 */
 
     /** 错误的消息头长度 */
@@ -78,5 +78,6 @@ public class CommonErrorLogInfo {
     public static final String INVALID_STATE = "STATE.ERR.INVALID";
 
 
-
+    private CommonErrorLogInfo() {
+    }
 }

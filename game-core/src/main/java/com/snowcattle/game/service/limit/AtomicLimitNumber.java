@@ -11,7 +11,7 @@ public class AtomicLimitNumber {
     /**
      * 原子数量
      */
-    private AtomicLong atomicLong;
+    private final AtomicLong atomicLong;
 
     public AtomicLimitNumber() {
         this.atomicLong = new AtomicLong();

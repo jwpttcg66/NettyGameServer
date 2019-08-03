@@ -25,7 +25,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
 
     public ClassScanner classScanner = new ClassScanner();
 
-    private ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
+    private final ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
 
     @Override
     public String getId() {
@@ -46,7 +46,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
     public void reload() throws Exception {
         GameServerConfigService gameServerConfigService = LocalMananger.getInstance().getLocalSpringServiceManager().getGameServerConfigService();
         String packageName = gameServerConfigService.getGameServerConfig().getRpcServicePackage();
-        loadPackage(gameServerConfigService.getGameServerConfig().getRpcServicePackage(),
+        loadPackage(packageName,
                 GlobalConstants.FileExtendConstants.Ext);
     }
 
@@ -56,8 +56,8 @@ public class RpcMethodRegistry implements Reloadable, IService {
         if(fileNames != null) {
             for (String fileName : fileNames) {
                 String realClass = namespace
-                        + "."
-                        + fileName.subSequence(0, fileName.length()
+                                   + '.'
+                                   + fileName.subSequence(0, fileName.length()
                         - (ext.length()));
                 Class<?> messageClass = Class.forName(realClass);
 
@@ -66,7 +66,7 @@ public class RpcMethodRegistry implements Reloadable, IService {
                 if(rpcServiceAnnotation != null) {
                     String interfaceName = messageClass.getAnnotation(RpcServiceAnnotation.class).value().getName();
                     ProtostuffSerializeI rpcSerialize = LocalMananger.getInstance().getLocalSpringBeanManager().getProtostuffSerialize();
-                    Object serviceBean = (Object) rpcSerialize.newInstance(messageClass);
+                    Object serviceBean = rpcSerialize.newInstance(messageClass);
                     registryMap.put(interfaceName, serviceBean);
                     logger.info("rpc register:" + messageClass);
                 }

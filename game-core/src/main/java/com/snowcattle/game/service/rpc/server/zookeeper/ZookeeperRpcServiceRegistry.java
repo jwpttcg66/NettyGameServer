@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 public class ZookeeperRpcServiceRegistry implements IService{
     private static final Logger logger = Loggers.rpcLogger;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
     private ZooKeeper zk;
     public void registerZooKeeper(){
@@ -43,10 +43,8 @@ public class ZookeeperRpcServiceRegistry implements IService{
                     if(zk.exists(nodePath, false) != null) {
                         deleteNode(zk, nodePath);
                     }
-                } catch (KeeperException e) {
+                } catch (KeeperException | InterruptedException e) {
 //                        e.printStackTrace();
-                } catch (InterruptedException e) {
-//                    e.printStackTrace();
                 }
                 createNode(zk, nodePath, nodeData);
             }
@@ -107,11 +105,7 @@ public class ZookeeperRpcServiceRegistry implements IService{
      *@throws InterruptedException
      */
     public String createRootNode(String path,byte[] data) throws  Exception{
-        /**
-         * 此处采用的是CreateMode是PERSISTENT  表示The znode will not be automatically deleted upon client's disconnect.
-         * EPHEMERAL 表示The znode will be deleted upon the client's disconnect.
-         */
-       return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
     }
 
 
@@ -126,10 +120,6 @@ public class ZookeeperRpcServiceRegistry implements IService{
      *@throws InterruptedException
      */
     public String create(String path,byte[] data) throws  Exception{
-        /**
-         * 此处采用的是CreateMode是PERSISTENT  表示The znode will not be automatically deleted upon client's disconnect.
-         * EPHEMERAL 表示The znode will be deleted upon the client's disconnect.
-         */
         return this.zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
     }
 

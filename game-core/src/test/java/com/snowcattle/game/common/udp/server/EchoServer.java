@@ -14,7 +14,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * Created by jwp on 2017/1/20.
  */
-public class EchoServer {
+public final class EchoServer {
     public static void main(String[] args) throws Exception {
 //        LocalSpringServiceManager localSpringServiceManager = new LocalSpringServiceManager();
 //        MessageCommandFactory messageCommandFactory = new MessageCommandFactory();
@@ -23,7 +23,7 @@ public class EchoServer {
 //        localSpringServiceManager.setMessageRegistry(LocalMananger.getInstance().get(MessageRegistry.class));
 //        LocalMananger.getInstance().setLocalSpringServiceManager(localSpringServiceManager);
 
-        TestStartUp.startUp();
+        TestStartUp.startUpWithSpring();
         Bootstrap b = new Bootstrap();
         EventLoopGroup group = new NioEventLoopGroup();
         b.group(group)

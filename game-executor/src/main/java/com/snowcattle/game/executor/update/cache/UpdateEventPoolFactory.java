@@ -20,7 +20,6 @@ public class UpdateEventPoolFactory implements PooledObjectFactory<UpdateEvent>{
     public void destroyObject(PooledObject<UpdateEvent> p) throws Exception {
 //        System.out.println("destroyObject updateEvent");
         UpdateEvent updateEvent = p.getObject();
-        updateEvent = null;
     }
 
     @Override
