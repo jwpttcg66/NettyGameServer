@@ -13,7 +13,7 @@
     <global.version>1.1.7-SNAPSHOT</global.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.version>1.2.5-SNAPSHOT</project.version>
-    <netty.version>4.1.6.Final</netty.version>
+    <netty.version>4.1.42.Final</netty.version>
     <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
     <junit.version>4.12</junit.version>
     <app.encoding>UTF-8</app.encoding>
