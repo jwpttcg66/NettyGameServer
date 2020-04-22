@@ -101,7 +101,10 @@ public final class ArrayUtils {
 	public static Set<Integer> getIntegerSet(List<String> ids) {
 		Set<Integer> list = new HashSet<Integer>();
 		for(String key: ids){
-			list.add(Integer.parseInt(key));
+			try {
+				list.add(Integer.parseInt(key));
+			}catch (NumberFormatException e){
+			}
 		}
 		return list;
 	}
