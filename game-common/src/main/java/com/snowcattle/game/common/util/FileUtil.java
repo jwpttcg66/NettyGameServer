@@ -117,7 +117,10 @@ public final class FileUtil {
 	{
 		ClassLoader classLoader = Thread.currentThread()
 				.getContextClassLoader();
-		return classLoader.getResource(fileName).getPath();
+		if(classLoader.getResource(fileName)!=null){
+			return classLoader.getResource(fileName).getPath();
+		}
+		return classLoader.getResource("\\").getPath();
 	}
 
 	public static File getFile(String filePath)

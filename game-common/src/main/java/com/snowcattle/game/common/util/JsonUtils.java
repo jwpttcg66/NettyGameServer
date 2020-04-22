@@ -2,6 +2,7 @@ package com.snowcattle.game.common.util;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public final class JsonUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static Map<String,String> getMapFromJson(String json){
+    public static Map<String,String> getMapFromJson(String json) throws JSONException{
         return JSON.parseObject(json, Map.class);
     }
 

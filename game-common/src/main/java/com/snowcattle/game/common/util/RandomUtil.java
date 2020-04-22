@@ -62,7 +62,7 @@ public final class RandomUtil {
 	 * @param listRate
 	 * @param rateMaxNum
 	 */
-	public static int getRadomIndex(List<Integer> listRate,int rateMaxNum) {
+	public static int getRadomIndex(List<Integer> listRate,int rateMaxNum) throws IllegalArgumentException{
 		int left = 0;
 		int right;
 		int index = -1;
