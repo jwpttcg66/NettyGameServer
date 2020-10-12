@@ -15,7 +15,7 @@
     <project.version>1.2.5-SNAPSHOT</project.version>
     <netty.version>4.1.6.Final</netty.version>
     <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <app.encoding>UTF-8</app.encoding>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     <version.template.file>version.txt.template</version.template.file>
