@@ -40,7 +40,7 @@
     <protostuff-core.version>1.0.8</protostuff-core.version>
     <protostuff-runtime.version>1.0.8</protostuff-runtime.version>
     <cglib.version>3.1</cglib.version>
-    <zookeeper.version>3.5.2-alpha</zookeeper.version>
+    <zookeeper.version>3.5.5</zookeeper.version>
     <zkclient.version>0.10</zkclient.version>
     <curator-recipes.version>3.3.0</curator-recipes.version>
     <velocity.version>1.7</velocity.version>
