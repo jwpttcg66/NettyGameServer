@@ -48,7 +48,7 @@
     <mybatis-spring.version>1.2.0</mybatis-spring.version>
     <mysql.version>5.1.30</mysql.version>
     <commons.dbcp.version>1.4</commons.dbcp.version>
-    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <redis-game-transaction.version>1.8.010</redis-game-transaction.version>
     <druid.version>1.0.29</druid.version>
     <pagehelper.version>5.0.0</pagehelper.version>
