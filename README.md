@@ -5,6 +5,8 @@ NettyGameServer
 - 使用game-executor工程,增加游戏内的异步事件全局服务,支持事件sharding,均衡的异步执行事件逻辑
 - 使用netty的proxy模式，增加网关代理转发
 ## [Wiki/文档](https://github.com/jwpttcg66/NettyGameServer/wiki)
+## [游戏工具链接]
+  GameCodeGenerate(地址https://github.com/jwpttcg66/GameCodeGenerate)
 
 #### 贡献源码&合作&交流
 
