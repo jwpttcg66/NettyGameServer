@@ -5,8 +5,14 @@ NettyGameServer
 - 使用game-executor工程,增加游戏内的异步事件全局服务,支持事件sharding,均衡的异步执行事件逻辑
 - 使用netty的proxy模式，增加网关代理转发
 ## [Wiki/文档](https://github.com/jwpttcg66/NettyGameServer/wiki)
-## [游戏工具链接]
-  GameCodeGenerate(地址https://github.com/jwpttcg66/GameCodeGenerate)
+
+## 源码工具链接
+- [ExcelToCode 数据字典生成](https://github.com/youlanhai/ExcelToCode)
+- [GameShardingDb 游戏数据库](https://github.com/jwpttcg66/GameShardingDb)
+- [GameThreadPool 游戏常用线程池](https://github.com/jwpttcg66/GameThreadPool)
+- [game-executor 游戏常用循环调度执行器](https://github.com/jwpttcg66/game-executor)
+- [GameCodeGenerate 工具(包含新版本数据字典生成)](https://github.com/jwpttcg66/GameCodeGenerate)
+- [redis-game-transaction 事务](https://github.com/jwpttcg66/redis-game-transaction)
 
 #### 贡献源码&合作&交流
 
