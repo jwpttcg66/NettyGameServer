@@ -34,7 +34,7 @@
     <commons-lang.version>2.6</commons-lang.version>
     <commons-io.version>1.4</commons-io.version>
     <protobuf-java.version>3.1.0</protobuf-java.version>
-    <fastjson.version>1.2.51</fastjson.version>
+    <fastjson.version>1.2.83</fastjson.version>
     <httpclient.version>4.5.6</httpclient.version>
     <objenesis.version>2.1</objenesis.version>
     <protostuff-core.version>1.0.8</protostuff-core.version>
