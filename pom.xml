@@ -33,7 +33,7 @@
     <commons-pool2.version>2.4.2</commons-pool2.version>
     <commons-lang.version>2.6</commons-lang.version>
     <commons-io.version>1.4</commons-io.version>
-    <protobuf-java.version>3.1.0</protobuf-java.version>
+    <protobuf-java.version>3.16.3</protobuf-java.version>
     <fastjson.version>1.2.51</fastjson.version>
     <httpclient.version>4.5.6</httpclient.version>
     <objenesis.version>2.1</objenesis.version>
