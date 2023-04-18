@@ -51,7 +51,7 @@
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <redis-game-transaction.version>1.8.010</redis-game-transaction.version>
     <druid.version>1.0.29</druid.version>
-    <pagehelper.version>5.0.0</pagehelper.version>
+    <pagehelper.version>5.3.1</pagehelper.version>
     <project.build.directory>target/classes/com</project.build.directory>
   </properties>
 
